@@ -1,0 +1,65 @@
+stage: 12
+model:
+  name: Qwen3-0.6B
+  id: Qwen/Qwen3-0.6B
+  cache_dir: models
+  device: auto
+  dtype: auto
+dataset:
+  train: data/training/datasets/training_v2.jsonl
+  validation: data/training/datasets/validation_v2.jsonl
+  test: data/training/datasets/test_v2.jsonl
+  manifest: data/training/datasets/manifest_v2.json
+  expected_hash: 656d69b284db62bf945ffd100a4f52b36a1652b06d43b03239e7facba8c4a71b
+  expected_counts:
+    train: 7958
+    validation: 1058
+    test: 947
+  seed: 42
+  eval_subset: 100
+  eval_stratified: true
+  protected:
+  - data/evaluation/datasets/baseline_v1.jsonl
+  - data/evaluation/datasets/retrieval_v1.jsonl
+  - data/evaluation/datasets/retrieval_v2.jsonl
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+training:
+  learning_rate: 0.0001
+  num_train_epochs: 1.0
+  max_steps: 200
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  warmup_steps: 15
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  logging_steps: 5
+  eval_strategy: steps
+  eval_steps: 40
+  save_strategy: steps
+  save_steps: 40
+  save_total_limit: 3
+  early_stopping_patience: 3
+  max_seq_length: 1280
+  over_length_policy: skip
+  gradient_checkpointing: true
+  seed: 42
+  deadline_local: '18:30'
+  deadline_reserve_seconds: 1500
+output:
+  directory: models/qwen3-0.6b-lora/stage13_v1
+  smoke_directory: models/qwen3-0.6b-lora/smoke_tmp
+source: configs/model_training_v2.yaml

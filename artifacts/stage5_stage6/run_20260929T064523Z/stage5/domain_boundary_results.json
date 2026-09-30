@@ -1,0 +1,88 @@
+{
+  "questions": 5,
+  "out_of_domain_leak_raw": 0.75,
+  "out_of_domain_leak_final": 0.75,
+  "attribution": {
+    "generation (validator gap: no requested provision or figure to check)": 3,
+    "none": 1,
+    "mixed question handled": 1
+  },
+  "per_question": [
+    {
+      "id": "S5-080",
+      "domain": "out_of_domain",
+      "leak_raw": true,
+      "leak_final": true,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 22
+      },
+      "raw_class": "answer",
+      "attribution": "generation (validator gap: no requested provision or figure to check)",
+      "answer_raw": "The capital of France is Paris. [1]"
+    },
+    {
+      "id": "S5-081",
+      "domain": "out_of_domain",
+      "leak_raw": true,
+      "leak_final": true,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 1
+      },
+      "raw_class": "hedged",
+      "attribution": "generation (validator gap: no requested provision or figure to check)",
+      "answer_raw": "The available regulatory sources do not provide enough information to answer this question. The question is about who wrote *Hamlet*, but the provided evidence only contains information related to acr"
+    },
+    {
+      "id": "S5-082",
+      "domain": "out_of_domain",
+      "leak_raw": true,
+      "leak_final": true,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 16
+      },
+      "raw_class": "hedged",
+      "attribution": "generation (validator gap: no requested provision or figure to check)",
+      "answer_raw": "The available regulatory sources do not provide enough information to answer this question. The sources provided do not address the boiling point of water in Celsius."
+    },
+    {
+      "id": "S5-083",
+      "domain": "out_of_domain",
+      "leak_raw": false,
+      "leak_final": false,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 23
+      },
+      "raw_class": "refusal",
+      "attribution": "none",
+      "answer_raw": "This question is outside what Regulus AI can answer. Regulus AI answers from U.S. FDA regulations (21 CFR) and FDA guidance only, and the question asks about a non-U.S. framework (EU); no source for i"
+    },
+    {
+      "id": "S5-084",
+      "domain": "mixed",
+      "leak_raw": false,
+      "leak_final": false,
+      "retrieved_tiers": {
+        "exact": 1,
+        "structural": 1,
+        "supporting": 0,
+        "discovery": 0
+      },
+      "raw_class": "answer",
+      "attribution": "mixed question handled",
+      "answer_raw": "21 CFR 820.10(b)(3) requires that the manufacturer must notify the FDA of complaints that meet the reporting criteria of part 803 of this chapter. [1]\nNot answered: \"what is the population of Paris\". "
+    }
+  ],
+  "note": "Retrieval always returns something for these questions (discovery tier); the leak is a generation behaviour and the deterministic validator has no identity or figure to reject it with. An intent/domain classifier before generation is the architectural fix, not a keyword rule."
+}

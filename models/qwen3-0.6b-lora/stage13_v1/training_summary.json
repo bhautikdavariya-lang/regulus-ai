@@ -1,0 +1,223 @@
+{
+  "stage": 12,
+  "mode": "full",
+  "started_utc": "2026-09-21T06:33:25+00:00",
+  "finished_utc": "2026-09-21T12:44:05+00:00",
+  "training_duration_seconds": 21571.9,
+  "hardware": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "torch": "2.14.0+cpu",
+    "cuda_available": false,
+    "cuda_version": null,
+    "cpu_threads": 4,
+    "gpu_name": null,
+    "device": "cpu",
+    "dtype": "float32",
+    "cpu_count": 4,
+    "ram_total_gb": 7.91,
+    "ram_available_gb": 3.5
+  },
+  "dependencies": {
+    "python": "3.11.9",
+    "torch": "2.14.0+cpu",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.2",
+    "numpy": "2.4.6"
+  },
+  "dataset_identity": {
+    "files": {
+      "train": {
+        "path": "training_v2.jsonl",
+        "sha256": "b2162c645b2b5342e35958960196891c4ca69da4c2c646802de2718123695bf9",
+        "examples": 7958
+      },
+      "validation": {
+        "path": "validation_v2.jsonl",
+        "sha256": "9192bb9562132391df82c754390bc65a2467cf6fd0754377256b4e815be53e1e",
+        "examples": 1058
+      },
+      "test": {
+        "path": "test_v2.jsonl",
+        "sha256": "3b262090b4a934cde4d87c4b92dc3b03a341aecf97cdf16fccdc37902f83a195",
+        "examples": 947
+      }
+    },
+    "manifest": "manifest_v2.json",
+    "dataset_sha256": "656d69b284db62bf945ffd100a4f52b36a1652b06d43b03239e7facba8c4a71b",
+    "dataset_version": "v2",
+    "generated_at_utc": "2026-09-21T05:58:03+00:00",
+    "seed": 42,
+    "database_snapshot": "2026-09-03"
+  },
+  "protected_files_sha256": {
+    "baseline_v1.jsonl": "28363d860c50d64f297a40ad48d80cb71c6fcde47a7d8da1ac82609fcd47573d",
+    "retrieval_v1.jsonl": "63f0a0863cfbc42e72161cd1fce176b40fd19a61f6f216e70c3766482f62d106",
+    "retrieval_v2.jsonl": "db73c6fa7bb934f3353e101b55e40fcae7e8833b005cef19dc27db992303b11c"
+  },
+  "tokenization": {
+    "train": {
+      "examples_in": 7958,
+      "examples_used": 7755,
+      "skipped_over_length": 203,
+      "truncated": 0,
+      "max_seq_length": 1280,
+      "over_length_policy": "skip",
+      "max_token_length_observed": 2712,
+      "median_token_length": 546,
+      "p95_token_length": 1135,
+      "answer_tokens_mean": 114.5,
+      "category_distribution": {
+        "abstention": 641,
+        "cfr_vs_guidance": 386,
+        "citation": 328,
+        "citation_grounding": 386,
+        "context_mismatch": 485,
+        "definition": 694,
+        "direct_cfr": 1604,
+        "fda_guidance": 798,
+        "guidance_mismatch": 83,
+        "multi_context": 322,
+        "partial_context": 78,
+        "relationship": 635,
+        "section_paragraph": 1204,
+        "wrong_context": 314
+      }
+    },
+    "eval_subset": {
+      "examples_in": 100,
+      "examples_used": 100,
+      "skipped_over_length": 0,
+      "truncated": 0,
+      "max_seq_length": 1280,
+      "over_length_policy": "skip",
+      "max_token_length_observed": 1171,
+      "median_token_length": 482,
+      "p95_token_length": 897,
+      "answer_tokens_mean": 110.2,
+      "category_distribution": {
+        "abstention": 8,
+        "cfr_vs_guidance": 5,
+        "citation": 4,
+        "citation_grounding": 6,
+        "context_mismatch": 6,
+        "definition": 13,
+        "direct_cfr": 19,
+        "fda_guidance": 6,
+        "guidance_mismatch": 1,
+        "multi_context": 4,
+        "partial_context": 1,
+        "relationship": 9,
+        "section_paragraph": 14,
+        "wrong_context": 4
+      },
+      "stratified": true
+    }
+  },
+  "lora": {
+    "trainable_parameters": 10092544,
+    "total_parameters": 606142464,
+    "trainable_percent": 1.665,
+    "base_parameters_frozen": true,
+    "target_module_counts": {
+      "q_proj": 28,
+      "k_proj": 28,
+      "v_proj": 28,
+      "o_proj": 28,
+      "gate_proj": 28,
+      "up_proj": 28,
+      "down_proj": 28
+    },
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "bias": "none",
+      "task_type": "CAUSAL_LM",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    }
+  },
+  "training_arguments": {
+    "learning_rate": 0.0001,
+    "num_train_epochs": 1.0,
+    "max_steps": 200,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "warmup_steps": 15,
+    "weight_decay": 0.0,
+    "lr_scheduler_type": "cosine",
+    "eval_steps": 40,
+    "save_steps": 40,
+    "save_total_limit": 3,
+    "seed": 42,
+    "use_cpu": true,
+    "bf16": false,
+    "fp16": false
+  },
+  "steps_completed": 90,
+  "epochs_completed": 0.0928,
+  "examples_seen": 720,
+  "final_training_loss": 0.060354489088058474,
+  "training_losses": [
+    0.6450313329696655,
+    0.8685957193374634,
+    0.6873363018035888,
+    0.6021849155426026,
+    0.4650129318237305,
+    0.3962846040725708,
+    0.32926192283630373,
+    0.2785684823989868,
+    0.16156100034713744,
+    0.2208015203475952,
+    0.16711164712905885,
+    0.12958630323410034,
+    0.16471701860427856,
+    0.1363801598548889,
+    0.11719114780426025,
+    0.11307270526885986,
+    0.0675299346446991,
+    0.10045042037963867,
+    0.060354489088058474
+  ],
+  "eval_losses": [
+    0.2274884283542633,
+    0.09398341178894043,
+    0.07227404415607452
+  ],
+  "base_validation_loss": 1.0956313610076904,
+  "best_validation_loss": 0.07227404415607452,
+  "selected_checkpoint_validation_loss": 0.07227404415607452,
+  "best_checkpoint": "checkpoint-90",
+  "adapter_dir": "C:/Users/PC-1/Prachi Patel/Regulus AI/models/qwen3-0.6b-lora/stage13_v1/adapter",
+  "train_metrics": {
+    "train_runtime": 21563.3116,
+    "train_samples_per_second": 0.074,
+    "train_steps_per_second": 0.009,
+    "train_loss": 0.27896046373579236,
+    "epoch": 0.09284332688588008
+  },
+  "deadline": {
+    "deadline_local": "2026-09-21T18:30:00+05:30",
+    "reserve_seconds": 1500,
+    "stopped_early": true,
+    "stop_step": 90,
+    "median_step_seconds": 220.7,
+    "steps_timed": 90
+  },
+  "inference_check": {
+    "example_id": "example_d004de13e31b2c19",
+    "generated_tokens": 76,
+    "seconds": 26.96
+  }
+}

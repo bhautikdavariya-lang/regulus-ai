@@ -1,0 +1,180 @@
+{
+  "questions": 8,
+  "coverage_ok": 1.0,
+  "explicit_state_correct": 1.0,
+  "incomplete_detected": 1.0,
+  "missing_labels_exact_match": 1.0,
+  "multi_provision_complete": 1.0,
+  "range_complete": 1.0,
+  "no_explicit_for_general": 1.0,
+  "failures": [],
+  "per_question": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "state": "COMPLETE",
+      "expected_state": "COMPLETE",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [
+        "r1"
+      ],
+      "counts": {
+        "total_requirements": 1,
+        "exact_requirements": 1,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-020",
+      "category": "multi",
+      "state": "COMPLETE",
+      "expected_state": "COMPLETE",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [
+        "r1",
+        "r2"
+      ],
+      "counts": {
+        "total_requirements": 2,
+        "exact_requirements": 2,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-030",
+      "category": "range",
+      "state": "COMPLETE",
+      "expected_state": "COMPLETE",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "counts": {
+        "total_requirements": 4,
+        "exact_requirements": 4,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-041",
+      "category": "missing",
+      "state": "INCOMPLETE",
+      "expected_state": "INCOMPLETE",
+      "missing": [
+        "21 CFR 820.10(b)(5)"
+      ],
+      "expected_missing": [
+        "21 CFR 820.10(b)(5)"
+      ],
+      "satisfied": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "counts": {
+        "total_requirements": 5,
+        "exact_requirements": 4,
+        "structural_only_requirements": 1,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-043",
+      "category": "nonexistent",
+      "state": "INCOMPLETE",
+      "expected_state": "INCOMPLETE",
+      "missing": [
+        "21 CFR 314.999"
+      ],
+      "expected_missing": [
+        "21 CFR 314.999"
+      ],
+      "satisfied": [],
+      "counts": {
+        "total_requirements": 1,
+        "exact_requirements": 0,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 1,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-060",
+      "category": "general",
+      "state": "NO_EXPLICIT_REQUIREMENTS",
+      "expected_state": "NO_EXPLICIT_REQUIREMENTS",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [],
+      "counts": {
+        "total_requirements": 0,
+        "exact_requirements": 0,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-070",
+      "category": "guidance",
+      "state": "NO_EXPLICIT_REQUIREMENTS",
+      "expected_state": "NO_EXPLICIT_REQUIREMENTS",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [],
+      "counts": {
+        "total_requirements": 0,
+        "exact_requirements": 0,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-080",
+      "category": "domain_boundary",
+      "state": "NO_EXPLICIT_REQUIREMENTS",
+      "expected_state": "NO_EXPLICIT_REQUIREMENTS",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [],
+      "counts": {
+        "total_requirements": 0,
+        "exact_requirements": 0,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    }
+  ]
+}

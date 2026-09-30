@@ -1,0 +1,888 @@
+{
+  "claims_total": 136,
+  "claims_judged": 134,
+  "supported": 49,
+  "unsupported": 16,
+  "uncertain": 69,
+  "deterministic_statements": 2,
+  "supported_ratio": 0.3657,
+  "questions_with_unsupported_claim": [
+    "S5-007",
+    "S5-010",
+    "S5-012",
+    "S5-021",
+    "S5-050",
+    "S5-051",
+    "S5-052",
+    "S5-061",
+    "S5-082",
+    "S5-084",
+    "S5-090",
+    "S5-091",
+    "S5-100",
+    "S5-101"
+  ],
+  "by_category": {
+    "single": {
+      "YES": 7,
+      "NO": 1,
+      "UNCERTAIN": 2
+    },
+    "parent": {
+      "YES": 4,
+      "NO": 1,
+      "UNCERTAIN": 1
+    },
+    "section": {
+      "YES": 1,
+      "NO": 1,
+      "UNCERTAIN": 5
+    },
+    "multi": {
+      "YES": 8,
+      "NO": 1,
+      "UNCERTAIN": 3
+    },
+    "range": {
+      "YES": 3,
+      "NO": 0,
+      "UNCERTAIN": 10
+    },
+    "missing": {
+      "YES": 5,
+      "NO": 0,
+      "UNCERTAIN": 1
+    },
+    "adversarial": {
+      "YES": 1,
+      "NO": 3,
+      "UNCERTAIN": 2
+    },
+    "general": {
+      "YES": 3,
+      "NO": 1,
+      "UNCERTAIN": 24
+    },
+    "guidance": {
+      "YES": 2,
+      "NO": 0,
+      "UNCERTAIN": 10
+    },
+    "domain_boundary": {
+      "YES": 3,
+      "NO": 2,
+      "UNCERTAIN": 2
+    },
+    "citation": {
+      "YES": 5,
+      "NO": 3,
+      "UNCERTAIN": 3
+    },
+    "long": {
+      "YES": 4,
+      "NO": 3,
+      "UNCERTAIN": 2
+    },
+    "refusal": {
+      "YES": 3,
+      "NO": 0,
+      "UNCERTAIN": 4
+    }
+  },
+  "unsupported_claims": [
+    {
+      "claim": "The report must include either to reduce a risk to health posed by the device or to remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.115,
+      "supported": "NO",
+      "id": "S5-007",
+      "category": "single"
+    },
+    {
+      "claim": "21 CFR 820.10(b) requires manufacturers to document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-010",
+      "category": "parent"
+    },
+    {
+      "claim": "The enforcement of these requirements renders a device adulterated under section 501(h) of the Federal Food, Drug, and Cosmetic Act [4] [5].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        4,
+        5
+      ],
+      "cited_tiers": [
+        "exact",
+        "exact"
+      ],
+      "overlap": 0.1,
+      "supported": "NO",
+      "id": "S5-012",
+      "category": "section"
+    },
+    {
+      "claim": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [3].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        3
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-021",
+      "category": "multi"
+    },
+    {
+      "claim": "[1] The FDA form number required under 21 CFR 820.10(b)(4) is not specified in the provided evidence.",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-050",
+      "category": "adversarial"
+    },
+    {
+      "claim": "21 CFR 820.10(b)(3) specifies a penalty amount of $1,000 for late complaint notification [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-051",
+      "category": "adversarial"
+    },
+    {
+      "claim": "The manufacturer must comply with 21 CFR 820.10(b)(1) by the date specified in the requirements for a quality management system [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.167,
+      "supported": "NO",
+      "id": "S5-052",
+      "category": "adversarial"
+    },
+    {
+      "claim": "What is a unique device identifier required to contain [1]?",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "supporting"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-061",
+      "category": "general"
+    },
+    {
+      "claim": "What is the boiling point of water in Celsius [1]?",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "discovery"
+      ],
+      "overlap": 0.2,
+      "supported": "NO",
+      "id": "S5-082",
+      "category": "domain_boundary"
+    },
+    {
+      "claim": "The population of Paris is approximately 2,024,000 [2].",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        2
+      ],
+      "cited_tiers": [
+        "structural"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-084",
+      "category": "domain_boundary"
+    },
+    {
+      "claim": "The provision that requires manufacturers to notify FDA of complaints meeting part 803 criteria is [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-090",
+      "category": "citation"
+    },
+    {
+      "claim": "If you are a manufacturer or importer, you must submit reports of individual adverse events to FDA in an electronic format in accordance with § 803.12(a) and § 803.20, unless granted an exemption under § 803.19 [2].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        2
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 1.0,
+      "supported": "NO",
+      "id": "S5-090",
+      "category": "citation"
+    },
+    {
+      "claim": "21 CFR 820.10(b)(3) [6]  \nFor Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter.",
+      "type": "provision_statement",
+      "provisions": [
+        "r2"
+      ],
+      "cited": [
+        6
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-091",
+      "category": "citation"
+    },
+    {
+      "claim": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [3].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        3
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-100",
+      "category": "long"
+    },
+    {
+      "claim": "(3) For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter [4].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        4
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-100",
+      "category": "long"
+    },
+    {
+      "claim": "21 CFR 101.3(b)(2) [2]: The claim uses one of the terms defined in this section in accordance with the definition for that term [3].",
+      "type": "provision_statement",
+      "provisions": [
+        "r2"
+      ],
+      "cited": [
+        2,
+        3
+      ],
+      "cited_tiers": [
+        "exact",
+        "exact"
+      ],
+      "overlap": 0.143,
+      "supported": "NO",
+      "id": "S5-101",
+      "category": "long"
+    }
+  ],
+  "raw_answer": {
+    "claims_total": 136,
+    "claims_judged": 134,
+    "supported": 49,
+    "unsupported": 16,
+    "uncertain": 69,
+    "deterministic_statements": 2,
+    "supported_ratio": 0.3657,
+    "questions_with_unsupported_claim": [
+      "S5-007",
+      "S5-010",
+      "S5-012",
+      "S5-021",
+      "S5-050",
+      "S5-051",
+      "S5-052",
+      "S5-061",
+      "S5-082",
+      "S5-084",
+      "S5-090",
+      "S5-091",
+      "S5-100",
+      "S5-101"
+    ],
+    "unsupported_claims": [
+      {
+        "claim": "The report must include either to reduce a risk to health posed by the device or to remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.115,
+        "supported": "NO",
+        "id": "S5-007",
+        "category": "single"
+      },
+      {
+        "claim": "21 CFR 820.10(b) requires manufacturers to document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-010",
+        "category": "parent"
+      },
+      {
+        "claim": "The enforcement of these requirements renders a device adulterated under section 501(h) of the Federal Food, Drug, and Cosmetic Act [4] [5].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          4,
+          5
+        ],
+        "cited_tiers": [
+          "exact",
+          "exact"
+        ],
+        "overlap": 0.1,
+        "supported": "NO",
+        "id": "S5-012",
+        "category": "section"
+      },
+      {
+        "claim": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [3].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          3
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-021",
+        "category": "multi"
+      },
+      {
+        "claim": "[1] The FDA form number required under 21 CFR 820.10(b)(4) is not specified in the provided evidence.",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-050",
+        "category": "adversarial"
+      },
+      {
+        "claim": "21 CFR 820.10(b)(3) specifies a penalty amount of $1,000 for late complaint notification [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-051",
+        "category": "adversarial"
+      },
+      {
+        "claim": "The manufacturer must comply with 21 CFR 820.10(b)(1) by the date specified in the requirements for a quality management system [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.167,
+        "supported": "NO",
+        "id": "S5-052",
+        "category": "adversarial"
+      },
+      {
+        "claim": "What is a unique device identifier required to contain [1]?",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-061",
+        "category": "general"
+      },
+      {
+        "claim": "What is the boiling point of water in Celsius [1]?",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "discovery"
+        ],
+        "overlap": 0.2,
+        "supported": "NO",
+        "id": "S5-082",
+        "category": "domain_boundary"
+      },
+      {
+        "claim": "The population of Paris is approximately 2,024,000 [2].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "structural"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-084",
+        "category": "domain_boundary"
+      },
+      {
+        "claim": "The provision that requires manufacturers to notify FDA of complaints meeting part 803 criteria is [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-090",
+        "category": "citation"
+      },
+      {
+        "claim": "If you are a manufacturer or importer, you must submit reports of individual adverse events to FDA in an electronic format in accordance with § 803.12(a) and § 803.20, unless granted an exemption under § 803.19 [2].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 1.0,
+        "supported": "NO",
+        "id": "S5-090",
+        "category": "citation"
+      },
+      {
+        "claim": "21 CFR 820.10(b)(3) [6]  \nFor Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter.",
+        "type": "provision_statement",
+        "provisions": [
+          "r2"
+        ],
+        "cited": [
+          6
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [3].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          3
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-100",
+        "category": "long"
+      },
+      {
+        "claim": "(3) For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter [4].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          4
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-100",
+        "category": "long"
+      },
+      {
+        "claim": "21 CFR 101.3(b)(2) [2]: The claim uses one of the terms defined in this section in accordance with the definition for that term [3].",
+        "type": "provision_statement",
+        "provisions": [
+          "r2"
+        ],
+        "cited": [
+          2,
+          3
+        ],
+        "cited_tiers": [
+          "exact",
+          "exact"
+        ],
+        "overlap": 0.143,
+        "supported": "NO",
+        "id": "S5-101",
+        "category": "long"
+      }
+    ]
+  },
+  "final_answer": {
+    "claims_total": 143,
+    "claims_judged": 140,
+    "supported": 58,
+    "unsupported": 14,
+    "uncertain": 68,
+    "deterministic_statements": 3,
+    "supported_ratio": 0.4143,
+    "questions_with_unsupported_claim": [
+      "S5-007",
+      "S5-010",
+      "S5-012",
+      "S5-021",
+      "S5-050",
+      "S5-052",
+      "S5-082",
+      "S5-090",
+      "S5-091",
+      "S5-100",
+      "S5-101"
+    ],
+    "unsupported_claims": [
+      {
+        "claim": "The report must include either to reduce a risk to health posed by the device or to remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.115,
+        "supported": "NO",
+        "id": "S5-007",
+        "category": "single"
+      },
+      {
+        "claim": "21 CFR 820.10(b) requires manufacturers to document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-010",
+        "category": "parent"
+      },
+      {
+        "claim": "The enforcement of these requirements renders a device adulterated under section 501(h) of the Federal Food, Drug, and Cosmetic Act [4] [5].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          4,
+          5
+        ],
+        "cited_tiers": [
+          "exact",
+          "exact"
+        ],
+        "overlap": 0.1,
+        "supported": "NO",
+        "id": "S5-012",
+        "category": "section"
+      },
+      {
+        "claim": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [3].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          3
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-021",
+        "category": "multi"
+      },
+      {
+        "claim": "[1] The FDA form number required under 21 CFR 820.10(b)(4) is not specified in the provided evidence.",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-050",
+        "category": "adversarial"
+      },
+      {
+        "claim": "The manufacturer must comply with 21 CFR 820.10(b)(1) by the date specified in the requirements for a quality management system [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.167,
+        "supported": "NO",
+        "id": "S5-052",
+        "category": "adversarial"
+      },
+      {
+        "claim": "What is the boiling point of water in Celsius [1]?",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "discovery"
+        ],
+        "overlap": 0.2,
+        "supported": "NO",
+        "id": "S5-082",
+        "category": "domain_boundary"
+      },
+      {
+        "claim": "The provision that requires manufacturers to notify FDA of complaints meeting part 803 criteria is [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-090",
+        "category": "citation"
+      },
+      {
+        "claim": "(a) If you are a manufacturer or importer, you must submit reports of individual adverse events to FDA in an electronic format in accordance with § 803.12(a) and § 803.20, unless granted an exemption under § 803.19 [2].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 1.0,
+        "supported": "NO",
+        "id": "S5-090",
+        "category": "citation"
+      },
+      {
+        "claim": "(a) Each device manufacturer or importer who initiates a correction or removal of a device that is not required to be reported to FDA under § 806.10 shall keep a record of such correction or removal [15].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          15
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 1.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "21 CFR 806.20(a) (eCFR, binding, verbatim): (a) Each device manufacturer or importer who initiates a correction or removal of a device that is not required to be reported to FDA under § 806.10 shall keep a record of such correction or removal [15].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          15
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.917,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [3].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          3
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-100",
+        "category": "long"
+      },
+      {
+        "claim": "(3) For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter [4].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          4
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-100",
+        "category": "long"
+      },
+      {
+        "claim": "21 CFR 101.3(b)(2) [2]: The claim uses one of the terms defined in this section in accordance with the definition for that term [3].",
+        "type": "provision_statement",
+        "provisions": [
+          "r2"
+        ],
+        "cited": [
+          2,
+          3
+        ],
+        "cited_tiers": [
+          "exact",
+          "exact"
+        ],
+        "overlap": 0.143,
+        "supported": "NO",
+        "id": "S5-101",
+        "category": "long"
+      }
+    ]
+  },
+  "note": "raw_answer is the model's own text; final_answer is after deterministic repair and is not a model-quality figure",
+  "methodology": "Sentence-level. SUPPORTED: cites an exact source, shares at least 50% of its content words with it and no deterministic check failed on it. NOT SUPPORTED: a deterministic check failed on the sentence (missing provision asserted, figure absent from sources, wrong-source citation) or it shares under 25% of its content words with what it cites. UNCERTAIN: everything between. Refusals and not-found statements are N/A.",
+  "limitations": "Word overlap is not entailment: a paraphrase can share words and still misstate the source, and a correct restatement in different words can score UNCERTAIN. Treat NOT SUPPORTED as reliable and SUPPORTED as unproven."
+}

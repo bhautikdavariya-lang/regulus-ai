@@ -1,0 +1,53 @@
+﻿# ASSISTED REVIEW — NOT VERIFIED (integrity investigation; read-only; no key changed)
+question_id,draft_G,draft_H,H_parsed,clauses_named_in_cited_text,named_but_not_in_H,in_H_but_not_named,section_intro_clause_not_in_H,crosswalk,assisted_tier
+M-001,21 CFR 820.1(a),1; 4.1,1 | 4.1,,,,,"{'820.1': ['1', '4.1']}",T2_CORROBORATED
+M-002,21 CFR 820.1(a)(2),None,,,,,,"{'820.1': ['1', '4.1']}",NONE_CLAIM
+M-003,21 CFR 820.1(a)(3); cross-ref 21 CFR Parts 606 and 640,None,,,,,,"{'820.1': ['1', '4.1']}",NONE_CLAIM
+M-004,21 CFR 820.1(a)(4); cross-ref 21 CFR Part 1271,None,,,,,,"{'820.1': ['1', '4.1']}",NONE_CLAIM
+M-005,21 CFR 820.1(b),None,,,,,,"{'820.1': ['1', '4.1']}",NONE_CLAIM
+M-006,21 CFR 820.1(c); section 801(a) of the FD&C Act,None,,,,,,"{'820.1': ['1', '4.1']}",NONE_CLAIM
+M-007,21 CFR 820.1(d); section 520(f) of the FD&C Act; 21 CFR 10.30,None,,,,,,"{'820.1': ['1', '4.1'], '10.30': []}",NONE_CLAIM
+M-008,21 CFR 820.3 (introductory text); 820.3(a); 820.3(b),3; ISO 9000 Clause 3,3,3 | 0.1 | 3 (intro),0.1,,,{'820.3': ['3']},T1_CFR_TEXT
+M-009,21 CFR 820.3(b),0.1; 3,0.1 | 3,0.1 | 3 (intro),,3,,{'820.3': ['3']},T1_CFR_TEXT
+M-010,21 CFR 820.7(a); 820.7(b),1 through 8 (entire standard); ISO 9000 Clause 3,1 | 8 | 3,3,,1 | 8,,{'820.7': ['2']},RANGE
+M-011,21 CFR 820.7(b),1 through 8 (entire standard),1 | 8,,,,,{'820.7': ['2']},RANGE
+M-012,21 CFR 820.10(a),4 through 8,4 | 8,,,,,{'820.10': []},RANGE
+M-013,21 CFR 820.10(b)(1); cross-ref 21 CFR Part 830,7.5.8,7.5.8,7.5.8,,,,{'820.10': []},T1_CFR_TEXT
+M-014,21 CFR 820.10(b)(2); cross-ref 21 CFR Part 821,7.5.9.1,7.5.9.1,7.5.9.1,,,,{'820.10': []},T1_CFR_TEXT
+M-015,21 CFR 820.10(b)(3); cross-ref 21 CFR Part 803,8.2.3,8.2.3,8.2.3,,,,{'820.10': []},T1_CFR_TEXT
+M-016,21 CFR 820.10(b)(4); cross-ref 21 CFR Part 806,7.2.3; 8.2.3; 8.3.3,7.2.3 | 8.2.3 | 8.3.3,7.2.3 | 8.2.3 | 8.3.3,,,,{'820.10': []},T1_CFR_TEXT
+M-017,21 CFR 820.10(c),7.3 and its subclauses,7.3,7.3,,,,{'820.10': []},T1_CFR_TEXT
+M-018,21 CFR 820.10(d),7.5.9.2,7.5.9.2,7.5.9.2,,,,{'820.10': []},T1_CFR_TEXT
+M-019,21 CFR 820.10(e); section 501(h) of the FD&C Act,None,,,,,,{'820.10': []},NONE_CLAIM
+M-020,21 CFR 820.35 (introductory text),4.2.5,4.2.5,8.2.2 | 7.5.4 | 7.5.1 | 7.5.8 | 7.5.9 | 4.2.5,7.5.1 | 7.5.4 | 7.5.8 | 7.5.9 | 8.2.2,,,{'820.35': ['4.2.5']},T1_CFR_TEXT
+M-021,21 CFR 820.35(a),8.2.2,8.2.2,8.2.2 | 4.2.5 (intro),,,4.2.5,{'820.35': ['4.2.5']},T1_CFR_TEXT
+M-022,21 CFR 820.35(b),7.5.4,7.5.4,7.5.4 | 4.2.5 (intro),,,4.2.5,{'820.35': ['4.2.5']},T1_CFR_TEXT
+M-023,21 CFR 820.35(c),7.5.1; 7.5.8; 7.5.9,7.5.1 | 7.5.8 | 7.5.9,7.5.1 | 7.5.8 | 7.5.9 | 4.2.5 (intro),,,4.2.5,{'820.35': ['4.2.5']},T1_CFR_TEXT
+M-024,21 CFR 820.35(d),None,,4.2.5 (intro),,,4.2.5,{'820.35': ['4.2.5']},NONE_CLAIM
+M-025,21 CFR 820.45 (introductory text),7.5.1,7.5.1,4.2.5 | 7.5.1,4.2.5,,,{'820.45': ['7.5.1']},T1_CFR_TEXT
+M-026,21 CFR 820.45(a),7.5.1,7.5.1,7.5.1 (intro),,,,{'820.45': ['7.5.1']},T1_CFR_TEXT
+M-027,21 CFR 820.45(b),4.2.5,4.2.5,4.2.5 | 7.5.1 (intro),,,7.5.1,{'820.45': ['7.5.1']},T1_CFR_TEXT
+M-028,21 CFR 820.45(c),4.2.3; 4.2.5,4.2.3 | 4.2.5,4.2.5 | 7.5.1 (intro),,4.2.3,7.5.1,{'820.45': ['7.5.1']},T3_UNRESOLVED
+M-029,21 CFR 820.10(b) through (e); 820.35; 820.45,4.2.5; 7.5.1; 7.5.4; 7.5.8; 7.5.9; 8.2.2; 8.2.3,4.2.5 | 7.5.1 | 7.5.4 | 7.5.8 | 7.5.9 | 8.2.2 | 8.2.3,7.5.8 | 7.5.9.1 | 8.2.3 | 7.2.3 | 8.3.3 | 7.3 | 7.5.9.2 | 8.2.2 | 7.5.4 | 7.5.1 | 7.5.9 | 4.2.5,7.2.3 | 7.3 | 8.3.3,,,"{'820.10': [], '820.35': ['4.2.5'], '820.45': ['7.5.1']}",T1_CFR_TEXT
+M-030,"21 CFR Part 820 as amended; QMSR final rule, 89 FR 7523 (February 2, 2024); comp",1 through 8 (entire standard),1 | 8,,,,,{},RANGE
+M-031,"TEMPORAL TRAP — 820.30 is [Reserved] as of February 2, 2026; design and developm",7.3 and its subclauses,7.3,7.3,,,,"{'820.30': ['7.3'], '820.10': []}",T1_CFR_TEXT
+M-032,TEMPORAL TRAP — 820.100 is [Reserved]; the requirement reaches the manufacturer ,8.5.2; 8.5.3,8.5.2 | 8.5.3,,,,,"{'820.100': ['8.4', '8.5.2', '8.5.3'], '820.10': []}",T2_CORROBORATED
+M-033,TEMPORAL TRAP — 820.198 is [Reserved]; complaint record content is now specified,8.2.2,8.2.2,8.2.2 | 4.2.5 (intro),,,4.2.5,"{'820.198': ['8.2.1', '8.2.2', '8.2.3'], '820.35': ['4.2.5']}",T1_CFR_TEXT
+M-034,"TEMPORAL TRAP — 820.181, 820.184 and 820.30(j) are [Reserved]; those constructs ",4.2.3; 4.2.5; 7.3.10,4.2.3 | 4.2.5 | 7.3.10,,,,,"{'820.181': ['4.2.3'], '820.184': ['4.2.5', '7.5.1'], '820.30': ['7.3']}",T2_CORROBORATED
+M-035,TEMPORAL TRAP — 820.20 is [Reserved]; the requirement reaches the manufacturer t,5,5,,,,,"{'820.20': ['5'], '820.10': []}",T2_CORROBORATED
+M-036,TEMPORAL TRAP — 820.22 is [Reserved]; the requirement reaches the manufacturer t,8.2.4,8.2.4,,,,,"{'820.22': ['8.2.4'], '820.10': []}",T2_CORROBORATED
+M-037,TEMPORAL TRAP — 820.50 is [Reserved]; the requirement reaches the manufacturer t,7.4; 7.4.1; 7.4.2; 7.4.3,7.4 | 7.4.1 | 7.4.2 | 7.4.3,,,,,"{'820.50': ['7.4'], '820.10': []}",T2_CORROBORATED
+M-038,TEMPORAL TRAP — 820.75 is [Reserved]; the requirement reaches the manufacturer t,7.5.6; 7.5.7,7.5.6 | 7.5.7,,,,,"{'820.75': ['7.5.6'], '820.10': []}",T3_UNRESOLVED
+M-039,TEMPORAL TRAP — 820.72 is [Reserved]; the requirement reaches the manufacturer t,7.6,7.6,,,,,"{'820.72': ['7.6'], '820.10': []}",T2_CORROBORATED
+M-040,TEMPORAL TRAP — 820.250 is [Reserved]; the requirement reaches the manufacturer ,8.1; 8.2.6; 8.4,8.1 | 8.2.6 | 8.4,,,,,"{'820.250': ['8.1', '8.2.5', '8.4'], '820.10': []}",T3_UNRESOLVED
+M-041,21 CFR 820.10(a); 820.1(c),1; 4.1,1 | 4.1,,,,,"{'820.10': [], '820.1': ['1', '4.1']}",T2_CORROBORATED
+M-042,21 CFR Part 807; 21 CFR Part 830; 21 CFR 820.10(b)(1); 820.35(c),7.5.8; 7.5.9,7.5.8 | 7.5.9,7.5.8 | 7.5.1 | 7.5.9 | 4.2.5 (intro),7.5.1,,4.2.5,"{'820.10': [], '820.35': ['4.2.5']}",T3_UNRESOLVED
+X-003,21 CFR 4.4(b)(1),7.3; 7.4; 7.5.3; 7.5.4; 8.5.2; 8.5.3,7.3 | 7.4 | 7.5.3 | 7.5.4 | 8.5.2 | 8.5.3,3 | 4.1 | 5 | 6.1 | 7.3 | 7.4 | 8.2.2 | 8.4 | 8.5 | 7.5.3 | 7.5.4,3 | 4.1 | 5 | 6.1 | 8.2.2 | 8.4,,,{'4.4': []},T1_CFR_TEXT
+PB-005,FALSE PREMISE — the requirement traces to 21 CFR 820.10(a) and the incorporated ,7.4; 7.4.1,7.4 | 7.4.1,,,,,{'820.10': []},T3_UNRESOLVED
+PB-006,ISO 14971 is not incorporated by reference into Part 820; risk management obliga,7.1,7.1,,,,,{'820.10': []},T3_UNRESOLVED
+PB-008,"FALSE PREMISE — Subparts C through O are [Reserved] as of February 2, 2026",1 through 8 (entire standard),1 | 8,,,,,{},RANGE
+PB-009,21 CFR 820.35(a),8.2.2,8.2.2,8.2.2 | 4.2.5 (intro),,,4.2.5,{'820.35': ['4.2.5']},T1_CFR_TEXT
+NC-005,"FALSE PREMISE — 21 CFR 820.20 is [Reserved] as of February 2, 2026; no managemen",5.6.1,5.6.1,,,,,{'820.20': ['5']},T2_CORROBORATED
+NC-011,"FALSE PREMISE — 21 CFR 820.30 is [Reserved] as of February 2, 2026; no number of",7.3.5,7.3.5,,,,,{'820.30': ['7.3']},T2_CORROBORATED
+NC-016,"REPEALED PROVISION — 820.30 is [Reserved] as of February 2, 2026",7.3.10,7.3.10,,,,,{'820.30': ['7.3']},T2_CORROBORATED
+SD-012,MUST DECLINE — ISO 13485:2016 is a copyrighted standard; clause number and title,7.3.3,7.3.3,,,,,{},T1_CFR_TEXT

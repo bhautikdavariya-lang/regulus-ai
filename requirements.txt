@@ -1,0 +1,26 @@
+# Core runtime dependencies for the Qwen3 base-model setup.
+# Pinned on 2026-09-15 against Qwen/Qwen3-0.6B (Python 3.11).
+#
+# NOTE on torch: the PyPI wheel on Windows is CPU-only. For an NVIDIA GPU
+# install the matching CUDA build first, e.g.
+#   pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cu126
+# then run `pip install -r requirements.txt` (the pin will be satisfied).
+torch==2.14.0
+transformers==5.17.0
+huggingface_hub==1.31.0
+accelerate==1.15.0
+safetensors==0.8.0
+
+# PostgreSQL (read-only retrieval layer, Stage 5)
+psycopg[binary]==3.3.5
+
+# LoRA fine-tuning (Stage 12). Installed with --no-deps on 2026-09-16: every
+# requirement of peft 0.21.0 was already pinned above, so nothing else changed.
+peft==0.21.0
+
+# Configuration
+pyyaml==6.0.3
+python-dotenv==1.2.3
+
+# Testing
+pytest==9.1.1

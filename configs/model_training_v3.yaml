@@ -1,0 +1,85 @@
+# Stage 14: the overnight LoRA run on the rebalanced v3 dataset.
+#
+#   python scripts/train_model.py --config configs/model_training_v3.yaml
+#
+# One variable changes from Stage 13: the dataset (v2 -> v3). The LoRA shape,
+# the target modules, the learning rate, the sequence budget and the validation
+# protocol are all held fixed so the comparison stays interpretable.
+#
+# Fresh LoRA weights, not a continuation of the Stage 13 adapter. Stage 13
+# learned the grounding behaviours in 90 steps but also learned to open almost
+# every answer by describing the retrieved documents; continuing from those
+# weights would start the run inside that habit. v3 rebalances the data that
+# caused it, so the cleaner test is whether the corrected data produces the
+# grounding without the over-refusal from a fresh start.
+
+model:
+  name: Qwen3-0.6B
+  config: configs/model.yaml
+
+dataset:
+  train: data/training/datasets/training_v3.jsonl
+  validation: data/training/datasets/validation_v3.jsonl
+  test: data/training/datasets/test_v3.jsonl            # never read during training
+  manifest: data/training/datasets/manifest_v3.json
+  expected_hash: 86f4c012e7c0a2d673eec863fc9b92aca77188db0062e6e6678ea179f6c70ca4
+  expected_counts:
+    train: 7755
+    validation: 1028
+    test: 937
+  seed: 42
+  # Cut from 100 to 48 after the first overnight attempt stalled in the
+  # pre-training evaluation under memory pressure. 48 stratified examples cost
+  # about a quarter of the memory and time; validation losses are still
+  # comparable in trend, though not directly against Stage 13's 100-example
+  # figure, and the realised distribution is recorded in the run summary.
+  eval_subset: 48
+  eval_stratified: true
+  protected:
+    - data/evaluation/datasets/baseline_v1.jsonl
+    - data/evaluation/datasets/retrieval_v1.jsonl
+    - data/evaluation/datasets/retrieval_v2.jsonl
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+training:
+  # unchanged from Stage 13; Stage 13's validation loss was still falling at
+  # the deadline, so the rate is not the limiting factor
+  learning_rate: 1.0e-4
+  num_train_epochs: 1
+  # upper bound only: the run is bounded by deadline_local below
+  max_steps: 400
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  warmup_steps: 15
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  logging_steps: 5
+  eval_strategy: steps
+  eval_steps: 40
+  save_strategy: steps
+  save_steps: 40
+  save_total_limit: 3
+  early_stopping_patience: 3
+  max_seq_length: 1280
+  over_length_policy: skip
+  # measured on this machine: leaving checkpointing on is faster, because
+  # without it the 8 GB of RAM pages more than recomputation costs
+  gradient_checkpointing: true
+  seed: 42
+  # Restarted on 2026-09-22 after the overnight attempt stalled. Stop time is
+  # the same day so the machine is free this evening; reserve covers the final
+  # evaluation, the save, the adapter reload and the inference check.
+  deadline_local: "17:00"
+  deadline_reserve_seconds: 1500
+
+output:
+  directory: models/qwen3-0.6b-lora/stage14_v1
+  smoke_directory: models/qwen3-0.6b-lora/smoke_tmp

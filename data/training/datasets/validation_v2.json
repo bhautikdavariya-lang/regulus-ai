@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "files": {
+    "train": "training_v2.jsonl",
+    "validation": "validation_v2.jsonl",
+    "test": "test_v2.jsonl"
+  },
+  "checks": {
+    "structural_invalid": 0,
+    "leakage_question_exact": 74,
+    "leakage_question_answer_exact": 0,
+    "leakage_group_overlap": 0,
+    "secret_findings": {},
+    "duplicate_count": 0,
+    "duplicate_question_answer_pairs": 0,
+    "provenance": "verified",
+    "invalid_source_count": 0,
+    "invalid_citation_count": 0,
+    "negative_validation_failures": 0,
+    "grounding_example_counts": {
+      "citation_grounding": 498,
+      "context_mismatch": 600,
+      "guidance_mismatch": 100,
+      "partial_context": 100,
+      "wrong_context": 400
+    },
+    "grounding_validation_failures": 0
+  },
+  "errors": [],
+  "stats": {
+    "total": 9963,
+    "by_category": {
+      "abstention": 800,
+      "cfr_vs_guidance": 500,
+      "citation": 397,
+      "citation_grounding": 498,
+      "context_mismatch": 600,
+      "definition": 895,
+      "direct_cfr": 1996,
+      "fda_guidance": 977,
+      "guidance_mismatch": 100,
+      "multi_context": 400,
+      "partial_context": 100,
+      "relationship": 800,
+      "section_paragraph": 1500,
+      "wrong_context": 400
+    },
+    "by_type": {
+      "abstention": 2000,
+      "regulatory_qa": 7963
+    },
+    "by_split": {
+      "train": 7958,
+      "validation": 1058,
+      "test": 947
+    },
+    "examples_by_source_type": {
+      "ecfr": 7884,
+      "ecfr_hierarchy": 400,
+      "fda_guidance": 1818,
+      "none": 227
+    },
+    "ecfr_examples": 8284,
+    "guidance_examples": 1818,
+    "negative_examples": 2000,
+    "avg_question_chars": 73.7,
+    "avg_answer_chars": 459.3,
+    "avg_context_chars": 652.2,
+    "avg_context_items": 1.74,
+    "unique_cfr_citations": 12118,
+    "unique_cfr_sections": 5157,
+    "unique_guidance_documents": 778
+  }
+}

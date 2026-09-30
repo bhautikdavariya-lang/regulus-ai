@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "dataset_version": "v3",
+  "generated_at_utc": "2026-09-21T13:27:23+00:00",
+  "config": {
+    "version": "v3",
+    "target_examples": 10000,
+    "seed": 42,
+    "train_ratio": 0.8,
+    "validation_ratio": 0.1,
+    "test_ratio": 0.1,
+    "output_dir": "data/training/datasets",
+    "use_ecfr": true,
+    "use_guidance": true,
+    "retrievable_guidance_only": true,
+    "quality": {
+      "allow_unverified_sources": false,
+      "min_paragraph_chars": 60,
+      "max_paragraph_chars": 1500,
+      "max_context_chars": 3600,
+      "near_duplicate_jaccard": 0.9,
+      "benchmark_jaccard": 0.75,
+      "benchmark_jaccard_same_identifiers": 0.5,
+      "max_paragraph_examples_per_section": 2,
+      "max_definition_examples_per_section": 12,
+      "max_guidance_examples_per_document": 3,
+      "varied_refusal_openings": true,
+      "guidance_context_negatives": true
+    },
+    "category_shares": {
+      "direct_cfr": 0.17,
+      "section_paragraph": 0.13,
+      "definition": 0.08,
+      "relationship": 0.07,
+      "fda_guidance": 0.08,
+      "cfr_vs_guidance": 0.04,
+      "citation": 0.04,
+      "multi_context": 0.04,
+      "citation_grounding": 0.05,
+      "grounded_definition": 0.06,
+      "grounded_topic": 0.06,
+      "guidance_answer": 0.05,
+      "abstention": 0.04,
+      "context_mismatch": 0.05,
+      "wrong_context": 0.03,
+      "partial_context": 0.005,
+      "guidance_mismatch": 0.005
+    },
+    "benchmarks": [
+      "data/evaluation/datasets/baseline_v1.jsonl",
+      "data/evaluation/datasets/retrieval_v1.jsonl",
+      "data/evaluation/datasets/retrieval_v2.jsonl"
+    ],
+    "source": "configs/training_v3.yaml"
+  },
+  "database": {
+    "server_version": "18.4",
+    "database": "regulus",
+    "transaction_read_only": "on",
+    "default_transaction_read_only": "on",
+    "snapshot": {
+      "ecfr_snapshot_date": "2026-09-03",
+      "ecfr_live_records": 65341,
+      "ecfr_sections": 7906,
+      "ecfr_parts": 250,
+      "guidance_documents": 1836,
+      "guidance_retrievable_documents": 1208,
+      "guidance_chunks": 68669,
+      "guidance_last_retrieved": "2026-09-09",
+      "named_definitions": 1921,
+      "resolvable_cross_references": 15655
+    }
+  },
+  "source_counts": {
+    "subchapters": 12,
+    "parts": 250,
+    "subparts": 925,
+    "sections": 7906,
+    "records": 65341,
+    "definitions": 1921,
+    "cross_references": 10627,
+    "guidance_documents": 1208,
+    "guidance_intro_chunks": 4832,
+    "guidance_recommendation_chunks": 1188,
+    "guidance_anchor_chunks": 1282
+  },
+  "generation": {
+    "per_category": {
+      "direct_cfr": {
+        "candidates": 7049,
+        "after_dedup": 7026,
+        "benchmark_excluded": 3,
+        "target": 1700,
+        "selected": 1700,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 23
+      },
+      "section_paragraph": {
+        "candidates": 12631,
+        "after_dedup": 12621,
+        "benchmark_excluded": 0,
+        "target": 1300,
+        "selected": 1300,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 10
+      },
+      "definition": {
+        "candidates": 985,
+        "after_dedup": 984,
+        "benchmark_excluded": 2,
+        "target": 800,
+        "selected": 800,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 1
+      },
+      "relationship": {
+        "candidates": 15440,
+        "after_dedup": 15376,
+        "benchmark_excluded": 2,
+        "target": 700,
+        "selected": 700,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 64
+      },
+      "fda_guidance": {
+        "candidates": 998,
+        "after_dedup": 977,
+        "benchmark_excluded": 0,
+        "target": 800,
+        "selected": 800,
+        "duplicate_ids": 0,
+        "exact_duplicates": 8,
+        "near_duplicates": 13
+      },
+      "cfr_vs_guidance": {
+        "candidates": 8308,
+        "after_dedup": 8308,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "citation": {
+        "candidates": 4154,
+        "after_dedup": 4153,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 1
+      },
+      "multi_context": {
+        "candidates": 2468,
+        "after_dedup": 2468,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "abstention": {
+        "candidates": 469,
+        "after_dedup": 469,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "context_mismatch": {
+        "candidates": 651,
+        "after_dedup": 651,
+        "benchmark_excluded": 0,
+        "target": 500,
+        "selected": 500,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "wrong_context": {
+        "candidates": 340,
+        "after_dedup": 340,
+        "benchmark_excluded": 0,
+        "target": 300,
+        "selected": 300,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "partial_context": {
+        "candidates": 80,
+        "after_dedup": 80,
+        "benchmark_excluded": 0,
+        "target": 50,
+        "selected": 50,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "guidance_mismatch": {
+        "candidates": 76,
+        "after_dedup": 76,
+        "benchmark_excluded": 0,
+        "target": 50,
+        "selected": 50,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "citation_grounding": {
+        "candidates": 540,
+        "after_dedup": 540,
+        "benchmark_excluded": 0,
+        "target": 500,
+        "selected": 500,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "grounded_definition": {
+        "candidates": 333,
+        "after_dedup": 333,
+        "benchmark_excluded": 0,
+        "target": 600,
+        "selected": 333,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "grounded_topic": {
+        "candidates": 660,
+        "after_dedup": 660,
+        "benchmark_excluded": 0,
+        "target": 600,
+        "selected": 600,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "guidance_answer": {
+        "candidates": 560,
+        "after_dedup": 560,
+        "benchmark_excluded": 0,
+        "target": 500,
+        "selected": 500,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      }
+    },
+    "global_dedup": {
+      "duplicate_ids": 0,
+      "exact_duplicates": 0,
+      "near_duplicates": 13
+    },
+    "splits": {
+      "train": 7755,
+      "validation": 1028,
+      "test": 937
+    },
+    "benchmark_questions": 107
+  },
+  "files": {
+    "train": {
+      "path": "training_v3.jsonl",
+      "examples": 7755,
+      "sha256": "1caa9d34dae5c20bd979e6cc7efff02c658be5603bd5aea982f0e3bf353bfc05"
+    },
+    "validation": {
+      "path": "validation_v3.jsonl",
+      "examples": 1028,
+      "sha256": "981edeaaa0306ab40af8fd6fc1e781bc5351fbcbd57981018341e94f7c564fa9"
+    },
+    "test": {
+      "path": "test_v3.jsonl",
+      "examples": 937,
+      "sha256": "7b2809a9f5405967e04d57fd86bf8d776aa45991488cea705f7bfd7c91ab3952"
+    }
+  },
+  "dataset_sha256": "86f4c012e7c0a2d673eec863fc9b92aca77188db0062e6e6678ea179f6c70ca4",
+  "stats": {
+    "total": 9720,
+    "by_category": {
+      "abstention": 400,
+      "cfr_vs_guidance": 400,
+      "citation": 398,
+      "citation_grounding": 498,
+      "context_mismatch": 500,
+      "definition": 794,
+      "direct_cfr": 1698,
+      "fda_guidance": 800,
+      "grounded_definition": 332,
+      "grounded_topic": 600,
+      "guidance_answer": 500,
+      "guidance_mismatch": 50,
+      "multi_context": 400,
+      "partial_context": 50,
+      "relationship": 700,
+      "section_paragraph": 1300,
+      "wrong_context": 300
+    },
+    "by_type": {
+      "abstention": 1300,
+      "regulatory_qa": 8420
+    },
+    "by_split": {
+      "train": 7755,
+      "validation": 1028,
+      "test": 937
+    },
+    "examples_by_source_type": {
+      "ecfr": 7539,
+      "ecfr_hierarchy": 350,
+      "fda_guidance": 2048,
+      "none": 116
+    },
+    "ecfr_examples": 7889,
+    "guidance_examples": 2048,
+    "negative_examples": 1300,
+    "avg_question_chars": 79.4,
+    "avg_answer_chars": 472.8,
+    "avg_context_chars": 734.4,
+    "avg_context_items": 1.86,
+    "unique_cfr_citations": 11616,
+    "unique_cfr_sections": 5491,
+    "unique_guidance_documents": 762
+  }
+}

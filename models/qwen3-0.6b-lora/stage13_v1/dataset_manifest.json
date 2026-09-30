@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "dataset_version": "v2",
+  "generated_at_utc": "2026-09-21T05:58:03+00:00",
+  "config": {
+    "version": "v2",
+    "target_examples": 10000,
+    "seed": 42,
+    "train_ratio": 0.8,
+    "validation_ratio": 0.1,
+    "test_ratio": 0.1,
+    "output_dir": "data/training/datasets",
+    "use_ecfr": true,
+    "use_guidance": true,
+    "retrievable_guidance_only": true,
+    "quality": {
+      "allow_unverified_sources": false,
+      "min_paragraph_chars": 60,
+      "max_paragraph_chars": 1500,
+      "max_context_chars": 3600,
+      "near_duplicate_jaccard": 0.9,
+      "benchmark_jaccard": 0.75,
+      "benchmark_jaccard_same_identifiers": 0.5,
+      "max_paragraph_examples_per_section": 2,
+      "max_definition_examples_per_section": 12,
+      "max_guidance_examples_per_document": 3
+    },
+    "category_shares": {
+      "direct_cfr": 0.2,
+      "section_paragraph": 0.15,
+      "definition": 0.09,
+      "relationship": 0.08,
+      "fda_guidance": 0.1,
+      "cfr_vs_guidance": 0.05,
+      "citation": 0.04,
+      "multi_context": 0.04,
+      "citation_grounding": 0.05,
+      "abstention": 0.08,
+      "context_mismatch": 0.06,
+      "wrong_context": 0.04,
+      "partial_context": 0.01,
+      "guidance_mismatch": 0.01
+    },
+    "benchmarks": [
+      "data/evaluation/datasets/baseline_v1.jsonl",
+      "data/evaluation/datasets/retrieval_v1.jsonl",
+      "data/evaluation/datasets/retrieval_v2.jsonl"
+    ],
+    "source": "configs/training_v2.yaml"
+  },
+  "database": {
+    "server_version": "18.4",
+    "database": "regulus",
+    "transaction_read_only": "on",
+    "default_transaction_read_only": "on",
+    "snapshot": {
+      "ecfr_snapshot_date": "2026-09-03",
+      "ecfr_live_records": 65341,
+      "ecfr_sections": 7906,
+      "ecfr_parts": 250,
+      "guidance_documents": 1836,
+      "guidance_retrievable_documents": 1208,
+      "guidance_chunks": 68669,
+      "guidance_last_retrieved": "2026-09-09",
+      "named_definitions": 1921,
+      "resolvable_cross_references": 15655
+    }
+  },
+  "source_counts": {
+    "subchapters": 12,
+    "parts": 250,
+    "subparts": 925,
+    "sections": 7906,
+    "records": 65341,
+    "definitions": 1921,
+    "cross_references": 10627,
+    "guidance_documents": 1208,
+    "guidance_intro_chunks": 4832,
+    "guidance_recommendation_chunks": 1188,
+    "guidance_anchor_chunks": 1282
+  },
+  "generation": {
+    "per_category": {
+      "direct_cfr": {
+        "candidates": 7049,
+        "after_dedup": 7026,
+        "benchmark_excluded": 3,
+        "target": 2000,
+        "selected": 2000,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 23
+      },
+      "section_paragraph": {
+        "candidates": 12631,
+        "after_dedup": 12621,
+        "benchmark_excluded": 0,
+        "target": 1500,
+        "selected": 1500,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 10
+      },
+      "definition": {
+        "candidates": 985,
+        "after_dedup": 984,
+        "benchmark_excluded": 2,
+        "target": 900,
+        "selected": 900,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 1
+      },
+      "relationship": {
+        "candidates": 15440,
+        "after_dedup": 15376,
+        "benchmark_excluded": 2,
+        "target": 800,
+        "selected": 800,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 64
+      },
+      "fda_guidance": {
+        "candidates": 998,
+        "after_dedup": 977,
+        "benchmark_excluded": 0,
+        "target": 1000,
+        "selected": 977,
+        "duplicate_ids": 0,
+        "exact_duplicates": 8,
+        "near_duplicates": 13
+      },
+      "cfr_vs_guidance": {
+        "candidates": 8308,
+        "after_dedup": 8308,
+        "benchmark_excluded": 0,
+        "target": 500,
+        "selected": 500,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "citation": {
+        "candidates": 4154,
+        "after_dedup": 4153,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 1
+      },
+      "multi_context": {
+        "candidates": 2468,
+        "after_dedup": 2468,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "abstention": {
+        "candidates": 868,
+        "after_dedup": 868,
+        "benchmark_excluded": 0,
+        "target": 800,
+        "selected": 800,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "context_mismatch": {
+        "candidates": 660,
+        "after_dedup": 660,
+        "benchmark_excluded": 0,
+        "target": 600,
+        "selected": 600,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "wrong_context": {
+        "candidates": 440,
+        "after_dedup": 440,
+        "benchmark_excluded": 0,
+        "target": 400,
+        "selected": 400,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "partial_context": {
+        "candidates": 130,
+        "after_dedup": 130,
+        "benchmark_excluded": 0,
+        "target": 100,
+        "selected": 100,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "guidance_mismatch": {
+        "candidates": 125,
+        "after_dedup": 125,
+        "benchmark_excluded": 0,
+        "target": 100,
+        "selected": 100,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      },
+      "citation_grounding": {
+        "candidates": 540,
+        "after_dedup": 540,
+        "benchmark_excluded": 0,
+        "target": 500,
+        "selected": 500,
+        "duplicate_ids": 0,
+        "exact_duplicates": 0,
+        "near_duplicates": 0
+      }
+    },
+    "global_dedup": {
+      "duplicate_ids": 0,
+      "exact_duplicates": 0,
+      "near_duplicates": 14
+    },
+    "splits": {
+      "train": 7958,
+      "validation": 1058,
+      "test": 947
+    },
+    "benchmark_questions": 107
+  },
+  "files": {
+    "train": {
+      "path": "training_v2.jsonl",
+      "examples": 7958,
+      "sha256": "b2162c645b2b5342e35958960196891c4ca69da4c2c646802de2718123695bf9"
+    },
+    "validation": {
+      "path": "validation_v2.jsonl",
+      "examples": 1058,
+      "sha256": "9192bb9562132391df82c754390bc65a2467cf6fd0754377256b4e815be53e1e"
+    },
+    "test": {
+      "path": "test_v2.jsonl",
+      "examples": 947,
+      "sha256": "3b262090b4a934cde4d87c4b92dc3b03a341aecf97cdf16fccdc37902f83a195"
+    }
+  },
+  "dataset_sha256": "656d69b284db62bf945ffd100a4f52b36a1652b06d43b03239e7facba8c4a71b",
+  "stats": {
+    "total": 9963,
+    "by_category": {
+      "abstention": 800,
+      "cfr_vs_guidance": 500,
+      "citation": 397,
+      "citation_grounding": 498,
+      "context_mismatch": 600,
+      "definition": 895,
+      "direct_cfr": 1996,
+      "fda_guidance": 977,
+      "guidance_mismatch": 100,
+      "multi_context": 400,
+      "partial_context": 100,
+      "relationship": 800,
+      "section_paragraph": 1500,
+      "wrong_context": 400
+    },
+    "by_type": {
+      "abstention": 2000,
+      "regulatory_qa": 7963
+    },
+    "by_split": {
+      "train": 7958,
+      "validation": 1058,
+      "test": 947
+    },
+    "examples_by_source_type": {
+      "ecfr": 7884,
+      "ecfr_hierarchy": 400,
+      "fda_guidance": 1818,
+      "none": 227
+    },
+    "ecfr_examples": 8284,
+    "guidance_examples": 1818,
+    "negative_examples": 2000,
+    "avg_question_chars": 73.7,
+    "avg_answer_chars": 459.3,
+    "avg_context_chars": 652.2,
+    "avg_context_items": 1.74,
+    "unique_cfr_citations": 12118,
+    "unique_cfr_sections": 5157,
+    "unique_guidance_documents": 778
+  }
+}

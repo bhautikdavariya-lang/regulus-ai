@@ -1,0 +1,239 @@
+{
+  "generated_at_utc": "2026-09-24T08:16:36+00:00",
+  "stage5_run": "run_20260924T070134Z",
+  "baseline_metrics": {
+    "retrieval_ok": 0.9608,
+    "coverage_ok": 0.9804,
+    "selection_ok": 0.9804,
+    "generation_valid_raw_full": 0.8478,
+    "generation_valid_raw_controlled": 0.8611,
+    "hallucination_any_raw": 0.1957,
+    "false_refusal_rate_raw": 0.0714,
+    "faithfulness_supported_ratio": 0.5319,
+    "domain_leak_raw": 0.75,
+    "truncated_full": 0
+  },
+  "failure_categories": {
+    "none": 35,
+    "generation_context": 3,
+    "generation": 8,
+    "domain_boundary": 3,
+    "retrieval": 2
+  },
+  "training_relevant_failures": [
+    {
+      "id": "S5-007",
+      "layer": "generation_context",
+      "reasons": [
+        "unsupported content: low_overlap_with_cited_source, 21 CFR 806.1(b)",
+        "the same model answers correctly when given exact evidence only"
+      ],
+      "category": "single"
+    },
+    {
+      "id": "S5-023",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "multi"
+    },
+    {
+      "id": "S5-024",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 807.20"
+      ],
+      "category": "multi"
+    },
+    {
+      "id": "S5-033",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 101.13, 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "range"
+    },
+    {
+      "id": "S5-041",
+      "layer": "generation_context",
+      "reasons": [
+        "raw answer failed validation: asserted_missing_provision",
+        "unsupported content: asserted_missing_provision",
+        "the same model answers correctly when given exact evidence only"
+      ],
+      "category": "missing"
+    },
+    {
+      "id": "S5-042",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: asserted_missing_provision",
+        "unsupported content: asserted_missing_provision"
+      ],
+      "category": "missing"
+    },
+    {
+      "id": "S5-050",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: refusal_with_evidence, low_overlap_with_cited_source",
+        "refused although exact evidence was supplied"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-051",
+      "layer": "generation_context",
+      "reasons": [
+        "raw answer failed validation: refusal_with_evidence, low_overlap_with_cited_source",
+        "refused although exact evidence was supplied",
+        "the same model answers correctly when given exact evidence only"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-052",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: requirement_not_addressed, refusal_with_evidence",
+        "refused although exact evidence was supplied",
+        "addressed [] of ['r1']"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-063",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 45 CFR 46.115(a)(2), 21 CFR 56.115(a)(2)"
+      ],
+      "category": "general"
+    },
+    {
+      "id": "S5-101",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: provision_citation_mismatch, citation_mismatch, low_overlap_with_cited_source",
+        "unsupported content: provision_citation_mismatch, citation_mismatch, low_overlap_with_cited_source, 21 CFR 101.13, 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "long"
+    }
+  ],
+  "candidate_training_targets": [
+    {
+      "target": "multi_provision_answers",
+      "examples": [
+        "S5-023",
+        "S5-024",
+        "S5-033",
+        "S5-101"
+      ],
+      "count": 4,
+      "dataset_categories": [
+        "multi_provision",
+        "range_provision"
+      ]
+    },
+    {
+      "target": "non_fabrication",
+      "examples": [
+        "S5-050",
+        "S5-051",
+        "S5-052"
+      ],
+      "count": 3,
+      "dataset_categories": [
+        "wrong_context",
+        "context_mismatch",
+        "citation_grounding"
+      ]
+    },
+    {
+      "target": "partial_answers_with_not_found",
+      "examples": [
+        "S5-041",
+        "S5-042"
+      ],
+      "count": 2,
+      "dataset_categories": [
+        "partial_provision",
+        "partial_context"
+      ]
+    },
+    {
+      "target": "grounded_single_provision",
+      "examples": [
+        "S5-007"
+      ],
+      "count": 1,
+      "dataset_categories": [
+        "direct_cfr",
+        "section_paragraph"
+      ]
+    },
+    {
+      "target": "grounded_general_answers",
+      "examples": [
+        "S5-063"
+      ],
+      "count": 1,
+      "dataset_categories": [
+        "grounded_topic",
+        "grounded_definition"
+      ]
+    }
+  ],
+  "training_relevant_examples_count": 11,
+  "do_not_train": {
+    "architecture_failures": [
+      "S5-090",
+      "S5-091"
+    ],
+    "domain_boundary": [
+      "S5-080",
+      "S5-082",
+      "S5-083"
+    ],
+    "reason": "retrieval/coverage/selection failures are code paths, not model behaviour; the domain leak needs an intent check before generation, not weight changes"
+  },
+  "recommended_composition": {
+    "direct_cfr": 0.106,
+    "section_paragraph": 0.0737,
+    "definition": 0.0242,
+    "grounded_definition": 0.0495,
+    "grounded_topic": 0.0576,
+    "citation": 0.0242,
+    "citation_grounding": 0.0668,
+    "fda_guidance": 0.0323,
+    "guidance_answer": 0.0404,
+    "multi_provision": 0.1453,
+    "range_provision": 0.113,
+    "partial_provision": 0.0829,
+    "abstention": 0.0404,
+    "context_mismatch": 0.0587,
+    "wrong_context": 0.0506,
+    "partial_context": 0.0264,
+    "guidance_mismatch": 0.0081
+  },
+  "composition_rationale": "Stage 6 base shares weighted toward multi-provision, range and partial (not-found) answers in the grounded prompt format, with refusal and non-fabrication categories kept; each model-side failure category adds a bounded boost to the dataset categories that train it.",
+  "recommended_validation": {
+    "task_validation_set": "held-out validation split of the Stage 6 dataset, stratified by category (16 examples)",
+    "checkpoint_metric": "task_score = mean of [validator status valid, every requested provision addressed, no unsupported/fabricated content, refusal correctness]; eval_loss only breaks ties",
+    "candidate_rule": "a checkpoint is a candidate only if its task_score is at least the base model's on the same examples",
+    "final_comparison": "Stage 5 dataset, base vs trained, controlled evidence and full pipeline, raw and repaired kept separate"
+  },
+  "recommended_early_stopping": {
+    "metric": "eval_loss",
+    "patience_evals": 3,
+    "note": "stopping on loss bounds the run; selection never uses loss alone"
+  },
+  "risks": [
+    "Stage 12/13 lesson: lower validation loss did not improve the task and taught over-refusal; every candidate must beat the base on task_score",
+    "verbatim-style multi-provision targets could bias the model toward quoting; acceptable for a regulatory system, measured by answer length and repair frequency",
+    "CPU training reaches roughly 100 optimizer steps overnight; the effect may be small",
+    "the Stage 5 set is 50 questions concentrated on part 820 and part 101; improvements there may not generalise"
+  ],
+  "proceed": true,
+  "proceed_reason": "11 of 46 generated answers fail for model-side reasons with the evidence architecture working"
+}

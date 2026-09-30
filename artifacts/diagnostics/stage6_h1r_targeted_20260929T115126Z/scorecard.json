@@ -1,0 +1,152 @@
+{
+ "questions": 2,
+ "final_status": {
+  "PASS": 1,
+  "FAIL": 1
+ },
+ "primary_failure_by_class": {
+  "F08": 1
+ },
+ "primary_failure_by_module": {
+  "generation": 1
+ },
+ "all_failure_records_by_class": {
+  "F08": 1
+ },
+ "severity_of_primary": {
+  "major": 1
+ },
+ "primary_by_confidence": {
+  "probable": 1
+ },
+ "determinism": [],
+ "scorecard": {
+  "intent": {
+   "label": "AUTOMATED",
+   "accuracy": "NOT YET MEASURABLE: no verified intent labels exist",
+   "distribution": {
+    "explanation": 1,
+    "comparison": 1
+   },
+   "default_fallback_rate": {
+    "count": 1,
+    "of": 2
+   }
+  },
+  "scope": {
+   "label": "AUTOMATED vs DEVELOPER-KEYED",
+   "keyed_out_of_scope_recognised_by_diagnostic_classifier": {
+    "count": 0,
+    "of": 0
+   },
+   "keyed_out_of_scope_declined_by_current_pipeline": {
+    "count": 0,
+    "of": 0
+   }
+  },
+  "retrieval": {
+   "label": "DEVELOPER-KEYED",
+   "expected_provision_retrieved_as_exact": {
+    "count": 0,
+    "of": 0
+   },
+   "evidence_sufficiency": {
+    "EVIDENCE_SUFFICIENT": 2
+   },
+   "requested_value_kind_absent_from_evidence": {
+    "count": 0,
+    "of": 2
+   },
+   "ranking": "NOT YET MEASURABLE automatically: needs a relevance label per candidate"
+  },
+  "generation": {
+   "label": "AUTOMATED",
+   "raw_unsupported_content_F07": {
+    "count": 0,
+    "of": 2
+   },
+   "raw_qualifier_warnings_F08": {
+    "count": 1,
+    "of": 2
+   },
+   "answered_despite_insufficient_evidence_F05": {
+    "count": 0,
+    "of": 2
+   },
+   "raw_claims_supported_heuristic": {
+    "YES": 1,
+    "NO": 0,
+    "UNCERTAIN": 5
+   }
+  },
+  "validation": {
+   "label": "AUTOMATED",
+   "raw_answers_rejected": {
+    "count": 1,
+    "of": 2
+   },
+   "false_negatives_F11": {
+    "count": 0,
+    "of": 2
+   },
+   "false_positives_F10": "NOT YET MEASURABLE automatically: needs SME review of rejected answers"
+  },
+  "repair": {
+   "label": "AUTOMATED",
+   "repair_rate": {
+    "count": 1,
+    "of": 2
+   },
+   "repair_types": {
+    "appended_missing_provisions+failed_repair_fallback": 1
+   },
+   "final_valid_after_repair": {
+    "count": 1,
+    "of": 1
+   },
+   "irrelevant_fallback_F13": {
+    "count": 0,
+    "of": 2
+   },
+   "repair_failure_F12": {
+    "count": 0,
+    "of": 2
+   }
+  },
+  "citations": {
+   "label": "AUTOMATED",
+   "answers_with_a_marker": {
+    "count": 2,
+    "of": 2
+   },
+   "citation_attribution_F09": {
+    "count": 0,
+    "of": 2
+   },
+   "semantic_citation_correctness": "NOT YET MEASURABLE: requires SME review"
+  },
+  "final_answer": {
+   "label": "DEVELOPER-KEYED machine checks (not SME)",
+   "pass": {
+    "count": 1,
+    "of": 2
+   },
+   "unverified_questions": 0,
+   "correctness_grounding_relevance_structure_precision": "NOT YET MEASURABLE: requires SME review"
+  },
+  "latency_ms": {
+   "label": "AUTOMATED",
+   "first_token_median": 1952.1,
+   "generation_median": 22525.7,
+   "total_median": 22593.1
+  }
+ },
+ "configuration": {
+  "model": "Qwen/Qwen3-0.6B",
+  "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "device": "cpu",
+  "dtype": "float32",
+  "answer_shape": "adaptive",
+  "validation": "repair"
+ }
+}

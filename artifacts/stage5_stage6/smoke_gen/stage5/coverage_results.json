@@ -1,0 +1,57 @@
+{
+  "questions": 2,
+  "coverage_ok": 1.0,
+  "explicit_state_correct": 1.0,
+  "incomplete_detected": 1.0,
+  "missing_labels_exact_match": 1.0,
+  "multi_provision_complete": null,
+  "range_complete": null,
+  "no_explicit_for_general": null,
+  "failures": [],
+  "per_question": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "state": "COMPLETE",
+      "expected_state": "COMPLETE",
+      "missing": [],
+      "expected_missing": [],
+      "satisfied": [
+        "r1"
+      ],
+      "counts": {
+        "total_requirements": 1,
+        "exact_requirements": 1,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 0,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    },
+    {
+      "id": "S5-042",
+      "category": "missing",
+      "state": "INCOMPLETE",
+      "expected_state": "INCOMPLETE",
+      "missing": [
+        "21 CFR 820.999"
+      ],
+      "expected_missing": [
+        "21 CFR 820.999"
+      ],
+      "satisfied": [
+        "r1"
+      ],
+      "counts": {
+        "total_requirements": 2,
+        "exact_requirements": 1,
+        "structural_only_requirements": 0,
+        "supporting_only_requirements": 0,
+        "discovery_only_requirements": 1,
+        "unresolved_requirements": 0
+      },
+      "ok": true
+    }
+  ]
+}

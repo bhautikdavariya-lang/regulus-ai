@@ -1,0 +1,535 @@
+{
+ "runs": {
+  "A": {
+   "dir": "artifacts/stage5_stage6/run_20260929T062550Z/stage5",
+   "answer_shape": "adaptive",
+   "prompt_checks": [
+    "chars equal",
+    "no model call"
+   ]
+  },
+  "B": {
+   "dir": "artifacts/stage5_stage6/run_20260929T064523Z/stage5",
+   "answer_shape": "structured",
+   "prompt_checks": [
+    "no model call",
+    "sha256 equal"
+   ]
+  }
+ },
+ "dimensions": {
+  "A": {
+   "Correctness [BENCHMARK-KEYED, machine composite, not SME]": {
+    "all machine checks pass, final answer": "29/51",
+    "all machine checks pass, raw model answer": "25/51",
+    "semantic correctness": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Grounding [AUTOMATIC, heuristic]": {
+    "answers with a claim flagged NOT supported (final)": "11/46",
+    "unsupported content (hallucination checks, final)": "10/46"
+   },
+   "Citation support [AUTOMATIC]": {
+    "citation checks pass (raw)": "37/46",
+    "citation_mismatch flag (final)": "10/46",
+    "missing_citation flag (final)": "1/46"
+   },
+   "Completeness [BENCHMARK-KEYED]": {
+    "every expected provision addressed (final)": "42/42",
+    "all expected terms present (final)": "35/42"
+   },
+   "Relevance [AUTOMATIC signal only]": {
+    "excessive_length flag": "1/46",
+    "scope_expansion in validation": "2/46",
+    "judgement": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Structure [AUTOMATIC signal only]": {
+    "weak_structure flag": "0/46",
+    "missing_direct_answer flag": "1/46",
+    "question_echo flag": "3/46",
+    "citation markers moved onto their sentence": "0/46",
+    "judgement": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Regulatory precision [AUTOMATIC signal only]": {
+    "missing_condition flag": "5/46",
+    "missing_exception flag": "0/46",
+    "judgement": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Refusal / scope [BENCHMARK-KEYED]": {
+    "declined when a refusal was expected: deterministic or refusal class (final)": "6/9",
+    "expected refusals by outcome (deterministic / refusal / hedged / answer)": {
+     "deterministic": [
+      "S5-040",
+      "S5-043",
+      "S5-044",
+      "S5-045",
+      "S5-072"
+     ],
+     "refusal": [
+      "S5-081"
+     ],
+     "hedged": [],
+     "answer": [
+      "S5-080",
+      "S5-082",
+      "S5-083"
+     ]
+    },
+    "answered when an answer was expected (final)": "42/42",
+    "out-of-domain content in the final answer": "3/51",
+    "scope_mismatch flag": "3/51",
+    "unsupported_claim flag (premise repeated)": "1/46"
+   },
+   "Hallucination [AUTOMATIC]": {
+    "possible_hallucination flag": "0/46",
+    "unsupported content (final)": "10/46"
+   },
+   "Performance [AUTOMATIC]": {
+    "median prompt tokens": 1362.5,
+    "median generated tokens": 107.5,
+    "median first token ms": 1773.8,
+    "median generation ms": 10188.1,
+    "median total ms": 9725.4,
+    "model calls": 46
+   }
+  },
+  "B": {
+   "Correctness [BENCHMARK-KEYED, machine composite, not SME]": {
+    "all machine checks pass, final answer": "31/51",
+    "all machine checks pass, raw model answer": "27/51",
+    "semantic correctness": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Grounding [AUTOMATIC, heuristic]": {
+    "answers with a claim flagged NOT supported (final)": "11/45",
+    "unsupported content (hallucination checks, final)": "7/45"
+   },
+   "Citation support [AUTOMATIC]": {
+    "citation checks pass (raw)": "43/45",
+    "citation_mismatch flag (final)": "7/45",
+    "missing_citation flag (final)": "1/45"
+   },
+   "Completeness [BENCHMARK-KEYED]": {
+    "every expected provision addressed (final)": "42/42",
+    "all expected terms present (final)": "36/42"
+   },
+   "Relevance [AUTOMATIC signal only]": {
+    "excessive_length flag": "0/45",
+    "scope_expansion in validation": "2/45",
+    "judgement": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Structure [AUTOMATIC signal only]": {
+    "weak_structure flag": "0/45",
+    "missing_direct_answer flag": "0/45",
+    "question_echo flag": "0/45",
+    "citation markers moved onto their sentence": "6/45",
+    "judgement": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Regulatory precision [AUTOMATIC signal only]": {
+    "missing_condition flag": "4/45",
+    "missing_exception flag": "0/45",
+    "judgement": "NOT MEASURABLE YET: requires SME review"
+   },
+   "Refusal / scope [BENCHMARK-KEYED]": {
+    "declined when a refusal was expected: deterministic or refusal class (final)": "6/9",
+    "expected refusals by outcome (deterministic / refusal / hedged / answer)": {
+     "deterministic": [
+      "S5-040",
+      "S5-043",
+      "S5-044",
+      "S5-045",
+      "S5-072",
+      "S5-083"
+     ],
+     "refusal": [],
+     "hedged": [
+      "S5-081",
+      "S5-082"
+     ],
+     "answer": [
+      "S5-080"
+     ]
+    },
+    "answered when an answer was expected (final)": "42/42",
+    "out-of-domain content in the final answer": "3/51",
+    "scope_mismatch flag": "1/51",
+    "unsupported_claim flag (premise repeated)": "0/45"
+   },
+   "Hallucination [AUTOMATIC]": {
+    "possible_hallucination flag": "1/45",
+    "unsupported content (final)": "7/45"
+   },
+   "Performance [AUTOMATIC]": {
+    "median prompt tokens": 1411,
+    "median generated tokens": 103,
+    "median first token ms": 1794.32,
+    "median generation ms": 9414.86,
+    "median total ms": 8446.25,
+    "model calls": 45
+   }
+  }
+ },
+ "changed_questions": [
+  {
+   "question_id": "S5-003",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-004",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-005",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation"
+   ]
+  },
+  {
+   "question_id": "S5-007",
+   "fields": [
+    "answer",
+    "citations",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation"
+   ]
+  },
+  {
+   "question_id": "S5-010",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation"
+   ]
+  },
+  {
+   "question_id": "S5-011",
+   "fields": [
+    "answer",
+    "citations",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-012",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-013",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-020",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation"
+   ]
+  },
+  {
+   "question_id": "S5-021",
+   "fields": [
+    "answer",
+    "final_validation",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-022",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-023",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-024",
+   "fields": [
+    "answer",
+    "citations",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-030",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation"
+   ]
+  },
+  {
+   "question_id": "S5-031",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-032",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-033",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-041",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-042",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-050",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation"
+   ]
+  },
+  {
+   "question_id": "S5-051",
+   "fields": [
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-052",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-053",
+   "fields": [
+    "answer",
+    "citations",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-060",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-061",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-062",
+   "fields": [
+    "answer",
+    "citations",
+    "generated_tokens",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-063",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-070",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-071",
+   "fields": [
+    "answer",
+    "generated_tokens",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-080",
+   "fields": [
+    "answer",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-081",
+   "fields": [
+    "answer",
+    "generated_tokens"
+   ]
+  },
+  {
+   "question_id": "S5-082",
+   "fields": [
+    "answer",
+    "citations",
+    "generated_tokens",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-083",
+   "fields": [
+    "answer",
+    "citations",
+    "coverage_action",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-084",
+   "fields": [
+    "answer",
+    "citations",
+    "generated_tokens",
+    "initial_validation",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-090",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-091",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  },
+  {
+   "question_id": "S5-100",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-101",
+   "fields": [
+    "answer",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags"
+   ]
+  },
+  {
+   "question_id": "S5-111",
+   "fields": [
+    "answer",
+    "citations",
+    "final_validation",
+    "generated_tokens",
+    "initial_validation",
+    "quality_flags",
+    "repair"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+  "by_layer": {
+    "none": 1,
+    "generation": 1
+  },
+  "by_layer_and_category": {
+    "generation": {
+      "missing": 1
+    },
+    "none": {
+      "single": 1
+    }
+  },
+  "failures": [
+    {
+      "id": "S5-042",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: asserted_missing_provision",
+        "unsupported content: asserted_missing_provision"
+      ],
+      "category": "missing"
+    }
+  ],
+  "soft": [],
+  "per_question": [
+    {
+      "id": "S5-001",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-042",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: asserted_missing_provision",
+        "unsupported content: asserted_missing_provision"
+      ],
+      "category": "missing"
+    }
+  ]
+}

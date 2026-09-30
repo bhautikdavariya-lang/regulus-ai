@@ -1,0 +1,71 @@
+# Model configuration for Regulus AI.
+# Any value here can be overridden with an environment variable
+# (see .env.example): REGULUS_MODEL_ID, REGULUS_MODEL_CACHE_DIR,
+# REGULUS_DEVICE, REGULUS_DTYPE.
+
+model:
+  # Hugging Face Hub model identifier
+  id: "Qwen/Qwen3-0.6B"
+  # Where Hugging Face stores downloaded weights. Relative paths are resolved
+  # against the project root. Point this at ~/.cache/huggingface/hub to share
+  # the global cache instead of a project-local one.
+  cache_dir: "models"
+  # auto | cpu | mps | cuda | cuda:0 ...
+  # mps = the Apple GPU. Opt-in only: "auto" never selects it (it resolves to
+  # CUDA if present, else CPU). See docs/mps_float16_evaluation.md before using it.
+  device: "auto"
+  # auto | float32 | float16 | bfloat16
+  # "auto" -> float32 on CPU, bfloat16 on CUDA (float16 if bf16 unsupported)
+  dtype: "auto"
+
+generation:
+  max_new_tokens: 128
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  do_sample: true
+  # Qwen3 "thinking" mode emits a <think> block before the answer. Off by
+  # default: it is slow on CPU and not needed for the smoke test.
+  enable_thinking: false
+
+# How long a grounded RAG answer may be. See docs/answer_length_policy.md.
+#
+# WHAT THIS CONTROLS: the token allowance the RAG pipeline gives one question,
+# and the hard ceiling that stops a model which never emits end-of-turn.
+#
+# WHAT THIS DOES NOT CONTROL: how long the answer *should* be. Nothing here
+# tells the model to be brief - that is rule 10 of the grounded system prompt,
+# so that brevity is a style preference and can never cost completeness.
+# Raising these numbers does not make ordinary answers longer; the model stops
+# at its own end-of-turn token. It only stops long answers being severed.
+#
+# max_new_tokens is a SAFETY CEILING, not a target. It is generous on purpose:
+# the model's context window is 40,960 tokens and the prompt is hard-capped
+# near 2,600, so context is nowhere near the binding constraint. What binds is
+# generation speed - measured at 1.86 tokens/second on this CPU-only machine,
+# so 2048 tokens is roughly 18 minutes in the pathological worst case. That is
+# accepted deliberately: severing a legitimate answer is the failure this policy
+# exists to remove, and the ceiling is only ever reached by a model that will
+# not stop. In practice answers average about 105 tokens, and the widest
+# allowance this policy can ask for is 1,760 - always below the ceiling, so the
+# ceiling never decides how long an answer may be. Lower it if you would rather
+# cut a long answer than wait; raise it if the hardware gets faster.
+# Env override: REGULUS_MAX_NEW_TOKENS.
+answer_length:
+  # adaptive: the allowance follows the evidence the answer is grounded in.
+  # fixed:    one flat allowance per shape (the pre-adaptive behaviour), kept
+  #           so the change can be measured against it. Env override:
+  #           REGULUS_ANSWER_LENGTH_POLICY.
+  policy: adaptive
+  max_new_tokens: 2048      # hard safety ceiling, NOT a preferred length
+  min_tokens: 256           # floor, so even a one-provision answer has room
+                            # for its conditions and exceptions
+  base_tokens: 96           # answer scaffolding
+  per_unit_tokens: 160      # per requested provision
+  range_bonus_tokens: 64    # ranges enumerate, so they need a little more
+  general_tokens: 384       # questions with no named provision
+  max_units: 10             # provisions counted before the evidence term takes over
+  evidence_multiple: 1.4    # allowance per token of EXACT evidence restated
+  evidence_cap_fraction: 0.75  # the evidence term may claim at most this much
+                            # of the ceiling, so a whole-section question is
+                            # summarised rather than transcribed

@@ -1,0 +1,161 @@
+[
+  {
+    "question_id": "A-003",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Written supply-chain program", "support": "SUPPORTED", "cite": "507.105(b)", "quote": "The supply-chain program must be written.", "note": "The duty falls on the receiving facility under 507.105(a)(1), which also answers the question's 'when is the receiving facility responsible' part (it has identified a hazard requiring a supply-chain-applied control)."},
+      {"element": "supplier approval", "support": "SUPPORTED", "cite": "507.115(a)(1); 507.120(a)", "quote": "The receiving facility must approve suppliers.", "note": "507.120(a) adds that approval must be documented before receiving raw materials and other ingredients from those suppliers, in accordance with 507.110(d)."},
+      {"element": "verification activities", "support": "SUPPORTED", "cite": "507.130(a); 507.110(b)", "quote": "must be conducted for each supplier before using the raw material or other ingredient from that supplier and periodically thereafter.", "note": "507.110(b) lists the activities (onsite audits, sampling and testing, records review, other); 507.125 and 507.135 cover determination and onsite audits."},
+      {"element": "the circumstances in which the requirement does not apply", "support": "SUPPORTED", "cite": "507.105(a)(3)", "quote": "The requirements in this subpart do not apply to animal food that is supplied for research or evaluation use", "note": "507.105(a)(2) (FSVP-compliant importer) and 507.130(c)-(e) (qualified facility, non-covered farm, small shell egg producer) add further carve-outs, all inside the cited range."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "Every J element is stated in sections inside the cited range 507.105-507.175 (now read in full: 507.110, 507.115, 507.120, 507.125, 507.130, 507.135). 507.36 governs when a manufacturer/processor need not implement a preventive control; it does not address the supply-chain program, so it is not an omission.",
+    "proposed_decision": "ACCEPTED",
+    "proposed_corrected_citation": null,
+    "rationale": "The supplemental texts of the interior sections of the cited range state supplier approval and verification directly, and the endpoints already supported the written program and the non-applicability cases, so all J elements are supported within the cited range.",
+    "evidence_refs": [
+      "eCFR 21 CFR 507.105(a)-(b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 507.110(b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 507.115(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 507.120(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 507.130(a), (c)-(e) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 507.36 (snapshot 2026-09-03), reviewed and judged not governing"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "The citation is a section range rather than specific sections; an SME may prefer to name 507.105, 507.110-507.135 and 507.175 explicitly. The judgment that 507.36 is outside the question's scope is a reading of the question.",
+    "evidence_conflict": false,
+    "needs_research_items": [],
+    "key_elements_issue": "",
+    "pass2_change": "NEEDS_RESEARCH -> ACCEPTED. Supplemental 507.115(a)(1), 507.120(a), 507.110(b) and 507.130(a) state supplier approval and verification inside the cited range; supplemental 507.36 was read and does not govern the supply-chain program."
+  },
+  {
+    "question_id": "A-004",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "CGMP for medicated feeds", "support": "SUPPORTED", "cite": "225.1(b)(1)", "quote": "The provisions of this part set forth the criteria for determining whether the manufacture of a medicated feed is in compliance with current good manufacturing practice.", "note": "225.1(b)(2) splits Part 225 into 225.10-225.115 (licensed facilities) and 225.120-225.202 (non-licensed); those section texts are not in the packet (headings only), but J states the element only at the level 225.1 states it."},
+      {"element": "VFD issuance", "support": "SUPPORTED", "cite": "558.6(a)(1)", "quote": "may be fed to animals only by or upon a lawful VFD issued by a licensed veterinarian.", "note": "Veterinarian duties in 558.6(b)."},
+      {"element": "VFD content", "support": "SUPPORTED", "cite": "558.6(b)(3)", "quote": "The veterinarian must ensure that the following information is fully and accurately included on the VFD:", "note": ""},
+      {"element": "VFD distribution", "support": "SUPPORTED", "cite": "558.6(c)(1)", "quote": "The distributor is permitted to fill a VFD only if the VFD contains all the information required in paragraph (b)(3) of this section.", "note": ""},
+      {"element": "VFD recordkeeping", "support": "SUPPORTED", "cite": "558.6(a)(4)", "quote": "All involved parties (the veterinarian, the distributor, and the client) must retain a copy of the VFD for 2 years.", "note": "558.6(c)(3)-(4) add distributor distribution and manufacturing records."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "Part 225 exists in the snapshot (225.1 and the full section list retrieved) and 225.1 states that the part sets the CGMP criteria for medicated feed manufacture. 558.6(c)(4) itself routes VFD feed manufacturing records to part 225, which G cites.",
+    "proposed_decision": "ACCEPTED",
+    "proposed_corrected_citation": null,
+    "rationale": "Supplemental 225.1 confirms Part 225 exists and is the medicated-feed CGMP part, which settles the only element the first pass could not check; the VFD elements were already supported by 558.6.",
+    "evidence_refs": [
+      "eCFR 21 CFR 225.1(b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR Part 225 section list (snapshot 2026-09-03, headings only)",
+      "eCFR 21 CFR 558.6(a)-(c) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "Support for the CGMP element rests on the scope statement in 225.1, not on the substantive sections (225.10-225.202), whose text was not retrieved. Lead only (heading, not text): 558.4 'Requirement of a medicated feed mill license' may bear on 'medicated feed manufacturing'; not flagged because no J element depends on it.",
+    "evidence_conflict": false,
+    "needs_research_items": [],
+    "key_elements_issue": "",
+    "pass2_change": "NEEDS_RESEARCH -> ACCEPTED. Supplemental 225.1(b)(1) and the Part 225 section list confirm Part 225 exists and is the CGMP part for medicated feeds."
+  },
+  {
+    "question_id": "Z-001",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Certificate required to operate", "support": "SUPPORTED", "cite": "900.11(a)", "quote": "a certificate issued by FDA is required for lawful operation of all mammography facilities subject to the provisions of this subpart", "note": ""},
+      {"element": "accreditation by an FDA-approved body", "support": "SUPPORTED", "cite": "900.11(a)", "quote": "to be accredited by an approved accreditation body or other entity as designated by FDA", "note": "Text also allows 'other entity as designated by FDA'; see also 900.11(b)(1)(i)."},
+      {"element": "personnel qualification requirements", "support": "SUPPORTED", "cite": "900.12(a)", "quote": "The following requirements apply to all personnel involved in any aspect of mammography, including the production, processing, and interpretation of mammograms", "note": "900.12(a)(1)-(3) set qualifications for interpreting physicians, radiologic technologists and medical physicists."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "900.11(a) makes meeting the quality standards in all of 900.12 a condition of certification ('To obtain a certificate from FDA, facilities are required to meet the quality standards in' 900.12), but G cites only 900.12(a). Supplemental 900.3 and 900.4 impose duties on accreditation bodies, not on facilities, so they are not needed for this facility-focused question.",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 900.11; 21 CFR 900.12",
+    "rationale": "All J elements are supported, but the certification provision expressly routes the facility to all of 900.12, so citing only 900.12(a) is narrower than the question. The newly read 900.3 and 900.4 govern accreditation bodies and do not need adding.",
+    "evidence_refs": [
+      "eCFR 21 CFR 900.11(a), (b)(1) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 900.12(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 900.3, 900.4 (snapshot 2026-09-03), reviewed and judged not governing for facilities"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "An SME may decide that J deliberately limits the answer to personnel, in which case 900.12(a) alone is enough and the row could be ACCEPTED as drafted.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "SME to decide whether the question's scope ('accreditation and certification requirements') should reach all 900.12 quality standards or only personnel, as J suggests."
+    ],
+    "key_elements_issue": "",
+    "pass2_change": "No change in decision. Supplemental 900.3 and 900.4 were read: they set requirements for accreditation bodies (e.g. 900.4(b)(1)), not for facilities, which closes the first pass's Subpart A lead without adding them to the citation."
+  },
+  {
+    "question_id": "Z-003",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "undetermined",
+    "elements": [
+      {"element": "Product reports", "support": "SUPPORTED", "cite": "1002.10 (introductory text)", "quote": "shall submit a product report to the Food and Drug Administration, Center for Devices and Radiological Health", "note": "Applies to products 'requiring a product report as set forth in table 1 of 1002.1'."},
+      {"element": "abbreviated reports", "support": "SUPPORTED", "cite": "1002.12 (introductory text)", "quote": "shall submit, prior to the introduction of such product, a report distinctly marked", "note": "Applies to products requiring abbreviated reports per table 1 of 1002.1."},
+      {"element": "records of testing to be maintained", "support": "SUPPORTED", "cite": "1002.30(a)(2)", "quote": "Records of the results of tests for electronic product radiation safety", "note": ""},
+      {"element": "records of distribution to be maintained", "support": "SUPPORTED", "cite": "1002.30(b)(1)", "quote": "distribution of products in a form which will enable the tracing of specific products or production lots to distributors", "note": ""},
+      {"element": "records of quality control to be maintained", "support": "SUPPORTED", "cite": "1002.30(a)(1)", "quote": "Description of the quality control procedures with respect to electronic product radiation safety.", "note": "A description of QC procedures kept as a required record; close paraphrase."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "Supplemental 1002.1 confirms Part 1002 applies 'as set forth in table 1 of this section', but the table itself is absent from the retrieved text, so which reports and records apply to a product 'subject to a performance standard' still cannot be checked. Supplemental 1002.11 (supplemental reports), 1002.13 (annual reports summarising the 1002.30(a) records) and 1002.31 (5-year preservation) are further reports and record duties of table-1 manufacturers that the question ('maintain and submit') arguably reaches but G omits.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "Every J element is stated in the cited text, but table 1 of 1002.1, which decides which reports and records apply, is still not in the evidence. The supplemental text shows other report and record duties (1002.11, 1002.13, 1002.31) that may belong in the key depending on that table.",
+    "evidence_refs": [
+      "eCFR 21 CFR 1002.10 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1002.12 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1002.30(a)-(b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1002.1(a)-(c) (snapshot 2026-09-03, table 1 not included)",
+      "eCFR 21 CFR 1002.11, 1002.13, 1002.31 (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "If the SME reads the question as asking only for the report and record types J names, the row could be ACCEPTED as drafted; if it asks for all report duties, 1002.11 and 1002.13 (and possibly 1002.20, to which 1002.1(a) subjects all manufacturers) would need adding.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "Retrieve table 1 of 21 CFR 1002.1 (the retrieved text stops at 'The provisions of this part are applicable as follows:') and check which reports and records apply to products subject to a performance standard.",
+      "SME to decide whether 1002.11 (supplemental reports) and 1002.13 (annual reports) should be added to G, since both are reports table-1 manufacturers must submit.",
+      "SME to decide whether 1002.31 (records preserved 5 years; inspection) should be added for the 'maintain' part of the question.",
+      "Lead only (not in evidence): 1002.20, which 1002.1(a) applies to all electronic product manufacturers; check whether the question reaches it."
+    ],
+    "key_elements_issue": "",
+    "pass2_change": "No change in decision. Supplemental 1002.1 confirms the table-1 dependency but omits the table itself; supplemental 1002.11, 1002.13 and 1002.31 turn the first pass's heading-only leads into concrete candidate additions for the SME."
+  },
+  {
+    "question_id": "X-002",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Demonstrating compliance with either the drug CGMP or the device quality system requirements", "support": "PARTIALLY_SUPPORTED", "cite": "4.4(b)(1)-(3)", "quote": "has been shown to comply with the drug CGMP requirements or the medical gas CGMP requirements, as applicable", "note": "Broader than J: the base system may also be medical gas CGMP. The device base is called the QMSR in 4.4(b)(2) ('has been shown to comply with the QMSR requirements for devices'); supplemental 4.3(b) confirms this is the part 820 set, so J's 'device quality system requirements' refers to the right regulation under a superseded name. The streamlined route is optional (4.4(a)(2), (b))."},
+      {"element": "plus the specified additional provisions from the other", "support": "SUPPORTED", "cite": "4.4(b)(1)-(3)", "quote": "the following provisions of the drug CGMP requirements must also be shown to have been satisfied", "note": "(b)(4) and (b)(5) add all applicable biological product and HCT/P requirements identified under 4.3(c) and (d), which J does not mention."}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "4.4(a)(1), (b)(4), (b)(5) and (e) refer to the CGMP sets listed in 4.3. Supplemental 4.3 only identifies which parts apply to which constituent part; the streamlined approach itself is set out entirely in 4.4, so adding 4.3 is optional rather than required.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "4.4 is the right provision and 4.3 confirms that the device base set is part 820, but J is still narrower than the text: it omits the medical gas CGMP option and the biological/HCT/P additions and uses the superseded 'quality system' name. Only the SME or key owner can decide whether that is acceptable, since J cannot be edited here.",
+    "evidence_refs": [
+      "eCFR 21 CFR 4.4(a)-(b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 4.3(a)-(e) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "An SME may treat 'device quality system requirements' as an acceptable paraphrase of part 820 / QMSR and the omissions as outside a summary key, in which case ACCEPTED would fit.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "SME/key owner to decide whether J's 'device quality system requirements' is acceptable now that 4.4 refers to the QMSR (4.3(b) confirms it is the part 820 set).",
+      "SME to decide whether J must mention the medical gas CGMP pathway (4.4(b)(1), (b)(3)) and the biological/HCT/P additions (4.4(b)(4)-(5)).",
+      "Optional: SME to decide whether to add 21 CFR 4.3 to G as the list of CGMP sets that 4.4 refers to."
+    ],
+    "key_elements_issue": "Not contradicted, but J is narrower than 4.4: it omits the medical gas CGMP base option (4.4(b)(1), (b)(3)) and the biological product and HCT/P add-on requirements (4.4(b)(4)-(5)), and it calls the device set 'quality system requirements' where the current text says QMSR.",
+    "pass2_change": "No change in decision. Supplemental 4.3 confirms the device set is part 820 (easing the terminology concern) and shows 4.3 is a list of applicable parts, not part of the streamlined approach, so it does not settle J's narrowness."
+  }
+]

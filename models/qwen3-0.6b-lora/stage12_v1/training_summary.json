@@ -1,0 +1,172 @@
+{
+  "stage": 12,
+  "mode": "full (finalized from checkpoints after a manual stop following the last checkpoint)",
+  "started_utc": "2026-09-16T09:15:41+00:00",
+  "finished_utc": "2026-09-16T12:50:07+00:00",
+  "training_duration_seconds": 12866.4,
+  "training_duration_note": "checkpoint directory creation to last checkpoint write; includes the initial base-model validation pass and the checkpoint validation passes",
+  "hardware": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "torch": "2.14.0+cpu",
+    "cuda_available": false,
+    "cuda_version": null,
+    "cpu_threads": 4,
+    "gpu_name": null,
+    "device": "cpu",
+    "dtype": "float32",
+    "cpu_count": 4,
+    "ram_total_gb": 7.91,
+    "ram_available_gb": 2.53
+  },
+  "dependencies": {
+    "python": "3.11.9",
+    "torch": "2.14.0+cpu",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.2",
+    "numpy": "2.4.6"
+  },
+  "dataset_identity": {
+    "files": {
+      "train": {
+        "path": "training_v1.jsonl",
+        "sha256": "b424d69cc435429b0d03cbc8b0f543f9033d64807e974f54806bc3f8c9c1c492",
+        "examples": 7566
+      },
+      "validation": {
+        "path": "validation_v1.jsonl",
+        "sha256": "5927d767187703f777c3075604f400f64af080cd2c234d22b8856ea8abfbadfb",
+        "examples": 962
+      },
+      "test": {
+        "path": "test_v1.jsonl",
+        "sha256": "d8140c0b1c93535281d4db2498ea093836064f15587a2428e846c903603ddbc4",
+        "examples": 917
+      }
+    },
+    "manifest": "manifest_v1.json",
+    "dataset_sha256": "bee32e320fc5c5072b040efc5b5a1caf707bce09c96affd05586a0f039e77a54",
+    "dataset_version": "v1",
+    "generated_at_utc": "2026-09-16T07:24:28+00:00",
+    "seed": 42,
+    "database_snapshot": "2026-09-03"
+  },
+  "protected_files_sha256": {
+    "baseline_v1.jsonl": "28363d860c50d64f297a40ad48d80cb71c6fcde47a7d8da1ac82609fcd47573d",
+    "retrieval_v1.jsonl": "63f0a0863cfbc42e72161cd1fce176b40fd19a61f6f216e70c3766482f62d106",
+    "retrieval_v2.jsonl": "db73c6fa7bb934f3353e101b55e40fcae7e8833b005cef19dc27db992303b11c"
+  },
+  "tokenization": {
+    "train": {
+      "examples_in": 7566,
+      "examples_used": 7306,
+      "skipped_over_length": 260,
+      "truncated": 0,
+      "max_seq_length": 1280,
+      "over_length_policy": "skip",
+      "max_token_length_observed": 2712,
+      "median_token_length": 558,
+      "p95_token_length": 1198,
+      "answer_tokens_mean": 122.2
+    },
+    "eval_subset": {
+      "examples_in": 64,
+      "examples_used": 64,
+      "skipped_over_length": 0,
+      "truncated": 0,
+      "max_seq_length": 1280,
+      "over_length_policy": "skip",
+      "max_token_length_observed": 1171,
+      "median_token_length": 462,
+      "p95_token_length": 897,
+      "answer_tokens_mean": 92.8
+    }
+  },
+  "lora": {
+    "trainable_parameters": 10092544,
+    "total_parameters": 606142464,
+    "trainable_percent": 1.665,
+    "base_parameters_frozen": true,
+    "target_module_counts": "see adapter_config.json (verified at training time)",
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "bias": "none",
+      "task_type": "CAUSAL_LM",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    }
+  },
+  "training_arguments": {
+    "learning_rate": 0.0002,
+    "num_train_epochs": 1.0,
+    "max_steps": 40,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "warmup_steps": 4,
+    "weight_decay": 0.0,
+    "lr_scheduler_type": "cosine",
+    "eval_steps": 20,
+    "save_steps": 20,
+    "save_total_limit": 2,
+    "seed": 42,
+    "use_cpu": true,
+    "bf16": false,
+    "fp16": false
+  },
+  "steps_completed": 40,
+  "epochs_completed": 0.0438,
+  "examples_seen": 320,
+  "final_training_loss": 0.1411452442407608,
+  "training_losses": [
+    1.0484907627105713,
+    0.9379409551620483,
+    0.5317352414131165,
+    0.3007662296295166,
+    0.39345023036003113,
+    0.3175879120826721,
+    0.24993564188480377,
+    0.45111775398254395,
+    0.21848689019680023,
+    0.17502616345882416,
+    0.1813543438911438,
+    0.2827053964138031,
+    0.19876481592655182,
+    0.35059618949890137,
+    0.16902174055576324,
+    0.13948605954647064,
+    0.11109613627195358,
+    0.12323274463415146,
+    0.10430643707513809,
+    0.11163481324911118,
+    0.1411452442407608
+  ],
+  "eval_losses": [
+    0.37647363543510437,
+    0.3014103174209595
+  ],
+  "base_validation_loss": 1.2076,
+  "best_validation_loss": 0.3014103174209595,
+  "selected_checkpoint_validation_loss": 0.3014103174209595,
+  "best_checkpoint": "checkpoint-40",
+  "adapter_dir": "C:/Users/PC-1/Prachi Patel/Regulus AI/models/qwen3-0.6b-lora/stage12_v1/adapter",
+  "train_metrics": {
+    "note": "process stopped after the last checkpoint; Trainer end-of-run metrics were not produced"
+  },
+  "inference_check": {
+    "example_id": "example_d004de13e31b2c19",
+    "generated_tokens": 51,
+    "seconds": 19.24
+  }
+}

@@ -1,0 +1,135 @@
+"""Safe fallback answers (Stage 5): what the reader gets when no generated answer can be shown.
+
+One place builds every non-generated answer that the answerability gate or a
+failed repair produces, so the rules hold everywhere:
+
+  * never present retrieved text as the answer unless it is the text of the
+    provision the question asked about, at paragraph or section level, for a
+    question that asks what that provision says (`quoting_allowed`); a part-level
+    or topical request, a citation lookup, or a request for a specific value
+    gets no quotation, because the first matching passage is not the answer
+  * say what the evidence does not establish ("the retrieved evidence does not
+    establish ..."), never that the regulation does not contain something:
+    retrieval can miss text that exists
+  * name the sources that were consulted, as sources, not as an answer
+
+Texts are deterministic and contain no model output.
+"""
+
+from __future__ import annotations
+
+from regulus.planning.intent import TYPE_DEFINITION, TYPE_EXPLANATION, TYPE_REQUIREMENT
+from regulus.rag import answerability as A
+from regulus.rag.answer_quality import out_of_scope_answer
+from regulus.rag.evidence_values import requested_value_kind, value_kind_label
+from regulus.rag.generation import UNVALIDATED_PREFIX, extractive_answer, extractive_items
+from regulus.rag.prompt import NO_CONTEXT_ANSWER, incomplete_coverage_answer
+
+# fallback types (recorded in metadata and traces)
+FB_OUT_OF_SCOPE = "out_of_scope"
+FB_UNSUPPORTED_REQUEST = "unsupported_request"
+FB_AMBIGUOUS = "ambiguous"
+FB_WRONG_PROVISION = "wrong_provision"
+FB_PROVISION_NOT_FOUND = "provision_not_found"
+FB_NO_EVIDENCE = "no_evidence"
+FB_VALUE_NOT_ESTABLISHED = "value_not_established"
+FB_VERBATIM_PROVISION = "verbatim_requested_provision"   # the repair quoted the requested provision (allowed)
+FB_UNVALIDATED = "unvalidated_answer_withheld"           # generated answer withheld, nothing quoted
+FALLBACK_TYPES = (FB_OUT_OF_SCOPE, FB_UNSUPPORTED_REQUEST, FB_AMBIGUOUS, FB_WRONG_PROVISION, FB_PROVISION_NOT_FOUND,
+                  FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED)
+
+QUOTABLE_QUESTION_TYPES = (TYPE_REQUIREMENT, TYPE_EXPLANATION, TYPE_DEFINITION)
+
+
+def _join(labels) -> str:
+    labels = list(dict.fromkeys(labels))
+    if len(labels) <= 1:
+        return "".join(labels)
+    return ", ".join(labels[:-1]) + " and " + labels[-1]
+
+
+def consulted(sources, limit: int = 5) -> str:
+    """'Sources consulted: A, B.' - labels only, never their text, and no [n] markers
+    (a fallback answer has no citations for them to point at)."""
+    seen = list(dict.fromkeys(s.result.citation.label for s in sources))
+    if not seen:
+        return ""
+    items = seen[:limit]
+    more = len(seen) - len(items)
+    return "Sources consulted: " + ", ".join(items) + (f" and {more} more" if more > 0 else "") + "."
+
+
+def quoting_allowed(question: str, plan, shape, analysis, package) -> bool:
+    """May the verbatim text of the requested provisions stand in for the answer?
+
+    Only when that text IS what was asked for: every requested provision is a
+    section or paragraph (a part is too broad; its first matching passage is
+    arbitrary), the question asks what the provision says (not a citation
+    lookup, applicability or procedure question), it is not restricted to a
+    topic inside the provision, and it does not ask for a specific value."""
+    if package is None or not package.satisfied_ids or not plan.requirements:
+        return False
+    if any(r.reference.section is None for r in plan.requirements):
+        return False
+    if shape is not None and shape.focus_terms:
+        return False
+    if analysis is None or analysis.question_type not in QUOTABLE_QUESTION_TYPES:
+        return False
+    return requested_value_kind(question) is None
+
+
+def provision_is_identified(plan, package) -> bool:
+    """Every requested provision is a section or paragraph and has exact evidence: its text is
+    relevant by identity (it is the provision asked about), unlike a part's first matching passage."""
+    return (package is not None and bool(plan.requirements) and all(r.reference.section is not None for r in plan.requirements)
+            and set(package.satisfied_ids) == {r.id for r in plan.requirements})
+
+
+def blocked_answer(decision: A.AnswerabilityDecision, sources, notes=(), missing_labels=(), *, plan=None,
+                   package=None) -> tuple[str, str]:
+    """(answer text, fallback type) for a decision the gate blocked."""
+    state, conditions = decision.state, decision.blocking_conditions
+    listed = consulted(sources)
+    if state == A.OUT_OF_SCOPE:
+        return out_of_scope_answer(decision.reason.removeprefix("the question ")), FB_OUT_OF_SCOPE
+    if state == A.UNSUPPORTED_REQUEST:
+        return ("Regulus AI cannot make this determination. It answers what U.S. FDA regulations (21 CFR) and FDA guidance "
+                "say; whether a particular product, firm or submission complies, or what FDA will decide, depends on facts "
+                "the regulatory text does not contain. Ask what the requirements are, and apply them with qualified "
+                "regulatory advice."), FB_UNSUPPORTED_REQUEST
+    if state == A.AMBIGUOUS:
+        return ("The question refers to a provision without identifying it (for example a paragraph with no CFR part or "
+                "section), so the evidence cannot be matched to it. Please name the provision, e.g. \"21 CFR 820.10(b)\"."), FB_AMBIGUOUS
+    if state == A.WRONG_PROVISION:
+        targets = _join(decision.signals.get("reference_targets") or ())
+        return (f"The question names {targets} as the provision being referred to, not the one it asks for. The retrieved "
+                f"evidence is the text of {targets} itself, which does not establish which provision refers to it, so no "
+                f"provision is cited. {listed}").strip(), FB_WRONG_PROVISION
+    if "requested_provision_not_found" in conditions:
+        return incomplete_coverage_answer(missing_labels), FB_PROVISION_NOT_FOUND
+    if "no_evidence" in conditions:
+        return (NO_CONTEXT_ANSWER + (" " + " ".join(notes) if notes else "")), FB_NO_EVIDENCE
+    if "requested_value_absent" in conditions:
+        label = value_kind_label(decision.signals.get("requested_value_kind"))
+        head = (f"The retrieved evidence does not establish the {label} asked for: none of the retrieved sources states "
+                f"one, so no {label} is given.")
+        if plan is not None and provision_is_identified(plan, package):
+            # the question named the provision: what it does say is relevant, and is quoted as such
+            return (f"{head} What the requested provision says, verbatim:\n{extractive_answer(package)}"), FB_VALUE_NOT_ESTABLISHED
+        return (f"{head} The regulation may address the topic in general terms without stating one, or the "
+                f"relevant text may not have been retrieved. {listed}").strip(), FB_VALUE_NOT_ESTABLISHED
+    return f"The retrieved evidence does not establish an answer to this question. {listed}".strip(), FB_NO_EVIDENCE
+
+
+def unvalidated_answer(package, sources, *, quote: bool, requirement_ids=None) -> tuple[str, str]:
+    """(answer text, fallback type) when a generated answer failed validation and cannot be shown.
+    With `quote` the verbatim text of the requested provisions is given, which is grounded by construction."""
+    if quote:
+        plan = package.answer_plan
+        if requirement_ids is None and plan is not None and plan.shape.exhaustive and plan.material_items():
+            # an exhaustive request ("list all", "(a) through (e)"): every item of what was asked, verbatim
+            return f"{UNVALIDATED_PREFIX}\n{extractive_items(package, plan.material_items())}", FB_VERBATIM_PROVISION
+        return f"{UNVALIDATED_PREFIX}\n{extractive_answer(package, requirement_ids)}", FB_VERBATIM_PROVISION
+    return ("The generated answer could not be validated against the retrieved regulatory evidence, so it is not shown. "
+            "The retrieved sources were not verified to answer the question as asked, so their text is not quoted as an "
+            f"answer. {consulted(sources)}").strip(), FB_UNVALIDATED

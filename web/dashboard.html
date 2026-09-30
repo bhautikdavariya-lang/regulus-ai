@@ -1,0 +1,2146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulus AI — Model Analysis</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg:#f6f7f9; --panel:#ffffff; --panel2:#f3f4f6; --panel3:#eceef2; --ink:#16181d; --ink2:#3a3f4a;
+    --muted:#667085; --line:#e4e7ec; --line2:#d0d5dd;
+    --accent:#4f46e5; --accent-soft:#eef0ff;
+    --ok:#157347; --warn:#9a5b00; --stop:#b42318; --info:#175cd3;
+    --ok-soft:#ecfdf3; --warn-soft:#fffaeb; --stop-soft:#fef3f2; --info-soft:#eff8ff;
+    /* chart series - validated for CVD and contrast on this surface */
+    --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a;
+    --grid:#ececE8; --axis:#c9c9c3;
+    --shadow:0 1px 2px rgba(16,24,40,.05);
+    --radius:12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg:#111317; --panel:#181b21; --panel2:#1f232a; --panel3:#262b33; --ink:#eceef2; --ink2:#c8ccd4;
+      --muted:#9aa1ad; --line:#2a2f38; --line2:#3a404b;
+      --accent:#8b85ff; --accent-soft:#23234a;
+      --ok:#5fd19a; --warn:#e0a33a; --stop:#ff8a80; --info:#7fb0ef;
+      --ok-soft:#14261d; --warn-soft:#2a2110; --stop-soft:#2c1614; --info-soft:#132235;
+      --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70;
+      --grid:#2c2c33; --axis:#4a4a53;
+      --shadow:none;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:#111317; --panel:#181b21; --panel2:#1f232a; --panel3:#262b33; --ink:#eceef2; --ink2:#c8ccd4;
+    --muted:#9aa1ad; --line:#2a2f38; --line2:#3a404b;
+    --accent:#8b85ff; --accent-soft:#23234a;
+    --ok:#5fd19a; --warn:#e0a33a; --stop:#ff8a80; --info:#7fb0ef;
+    --ok-soft:#14261d; --warn-soft:#2a2110; --stop-soft:#2c1614; --info-soft:#132235;
+    --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70;
+    --grid:#2c2c33; --axis:#4a4a53;
+    --shadow:none;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:14.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1240px; margin:0 auto; padding:0 20px 90px; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  a:focus-visible, button:focus-visible, .info-i:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+    outline:2px solid var(--accent); outline-offset:2px; border-radius:6px; }
+  h1 { font-size:16px; margin:0; letter-spacing:-.01em; font-weight:700; }
+  h2 { font-size:17px; margin:0 0 2px; letter-spacing:-.01em; }
+  h3 { font-size:11.5px; margin:0 0 10px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:650; }
+  .sub { color:var(--muted); font-size:13px; }
+
+  /* ---- top bar ---- */
+  .topbar { position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter:saturate(1.4) blur(8px); border-bottom:1px solid var(--line); margin:0 -20px; padding:0 20px; }
+  .topbar-in { max-width:1240px; margin:0 auto; }
+  header.top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:12px 0 8px; }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand .mark { width:26px; height:26px; border-radius:7px; background:var(--accent); color:#fff; display:flex;
+                 align-items:center; justify-content:center; font-weight:800; font-size:13px; letter-spacing:-.02em; }
+  .brand .product { color:var(--muted); font-weight:600; font-size:14px; }
+  .brand .sep { color:var(--line2); }
+  #head-sub { font-size:12px; }
+  nav { display:flex; gap:2px; flex-wrap:wrap; }
+  nav a { padding:9px 12px 10px; font-size:13.5px; font-weight:600; color:var(--muted); border-bottom:2px solid transparent;
+          margin-bottom:-1px; }
+  nav a:hover { color:var(--ink); text-decoration:none; }
+  nav a.on { color:var(--ink); border-bottom-color:var(--accent); }
+  .subnav { display:flex; gap:6px; flex-wrap:wrap; margin:18px 0 2px; }
+  .subnav a { font-size:12.5px; font-weight:600; padding:5px 11px; border-radius:99px; border:1px solid var(--line);
+              color:var(--muted); background:var(--panel); }
+  .subnav a.on { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+  .subnav a:hover { text-decoration:none; color:var(--ink); }
+
+  /* ---- generic building blocks ---- */
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px;
+          margin-top:14px; box-shadow:var(--shadow); }
+  .card.flush { padding:0; overflow:hidden; }
+  .grid { display:grid; gap:12px; }
+  .g2 { grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); }
+  .g3 { grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .spread { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap; }
+
+  .pill { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; letter-spacing:.04em;
+          padding:2px 9px; border-radius:99px; border:1px solid currentColor; white-space:nowrap; line-height:1.6; }
+  .pill.ok{color:var(--ok);background:var(--ok-soft)} .pill.warn{color:var(--warn);background:var(--warn-soft)}
+  .pill.stop{color:var(--stop);background:var(--stop-soft)} .pill.mut{color:var(--muted)}
+  .pill.info{color:var(--info);background:var(--info-soft)} .pill.acc{color:var(--accent);background:var(--accent-soft)}
+
+  .metric { background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:12px 13px; }
+  .metric .name { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; font-weight:600; }
+  .metric .val { font-size:26px; font-weight:650; letter-spacing:-.02em; margin:5px 0 1px; font-variant-numeric:tabular-nums; }
+  .metric .den { font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .metric .src { font-size:11px; color:var(--muted); margin-top:7px; word-break:break-all; }
+  .metric.flag { border-color:var(--warn); }
+  .info-i { display:inline-flex; width:15px; height:15px; align-items:center; justify-content:center; flex:none;
+            border-radius:50%; border:1px solid var(--muted); color:var(--muted); font-size:10px; font-weight:700;
+            cursor:help; font-style:normal; }
+  .heur { font-size:9.5px; font-weight:700; letter-spacing:.05em; color:var(--warn); border:1px solid currentColor;
+          border-radius:4px; padding:0 4px; }
+  .tag { font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+         border:1px solid var(--line2); border-radius:5px; padding:1px 6px; white-space:nowrap; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted);
+       font-weight:650; padding:9px 11px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--panel);
+       white-space:nowrap; z-index:1; }
+  td { padding:9px 11px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:0; }
+  tr.click { cursor:pointer; }
+  tr.click:hover td { background:var(--panel2); }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  .scroll { max-height:640px; overflow:auto; }
+  .hscroll { overflow-x:auto; }
+  code, .mono { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; }
+
+  input, select, button, textarea { font:inherit; color:inherit; }
+  input[type=text], input[type=search], select {
+    background:var(--panel); border:1px solid var(--line2); border-radius:8px; padding:7px 10px; font-size:13px; }
+  button { font-weight:600; font-size:13px; border:1px solid var(--line2); border-radius:8px; padding:7px 13px;
+           background:var(--panel); cursor:pointer; }
+  button:hover { background:var(--panel2); }
+  button.primary { background:var(--accent); color:#fff; border-color:transparent; }
+  button.primary:hover { filter:brightness(1.07); }
+  button.ghost { background:transparent; }
+  button:disabled { opacity:.45; cursor:default; }
+
+  .banner { border-radius:10px; padding:11px 14px; font-size:13.5px; margin-top:14px; border:1px solid; display:flex; gap:9px; align-items:flex-start; }
+  .banner.warn { color:var(--warn); background:var(--warn-soft); }
+  .banner.stop { color:var(--stop); background:var(--stop-soft); }
+  .banner.info { color:var(--info); background:var(--info-soft); }
+  .banner b { font-weight:700; }
+  .banner .body { color:var(--ink); }
+
+  .kv { display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:13px; }
+  .kv dt { color:var(--muted); }
+  .kv dd { margin:0; word-break:break-word; }
+
+  .answer { white-space:pre-wrap; font-size:13.5px; background:var(--panel2); border:1px solid var(--line);
+            border-radius:9px; padding:12px; max-height:430px; overflow:auto; }
+  .legend { display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--muted); align-items:center; }
+  .swatch { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+
+  .tip { position:fixed; z-index:50; max-width:360px; background:var(--panel); color:var(--ink);
+         border:1px solid var(--line); border-radius:10px; padding:11px 13px; font-size:12.5px; line-height:1.5;
+         box-shadow:0 8px 28px rgba(0,0,0,.18); pointer-events:none; display:none; }
+  .tip h4 { margin:0 0 5px; font-size:13px; }
+  .tip .lab { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.05em; margin-top:7px; }
+  .empty { color:var(--muted); font-size:13.5px; padding:22px 4px; text-align:center; }
+  .loading { color:var(--muted); font-size:13.5px; padding:48px 4px; text-align:center; }
+  .loading::before { content:""; display:inline-block; width:14px; height:14px; margin-right:9px; vertical-align:-2px;
+                     border:2px solid var(--line2); border-top-color:var(--accent); border-radius:50%;
+                     animation:spin .8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .err { color:var(--stop); }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; padding:4px 0; }
+  .chart { width:100%; }
+  .chart text { font-size:10.5px; fill:var(--muted); }
+  .chart .grid line { stroke:var(--grid); stroke-width:1; }
+  .chart .axis { stroke:var(--axis); stroke-width:1; }
+  .bar { fill:var(--series-1); }
+  .up { color:var(--ok); } .down { color:var(--stop); } .flat { color:var(--muted); }
+
+  /* ---- page heading ---- */
+  .pagehead { display:flex; justify-content:space-between; align-items:flex-end; gap:14px; flex-wrap:wrap; margin:26px 0 4px; }
+  .pagehead .eyebrow { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  .pagehead h2 { font-size:26px; letter-spacing:-.025em; margin:4px 0 2px; line-height:1.15; }
+  .pagehead .lede { color:var(--muted); font-size:13.5px; max-width:78ch; }
+
+  /* ---- identity panel ---- */
+  .identity { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:14px; margin-top:16px; }
+  .idcard { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px 14px;
+            box-shadow:var(--shadow); border-top:3px solid var(--ok); min-width:0; }
+  .idcard.hist { border-top-color:var(--warn); }
+  .idcard .label { font-size:10.5px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+                   display:flex; align-items:center; gap:8px; }
+  .idcard .big { font-size:21px; font-weight:700; letter-spacing:-.02em; margin:6px 0 1px; overflow-wrap:anywhere; }
+  .idcard .big.mono { font-size:18px; }
+  .idcard .kv { margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  .idcard .kv dd.mono { font-size:12px; }
+  .identity-more { margin-top:10px; }
+  .identity-more > summary { font-size:12.5px; }
+
+  /* ---- coverage line ---- */
+  .covline { display:flex; gap:22px; flex-wrap:wrap; align-items:center; margin-top:12px; padding:10px 16px;
+             border:1px dashed var(--line2); border-radius:10px; font-size:13px; color:var(--ink2); background:var(--panel); }
+  .covline b { font-variant-numeric:tabular-nums; }
+
+  /* ---- analysis sections ---- */
+  .jump { display:flex; gap:6px; flex-wrap:wrap; margin-top:18px; }
+  .jump button { font-size:12px; padding:4px 10px; border-radius:99px; color:var(--muted); }
+  .asec { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); margin-top:18px;
+          box-shadow:var(--shadow); overflow:hidden; }
+  .asec-head { padding:16px 18px 12px; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+               border-bottom:1px solid var(--line); }
+  .asec-head h3 { font-size:17px; text-transform:none; letter-spacing:-.01em; color:var(--ink); margin:0; font-weight:700;
+                  display:flex; align-items:center; gap:9px; }
+  .asec-head .q { color:var(--ink2); font-size:13.5px; margin-top:3px; }
+  .asec-head .why { color:var(--muted); font-size:12.5px; margin-top:6px; max-width:86ch; }
+  .asec-head .count { font-size:12px; color:var(--muted); white-space:nowrap; text-align:right; }
+  .asec-body { padding:14px 18px 16px; }
+  .subgroup { font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink2);
+              margin:16px 0 0; display:flex; align-items:center; gap:10px; }
+  .subgroup::after { content:""; flex:1; height:1px; background:var(--line); }
+  .subgroup:first-child { margin-top:2px; }
+  .tiles { display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(205px,1fr)); margin-top:12px; }
+  .tile { background:var(--panel2); border:1px solid var(--line); border-radius:11px; padding:13px 14px; min-width:0;
+          display:flex; flex-direction:column; }
+  .tile .k { font-size:12px; color:var(--ink2); font-weight:650; display:flex; align-items:center; gap:6px;
+             line-height:1.35; overflow-wrap:anywhere; }
+  .tile .v { font-size:28px; font-weight:700; letter-spacing:-.025em; margin:6px 0 0; font-variant-numeric:tabular-nums;
+             overflow-wrap:anywhere; line-height:1.15; }
+  .tile .d { font-size:12.5px; color:var(--ink2); font-variant-numeric:tabular-nums; margin-top:2px; }
+  .tile .def { font-size:11.5px; color:var(--muted); margin-top:8px; line-height:1.45;
+               display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .tile .f { font-size:11px; color:var(--muted); margin-top:6px; overflow-wrap:anywhere; }
+  .tile.none { border-style:dashed; background:transparent; }
+  .tile.none .v { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0; margin-top:10px; }
+  .mtable { margin-top:14px; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .mtable td { padding:7px 11px; }
+  .mtable tr.nmrow td { color:var(--muted); }
+  .mtable .defcell { color:var(--muted); font-size:12px; }
+  .state { display:inline-block; width:8px; height:8px; border-radius:50%; flex:none; }
+  .state.good{background:var(--ok)} .state.attention{background:var(--warn)} .state.poor{background:var(--stop)}
+  .state.available{background:var(--info)} .state.informational{background:var(--muted)}
+  .state.missing{background:transparent;border:1px solid var(--muted)} .state.inconsistent{background:var(--warn)}
+  .affected { margin-top:14px; border-top:1px solid var(--line); padding-top:10px; }
+  .affected a { display:flex; gap:10px; align-items:baseline; padding:5px 2px; font-size:13px; color:var(--ink2); }
+  .affected a:hover { color:var(--accent); text-decoration:none; }
+  .affected .n { font-weight:700; font-variant-numeric:tabular-nums; min-width:62px; color:var(--ink); }
+  .affected .go { margin-left:auto; color:var(--accent); font-size:12px; white-space:nowrap; }
+
+  /* ---- what needs attention ---- */
+  .attn-group { margin-top:14px; }
+  .attn-group:first-child { margin-top:0; }
+  .attn-group .gt { font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .attn { display:flex; align-items:center; gap:14px; padding:10px 13px; border:1px solid var(--line);
+          border-radius:10px; margin-top:6px; background:var(--panel); cursor:pointer; text-align:left; width:100%; font-weight:400; }
+  .attn:hover { background:var(--panel2); border-color:var(--line2); }
+  .attn .n { font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; min-width:44px; text-align:right; }
+  .attn .of { font-size:11.5px; color:var(--muted); min-width:44px; font-variant-numeric:tabular-nums; }
+  .attn .l { font-size:13.5px; flex:1; color:var(--ink); }
+  .attn .d { font-size:12px; color:var(--muted); margin-top:1px; }
+  .attn .go { font-size:12.5px; color:var(--accent); font-weight:600; white-space:nowrap; }
+  .layer { display:flex; align-items:center; gap:10px; margin:6px 0; cursor:pointer; }
+  .layer:hover .bar { filter:brightness(1.12); }
+  .layer .name { flex:0 0 170px; font-size:13px; }
+  .layer .track { flex:1; background:var(--panel2); border-radius:5px; height:16px; overflow:hidden; }
+  .layer .bar { height:100%; border-radius:0 4px 4px 0; }
+  .layer .n { flex:0 0 92px; text-align:right; font-size:12.5px; font-variant-numeric:tabular-nums; color:var(--muted); }
+
+  /* ---- question analysis ---- */
+  .qtools { padding:14px 18px; border-bottom:1px solid var(--line); }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { font-size:12.5px; font-weight:600; padding:5px 11px; border-radius:99px; border:1px solid var(--line2);
+          background:var(--panel); cursor:pointer; color:var(--ink); }
+  .chip:hover { background:var(--panel2); }
+  .chip .c { color:var(--muted); font-weight:500; margin-left:5px; font-variant-numeric:tabular-nums; }
+  .chip[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .chip[aria-pressed="true"] .c { color:#fff; opacity:.85; }
+  .qmeta { font-size:12.5px; color:var(--muted); margin-top:10px; }
+  .qmeta b { color:var(--ink); }
+  .rf { display:inline-flex; align-items:center; gap:5px; white-space:nowrap; font-weight:700; }
+  .rf .arrow { color:var(--muted); font-weight:400; }
+  .mk { display:inline-flex; width:20px; height:20px; border-radius:6px; align-items:center; justify-content:center;
+        font-size:12px; font-weight:800; }
+  .mk.y { color:var(--ok); background:var(--ok-soft); } .mk.n { color:var(--stop); background:var(--stop-soft); }
+  .mk.u { color:var(--muted); background:var(--panel2); font-weight:600; }
+  .qtext { max-width:46ch; }
+  .yes { color:var(--ok); font-weight:600; } .no { color:var(--stop); font-weight:600; } .nm { color:var(--muted); }
+
+  /* ---- question forensics ---- */
+  .flow { display:flex; align-items:stretch; gap:0; flex-wrap:wrap; margin-top:12px; }
+  .step { flex:1 1 150px; min-width:140px; border:1px solid var(--line); border-radius:10px; padding:10px 12px;
+          background:var(--panel2); position:relative; }
+  .step .sn { font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .step .sv { font-size:14px; font-weight:650; margin-top:4px; }
+  .step .ss { font-size:11.5px; color:var(--muted); margin-top:2px; overflow-wrap:anywhere; }
+  .step.ok { border-color:color-mix(in srgb, var(--ok) 45%, var(--line)); background:var(--ok-soft); }
+  .step.bad { border-color:color-mix(in srgb, var(--stop) 45%, var(--line)); background:var(--stop-soft); }
+  .step.chg { border-color:color-mix(in srgb, var(--info) 45%, var(--line)); background:var(--info-soft); }
+  .flow .arr { display:flex; align-items:center; padding:0 6px; color:var(--muted); font-size:16px; }
+  .trajectory { font-size:16px; font-weight:650; letter-spacing:-.01em; }
+
+  /* ---- home: the summary ---- */
+  .home-hero { margin-top:30px; display:flex; justify-content:space-between; align-items:flex-end; gap:18px; flex-wrap:wrap;
+               padding-bottom:22px; border-bottom:1px solid var(--line); }
+  .home-hero .eyebrow { font-size:11px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .home-hero .model { font-size:40px; font-weight:750; letter-spacing:-.035em; line-height:1.05; margin:8px 0 4px; }
+  .home-hero .org { color:var(--muted); font-size:14px; }
+  .home-hero .evalline { margin-top:14px; display:flex; gap:8px 18px; flex-wrap:wrap; font-size:13.5px; color:var(--ink2); }
+  .home-hero .evalline b { color:var(--ink); font-weight:650; }
+  .home-hero .actions { display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+  .textlink { font-size:13.5px; font-weight:600; color:var(--accent); white-space:nowrap; }
+  .home-sec { margin-top:34px; }
+  .home-sec-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+  .home-sec-head h3 { font-size:12px; letter-spacing:.12em; color:var(--ink2); margin:0; }
+  .kpis { display:grid; gap:16px; grid-template-columns:repeat(4, minmax(0,1fr)); }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px 20px 16px;
+         box-shadow:var(--shadow); display:flex; flex-direction:column; min-height:228px; min-width:0; }
+  .kpi .lab { font-size:14px; font-weight:650; color:var(--ink2); display:flex; align-items:center; gap:7px; }
+  .kpi .pct { font-size:46px; font-weight:750; letter-spacing:-.04em; line-height:1; margin:16px 0 8px;
+              font-variant-numeric:tabular-nums; color:var(--ink); }
+  .kpi .frac { color:var(--ink); font-variant-numeric:tabular-nums; font-weight:650; }
+  .kpi .say { font-size:13.5px; color:var(--muted); margin-top:2px; line-height:1.5; }
+  .kpi .foot { margin-top:auto; padding-top:14px; font-size:13px; }
+  .kpi.none { border-style:dashed; box-shadow:none; background:transparent; }
+  .kpi.none .pct { font-size:22px; letter-spacing:-.01em; color:var(--muted); margin:22px 0 6px; }
+  .duo { display:grid; gap:16px; grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px 22px 18px;
+           box-shadow:var(--shadow); display:flex; flex-direction:column; min-width:0; }
+  .panel h3 { font-size:12px; letter-spacing:.12em; color:var(--ink2); margin:0 0 4px; }
+  .panel .lead { font-size:13px; color:var(--muted); margin-bottom:10px; }
+  .panel .foot { margin-top:auto; padding-top:14px; }
+  .alist { list-style:none; margin:0; padding:0; }
+  .alist li { border-top:1px solid var(--line); }
+  .alist li:first-child { border-top:0; }
+  .alist a { display:flex; align-items:baseline; gap:12px; padding:11px 2px; color:var(--ink); }
+  .alist a:hover { text-decoration:none; background:var(--panel2); }
+  .alist .n { font-size:22px; font-weight:750; font-variant-numeric:tabular-nums; min-width:34px; text-align:right; letter-spacing:-.02em; }
+  .alist .of { font-size:12px; color:var(--muted); min-width:36px; font-variant-numeric:tabular-nums; }
+  .alist .t { flex:1; font-size:14px; }
+  .alist .go { color:var(--accent); font-weight:700; }
+  .flist { list-style:none; margin:0; padding:0; }
+  .flist li { display:flex; gap:12px; align-items:baseline; padding:9px 0; border-top:1px solid var(--line); font-size:14px; }
+  .flist li:first-child { border-top:0; }
+  .flist li .t { flex:1; }
+  .flist li.nm .t { color:var(--muted); }
+  .flist li a { font-size:12.5px; font-weight:600; white-space:nowrap; }
+  .times { display:flex; gap:34px; flex-wrap:wrap; margin:6px 0 4px; }
+  .times .v { font-size:32px; font-weight:750; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1.1; }
+  .times .k { font-size:13px; color:var(--ink2); font-weight:600; margin-top:4px; }
+  .home-foot { margin-top:30px; font-size:12.5px; color:var(--muted); text-align:center; }
+  @media (max-width:1000px) { .kpis { grid-template-columns:repeat(2, minmax(0,1fr)); } #head-sub { display:none; } }
+  @media (max-width:760px) { .duo { grid-template-columns:1fr; } .home-hero .actions { align-items:flex-start; } }
+  @media (max-width:520px) { .kpis { grid-template-columns:1fr; } .kpi { min-height:0; } .home-hero .model { font-size:32px; }
+                             .kpi .pct { font-size:40px; } }
+
+  /* ---- older views kept from Phase 3 ---- */
+  .hero { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .hero .eyebrow { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .hero h2 { font-size:25px; margin:6px 0 2px; letter-spacing:-.02em; line-height:1.2; }
+  .hero .ident { color:var(--muted); font-size:14px; }
+  .hero .facts { display:flex; gap:26px; flex-wrap:wrap; margin-top:16px; padding-top:15px; border-top:1px solid var(--line); }
+  .fact .k { font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); }
+  .fact .v { font-size:14.5px; font-weight:600; margin-top:3px; }
+  .section-head { margin:26px 0 4px; }
+  .section-head h3 { font-size:16px; text-transform:none; letter-spacing:-.01em; color:var(--ink); margin:0; font-weight:650; }
+  .section-head .why { color:var(--muted); font-size:13.5px; margin:5px 0 0; max-width:74ch; }
+  .metric .val.nm { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0; margin:9px 0 3px; }
+  .coverage { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-top:12px; }
+  .coverage .cell { border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:var(--panel2); }
+  .coverage .cell .k { font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); }
+  .coverage .cell .v { font-size:20px; font-weight:650; font-variant-numeric:tabular-nums; margin-top:2px; }
+  .coverage .cell .s { font-size:12px; color:var(--muted); }
+  .idgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:4px 22px; margin-top:6px; }
+  .idgrid .kv { font-size:12.5px; }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+  @media (max-width:720px) {
+    .wrap { padding:0 16px 70px; }
+    .topbar { margin:0 -16px; padding:0 16px; }
+    .pagehead h2 { font-size:22px; }
+    .identity { grid-template-columns:1fr; }
+    .tiles { grid-template-columns:1fr 1fr; }
+    .tile .v { font-size:23px; }
+    .layer .name { flex:0 0 100px; }
+    nav a { padding:8px 9px 9px; font-size:12.5px; }
+    .brand .product, .brand .sep, #head-sub { display:none; }
+    .flow .arr { display:none; }
+    .step { flex:1 1 100%; margin-top:6px; }
+    .hero .facts { gap:16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><div class="topbar-in">
+    <header class="top">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">R</div>
+        <h1>Regulus AI</h1>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="product">Model Analysis</span>
+      </div>
+      <span style="flex:1"></span>
+      <span class="sub" id="head-sub">loading…</span>
+      <button id="theme" class="mono ghost" title="Toggle light / dark theme" aria-label="Toggle theme">◐</button>
+      <button id="refresh" title="Re-read the artifacts on disk">Rescan artifacts</button>
+    </header>
+    <nav id="nav" aria-label="Primary"></nav>
+  </div></div>
+  <div id="alerts"></div>
+  <main id="view"><div class="loading">Loading…</div></main>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+"use strict";
+
+/* ------------------------------------------------------------------ state */
+const S = { defs:{}, defsByKey:{}, experiments:[], current:null, fingerprint:null, cache:{} };
+// Six destinations. Model analysis is home; everything historical lives
+// under Experiments, everything about the machinery under Diagnostics.
+const TABS = [
+  ["analysis",    "Model analysis"],
+  ["questions",   "Questions"],
+  ["experiments", "Experiments"],
+  ["training",    "Training"],
+  ["diagnostics", "Diagnostics"],
+  ["metrics",     "Definitions"],
+];
+// routes that are pages inside a primary destination
+const PARENT = { overview:"analysis", question:"questions", history:"experiments", compare:"experiments",
+                 models:"experiments", review:"diagnostics" };
+const SUBNAV = {
+  experiments: [["experiments", "All experiments"], ["history", "History of the current line"],
+                ["compare", "Compare"], ["models", "Models"]],
+  diagnostics: [["diagnostics", "System"], ["review", "Benchmark key review"]],
+};
+// The order the question filters are offered in. Keys and labels are the
+// backend's (regulus.dashboard.observatory); this is only their order.
+const PRIMARY_FILTERS = ["incorrect", "correct", "retrieval_issue", "validation_failure", "repaired",
+                         "citation_issue", "refused", "slow", "not_measured"];
+
+/* -------------------------------------------------------------- utilities */
+const $ = (sel, el=document) => el.querySelector(sel);
+const el = (tag, attrs={}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") n.className = v;
+    else if (k === "html") n.innerHTML = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) {
+    if (kid === null || kid === undefined || kid === false) continue;
+    n.appendChild(typeof kid === "object" ? kid : document.createTextNode(String(kid)));
+  }
+  return n;
+};
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+async function api(path, options) {
+  const res = await fetch(path, options);
+  let body;
+  try { body = await res.json(); }
+  catch { throw new Error(`${path}: the server did not return JSON (HTTP ${res.status})`); }
+  if (!res.ok) throw new Error(body.error || `${path}: HTTP ${res.status}`);
+  return body;
+}
+async function cached(path) {
+  if (!(path in S.cache)) S.cache[path] = api(path);
+  return S.cache[path];
+}
+
+/* ---------------------------------------------------------------- display */
+// A metric the evaluation did not produce is "Not measured": never "—", never 0.
+const NOT_MEASURED = "Not measured";
+function isMeasured(m) {
+  return m != null && m.value !== null && m.value !== undefined && m.status !== "missing";
+}
+function fmtValue(m) {
+  if (!isMeasured(m)) return NOT_MEASURED;
+  const v = m.value;
+  if (m.unit === "ratio") return (v * 100).toFixed(v * 100 >= 99.95 || v === 0 ? 0 : 1) + "%";
+  if (m.unit === "seconds") return v >= 120 ? `${Math.floor(v/60)}m ${Math.round(v%60)}s`
+                                  : v >= 1 ? `${v.toFixed(v >= 10 ? 1 : 2)} s` : `${(v*1000).toFixed(0)} ms`;
+  if (m.unit === "score") return v.toLocaleString(undefined, {maximumFractionDigits:3});
+  if (m.unit === "tokens" || m.unit === "count")
+    return Number.isInteger(v) ? v.toLocaleString() : v.toLocaleString(undefined, {maximumFractionDigits:3});
+  return String(v);
+}
+function fmtNumber(v, digits=4) {
+  if (v === null || v === undefined) return "—";
+  return typeof v === "number" ? (Number.isInteger(v) ? v.toLocaleString() : v.toFixed(digits)) : String(v);
+}
+function fmtDate(s) {
+  if (!s) return "no timestamp";
+  const d = new Date(s);
+  return isNaN(d) ? String(s) : d.toLocaleString(undefined, {dateStyle:"medium", timeStyle:"short"});
+}
+function fmtDuration(seconds) {
+  if (seconds === null || seconds === undefined) return "not recorded";
+  const s = Math.round(seconds), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60);
+  return h ? `${h} h ${m} m ${s % 60} s` : m ? `${m} m ${s % 60} s` : `${s} s`;
+}
+function fmtMs(ms) {
+  return typeof ms === "number" ? (ms >= 1000 ? `${(ms/1000).toFixed(1)} s` : `${ms.toFixed(0)} ms`) : "not recorded";
+}
+const short = (s, n=12) => s ? String(s).slice(0, n) : "—";
+const DIRECTION_MARK = { higher_is_better:"↑ higher is better", lower_is_better:"↓ lower is better", informational:"— informational" };
+
+const STATUS_STYLE = {
+  CURRENT:     ["ok",   "measures the model the pipeline runs today"],
+  COMPLETE:    ["info", "the artifacts are whole"],
+  HISTORICAL:  ["mut",  "measured something other than the current model"],
+  STALE:       ["warn", "the configured weights, but superseded by a later compatible run or measured under a different pipeline"],
+  INCOMPLETE:  ["warn", "the run did not finish"],
+  FAILED:      ["stop", "the run failed"],
+  UNSUPPORTED_SCHEMA: ["stop", "no adapter understands this artifact"],
+};
+function statusPill(status, reason) {
+  const [cls] = STATUS_STYLE[status] || ["mut", ""];
+  return el("span", {class:`pill ${cls}`, title: reason || (STATUS_STYLE[status]||[])[1] || ""}, status);
+}
+function currentEvaluationIds() {
+  return ((S.current && S.current.current_evaluations) || []).map(e => e.experiment_id);
+}
+
+/* ------------------------------------------------------------- the ⓘ card */
+function infoIcon(key) {
+  const def = S.defsByKey[key];
+  if (!def) return null;
+  const node = el("i", {class:"info-i", "data-key":key, "aria-label":`About ${def.name}`}, "i");
+  node.addEventListener("mouseenter", (e) => showTip(e, def));
+  node.addEventListener("mousemove", positionTip);
+  node.addEventListener("mouseleave", hideTip);
+  node.addEventListener("focus", (e) => showTip(e, def));
+  node.addEventListener("blur", hideTip);
+  node.setAttribute("tabindex", "0");
+  return node;
+}
+function showTip(e, def) {
+  const tip = $("#tip");
+  tip.innerHTML = "";
+  tip.appendChild(el("h4", {}, def.name, def.heuristic ? " " : null,
+    def.heuristic ? el("span", {class:"heur"}, "HEURISTIC") : null));
+  tip.appendChild(el("div", {}, def.definition));
+  tip.appendChild(el("div", {class:"lab"}, "How it is calculated"));
+  tip.appendChild(el("div", {class:"mono"}, def.calculation));
+  tip.appendChild(el("div", {class:"lab"}, "Direction"));
+  tip.appendChild(el("div", {}, DIRECTION_MARK[def.direction] || def.direction));
+  if (def.caveats) {
+    tip.appendChild(el("div", {class:"lab"}, "What it does not prove"));
+    tip.appendChild(el("div", {}, def.caveats));
+  }
+  if (def.source_hint) {
+    tip.appendChild(el("div", {class:"lab"}, "Source"));
+    tip.appendChild(el("div", {class:"mono"}, def.source_hint));
+  }
+  tip.appendChild(el("div", {class:"lab"}, "Unit"));
+  tip.appendChild(el("div", {}, def.unit === "ratio" ? "ratio (numerator / denominator, shown as %)" : def.unit));
+  tip.style.display = "block";
+  positionTip(e);
+}
+function positionTip(e) {
+  const tip = $("#tip"), pad = 14;
+  const x = Math.min(e.clientX + pad, window.innerWidth - tip.offsetWidth - pad);
+  const y = Math.min(e.clientY + pad, window.innerHeight - tip.offsetHeight - pad);
+  tip.style.left = Math.max(pad, x) + "px";
+  tip.style.top = Math.max(pad, y) + "px";
+}
+function hideTip() { $("#tip").style.display = "none"; }
+
+/* ------------------------------------------------------------ metric card */
+function metricCard(m, provenance) {
+  const def = S.defsByKey[m.key] || {};
+  const flagged = m.status === "inconsistent" || m.status === "missing";
+  return el("div", {class:`metric${flagged ? " flag" : ""}`},
+    el("div", {class:"name"}, def.name || m.display_name, infoIcon(m.key),
+      def.heuristic ? el("span", {class:"heur"}, "HEURISTIC") : null),
+    el("div", {class:`val${isMeasured(m) ? "" : " nm"}`}, fmtValue(m)),
+    el("div", {class:"den"},
+      m.sample_note ? m.sample_note : (isMeasured(m) ? " " : (m.note || "not produced by this evaluation"))),
+    m.recomputed_from ? el("div", {class:"src"}, "recomputed from " + m.recomputed_from) : null,
+    m.status === "inconsistent"
+      ? el("div", {class:"src err"}, "⚠ " + m.note)
+      : null,
+    m.note && m.status !== "inconsistent" ? el("div", {class:"src"}, m.note) : null,
+    el("div", {class:"src"}, (DIRECTION_MARK[m.direction] || "") + (m.source ? " · " + m.source : "")),
+    provenance ? el("div", {class:"src"}, provenance) : null,
+  );
+}
+
+/* --------------------------------------------------------- provenance line */
+function provenanceOf(exp) {
+  const bits = [
+    `run ${exp.experiment_id}`,
+    exp.model ? exp.model.label : "model unknown",
+    exp.benchmark ? exp.benchmark.label : null,
+    exp.benchmark && exp.benchmark.sha256 ? `sha ${exp.benchmark.sha256.slice(0,12)}` : null,
+    fmtDate(exp.completed_at),
+  ].filter(Boolean);
+  return bits.join(" · ");
+}
+function identityCard(exp, run) {
+  return el("div", {class:"card"},
+    el("div", {class:"spread"},
+      el("div", {},
+        el("h2", {}, exp.name),
+        el("div", {class:"sub mono"}, exp.path)),
+      el("div", {class:"row"}, statusPill(exp.status, exp.status_reason))),
+    exp.status_reason ? el("div", {class:"sub", style:"margin-top:8px"}, exp.status_reason) : null,
+    el("dl", {class:"kv", style:"margin-top:12px"},
+      el("dt", {}, "Model"), el("dd", {}, exp.model.label, " ", el("span", {class:"mono sub"}, exp.model.key)),
+      exp.model.adapter_path ? el("dt", {}, "Adapter path") : null,
+      exp.model.adapter_path ? el("dd", {class:"mono"}, exp.model.adapter_path) : null,
+      el("dt", {}, "Benchmark"),
+      el("dd", {}, exp.benchmark ? `${exp.benchmark.label} · ${exp.benchmark.key}` : "—"),
+      el("dt", {}, "Run id"), el("dd", {class:"mono"}, exp.experiment_id),
+      el("dt", {}, "Completed"), el("dd", {}, fmtDate(exp.completed_at)),
+      el("dt", {}, "Schema"), el("dd", {class:"mono"}, (run && run.schema) || "—"),
+      el("dt", {}, "Source files"),
+      el("dd", {class:"mono"}, (exp.source_artifacts || []).join(", ") || "—"),
+    ),
+    (exp.problems || []).length ? el("details", {style:"margin-top:10px"},
+      el("summary", {}, `${exp.problems.length} thing(s) this run does not tell us`),
+      el("ul", {}, exp.problems.map(p => el("li", {style:"margin:6px 0;font-size:13px"}, p)))) : null,
+    exp.configuration && Object.keys(exp.configuration).length ? el("details", {},
+      el("summary", {}, "Configuration"),
+      el("pre", {class:"mono", style:"white-space:pre-wrap;font-size:11.5px"},
+        JSON.stringify(exp.configuration, null, 2))) : null,
+  );
+}
+function subnav(group, active) {
+  const items = SUBNAV[group];
+  if (!items) return null;
+  return el("div", {class:"subnav", role:"navigation", "aria-label":"Section"},
+    items.map(([route, label]) => el("a", {href:`#/${route}`, class: route === active ? "on" : null,
+      "aria-current": route === active ? "page" : null}, label)));
+}
+
+/* ------------------------------------------------------------- SVG charts */
+function lineChart(series, opts={}) {
+  // series: [{name, color, points:[{x,y}]}]  - one axis only, by design
+  const W = opts.width || 720, H = opts.height || 260;
+  const P = {t:14, r:16, b:30, l:52};
+  const all = series.flatMap(s => s.points);
+  if (!all.length) return el("div", {class:"empty"}, "no points recorded");
+  const xs = all.map(p => p.x), ys = all.map(p => p.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs) || 1;
+  let y0 = Math.min(...ys), y1 = Math.max(...ys);
+  if (y0 === y1) { y0 -= 1; y1 += 1; }
+  const pad = (y1 - y0) * 0.08; y0 -= pad; y1 += pad;
+  if (opts.zeroFloor && y0 < 0) y0 = 0;
+  const sx = v => P.l + (x1 === x0 ? 0 : (v - x0) / (x1 - x0)) * (W - P.l - P.r);
+  const sy = v => P.t + (1 - (v - y0) / (y1 - y0)) * (H - P.t - P.b);
+
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("class", "chart");
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", opts.label || "chart");
+  const mk = (tag, attrs) => { const n = document.createElementNS(ns, tag);
+    for (const [k,v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
+
+  const g = mk("g", {class:"grid"});
+  for (let i = 0; i <= 4; i++) {
+    const v = y0 + (y1 - y0) * i / 4, y = sy(v);
+    g.appendChild(mk("line", {x1:P.l, x2:W-P.r, y1:y, y2:y}));
+    const t = mk("text", {x:P.l-7, y:y+3.5, "text-anchor":"end"});
+    t.textContent = opts.fmtY ? opts.fmtY(v) : (Math.abs(v) < 0.01 ? v.toExponential(1) : v.toFixed(2));
+    svg.appendChild(t);
+  }
+  svg.appendChild(g);
+  svg.appendChild(mk("line", {class:"axis", x1:P.l, x2:W-P.r, y1:sy(y0), y2:sy(y0)}));
+  for (let i = 0; i <= 4; i++) {
+    const v = x0 + (x1 - x0) * i / 4;
+    const t = mk("text", {x:sx(v), y:H-10, "text-anchor":"middle"});
+    t.textContent = opts.fmtX ? opts.fmtX(v) : Math.round(v);
+    svg.appendChild(t);
+  }
+  series.forEach((s) => {
+    if (!s.points.length) return;
+    const d = s.points.map((p,i) => `${i?"L":"M"}${sx(p.x).toFixed(1)},${sy(p.y).toFixed(1)}`).join(" ");
+    svg.appendChild(mk("path", {d, fill:"none", stroke:s.color, "stroke-width":2,
+                                "stroke-linejoin":"round", "stroke-linecap":"round"}));
+    s.points.forEach(p => {
+      svg.appendChild(mk("circle", {cx:sx(p.x), cy:sy(p.y), r:3.4, fill:s.color,
+                                    stroke:"var(--panel)", "stroke-width":2}));
+    });
+    // direct label at the last point, so identity is never colour alone
+    const last = s.points[s.points.length-1];
+    const t = mk("text", {x:Math.min(sx(last.x)+7, W-P.r), y:sy(last.y)-7, fill:s.color, "font-weight":"600"});
+    t.textContent = s.name;
+    svg.appendChild(t);
+  });
+
+  (opts.markers||[]).forEach(mrk => {
+    svg.appendChild(mk("line", {x1:sx(mrk.x), x2:sx(mrk.x), y1:P.t, y2:H-P.b,
+                                stroke:"var(--accent)", "stroke-width":1.5, "stroke-dasharray":"3 3"}));
+    const t = mk("text", {x:sx(mrk.x)+4, y:P.t+10, fill:"var(--accent)"});
+    t.textContent = mrk.label; svg.appendChild(t);
+  });
+
+  // hover crosshair + tooltip
+  const cross = mk("line", {x1:0,x2:0,y1:P.t,y2:H-P.b, stroke:"var(--axis)", "stroke-width":1, opacity:0});
+  svg.appendChild(cross);
+  const hit = mk("rect", {x:P.l, y:P.t, width:W-P.l-P.r, height:H-P.t-P.b, fill:"transparent"});
+  svg.appendChild(hit);
+  hit.addEventListener("mousemove", (e) => {
+    const box = svg.getBoundingClientRect();
+    const px = (e.clientX - box.left) / box.width * W;
+    const xv = x0 + (px - P.l) / (W - P.l - P.r) * (x1 - x0);
+    cross.setAttribute("x1", sx(xv)); cross.setAttribute("x2", sx(xv)); cross.setAttribute("opacity", 1);
+    const tip = $("#tip"); tip.innerHTML = "";
+    tip.appendChild(el("h4", {}, `${opts.xName || "step"} ${Math.round(xv)}`));
+    series.forEach(s => {
+      if (!s.points.length) return;
+      const near = s.points.reduce((a,b) => Math.abs(b.x-xv) < Math.abs(a.x-xv) ? b : a);
+      tip.appendChild(el("div", {},
+        el("span", {class:"swatch", style:`background:${s.color}`}), `${s.name}: `,
+        el("b", {}, opts.fmtY ? opts.fmtY(near.y) : fmtNumber(near.y, 4)),
+        el("span", {class:"sub"}, ` (at ${opts.xName||"step"} ${near.x})`)));
+    });
+    tip.style.display = "block"; positionTip(e);
+  });
+  hit.addEventListener("mouseleave", () => { cross.setAttribute("opacity", 0); hideTip(); });
+  return svg;
+}
+
+function barChart(rows, opts={}) {
+  // rows: [{label, value, color?, note?}] - horizontal bars, one series
+  if (!rows.length) return el("div", {class:"empty"}, "nothing to show");
+  const max = Math.max(...rows.map(r => Math.abs(r.value)), opts.max || 0) || 1;
+  return el("div", {},
+    rows.map(r => el("div", {class:"row", style:"gap:10px;margin:5px 0;align-items:center"},
+      el("div", {style:"flex:0 0 190px;font-size:12.5px", title:r.label}, r.label),
+      el("div", {style:"flex:1;background:var(--panel2);border-radius:5px;height:17px;position:relative;overflow:hidden"},
+        el("div", {style:`width:${Math.max(1.5, Math.abs(r.value)/max*100)}%;height:100%;`
+                        + `background:${r.color || "var(--series-1)"};border-radius:0 4px 4px 0`})),
+      el("div", {class:"num mono", style:"flex:0 0 105px"}, r.display ?? fmtNumber(r.value)),
+      r.note ? el("div", {class:"sub", style:"flex:0 0 auto"}, r.note) : null)));
+}
+
+/* ======================================================= MODEL ANALYSIS */
+// One renderer for the current model (home) and for any evaluation opened
+// explicitly (#/experiment/<id>). The backend says whether the evaluation is
+// the current model's (payload.is_current); this page never decides it.
+
+const V = {};
+
+/* The home page: the current model in a few measurements, in plain English.
+   Which measurements, their names and the sentence under each come from the
+   backend (payload.summary); this page only lays them out. */
+V.analysis = async () => {
+  const view = $("#view");
+  const h = await api("/api/model-health/current");
+  view.innerHTML = "";
+  if (h.state === "not_evaluated") return renderNotEvaluated(view, h);
+  renderSummary(view, h);
+};
+
+// the full record of the current evaluation (the Phase 3 route)
+V.overview = async () => {
+  const view = $("#view");
+  const h = await api("/api/model-health/current");
+  view.innerHTML = "";
+  if (h.state === "not_evaluated") return renderNotEvaluated(view, h);
+  await renderAnalysis(view, h);
+};
+
+V.experiment = async (id, query = {}) => {
+  const view = $("#view");
+  const p = await api(`/api/evaluation/experiments/${encodeURIComponent(id)}/analysis`);
+  view.innerHTML = "";
+  const anchors = await renderAnalysis(view, p);
+  const target = query.section && anchors[query.section];
+  if (target && target.scrollIntoView) setTimeout(() => target.scrollIntoView({block:"start"}), 0);
+};
+
+function fmtDay(s) {
+  if (!s) return "no timestamp";
+  const d = new Date(s);
+  return isNaN(d) ? String(s) : d.toLocaleDateString(undefined, {dateStyle:"medium"});
+}
+
+function renderSummary(view, h) {
+  const ev = h.evaluation, m = h.model, bench = h.benchmark, s = h.summary, id = ev.experiment_id;
+  const details = (section) => `#/experiment/${encodeURIComponent(id)}${section ? "?section=" + section : ""}`;
+  const questions = (filter) => `#/questions/${encodeURIComponent(id)}${filter ? "?filter=" + encodeURIComponent(filter) : ""}`;
+  const name = m.base_model ? m.base_model.split("/").pop() : m.label;
+  const org = m.base_model && m.base_model.includes("/") ? m.base_model.split("/")[0] : null;
+
+  // ---- who: the current model and the evaluation that measured it
+  view.appendChild(el("div", {class:"home-hero"},
+    el("div", {style:"min-width:0"},
+      el("div", {class:"eyebrow"}, "Current model"),
+      el("div", {class:"model"}, name),
+      el("div", {class:"org"}, [org, m.adapter ? `fine-tuned adapter ${m.adapter}` : "base model, no fine-tuning adapter"]
+        .filter(Boolean).join(" · ")),
+      el("div", {class:"evalline"},
+        el("span", {}, "Current evaluation"),
+        el("span", {}, el("b", {}, bench ? bench.name : "benchmark not recorded")),
+        el("span", {}, el("b", {}, ev.questions_evaluated), " questions"),
+        el("span", {}, "Evaluated ", el("b", {}, fmtDay(ev.completed_at))))),
+    el("div", {class:"actions"},
+      el("a", {class:"textlink", href:details()}, "Model and experiment details →"),
+      el("a", {class:"textlink", href:`#/compare?ids=${encodeURIComponent(id)}`}, "Compare with another experiment →"))));
+
+  // ---- how it performed: a few independent measurements, never combined
+  view.appendChild(el("section", {class:"home-sec"},
+    el("div", {class:"home-sec-head"},
+      el("h3", {}, "How the model performed"),
+      el("a", {class:"textlink", href:details("answer_quality")}, "View metric details →")),
+    el("div", {class:"kpis"}, s.metrics.map(c => kpiCard(c, details, questions)))));
+
+  // ---- where to look next, and what the pipeline did to the answers
+  view.appendChild(el("section", {class:"home-sec duo"},
+    el("div", {class:"panel"},
+      el("h3", {}, "What needs attention"),
+      el("div", {class:"lead"}, "Counted from the question records. Each opens exactly those questions."),
+      s.attention.length ? el("ul", {class:"alist"}, s.attention.map(item => el("li", {},
+        el("a", {href:questions(item.filter), title:item.description || ""},
+          el("span", {class:"n"}, item.count),
+          el("span", {class:"of"}, `of ${item.denominator}`),
+          el("span", {class:"t"}, item.label),
+          el("span", {class:"go", "aria-hidden":"true"}, "→")))))
+        : el("div", {class:"sub"}, (h.attention && h.attention.note) || "No question matched an attention check."),
+      el("div", {class:"foot"}, el("a", {class:"textlink", href:details("attention")},
+        `All ${s.attention_total} observations →`))),
+    el("div", {class:"panel"},
+      el("h3", {}, "Answer pipeline"),
+      el("div", {class:"lead"}, "What happened between the model's own answer and the final one."),
+      el("ul", {class:"flist"}, s.pipeline.map(f => el("li", {class: f.measured ? null : "nm"},
+        el("span", {class:"t"}, f.text),
+        f.filter ? el("a", {href:questions(f.filter)}, "Questions →") : null))),
+      el("div", {class:"foot"}, el("a", {class:"textlink", href:details("validation_repair")}, "View repair details →")))));
+
+  // ---- speed, kept apart from quality; and the way into the questions
+  view.appendChild(el("section", {class:"home-sec duo"},
+    el("div", {class:"panel"},
+      el("h3", {}, "Response time"),
+      el("div", {class:"times"}, s.timing.map(t => el("div", {},
+        // both in seconds, so the two read on one scale
+        el("div", {class:"v"}, !t.measured ? NOT_MEASURED
+          : t.unit === "seconds" ? `${t.value.toFixed(1)} s` : fmtValue(t)),
+        el("div", {class:"k"}, t.label)))),
+      el("div", {class:"sub", style:"margin-top:8px"}, s.timing_note),
+      el("div", {class:"foot"}, el("a", {class:"textlink", href:details("performance")}, "View timing details →"))),
+    el("div", {class:"panel"},
+      el("h3", {}, "Question analysis"),
+      el("div", {class:"lead"}, `All ${s.questions} questions of this evaluation. Filter by outcome, then open any `
+        + "question to see its retrieval, evidence, raw answer, repair and final answer."),
+      el("div", {class:"foot"}, el("a", {href:questions()}, el("button", {class:"primary"}, "View all questions →"))))));
+
+  view.appendChild(el("div", {class:"home-foot"},
+    "Every number on this page comes from the current evaluation's own question records. "
+    + "Each measurement is shown on its own; none is combined into an overall figure. Missing measurements "
+    + "say Not measured, never 0."));
+}
+
+function kpiCard(c, details, questions) {
+  if (!c.measured) {
+    return el("div", {class:"kpi none"},
+      el("div", {class:"lab"}, c.label, infoIcon(c.key)),
+      el("div", {class:"pct"}, NOT_MEASURED),
+      el("div", {class:"say"}, c.sentence),
+      el("div", {class:"foot"}, el("a", {class:"textlink", href:details(c.section)}, "Details →")));
+  }
+  return el("div", {class:"kpi"},
+    el("div", {class:"lab"}, c.label, infoIcon(c.key)),
+    el("div", {class:"pct"}, fmtValue(c)),
+    // one line: the canonical counts in bold, then what they counted
+    c.sample ? el("div", {class:"say"}, el("span", {class:"frac"}, c.sample), c.predicate ? " " + c.predicate : "")
+             : c.sentence ? el("div", {class:"say"}, c.sentence) : null,
+    el("div", {class:"foot"}, c.filter
+      ? el("a", {class:"textlink", href:questions(c.filter)}, `${c.filter_count} ${c.filter_label} →`)
+      : el("a", {class:"textlink", href:details(c.section)}, "Details →")));
+}
+
+async function renderAnalysis(view, p) {
+  const ev = p.evaluation, id = ev.experiment_id;
+  const sectionTitle = Object.fromEntries((p.sections || []).map(s => [s.key, s.title]));
+
+  // ---- not the current model: say so before anything else
+  if (!p.is_current) {
+    const cur = p.current_evaluation;
+    view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"),
+      el("div", {class:"body"},
+        el("b", {}, `Historical experiment (${ev.status}). `), p.note || "",
+        ev.status_reason ? el("div", {class:"sub", style:"margin-top:5px"}, "Freshness engine: ", ev.status_reason) : null,
+        el("div", {style:"margin-top:7px"}, cur
+          ? el("a", {href:"#/analysis"}, `Go to the current model's analysis (${cur.name}) →`)
+          : el("span", {class:"sub"}, "The configured model has no current evaluation.")))));
+  }
+
+  // ---- page heading
+  view.appendChild(el("div", {class:"pagehead"},
+    el("div", {},
+      el("div", {class:"eyebrow"}, p.is_current ? "Current model" : "Historical experiment"),
+      el("h2", {}, "Experiment details"),
+      el("div", {class:"lede"},
+        `The full record of evaluation ${ev.name}: identity, every measurement, what needs attention and every `
+        + "question. Missing measurements are shown as Not measured, never as zero. Nothing here is a score or a verdict.")),
+    el("div", {class:"row"},
+      p.is_current ? el("a", {href:"#/analysis"}, el("button", {}, "← Summary")) : null,
+      el("a", {href:`#/compare?ids=${encodeURIComponent(id)}`}, el("button", {}, "Compare with another experiment")),
+      el("a", {href:"#/experiments"}, el("button", {class:"ghost"}, "Previous experiments")))));
+
+  // ---- 1. identity: what is being analysed
+  view.appendChild(identityPanel(p));
+  if (p.coverage) view.appendChild(coverageLine(p.coverage));
+
+  if (p.other_current_evaluations && p.other_current_evaluations.length) {
+    view.appendChild(el("div", {class:"banner info"}, el("b", {}, "i"),
+      el("div", {class:"body"}, p.other_current_note,
+        el("div", {style:"margin-top:6px"}, p.other_current_evaluations.map(o =>
+          el("div", {}, el("a", {href:`#/experiment/${o.experiment_id}`}, o.name),
+            el("span", {class:"sub"}, ` — ${o.benchmark} · ${fmtDate(o.completed_at)}`)))))));
+  }
+
+  // ---- in-page navigation; byKey lets a summary link open a section directly
+  const anchors = {}, byKey = {};
+  const jump = el("div", {class:"jump", "aria-label":"Jump to section"});
+  view.appendChild(jump);
+
+  // ---- 2. the measurement groups
+  const bySection = {};
+  for (const item of (p.attention && p.attention.items) || []) {
+    if (item.section) (bySection[item.section] = bySection[item.section] || []).push(item);
+  }
+  for (const section of p.sections || []) {
+    if (!section.metrics.length && !section.not_measured.length) continue;
+    const node = analysisSection(section, bySection[section.key] || [], id);
+    anchors[section.title] = byKey[section.key] = node;
+    view.appendChild(node);
+  }
+
+  // ---- 3. what needs attention
+  const attention = attentionSection(p, id, sectionTitle);
+  anchors["What needs attention"] = byKey.attention = attention;
+  view.appendChild(attention);
+
+  // ---- 4. question analysis, filtered by the server, in place
+  const qsec = el("section", {class:"asec"},
+    el("div", {class:"asec-head"},
+      el("div", {},
+        el("h3", {}, "Question analysis"),
+        el("div", {class:"q"}, "Every question in this evaluation, from aggregate to record."),
+        el("div", {class:"why"}, "Filters run on the server against the question records. Click a question for its "
+          + "forensic view: retrieval, evidence, raw answer, validation, repair and final answer.")),
+      el("div", {class:"count"}, el("a", {href:`#/questions/${encodeURIComponent(id)}`}, "Open in Questions →"))));
+  const qhost = el("div");
+  qsec.appendChild(qhost);
+  anchors["Question analysis"] = byKey.questions = qsec;
+  view.appendChild(qsec);
+  await questionAnalysis(qhost, id, {}, null);
+
+  for (const [label, node] of Object.entries(anchors)) {
+    jump.appendChild(el("button", {onclick: () => { if (node.scrollIntoView) node.scrollIntoView({behavior:"smooth", block:"start"}); }}, label));
+  }
+
+  // ---- 5. provenance footer
+  const tr = p.training || {};
+  view.appendChild(el("div", {class:"card", style:"margin-top:22px"},
+    el("h3", {}, "How this model was produced"),
+    el("div", {}, tr.trained
+      ? [`Fine-tuned adapter ${tr.adapter}`, tr.checkpoint ? `, checkpoint ${tr.checkpoint}` : "",
+         tr.training_run ? ", from training run " : ""].join("")
+      : tr.note),
+    tr.training_run ? el("a", {href:`#/training/${tr.training_run.experiment_id}`}, tr.training_run.name) : null,
+    el("div", {class:"sub", style:"margin-top:8px"}, tr.trained ? tr.note : ""),
+    el("div", {class:"row", style:"margin-top:12px"},
+      el("a", {href:"#/history"}, el("button", {}, "History of the current line →")),
+      el("a", {href:"#/experiments"}, el("button", {}, "All experiments →")))));
+  if (ev.problems && ev.problems.length) {
+    view.appendChild(el("details", {class:"card"},
+      el("summary", {}, `${ev.problems.length} thing(s) this evaluation does not tell us`),
+      el("ul", {}, ev.problems.map(x => el("li", {style:"margin:6px 0;font-size:13px"}, x)))));
+  }
+  return byKey;
+}
+
+/* Identity of what is analysed: the model, then the experiment that measured it. */
+function identityPanel(p) {
+  const m = p.model, ev = p.evaluation, bench = p.benchmark, qs = ev.question_set || {}, fp = ev.pipeline_fingerprint || {};
+  const cls = p.is_current ? "idcard" : "idcard hist";
+  const none = (v) => v || "None";
+  const questions = [
+    ev.questions_evaluated != null ? String(ev.questions_evaluated) : "not recorded",
+    bench && bench.questions != null ? `of ${bench.questions} in the benchmark` : null,
+    qs.full_benchmark === true ? "(whole benchmark)" : qs.full_benchmark === false ? "(SUBSET)" : null,
+  ].filter(Boolean).join(" ");
+  return el("div", {},
+    el("div", {class:"identity"},
+      el("div", {class:cls},
+        el("div", {class:"label"}, p.is_current ? "Current model" : "Model evaluated",
+          p.is_current ? el("span", {class:"pill ok"}, "answering today") : null),
+        el("div", {class:"big"}, m.base_model || m.label),
+        el("div", {class:"sub"}, m.label),
+        el("dl", {class:"kv"},
+          el("dt", {}, "Revision"), el("dd", {class:"mono"}, m.revision || "not recorded"),
+          el("dt", {}, "Adapter"), el("dd", {}, none(m.adapter)),
+          el("dt", {}, "Checkpoint"), el("dd", {}, none(m.checkpoint)),
+          el("dt", {}, "dtype / device"), el("dd", {}, m.runtime || "not recorded",
+            el("span", {class:"sub"}, m.runtime ? "  (as recorded by the evaluation)" : "")))),
+      el("div", {class:cls},
+        el("div", {class:"label"}, p.is_current ? "Current experiment" : "Experiment", statusPill(ev.status, ev.status_reason)),
+        el("div", {class:"big mono"}, ev.experiment_id),
+        el("div", {class:"sub mono"}, ev.name),
+        el("dl", {class:"kv"},
+          el("dt", {}, "Benchmark"), el("dd", {}, bench ? bench.name + (bench.version ? ` v${bench.version}` : "") : "not recorded"),
+          el("dt", {}, "Questions"), el("dd", {}, questions),
+          el("dt", {}, "Evaluated"), el("dd", {}, fmtDate(ev.completed_at), el("span", {class:"sub"}, `  ·  ${fmtDuration(ev.duration_seconds)}`)),
+          el("dt", {}, "Pipeline"), el("dd", {class:"mono"}, fp.value ? `${short(fp.value, 16)}… (v${fp.version})` : "not recorded"),
+          el("dt", {}, "Freshness"), el("dd", {}, ev.status, el("span", {class:"sub mono"}, ev.freshness_code ? `  · ${ev.freshness_code}` : ""))))),
+    el("details", {class:"identity-more"},
+      el("summary", {}, "Technical identity, freshness checks and configuration"),
+      el("div", {class:"card", style:"margin-top:8px"},
+        observatoryIdentity(p),
+        el("dl", {class:"kv", style:"margin-top:14px"},
+          el("dt", {}, "Model key"), el("dd", {class:"mono"}, m.technical.model_key),
+          el("dt", {}, "Benchmark key"), el("dd", {class:"mono"}, bench ? bench.technical.benchmark_key : "—"),
+          el("dt", {}, "Benchmark sha256"), el("dd", {class:"mono"}, bench && bench.technical.sha256 ? bench.technical.sha256 : "—"),
+          el("dt", {}, "Experiment id"), el("dd", {class:"mono"}, m.technical.experiment_id),
+          el("dt", {}, "Artifact path"), el("dd", {class:"mono"}, m.technical.artifact_path),
+          el("dt", {}, "Evaluation schema"), el("dd", {class:"mono"}, ev.schema),
+          el("dt", {}, "Source files"), el("dd", {class:"mono"}, (m.technical.source_artifacts || []).join(", ") || "—"),
+          m.technical.adapter_path ? el("dt", {}, "Adapter path") : null,
+          m.technical.adapter_path ? el("dd", {class:"mono"}, m.technical.adapter_path) : null))));
+}
+
+/* Identity of what is being measured: the configured system (current_system)
+   beside the evaluation that measured it. */
+function kvList(pairs) {
+  return el("dl", {class:"kv"}, pairs.filter(Boolean).map(([k, v, mono]) =>
+    [el("dt", {}, k), el("dd", {class: mono ? "mono" : null}, v ?? "not recorded")]).flat());
+}
+function observatoryIdentity(h) {
+  const sys = h.current_system || {}, m = sys.model || {}, ev = h.evaluation, fp = sys.pipeline_fingerprint || {};
+  const evfp = ev.pipeline_fingerprint || {}, qs = ev.question_set || {}, bench = h.benchmark;
+  const src = sys.source || {};
+  return el("div", {class:"idgrid"},
+    el("div", {}, el("h3", {style:"margin-top:8px"}, "Configured model"), kvList([
+      ["Base model", m.base_model_id], ["Revision", m.revision, true],
+      ["Adapter", m.adapter_id || "none"], ["Checkpoint", m.checkpoint || "none"],
+      ["Model key", m.key, true],
+      ["Device / dtype", `${m.device || src.device_configured || "?"} / ${m.dtype || src.dtype_configured || "?"}`
+        + (m.device ? "" : " (configured; resolved when the model loads)")],
+      h.model && h.model.runtime ? ["Evaluated on", h.model.runtime] : null,
+    ])),
+    el("div", {}, el("h3", {style:"margin-top:8px"}, "Pipeline"), kvList([
+      ["Configured fingerprint", fp.value ? `${short(fp.value)}… (v${fp.version})` : "unresolved", true],
+      ["Evaluation fingerprint", evfp.value ? `${short(evfp.value)}… (v${evfp.version})` : "not recorded", true],
+      ["Freshness engine: pipeline", (ev.freshness_checks || {}).pipeline || "not checked"],
+      ["Freshness engine: model", (ev.freshness_checks || {}).model || "not checked"],
+      ["Freshness engine: question set", (ev.freshness_checks || {}).question_set || "not checked"],
+      ["Verified against its config", evfp.verified === true ? "yes" : evfp.verified === false ? "no" : "not verifiable"],
+    ])),
+    el("div", {}, el("h3", {style:"margin-top:8px"}, "Evaluation"), kvList([
+      ["Run", ev.name, true], ["Started", ev.started_at ? fmtDate(ev.started_at) : "not recorded"],
+      ["Completed", fmtDate(ev.completed_at)], ["Duration", fmtDuration(ev.duration_seconds)],
+      ["Benchmark sha256", bench && bench.technical ? `${short(bench.technical.sha256)}…` : null, true],
+      ["Question set", qs.count != null ? `${qs.count} questions${qs.full_benchmark === true ? " (whole benchmark)" : qs.full_benchmark === false ? " (SUBSET)" : ""}` : null],
+      ["Question-set sha256", qs.sha256 ? `${short(qs.sha256)}…` : null, true],
+      ["Freshness", `${ev.status} · ${ev.freshness_code || "?"}`],
+    ])),
+    sys.evaluation_config ? el("details", {style:"grid-column:1/-1;margin-top:6px"},
+      el("summary", {}, "Evaluation-relevant configuration of the configured system (the fields the fingerprint is computed from)"),
+      el("div", {class:"grid g3", style:"margin-top:8px"},
+        Object.entries(sys.evaluation_config).map(([section, fields]) => el("div", {class:"metric"},
+          el("div", {class:"name"}, section.replace(/_/g, " ")),
+          fields ? kvList(Object.entries(fields).map(([k, v]) => [k.replace(/_/g, " "),
+            v === null ? "n/a (ignored or unset)" : typeof v === "object" ? JSON.stringify(v) : String(v), true]))
+                 : el("div", {class:"sub"}, "not recorded"))))) : null);
+}
+
+function coverageLine(cov) {
+  const qe = cov.question_evidence;
+  return el("div", {class:"covline"},
+    el("span", {}, "Measured ", el("b", {}, cov.measured ?? cov.available), ` of ${cov.health_defined ?? cov.defined} defined metrics`),
+    el("span", {}, "Not measured ", el("b", {}, cov.not_measured ?? "—"), " (shown as Not measured, never 0)"),
+    qe ? el("span", {}, "Selected evidence recorded for ", el("b", {}, `${qe.with_generation_selected_ids} / ${qe.generated}`),
+      " generated answers") : null,
+    el("a", {href:"#/metrics", style:"margin-left:auto"}, "Metric definitions →"));
+}
+// kept for the Definitions page
+function coverageStrip(cov) {
+  const qe = cov.question_evidence;
+  return el("div", {class:"card"},
+    el("h3", {}, "Evaluation coverage"),
+    el("div", {class:"coverage"},
+      el("div", {class:"cell"}, el("div", {class:"k"}, "Measured"), el("div", {class:"v"}, cov.measured ?? cov.available),
+        el("div", {class:"s"}, `of ${cov.health_defined ?? cov.defined} defined health metrics`)),
+      el("div", {class:"cell"}, el("div", {class:"k"}, "Not measured"), el("div", {class:"v"}, cov.not_measured ?? "—"),
+        el("div", {class:"s"}, "shown as Not measured, never as 0")),
+      qe ? el("div", {class:"cell"}, el("div", {class:"k"}, "Question-level evidence"),
+        el("div", {class:"v"}, `${qe.with_generation_selected_ids} / ${qe.generated}`),
+        el("div", {class:"s"}, `generated answers with selected evidence ids · ${qe.questions} questions in total`)) : null),
+    cov.families_absent && cov.families_absent.length ? el("div", {class:"sub", style:"margin-top:10px"},
+      "Not measured by this evaluation: ", cov.families_absent.map(f => f.title).join(", "),
+      ". Not measured is not a failure; it means no evaluator produced the number.") : null);
+}
+
+function fact(k, v, sub) {
+  return el("div", {class:"fact"}, el("div", {class:"k"}, k), el("div", {class:"v"}, v ?? "—"),
+    sub ? el("div", {class:"sub"}, sub) : null);
+}
+
+/* One measurement group: headline tiles, then every other metric of the group
+   in a table, then the defined metrics this evaluation did not produce. */
+function analysisSection(section, attention, id) {
+  const measured = section.metrics.filter(m => m.measured).length;
+  const notMeasured = section.not_measured.length + section.metrics.length - measured;
+  const groups = section.subgroups && section.subgroups.length ? section.subgroups : [null];
+  const body = el("div", {class:"asec-body"});
+  for (const group of groups) {
+    const inGroup = (m) => group === null || m.subgroup === group;
+    const metrics = section.metrics.filter(inGroup), missing = section.not_measured.filter(inGroup);
+    if (!metrics.length && !missing.length) continue;
+    if (group) body.appendChild(el("div", {class:"subgroup"}, group));
+    const headline = metrics.filter(m => m.headline), rest = metrics.filter(m => !m.headline);
+    if (headline.length) body.appendChild(el("div", {class:"tiles"}, headline.map(analysisTile)));
+    if (rest.length || missing.length) body.appendChild(metricTable(rest, missing));
+  }
+  if (attention.length) {
+    body.appendChild(el("div", {class:"affected"},
+      el("h3", {style:"margin:0 0 4px"}, "Affected questions"),
+      attention.map(item => el("a", {href:`#/questions/${encodeURIComponent(id)}?filter=${encodeURIComponent(item.filter)}`},
+        el("span", {class:"n"}, `${item.count} / ${item.denominator}`),
+        el("span", {}, item.label),
+        el("span", {class:"go"}, "View questions →")))));
+  }
+  return el("section", {class:"asec"},
+    el("div", {class:"asec-head"},
+      el("div", {},
+        el("h3", {}, section.title, section.key === "performance" ? el("span", {class:"tag"}, "runtime-dependent") : null),
+        el("div", {class:"q"}, section.question),
+        el("div", {class:"why"}, section.explanation)),
+      el("div", {class:"count"}, `${measured} measured`, el("br"), `${notMeasured} not measured`)),
+    body);
+}
+
+function analysisTile(m) {
+  const def = S.defsByKey[m.key] || {};
+  const st = m.state || {state:"available"};
+  if (!isMeasured(m) || st.state === "missing") {
+    return el("div", {class:"tile none"},
+      el("div", {class:"k"}, el("span", {class:"state missing"}), def.name || m.display_name, infoIcon(m.key)),
+      el("div", {class:"v"}, NOT_MEASURED),
+      el("div", {class:"f"}, m.note || st.reason || "not measured by this evaluation"));
+  }
+  return el("div", {class:"tile"},
+    el("div", {class:"k"}, def.name || m.display_name, infoIcon(m.key),
+      m.heuristic ? el("span", {class:"heur"}, "HEURISTIC") : null),
+    el("div", {class:"v"}, fmtValue(m)),
+    el("div", {class:"d"}, m.sample_note ? m.sample_note : " "),
+    def.definition ? el("div", {class:"def", title:def.definition}, def.definition) : null,
+    m.recomputed_from ? el("div", {class:"f"}, "✓ recomputed from " + m.recomputed_from) : null,
+    st.state === "inconsistent" ? el("div", {class:"f err"}, "⚠ " + st.reason) : null);
+}
+
+function metricTable(rest, missing) {
+  const row = (m, measured) => {
+    const def = S.defsByKey[m.key] || {};
+    return el("tr", {class: measured ? null : "nmrow"},
+      el("td", {}, def.name || m.display_name, " ", infoIcon(m.key),
+        m.heuristic ? el("span", {class:"heur", style:"margin-left:5px"}, "HEURISTIC") : null),
+      el("td", {class:"num mono"}, measured ? fmtValue(m) : NOT_MEASURED),
+      el("td", {class:"num mono sub"}, measured && m.sample_note ? m.sample_note : ""),
+      el("td", {class:"defcell"}, measured ? (def.definition || "") : (m.note || m.reason || "not measured by this evaluation")));
+  };
+  return el("div", {class:"mtable hscroll"}, el("table", {},
+    el("thead", {}, el("tr", {}, el("th", {}, "Other measurements"), el("th", {class:"num"}, "Value"),
+      el("th", {class:"num"}, "Sample"), el("th", {}, "What it measures"))),
+    el("tbody", {}, rest.map(m => row(m, isMeasured(m))), missing.map(m => row(m, false)))));
+}
+
+/* What needs attention: factual counts from the question records, each a
+   link to exactly those questions. Grouped by section, never ranked. */
+function attentionSection(p, id, sectionTitle) {
+  const attn = p.attention, fb = p.failure_breakdown;
+  const body = el("div", {class:"asec-body"});
+  const items = (attn && attn.items) || [];
+  if (!items.length) {
+    body.appendChild(el("div", {class:"row"},
+      el("span", {class:"pill mut"}, "nothing flagged"),
+      el("span", {class:"sub"}, attn && attn.note ? attn.note
+        : `No question in this evaluation matched an attention check (${attn ? attn.total_questions : 0} questions).`)));
+  } else {
+    const order = [...(p.sections || []).map(s => s.key), null];
+    for (const key of order) {
+      const group = items.filter(i => (i.section || null) === key);
+      if (!group.length) continue;
+      body.appendChild(el("div", {class:"attn-group"},
+        el("div", {class:"gt"}, key ? sectionTitle[key] || key : "Records"),
+        group.map(item => el("button", {class:"attn", title:item.description || "",
+            onclick: () => { if (item.filter) location.hash = `#/questions/${encodeURIComponent(id)}?filter=${encodeURIComponent(item.filter)}`; }},
+          el("div", {class:"n"}, item.count),
+          el("div", {class:"of"}, item.denominator ? `of ${item.denominator}` : ""),
+          el("div", {class:"l"}, item.label, item.description ? el("div", {class:"d"}, item.description) : null),
+          item.filter ? el("div", {class:"go"}, "View affected questions →") : null))));
+    }
+  }
+  if (fb && fb.available) {
+    body.appendChild(el("div", {style:"margin-top:20px"},
+      el("h3", {}, "Failure attribution by pipeline layer"),
+      el("div", {class:"sub", style:"margin:-4px 0 8px"},
+        "The evaluator's own attribution: a question failing in both the full pipeline and the exact-evidence-only "
+        + "condition is attributed to generation; one failing only with the full context, to the context. Separate "
+        + "from final correctness. Click a layer to see its questions."),
+      fb.layers.map(l => el("div", {class:"layer",
+          onclick: () => { location.hash = `#/questions/${encodeURIComponent(id)}?layer=${encodeURIComponent(l.layer)}`; }},
+        el("div", {class:"name"}, l.layer === "none" ? "no failure attributed" : l.layer),
+        el("div", {class:"track"}, el("div", {class:"bar",
+          style:`width:${Math.max(1.5, (l.share||0)*100)}%;background:${l.is_clean ? "var(--ok)" : "var(--series-2)"}`})),
+        el("div", {class:"n"}, `${l.count} / ${l.total}`)))));
+  }
+  return el("section", {class:"asec"},
+    el("div", {class:"asec-head"},
+      el("div", {},
+        el("h3", {}, "What needs attention"),
+        el("div", {class:"q"}, "Where did questions fail, and which questions were they?"),
+        el("div", {class:"why"}, "Counts of questions taken from this evaluation's own records. Each count opens exactly "
+          + "those questions. These are observations to investigate, not a ranking or a verdict."))),
+    body);
+}
+
+function renderNotEvaluated(view, h) {
+  view.appendChild(el("div", {class:"banner stop"}, el("b", {}, "✕"),
+    el("div", {class:"body"},
+      el("b", {style:"font-size:16px"}, h.headline), el("div", {style:"margin-top:6px"}, h.explanation))));
+  view.appendChild(el("div", {class:"hero"},
+    el("div", {class:"eyebrow"}, "Currently configured model"),
+    el("h2", {}, h.configured_model.label),
+    el("div", {class:"ident mono"}, h.effective_model_key)));
+  const latest = h.latest_available;
+  if (latest) {
+    view.appendChild(el("div", {class:"card"},
+      el("h3", {}, "The most recent evaluation on this machine"),
+      el("div", {class:"spread"},
+        el("div", {},
+          el("div", {style:"font-size:16px;font-weight:600"},
+            el("a", {href:`#/experiment/${latest.experiment_id}`}, latest.name)),
+          el("div", {class:"sub"}, `${latest.model.label} · ${latest.benchmark ? latest.benchmark.label : "no benchmark"} · ${fmtDate(latest.completed_at)}`)),
+        statusPill(latest.status, latest.status_reason)),
+      el("div", {class:"banner warn", style:"margin-top:12px"}, el("b", {}, "⚠"),
+        el("div", {class:"body"}, latest.warning,
+          latest.status_reason ? el("div", {class:"sub", style:"margin-top:5px"}, latest.status_reason) : null))));
+  }
+}
+
+/* ===================================================== QUESTION ANALYSIS */
+// Shared by the Model analysis page (filters change in place) and the
+// Questions page (filters change the address). The server filters.
+const mark = (v, yes="✓", no="✗") => v === true ? el("span", {class:"mk y", title:"yes"}, yes)
+  : v === false ? el("span", {class:"mk n", title:"no"}, no) : el("span", {class:"mk u", title:"not recorded"}, "–");
+const word = (v, yes, no) => v === true ? el("span", {class:"yes"}, yes)
+  : v === false ? el("span", {class:"no"}, no) : el("span", {class:"nm", title:"not recorded"}, "—");
+
+async function questionAnalysis(host, id, query, navigate) {
+  host.innerHTML = "";
+  host.appendChild(el("div", {class:"loading"}, "Loading questions…"));
+  const params = new URLSearchParams();
+  for (const k of ["filter", "layer", "category", "q"]) if (query[k]) params.set(k, query[k]);
+  const payload = await api(`/api/evaluation/experiments/${encodeURIComponent(id)}/questions${params.toString() ? "?" + params : ""}`);
+  host.innerHTML = "";
+  const go = navigate || ((changes) => {
+    const next = {...query, ...changes};
+    for (const k of Object.keys(next)) if (!next[k]) delete next[k];
+    questionAnalysis(host, id, next, null).catch(err => {
+      host.innerHTML = ""; host.appendChild(el("div", {class:"banner stop"}, el("b", {}, "✕"), el("div", {class:"body"}, String(err.message || err))));
+    });
+  });
+
+  const byKey = Object.fromEntries(payload.filters.map(f => [f.key, f]));
+  const chip = (key, label, count, on, title) => el("button", {class:"chip", "aria-pressed": on ? "true" : "false",
+      title: title || "", onclick: () => go({filter: on ? null : key})},
+    label, count !== null && count !== undefined ? el("span", {class:"c"}, count) : null);
+  const primary = PRIMARY_FILTERS.map(k => byKey[k]).filter(f => f && f.available);
+  const secondary = payload.filters.filter(f => f.available && !PRIMARY_FILTERS.includes(f.key));
+  const more = el("select", {"aria-label":"more filters", onchange: (e) => go({filter: e.target.value})},
+    el("option", {value:""}, "More filters…"),
+    ...secondary.map(f => el("option", {value:f.key, selected: f.key === query.filter ? "selected" : null},
+      `${f.label} (${f.count})`)));
+  const search = el("input", {type:"search", placeholder:"search question text or id", value: query.q || "",
+    style:"flex:1;min-width:200px", "aria-label":"search questions", onchange: (e) => go({q: e.target.value.trim()})});
+  const cat = el("select", {"aria-label":"category", onchange: (e) => go({category: e.target.value})},
+    el("option", {value:""}, "all categories"),
+    ...payload.categories.map(c => el("option", {value:c, selected: c === query.category ? "selected" : null}, c)));
+  const layer = el("select", {"aria-label":"failure layer", onchange: (e) => go({layer: e.target.value})},
+    el("option", {value:""}, "all failure layers"),
+    ...payload.layers.map(l => el("option", {value:l.key, selected: l.key === query.layer ? "selected" : null},
+      `${l.key} (${l.count})`)));
+  const applied = query.filter ? byKey[query.filter] : null;
+  host.appendChild(el("div", {class:"qtools"},
+    el("div", {class:"chips"}, chip("", "All", payload.total, !query.filter),
+      primary.map(f => chip(f.key, f.label, f.count, query.filter === f.key, f.description))),
+    el("div", {class:"row", style:"margin-top:10px"}, more, search, cat, layer),
+    el("div", {class:"qmeta"}, el("b", {}, `${payload.matched} of ${payload.total} questions`),
+      applied ? ` · ${applied.label}: ${applied.description}` : "",
+      query.layer ? ` · failure layer ${query.layer}` : "",
+      payload.filters.some(f => !f.available)
+        ? ` · filters this run cannot answer are hidden: ${payload.filters.filter(f => !f.available).map(f => f.label).join(", ")}` : ""),
+    el("div", {class:"qmeta", style:"margin-top:3px"}, payload.notes.failure_layer)));
+
+  const labels = payload.trajectories || {};
+  const open = (qid) => `#/question/${encodeURIComponent(id)}/${encodeURIComponent(qid)}`;
+  const body = el("tbody");
+  if (!payload.questions.length) body.appendChild(el("tr", {}, el("td", {colspan:10}, el("div", {class:"empty"}, "no question matches"))));
+  for (const r of payload.questions) {
+    const validation = r.generated === false ? el("span", {class:"nm"}, "no answer")
+      : el("span", {class:"rf"}, word(r.validation_raw_ok, "pass", "fail"), el("span", {class:"arrow"}, "→"),
+          word(r.validation_final_ok, "pass", "fail"));
+    body.appendChild(el("tr", {class:"click", onclick:()=>{location.hash = open(r.id);}},
+      el("td", {class:"mono"}, el("a", {href:open(r.id)}, r.id)),
+      el("td", {class:"qtext"}, r.question.length > 110 ? r.question.slice(0,110)+"…" : r.question,
+        el("div", {class:"sub"}, [r.category, r.expected_behavior && "expects " + r.expected_behavior,
+          r.generated ? null : "no model call: " + (r.skipped_reason || "not generated")].filter(Boolean).join(" · "))),
+      el("td", {title: labels[r.trajectory] || ""}, el("span", {class:"rf"}, mark(r.correct_raw),
+        el("span", {class:"arrow"}, "→"), mark(r.correct_final))),
+      el("td", {}, word(r.retrieval_ok, "ok", "failed")),
+      el("td", {}, validation),
+      el("td", {class:"sub"}, r.repair ? String(r.repair).split("+").join(", ") : (r.generated ? "none" : "—")),
+      el("td", {}, word(r.citation_ok, "valid", "invalid")),
+      el("td", {class:"num mono"}, r.selected_evidence_count ?? el("span", {class:"nm"}, "—")),
+      el("td", {class:"num mono sub"}, typeof r.generation_ms === "number" ? (r.generation_ms/1000).toFixed(1)+" s" : "—"),
+      el("td", {class:"num mono sub"}, r.tokens_generated ?? "—")));
+  }
+  host.appendChild(el("div", {class:"scroll hscroll"}, el("table", {},
+    el("caption", {class:"sr-only"}, "Questions in this evaluation"),
+    el("thead", {}, el("tr", {}, el("th", {}, "Id"), el("th", {}, "Question"),
+      el("th", {title:"raw correctness → final correctness"}, "Raw → Final"), el("th", {}, "Retrieval"),
+      el("th", {title:"deterministic validation, raw → final"}, "Validation"), el("th", {}, "Repair"),
+      el("th", {}, "Citation"), el("th", {class:"num", title:"evidence items given to the model"}, "Evidence"),
+      el("th", {class:"num"}, "Gen. time"), el("th", {class:"num"}, "Tokens"))),
+    body)));
+}
+
+V.questions = async (id, query = {}) => {
+  const view = $("#view");
+  if (!id) {
+    // no run chosen: the current evaluation, if the backend has one
+    const ids = currentEvaluationIds();
+    if (ids.length) { location.hash = `#/questions/${ids[0]}`; return; }
+    view.innerHTML = "";
+    const evals = S.experiments.filter(e => e.kind === "evaluation");
+    view.appendChild(el("div", {class:"card"}, el("h3", {}, "Choose a run to inspect question by question"),
+      el("ul", {}, evals.map(e => el("li", {style:"margin:5px 0"},
+        el("a", {href:`#/questions/${e.experiment_id}`}, e.name), " ", statusPill(e.status))))));
+    return;
+  }
+  const exp = S.experiments.find(e => e.experiment_id === id);
+  const isCurrent = currentEvaluationIds().includes(id);
+  const host = el("div");
+  const go = (changes) => {
+    const next = new URLSearchParams();
+    for (const k of ["filter", "layer", "category", "q"]) if (query[k]) next.set(k, query[k]);
+    for (const [k, v] of Object.entries(changes)) { if (v) next.set(k, v); else next.delete(k); }
+    location.hash = `#/questions/${id}${next.toString() ? "?" + next : ""}`;
+  };
+  const head = el("div", {class:"pagehead"},
+    el("div", {},
+      el("div", {class:"eyebrow"}, isCurrent ? "Current model" : "Historical experiment"),
+      el("h2", {}, "Questions"),
+      el("div", {class:"lede"}, exp ? provenanceOf(exp) : id)),
+    el("div", {class:"row"}, exp ? statusPill(exp.status, exp.status_reason) : null,
+      el("a", {href: isCurrent ? "#/analysis" : `#/experiment/${id}`}, el("button", {}, "← Model analysis"))));
+  const card = el("div", {class:"card flush"}, host);
+  await questionAnalysis(host, id, query, go);
+  view.innerHTML = "";
+  view.appendChild(head);
+  if (!isCurrent && exp) view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"),
+    el("div", {class:"body"}, "These questions belong to a historical experiment, not to the current model's evaluation.")));
+  view.appendChild(card);
+};
+
+/* ======================================================= QUESTION DETAIL */
+V.question = async (id, questionId) => {
+  const view = $("#view");
+  const payload = await api(`/api/evaluation/experiments/${encodeURIComponent(id)}/questions/${encodeURIComponent(questionId)}`);
+  view.innerHTML = "";
+  const exp = payload.experiment, q = payload.question, f = q.forensics;
+  const yn = (v, yes="yes", no="no") => v === true ? el("span", {class:"yes"}, yes)
+    : v === false ? el("span", {class:"no"}, no) : el("span", {class:"nm"}, NOT_MEASURED);
+  const t = f.trajectory || {};
+
+  view.appendChild(el("div", {class:"pagehead"},
+    el("div", {style:"min-width:0"},
+      el("div", {class:"eyebrow"}, "Question forensics"),
+      el("h2", {class:"mono"}, q.id),
+      el("div", {class:"lede"}, provenanceOf(exp))),
+    el("div", {class:"row"}, statusPill(exp.status, exp.status_reason),
+      el("a", {href:`#/questions/${id}`}, el("button", {}, "← All questions")))));
+  view.appendChild(el("div", {class:"card"},
+    el("p", {style:"margin:0;font-size:16px;line-height:1.5"}, q.question),
+    el("div", {class:"row", style:"margin-top:10px"},
+      q.category ? el("span", {class:"pill mut"}, q.category) : null,
+      q.domain ? el("span", {class:"pill mut"}, q.domain) : null,
+      q.expected_behavior ? el("span", {class:"pill mut"}, `expects ${q.expected_behavior}`) : null)));
+
+  // ---- the path from raw to final, from recorded fields only
+  const step = (n, value, sub, cls) => el("div", {class:`step ${cls || ""}`},
+    el("div", {class:"sn"}, n), el("div", {class:"sv"}, value), sub ? el("div", {class:"ss"}, sub) : null);
+  const tone = (v) => v === true ? "ok" : v === false ? "bad" : "";
+  const vr = f.validation.raw, vf = f.validation.final;
+  const arrow = () => el("div", {class:"arr", "aria-hidden":"true"}, "→");
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, "Raw → final: what happened to this question"),
+    el("div", {class:"trajectory"}, t.label || NOT_MEASURED),
+    el("div", {class:"flow"},
+      step("1 · Retrieval", f.retrieval.ok === true ? "check passed" : f.retrieval.ok === false ? "check failed" : NOT_MEASURED,
+        "did the evidence phase retrieve what the question needed", tone(f.retrieval.ok)),
+      arrow(),
+      step("2 · Evidence given", q.generated ? `${f.evidence.selected_count} item(s)` : "none",
+        q.generated ? "question-local ids, listed below" : "no model call", ""),
+      arrow(),
+      step("3 · Raw answer", !q.generated ? "not generated"
+          : f.outcome.correct_raw === true ? "marked correct" : f.outcome.correct_raw === false ? "not marked correct" : NOT_MEASURED,
+        vr ? `validation: ${vr.status}${vr.ok === false && (vr.codes||[]).length ? " · " + vr.codes.join(", ") : ""}` : "not validated",
+        q.generated ? tone(f.outcome.correct_raw) : ""),
+      arrow(),
+      step("4 · Repair", f.repair.applied ? "applied" : "none", f.repair.applied ? f.repair.kinds.join(", ") : (q.generated ? "the answer was not rewritten" : "—"),
+        f.repair.applied ? "chg" : ""),
+      arrow(),
+      step("5 · Final answer", f.outcome.correct_final === true ? "marked correct" : f.outcome.correct_final === false ? "not marked correct" : NOT_MEASURED,
+        vf ? `validation: ${vf.status}` : (q.generated ? "not validated" : "answered by the pipeline"), tone(f.outcome.correct_final))),
+    el("div", {class:"sub", style:"margin-top:10px"}, f.outcome.note)));
+
+  // ---- the two answers, side by side
+  const verdict = (v) => v ? el("div", {class:"row", style:"margin-top:8px"},
+      el("span", {class:`pill ${v.ok ? "ok":"stop"}`}, v.status || "?"),
+      ...(v.codes||[]).map(c => el("span", {class:"pill warn"}, c))) : null;
+  view.appendChild(el("div", {class:"card"}, el("div", {class:"grid g2"},
+    el("div", {}, el("h3", {}, "Raw model answer"),
+      el("div", {class:"sub", style:"margin:-6px 0 8px"}, "exactly what the model produced, before anything touched it"),
+      el("div", {class:"answer"}, f.answers.raw || (q.generated ? "— empty —" : `— no model answer: ${q.skipped_reason || "not generated"} —`)),
+      verdict(vr)),
+    el("div", {}, el("h3", {}, "Final answer"),
+      el("div", {class:"sub", style:"margin:-6px 0 8px"},
+        f.answers.final_differs_from_raw ? "rewritten by deterministic repair: a property of the pipeline, not of the model"
+                                         : "identical to the raw answer: no repair changed it"),
+      el("div", {class:"answer"}, f.answers.final || "— no final answer recorded —"),
+      verdict(vf)))));
+
+  // ---- outcome: kept as separate evaluator outputs
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Outcome"),
+    el("div", {class:"grid g3"},
+      el("div", {class:"metric"}, el("div", {class:"name"}, "Final correctness", infoIcon("correctness_final")),
+        el("div", {class:"val", style:"font-size:19px"}, yn(f.outcome.correct_final, "correct", "incorrect")),
+        f.outcome.reasons_final.length ? el("div", {class:"src"}, f.outcome.reasons_final.join("; ")) : null),
+      el("div", {class:"metric"}, el("div", {class:"name"}, "Raw correctness", infoIcon("correctness_raw")),
+        el("div", {class:"val", style:"font-size:19px"}, yn(f.outcome.correct_raw, "correct", "incorrect")),
+        f.outcome.reasons_raw.length ? el("div", {class:"src"}, f.outcome.reasons_raw.join("; ")) : null),
+      el("div", {class:"metric"}, el("div", {class:"name"}, "Failure layer", infoIcon("failure_layer_counts")),
+        el("div", {class:"val", style:"font-size:19px"}, f.outcome.failure_layer || NOT_MEASURED),
+        f.outcome.failure_reasons.length ? el("div", {class:"src"}, f.outcome.failure_reasons.join("; ")) : null))));
+
+  // ---- validation and repair detail
+  const problems = (v) => (v && v.problems || []).map(p => el("li", {style:"margin:4px 0;font-size:13px"},
+    el("span", {class:"mono"}, p.code), ` (${p.severity}) `, p.detail || "", p.sentence ? el("div", {class:"sub"}, `“${p.sentence}”`) : null));
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Validation and repair"),
+    kvList([["Raw validation", vr ? `${vr.status} (${vr.ok ? "valid" : "invalid"})` : "not validated"],
+      ["Final validation", vf ? `${vf.status} (${vf.ok ? "valid" : "invalid"})` : "not validated"],
+      ["Repair applied", f.repair.applied ? f.repair.kinds.join(", ") : "none"]]),
+    (vr && vr.problems || []).length ? el("details", {style:"margin-top:8px"},
+      el("summary", {}, `Raw validation problems (${vr.problems.length})`), el("ul", {}, problems(vr))) : null,
+    (vf && vf.problems || []).length ? el("details", {},
+      el("summary", {}, `Final validation problems (${vf.problems.length})`), el("ul", {}, problems(vf))) : null));
+
+  // ---- expected
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Expected"),
+    kvList([["Behaviour", f.expected.behavior], ["Requirements", (f.expected.requirements || []).join(", ") || "none listed", true],
+      ["Expected terms", (f.expected.terms || []).join(", ") || "none listed"],
+      ["Reference answer", f.expected.reference_answer_display]])));
+
+  // ---- evidence: question-local ids
+  const ev = f.evidence;
+  view.appendChild(el("div", {class:"card flush"},
+    el("div", {style:"padding:16px 18px 6px"}, el("h3", {}, `Evidence the model was given (${ev.selected_count})`),
+      el("div", {class:"banner info", style:"margin-top:0"}, el("b", {}, "i"), el("div", {class:"body"}, ev.scope)),
+      ev.source ? el("div", {class:"sub", style:"margin-top:8px"}, "Source of this list: ", ev.source) : null,
+      el("div", {class:"sub", style:"margin-top:4px"},
+        "The retrieval check for this question: ", yn(f.retrieval.ok, "passed", "failed"))),
+    ev.selected.length ? el("div", {class:"scroll hscroll"}, el("table", {},
+      el("thead", {}, el("tr", {}, el("th", {}, "Prompt [n]"), el("th", {}, "Evidence id (question-local)"),
+        el("th", {}, "Tier"), el("th", {}, "Provision"), el("th", {}, "Source label"), el("th", {}, "Cited in answer"))),
+      el("tbody", {}, ev.selected.map(s => el("tr", {},
+        el("td", {class:"mono"}, s.prompt_index != null ? `[${s.prompt_index}]` : "—"),
+        el("td", {class:"mono"}, s.evidence_id),
+        el("td", {}, s.tiers.join(", ") || "—"),
+        el("td", {class:"mono"}, s.provisions.join(", ") || "—"),
+        el("td", {}, s.source_url ? el("a", {href:s.source_url, target:"_blank", rel:"noopener"}, s.source_label) : (s.source_label || "—")),
+        el("td", {}, s.cited_in_answer === true ? el("span", {class:"yes"}, "yes")
+          : s.cited_in_answer === false ? el("span", {class:"sub"}, "no") : el("span", {class:"nm"}, "not recorded")))))))
+      : el("div", {class:"empty"}, q.generated ? "no evidence ids recorded for this answer" : "no model call, so no evidence was given to a model")));
+
+  // ---- citations
+  const cz = f.citations;
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Citations"),
+    kvList([["Markers in the answer", (cz.markers || []).length ? cz.markers.map(n => `[${n}]`).join(" ") : "none", true],
+      ["Invalid markers", (cz.invalid || []).length ? cz.invalid.join(", ") : "none"]]),
+    el("div", {class:"grid g2", style:"margin-top:10px"},
+      el("div", {class:"metric"}, el("div", {class:"name"}, "Citation validity", infoIcon("citation_ok")),
+        el("div", {class:"val", style:"font-size:19px"}, yn(cz.validity, "valid", "invalid")),
+        el("div", {class:"src"}, "every marker points at a supplied source, and no mismatch code fired")),
+      el("div", {class:"metric"}, el("div", {class:"name"}, "Semantic citation correctness"),
+        el("div", {class:"val nm"}, cz.semantic_correctness.display),
+        el("div", {class:"src"}, cz.semantic_correctness.reason)))));
+
+  // ---- answer shape (Stage 12; absent for runs recorded before it existed)
+  const as = f.answer_shape;
+  if (as && as.shape) {
+    const sh = as.shape, chk = as.checks_raw || {}, groups = (as.plan && as.plan.groups) || [];
+    const warnCodes = (chk.codes || []);
+    view.appendChild(el("div", {class:"card"}, el("h3", {}, "Answer shape"),
+      el("div", {class:"sub", style:"margin:-6px 0 10px"},
+        "how the question was read and how the evidence was organised; checks are on the raw answer and never judge length"),
+      el("div", {class:"grid g2"},
+        kvList([["Mode", sh.mode], ["Scope", sh.scope], ["Exhaustive", sh.exhaustive ? "yes" : "no"],
+          ["Why", sh.rationale], ["Signals", (sh.signals || []).join(", ") || "none"]]),
+        kvList([["Evidence groups", `${chk.groups_covered ?? "?"} of ${chk.groups ?? groups.length} represented`],
+          ["Material items", `${chk.material_items_covered ?? "?"} of ${chk.material_items ?? "?"} represented`],
+          ["Repetition", chk.repeated_pairs ? `${chk.repeated_pairs} near-duplicate pair(s)` : "none"],
+          ["Shape checks", warnCodes.length ? warnCodes.join(", ") : "none fired"]])),
+      groups.length ? el("table", {style:"margin-top:10px"}, el("tbody", {}, groups.map(g => el("tr", {},
+        el("td", {class:"mono", style:"width:180px"}, g.label),
+        el("td", {}, g.heading || ""),
+        el("td", {class:"mono"}, (g.members || []).map(n => `[${n}]`).join(" ")))))) : null));
+  }
+
+  // ---- faithfulness claims (heuristic)
+  const claims = (stage, list) => el("div", {}, el("h3", {}, stage),
+    !list.length ? el("div", {class:"empty"}, "no sentences classified")
+    : el("table", {}, el("tbody", {}, list.map(c => el("tr", {},
+        el("td", {style:"width:76px"}, el("span", {class:`pill ${c.supported==="YES"?"ok":c.supported==="NO"?"stop":"mut"}`}, c.supported)),
+        el("td", {}, c.claim, el("div", {class:"sub mono"},
+          `cites ${(c.cited||[]).map(n => "["+n+"]").join(" ") || "nothing"} · overlap ${fmtNumber(c.overlap,2)}`)))))));
+  if ((q.claims_raw||[]).length || (q.claims_final||[]).length) {
+    view.appendChild(el("div", {class:"card"},
+      el("h3", {}, "Sentence faithfulness ", el("span", {class:"heur"}, "HEURISTIC")),
+      el("div", {class:"sub", style:"margin:-6px 0 10px"},
+        "Word overlap is not entailment. NOT SUPPORTED is reliable; SUPPORTED is unproven."),
+      el("div", {class:"grid g2"}, claims("Raw answer", q.claims_raw||[]), claims("Final answer", q.claims_final||[]))));
+  }
+
+  // ---- controlled condition
+  if (q.controlled_answer_raw) {
+    view.appendChild(el("div", {class:"card"}, el("h3", {}, "Same question, exact evidence only"),
+      el("div", {class:"sub", style:"margin:-6px 0 8px"},
+        "the controlled condition: if this passes and the full pipeline fails, the problem is the context, not the model"),
+      el("div", {class:"row", style:"margin-bottom:8px"},
+        el("span", {class:`pill ${q.controlled_valid_raw ? "ok":"stop"}`}, q.controlled_valid_raw ? "valid" : "invalid")),
+      el("div", {class:"answer"}, q.controlled_answer_raw)));
+  }
+
+  // ---- timing and tokens
+  const tm = f.timing_ms || {}, tk = f.tokens || {};
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Timing and tokens ", el("span", {class:"tag"}, "runtime-dependent")),
+    el("div", {class:"grid g2"},
+      kvList(Object.keys(tm).length ? Object.entries(tm).map(([k, v]) => [k.replace(/_ms$/, "").replace(/_/g, " "), fmtMs(v), true])
+                                   : [["timings", "not recorded"]]),
+      kvList([["generated tokens", tk.generated ?? "not recorded", true], ["allowance (cap)", tk.cap ?? "not recorded", true],
+        ["prompt tokens", tk.prompt_tokens ?? "not recorded", true],
+        ["finished (end-of-turn)", tk.finished === true ? "yes" : tk.finished === false ? "no" : "not recorded"],
+        ["truncated", tk.truncated === true ? "yes" : tk.truncated === false ? "no" : "not recorded"]]))));
+
+  view.appendChild(el("details", {class:"card"},
+    el("summary", {}, "Everything else this run recorded for the question"),
+    el("pre", {class:"mono", style:"white-space:pre-wrap;font-size:11.5px"}, JSON.stringify(q.extra || {}, null, 2))));
+};
+
+/* ============================================================ EXPERIMENTS */
+V.experiments = async () => {
+  const view = $("#view"); view.innerHTML = "";
+  view.appendChild(subnav("experiments", "experiments"));
+  const filter = el("input", {type:"search", placeholder:"filter by name, model, benchmark or status",
+                              style:"flex:1;min-width:230px", "aria-label":"filter experiments"});
+  const kind = el("select", {"aria-label":"kind"}, el("option", {value:""}, "all kinds"),
+                               el("option", {value:"evaluation"}, "evaluations"),
+                               el("option", {value:"training"}, "training runs"));
+  const status = el("select", {"aria-label":"status"}, el("option", {value:""}, "all statuses"),
+    ...Object.keys(STATUS_STYLE).map(s => el("option", {value:s}, s)));
+  const body = el("tbody");
+  const table = el("div", {class:"card flush"},
+    el("div", {class:"scroll hscroll"}, el("table", {},
+      el("thead", {}, el("tr", {},
+        el("th", {}, "Status"), el("th", {}, "Run"), el("th", {}, "Kind"),
+        el("th", {}, "Model"), el("th", {}, "Benchmark"), el("th", {}, "Completed"),
+        el("th", {}, "Headline"))),
+      body)));
+
+  const draw = () => {
+    body.innerHTML = "";
+    const q = filter.value.toLowerCase();
+    const rows = S.experiments.filter(e =>
+      (!kind.value || e.kind === kind.value) &&
+      (!status.value || e.status === status.value) &&
+      (!q || [e.name, e.model.label, e.model.key, e.benchmark && e.benchmark.label, e.status, e.path]
+              .filter(Boolean).join(" ").toLowerCase().includes(q)));
+    if (!rows.length) { body.appendChild(el("tr", {}, el("td", {colspan:7}, el("div", {class:"empty"}, "nothing matches")))); return; }
+    for (const e of rows) {
+      const headline = Object.entries(e.metric_summary || {}).slice(0, 2)
+        .map(([k, m]) => `${m.display_name} ${fmtValue(m)}${m.numerator!=null&&m.denominator!=null?` (${m.numerator}/${m.denominator})`:""}`)
+        .join(" · ");
+      const href = e.kind === "training" ? `#/training/${e.experiment_id}` : `#/experiment/${e.experiment_id}`;
+      body.appendChild(el("tr", {class:"click", onclick:() => { location.hash = href; }},
+        el("td", {}, statusPill(e.status, e.status_reason)),
+        el("td", {}, el("a", {href}, e.name), el("div", {class:"sub mono", style:"font-size:11px"}, e.path)),
+        el("td", {}, e.kind),
+        el("td", {}, e.model.label),
+        el("td", {}, e.benchmark ? e.benchmark.label : "—"),
+        el("td", {}, fmtDate(e.completed_at)),
+        el("td", {class:"sub"}, headline || "—")));
+    }
+  };
+  [filter, kind, status].forEach(n => n.addEventListener("input", draw));
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, `${S.experiments.length} experiments discovered`),
+    el("div", {class:"sub", style:"margin:-4px 0 10px"},
+      "Every run on disk, current and historical. Nothing is deleted or hidden here; the Model analysis page "
+      + "shows only the current model's evaluation."),
+    el("div", {class:"row"}, filter, kind, status)));
+  view.appendChild(table);
+  draw();
+};
+
+V.history = async () => {
+  const view = $("#view"); view.innerHTML = "";
+  view.appendChild(subnav("experiments", "history"));
+  const h = await api("/api/evaluation/history");
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Evaluation history"),
+    el("div", {class:"sub"}, h.note),
+    el("div", {class:"coverage"}, Object.entries(h.counts).map(([cls, n]) => el("div", {class:"cell"},
+      el("div", {class:"k"}, cls.replace(/_/g, " ")), el("div", {class:"v"}, n),
+      el("div", {class:"s"}, h.classes[cls]))))));
+
+  // ---- compatible lines: one model, one benchmark, one pipeline, whole question set
+  if (!h.groups.length) {
+    view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"),
+      el("div", {class:"body"}, "No evaluation has the identity needed to form a history line "
+        + "(recorded weights, pipeline fingerprint and a whole benchmark).")));
+  }
+  for (const g of h.groups) {
+    const card = el("div", {class:"card"},
+      el("div", {class:"spread"},
+        el("div", {}, el("h2", {}, g.model_label), el("div", {class:"sub"}, `on ${g.benchmark_label}`),
+          el("div", {class:"sub mono"}, `pipeline ${short(g.pipeline_fingerprint)}… (v${g.pipeline_fingerprint_version}) · ${g.runs.length} evaluation(s)`)),
+        g.contains_current ? el("span", {class:"pill ok"}, "current line") : el("span", {class:"pill mut"}, "historical line")));
+    if (!g.trend_available) {
+      card.appendChild(el("div", {class:"banner info"}, el("b", {}, "i"), el("div", {class:"body"}, g.trend_note)));
+    } else {
+      for (const series of g.series.filter(s => s.points.length >= 2)) {
+        const pts = series.points.map(p => ({x: new Date(p.completed_at).getTime(), y: p.value, meta:p}));
+        card.appendChild(el("div", {style:"margin-top:14px"},
+          el("h3", {}, series.display_name, " ", infoIcon(series.key),
+            series.heuristic ? el("span", {class:"heur", style:"margin-left:6px"}, "HEURISTIC") : null),
+          el("div", {class:"sub", style:"margin:-4px 0 8px"}, DIRECTION_MARK[series.direction] || ""),
+          lineChart([{name: series.display_name, color:"var(--series-1)", points: pts}], {
+            label: `${series.display_name} across compatible evaluations`, xName:"completion date",
+            fmtX:(v)=>new Date(v).toLocaleDateString(undefined,{month:"short",day:"numeric"}),
+            fmtY:(v)=> series.unit === "ratio" ? (v*100).toFixed(0)+"%" : fmtNumber(v,2), height:190}),
+          el("details", {}, el("summary", {}, "Show as a table"),
+            el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Evaluation"), el("th", {}, "Completed"),
+              el("th", {class:"num"}, "Value"), el("th", {class:"num"}, "Sample"))),
+              el("tbody", {}, series.points.map(p => el("tr", {},
+                el("td", {}, el("a", {href:`#/experiment/${p.experiment_id}`}, p.name)),
+                el("td", {}, fmtDate(p.completed_at)),
+                el("td", {class:"num mono"}, fmtValue({value:p.value, unit:series.unit, status:p.status})),
+                el("td", {class:"num mono sub"}, p.numerator != null && p.denominator != null ? `${p.numerator} / ${p.denominator}` : "—"))))))));
+      }
+    }
+    view.appendChild(card);
+  }
+
+  // ---- every evaluation, with why it is or is not on a line
+  const cls = el("select", {"aria-label":"compatibility"}, el("option", {value:""}, "every evaluation"),
+    ...Object.keys(h.counts).map(c => el("option", {value:c}, c.replace(/_/g, " "))));
+  const body = el("tbody");
+  const draw = () => {
+    body.innerHTML = "";
+    for (const r of h.runs.filter(r => !cls.value || r.compatibility === cls.value)) {
+      const i = r.identity, fc = r.metrics.correctness_final;
+      body.appendChild(el("tr", {},
+        el("td", {}, statusPill(r.status, r.status_reason), el("div", {class:"sub mono"}, r.freshness_code || "")),
+        el("td", {}, el("a", {href:`#/experiment/${r.experiment_id}`}, r.name), el("div", {class:"sub"}, fmtDate(r.completed_at))),
+        el("td", {}, i.model_label, el("div", {class:"sub mono"}, short(i.model_key, 60))),
+        el("td", {}, i.benchmark_label || "—"),
+        el("td", {class:"mono sub"}, i.pipeline_fingerprint ? short(i.pipeline_fingerprint) + "…" : "not recorded"),
+        el("td", {class:"num mono"}, i.question_count ?? "—", i.full_benchmark === false ? el("div", {class:"sub"}, "subset") : null),
+        el("td", {class:"num mono"}, fc ? fmtValue(fc) : NOT_MEASURED, fc && fc.numerator != null ? el("div", {class:"sub"}, `${fc.numerator} / ${fc.denominator}`) : null),
+        el("td", {}, el("span", {class:"pill mut"}, r.compatibility.replace(/_/g, " ")), el("div", {class:"sub"}, r.compatibility_reason))));
+    }
+  };
+  cls.addEventListener("input", draw);
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "All evaluations"), el("div", {class:"row"}, cls)));
+  view.appendChild(el("div", {class:"card flush"}, el("div", {class:"scroll hscroll"}, el("table", {},
+    el("thead", {}, el("tr", {}, el("th", {}, "Freshness"), el("th", {}, "Run"), el("th", {}, "Model"),
+      el("th", {}, "Benchmark"), el("th", {}, "Pipeline"), el("th", {class:"num"}, "Questions"),
+      el("th", {class:"num"}, "Final correctness"), el("th", {}, "Compatibility with the current line"))),
+    body))));
+  draw();
+};
+
+V.compare = async (query) => {
+  const view = $("#view"); view.innerHTML = "";
+  view.appendChild(subnav("experiments", "compare"));
+  const evals = S.experiments.filter(e => e.kind === "evaluation" && e.benchmark && e.model.applicable);
+  // ids come from the hash (?ids=a,b,c); ?a=&b= links from older pages still work
+  const chosen = (query.ids ? query.ids.split(",") : [query.a, query.b]).filter(Boolean);
+  const box = el("div", {class:"scroll", style:"max-height:260px"}, el("table", {}, el("tbody", {},
+    evals.map(e => el("tr", {},
+      el("td", {style:"width:34px"}, el("input", {type:"checkbox", value:e.experiment_id, "aria-label":`compare ${e.name}`,
+        checked: chosen.includes(e.experiment_id) ? "checked" : null})),
+      el("td", {}, e.name, el("div", {class:"sub"}, `${e.model.label} · ${e.benchmark.label}`)),
+      el("td", {}, statusPill(e.status, e.status_reason)),
+      el("td", {class:"sub"}, fmtDate(e.completed_at)))))));
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, "Compare evaluation runs"),
+    el("div", {class:"sub", style:"margin-bottom:8px"},
+      "Choose 2 to 6 runs. The first chosen is the reference; each other run is compared with it. "
+      + "The backend decides comparability; no winner or overall score is computed."),
+    box,
+    el("div", {class:"row", style:"margin-top:10px"},
+      el("button", {class:"primary", onclick: () => {
+        const ids = [...box.querySelectorAll("input:checked")].map(n => n.value);
+        const ordered = chosen.filter(i => ids.includes(i)).concat(ids.filter(i => !chosen.includes(i)));
+        location.hash = `#/compare?ids=${ordered.join(",")}`;
+      }}, "Compare selected"))));
+  if (chosen.length < 2) { view.appendChild(el("div", {class:"empty"}, "choose at least two runs")); return; }
+
+  const c = await api(`/api/evaluation/compare?ids=${chosen.map(encodeURIComponent).join(",")}`);
+  const t = c.table;
+  for (const col of t.runs.filter(r => !r.is_reference)) {
+    for (const b of col.blocking) view.appendChild(el("div", {class:"banner stop"}, el("b", {}, "✕"),
+      el("div", {class:"body"}, el("b", {}, `${col.name}: not directly comparable (${b.code}). `), b.message)));
+    for (const w of col.warnings) view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"),
+      el("div", {class:"body"}, el("b", {}, `${col.name}: ${w.code}. `), w.message)));
+  }
+
+  const head = el("tr", {}, el("th", {}, "Metric"), t.runs.map(r => el("th", {class:"num"},
+    r.name, el("div", {style:"text-transform:none;letter-spacing:0;font-weight:500"},
+      r.is_reference ? "reference" : r.comparable ? "comparable" : "not comparable"))));
+  const body = el("tbody", {}, t.rows.map(row => el("tr", {},
+    el("td", {}, row.display_name, infoIcon(row.key), row.heuristic ? el("span", {class:"heur", style:"margin-left:5px"}, "HEURISTIC") : null,
+      el("div", {class:"sub"}, DIRECTION_MARK[row.direction] || "")),
+    row.cells.map(cell => el("td", {class:"num mono"},
+      cell.display ? el("span", {class:"nm"}, cell.display) : fmtValue({value:cell.value, unit:row.unit, status:cell.status}),
+      cell.sample_note ? el("div", {class:"sub"}, cell.sample_note) : null,
+      cell.delta !== null ? el("div", {class:"sub"}, row.unit === "ratio"
+          ? `${cell.delta_percentage_points > 0 ? "+" : ""}${cell.delta_percentage_points} pp vs reference`
+          : `${cell.delta > 0 ? "+" : ""}${fmtNumber(cell.delta, 3)} vs reference`)
+        : (cell.delta_note && cell.delta_note !== "reference" ? el("div", {class:"sub"}, cell.delta_note) : null))))));
+  view.appendChild(el("div", {class:"card flush"}, el("div", {class:"scroll hscroll"}, el("table", {},
+    el("caption", {class:"sr-only"}, "Metrics side by side"), el("thead", {}, head), body)),
+    el("div", {class:"sub", style:"padding:10px 14px"}, t.note)));
+
+  if (t.questions && t.questions.available) {
+    const block = (title, moved, why) => el("div", {class:"card"},
+      el("h3", {}, title), el("div", {class:"sub", style:"margin-bottom:9px"}, why),
+      !moved.improved.length && !moved.regressed.length ? el("div", {class:"empty"}, "no question changed")
+        : el("table", {}, el("tbody", {},
+            moved.regressed.map(q => el("tr", {}, el("td", {}, el("span", {class:"pill stop"}, "now incorrect")),
+              el("td", {class:"mono"}, q.id), el("td", {}, q.question))),
+            moved.improved.map(q => el("tr", {}, el("td", {}, el("span", {class:"pill ok"}, "now correct")),
+              el("td", {class:"mono"}, q.id), el("td", {}, q.question))))));
+    view.appendChild(block("Questions that changed — raw model answer", t.questions.raw,
+      "The model's own text, before any repair."));
+    view.appendChild(block("Questions that changed — final answer", t.questions.final,
+      "After deterministic repair. A change here can be the repair layer rather than the model."));
+    view.appendChild(el("div", {class:"sub"}, t.questions.note));
+  } else if (t.questions) {
+    view.appendChild(el("div", {class:"empty"}, t.questions.reason));
+  }
+};
+
+V.models = async () => {
+  const view = $("#view"); view.innerHTML = "";
+  view.appendChild(subnav("experiments", "models"));
+  const payload = await api("/api/models");
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, `${payload.count} distinct sets of weights`),
+    el("div", {class:"sub"}, "Current: ", el("span", {class:"mono"}, payload.current_model_key))));
+  for (const m of payload.models) {
+    view.appendChild(el("div", {class:"card"},
+      el("div", {class:"spread"},
+        el("div", {}, el("h2", {}, m.model.label), el("div", {class:"sub mono"}, m.key)),
+        m.key === payload.current_model_key ? el("span", {class:"pill ok"}, "current") : null),
+      m.produced_by ? el("div", {class:"banner info", style:"margin-top:10px"}, el("b", {}, "→"),
+        el("div", {class:"body"}, "Produced by training run ",
+          el("a", {href:`#/training/${m.produced_by.experiment_id}`}, m.produced_by.name),
+          ` (${m.produced_by.status}, ${fmtDate(m.produced_by.completed_at)})`,
+          el("div", {class:"sub", style:"margin-top:5px"}, m.produced_by.note))) : null,
+      m.evaluations.length ? el("div", {style:"margin-top:10px"},
+        el("h3", {}, "Evaluated by"),
+        el("table", {}, el("tbody", {}, m.evaluations.map(e => el("tr", {},
+          el("td", {}, statusPill(e.status)),
+          el("td", {}, el("a", {href:`#/experiment/${e.experiment_id}`}, e.name)),
+          el("td", {class:"sub"}, e.benchmark ? e.benchmark.label : "—"),
+          el("td", {class:"sub"}, fmtDate(e.completed_at)))))))
+        : el("div", {class:"sub", style:"margin-top:10px"}, "never evaluated"),
+      m.training_runs.length ? el("div", {style:"margin-top:10px"},
+        el("h3", {}, "Training runs"),
+        el("ul", {}, m.training_runs.map(t => el("li", {},
+          el("a", {href:`#/training/${t.experiment_id}`}, t.name), ` — ${t.status}`)))) : null));
+  }
+};
+
+/* ============================================================ DEFINITIONS */
+V.metrics = async () => {
+  const view = $("#view"); view.innerHTML = "";
+  const h = await api("/api/model-health/current");
+  const measured = {};
+  for (const s of h.sections || []) for (const m of s.metrics) measured[m.key] = m;
+  view.appendChild(el("div", {class:"pagehead"}, el("div", {},
+    el("div", {class:"eyebrow"}, "Methodology"), el("h2", {}, "Metric definitions"),
+    el("div", {class:"lede"}, `${S.defs.count} definitions, served by the backend. Every number on this dashboard `
+      + "is one of these. Availability is shown for the current evaluation"
+      + (h.evaluation ? ` (${h.evaluation.name}).` : ": there is no current evaluation, so nothing is measured.")))));
+  if (h.coverage) view.appendChild(coverageStrip(h.coverage));
+  for (const fam of S.defs.families || []) {
+    view.appendChild(el("div", {class:"card flush"},
+      el("div", {style:"padding:14px 16px 4px"}, el("h3", {}, `${fam.title} (${fam.metrics.length})`)),
+      el("div", {class:"scroll hscroll"}, el("table", {},
+        el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Definition and calculation"),
+          el("th", {}, "Unit / direction"), el("th", {}, "Source"), el("th", {class:"num"}, "Current evaluation"))),
+        el("tbody", {}, fam.metrics.map(d => {
+          const m = measured[d.key];
+          return el("tr", {},
+            el("td", {style:"width:190px"}, el("b", {}, d.name), d.heuristic ? el("span", {class:"heur", style:"margin-left:6px"}, "HEURISTIC") : null,
+              el("div", {class:"sub mono"}, d.key)),
+            el("td", {class:"sub"}, d.definition, el("div", {class:"mono", style:"margin-top:4px"}, d.calculation),
+              d.caveats ? el("div", {style:"margin-top:4px"}, el("b", {}, "Limits: "), d.caveats) : null),
+            el("td", {class:"sub"}, d.unit, el("div", {}, DIRECTION_MARK[d.direction] || d.direction)),
+            el("td", {class:"sub mono"}, d.source_hint || "—"),
+            el("td", {class:"num mono"}, fam.key === "training" ? el("span", {class:"sub"}, "training runs only")
+              : m && isMeasured(m) ? [fmtValue(m), m.sample_note ? el("div", {class:"sub"}, m.sample_note) : null]
+              : el("span", {class:"nm"}, NOT_MEASURED)));
+        }))))));
+  }
+};
+
+/* =============================================================== TRAINING */
+V.training = async (id) => {
+  const view = $("#view"); view.innerHTML = "";
+  if (!id) {
+    const runs = S.experiments.filter(e => e.kind === "training");
+    view.appendChild(el("div", {class:"pagehead"}, el("div", {},
+      el("div", {class:"eyebrow"}, "Training"), el("h2", {}, "Training runs"),
+      el("div", {class:"lede"}, "Adapters, checkpoints and the data they were trained on. Linked to the evaluations "
+        + "that measured them on the Models page."))));
+    view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"), el("div", {class:"body"},
+      el("b", {}, "Training metrics are not evaluation metrics. "),
+      "A lower loss means the model fits the training data better. Whether it answers regulatory questions "
+      + "better is a separate question that only an evaluation run can answer.")));
+    view.appendChild(el("div", {class:"card flush"}, el("div", {class:"hscroll"}, el("table", {},
+      el("thead", {}, el("tr", {}, el("th", {}, "Status"), el("th", {}, "Run"), el("th", {}, "Adapter"),
+        el("th", {class:"num"}, "Steps"), el("th", {}, "Finished"))),
+      el("tbody", {}, runs.length ? runs.map(t => el("tr", {class:"click", onclick:()=>{location.hash=`#/training/${t.experiment_id}`;}},
+        el("td", {}, statusPill(t.status, t.status_reason)),
+        el("td", {}, el("a", {href:`#/training/${t.experiment_id}`}, t.name)),
+        el("td", {class:"mono"}, t.model.adapter_id || "—"),
+        el("td", {class:"num mono"}, (t.metric_summary.total_steps||{}).value ?? "—"),
+        el("td", {}, fmtDate(t.completed_at))))
+        : [el("tr", {}, el("td", {colspan:5}, el("div", {class:"empty"}, "no training run on disk")))])))));
+    return;
+  }
+
+  const payload = await api(`/api/training/runs/${id}`);
+  const exp = payload.experiment, run = payload.run;
+  view.appendChild(el("div", {class:"row", style:"margin-top:18px"}, el("a", {href:"#/training"}, "← All training runs")));
+  view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"), el("div", {class:"body"},
+    el("b", {}, "Training metrics are not evaluation metrics. "),
+    "Everything on this page describes the training process. A training or validation loss is not accuracy: "
+    + "a lower loss can equally mean memorisation, a narrower answer style or an easier dataset. Whether this "
+    + "adapter answers regulatory questions better is a separate question that only an evaluation run on a "
+    + "benchmark can answer.")));
+  view.appendChild(identityCard(exp, {schema:"lora-training/v1"}));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Training metrics"),
+    el("div", {class:"grid g3"}, run.metrics.map(m => metricCard(m)))));
+
+  const loss = [
+    {name:"Training loss", color:"var(--series-1)", points:(run.curves.training_loss||[]).map(p => ({x:p.step, y:p.value}))},
+    {name:"Validation loss", color:"var(--series-2)", points:(run.curves.validation_loss||[]).map(p => ({x:p.step, y:p.value}))},
+  ].filter(s => s.points.length);
+  const markers = run.checkpoints.filter(c => c.is_selected && c.step != null)
+                                 .map(c => ({x:c.step, label:`selected ${c.name}`}));
+  if (loss.length) {
+    view.appendChild(el("div", {class:"card"},
+      el("h3", {}, "Loss during training"),
+      el("div", {class:"legend", style:"margin-bottom:6px"},
+        loss.map(s => el("span", {}, el("span", {class:"swatch", style:`background:${s.color}`}), s.name)),
+        el("span", {}, "one axis: both series are a loss on the same scale")),
+      lineChart(loss, {label:"training and validation loss by optimizer step", markers,
+                       fmtY:(v)=>v.toFixed(2), xName:"step", zeroFloor:true}),
+      el("details", {}, el("summary", {}, "Show as a table"),
+        el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Step"), el("th", {class:"num"}, "Training loss"),
+          el("th", {class:"num"}, "Validation loss"))),
+          el("tbody", {}, (() => {
+            const steps = [...new Set([...(run.curves.training_loss||[]), ...(run.curves.validation_loss||[])].map(p=>p.step))].sort((a,b)=>a-b);
+            const tl = Object.fromEntries((run.curves.training_loss||[]).map(p=>[p.step,p.value]));
+            const vl = Object.fromEntries((run.curves.validation_loss||[]).map(p=>[p.step,p.value]));
+            return steps.map(s => el("tr", {}, el("td", {class:"mono"}, s),
+              el("td", {class:"num mono"}, fmtNumber(tl[s])), el("td", {class:"num mono"}, fmtNumber(vl[s]))));
+          })())))));
+  }
+  if ((run.curves.learning_rate||[]).length) {
+    view.appendChild(el("div", {class:"card"},
+      el("h3", {}, "Learning rate"),
+      el("div", {class:"sub", style:"margin-bottom:6px"},
+        "A separate chart on purpose: the learning rate is not a loss and does not belong on the same axis."),
+      lineChart([{name:"Learning rate", color:"var(--series-3)",
+                  points:run.curves.learning_rate.map(p => ({x:p.step, y:p.value}))}],
+                {label:"learning rate by step", fmtY:(v)=>v.toExponential(1), xName:"step"})));
+  }
+
+  view.appendChild(el("div", {class:"card flush"},
+    el("div", {style:"padding:16px 16px 0"}, el("h3", {}, "Checkpoints")),
+    el("div", {class:"hscroll"}, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Checkpoint"), el("th", {class:"num"}, "Step"),
+      el("th", {class:"num"}, "Training loss"), el("th", {class:"num"}, "Validation loss"),
+      el("th", {class:"num"}, "Size"), el("th", {}, "Selected"))),
+      el("tbody", {}, run.checkpoints.length ? run.checkpoints.map(c => el("tr", {},
+        el("td", {class:"mono"}, c.name), el("td", {class:"num mono"}, c.step ?? "—"),
+        el("td", {class:"num mono"}, fmtNumber(c.training_loss)),
+        el("td", {class:"num mono"}, fmtNumber(c.validation_loss)),
+        el("td", {class:"num mono"}, c.size_bytes ? (c.size_bytes/1048576).toFixed(1) + " MB" : "—"),
+        el("td", {}, c.is_selected ? el("span", {class:"pill ok"}, "selected") : "")))
+        : [el("tr", {}, el("td", {colspan:6}, el("div", {class:"empty"}, "no checkpoint was written")))])))));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Data it was trained on"),
+    el("dl", {class:"kv"}, Object.entries(run.dataset).filter(([,v]) => v && (typeof v !== "object" || Object.keys(v).length))
+      .map(([k,v]) => [el("dt", {}, k.replace(/_/g," ")),
+                       el("dd", {class:"mono"}, typeof v === "object" ? JSON.stringify(v) : String(v))]).flat())));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "LoRA and hyper-parameters"),
+    el("div", {class:"grid g2"},
+      el("pre", {class:"mono", style:"white-space:pre-wrap;font-size:11.5px"}, JSON.stringify(run.lora, null, 2)),
+      el("pre", {class:"mono", style:"white-space:pre-wrap;font-size:11.5px"}, JSON.stringify(run.hyperparameters, null, 2)))));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Machine it ran on"),
+    el("pre", {class:"mono", style:"white-space:pre-wrap;font-size:11.5px"}, JSON.stringify(run.resources, null, 2))));
+};
+
+/* ============================================================ DIAGNOSTICS */
+V.review = async () => {
+  const view = $("#view"); view.innerHTML = "";
+  view.appendChild(subnav("diagnostics", "review"));
+  const r = await api("/api/benchmark-review/status");
+  if (!r.available) {
+    view.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"),
+      el("div", {class:"body"}, "No acceptance-benchmark review is available: ", r.reason)));
+    return;
+  }
+
+  const gateOpen = r.gate && r.gate.open;
+  view.appendChild(el("div", {class:`banner ${gateOpen ? "info" : "stop"}`},
+    el("b", {}, gateOpen ? "i" : "✕"),
+    el("div", {class:"body"},
+      el("b", {}, gateOpen ? "Scoring and training are unlocked. " : "Scoring and training are BLOCKED. "),
+      gateOpen ? `The key is locked at version ${r.gate.key_version_sha256.slice(0,12)}, signed by ${r.gate.reviewer}.`
+               : r.gate.reason,
+      el("div", {class:"sub", style:"margin-top:6px"},
+        "The gate is enforced in the execution path, not here: scripts/train_model.py and "
+        + "scripts/prepare_stage6_dataset.py refuse to run and exit non-zero."))));
+
+  view.appendChild(el("div", {class:"hero"},
+    el("div", {class:"eyebrow"}, "Acceptance benchmark key review"),
+    el("h2", {}, r.benchmark.label),
+    el("div", {class:"ident mono"}, r.benchmark.benchmark_key),
+    el("div", {class:"facts"},
+      fact("Questions", r.summary.questions),
+      fact("Open", r.summary.open_rows, "still need a decision"),
+      fact("Decisions recorded", r.summary.decisions_recorded),
+      fact("Signed off", r.summary.signed_off ? "yes" : "no"),
+      fact("Verification run", r.summary.verification_run_id))));
+
+  view.appendChild(el("div", {class:"section-head"}, el("h3", {}, "Review state"),
+    el("p", {class:"why"}, "REQUIRES_SME is not VERIFIED. A row becomes verified only when a person "
+      + "accepted or corrected it, recorded the substantive and completeness judgments, and signed "
+      + "the review off.")));
+  view.appendChild(el("div", {class:"tiles"},
+    Object.entries(r.summary.by_state).map(([state, n]) => el("div", {class:"tile"},
+      el("div", {class:"k"}, state),
+      el("div", {class:"v"}, n),
+      el("div", {class:"f"}, state === "VERIFIED" ? "signed off" : "outstanding")))));
+
+  const buckets = [
+    ["Contradicted by automation", r.summary.contradicted_by_automation, "the draft key disagrees with the sources"],
+    ["ISO conflicts", r.summary.iso_conflicts, "the controlled ISO 13485:2016 copy must settle these"],
+    ["Absence claims", r.summary.absence_claims, "\"no such requirement/limit/guidance/subpart\" needs an explicit decision"],
+  ];
+  for (const [title, ids, why] of buckets) {
+    view.appendChild(el("div", {class:"card"},
+      el("h3", {}, `${title} (${ids.length})`),
+      el("div", {class:"sub", style:"margin-bottom:8px"}, why),
+      ids.length ? el("div", {class:"mono", style:"font-size:12px;overflow-wrap:anywhere"}, ids.join(" · "))
+                 : el("div", {class:"empty"}, "none")));
+  }
+
+  view.appendChild(el("div", {class:"card flush"},
+    el("div", {style:"padding:16px 16px 0"}, el("h3", {}, "Per-question queue"),
+      el("div", {class:"sub"}, "Run `python scripts/review_benchmark_key.py packet <ID>` for the full evidence packet.")),
+    el("div", {class:"scroll"}, el("table", {},
+      el("thead", {}, el("tr", {}, el("th", {}, "Id"), el("th", {}, "State"), el("th", {}, "Type"),
+        el("th", {}, "Referred because"))),
+      el("tbody", {}, r.queue.map(q => el("tr", {},
+        el("td", {class:"mono"}, q.question_id),
+        el("td", {}, el("span", {class:`pill ${q.state === "VERIFIED" ? "ok" : q.state === "REQUIRES_SME" ? "warn" : "mut"}`}, q.state)),
+        el("td", {class:"sub"}, q.question_type),
+        el("td", {class:"sub"}, (q.referral_reasons || []).slice(0,1).join("") || "—"))))))));
+};
+
+V.diagnostics = async () => {
+  const view = $("#view"); view.innerHTML = "";
+  view.appendChild(subnav("diagnostics", "diagnostics"));
+  const d = await api("/api/system/diagnostics");
+  const health = await api("/api/system/health");
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, "What this process does"),
+    el("dl", {class:"kv"},
+      el("dt", {}, "Loads a model"), el("dd", {}, health.loads_model ? "yes" : "no"),
+      el("dt", {}, "Connects to the database"), el("dd", {}, health.connects_to_database ? "yes" : "no"),
+      el("dt", {}, "Writes"), el("dd", {class:"mono"}, health.writes.join(", ")),
+      el("dt", {}, "Project root"), el("dd", {class:"mono"}, health.root),
+      el("dt", {}, "Last scan"), el("dd", {}, fmtDate(d.scanned_at), ` · ${d.scan_seconds}s · ${d.scanned_candidates} candidates`))));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "Where it looked"),
+    el("div", {class:"hscroll"}, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Root"), el("th", {}, "Pattern"), el("th", {}, "What"), el("th", {}, "Exists"))),
+      el("tbody", {}, d.roots.map(r => el("tr", {}, el("td", {class:"mono"}, r.path), el("td", {class:"mono"}, r.pattern),
+        el("td", {}, r.label), el("td", {}, r.exists ? "yes" : "no"))))))));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "What it found"),
+    el("div", {class:"grid g3"},
+      Object.entries(d.by_status).map(([k,v]) => el("div", {class:"metric"},
+        el("div", {class:"name"}, k), el("div", {class:"val"}, v),
+        el("div", {class:"src"}, (STATUS_STYLE[k]||[])[1] || ""))))));
+
+  view.appendChild(el("div", {class:"card"}, el("h3", {}, "By artifact schema"),
+    barChart(Object.entries(d.by_schema).map(([k,v]) => ({label:k, value:v, display:String(v)})))));
+
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, `Artifacts no adapter understands (${d.unsupported.length})`),
+    d.unsupported.length ? el("table", {}, el("tbody", {}, d.unsupported.map(u => el("tr", {},
+      el("td", {class:"mono"}, u.path), el("td", {class:"sub"}, u.reason)))))
+      : el("div", {class:"empty"}, "every discovered artifact was claimed by an adapter")));
+
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, `Artifacts that failed to load (${d.errors.length})`),
+    d.errors.length ? el("table", {}, el("tbody", {}, d.errors.map(u => el("tr", {},
+      el("td", {class:"mono"}, u.path), el("td", {}, u.adapter + " / " + u.stage), el("td", {class:"err"}, u.error)))))
+      : el("div", {class:"empty"}, "none")));
+
+  view.appendChild(el("div", {class:"card"},
+    el("h3", {}, `Things the artifacts do not record (${d.problems.length} runs)`),
+    el("div", {class:"sub", style:"margin-bottom:10px"},
+      "These are gaps and quirks in the existing artifacts, reported rather than patched over."),
+    el("div", {}, d.problems.map(p => el("details", {},
+      el("summary", {}, `${p.name} — ${p.problems.length}`),
+      el("ul", {}, p.problems.map(x => el("li", {style:"margin:5px 0;font-size:13px"}, x))))))));
+};
+
+/* ----------------------------------------------------------------- router */
+function parseHash() {
+  const raw = (location.hash || "#/analysis").slice(1);
+  const [path, qs] = raw.split("?");
+  const parts = path.split("/").filter(Boolean);
+  const query = Object.fromEntries(new URLSearchParams(qs || ""));
+  return { route: parts[0] || "analysis", args: parts.slice(1).map(decodeURIComponent), query };
+}
+
+function activeTab(route, args) {
+  if (route === "experiment") return currentEvaluationIds().includes(args[0]) ? "analysis" : "experiments";
+  const tab = PARENT[route] || route;
+  return TABS.some(([r]) => r === tab) ? tab : "analysis";
+}
+
+async function render() {
+  const { route, args, query } = parseHash();
+  const tab = activeTab(route, args);
+  for (const a of $("#nav").children) {
+    const on = a.dataset.route === tab;
+    a.className = on ? "on" : "";
+    a.setAttribute("aria-current", on ? "page" : "false");
+  }
+  const view = $("#view");
+  view.innerHTML = "";
+  view.appendChild(el("div", {class:"loading"}, "Loading…"));
+  try {
+    if (route === "experiment") await V.experiment(args[0], query);
+    else if (route === "question") await V.question(args[0], args[1]);
+    else if (route === "training") await V.training(args[0]);
+    else if (route === "questions") await V.questions(args[0], query);
+    else if (route === "compare") await V.compare(query);
+    else if (V[route]) await V[route]();
+    else await V.analysis();
+  } catch (err) {
+    view.innerHTML = "";
+    view.appendChild(el("div", {class:"banner stop"}, el("b", {}, "✕"),
+      el("div", {class:"body"}, el("b", {}, "This view could not be built. "), String(err.message || err))));
+  }
+}
+
+function buildNav() {
+  $("#nav").append(...TABS.map(([route, label]) =>
+    el("a", {href:`#/${route}`, "data-route":route}, label)));
+}
+
+async function boot() {
+  buildNav();
+  $("#theme").addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+  });
+  $("#refresh").addEventListener("click", async () => {
+    const button = $("#refresh"); button.disabled = true; button.textContent = "rescanning…";
+    try { await api("/api/refresh", {method:"POST"}); S.cache = {}; await load(); await render(); }
+    catch (err) { alert(err.message); }
+    finally { button.disabled = false; button.textContent = "Rescan artifacts"; }
+  });
+  window.addEventListener("hashchange", render);
+  await load();
+  await render();
+  // notice when a new run appears on disk without forcing a rescan
+  setInterval(async () => {
+    try {
+      const health = await api("/api/system/health");
+      if (S.fingerprint && health.fingerprint !== S.fingerprint) {
+        $("#alerts").innerHTML = "";
+        $("#alerts").appendChild(el("div", {class:"banner info"}, el("b", {}, "i"),
+          el("div", {class:"body"}, "New or changed artifacts are on disk. ",
+            el("a", {href:"#", onclick:(e)=>{e.preventDefault(); $("#refresh").click();}}, "Rescan to include them."))));
+      }
+      S.fingerprint = health.fingerprint;
+    } catch { /* the server went away; the page stays usable */ }
+  }, 20000);
+}
+
+async function load() {
+  const [defs, experiments, current, health] = await Promise.all([
+    api("/api/metrics/definitions"), api("/api/experiments"),
+    api("/api/system/current-model"), api("/api/system/health"),
+  ]);
+  S.defs = defs; S.defsByKey = defs.by_key;
+  S.experiments = experiments.experiments;
+  S.current = current;
+  S.fingerprint = health.fingerprint;
+  $("#alerts").innerHTML = "";
+  $("#head-sub").textContent =
+    `${S.experiments.length} experiments · scanned ${fmtDate(health.scanned_at)} · read-only: no model, no database`;
+}
+
+boot();
+</script>
+</body>
+</html>

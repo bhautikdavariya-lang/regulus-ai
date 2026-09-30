@@ -1,0 +1,37 @@
+{
+  "run_id": "smoke_gen",
+  "dataset": "C:/Users/PC-1/Prachi Patel/Regulus AI/data/evaluation/datasets/stage5_v1.jsonl",
+  "dataset_sha256": "7cf80fda674fd1abeceef5bf137776c06f21231cdd6b189832830c7ffbbe76fd",
+  "questions": [
+    "S5-001",
+    "S5-042"
+  ],
+  "config": {
+    "retriever": "LexicalRetriever",
+    "top_k": 8,
+    "corpus": "all",
+    "min_trigram_similarity": 0.4,
+    "no_context_behavior": "refuse",
+    "exclude_contextual_only": true,
+    "incomplete_behavior": "partial",
+    "generation_budget": {
+      "base_tokens": 64,
+      "per_unit_tokens": 64,
+      "range_bonus_tokens": 32,
+      "general_tokens": 160,
+      "max_units": 6,
+      "hard_max_tokens": 448
+    },
+    "validation_behavior": "annotate",
+    "context": {
+      "max_results": 8,
+      "max_chars_per_result": 1200,
+      "max_total_chars": 3600,
+      "hard_max_results": 24,
+      "hard_max_total_chars": 9000,
+      "required_max_chars_per_result": 4000
+    }
+  },
+  "skip_generation": false,
+  "controlled": true
+}

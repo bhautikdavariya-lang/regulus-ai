@@ -1,0 +1,57 @@
+# Stage 11: training-data preparation from the existing (read-only) database.
+# Every value can be overridden on the command line of scripts/prepare_training_data.py.
+
+dataset:
+  version: v1
+  target_examples: 10000
+  seed: 42
+  train_ratio: 0.8
+  validation_ratio: 0.1
+  test_ratio: 0.1
+  output_dir: data/training/datasets
+
+sources:
+  use_ecfr: true
+  use_guidance: true
+  # Guidance documents held out by the ingestion pipeline (retrievable = false)
+  # are never used.
+  retrievable_guidance_only: true
+
+quality:
+  allow_unverified_sources: false
+  # eCFR paragraph text used as an answer must fall inside these bounds
+  # (characters, after whitespace normalisation).
+  min_paragraph_chars: 60
+  max_paragraph_chars: 1500
+  # total characters of context per example (matches the RAG context budget)
+  max_context_chars: 3600
+  # near-duplicate threshold (word-set Jaccard) for questions+answers within one source group
+  near_duplicate_jaccard: 0.9
+  # benchmark exclusion thresholds (word-set Jaccard against evaluation questions):
+  # questions that name the same CFR/docket identifiers as a benchmark question are
+  # excluded at the stricter second value; different identifiers never match.
+  benchmark_jaccard: 0.75
+  benchmark_jaccard_same_identifiers: 0.5
+  # per-source diversity caps
+  max_paragraph_examples_per_section: 2
+  max_definition_examples_per_section: 12
+  max_guidance_examples_per_document: 3
+
+# Share of target_examples per category. Categories the database cannot fill
+# are reduced, never padded.
+categories:
+  direct_cfr: 0.25
+  section_paragraph: 0.20
+  definition: 0.10
+  relationship: 0.10
+  fda_guidance: 0.15
+  cfr_vs_guidance: 0.05
+  citation: 0.05
+  multi_context: 0.05
+  abstention: 0.05
+
+benchmarks:
+  # evaluation assets whose questions must not appear in the training data
+  - data/evaluation/datasets/baseline_v1.jsonl
+  - data/evaluation/datasets/retrieval_v1.jsonl
+  - data/evaluation/datasets/retrieval_v2.jsonl

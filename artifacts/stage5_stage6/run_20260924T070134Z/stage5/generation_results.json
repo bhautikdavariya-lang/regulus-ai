@@ -1,0 +1,650 @@
+{
+  "modes": {
+    "full_pipeline_raw": {
+      "questions": 51,
+      "generated": 46,
+      "not_generated": [
+        [
+          "S5-040",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-043",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-044",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-045",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-072",
+          "no_context"
+        ]
+      ],
+      "valid_raw": 0.8478,
+      "valid_final": 0.9565,
+      "valid_only_after_repair": 0.1087,
+      "truncated": 0,
+      "mean_generated_tokens": 108.3,
+      "by_category": {
+        "single": {
+          "generated": 8,
+          "valid_raw": 8,
+          "valid_final": 8,
+          "complete_raw": 8
+        },
+        "parent": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "section": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "multi": {
+          "generated": 5,
+          "valid_raw": 5,
+          "valid_final": 5,
+          "complete_raw": 5
+        },
+        "range": {
+          "generated": 4,
+          "valid_raw": 4,
+          "valid_final": 4,
+          "complete_raw": 4
+        },
+        "missing": {
+          "generated": 2,
+          "valid_raw": 0,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "adversarial": {
+          "generated": 5,
+          "valid_raw": 2,
+          "valid_final": 5,
+          "complete_raw": 4
+        },
+        "general": {
+          "generated": 4,
+          "valid_raw": 4,
+          "valid_final": 4,
+          "complete_raw": 4
+        },
+        "guidance": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "domain_boundary": {
+          "generated": 5,
+          "valid_raw": 5,
+          "valid_final": 5,
+          "complete_raw": 5
+        },
+        "citation": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 2
+        },
+        "long": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 2
+        },
+        "refusal": {
+          "generated": 3,
+          "valid_raw": 3,
+          "valid_final": 3,
+          "complete_raw": 3
+        }
+      },
+      "status_raw": {
+        "valid": 39,
+        "unsupported": 2,
+        "incomplete": 3,
+        "evidence_mismatched": 2
+      },
+      "status_final": {
+        "valid": 44,
+        "evidence_mismatched": 1,
+        "degenerate": 1
+      }
+    },
+    "controlled_evidence_raw": {
+      "questions": 51,
+      "generated": 36,
+      "not_generated": [
+        [
+          "S5-040",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-043",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-044",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-045",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-060",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-061",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-062",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-063",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-070",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-071",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-072",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-080",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-081",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-082",
+          "no exact evidence to control for"
+        ],
+        [
+          "S5-083",
+          "no exact evidence to control for"
+        ]
+      ],
+      "valid_raw": 0.8611,
+      "valid_final": 0.9444,
+      "valid_only_after_repair": 0.0833,
+      "truncated": 0,
+      "mean_generated_tokens": 111.5,
+      "by_category": {
+        "single": {
+          "generated": 8,
+          "valid_raw": 8,
+          "valid_final": 8,
+          "complete_raw": 8
+        },
+        "parent": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "section": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "multi": {
+          "generated": 5,
+          "valid_raw": 5,
+          "valid_final": 5,
+          "complete_raw": 5
+        },
+        "range": {
+          "generated": 4,
+          "valid_raw": 4,
+          "valid_final": 4,
+          "complete_raw": 4
+        },
+        "missing": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "adversarial": {
+          "generated": 5,
+          "valid_raw": 3,
+          "valid_final": 5,
+          "complete_raw": 5
+        },
+        "domain_boundary": {
+          "generated": 1,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 1
+        },
+        "citation": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 2
+        },
+        "long": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 2
+        },
+        "refusal": {
+          "generated": 3,
+          "valid_raw": 3,
+          "valid_final": 3,
+          "complete_raw": 3
+        }
+      },
+      "status_raw": {
+        "valid": 31,
+        "unsupported": 1,
+        "incomplete": 2,
+        "evidence_mismatched": 2
+      },
+      "status_final": {
+        "valid": 34,
+        "evidence_mismatched": 1,
+        "incomplete": 1
+      }
+    }
+  },
+  "note": "valid_final counts answers that passed only after deterministic repair; it is not model quality",
+  "localisation": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-002",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-003",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-004",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-005",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-006",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-007",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-008",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-010",
+      "category": "parent",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-011",
+      "category": "parent",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-012",
+      "category": "section",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-013",
+      "category": "section",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-020",
+      "category": "multi",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-021",
+      "category": "multi",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-022",
+      "category": "multi",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-023",
+      "category": "multi",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    },
+    {
+      "id": "S5-024",
+      "category": "multi",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    },
+    {
+      "id": "S5-030",
+      "category": "range",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-031",
+      "category": "range",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-032",
+      "category": "range",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-033",
+      "category": "range",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    },
+    {
+      "id": "S5-041",
+      "category": "missing",
+      "full_valid_raw": false,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-042",
+      "category": "missing",
+      "full_valid_raw": false,
+      "controlled_valid_raw": false,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    },
+    {
+      "id": "S5-050",
+      "category": "adversarial",
+      "full_valid_raw": false,
+      "controlled_valid_raw": false,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-051",
+      "category": "adversarial",
+      "full_valid_raw": false,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-052",
+      "category": "adversarial",
+      "full_valid_raw": false,
+      "controlled_valid_raw": false,
+      "full_complete_raw": false,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-053",
+      "category": "adversarial",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-054",
+      "category": "adversarial",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-084",
+      "category": "domain_boundary",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-090",
+      "category": "citation",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-091",
+      "category": "citation",
+      "full_valid_raw": false,
+      "controlled_valid_raw": false,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    },
+    {
+      "id": "S5-100",
+      "category": "long",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-101",
+      "category": "long",
+      "full_valid_raw": false,
+      "controlled_valid_raw": false,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    },
+    {
+      "id": "S5-110",
+      "category": "refusal",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-111",
+      "category": "refusal",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-112",
+      "category": "refusal",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    }
+  ],
+  "fails_with_context_but_not_with_exact_only": [
+    "S5-041",
+    "S5-051"
+  ],
+  "fails_even_with_exact_only": [
+    "S5-042",
+    "S5-050",
+    "S5-052",
+    "S5-091",
+    "S5-101"
+  ]
+}

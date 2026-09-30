@@ -1,0 +1,153 @@
+====================================================================================================
+[single] What does 21 CFR 820.10(b)(2) require?
+requirements: ['21 CFR 820.10(b)(2)']
+coverage: COMPLETE  satisfied=['r1'] missing=[]
+  r1 21 CFR 820.10(b)(2)      exact            exact=['e1'] structural=['e2'] discovery=0
+selected: 4 (protected 1, optional 3); dropped 0; context chars 3600 (blocks 3600); overflow=False; retrieval 50 ms, coverage+selection+render 0.3 ms
+  SOURCE 1  exact       protected req=['r1'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 2  structural  optional  req=['r1'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 3  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Quality Management System Information for Cert
+  SOURCE 4  supporting  optional  req=[] chars=763   trunc=True FDA Guidance: Quality Management System Information for Cert
+====================================================================================================
+[two provisions] What do 21 CFR 820.10(b)(2) and 820.10(b)(4) require?
+requirements: ['21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(4)']
+coverage: COMPLETE  satisfied=['r1', 'r2'] missing=[]
+  r1 21 CFR 820.10(b)(2)      exact            exact=['e1'] structural=['e3'] discovery=0
+  r2 21 CFR 820.10(b)(4)      exact            exact=['e2'] structural=['e3'] discovery=0
+selected: 5 (protected 2, optional 3); dropped 0; context chars 3600 (blocks 3600); overflow=False; retrieval 8 ms, coverage+selection+render 0.3 ms
+  SOURCE 1  exact       protected req=['r1'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 2  exact       protected req=['r2'] chars=139   trunc=False 21 CFR 820.10(b)(4)
+  SOURCE 3  structural  optional  req=['r1', 'r2'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 4  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Quality Management System Information for Cert
+  SOURCE 5  supporting  optional  req=[] chars=419   trunc=True FDA Guidance: Quality Management System Information for Cert
+====================================================================================================
+[range] What do 21 CFR 820.10(b)(1) through 820.10(b)(4) require?
+requirements: ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)']
+coverage: COMPLETE  satisfied=['r1', 'r2', 'r3', 'r4'] missing=[]
+  r1 21 CFR 820.10(b)(1)      exact            exact=['e1'] structural=['e5'] discovery=0
+  r2 21 CFR 820.10(b)(2)      exact            exact=['e2'] structural=['e5'] discovery=0
+  r3 21 CFR 820.10(b)(3)      exact            exact=['e3'] structural=['e5'] discovery=0
+  r4 21 CFR 820.10(b)(4)      exact            exact=['e4'] structural=['e5'] discovery=0
+selected: 6 (protected 4, optional 2); dropped 0; context chars 3581 (blocks 3581); overflow=False; retrieval 10 ms, coverage+selection+render 0.2 ms
+  SOURCE 1  exact       protected req=['r1'] chars=216   trunc=False 21 CFR 820.10(b)(1)
+  SOURCE 2  exact       protected req=['r2'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 3  exact       protected req=['r3'] chars=180   trunc=False 21 CFR 820.10(b)(3)
+  SOURCE 4  exact       protected req=['r4'] chars=139   trunc=False 21 CFR 820.10(b)(4)
+  SOURCE 5  structural  optional  req=['r1', 'r2', 'r3', 'r4'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 6  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Quality Management System Information for Cert
+====================================================================================================
+[partly missing] What do 21 CFR 820.10(b)(2) and 820.999 require?
+requirements: ['21 CFR 820.10(b)(2)', '21 CFR 820.999']
+coverage: INCOMPLETE  satisfied=['r1'] missing=['21 CFR 820.999']
+  r1 21 CFR 820.10(b)(2)      exact            exact=['e1'] structural=['e2', 'e3'] discovery=0
+  r2 21 CFR 820.999           discovery_only   exact=[] structural=[] discovery=8
+selected: 7 (protected 1, optional 6); dropped 3; context chars 3914 (blocks 3600); overflow=False; retrieval 76 ms, coverage+selection+render 0.3 ms
+  SOURCE 1  exact       protected req=['r1'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 2  structural  optional  req=['r1', 'r2'] chars=68    trunc=False 21 CFR 820.10
+  SOURCE 3  structural  optional  req=['r1'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 4  discovery   optional  req=['r2'] chars=92    trunc=False 21 CFR 520.999(a)
+  SOURCE 5  discovery   optional  req=['r2'] chars=1199  trunc=True 21 CFR 820.1(a)
+  SOURCE 6  discovery   optional  req=['r2'] chars=241   trunc=False 21 CFR 820.3
+  SOURCE 7  discovery   optional  req=['r2'] chars=288   trunc=True 21 CFR 820.7
+  dropped  discovery   filtered           optional 21 CFR 820.35
+  dropped  discovery   filtered           optional 21 CFR 820.45
+  dropped  discovery   filtered           optional 21 CFR 172.820
+  NOTE: No live record for 21 CFR 820.999 in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded by filters); remain
+  NOTE: Requested provision(s) not among the sources: 21 CFR 820.999. Do not describe their contents; state that they were not found.
+====================================================================================================
+[missing child] What does 21 CFR 820.10(b)(5) require?
+requirements: ['21 CFR 820.10(b)(5)']
+coverage: INCOMPLETE  satisfied=[] missing=['21 CFR 820.10(b)(5)']
+  r1 21 CFR 820.10(b)(5)      structural_only  exact=[] structural=['e1'] discovery=0
+selected: 2 (protected 0, optional 2); dropped 0; context chars 2353 (blocks 2029); overflow=False; retrieval 6 ms, coverage+selection+render 0.2 ms
+  SOURCE 1  structural  optional  req=['r1'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 2  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Quality Management System Information for Cert
+  NOTE: No live record for 21 CFR 820.10(b)(5) in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded by filters); r
+  NOTE: Requested provision(s) not among the sources: 21 CFR 820.10(b)(5). Do not describe their contents; state that they were not found.
+====================================================================================================
+[parent] What does 21 CFR 820.10(b) require?
+requirements: ['21 CFR 820.10(b)']
+coverage: COMPLETE  satisfied=['r1'] missing=[]
+  r1 21 CFR 820.10(b)         exact            exact=['e1'] structural=['e2', 'e3', 'e4', 'e5', 'e6'] discovery=0
+selected: 7 (protected 1, optional 6); dropped 3; context chars 3600 (blocks 3600); overflow=False; retrieval 6 ms, coverage+selection+render 0.3 ms
+  SOURCE 1  exact       protected req=['r1'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 2  structural  optional  req=['r1'] chars=68    trunc=False 21 CFR 820.10
+  SOURCE 3  structural  optional  req=['r1'] chars=216   trunc=False 21 CFR 820.10(b)(1)
+  SOURCE 4  structural  optional  req=['r1'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 5  structural  optional  req=['r1'] chars=180   trunc=False 21 CFR 820.10(b)(3)
+  SOURCE 6  structural  optional  req=['r1'] chars=139   trunc=False 21 CFR 820.10(b)(4)
+  SOURCE 7  supporting  optional  req=[] chars=952   trunc=True FDA Guidance: Quality Management System Information for Cert
+  dropped  supporting  soft_budget        optional FDA Guidance: Quality Management System Information for Cert
+  dropped  supporting  soft_budget        optional FDA Guidance: Quality Management System Information for Cert
+  dropped  supporting  soft_budget        optional FDA Guidance: Cybersecurity in Medical Devices: Quality Mana
+====================================================================================================
+[range incl. missing] What do 820.10(b)(1) through 820.10(b)(5) require?
+requirements: ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)', '21 CFR 820.10(b)(5)']
+coverage: INCOMPLETE  satisfied=['r1', 'r2', 'r3', 'r4'] missing=['21 CFR 820.10(b)(5)']
+  r1 21 CFR 820.10(b)(1)      exact            exact=['e1'] structural=['e5'] discovery=0
+  r2 21 CFR 820.10(b)(2)      exact            exact=['e2'] structural=['e5'] discovery=0
+  r3 21 CFR 820.10(b)(3)      exact            exact=['e3'] structural=['e5'] discovery=0
+  r4 21 CFR 820.10(b)(4)      exact            exact=['e4'] structural=['e5'] discovery=0
+  r5 21 CFR 820.10(b)(5)      structural_only  exact=[] structural=['e5'] discovery=0
+selected: 5 (protected 4, optional 1); dropped 0; context chars 2299 (blocks 1975); overflow=False; retrieval 7 ms, coverage+selection+render 0.2 ms
+  SOURCE 1  exact       protected req=['r1'] chars=216   trunc=False 21 CFR 820.10(b)(1)
+  SOURCE 2  exact       protected req=['r2'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 3  exact       protected req=['r3'] chars=180   trunc=False 21 CFR 820.10(b)(3)
+  SOURCE 4  exact       protected req=['r4'] chars=139   trunc=False 21 CFR 820.10(b)(4)
+  SOURCE 5  structural  optional  req=['r1', 'r2', 'r3', 'r4', 'r5'] chars=223   trunc=False 21 CFR 820.10(b)
+  NOTE: No live record for 21 CFR 820.10(b)(5) in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded by filters); r
+  NOTE: Requested provision(s) not among the sources: 21 CFR 820.10(b)(5). Do not describe their contents; state that they were not found.
+====================================================================================================
+[section] What does 21 CFR 820.10 say?
+requirements: ['21 CFR 820.10']
+coverage: COMPLETE  satisfied=['r1'] missing=[]
+  r1 21 CFR 820.10            exact            exact=['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9', 'e10', 'e11', 'e12'] structural=[] discovery=0
+selected: 12 (protected 12, optional 0); dropped 0; context chars 4828 (blocks 4828); overflow=False; retrieval 3 ms, coverage+selection+render 0.2 ms
+  SOURCE 1  exact       protected req=['r1'] chars=68    trunc=False 21 CFR 820.10
+  SOURCE 2  exact       protected req=['r1'] chars=203   trunc=False 21 CFR 820.10(a)
+  SOURCE 3  exact       protected req=['r1'] chars=223   trunc=False 21 CFR 820.10(b)
+  SOURCE 4  exact       protected req=['r1'] chars=216   trunc=False 21 CFR 820.10(b)(1)
+  SOURCE 5  exact       protected req=['r1'] chars=197   trunc=False 21 CFR 820.10(b)(2)
+  SOURCE 6  exact       protected req=['r1'] chars=180   trunc=False 21 CFR 820.10(b)(3)
+  SOURCE 7  exact       protected req=['r1'] chars=139   trunc=False 21 CFR 820.10(b)(4)
+  SOURCE 8  exact       protected req=['r1'] chars=323   trunc=False 21 CFR 820.10(c)
+  SOURCE 9  exact       protected req=['r1'] chars=49    trunc=False 21 CFR 820.10(c)(1)
+  SOURCE 10 exact       protected req=['r1'] chars=46    trunc=False 21 CFR 820.10(c)(2)
+  SOURCE 11 exact       protected req=['r1'] chars=457   trunc=False 21 CFR 820.10(d)
+  SOURCE 12 exact       protected req=['r1'] chars=287   trunc=False 21 CFR 820.10(e)
+====================================================================================================
+[docket] Summarise the guidance in docket FDA-2016-D-2565
+requirements: []
+coverage: NO_EXPLICIT_REQUIREMENTS  satisfied=[] missing=[]
+selected: 3 (protected 3, optional 0); dropped 0; context chars 5800 (blocks 5800); overflow=False; retrieval 144 ms, coverage+selection+render 0.2 ms
+  SOURCE 1  exact       protected req=[] chars=1497  trunc=False FDA Guidance: 510(k) Third Party Review Program and Third Pa
+  SOURCE 2  exact       protected req=[] chars=1448  trunc=False FDA Guidance: 510(k) Third Party Review Program and Third Pa
+  SOURCE 3  exact       protected req=[] chars=1480  trunc=False FDA Guidance: 510(k) Third Party Review Program and Third Pa
+====================================================================================================
+[general] When must a manufacturer notify FDA about a complaint?
+requirements: []
+coverage: NO_EXPLICIT_REQUIREMENTS  satisfied=[] missing=[]
+selected: 3 (protected 0, optional 3); dropped 5; context chars 3441 (blocks 3441); overflow=False; retrieval 152 ms, coverage+selection+render 0.4 ms
+  SOURCE 1  supporting  optional  req=[] chars=180   trunc=False 21 CFR 820.10(b)(3)
+  SOURCE 2  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Medical Gases — Current Good Manufacturing Pra
+  SOURCE 3  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Current Good Manufacturing Practice for Phase 
+  dropped  supporting  soft_budget        optional FDA Guidance: Medical Device Reporting for Manufacturers : G
+  dropped  supporting  soft_budget        optional FDA Guidance: Cooperative Manufacturing Arrangements for Lic
+  dropped  supporting  soft_budget        optional FDA Guidance: BLA for Minimally Manipulated, Unrelated Allog
+  dropped  supporting  soft_budget        optional FDA Guidance: Collection of Platelets by Automated Methods: 
+  dropped  supporting  soft_budget        optional FDA Guidance: Deviation Reporting for Human Cells, Tissues, 
+====================================================================================================
+[general] What is a CAPA?
+requirements: []
+coverage: NO_EXPLICIT_REQUIREMENTS  satisfied=[] missing=[]
+selected: 3 (protected 0, optional 3); dropped 13; context chars 3600 (blocks 3600); overflow=False; retrieval 86 ms, coverage+selection+render 0.6 ms
+  SOURCE 1  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Responding to FDA Form 483 Observations at the
+  SOURCE 2  supporting  optional  req=[] chars=1200  trunc=True FDA Guidance: Post-Warning Letter Meetings Under GDUFA (fina
+  SOURCE 3  supporting  optional  req=[] chars=333   trunc=True FDA Guidance: Post-Warning Letter Meetings Under GDUFA (fina
+  dropped  supporting  soft_budget        optional FDA Guidance: Post-Warning Letter Meetings Under GDUFA (fina
+  dropped  supporting  soft_budget        optional FDA Guidance: Current Good Manufacturing Practice Requiremen
+  dropped  supporting  soft_budget        optional FDA Guidance: Data Integrity for In Vivo Bioavailability and
+  dropped  supporting  soft_budget        optional FDA Guidance: Current Good Manufacturing Practice Requiremen
+  dropped  supporting  soft_budget        optional FDA Guidance: Responding to FDA Form 483 Observations at the
+  dropped  supporting  soft_budget        optional FDA Guidance: Current Good Manufacturing Practice Requiremen
+  ... 7 more dropped

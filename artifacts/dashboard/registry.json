@@ -1,0 +1,497 @@
+{
+  "version": 1,
+  "current_model": null,
+  "names": {},
+  "pinned": [],
+  "thresholds": {},
+  "updated_at": "2026-09-30T04:17:49+00:00",
+  "last_scan": {
+    "at": "2026-09-30T04:17:49+00:00",
+    "seconds": 0.315,
+    "experiments": 48,
+    "unsupported": 11,
+    "errors": 0
+  },
+  "experiments": [
+    {
+      "experiment_id": "3447b14f7628763d",
+      "name": "stage3_B_structured",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/run_20260929T064523Z/stage5",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-29T06:54:05+00:00"
+    },
+    {
+      "experiment_id": "f6adbe1527488fe2",
+      "name": "stage3_A_baseline",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/run_20260929T062550Z/stage5",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-29T06:37:12+00:00"
+    },
+    {
+      "experiment_id": "a2964444578f1e79",
+      "name": "run_20260924T070134Z",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/run_20260924T070134Z/stage5",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-24T08:16:36+00:00"
+    },
+    {
+      "experiment_id": "5ae22d109dd7c1b6",
+      "name": "run_20260924T051025Z",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/run_20260924T051025Z/stage5",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-24T06:26:54+00:00"
+    },
+    {
+      "experiment_id": "c34933b7753af3c1",
+      "name": "stage5_baseline_20260923",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/stage5_baseline_20260923/stage5",
+      "status": "HISTORICAL",
+      "model_key": "unrecorded",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-23T06:16:07+00:00"
+    },
+    {
+      "experiment_id": "21dd2b604d3f8114",
+      "name": "smoke_gen",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/smoke_gen/stage5",
+      "status": "INCOMPLETE",
+      "model_key": "unrecorded",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-23T04:56:08+00:00"
+    },
+    {
+      "experiment_id": "7c83eb0ca8fb8ae8",
+      "name": "smoke_evidence",
+      "kind": "evaluation",
+      "path": "artifacts/stage5_stage6/smoke_evidence/stage5",
+      "status": "INCOMPLETE",
+      "model_key": "unrecorded",
+      "benchmark_key": "stage5_v1@7cf80fda674f",
+      "completed_at": "2026-09-22T12:06:43+00:00"
+    },
+    {
+      "experiment_id": "06d8dc539db48693",
+      "name": "rag-stage13-lora-gated",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage13_v1/rag-stage13-lora-gated_20260921_184054_e8346d78.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+stage13_v1@checkpoint-90",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T13:10:54+00:00"
+    },
+    {
+      "experiment_id": "2906d5c81900d372",
+      "name": "rag-stage13-lora",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage13_v1/rag-stage13-lora_20260921_181537_79d78740.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+stage13_v1@checkpoint-90",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T12:45:37+00:00"
+    },
+    {
+      "experiment_id": "cd663895b014633f",
+      "name": "rag-stage13-stage12adapter-gated",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage12_v1/rag-stage13-stage12adapter-gated_20260921_114522_fa6f4002.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+stage12_v1@checkpoint-40",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T06:15:22+00:00"
+    },
+    {
+      "experiment_id": "e4d99956f496f93b",
+      "name": "rag-stage13-base-gated",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage12_v1/rag-stage13-base-gated_20260921_113032_26342658.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T06:00:32+00:00"
+    },
+    {
+      "experiment_id": "dda5c007bb555536",
+      "name": "gatecheck",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage12_v1/gatecheck_20260921_112930_1705be7c.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T05:59:30+00:00"
+    },
+    {
+      "experiment_id": "c0df2ce366b85f57",
+      "name": "rag-stage12-lora",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage12_v1/rag-stage12-lora_20260921_100152_e39cf523.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+stage12_v1@checkpoint-40",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T04:31:52+00:00"
+    },
+    {
+      "experiment_id": "5775219f79793394",
+      "name": "rag-stage12-base",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/stage12_v1/rag-stage12-base_20260921_095944_7193db36.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-21T04:29:44+00:00"
+    },
+    {
+      "experiment_id": "dede2356c6703ccc",
+      "name": "retrieval-v2-hybridC-expanded-floor0.75-idle",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridC-expanded-floor0_75-idle_20260916_120545_a90a0726.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:35:45+00:00"
+    },
+    {
+      "experiment_id": "976612530cf48611",
+      "name": "retrieval-v2-lexical-idle",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-lexical-idle_20260916_120439_01cf7367.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:34:39+00:00"
+    },
+    {
+      "experiment_id": "cd9b88bece105215",
+      "name": "rag-stage10-hybrid-expanded",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/rag-stage10-hybrid-expanded_20260916_114615_82e834e6.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-16T06:16:15+00:00"
+    },
+    {
+      "experiment_id": "7bbf6ccc6ad269ad",
+      "name": "retrieval-v2-lexical",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-lexical_20260916_114605_669c3b25.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:16:05+00:00"
+    },
+    {
+      "experiment_id": "1b4469334aa66bb7",
+      "name": "retrieval-v2-hybridB-expanded-floor0.70",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridB-expanded-floor0_70_20260916_114435_c375ccd6.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:14:35+00:00"
+    },
+    {
+      "experiment_id": "db6d014f1dbfef88",
+      "name": "retrieval-v2-hybridC-expanded-floor0.75",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridC-expanded-floor0_75_20260916_114331_0729f068.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:13:31+00:00"
+    },
+    {
+      "experiment_id": "0bb935b5dafc9147",
+      "name": "retrieval-v2-hybridC-expanded-floor0.70",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridC-expanded-floor0_70_20260916_114228_a2b33195.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:12:28+00:00"
+    },
+    {
+      "experiment_id": "85f9b53fdc68c929",
+      "name": "retrieval-v2-hybridC-expanded",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridC-expanded_20260916_114121_506ec93c.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:11:21+00:00"
+    },
+    {
+      "experiment_id": "34f7e6a17c7ae318",
+      "name": "retrieval-v2-hybridB-expanded",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridB-expanded_20260916_114006_470e26c5.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:10:06+00:00"
+    },
+    {
+      "experiment_id": "fde0ad2a52b93ceb",
+      "name": "retrieval-v2-semantic-expanded",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-semantic-expanded_20260916_113952_c8a7868a.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T06:09:52+00:00"
+    },
+    {
+      "experiment_id": "b62f5bbbfa6c1480",
+      "name": "retrieval-v2-hybridC-stage8corpus",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-hybridC-stage8corpus_20260916_105737_c8fd2e22.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T05:27:37+00:00"
+    },
+    {
+      "experiment_id": "5125adf464a19c7e",
+      "name": "retrieval-v2-semantic-stage8corpus",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-semantic-stage8corpus_20260916_105712_4b5860e4.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T05:27:12+00:00"
+    },
+    {
+      "experiment_id": "b9ea2af096f4f943",
+      "name": "retrieval-v2-lexical",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-lexical_20260916_105537_8cc1d5ce.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-16T05:25:37+00:00"
+    },
+    {
+      "experiment_id": "2b02a019f56dcca4",
+      "name": "rag-stage9-hybrid",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/rag-stage9-hybrid_20260916_101820_fc0f6443.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-16T04:48:20+00:00"
+    },
+    {
+      "experiment_id": "29626451e65390be",
+      "name": "rag-stage9-hybrid",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/rag-stage9-hybrid_20260916_095929_0af8a8c5.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-16T04:29:29+00:00"
+    },
+    {
+      "experiment_id": "2a14efeb214cd10c",
+      "name": "retrieval-hybrid-fallback-floor0.75",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-fallback-floor0_75_20260916_095601_0bccc336.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:26:01+00:00"
+    },
+    {
+      "experiment_id": "a391070ba0b5293a",
+      "name": "retrieval-hybrid-authority-floor0.75",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-authority-floor0_75_20260916_095537_a2d67626.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:25:37+00:00"
+    },
+    {
+      "experiment_id": "13e3afa13ef158bd",
+      "name": "retrieval-hybrid-fallback-floor0.70",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-fallback-floor0_70_20260916_095513_b52b03e7.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:25:13+00:00"
+    },
+    {
+      "experiment_id": "62225bec8e86997a",
+      "name": "retrieval-hybrid-authority-floor0.70",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-authority-floor0_70_20260916_095449_0271cb1f.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:24:49+00:00"
+    },
+    {
+      "experiment_id": "aef3c86dd61e75d0",
+      "name": "retrieval-hybrid-authority",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-authority_20260916_095422_de58b233.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:24:22+00:00"
+    },
+    {
+      "experiment_id": "b96d1200c2032d4f",
+      "name": "retrieval-hybrid-rrf",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-rrf_20260916_095358_81d4d2af.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:23:58+00:00"
+    },
+    {
+      "experiment_id": "cd2478bd81718566",
+      "name": "retrieval-hybrid-fallback",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-hybrid-fallback_20260916_095330_ee95ecce.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:23:30+00:00"
+    },
+    {
+      "experiment_id": "b109bb28ec653446",
+      "name": "retrieval-semantic-stage8",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-semantic-stage8_20260916_093936_1472cdd0.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-16T04:09:36+00:00"
+    },
+    {
+      "experiment_id": "de5e6c6d4a537d3a",
+      "name": "rag-stage7",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/rag-stage7_20260915_180408_cd883ba7.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-15T12:34:08+00:00"
+    },
+    {
+      "experiment_id": "8ca60c1a94034118",
+      "name": "retrieval-lexical-stage7",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-lexical-stage7_20260915_180242_d45608c2.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-15T12:32:42+00:00"
+    },
+    {
+      "experiment_id": "c4535239d8582888",
+      "name": "retrieval-lexical-stage7",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-lexical-stage7_20260915_175956_1ee2d325.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-15T12:29:56+00:00"
+    },
+    {
+      "experiment_id": "612ece164f54b8f2",
+      "name": "retrieval-lexical-stage5",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-lexical-stage5_20260915_175942_dd2ea6c0.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-15T12:29:42+00:00"
+    },
+    {
+      "experiment_id": "b6a95e19225e107c",
+      "name": "rag",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/rag_20260915_173341_7eff862c.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-15T12:03:41+00:00"
+    },
+    {
+      "experiment_id": "9b739a36c8e9e3b3",
+      "name": "retrieval-lexical",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-lexical_20260915_171908_20d70992.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v1@63f0a0863cfb",
+      "completed_at": "2026-09-15T11:49:08+00:00"
+    },
+    {
+      "experiment_id": "f91945b1f5116215",
+      "name": "baseline",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/baseline_20260915_160124_74c12f73.json",
+      "status": "HISTORICAL",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "baseline_v1@28363d860c50",
+      "completed_at": "2026-09-15T10:31:24+00:00"
+    },
+    {
+      "experiment_id": "6ac89de4eb6e4036",
+      "name": "smoke_tmp",
+      "kind": "training",
+      "path": "models/qwen3-0.6b-lora/smoke_tmp",
+      "status": "COMPLETE",
+      "model_key": "Qwen/Qwen3-0.6B@default+smoke_tmp@checkpoint-1",
+      "benchmark_key": null,
+      "completed_at": "2026-09-21T13:33:18+00:00"
+    },
+    {
+      "experiment_id": "1fd45972bc34913c",
+      "name": "stage13_v1",
+      "kind": "training",
+      "path": "models/qwen3-0.6b-lora/stage13_v1",
+      "status": "COMPLETE",
+      "model_key": "Qwen/Qwen3-0.6B@default+stage13_v1@checkpoint-90",
+      "benchmark_key": null,
+      "completed_at": "2026-09-21T12:44:05+00:00"
+    },
+    {
+      "experiment_id": "fe6af3b519aa4f64",
+      "name": "stage12_v1",
+      "kind": "training",
+      "path": "models/qwen3-0.6b-lora/stage12_v1",
+      "status": "COMPLETE",
+      "model_key": "Qwen/Qwen3-0.6B@default+stage12_v1@checkpoint-40",
+      "benchmark_key": null,
+      "completed_at": "2026-09-16T12:50:07+00:00"
+    },
+    {
+      "experiment_id": "2fd2c4391a114116",
+      "name": "stage14_v1",
+      "kind": "training",
+      "path": "models/qwen3-0.6b-lora/stage14_v1",
+      "status": "FAILED",
+      "model_key": "unrecorded",
+      "benchmark_key": null,
+      "completed_at": null
+    }
+  ]
+}

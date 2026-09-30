@@ -1,0 +1,53 @@
+# SME review pages
+
+- [S5-001](S5-001.md) requirement · flags: none · What does 21 CFR 820.10(b)(2) require?
+- [S5-002](S5-002.md) requirement · flags: none · What does 820.10(b)(3) require?
+- [S5-003](S5-003.md) explanation · flags: none · Explain 21 CFR 830.310(b)(1).
+- [S5-004](S5-004.md) requirement · flags: none · What must be included under 21 CFR 50.25(a)(1)?
+- [S5-005](S5-005.md) requirement · flags: none · What does § 211.132(a) say?
+- [S5-006](S5-006.md) requirement · flags: none · Under 21 CFR 11.10(a), what must controls ensure?
+- [S5-007](S5-007.md) requirement · flags: citation_mismatch · What does 21 CFR 806.10(a) require?
+- [S5-008](S5-008.md) requirement · flags: none · What does 21 CFR 56.109(a) require of an IRB?
+- [S5-010](S5-010.md) requirement · flags: citation_mismatch, missing_condition · What does 21 CFR 820.10(b) require manufacturers to comply with?
+- [S5-011](S5-011.md) requirement · flags: none · What does 21 CFR 101.3(b) require?
+- [S5-012](S5-012.md) requirement · flags: none · What does 21 CFR 820.10 say?
+- [S5-013](S5-013.md) explanation · flags: none · Summarize 21 CFR 803.13.
+- [S5-020](S5-020.md) requirement · flags: none · What do 21 CFR 820.10(b)(2) and 820.10(b)(4) require?
+- [S5-021](S5-021.md) requirement · flags: none · What are the requirements of 21 CFR § 820.10(b)(1), (b)(2), and (b)(3)?
+- [S5-022](S5-022.md) comparison · flags: citation_mismatch, missing_condition · Compare the requirements of § 820.10(b)(2) and § 820.10(b)(4).
+- [S5-023](S5-023.md) requirement · flags: none · What do 21 CFR 101.54(a)(1) and 101.54(a)(3) require?
+- [S5-024](S5-024.md) requirement · flags: none · What do 21 CFR 807.81(a) and 21 CFR 820.10(b)(3) require?
+- [S5-030](S5-030.md) requirement · flags: none · What do 21 CFR 820.10(b)(1) through (b)(4) require?
+- [S5-031](S5-031.md) requirement · flags: none · List the requirements in 820.10(b)(1)-(b)(4).
+- [S5-032](S5-032.md) requirement · flags: none · What do 21 CFR 101.3(b)(1) through (b)(3) require?
+- [S5-033](S5-033.md) explanation · flags: citation_mismatch · Explain 21 CFR 101.54(a)(1) through (a)(3).
+- [S5-040](S5-040.md) requirement · flags: none · What does 21 CFR 820.10(b)(5) require?
+- [S5-041](S5-041.md) requirement · flags: none · What do 21 CFR 820.10(b)(1) through (b)(5) require?
+- [S5-042](S5-042.md) requirement · flags: missing_condition · What do 21 CFR 820.10(b)(2) and 21 CFR 820.999 require?
+- [S5-043](S5-043.md) requirement · flags: none · What are the specific requirements of 21 CFR 314.999?
+- [S5-044](S5-044.md) requirement · flags: none · What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?
+- [S5-045](S5-045.md) explanation · flags: none · Explain 21 CFR 101.3(b)(9).
+- [S5-050](S5-050.md) requirement · flags: none · Which FDA form number must be used under 21 CFR 820.10(b)(4)?
+- [S5-051](S5-051.md) requirement · flags: possible_hallucination · What penalty amount does 21 CFR 820.10(b)(3) specify for late complaint notification?
+- [S5-052](S5-052.md) requirement · flags: missing_condition · By what date must a manufacturer comply with 21 CFR 820.10(b)(1)?
+- [S5-053](S5-053.md) applicability · flags: missing_citation · Does 21 CFR 820.10(b)(2) require annual traceability audits?
+- [S5-054](S5-054.md) requirement · flags: none · What does 21 CFR 820.10(b)(4) say about unique device identification?
+- [S5-060](S5-060.md) requirement · flags: citation_mismatch · When must a manufacturer notify FDA about a complaint?
+- [S5-061](S5-061.md) requirement · flags: none · What is a unique device identifier required to contain?
+- [S5-062](S5-062.md) requirement · flags: none · What are the tamper-evident packaging requirements for OTC drug products?
+- [S5-063](S5-063.md) requirement · flags: repeated_content · What must an IRB do when reviewing research?
+- [S5-070](S5-070.md) explanation · flags: none · Summarise the guidance in docket FDA-2016-D-2565.
+- [S5-071](S5-071.md) explanation · flags: citation_mismatch · What does FDA guidance FDA-2024-D-2511 recommend?
+- [S5-072](S5-072.md) explanation · flags: none · Summarize the main recommendations of FDA guidance document FDA-2023-D-99999.
+- [S5-080](S5-080.md) definition · flags: scope_mismatch, uncertainty_not_disclosed · What is the capital of France?
+- [S5-081](S5-081.md) explanation · flags: none · Who wrote Hamlet?
+- [S5-082](S5-082.md) definition · flags: none · What is the boiling point of water in Celsius?
+- [S5-083](S5-083.md) out_of_scope · flags: none · What does the EU Medical Device Regulation require for UDI?
+- [S5-084](S5-084.md) requirement · flags: none · What does 21 CFR 820.10(b)(3) require, and what is the population of Paris?
+- [S5-090](S5-090.md) citation_lookup · flags: none · Cite the provision that requires manufacturers to notify FDA of complaints meeting part 80
+- [S5-091](S5-091.md) citation_lookup · flags: citation_mismatch · Which provision of 21 CFR 820.10 refers to part 806?
+- [S5-100](S5-100.md) explanation · flags: none · Explain every requirement in 21 CFR 820.10(b)(1) through (b)(4) in plain English, one by o
+- [S5-101](S5-101.md) explanation · flags: none · Describe 21 CFR 101.3(b)(1), (b)(2) and (b)(3) and 21 CFR 101.54(a)(1) through (a)(3).
+- [S5-110](S5-110.md) requirement · flags: none · What does 21 CFR 820.10(b)(2) require?
+- [S5-111](S5-111.md) explanation · flags: none · Explain §820.10(b)(3).
+- [S5-112](S5-112.md) requirement · flags: none · What obligation does §820.10(b)(3) impose?

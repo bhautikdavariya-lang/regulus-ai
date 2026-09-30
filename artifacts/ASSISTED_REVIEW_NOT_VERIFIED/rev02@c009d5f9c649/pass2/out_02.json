@@ -1,0 +1,286 @@
+[
+ {
+  "question_id": "S-026",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Identify and quarantine", "support": "SUPPORTED", "cite": "111.510", "quote": "You must identify and quarantine returned dietary supplements until quality control personnel conduct a material review and make a disposition decision.", "note": ""},
+   {"element": "QC review", "support": "SUPPORTED", "cite": "111.510", "quote": "until quality control personnel conduct a material review and make a disposition decision", "note": ""},
+   {"element": "destruction or reprocessing conditions", "support": "SUPPORTED", "cite": "111.515; 111.525(a)", "quote": "You must destroy, or otherwise suitably dispose of, any returned dietary supplement unless the outcome of a material review and disposition decision", "note": "Reprocessing conditions: 111.525(a) 'You must ensure that any returned dietary supplements that are reprocessed meet all product specifications' and 111.525(b) QC approval or rejection of release."},
+   {"element": "salvage limits", "support": "SUPPORTED", "cite": "111.520", "quote": "You may salvage a returned dietary supplement only if quality control personnel conduct a material review and make a disposition decision to allow the salvage.", "note": ""},
+   {"element": "investigation of other batches", "support": "SUPPORTED", "cite": "111.530 (supplemental)", "quote": "If the reason for a dietary supplement being returned implicates other batches, you must conduct an investigation of your manufacturing processes and each of those other batches", "note": "The duty is conditional on the return reason implicating other batches; J states it without the condition, which is acceptable as a terse element list. 111.530 is not cited in G."}
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "The 'investigation of other batches' element is stated only in 111.530, which G does not cite. 111.503 (written procedures) and 111.535 (records) are related but no J element depends on them.",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 111.510; 111.515; 111.520; 111.525; 111.530",
+  "rationale": "All five J elements are now stated in text; the investigation element sits only in the uncited 111.530, so the citation should add it.",
+  "evidence_refs": [
+   "eCFR 21 CFR 111.510 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 111.515 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 111.520 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 111.525 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 111.530 (snapshot 2026-09-03)"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "An SME may also want 111.503/111.535 added, though no J element requires them.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "key_elements_issue": "",
+  "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 111.530 text confirms the investigation-of-other-batches requirement; citation should add 111.530."
+ },
+ {
+  "question_id": "S-027",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "QC personnel review", "support": "PARTIALLY_SUPPORTED", "cite": "111.560(b)", "quote": "Quality control personnel must review and approve decisions about whether to investigate a product complaint", "note": "Under 111.560(a) the review and investigation are done by 'a qualified person'; QC personnel review and approve the decisions and the investigation findings/followup. J compresses the two roles."},
+   {"element": "determine whether complaint involves a possible CGMP failure", "support": "SUPPORTED", "cite": "111.560(a)(1)", "quote": "Review all product complaints to determine whether the product complaint involves a possible failure of a dietary supplement to meet any of its specifications", "note": "Text continues 'or any other requirements of this part 111', which J paraphrases as a CGMP failure."},
+   {"element": "investigate", "support": "SUPPORTED", "cite": "111.560(a)(2)", "quote": "Investigate any product complaint that involves a possible failure of a dietary supplement to meet any of its specifications", "note": "111.560(c) extends the review and investigation to all relevant batches and records."},
+   {"element": "record required information", "support": "SUPPORTED", "cite": "111.570(b)(2) (supplemental)", "quote": "A written record of every product complaint that is related to good manufacturing practice,", "note": "Required contents are listed in 111.570(b)(2)(ii)(A)-(F) (product name, batch/lot, date and complainant, nature of complaint, reply, investigation findings and followup). 111.570 is not cited in G."}
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "The records element is stated only in 111.570, which G does not cite.",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 111.553; 111.560; 111.570",
+  "rationale": "Supplemental 111.570 states the complaint-record requirements, so the citation should add it. Review and investigation remain supported by 111.560, with a wording nuance on who performs the review.",
+  "evidence_refs": [
+   "eCFR 21 CFR 111.553 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 111.560 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 111.570 (snapshot 2026-09-03)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Whether 'QC personnel review' is an acceptable summary of the qualified-person/QC split is an SME judgment; if not, the J wording issue cannot be fixed by a citation correction.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "SME to decide whether J's 'QC personnel review' is acceptable given 111.560(a) assigns the initial review to 'a qualified person' and 111.560(b) gives QC the approval role."
+  ],
+  "key_elements_issue": "J says 'QC personnel review'; 111.560(a) assigns review and investigation of complaints to a qualified person, with QC personnel reviewing and approving the decisions and findings (111.560(b)). Minor compression, not a contradiction.",
+  "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 111.570 confirms the complaint-record requirement; citation should add 111.570."
+ },
+ {
+  "question_id": "F-001",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Exemptions for certain facilities/activities", "support": "SUPPORTED", "cite": "117.5(j)", "quote": "Subparts C and G of this part do not apply to facilities that are solely engaged in the storage of raw agricultural commodities (other than fruits and vegetables)", "note": "Most 117.5 exemptions are from subparts C and G only; 117.5(k) exempts certain entities from subpart B. J does not convey this scoping."},
+   {"element": "juice HACCP", "support": "PARTIALLY_SUPPORTED", "cite": "117.5(c)", "quote": "Subparts C and G of this part do not apply with respect to activities that are subject to part 120 of this chapter (Hazard Analysis and Critical Control Point (HACCP) Systems)", "note": "The text names part 120 HACCP Systems but never says 'juice'. Tying part 120 to juice needs text not in the evidence."},
+   {"element": "seafood HACCP", "support": "SUPPORTED", "cite": "117.5(b)", "quote": "Subparts C and G of this part do not apply with respect to activities that are subject to part 123 of this chapter (Fish and Fishery Products)", "note": ""},
+   {"element": "low-risk on-farm activities", "support": "SUPPORTED", "cite": "117.5(g)(3); 117.5(h)(3)", "quote": "Subparts C and G of this part do not apply to on-farm packing or holding of food by a small or very small business", "note": "117.5(h)(3) covers low-risk on-farm manufacturing/processing."},
+   {"element": "qualified facilities", "support": "SUPPORTED", "cite": "117.5(a)", "quote": "Except as provided by subpart E of this part, subparts C and G of this part do not apply to a qualified facility.", "note": ""}
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "The question also asks who is subject to Part 117; J has no applicability element and 117.5 covers only exemptions. Supplemental 117.1 does not plainly answer 'who is subject': 117.1(a) states the criteria determine adulteration, and 117.1(b) makes non-compliance a prohibited act for a facility 'required to comply with' section 418 or subparts C-G, which routes the scope question to the statute (not held). So 117.1 does not settle a correction.",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "117.5 supports the exemption elements except that 'juice' cannot be tied to part 120 from the evidence. The retrieved 117.1 text does not squarely state who is subject to Part 117, so the scope half of the question remains unsettled.",
+  "evidence_refs": [
+   "eCFR 21 CFR 117.5 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.1 (snapshot 2026-09-03)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "An SME may consider 117.5 sufficient for a 'principal exemptions' question and treat 'who is subject' as implicit, in which case only the juice/part 120 link remains.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Confirm from 21 CFR part 120 text that it is the juice HACCP regulation (general-knowledge lead, not evidence).",
+   "SME to decide whether 117.1 (and/or the 117.3 'Facility' definition) should be added to G for the 'who is subject' half of the question; 117.1(b) routes scope to FD&C Act section 418, which is not held.",
+   "Pipeline note: paragraph labels in the 117.5 extraction are malformed and out of order."
+  ],
+  "key_elements_issue": "J omits any element answering 'who is subject to Part 117'; it lists exemptions only.",
+  "pass2_change": "No change. Supplemental 117.1 does not state who is subject to Part 117 in terms that settle the scope half of the question, and the part 120 = juice link is still not in the evidence."
+ },
+ {
+  "question_id": "F-002",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Definition tied to average annual sales thresholds", "support": "SUPPORTED", "cite": "117.3 (Qualified facility; Very small business)", "quote": "The average annual monetary value of all food sold during the 3-year period preceding the applicable calendar year was less than $500,000, adjusted for inflation.", "note": "The definition also covers a very small business (averaging less than $1,000,000 in sales per 117.3). The extracted 117.3 text has displaced paragraph labels."},
+   {"element": "modified requirements in lieu of a full food safety plan", "support": "SUPPORTED", "cite": "117.5(a); 117.201(a) (supplemental)", "quote": "Attestations to be submitted. A qualified facility must submit the following attestations to FDA:", "note": "117.5(a) exempts qualified facilities from subparts C and G and routes them to 117.201. Supplemental 117.126 confirms the food safety plan is a subpart C requirement. 117.201 sets attestations, status determination, consumer notification and records."}
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "G cites 'Subpart D' without a section. Supplemental text confirms 117.201 is the qualified-facility section, while 117.206 applies to facilities solely engaged in storage of unexposed packaged food and does not answer this question.",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 117.3; 117.5(a); 117.201",
+  "rationale": "Both J elements are supported. The retrieved text confirms 117.201 holds the qualified-facility modified requirements and 117.206 is unrelated, so the subpart reference should be pinned to 117.201.",
+  "evidence_refs": [
+   "eCFR 21 CFR 117.3 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.5(a) (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.201 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.206 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.126 (snapshot 2026-09-03)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "An SME may accept 'Subpart D' as an adequate range citation, in which case ACCEPTED would be appropriate.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "key_elements_issue": "",
+  "pass2_change": "Decision unchanged (CORRECTED). Supplemental 117.201 text now confirms the correction (previously heading-only), and 117.206 text confirms it is not about qualified facilities."
+ },
+ {
+  "question_id": "F-012",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Validation", "support": "SUPPORTED", "cite": "117.155(a)(1); 117.160(a)", "quote": "Validation in accordance with § 117.160.", "note": ""},
+   {"element": "verification of monitoring", "support": "SUPPORTED", "cite": "117.155(a)(2)", "quote": "Verification that monitoring is being conducted as required by § 117.140", "note": ""},
+   {"element": "verification of corrective actions", "support": "SUPPORTED", "cite": "117.155(a)(3)", "quote": "Verification that appropriate decisions about corrective actions are being made as required by § 117.140", "note": ""},
+   {"element": "calibration", "support": "SUPPORTED", "cite": "117.165(a)(1) (supplemental)", "quote": "Calibration of process monitoring instruments and verification instruments (or checking them for accuracy);", "note": "Not cited in G."},
+   {"element": "product testing", "support": "SUPPORTED", "cite": "117.165(a)(2) (supplemental)", "quote": "Product testing, for a pathogen (or appropriate indicator organism) or other hazard;", "note": "Not cited in G."},
+   {"element": "environmental monitoring", "support": "SUPPORTED", "cite": "117.165(a)(3) (supplemental)", "quote": "Environmental monitoring, for an environmental pathogen or for an appropriate indicator organism,", "note": "Applies if contamination of a ready-to-eat food with an environmental pathogen is a hazard requiring a preventive control. Not cited in G."},
+   {"element": "reanalysis", "support": "SUPPORTED", "cite": "117.155(a)(5)", "quote": "Reanalysis in accordance with § 117.170.", "note": ""},
+   {"element": "records review", "support": "SUPPORTED", "cite": "117.165(a)(4) (supplemental)", "quote": "Records of monitoring and corrective action records within 7 working days after the records are created", "note": "Not cited in G."}
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "Cited 117.155(a)(4) routes to 117.165, and supplemental 117.165(a)(1)-(4) holds the calibration, product testing, environmental monitoring and records review elements. G omits 117.165.",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 117.155; 117.160; 117.165",
+  "rationale": "The four elements missing from 117.155/117.160 are stated verbatim in 117.165, which the cited 117.155(a)(4) expressly routes to. The citation should add 117.165.",
+  "evidence_refs": [
+   "eCFR 21 CFR 117.155 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.160 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.165 (snapshot 2026-09-03)"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "An SME might also want 117.170 (reanalysis) listed, though 117.155(a)(5) already names reanalysis as a verification activity.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "key_elements_issue": "",
+  "pass2_change": "Decision unchanged (CORRECTED); confidence MEDIUM -> HIGH. Supplemental 117.165 text confirms calibration, product testing, environmental monitoring and records review."
+ },
+ {
+  "question_id": "F-018",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Circumstances", "support": "SUPPORTED", "cite": "117.251(a)", "quote": "In the event of an active investigation of a foodborne illness outbreak that is directly linked to the qualified facility; or", "note": "Second circumstance in 117.251(a)(2)."},
+   {"element": "order to withdraw", "support": "SUPPORTED", "cite": "117.254(c) (supplemental); 117.257", "quote": "FDA must issue an order to withdraw the exemption to the owner, operator, or agent in charge of the facility.", "note": "117.254 covers approval and issuance; 117.257 lists order contents."},
+   {"element": "compliance and appeal procedures", "support": "SUPPORTED", "cite": "117.260(a) (supplemental); 117.264", "quote": "Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 117.264.", "note": "117.260(a)(1) sets compliance within 120 calendar days; 117.264 sets the appeal procedure."},
+   {"element": "reinstatement", "support": "SUPPORTED", "cite": "117.287(b) (supplemental)", "quote": "You may ask FDA to reinstate an exemption that has been withdrawn under the procedures of this subpart as follows:", "note": ""}
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "The 'et seq. (Subpart E)' range reaches 117.251-117.287; every J element is in a section within that range.",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Supplemental text of 117.254, 117.257, 117.260, 117.264 and 117.287 states the order, compliance/appeal and reinstatement elements, all within the cited Subpart E range.",
+  "evidence_refs": [
+   "eCFR 21 CFR 117.251 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.254 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.257 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.260 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.264 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.287 (snapshot 2026-09-03)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "The citation is a range ('et seq.'); an SME may prefer the specific sections enumerated. 117.264(a)(1) measures the 15 days from 'receipt of confirmation of the order' while 117.260(a)(2) says 'receipt of the order'; this is in the regulation, not J.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "key_elements_issue": "",
+  "pass2_change": "NEEDS_RESEARCH -> ACCEPTED. Supplemental 117.254, 117.257, 117.260, 117.264 and 117.287 text supports the three elements that were heading-only; all sit within the cited Subpart E range."
+ },
+ {
+  "question_id": "F-019",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Required record elements", "support": "SUPPORTED", "cite": "117.305(f)(1)", "quote": "Information adequate to identify the plant or facility (e.g., the name, and when necessary, the location of the plant or facility);", "note": "117.305(a)-(f) list the general record requirements."},
+   {"element": "signature/date", "support": "SUPPORTED", "cite": "117.305(f)(2)-(3); 117.310", "quote": "The signature or initials of the person performing the activity; and", "note": "Date in 117.305(f)(2); the food safety plan must also be signed and dated under 117.310."},
+   {"element": "retention of at least two years", "support": "SUPPORTED", "cite": "117.315(a)(1)", "quote": "All records required by this part must be retained at the plant or facility for at least 2 years after the date they were prepared.", "note": "117.315(a)(2) and (b) set different periods for qualified-facility and equipment/process adequacy records."},
+   {"element": "offsite storage rules", "support": "SUPPORTED", "cite": "117.315(c)", "quote": "Except for the food safety plan, offsite storage of records is permitted if such records can be retrieved and provided onsite within 24 hours of request for official review.", "note": ""},
+   {"element": "availability to FDA", "support": "SUPPORTED", "cite": "117.320 (supplemental)", "quote": "All records required by this part must be made promptly available to a duly authorized representative of the Secretary of Health and Human Services for official review", "note": "Stated only in 117.320, which G does not cite."}
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "The general availability-for-official-review element is stated only in 117.320, which G omits.",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 117.305; 117.310; 117.315; 117.320",
+  "rationale": "Supplemental 117.320 states the general duty to make records available to FDA, which the cited sections only touch indirectly; the citation should add 117.320.",
+  "evidence_refs": [
+   "eCFR 21 CFR 117.305 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.310 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.315 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.320 (snapshot 2026-09-03)"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "An SME might read 117.315(c)/(d) as sufficient for availability, in which case ACCEPTED as is would be defensible.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "key_elements_issue": "",
+  "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 117.320 text states the availability-to-FDA element; citation should add 117.320."
+ },
+ {
+  "question_id": "F-021",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Onsite audit", "support": "SUPPORTED", "cite": "117.410(b)(1)", "quote": "Onsite audits;", "note": ""},
+   {"element": "sampling and testing", "support": "SUPPORTED", "cite": "117.410(b)(2)", "quote": "Sampling and testing of the raw material or other ingredient;", "note": ""},
+   {"element": "review of supplier food safety records", "support": "SUPPORTED", "cite": "117.410(b)(3)", "quote": "Review of the supplier's relevant food safety records; and", "note": "117.410(b)(4) also allows other appropriate activities; J does not list them."},
+   {"element": "selection based on hazard severity and supplier performance", "support": "PARTIALLY_SUPPORTED", "cite": "117.410(d)(1); 117.425 (supplemental)", "quote": "in approving suppliers and determining the appropriate supplier verification activities and the frequency with which they are conducted, the following must be considered:", "note": "Factors: hazard analysis including 'the nature of the hazard', the entity applying controls, supplier performance, and other factors such as storage and transport. The text does not say 'severity' and the list is broader than J. Supplemental 117.425 only routes back to 117.410(d)."},
+   {"element": "annual onsite audit for SAHCODHA hazards", "support": "SUPPORTED", "cite": "117.430(b)(1)", "quote": "The audit must be conducted before using the raw material or other ingredient from the supplier and at least annually thereafter.", "note": "Applies when the supplier controls the hazard; exceptions in 117.430(b)(2) and (c)-(e)."}
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "Supplemental 117.425 reads: 'Appropriate supplier verification activities (including the frequency of conducting the activity) must be determined in accordance with the requirements of § 117.410(d).' It adds nothing beyond the cited 117.410(d), so its omission from G is a harmless cross-reference.",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "The completeness concern is resolved because 117.425 routes back to the cited 117.410(d). The selection element is still only partially stated: J's 'hazard severity and supplier performance' narrows and rewords the 117.410(d)(1) factors.",
+  "evidence_refs": [
+   "eCFR 21 CFR 117.410 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.420 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.425 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 117.430 (snapshot 2026-09-03)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "If the SME accepts 'hazard severity' as a fair paraphrase of the 117.410(d)(1)(i) hazard-analysis factor, the row can be ACCEPTED as is (optionally adding 117.425).",
+  "evidence_conflict": false,
+  "needs_research_items": [
+    "SME to decide whether 'selection based on hazard severity and supplier performance' is a faithful summary of 117.410(d)(1), which lists hazard analysis (nature of the hazard), the entity applying controls, supplier performance and other factors such as storage and transportation.",
+    "Optional: whether to add 117.425 to G for form; it only cross-refers to 117.410(d)."
+  ],
+  "key_elements_issue": "J's selection element names 'hazard severity and supplier performance'; 117.410(d)(1) requires considering the hazard analysis (including the nature of the hazard), the entity applying controls, supplier performance, and other factors. 'Severity' is not the regulation's word and the factor list is narrower. Not a contradiction.",
+  "pass2_change": "Decision unchanged (NEEDS_RESEARCH); completeness partially_correct -> correct and citation_correctness partially_correct -> correct. Supplemental 117.425 only routes back to the cited 117.410(d). The remaining open item is the paraphrase of the selection factors."
+ },
+ {
+  "question_id": "L-003",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {"element": "Descending order of predominance by weight", "support": "SUPPORTED", "cite": "101.4(a)(1)", "quote": "shall be listed by common or usual name in descending order of predominance by weight", "note": "Exception in 101.4(a)(2) for ingredients at 2 percent or less."},
+   {"element": "common or usual names", "support": "SUPPORTED", "cite": "101.4(a)(1)", "quote": "shall be listed by common or usual name in descending order of predominance by weight", "note": "101.4(b) also requires a specific, not collective, name."},
+   {"element": "sub-ingredient declarations", "support": "SUPPORTED", "cite": "101.4(b)(2)(i)", "quote": "By declaring the established common or usual name of the ingredient followed by a parenthetical listing of all ingredients contained therein in descending order of predominance", "note": "Alternative in 101.4(b)(2)(ii)."},
+   {"element": "color declarations", "support": "SUPPORTED", "cite": "101.22(k) (supplemental)", "quote": "The label of a food to which any coloring has been added shall declare the coloring in the statement of ingredients", "note": "101.4(b)(1) routes coloring declarations to 101.22; (k)(1)-(3) set certified/non-certified color rules."},
+   {"element": "spice declarations", "support": "SUPPORTED", "cite": "101.22(h)(1) (supplemental)", "quote": "Spice, natural flavor, and artificial flavor may be declared as", "note": "101.4(b)(1) routes spice declarations to 101.22."}
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "Cited 101.4(b)(1) expressly sends spice, flavoring, coloring and preservative declarations to 101.22, and the color and spice rules are stated only there. G omits 101.22.",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 101.4; 101.22",
+  "rationale": "Supplemental 101.22(h) and (k) state the spice and color declaration rules that 101.4(b)(1) routes to; the citation should add 101.22.",
+  "evidence_refs": [
+   "eCFR 21 CFR 101.4 (snapshot 2026-09-03)",
+   "eCFR 21 CFR 101.22 (snapshot 2026-09-03)"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "key_elements_issue": "",
+  "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 101.22(h)(1) and (k) text states the spice and color declaration rules; citation should add 101.22."
+ }
+]

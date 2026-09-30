@@ -1,0 +1,162 @@
+[
+  {
+    "question_id": "Z-001",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Certificate required to operate", "support": "SUPPORTED", "cite": "900.11(a)", "quote": "a certificate issued by FDA is required for lawful operation of all mammography facilities subject to the provisions of this subpart", "note": ""},
+      {"element": "accreditation by an FDA-approved body", "support": "SUPPORTED", "cite": "900.11(a)", "quote": "to be accredited by an approved accreditation body or other entity as designated by FDA", "note": "Text also allows 'other entity as designated by FDA'; see also 900.11(b)(1)(i)."},
+      {"element": "personnel qualification requirements", "support": "SUPPORTED", "cite": "900.12(a)", "quote": "The following requirements apply to all personnel involved in any aspect of mammography, including the production, processing, and interpretation of mammograms", "note": "900.12(a)(1)-(3) set qualifications for interpreting physicians, radiologic technologists and medical physicists."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "900.11(a) makes meeting the quality standards in all of 900.12 a condition of obtaining a certificate, but G cites only 900.12(a). The whole of 900.12 is in the evidence file (whole_section).",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 900.11; 21 CFR 900.12",
+    "rationale": "All three J elements are stated in the cited text. However, the certification provision itself sends the reader to all of 900.12 as a condition of certification, so citing only 900.12(a) looks narrower than the question requires.",
+    "evidence_refs": ["eCFR 21 CFR 900.11(a) (snapshot 2026-09-03)", "eCFR 21 CFR 900.11(b)(1) (snapshot 2026-09-03)", "eCFR 21 CFR 900.12(a) (snapshot 2026-09-03)"],
+    "confidence": "MEDIUM",
+    "uncertainty": "An SME may decide that J deliberately limits the answer to personnel, in which case 900.12(a) alone is enough and the row could be ACCEPTED as drafted.",
+    "evidence_conflict": false,
+    "needs_research_items": ["Decide whether the question's scope ('accreditation and certification requirements') should reach all 900.12 quality standards or only personnel, as J suggests.", "Lead only (not in evidence): requirements on accreditation bodies may sit in 21 CFR 900 Subpart A (e.g. 900.3/900.4). Check whether the question needs them."]
+  },
+  {
+    "question_id": "Z-002",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Equipment QA", "support": "SUPPORTED", "cite": "900.12(d)(1)(iii); 900.12(e)", "quote": "Each facility shall have the services of a medical physicist available to survey mammography equipment and oversee the equipment-related quality assurance practices of the facility.", "note": "900.12(e) is headed 'Quality assurance - equipment'; 900.12(b) sets equipment requirements."},
+      {"element": "quality control testing", "support": "SUPPORTED", "cite": "900.12(e)(5)", "quote": "Facilities with screen-film systems shall perform the following quality control tests at least annually:", "note": "Daily, weekly, quarterly and semiannual tests are in (e)(1)-(4), other modalities in (e)(6)."},
+      {"element": "medical records and mammography reports", "support": "SUPPORTED", "cite": "900.12(c)(1); 900.12(c)(4)(i)", "quote": "Each facility shall prepare a written report of the results of each mammographic examination performed under its certificate.", "note": "Recordkeeping is at (c)(4)."},
+      {"element": "medical outcomes audit", "support": "SUPPORTED", "cite": "900.12(f)", "quote": "Each facility shall establish and maintain a mammography medical outcomes audit program to followup positive mammographic assessments", "note": ""},
+      {"element": "consumer complaint mechanism", "support": "SUPPORTED", "cite": "900.12(h)(1)", "quote": "Establish a written and documented system for collecting and resolving consumer complaints", "note": ""}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "",
+    "proposed_decision": "ACCEPTED",
+    "proposed_corrected_citation": null,
+    "rationale": "All five J elements are stated in separate paragraphs of 900.12, the cited section, and the question is about this section.",
+    "evidence_refs": ["eCFR 21 CFR 900.12(c) (snapshot 2026-09-03)", "eCFR 21 CFR 900.12(d) (snapshot 2026-09-03)", "eCFR 21 CFR 900.12(e) (snapshot 2026-09-03)", "eCFR 21 CFR 900.12(f) (snapshot 2026-09-03)", "eCFR 21 CFR 900.12(h) (snapshot 2026-09-03)"],
+    "confidence": "HIGH",
+    "uncertainty": "The citation is at section level; an SME may prefer paragraph pinpoints (c)-(f), (h).",
+    "evidence_conflict": false,
+    "needs_research_items": []
+  },
+  {
+    "question_id": "Z-003",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "undetermined",
+    "elements": [
+      {"element": "Product reports", "support": "SUPPORTED", "cite": "1002.10 (introductory text)", "quote": "shall submit a product report to the Food and Drug Administration, Center for Devices and Radiological Health", "note": "Applies to manufacturers of products 'requiring a product report as set forth in table 1 of 1002.1'."},
+      {"element": "abbreviated reports", "support": "SUPPORTED", "cite": "1002.12 (introductory text)", "quote": "shall submit, prior to the introduction of such product, a report distinctly marked", "note": "Applies to products requiring abbreviated reports per table 1 of 1002.1."},
+      {"element": "records of testing to be maintained", "support": "SUPPORTED", "cite": "1002.30(a)(2)", "quote": "Records of the results of tests for electronic product radiation safety", "note": ""},
+      {"element": "records of distribution to be maintained", "support": "SUPPORTED", "cite": "1002.30(b)(1)", "quote": "distribution of products in a form which will enable the tracing of specific products or production lots to distributors", "note": ""},
+      {"element": "records of quality control to be maintained", "support": "SUPPORTED", "cite": "1002.30(a)(1)", "quote": "Description of the quality control procedures with respect to electronic product radiation safety.", "note": "The text requires a description of QC procedures, which is close to but not literally 'records of quality control'."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "All three cited sections limit their requirements to products listed in table 1 of 1002.1, which G does not cite and which is not in the evidence. The question's premise ('electronic product subject to a performance standard') may not match that table-1 scope.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "Every J element is stated in the cited text. But each cited provision makes its applicability depend on 1002.1 table 1, which is neither cited nor in the evidence, so neither the question's scope nor the key's completeness can be confirmed.",
+    "evidence_refs": ["eCFR 21 CFR 1002.10 (snapshot 2026-09-03)", "eCFR 21 CFR 1002.12 (snapshot 2026-09-03)", "eCFR 21 CFR 1002.30(a)-(b) (snapshot 2026-09-03)"],
+    "confidence": "MEDIUM",
+    "uncertainty": "If the SME reads the question as asking only for the report and record types, the row could be ACCEPTED as drafted.",
+    "evidence_conflict": false,
+    "needs_research_items": ["Check 21 CFR 1002.1 (table 1) to see whether it should be cited and whether it matches the question's 'subject to a performance standard' premise.", "Lead only (headings, not text): 1002.11 Supplemental reports and 1002.13 Annual reports are in the same subpart. Check whether the question ('maintain and submit') requires them.", "Lead only: 1002.31 Preservation and inspection of records (heading only) may govern how long records are kept."]
+  },
+  {
+    "question_id": "Z-005",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Laser product classification", "support": "SUPPORTED", "cite": "1040.10(c)(1)", "quote": "Each laser product shall be classified in Class I, IIa, II, IIIa, IIIb, or IV in accordance with definitions set forth in paragraphs (b) (5) through (11) of this section.", "note": ""},
+      {"element": "performance requirements", "support": "SUPPORTED", "cite": "1040.10(f)(1)", "quote": "Each laser product shall have a protective housing that prevents human access during operation to laser and collateral radiation that exceed the limits of Class I and table VI", "note": "1040.10(f)(2)-(10) add class-based requirements (e.g. key control and remote interlock for Class IIIb/IV)."},
+      {"element": "labeling", "support": "SUPPORTED", "cite": "1040.10(g)", "quote": "each laser product shall be subject to the applicable labeling requirements of this paragraph.", "note": ""},
+      {"element": "specific-purpose product requirements", "support": "SUPPORTED", "cite": "1040.11(a)-(c)", "quote": "Each demonstration laser product shall comply with all of the applicable requirements of", "note": "1040.11 covers medical, surveying/leveling/alignment and demonstration laser products."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "",
+    "proposed_decision": "ACCEPTED",
+    "proposed_corrected_citation": null,
+    "rationale": "1040.10(a) states that 1040.10 and 1040.11 together apply to laser products, and every J element is stated in them.",
+    "evidence_refs": ["eCFR 21 CFR 1040.10(a),(c),(f),(g) (snapshot 2026-09-03)", "eCFR 21 CFR 1040.11 (snapshot 2026-09-03)"],
+    "confidence": "HIGH",
+    "uncertainty": "The accessible emission limit tables I-VI referenced in 1040.10(d) are not reproduced in the evidence text. The paragraph labels in the evidence around 1040.10(h) look mis-parsed (shown as (i)...), but the substance is not affected.",
+    "evidence_conflict": false,
+    "needs_research_items": []
+  },
+  {
+    "question_id": "Z-006",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Timer", "support": "SUPPORTED", "cite": "1040.20(c)(2)(i)", "quote": "Each sunlamp product shall incorporate a timer system with multiple timer settings adequate for the recommended exposure time intervals", "note": ""},
+      {"element": "exposure schedule", "support": "SUPPORTED", "cite": "1040.20(d)(1)(iv)", "quote": "A recommended exposure schedule including duration and spacing of sequential exposures and maximum exposure time(s) in minutes.", "note": "This is a required label item."},
+      {"element": "protective eyewear", "support": "SUPPORTED", "cite": "1040.20(c)(4)(i)", "quote": "Each sunlamp product shall be accompanied by the number of sets of protective eyewear that is equal to the maximum number of persons", "note": ""},
+      {"element": "warning label", "support": "SUPPORTED", "cite": "1040.20(d)(1)(i)", "quote": "A warning statement with the words", "note": "Lamp labels are at (d)(2)."},
+      {"element": "irradiance ratio requirements", "support": "SUPPORTED", "cite": "1040.20(c)(1)", "quote": "the ratio of the irradiance within the wavelength range of greater than 200 nanometers through 260 nanometers to the irradiance within the wavelength range of greater than 260 nanometers", "note": "The limit is 0.003."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "",
+    "proposed_decision": "ACCEPTED",
+    "proposed_corrected_citation": null,
+    "rationale": "1040.20 is the standard for sunlamp products and UV lamps (see its heading and (a)), and it states all five J elements.",
+    "evidence_refs": ["eCFR 21 CFR 1040.20(a),(c),(d) (snapshot 2026-09-03)"],
+    "confidence": "HIGH",
+    "uncertainty": "",
+    "evidence_conflict": false,
+    "needs_research_items": []
+  },
+  {
+    "question_id": "X-001",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Types of combination products", "support": "SUPPORTED", "cite": "3.2(e)(1)-(4)", "quote": "A product comprised of two or more regulated components, i.e., drug/device, biologic/device, drug/biologic, or drug/device/biologic", "note": "3.2(e) lists four types: single-entity, co-packaged, and two cross-labeled forms."},
+      {"element": "Part 4 Subpart A applies CGMP to combination products", "support": "SUPPORTED", "cite": "4.1", "quote": "This subpart applies to combination products. It establishes which current good manufacturing practice requirements apply to these products.", "note": "The text says 'this subpart'. That it is Part 4 Subpart A comes from the section numbering, not the text."},
+      {"element": "defines constituent parts", "support": "SUPPORTED", "cite": "4.2", "quote": "Constituent part is a drug, device, or biological product that is part of a combination product.", "note": ""}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "",
+    "proposed_decision": "ACCEPTED",
+    "proposed_corrected_citation": null,
+    "rationale": "3.2(e) defines a combination product, and 4.1/4.2 establish the CGMP framework and define constituent part. Each J element is quoted.",
+    "evidence_refs": ["eCFR 21 CFR 3.2(e) (snapshot 2026-09-03)", "eCFR 21 CFR 4.1 (snapshot 2026-09-03)", "eCFR 21 CFR 4.2 (snapshot 2026-09-03)"],
+    "confidence": "HIGH",
+    "uncertainty": "",
+    "evidence_conflict": false,
+    "needs_research_items": []
+  },
+  {
+    "question_id": "X-002",
+    "citation_correctness": "correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Demonstrating compliance with either the drug CGMP or the device quality system requirements", "support": "PARTIALLY_SUPPORTED", "cite": "4.4(b)(1)-(3)", "quote": "has been shown to comply with the drug CGMP requirements or the medical gas CGMP requirements, as applicable", "note": "The text is broader than J: the base system may also comply with medical gas CGMP. The device base is now called the QMSR (part 820), not the 'quality system' requirements, and (b)(2) says 'has been shown to comply with the QMSR requirements for devices'. The streamlined approach is optional ('If you elect', 4.4(b)); the alternative is 4.4(a)(1)."},
+      {"element": "plus the specified additional provisions from the other", "support": "SUPPORTED", "cite": "4.4(b)(1)-(3)", "quote": "the following provisions of the drug CGMP requirements must also be shown to have been satisfied", "note": "(b)(4) and (b)(5) add requirements for biological product and HCT/P constituent parts, which J does not mention."}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "correct",
+    "completeness_note": "4.4(a)(1), (b)(4) and (b)(5) point to the CGMP sets listed in 4.3, but the streamlined approach itself is set out entirely in 4.4, so 4.3 is not clearly required for this question.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "4.4 is the right provision, but J is narrower than the text. It leaves out the medical gas CGMP option and the extra biological/HCT/P requirements, and it uses the superseded term 'device quality system requirements' where the current text says QMSR.",
+    "evidence_refs": ["eCFR 21 CFR 4.4(a)-(b) (snapshot 2026-09-03)"],
+    "confidence": "MEDIUM",
+    "uncertainty": "An SME may treat 'device quality system requirements' as an acceptable paraphrase of QMSR and the omissions as outside a summary key, in which case ACCEPTED would fit.",
+    "evidence_conflict": false,
+    "needs_research_items": ["SME to decide whether J's 'device quality system requirements' is acceptable now that 4.4 refers to the QMSR (part 820, amended 2024). The SME system cannot edit J, so flag this to the key owner.", "Decide whether J must mention the medical gas CGMP pathway (4.4(b)(1), (b)(3)) and the biological/HCT/P additions (4.4(b)(4)-(5)).", "Decide whether 21 CFR 4.3 should be added to G, since 4.4 relies on the CGMP sets it lists."]
+  }
+]

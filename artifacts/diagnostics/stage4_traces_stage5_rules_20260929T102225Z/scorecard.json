@@ -1,0 +1,205 @@
+{
+ "questions": 79,
+ "final_status": {
+  "PASS": 35,
+  "FAIL": 25,
+  "NEEDS_REVIEW": 3,
+  "UNVERIFIED": 13,
+  "UNVERIFIED_WITH_FAILURES": 2,
+  "UNVERIFIED_NEEDS_REVIEW": 1
+ },
+ "primary_failure_by_class": {
+  "F15": 7,
+  "F09": 6,
+  "F08": 6,
+  "F07": 6,
+  "F16": 5,
+  "F05": 3,
+  "F02": 3,
+  "F14": 3,
+  "F12": 2,
+  "F13": 1,
+  "F18": 1
+ },
+ "primary_failure_by_module": {
+  "generation": 24,
+  "citations": 6,
+  "repair": 3,
+  "sufficiency": 3,
+  "scope": 3,
+  "presentation": 3,
+  "inference": 1
+ },
+ "all_failure_records_by_class": {
+  "F07": 27,
+  "F09": 19,
+  "F08": 9,
+  "F15": 8,
+  "F16": 8,
+  "F14": 7,
+  "F05": 6,
+  "F11": 6,
+  "F18": 5,
+  "F12": 5,
+  "F13": 3,
+  "F02": 3,
+  "UNKNOWN": 1,
+  "F20": 1
+ },
+ "severity_of_primary": {
+  "major": 27,
+  "minor": 13,
+  "critical": 3
+ },
+ "primary_by_confidence": {
+  "proven": 28,
+  "probable": 12,
+  "needs_review": 3
+ },
+ "determinism": [],
+ "scorecard": {
+  "intent": {
+   "label": "AUTOMATED",
+   "accuracy": "NOT YET MEASURABLE: no verified intent labels exist",
+   "distribution": {
+    "requirement": 49,
+    "explanation": 17,
+    "comparison": 2,
+    "applicability": 4,
+    "definition": 3,
+    "out_of_scope": 1,
+    "citation_lookup": 2,
+    "procedure": 1
+   },
+   "default_fallback_rate": {
+    "count": 17,
+    "of": 79
+   }
+  },
+  "scope": {
+   "label": "AUTOMATED vs DEVELOPER-KEYED",
+   "keyed_out_of_scope_recognised_by_diagnostic_classifier": {
+    "count": 1,
+    "of": 4
+   },
+   "keyed_out_of_scope_declined_by_current_pipeline": {
+    "count": 1,
+    "of": 4
+   }
+  },
+  "retrieval": {
+   "label": "DEVELOPER-KEYED",
+   "expected_provision_retrieved_as_exact": {
+    "count": 37,
+    "of": 37
+   },
+   "evidence_sufficiency": {
+    "EVIDENCE_SUFFICIENT": 48,
+    "EVIDENCE_NOT_FOUND": 10,
+    "EVIDENCE_PARTIAL": 2,
+    "EVIDENCE_INSUFFICIENT": 11,
+    "UNKNOWN": 8
+   },
+   "requested_value_kind_absent_from_evidence": {
+    "count": 4,
+    "of": 79
+   },
+   "ranking": "NOT YET MEASURABLE automatically: needs a relevance label per candidate"
+  },
+  "generation": {
+   "label": "AUTOMATED",
+   "raw_unsupported_content_F07": {
+    "count": 27,
+    "of": 69
+   },
+   "raw_qualifier_warnings_F08": {
+    "count": 9,
+    "of": 69
+   },
+   "answered_despite_insufficient_evidence_F05": {
+    "count": 6,
+    "of": 69
+   },
+   "raw_claims_supported_heuristic": {
+    "YES": 82,
+    "NO": 71,
+    "UNCERTAIN": 153
+   }
+  },
+  "validation": {
+   "label": "AUTOMATED",
+   "raw_answers_rejected": {
+    "count": 22,
+    "of": 69
+   },
+   "false_negatives_F11": {
+    "count": 6,
+    "of": 69
+   },
+   "false_positives_F10": "NOT YET MEASURABLE automatically: needs SME review of rejected answers"
+  },
+  "repair": {
+   "label": "AUTOMATED",
+   "repair_rate": {
+    "count": 22,
+    "of": 69
+   },
+   "repair_types": {
+    "appended_missing_items": 4,
+    "extractive_replacement": 5,
+    "invalid_citations_removed": 5,
+    "safe_message": 1,
+    "mismatched_statements_replaced": 3,
+    "mismatched_statements_replaced+appended_missing_items": 1,
+    "invalid_citations_removed+truncation_noted": 1,
+    "appended_missing_provisions": 1,
+    "truncation_noted": 1
+   },
+   "final_valid_after_repair": {
+    "count": 13,
+    "of": 22
+   },
+   "irrelevant_fallback_F13": {
+    "count": 3,
+    "of": 79
+   },
+   "repair_failure_F12": {
+    "count": 5,
+    "of": 79
+   }
+  },
+  "citations": {
+   "label": "AUTOMATED",
+   "answers_with_a_marker": {
+    "count": 63,
+    "of": 69
+   },
+   "citation_attribution_F09": {
+    "count": 19,
+    "of": 69
+   },
+   "semantic_citation_correctness": "NOT YET MEASURABLE: requires SME review"
+  },
+  "final_answer": {
+   "label": "DEVELOPER-KEYED machine checks (not SME)",
+   "pass": {
+    "count": 35,
+    "of": 63
+   },
+   "unverified_questions": 16,
+   "correctness_grounding_relevance_structure_precision": "NOT YET MEASURABLE: requires SME review"
+  },
+  "latency_ms": {
+   "label": "AUTOMATED",
+   "first_token_median": 1816.0,
+   "generation_median": 12064.9,
+   "total_median": 10118.6
+  }
+ },
+ "configuration": {
+  "re-diagnosed from": "artifacts/diagnostics/stage4_baseline_20260929T073732Z",
+  "evidence_hash_mismatches": [],
+  "answer_shape": "adaptive",
+  "validation": "repair"
+ }
+}

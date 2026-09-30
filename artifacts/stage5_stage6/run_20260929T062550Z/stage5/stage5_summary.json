@@ -1,0 +1,40 @@
+{
+  "run_id": "stage3_A_baseline",
+  "generated_at_utc": "2026-09-29T06:37:12+00:00",
+  "dataset": {
+    "name": "stage5_v1",
+    "path": "/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/data/evaluation/datasets/stage5_v1.jsonl",
+    "sha256": "7cf80fda674fd1abeceef5bf137776c06f21231cdd6b189832830c7ffbbe76fd",
+    "questions_total": 51,
+    "questions_run": 51
+  },
+  "questions": 51,
+  "retrieval_ok": 0.9608,
+  "requirement_recall": 1.0,
+  "coverage_ok": 0.9804,
+  "selection_ok": 0.9804,
+  "generation_valid_raw_full": 0.7174,
+  "generation_valid_final_full": 0.8913,
+  "generation_valid_raw_controlled": null,
+  "truncated_full": 2,
+  "faithfulness_supported_ratio": 0.3657,
+  "hallucination_any_raw": 0.2174,
+  "hallucination_any_final": 0.2174,
+  "false_refusal_rate_raw": 0.0,
+  "correct_refusal": 0.6667,
+  "domain_leak_raw": 0.75,
+  "latency_p50_total_ms": 9725.4,
+  "latency_p95_total_ms": 33550.9,
+  "repair_frequency": 0.2826,
+  "answer_correct_raw": 0.4902,
+  "answer_correct_final": 0.5686,
+  "faithfulness_supported_ratio_final": 0.4143,
+  "multi_provision_complete_raw": 1.0,
+  "range_complete_raw": 1.0,
+  "failures_by_layer": {
+    "none": 32,
+    "generation": 14,
+    "domain_boundary": 3,
+    "retrieval": 2
+  }
+}

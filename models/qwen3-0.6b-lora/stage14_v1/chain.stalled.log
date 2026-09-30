@@ -1,0 +1,33 @@
+[chain 18:58:43] waiting for the Stage 13 gated evaluation to finish
+[chain 19:02:15] Stage 13 evaluations complete
+[chain 19:02:16] no competing training process
+[chain 19:02:16] smoke test
+Stage 12 SMOKE TEST: config=configs\model_training_v3.yaml model=Qwen/Qwen3-0.6B output=C:\Users\PC-1\Prachi Patel\Regulus AI\models\qwen3-0.6b-lora\smoke_tmp
+Hardware: device=cpu dtype=float32 gpu=None gpu_mem_gb=None cpu_threads=4 ram_available_gb=3.58
+NOTE: CPU training is slow (about 45 s per 640-token example on the development machine); the run is step-bounded by training.max_steps.
+Dataset verified: v3 sha256=86f4c012e7c0a2d6... counts={'train': 7755, 'validation': 1028, 'test': 937}
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:00<00:37,  8.16it/s]Loading weights:   8%|8         | 26/311 [00:00<00:02, 136.50it/s]Loading weights:  13%|#3        | 41/311 [00:00<00:02, 119.60it/s]Loading weights:  17%|#7        | 54/311 [00:00<00:02, 113.73it/s]Loading weights:  21%|##1       | 66/311 [00:00<00:02, 98.21it/s] Loading weights:  25%|##5       | 79/311 [00:00<00:02, 104.46it/s]Loading weights:  30%|##9       | 92/311 [00:00<00:01, 110.27it/s]Loading weights:  33%|###3      | 104/311 [00:00<00:01, 108.74it/s]Loading weights:  37%|###7      | 116/311 [00:01<00:01, 111.39it/s]Loading weights:  42%|####2     | 132/311 [00:01<00:01, 120.06it/s]Loading weights:  47%|####6     | 145/311 [00:01<00:01, 109.96it/s]Loading weights:  50%|#####     | 157/311 [00:01<00:01, 105.37it/s]Loading weights:  54%|#####4    | 168/311 [00:01<00:01, 103.84it/s]Loading weights:  58%|#####7    | 180/311 [00:01<00:01, 99.77it/s] Loading weights:  62%|######2   | 193/311 [00:01<00:01, 100.55it/s]Loading weights:  66%|######5   | 204/311 [00:01<00:01, 94.86it/s] Loading weights:  72%|#######1  | 223/311 [00:02<00:00, 118.76it/s]Loading weights:  76%|#######5  | 236/311 [00:02<00:00, 109.44it/s]Loading weights:  80%|#######9  | 248/311 [00:02<00:00, 108.41it/s]Loading weights:  84%|########3 | 260/311 [00:02<00:00, 105.75it/s]Loading weights:  88%|########7 | 273/311 [00:02<00:00, 107.04it/s]Loading weights:  92%|#########1| 285/311 [00:02<00:00, 96.57it/s] Loading weights:  96%|#########5| 298/311 [00:02<00:00, 103.69it/s]Loading weights: 100%|##########| 311/311 [00:02<00:00, 108.57it/s]
+Tokenised: train 4/4 (skipped over 1280: 0, truncated: 0, max observed 670, median 487); eval subset 2/2
+LoRA: trainable 10,092,544 / 606,142,464 (1.665%), targets {'q_proj': 28, 'k_proj': 28, 'v_proj': 28, 'o_proj': 28, 'gate_proj': 28, 'up_proj': 28, 'down_proj': 28}
+Evaluating the base model (no trained adapter yet) on the validation subset ...
+{'eval_loss': '2.209', 'eval_model_preparation_time': '0.0315', 'eval_runtime': '11.91', 'eval_samples_per_second': '0.168', 'eval_steps_per_second': '0.168', 'epoch': 0}
+  base eval_loss = 2.2090
+Training: max_steps=1 batch=1 x accum=1 lr=0.0001 scheduler=cosine eval every 1 steps
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+{'loss': '2.161', 'grad_norm': '8.703', 'learning_rate': '0.0001', 'epoch': '0.25'}
+{'eval_loss': '1.933', 'eval_model_preparation_time': '0.0315', 'eval_runtime': '9.475', 'eval_samples_per_second': '0.211', 'eval_steps_per_second': '0.211', 'epoch': '0.25'}
+{'train_runtime': '31.85', 'train_samples_per_second': '0.031', 'train_steps_per_second': '0.031', 'train_loss': '2.161', 'epoch': '0.25'}
+Training finished in 0.5 min: {'train_runtime': 31.8458, 'train_samples_per_second': 0.031, 'train_steps_per_second': 0.031, 'train_loss': 2.1610465049743652, 'epoch': 0.25}
+  selected-checkpoint eval_loss = 1.9334
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Reloading the saved adapter on a fresh base model for the inference check ...
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   1%|          | 2/311 [00:00<00:25, 11.91it/s]Loading weights:   6%|6         | 20/311 [00:00<00:03, 82.64it/s]Loading weights:  11%|#         | 34/311 [00:00<00:02, 104.13it/s]Loading weights:  15%|#4        | 46/311 [00:00<00:02, 100.77it/s]Loading weights:  19%|#8        | 59/311 [00:00<00:02, 109.83it/s]Loading weights:  23%|##2       | 71/311 [00:00<00:02, 112.67it/s]Loading weights:  27%|##6       | 83/311 [00:00<00:02, 111.00it/s]Loading weights:  31%|###       | 95/311 [00:00<00:02, 96.67it/s] Loading weights:  36%|###6      | 113/311 [00:01<00:01, 116.16it/s]Loading weights:  41%|####      | 126/311 [00:01<00:01, 104.90it/s]Loading weights:  46%|####5     | 142/311 [00:01<00:01, 116.77it/s]Loading weights:  50%|####9     | 155/311 [00:01<00:01, 108.60it/s]Loading weights:  54%|#####3    | 167/311 [00:01<00:01, 107.69it/s]Loading weights:  58%|#####7    | 179/311 [00:01<00:01, 104.92it/s]Loading weights:  61%|######1   | 191/311 [00:01<00:01, 106.64it/s]Loading weights:  66%|######5   | 204/311 [00:01<00:00, 110.23it/s]Loading weights:  69%|######9   | 216/311 [00:02<00:00, 111.98it/s]Loading weights:  73%|#######3  | 228/311 [00:02<00:00, 111.14it/s]Loading weights:  77%|#######7  | 241/311 [00:02<00:00, 108.11it/s]Loading weights:  81%|########1 | 253/311 [00:02<00:00, 99.77it/s] Loading weights:  86%|########6 | 269/311 [00:02<00:00, 108.82it/s]Loading weights:  92%|#########1| 285/311 [00:02<00:00, 114.61it/s]Loading weights:  95%|#########5| 297/311 [00:02<00:00, 94.51it/s] Loading weights: 100%|##########| 311/311 [00:02<00:00, 107.35it/s]
+Inference check: 28 tokens in 11.44s -> 'The available regulatory source does not provide information about the last amendment of 21 CFR 886.1780.'
+
+steps=1 examples_seen=1 duration=0.5 min
+validation loss: base=2.2090423107147217 best=1.9334267377853394 (checkpoint-1) selected=1.9334267377853394
+final training loss: 2.1610465049743652
+adapter: C:/Users/PC-1/Prachi Patel/Regulus AI/models/qwen3-0.6b-lora/smoke_tmp/adapter
+[chain 19:03:40] smoke test passed
+[chain 19:03:40] starting the Stage 14 overnight run (hard stop 05:30)

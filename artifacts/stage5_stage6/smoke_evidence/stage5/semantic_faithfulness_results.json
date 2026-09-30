@@ -1,0 +1,14 @@
+{
+  "claims_total": 0,
+  "claims_judged": 0,
+  "supported": 0,
+  "unsupported": 0,
+  "uncertain": 0,
+  "deterministic_statements": 0,
+  "supported_ratio": null,
+  "questions_with_unsupported_claim": [],
+  "by_category": {},
+  "unsupported_claims": [],
+  "methodology": "Sentence-level. SUPPORTED: cites an exact source, shares at least 50% of its content words with it and no deterministic check failed on it. NOT SUPPORTED: a deterministic check failed on the sentence (missing provision asserted, figure absent from sources, wrong-source citation) or it shares under 25% of its content words with what it cites. UNCERTAIN: everything between. Refusals and not-found statements are N/A.",
+  "limitations": "Word overlap is not entailment: a paraphrase can share words and still misstate the source, and a correct restatement in different words can score UNCERTAIN. Treat NOT SUPPORTED as reliable and SUPPORTED as unproven."
+}

@@ -1,0 +1,200 @@
+====================================================================================================
+[single provision] What does 21 CFR § 820.10(b)(2) require?
+plan kind=single_provision requirements=['21 CFR 820.10(b)(2)'] docket=None
+resolved=('r1',) unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=4 results=4 ms=43.97
+  r1 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.996 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e2   structural  exact_cfr       89.998 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)
+    e3   supporting  full_text        2.282 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+    e4   supporting  full_text        0.035 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+  results -> ['21 CFR 820.10(b)(2)', '21 CFR 820.10(b)', 'FDA Guidance: Quality Manageme', 'FDA Guidance: Quality Manageme']
+====================================================================================================
+[multi-provision] What are the requirements of 21 CFR § 820.10(b)(1) and § 820.10(b)(2)?
+plan kind=multi_provision requirements=['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)'] docket=None
+resolved=('r1', 'r2') unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=4 results=4 ms=8.01
+  r1 21 CFR 820.10(b)(1)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r2 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.997 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(1)
+    e2   exact       exact_cfr       99.996 sat=['r2'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e3   structural  exact_cfr       89.998 sat=[] str=['r1', 'r2'] disc=[] 21 CFR 820.10(b)
+    e4   supporting  full_text        0.327 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+  results -> ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)', 'FDA Guidance: Quality Manageme']
+====================================================================================================
+[multi-provision (compare)] Compare the requirements of § 820.10(b)(2) and § 820.10(b)(4).
+plan kind=multi_provision requirements=['21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(4)'] docket=None
+resolved=('r1', 'r2') unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=3 results=3 ms=7.78
+  r1 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r2 21 CFR 820.10(b)(4)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.996 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e2   exact       exact_cfr       99.994 sat=['r2'] str=[] disc=[] 21 CFR 820.10(b)(4)
+    e3   structural  exact_cfr       89.998 sat=[] str=['r1', 'r2'] disc=[] 21 CFR 820.10(b)
+  results -> ['21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(4)', '21 CFR 820.10(b)']
+====================================================================================================
+[range] List all of the specific requirements in 21 CFR § 820.10(b)(1) through (b)(4).
+plan kind=range requirements=['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)'] docket=None
+resolved=('r1', 'r2', 'r3', 'r4') unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=5 results=5 ms=8.95
+  r1 21 CFR 820.10(b)(1)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r2 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r3 21 CFR 820.10(b)(3)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r4 21 CFR 820.10(b)(4)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.997 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(1)
+    e2   exact       exact_cfr       99.996 sat=['r2'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e3   exact       exact_cfr       99.995 sat=['r3'] str=[] disc=[] 21 CFR 820.10(b)(3)
+    e4   exact       exact_cfr       99.994 sat=['r4'] str=[] disc=[] 21 CFR 820.10(b)(4)
+    e5   structural  exact_cfr       89.998 sat=[] str=['r1', 'r2', 'r3', 'r4'] disc=[] 21 CFR 820.10(b)
+  results -> ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)', '21 CFR 820.10(b)']
+====================================================================================================
+[range (bare)] 820.10(b)(1)-(4)
+plan kind=range requirements=['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)'] docket=None
+resolved=('r1', 'r2', 'r3', 'r4') unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=8 results=8 ms=11.07
+  r1 21 CFR 820.10(b)(1)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r2 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r3 21 CFR 820.10(b)(3)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r4 21 CFR 820.10(b)(4)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.997 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(1)
+    e2   exact       exact_cfr       99.996 sat=['r2'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e3   exact       exact_cfr       99.995 sat=['r3'] str=[] disc=[] 21 CFR 820.10(b)(3)
+    e4   exact       exact_cfr       99.994 sat=['r4'] str=[] disc=[] 21 CFR 820.10(b)(4)
+    e5   structural  exact_cfr       89.998 sat=[] str=['r1', 'r2', 'r3', 'r4'] disc=[] 21 CFR 820.10(b)
+    e6   supporting  full_text        0.235 sat=[] str=[] disc=[] 21 CFR 820.7(b)
+    e7   supporting  full_text        0.176 sat=[] str=[] disc=[] 21 CFR 862.1220(b)(2)
+    e8   supporting  full_text        0.104 sat=[] str=[] disc=[] 21 CFR 864.7010(b)(3)
+  results -> ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)', '21 CFR 820.10(b)', '21 CFR 820.7(b)', '21 CFR 862.1220(b)(2)', '21 CFR 864.7010(b)(3)']
+====================================================================================================
+[list] What are the requirements of 21 CFR § 820.10(b)(1), (b)(2), and (b)(3)?
+plan kind=multi_provision requirements=['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)'] docket=None
+resolved=('r1', 'r2', 'r3') unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=5 results=5 ms=10.32
+  r1 21 CFR 820.10(b)(1)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r2 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+  r3 21 CFR 820.10(b)(3)      attempted=True exact=1 structural=1 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.997 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(1)
+    e2   exact       exact_cfr       99.996 sat=['r2'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e3   exact       exact_cfr       99.995 sat=['r3'] str=[] disc=[] 21 CFR 820.10(b)(3)
+    e4   structural  exact_cfr       89.998 sat=[] str=['r1', 'r2', 'r3'] disc=[] 21 CFR 820.10(b)
+    e5   supporting  full_text        0.069 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+  results -> ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)', 'FDA Guidance: Quality Manageme']
+====================================================================================================
+[missing identifier] What are the specific requirements of 21 CFR 314.999?
+plan kind=single_provision requirements=['21 CFR 314.999'] docket=None
+resolved=() unresolved=('r1',) mode=fallback fallback_used=True fallback_terms=['314.999'] evidence=8 results=8 ms=87.98
+  r1 21 CFR 314.999           attempted=True exact=0 structural=0 discovery=8 fallback=True note: No live record for 21 CFR 314.999 in this eCFR snapshot (section may b
+    e1   discovery   trigram          4.375 sat=[] str=[] disc=['r1'] 21 CFR 314.99(a)
+    e2   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.90(a)
+    e3   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.92(a)
+    e4   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.93(a)
+    e5   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.94
+    e6   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.95(a)
+    e7   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.96(a)
+    e8   discovery   trigram          2.500 sat=[] str=[] disc=['r1'] 21 CFR 314.97(a)
+  results -> ['21 CFR 314.99(a)', '21 CFR 314.90(a)', '21 CFR 314.92(a)', '21 CFR 314.93(a)', '21 CFR 314.94', '21 CFR 314.95(a)', '21 CFR 314.96(a)', '21 CFR 314.97(a)']
+  note: No live record for 21 CFR 314.999 in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded
+====================================================================================================
+[missing part] What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?
+plan kind=single_provision requirements=['21 CFR part 1400'] docket=None
+resolved=() unresolved=('r1',) mode=fallback fallback_used=True fallback_terms=['1400'] evidence=8 results=8 ms=10.42
+  r1 21 CFR part 1400         attempted=True exact=0 structural=0 discovery=8 fallback=True note: No live record for 21 CFR part 1400 in this eCFR snapshot (section may
+    e1   discovery   full_text_or     0.786 sat=[] str=[] disc=['r1'] FDA Guidance: Guidance for Industry: Preparation of Food Contact
+    e2   discovery   full_text_or     0.550 sat=[] str=[] disc=['r1'] 21 CFR 184.1769a(a)
+    e3   discovery   full_text_or     0.397 sat=[] str=[] disc=['r1'] FDA Guidance: Modified Risk Tobacco Product Applications: Draft 
+    e4   discovery   full_text_or     0.395 sat=[] str=[] disc=['r1'] FDA Guidance: Technical Considerations for Non-Clinical Assessme
+    e5   discovery   full_text_or     0.394 sat=[] str=[] disc=['r1'] FDA Guidance: Vulvovaginal Candidiasis: Developing Drugs for Tre
+    e6   discovery   full_text_or     0.386 sat=[] str=[] disc=['r1'] FDA Guidance: Biocompatibility Testing of Medical Devices - Stan
+    e7   discovery   full_text_or     0.382 sat=[] str=[] disc=['r1'] FDA Guidance: Pulse Oximeters for Medical Purposes - Non-Clinica
+    e8   discovery   full_text_or     0.382 sat=[] str=[] disc=['r1'] FDA Guidance: The Accreditation Scheme for Conformity Assessment
+  results -> ['FDA Guidance: Guidance for Ind', '21 CFR 184.1769a(a)', 'FDA Guidance: Modified Risk To', 'FDA Guidance: Technical Consid', 'FDA Guidance: Vulvovaginal Can', 'FDA Guidance: Biocompatibility', 'FDA Guidance: Pulse Oximeters ', 'FDA Guidance: The Accreditatio']
+  note: No live record for 21 CFR part 1400 in this eCFR snapshot (section may be reserved, removed, outside Title 21, or exclud
+====================================================================================================
+[partly missing] What do 21 CFR 820.10(b)(2) and 21 CFR 820.999 require?
+plan kind=multiple_reference requirements=['21 CFR 820.10(b)(2)', '21 CFR 820.999'] docket=None
+resolved=('r1',) unresolved=('r2',) mode=exact fallback_used=True fallback_terms=['820.999'] evidence=10 results=8 ms=1435.96
+  r1 21 CFR 820.10(b)(2)      attempted=True exact=1 structural=2 discovery=0 fallback=False 
+  r2 21 CFR 820.999           attempted=True exact=0 structural=0 discovery=8 fallback=True note: No live record for 21 CFR 820.999 in this eCFR snapshot (section may b
+    e1   exact       exact_cfr       99.996 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e2   structural  trigram          1.818 sat=[] str=['r1'] disc=['r2'] 21 CFR 820.10
+    e3   structural  exact_cfr       89.998 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)
+    e4   discovery   trigram          2.273 sat=[] str=[] disc=['r2'] 21 CFR 520.999(a)
+    e5   discovery   trigram          2.000 sat=[] str=[] disc=['r2'] 21 CFR 820.1(a)
+    e6   discovery   trigram          2.000 sat=[] str=[] disc=['r2'] 21 CFR 820.3
+    e7   discovery   trigram          2.000 sat=[] str=[] disc=['r2'] 21 CFR 820.7
+    e8   discovery   trigram          1.818 sat=[] str=[] disc=['r2'] 21 CFR 820.35
+    e9   discovery   trigram          1.818 sat=[] str=[] disc=['r2'] 21 CFR 820.45
+    e10  discovery   trigram          1.667 sat=[] str=[] disc=['r2'] 21 CFR 172.820
+  results -> ['21 CFR 820.10(b)(2)', '21 CFR 820.10', '21 CFR 820.10(b)', '21 CFR 520.999(a)', '21 CFR 820.1(a)', '21 CFR 820.3', '21 CFR 820.7', '21 CFR 820.35']
+  note: No live record for 21 CFR 820.999 in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded
+====================================================================================================
+[parent/child] What does 21 CFR § 820.10(b) require manufacturers to comply with?
+plan kind=single_provision requirements=['21 CFR 820.10(b)'] docket=None
+resolved=('r1',) unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=9 results=8 ms=611.48
+  r1 21 CFR 820.10(b)         attempted=True exact=1 structural=5 discovery=0 fallback=False 
+    e1   exact       exact_cfr       99.998 sat=['r1'] str=[] disc=[] 21 CFR 820.10(b)
+    e2   structural  exact_cfr       90.000 sat=[] str=['r1'] disc=[] 21 CFR 820.10
+    e3   structural  exact_cfr       94.997 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)(1)
+    e4   structural  exact_cfr       94.996 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)(2)
+    e5   structural  exact_cfr       94.995 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)(3)
+    e6   structural  exact_cfr       94.994 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)(4)
+    e7   supporting  full_text        0.052 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+    e8   supporting  full_text        0.041 sat=[] str=[] disc=[] FDA Guidance: Cybersecurity in Medical Devices: Quality Manageme
+    e9   supporting  full_text        0.023 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+  results -> ['21 CFR 820.10(b)', '21 CFR 820.10', '21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)', 'FDA Guidance: Quality Manageme', 'FDA Guidance: Cybersecurity in']
+====================================================================================================
+[nonexistent child] What does 21 CFR 820.10(b)(5) require?
+plan kind=single_provision requirements=['21 CFR 820.10(b)(5)'] docket=None
+resolved=() unresolved=('r1',) mode=primary fallback_used=False fallback_terms=[] evidence=2 results=2 ms=618.87
+  r1 21 CFR 820.10(b)(5)      attempted=True exact=0 structural=1 discovery=0 fallback=False note: No live record for 21 CFR 820.10(b)(5) in this eCFR snapshot, but its 
+    e1   structural  exact_cfr       89.998 sat=[] str=['r1'] disc=[] 21 CFR 820.10(b)
+    e2   supporting  full_text        0.050 sat=[] str=[] disc=[] FDA Guidance: Quality Management System Information for Certain 
+  results -> ['21 CFR 820.10(b)', 'FDA Guidance: Quality Manageme']
+  note: No live record for 21 CFR 820.10(b)(5) in this eCFR snapshot (section may be reserved, removed, outside Title 21, or exc
+====================================================================================================
+[guidance/docket] Summarise the guidance in docket FDA-2016-D-2565
+plan kind=general requirements=[] docket=FDA-2016-D-2565
+resolved=() unresolved=() mode=exact fallback_used=False fallback_terms=[] evidence=3 results=3 ms=764.25
+    e1   exact       exact_docket   100.000 sat=[] str=[] disc=[] FDA Guidance: 510(k) Third Party Review Program and Third Party 
+    e2   exact       exact_docket    99.999 sat=[] str=[] disc=[] FDA Guidance: 510(k) Third Party Review Program and Third Party 
+    e3   exact       exact_docket    99.998 sat=[] str=[] disc=[] FDA Guidance: 510(k) Third Party Review Program and Third Party 
+  results -> ['FDA Guidance: 510(k) Third Par', 'FDA Guidance: 510(k) Third Par', 'FDA Guidance: 510(k) Third Par']
+====================================================================================================
+[general regulatory] When must a manufacturer notify FDA about a complaint?
+plan kind=general requirements=[] docket=None
+resolved=() unresolved=() mode=primary fallback_used=False fallback_terms=[] evidence=8 results=8 ms=759.09
+    e1   supporting  full_text        3.147 sat=[] str=[] disc=[] 21 CFR 820.10(b)(3)
+    e2   supporting  full_text        0.144 sat=[] str=[] disc=[] FDA Guidance: Medical Gases — Current Good Manufacturing Practic
+    e3   supporting  full_text        0.140 sat=[] str=[] disc=[] FDA Guidance: Current Good Manufacturing Practice for Phase 1 In
+    e4   supporting  full_text        0.087 sat=[] str=[] disc=[] FDA Guidance: Medical Device Reporting for Manufacturers : Guida
+    e5   supporting  full_text        0.070 sat=[] str=[] disc=[] FDA Guidance: Cooperative Manufacturing Arrangements for License
+    e6   supporting  full_text        0.050 sat=[] str=[] disc=[] FDA Guidance: BLA for Minimally Manipulated, Unrelated Allogenei
+    e7   supporting  full_text        0.035 sat=[] str=[] disc=[] FDA Guidance: Collection of Platelets by Automated Methods: Guid
+    e8   supporting  full_text        0.030 sat=[] str=[] disc=[] FDA Guidance: Deviation Reporting for Human Cells, Tissues, and 
+  results -> ['21 CFR 820.10(b)(3)', 'FDA Guidance: Medical Gases — ', 'FDA Guidance: Current Good Man', 'FDA Guidance: Medical Device R', 'FDA Guidance: Cooperative Manu', 'FDA Guidance: BLA for Minimall', 'FDA Guidance: Collection of Pl', 'FDA Guidance: Deviation Report']
+====================================================================================================
+[general regulatory] What are the traceability requirements for manufacturers?
+plan kind=general requirements=[] docket=None
+resolved=() unresolved=() mode=primary fallback_used=False fallback_terms=[] evidence=37 results=8 ms=758.31
+    e1   supporting  full_text        1.832 sat=[] str=[] disc=[] 21 CFR 1.1315(a)
+    e2   supporting  full_text        1.240 sat=[] str=[] disc=[] 21 CFR 820.10(b)(2)
+    e3   supporting  full_text        1.169 sat=[] str=[] disc=[] FDA Guidance: Questions and Answers About Requirements for Addit
+    e4   supporting  full_text        0.897 sat=[] str=[] disc=[] FDA Guidance: Small Entity Compliance Guide: Requirements for Ad
+    e5   supporting  full_text        0.790 sat=[] str=[] disc=[] FDA Guidance: Questions and Answers About Requirements for Addit
+    e6   supporting  full_text        0.640 sat=[] str=[] disc=[] FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 
+    e7   supporting  full_text        0.620 sat=[] str=[] disc=[] FDA Guidance: Draft Guidance for Industry: Standards for the Gro
+    e8   supporting  full_text        0.576 sat=[] str=[] disc=[] FDA Guidance: Guidance for Industry: Standards for the Growing, 
+    e9   supporting  full_text        0.559 sat=[] str=[] disc=[] FDA Guidance: Questions and Answers About Requirements for Addit
+    e10  supporting  full_text        0.537 sat=[] str=[] disc=[] FDA Guidance: Small Entity Compliance Guide: Requirements for Ad
+    ... 27 more
+  results -> ['21 CFR 1.1315(a)', '21 CFR 820.10(b)(2)', 'FDA Guidance: Questions and An', 'FDA Guidance: Small Entity Com', 'FDA Guidance: Questions and An', 'FDA Guidance: Initiation of Vo', 'FDA Guidance: Draft Guidance f', 'FDA Guidance: Guidance for Ind']
+====================================================================================================
+[unsupported general] What is the capital of France?
+plan kind=general requirements=[] docket=None
+resolved=() unresolved=() mode=fallback fallback_used=True fallback_terms=['capital', 'france'] evidence=22 results=8 ms=1365.3
+    e1   discovery   trigram          1.705 sat=[] str=[] disc=[] 21 CFR 207.5
+    e2   discovery   trigram          1.705 sat=[] str=[] disc=[] 21 CFR 822.2
+    e3   discovery   trigram          1.667 sat=[] str=[] disc=[] 21 CFR 1.277(a)
+    e4   discovery   trigram          1.667 sat=[] str=[] disc=[] 21 CFR 4.100(a)
+    e5   discovery   trigram          1.667 sat=[] str=[] disc=[] 21 CFR 4.1
+    e6   discovery   trigram          1.562 sat=[] str=[] disc=[] 21 CFR 1.632
+    e7   discovery   full_text_or     1.374 sat=[] str=[] disc=[] FDA Guidance: Recommendations to Reduce the Possible Risk of Tra
+    e8   discovery   full_text_or     0.604 sat=[] str=[] disc=[] FDA Guidance: Contents of a Complete Submission for the Evaluati
+    e9   discovery   full_text_or     0.405 sat=[] str=[] disc=[] FDA Guidance: REMS Assessment: Planning and Reporting (draft, 20
+    e10  discovery   full_text_or     0.402 sat=[] str=[] disc=[] 21 CFR 1143.5(a)(2)(iv)
+    ... 12 more
+  results -> ['21 CFR 207.5', '21 CFR 822.2', '21 CFR 1.277(a)', '21 CFR 4.100(a)', '21 CFR 4.1', '21 CFR 1.632', 'FDA Guidance: Recommendations ', 'FDA Guidance: Contents of a Co']

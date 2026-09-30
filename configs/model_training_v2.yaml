@@ -1,0 +1,87 @@
+# Stage 13: LoRA fine-tune of Qwen3-0.6B on the grounding-corrected v2 dataset.
+#
+#   python scripts/benchmark_training.py --config configs/model_training_v2.yaml
+#   python scripts/train_model.py --config configs/model_training_v2.yaml
+#
+# Only two things change from Stage 12 (configs/model_training.yaml): the
+# dataset and the training budget. The LoRA rank, alpha, dropout and target
+# modules are held fixed so the experiment stays interpretable, and the
+# learning rate is lowered once, deliberately, per the Stage 13 brief.
+
+model:
+  name: Qwen3-0.6B
+  config: configs/model.yaml
+
+dataset:
+  train: data/training/datasets/training_v2.jsonl
+  validation: data/training/datasets/validation_v2.jsonl
+  test: data/training/datasets/test_v2.jsonl            # never read during training
+  manifest: data/training/datasets/manifest_v2.json
+  expected_hash: 656d69b284db62bf945ffd100a4f52b36a1652b06d43b03239e7facba8c4a71b
+  expected_counts:
+    train: 7958
+    validation: 1058
+    test: 947
+  seed: 42
+  # Stage 12 used 64 unstratified validation examples. A full 1,056-example
+  # pass costs about 1.8 h on this CPU and runs at every evaluation, so Stage 13
+  # uses a deterministic subset stratified by category instead: every category
+  # is represented in proportion to its share, selection is by hash order with
+  # the dataset seed, and the realised distribution is recorded in the run
+  # summary. It is never chosen by looking at performance.
+  eval_subset: 100
+  eval_stratified: true
+  protected:
+    - data/evaluation/datasets/baseline_v1.jsonl
+    - data/evaluation/datasets/retrieval_v1.jsonl
+    - data/evaluation/datasets/retrieval_v2.jsonl
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+training:
+  # lowered from Stage 12's 2e-4; the Stage 12 run reached a training loss of
+  # 0.14 in 40 steps and lost general ability, which is consistent with too
+  # aggressive a step size on templated targets
+  learning_rate: 1.0e-4
+  num_train_epochs: 1
+  # An upper bound only. CPU step time varies with example length, so the run
+  # is actually bounded by training.deadline_local below: the deadline callback
+  # evaluates, saves and stops in time to finish. This is why max_steps is set
+  # generously rather than tuned.
+  max_steps: 200
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  warmup_steps: 15
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  logging_steps: 5
+  eval_strategy: steps
+  eval_steps: 40
+  save_strategy: steps
+  save_steps: 40
+  save_total_limit: 3
+  # 3 rather than 2: this run gets only two or three evaluations, so a tighter
+  # patience could end it on ordinary validation noise rather than on evidence
+  early_stopping_patience: 3
+  max_seq_length: 1280
+  over_length_policy: skip
+  # measured on this machine: leaving checkpointing on is faster here, because
+  # without it the 8 GB of RAM is tight enough that paging costs more than
+  # recomputing activations (206-265 s/step off versus 170 s/step on)
+  gradient_checkpointing: true
+  seed: 42
+  # wall-clock stop requested for this run; the reserve covers the final
+  # evaluation, the checkpoint save, the adapter reload and the inference check
+  deadline_local: "18:30"
+  deadline_reserve_seconds: 1500
+
+output:
+  directory: models/qwen3-0.6b-lora/stage13_v1
+  smoke_directory: models/qwen3-0.6b-lora/smoke_tmp

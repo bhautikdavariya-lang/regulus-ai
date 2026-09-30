@@ -1,0 +1,552 @@
+{
+ "environment": {
+  "model_id": "Qwen/Qwen3-0.6B",
+  "parameters": 596049920,
+  "weights_mb_in_memory": 2274,
+  "device": "cpu",
+  "dtype": "float32",
+  "context_window_tokens": 40960,
+  "torch_threads": 4,
+  "mps_available": true,
+  "machine": "arm64",
+  "processor": "arm",
+  "cpu_logical": 8,
+  "cpu_physical": 8,
+  "ram_total_mb": 8192,
+  "model_load_s": 1.68,
+  "configured_device": "cpu",
+  "configured_dtype": "float32",
+  "generation": {
+   "do_sample": false,
+   "temperature": 0.7,
+   "top_p": 0.8,
+   "top_k": 20,
+   "enable_thinking": false,
+   "repetition_penalty": 1.0,
+   "no_repeat_ngram_size": 0
+  },
+  "mps_after_load": {
+   "mps_allocated_mb": 0,
+   "mps_driver_mb": 0
+  },
+  "answer_length": {
+   "policy": "adaptive",
+   "max_new_tokens": 2048,
+   "min_tokens": 256,
+   "base_tokens": 96,
+   "per_unit_tokens": 160,
+   "range_bonus_tokens": 64,
+   "general_tokens": 384,
+   "max_units": 10,
+   "evidence_multiple": 1.4,
+   "evidence_cap_fraction": 0.75
+  }
+ },
+ "questions": 60,
+ "warm_questions": 59,
+ "warm_with_model_call": 54,
+ "cold_first_question": {
+  "id": "S5-001",
+  "category": "single",
+  "cold": true,
+  "model_called": true,
+  "wall_ms": 6450.72,
+  "timings_ms": {
+   "plan_ms": 0.48,
+   "retrieval_ms": 113.21,
+   "context_ms": 0.33,
+   "package_ms": 1.32,
+   "prompt_ms": 0.05,
+   "generation_ms": 6333.99,
+   "model_prepare_ms": 22.93,
+   "model_first_token_ms": 2495.02,
+   "model_detokenize_ms": 0.24,
+   "model_decode_ms": 3815.37,
+   "validation_ms": 1.58,
+   "citations_ms": 0.02,
+   "total_ms": 6450.53,
+   "metadata_ms": 0.18
+  },
+  "retrieval_sql_ms": {
+   "exact_cfr:r1": 64.07,
+   "structural:r1": 1.02,
+   "full_text:ecfr": 21.43,
+   "full_text:fda_guidance": 25.93
+  },
+  "prompt_tokens": 1549,
+  "generated_tokens": 46,
+  "allowance": 256,
+  "finished": true,
+  "tokens_per_second": 7.29,
+  "decode_tokens_per_second": 11.794,
+  "source_count": 4,
+  "context_chars": 3600,
+  "prompt_chars": 4113,
+  "answer_chars": 176,
+  "resources": {
+   "proc_cpu_mean": 182.1,
+   "sys_cpu_mean": 28.0,
+   "rss_mb_max": 3878,
+   "mem_available_mb_min": 2156,
+   "swap_used_mb_max": 1161,
+   "gpu_util_mean": 0,
+   "gpu_util_max": 0,
+   "mps_allocated_mb": 0,
+   "mps_driver_mb": 0
+  },
+  "question": "What does 21 CFR 820.10(b)(2) require?",
+  "prompt_sha256": "8483203f1fefa39ac097b3432681545f63596449193749f79bf0bdd55618152a",
+  "answer": "21 CFR 820.10(b)(2) requires that the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable. [1]",
+  "citations": [
+   {
+    "index": 1,
+    "indices": [
+     1
+    ],
+    "label": "21 CFR 820.10(b)(2)",
+    "corpus": "ecfr",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820/section-820.10",
+    "cited_in_answer": true,
+    "citation": {
+     "corpus": "ecfr",
+     "label": "21 CFR 820.10(b)(2)",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820/section-820.10",
+     "title": "21",
+     "part": "820",
+     "section": "820.10",
+     "paragraph": "(b)(2)",
+     "heading": "Requirements for a quality management system.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    },
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "role": "cited"
+   }
+  ],
+  "sources": [
+   {
+    "index": 1,
+    "citation": "21 CFR 820.10(b)(2)",
+    "key": "ecfr:820.10:(b)(2):0",
+    "tier": "exact"
+   },
+   {
+    "index": 2,
+    "citation": "21 CFR 820.10(b)",
+    "key": "ecfr:820.10:(b):0",
+    "tier": "structural"
+   },
+   {
+    "index": 3,
+    "citation": "FDA Guidance: Quality Management System Information for Certain Premarket Submission Reviews: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-27, Docket FDA-2025-D-4051)",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/quality-management-system-information-certain-premarket-submission-reviews#50",
+    "tier": "supporting"
+   },
+   {
+    "index": 4,
+    "citation": "FDA Guidance: Quality Management System Information for Certain Premarket Submission Reviews: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-27, Docket FDA-2025-D-4051)",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/quality-management-system-information-certain-premarket-submission-reviews#9",
+    "tier": "supporting"
+   }
+  ],
+  "validation_initial": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [
+    "r1"
+   ],
+   "unaddressed": [],
+   "cited": [
+    1
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 46,
+   "max_new_tokens": 256,
+   "answer_class": "answer",
+   "n_sources": 4,
+   "explicit": true,
+   "cited_tiers": {
+    "1": "exact"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "focused",
+    "shape": {
+     "mode": "focused",
+     "scope": "subsection",
+     "exhaustive": false,
+     "requested_units": [
+      "21 CFR 820.10(b)(2)"
+     ],
+     "focus_terms": [],
+     "signals": [
+      "paragraph_level_reference"
+     ],
+     "rationale": "a single paragraph-level provision (21 CFR 820.10(b)(2))"
+    },
+    "groups": 1,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 1,
+    "material_items_covered": 1,
+    "uncovered_items": [],
+    "provision_led_blocks": [
+     "(b)(2)"
+    ],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "validation_final": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [
+    "r1"
+   ],
+   "unaddressed": [],
+   "cited": [
+    1
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 46,
+   "max_new_tokens": 256,
+   "answer_class": "answer",
+   "n_sources": 4,
+   "explicit": true,
+   "cited_tiers": {
+    "1": "exact"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "focused",
+    "shape": {
+     "mode": "focused",
+     "scope": "subsection",
+     "exhaustive": false,
+     "requested_units": [
+      "21 CFR 820.10(b)(2)"
+     ],
+     "focus_terms": [],
+     "signals": [
+      "paragraph_level_reference"
+     ],
+     "rationale": "a single paragraph-level provision (21 CFR 820.10(b)(2))"
+    },
+    "groups": 1,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 1,
+    "material_items_covered": 1,
+    "uncovered_items": [],
+    "provision_led_blocks": [
+     "(b)(2)"
+    ],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "repair": null,
+  "coverage_action": "answer",
+  "citation_support": {
+   "markers": [
+    1
+   ],
+   "by_tier": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0,
+    "invalid": 0
+   },
+   "exact_source_cited_for": {
+    "r1": true
+   }
+  }
+ },
+ "stage_ms_warm_model_called": {
+  "plan_ms": {
+   "n": 54,
+   "median": 0.1,
+   "p90": 0.2,
+   "mean": 0.2,
+   "min": 0.1,
+   "max": 2.9
+  },
+  "retrieval_ms": {
+   "n": 54,
+   "median": 62.6,
+   "p90": 315.6,
+   "mean": 157.0,
+   "min": 7.5,
+   "max": 2236.5
+  },
+  "context_ms": {
+   "n": 54,
+   "median": 0.2,
+   "p90": 0.4,
+   "mean": 0.2,
+   "min": 0.0,
+   "max": 1.4
+  },
+  "package_ms": {
+   "n": 54,
+   "median": 0.5,
+   "p90": 2.0,
+   "mean": 0.9,
+   "min": 0.1,
+   "max": 3.3
+  },
+  "prompt_ms": {
+   "n": 54,
+   "median": 0.0,
+   "p90": 0.2,
+   "mean": 0.1,
+   "min": 0.0,
+   "max": 0.8
+  },
+  "model_prepare_ms": {
+   "n": 54,
+   "median": 3.7,
+   "p90": 9.4,
+   "mean": 4.8,
+   "min": 1.5,
+   "max": 13.7
+  },
+  "model_first_token_ms": {
+   "n": 54,
+   "median": 1841.9,
+   "p90": 2906.1,
+   "mean": 1900.6,
+   "min": 943.5,
+   "max": 4076.2
+  },
+  "model_decode_ms": {
+   "n": 54,
+   "median": 9087.5,
+   "p90": 33937.7,
+   "mean": 14302.2,
+   "min": 766.0,
+   "max": 86069.6
+  },
+  "model_detokenize_ms": {
+   "n": 54,
+   "median": 0.1,
+   "p90": 0.6,
+   "mean": 0.4,
+   "min": 0.1,
+   "max": 8.3
+  },
+  "generation_ms": {
+   "n": 54,
+   "median": 11129.3,
+   "p90": 36129.9,
+   "mean": 16208.4,
+   "min": 2388.0,
+   "max": 90139.4
+  },
+  "validation_ms": {
+   "n": 54,
+   "median": 1.1,
+   "p90": 4.3,
+   "mean": 2.0,
+   "min": 0.3,
+   "max": 15.0
+  },
+  "citations_ms": {
+   "n": 54,
+   "median": 0.0,
+   "p90": 0.1,
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.1
+  },
+  "metadata_ms": {
+   "n": 54,
+   "median": 0.2,
+   "p90": 0.4,
+   "mean": 0.2,
+   "min": 0.1,
+   "max": 0.9
+  },
+  "total_ms": {
+   "n": 54,
+   "median": 11312.4,
+   "p90": 36336.0,
+   "mean": 16368.8,
+   "min": 2461.6,
+   "max": 90573.8
+  }
+ },
+ "stage_ms_warm_no_model": {
+  "plan_ms": {
+   "n": 5,
+   "median": 0.1,
+   "p90": 0.1,
+   "mean": 0.1,
+   "min": 0.1,
+   "max": 0.1
+  },
+  "retrieval_ms": {
+   "n": 5,
+   "median": 17.7,
+   "p90": 115.0,
+   "mean": 44.5,
+   "min": 3.5,
+   "max": 115.0
+  },
+  "context_ms": {
+   "n": 5,
+   "median": 0.1,
+   "p90": 0.2,
+   "mean": 0.1,
+   "min": 0.0,
+   "max": 0.2
+  },
+  "package_ms": {
+   "n": 5,
+   "median": 0.3,
+   "p90": 0.8,
+   "mean": 0.4,
+   "min": 0.0,
+   "max": 0.8
+  },
+  "prompt_ms": {},
+  "model_prepare_ms": {},
+  "model_first_token_ms": {},
+  "model_decode_ms": {},
+  "model_detokenize_ms": {},
+  "generation_ms": {
+   "n": 5,
+   "median": 0.0,
+   "p90": 0.0,
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "validation_ms": {},
+  "citations_ms": {
+   "n": 5,
+   "median": 0.0,
+   "p90": 0.0,
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "metadata_ms": {
+   "n": 5,
+   "median": 0.1,
+   "p90": 0.1,
+   "mean": 0.1,
+   "min": 0.0,
+   "max": 0.1
+  },
+  "total_ms": {
+   "n": 5,
+   "median": 18.7,
+   "p90": 115.0,
+   "mean": 45.0,
+   "min": 3.6,
+   "max": 115.0
+  }
+ },
+ "prompt_tokens": {
+  "n": 54,
+  "median": 1402.0,
+  "p90": 2076,
+  "mean": 1401.9,
+  "min": 691,
+  "max": 2771
+ },
+ "generated_tokens": {
+  "n": 54,
+  "median": 111.0,
+  "p90": 390,
+  "mean": 158.6,
+  "min": 11,
+  "max": 629
+ },
+ "tokens_per_second_overall": {
+  "n": 54,
+  "median": 10.3,
+  "p90": 11.8,
+  "mean": 9.8,
+  "min": 4.5,
+  "max": 12.3
+ },
+ "tokens_per_second_decode": {
+  "n": 54,
+  "median": 12.6,
+  "p90": 14.4,
+  "mean": 12.3,
+  "min": 6.0,
+  "max": 15.2
+ },
+ "prefill_tokens_per_second": {
+  "n": 54,
+  "median": 757.3,
+  "p90": 781.3,
+  "mean": 746.6,
+  "min": 549.1,
+  "max": 783.7
+ },
+ "sources": {
+  "n": 54,
+  "median": 4.0,
+  "p90": 11,
+  "mean": 5.1,
+  "min": 1,
+  "max": 19
+ },
+ "context_chars": {
+  "n": 54,
+  "median": 3525.5,
+  "p90": 4828,
+  "mean": 3088.1,
+  "min": 257,
+  "max": 8972
+ },
+ "proc_cpu_mean": {
+  "n": 54,
+  "median": 183.8,
+  "p90": 197.6,
+  "mean": 181.1,
+  "min": 149.3,
+  "max": 216.5
+ },
+ "rss_mb_max": 3912,
+ "swap_used_mb_max": 1161,
+ "mem_available_mb_min": 1682,
+ "gpu_util_mean": {
+  "n": 54,
+  "median": 0.0,
+  "p90": 1.6,
+  "mean": 0.4,
+  "min": 0,
+  "max": 9.2
+ },
+ "mps_driver_mb_max": 0,
+ "total_generation_s": 881.6,
+ "total_wall_s": 890.6
+}

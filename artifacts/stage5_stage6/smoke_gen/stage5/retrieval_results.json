@@ -1,0 +1,120 @@
+{
+  "questions": 2,
+  "parse_ok": 1.0,
+  "requirement_recall": 1.0,
+  "questions_with_full_exact_recall": 1.0,
+  "multi_provision_full_recall": null,
+  "range_full_recall": null,
+  "missing_provisions_correctly_absent": 1.0,
+  "structural_present_when_expected": 1.0,
+  "supporting_present": 0.5,
+  "fallback_used": 0.5,
+  "fallback_used_when_all_exact_found": 0.0,
+  "retrieval_ok": 1.0,
+  "failures": [],
+  "per_question": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "parsed_requirements": [
+        "21 CFR 820.10(b)(2)"
+      ],
+      "parse_ok": true,
+      "expected_exact": [
+        "21 CFR 820.10(b)(2)"
+      ],
+      "retrieved_exact": [
+        "21 CFR 820.10(b)(2)"
+      ],
+      "exact_recall": 1.0,
+      "expected_missing_without_exact": [],
+      "false_exact_for_missing": [],
+      "tier_counts": {
+        "exact": 1,
+        "structural": 1,
+        "supporting": 2,
+        "discovery": 0
+      },
+      "fallback_used": false,
+      "retrieval_mode": "exact",
+      "candidates": 4,
+      "per_requirement": {
+        "r1": {
+          "requirement_id": "r1",
+          "canonical": "21 CFR 820.10(b)(2)",
+          "exact_attempted": true,
+          "exact_hits": 1,
+          "structural_hits": 1,
+          "discovery_hits": 0,
+          "resolved": true,
+          "fallback_run": false,
+          "fallback_terms": [],
+          "note": null
+        }
+      },
+      "notes": [],
+      "ok": true
+    },
+    {
+      "id": "S5-042",
+      "category": "missing",
+      "parsed_requirements": [
+        "21 CFR 820.10(b)(2)",
+        "21 CFR 820.999"
+      ],
+      "parse_ok": true,
+      "expected_exact": [
+        "21 CFR 820.10(b)(2)"
+      ],
+      "retrieved_exact": [
+        "21 CFR 820.10(b)(2)"
+      ],
+      "exact_recall": 1.0,
+      "expected_missing_without_exact": [
+        "21 CFR 820.999"
+      ],
+      "false_exact_for_missing": [],
+      "tier_counts": {
+        "exact": 1,
+        "structural": 2,
+        "supporting": 0,
+        "discovery": 7
+      },
+      "fallback_used": true,
+      "retrieval_mode": "exact",
+      "candidates": 10,
+      "per_requirement": {
+        "r1": {
+          "requirement_id": "r1",
+          "canonical": "21 CFR 820.10(b)(2)",
+          "exact_attempted": true,
+          "exact_hits": 1,
+          "structural_hits": 2,
+          "discovery_hits": 0,
+          "resolved": true,
+          "fallback_run": false,
+          "fallback_terms": [],
+          "note": null
+        },
+        "r2": {
+          "requirement_id": "r2",
+          "canonical": "21 CFR 820.999",
+          "exact_attempted": true,
+          "exact_hits": 0,
+          "structural_hits": 0,
+          "discovery_hits": 8,
+          "resolved": false,
+          "fallback_run": true,
+          "fallback_terms": [
+            "820.999"
+          ],
+          "note": "No live record for 21 CFR 820.999 in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded by filters); remaining results are text matches only."
+        }
+      },
+      "notes": [
+        "No live record for 21 CFR 820.999 in this eCFR snapshot (section may be reserved, removed, outside Title 21, or excluded by filters); remaining results are text matches only."
+      ],
+      "ok": true
+    }
+  ]
+}

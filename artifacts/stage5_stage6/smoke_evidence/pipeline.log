@@ -1,0 +1,16 @@
+2026-09-22 17:36:42 [START] stage5 run_dir=artifacts\stage5_stage6\smoke_evidence
+2026-09-22 17:36:42 [STAGE 5] dataset stage5_v1 (8 of 51 questions), run smoke_evidence
+2026-09-22 17:36:42 Database regulus read-only=on
+2026-09-22 17:36:42 [STAGE 5] phase evidence: retrieval, coverage, selection (no model)
+2026-09-22 17:36:42   [S5-001 ]  1/8 single          retrieval=ok  coverage=ok  selection=ok  state=COMPLETE
+2026-09-22 17:36:42   [S5-020 ]  2/8 multi           retrieval=ok  coverage=ok  selection=ok  state=COMPLETE
+2026-09-22 17:36:43   [S5-030 ]  3/8 range           retrieval=ok  coverage=ok  selection=ok  state=COMPLETE
+2026-09-22 17:36:43   [S5-041 ]  4/8 missing         retrieval=ok  coverage=ok  selection=ok  state=INCOMPLETE
+2026-09-22 17:36:43   [S5-043 ]  5/8 nonexistent     retrieval=ok  coverage=ok  selection=ok  state=INCOMPLETE
+2026-09-22 17:36:43   [S5-060 ]  6/8 general         retrieval=ok  coverage=ok  selection=ok  state=NO_EXPLICIT_REQUIREMENTS
+2026-09-22 17:36:43   [S5-070 ]  7/8 guidance        retrieval=ok  coverage=ok  selection=ok  state=NO_EXPLICIT_REQUIREMENTS
+2026-09-22 17:36:43   [S5-080 ]  8/8 domain_boundary retrieval=ok  coverage=ok  selection=ok  state=NO_EXPLICIT_REQUIREMENTS
+2026-09-22 17:36:43 [STAGE 5] generation phase skipped by request
+2026-09-22 17:36:43 [STAGE 5] phase report
+2026-09-22 17:36:43 [STAGE 5 COMPLETE] retrieval_ok=1.0 coverage_ok=1.0 selection_ok=1.0 valid_raw=None valid_final=None hallucination_raw=None proceed=False
+2026-09-22 17:36:43 [DONE] reports in artifacts\stage5_stage6\smoke_evidence\stage5; Stage 6 recommended: False

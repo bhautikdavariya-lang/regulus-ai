@@ -1,0 +1,28 @@
+{"id": "retrieval-001", "category": "exact_cfr", "query": "21 CFR 820.10", "expected": ["21 CFR 820.10"], "notes": "Bare section identifier."}
+{"id": "retrieval-002", "category": "exact_cfr", "query": "What does 21 CFR 820.10 cover?", "expected": ["21 CFR 820.10"], "notes": "Identifier embedded in a question."}
+{"id": "retrieval-003", "category": "exact_cfr", "query": "21 C.F.R. § 211.132", "expected": ["21 CFR 211.132"], "notes": "Punctuated title and section symbol."}
+{"id": "retrieval-004", "category": "cfr_section", "query": "section 50.25 elements of informed consent", "expected": ["21 CFR 50.25"], "notes": "'section N.N' form."}
+{"id": "retrieval-005", "category": "cfr_section", "query": "§ 807.81", "expected": ["21 CFR 807.81"], "notes": "Section symbol only, default title 21."}
+{"id": "retrieval-006", "category": "cfr_paragraph", "query": "Explain 21 CFR 820.10(b)(1)", "expected": ["21 CFR 820.10(b)(1)"], "notes": "Paragraph-level lookup."}
+{"id": "retrieval-007", "category": "cfr_paragraph", "query": "21 CFR 801.109(a)", "expected": ["21 CFR 801.109(a)"], "notes": "Paragraph with descendants (a)(1)(i)..."}
+{"id": "retrieval-008", "category": "cfr_paragraph", "query": "21 CFR 820.30(b)(1)", "expected": [], "notes": "Section 820.30 is a reserved range in the 2026 QMSR snapshot; no relevant target exists. Expected empty: any exact hit would be wrong."}
+{"id": "retrieval-009", "category": "regulatory_concept", "query": "tamper-evident packaging requirements for OTC drug products", "expected": ["21 CFR 211.132"], "notes": "Heading words present verbatim."}
+{"id": "retrieval-010", "category": "regulatory_concept", "query": "elements of informed consent", "expected": ["21 CFR 50.25", "21 CFR 50.20"], "notes": "Either informed-consent section is relevant."}
+{"id": "retrieval-011", "category": "regulatory_concept", "query": "when is IRB review required", "expected": ["21 CFR 56.103"], "notes": "Question wording close to the heading."}
+{"id": "retrieval-012", "category": "regulatory_concept", "query": "nutrition labeling of dietary supplements", "expected": ["21 CFR 101.36"], "notes": "Heading match."}
+{"id": "retrieval-013", "category": "regulatory_concept", "query": "quality management system requirements for device manufacturers", "expected": ["21 CFR 820.10"], "notes": "QMSR wording."}
+{"id": "retrieval-014", "category": "regulatory_concept", "query": "when a premarket notification submission is required", "expected": ["21 CFR 807.81"], "notes": "Heading match."}
+{"id": "retrieval-015", "category": "regulatory_concept", "query": "manufacturer medical device reporting requirements", "expected": ["21 CFR 803.50"], "notes": "MDR for manufacturers."}
+{"id": "retrieval-016", "category": "regulatory_concept", "query": "controls for closed systems electronic records", "expected": ["21 CFR 11.10"], "notes": "Part 11."}
+{"id": "retrieval-017", "category": "fda_guidance", "query": "Part 11 electronic records electronic signatures scope and application guidance", "expected": ["docket:FDA-2003-D-0143"], "notes": "Title words present."}
+{"id": "retrieval-018", "category": "fda_guidance", "query": "process validation general principles and practices guidance", "expected": ["docket:FDA-2008-D-0559"], "notes": "Title words present."}
+{"id": "retrieval-019", "category": "fda_guidance", "query": "applying human factors and usability engineering to medical devices", "expected": ["docket:FDA-2011-D-0469", "docket:FDA-2015-D-4599"], "notes": "Two closely related CDRH guidances."}
+{"id": "retrieval-020", "category": "fda_guidance", "query": "cybersecurity quality management system considerations premarket submissions", "expected": ["docket:FDA-2021-D-1158"], "notes": "Title words present."}
+{"id": "retrieval-021", "category": "fda_guidance", "query": "FDA-2016-D-2565", "expected": ["docket:FDA-2016-D-2565"], "notes": "Exact docket number."}
+{"id": "retrieval-022", "category": "cross_corpus", "query": "recall policy", "expected": ["21 CFR 7.40", "docket:FDA-2018-D-2074"], "notes": "Regulation and a guidance on voluntary recalls are both relevant."}
+{"id": "retrieval-023", "category": "cross_corpus", "query": "data integrity CGMP electronic equipment", "expected": ["docket:FDA-2018-D-3984", "21 CFR 211.68"], "notes": "Guidance on data integrity; 211.68 governs automated equipment."}
+{"id": "retrieval-024", "category": "terminology_variation", "query": "signature manifestations", "expected": ["21 CFR 11.50"], "notes": "Unusual regulatory term used verbatim in a heading."}
+{"id": "retrieval-025", "category": "terminology_variation", "query": "QMS documentation requirement ISO 13485", "expected": ["21 CFR 820.10"], "notes": "Abbreviation and standard name rather than regulation wording."}
+{"id": "retrieval-026", "category": "difficult_lexical", "query": "informd consent requirments", "expected": ["21 CFR 50.20", "21 CFR 50.25"], "notes": "Two misspellings; full-text will fail, trigram on headings may recover."}
+{"id": "retrieval-027", "category": "difficult_lexical", "query": "design controls", "expected": ["21 CFR 820.10(c)"], "notes": "Classic QSR term; the QMSR says 'Design and development'. Expected to be weak lexically."}
+{"id": "retrieval-028", "category": "difficult_lexical", "query": "sunscreen SPF labeling", "expected": ["21 CFR 201.327"], "notes": "SPF appears in the body, sunscreen in the heading."}

@@ -1,0 +1,17 @@
+2026-09-23 10:23:15 [START] stage5 run_dir=artifacts\stage5_stage6\smoke_gen
+2026-09-23 10:23:15 [STAGE 5] dataset stage5_v1 (2 of 51 questions), run smoke_gen
+2026-09-23 10:23:16 Database regulus read-only=on
+2026-09-23 10:23:16 [STAGE 5] phase evidence: retrieval, coverage, selection (no model)
+2026-09-23 10:23:17   [S5-001 ]  1/2 single          retrieval=ok  coverage=ok  selection=ok  state=COMPLETE
+2026-09-23 10:23:17   [S5-042 ]  2/2 missing         retrieval=ok  coverage=ok  selection=ok  state=INCOMPLETE
+2026-09-23 10:23:19 Resources: available RAM 2.26 GB of 8.5 GB; other model-sized Python processes: 0
+2026-09-23 10:23:19 WARNING: 2.26 GB available is below the comfortable 3.0 GB. The run will proceed but generation will page; closing editors or browser windows would speed it up.
+2026-09-23 10:23:19 [STAGE 5] phase generation: loading the base model
+2026-09-23 10:23:39 [STAGE 5] phase generation: 2 questions, full pipeline (raw + repaired) and controlled evidence
+2026-09-23 10:24:24   [S5-001 ]  1/2 full      gen=yes tokens=46 raw=valid repair=None 45s
+2026-09-23 10:24:46   [S5-001 ]       controlled gen=yes raw=valid 22s
+2026-09-23 10:25:34   [S5-042 ]  2/2 full      gen=yes tokens=70 raw=unsupported repair=extractive_replacement 48s
+2026-09-23 10:26:05   [S5-042 ]       controlled gen=yes raw=unsupported 31s
+2026-09-23 10:26:08 [STAGE 5] phase report
+2026-09-23 10:26:08 [STAGE 5 COMPLETE] retrieval_ok=1.0 coverage_ok=1.0 selection_ok=1.0 valid_raw=0.5 valid_final=1.0 hallucination_raw=0.5 proceed=False
+2026-09-23 10:26:08 [DONE] reports in artifacts\stage5_stage6\smoke_gen\stage5; Stage 6 recommended: False

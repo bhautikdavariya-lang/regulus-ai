@@ -1,0 +1,437 @@
+"""Deterministic post-generation validation (Stage 4).
+
+Checks a generated answer against the GenerationPackage (requested
+provisions, selected sources with tiers, coverage) and the generation
+result. Everything here is decidable from identities and structure:
+
+    requirement identity     is each requested provision addressed?
+    citation validity        does every [n] point at a supplied source?
+    evidence association     does a statement about R1 cite a source
+                             related to R1, and never a DISCOVERY source?
+    tier safety              is a provision with no EXACT source asserted
+                             as if it existed?
+    output integrity         truncation, empty output, degenerate repetition
+    answer shape             Stage 12, when the package carries an AnswerPlan:
+                             see regulus.rag.shape_validation
+
+What it cannot decide is semantic entailment: that a paraphrase of a
+source is faithful. Keyword overlap is not entailment and is not used as
+such. The report says what was checked; nothing here claims the answer is
+"correct".
+"""
+
+from __future__ import annotations
+
+import re
+from collections import Counter
+from dataclasses import dataclass, field
+from typing import Any
+
+from regulus.evaluation.grounding_eval import REFUSAL, classify_answer, split_sentences
+from regulus.inference.types import GenerationResult
+from regulus.rag.generation import GenerationPackage, SHAPE_DOCKET, SHAPE_GENERAL
+from regulus.rag.shape_validation import ENUMERATION_INCOMPLETE, MATERIAL_GROUP_UNCOVERED, PROMPT_ECHO, check_shape
+from regulus.retrieval.evidence import TIER_DISCOVERY, TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING
+from regulus.retrieval.references import parse_cfr_references
+
+STATUS_VALID = "valid"
+STATUS_INCOMPLETE = "incomplete"
+STATUS_UNSUPPORTED = "unsupported"
+STATUS_CITATION_INVALID = "citation_invalid"
+STATUS_EVIDENCE_MISMATCHED = "evidence_mismatched"
+STATUS_DEGENERATE = "degenerate"
+STATUS_EMPTY = "empty"
+# most severe first; the report status is the first one present
+_STATUS_ORDER = (STATUS_EMPTY, STATUS_DEGENERATE, STATUS_UNSUPPORTED, STATUS_CITATION_INVALID, STATUS_EVIDENCE_MISMATCHED, STATUS_INCOMPLETE)
+
+# problem codes
+EMPTY_OUTPUT = "empty_output"
+DEGENERATE_OUTPUT = "degenerate_output"
+TRUNCATED = "truncated"
+REQUIREMENT_NOT_ADDRESSED = "requirement_not_addressed"
+REFUSAL_WITH_EVIDENCE = "refusal_with_evidence"
+ASSERTED_MISSING_PROVISION = "asserted_missing_provision"
+INVALID_CITATION = "invalid_citation"
+MALFORMED_CITATION = "malformed_citation"
+CITATION_MISMATCH = "citation_mismatch"
+DISCOVERY_CITED_FOR_REQUIREMENT = "discovery_cited_for_requirement"
+UNCITED_STATEMENT = "uncited_statement"
+UNSUPPORTED_FIGURE = "unsupported_figure"                 # a number/amount that appears in no supplied source
+PROVISION_CITATION_MISMATCH = "provision_citation_mismatch"  # names provision X, cites a source that is not X
+LOW_OVERLAP = "low_overlap_with_cited_source"             # warning only: few content words shared with the cited exact source
+
+_CODE_STATUS = {
+    EMPTY_OUTPUT: STATUS_EMPTY,
+    DEGENERATE_OUTPUT: STATUS_DEGENERATE,
+    ASSERTED_MISSING_PROVISION: STATUS_UNSUPPORTED,
+    DISCOVERY_CITED_FOR_REQUIREMENT: STATUS_UNSUPPORTED,
+    INVALID_CITATION: STATUS_CITATION_INVALID,
+    CITATION_MISMATCH: STATUS_EVIDENCE_MISMATCHED,
+    PROVISION_CITATION_MISMATCH: STATUS_EVIDENCE_MISMATCHED,
+    UNSUPPORTED_FIGURE: STATUS_UNSUPPORTED,
+    REQUIREMENT_NOT_ADDRESSED: STATUS_INCOMPLETE,
+    REFUSAL_WITH_EVIDENCE: STATUS_INCOMPLETE,
+    TRUNCATED: STATUS_INCOMPLETE,
+    ENUMERATION_INCOMPLETE: STATUS_INCOMPLETE,  # Stage 12: an explicitly requested item is missing
+    MATERIAL_GROUP_UNCOVERED: STATUS_INCOMPLETE,  # Stage 12: a synthesis left out a whole requirement group
+    PROMPT_ECHO: STATUS_DEGENERATE,             # Stage 12: the answer copies the prompt's instructions
+}
+
+MARK_RE = re.compile(r"(?<![A-Za-z0-9])\[(\d{1,2})\]")
+MALFORMED_MARK_RE = re.compile(r"\[(?:source|src|sources)?\s*\d{1,2}\s*(?:[-–,]\s*\d{1,2}\s*)+\]|\[(?:source|src)\s*\d{1,2}\]", re.IGNORECASE)
+_OBLIGATION_RE = re.compile(r"\b(require[sd]?|must|shall|need(?:s|ed)?|mandate[sd]?|prohibit[sd]?|document|notify|handled?)\b", re.IGNORECASE)
+_NEGATION_CUES = (
+    "not found", "does not contain", "do not contain", "not contain", "not among", "cannot", "could not", "can not",
+    "no exact", "unavailable", "not available", "not retrieved", "not present", "no text", "not in the", "no live record",
+    "not provided", "not included", "not exist", "does not exist", "no source", "not supplied", "not covered",
+)
+_DEGENERATE_MIN_TOKENS = 30
+_DEGENERATE_NGRAM = 4
+_DEGENERATE_REPEAT_RATIO = 0.5
+_DEGENERATE_SENTENCE_REPEATS = 3
+_FIGURE_RE = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?|(?<![\w.(\[])\d{2,}(?:[.,]\d+)*(?![\w(])")
+_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'-]{2,}")
+_STOPWORDS = {
+    "the", "and", "for", "with", "that", "this", "must", "shall", "are", "was", "were", "have", "has", "not", "its",
+    "any", "all", "such", "from", "into", "under", "per", "requires", "required", "require", "requirement", "requirements",
+    "cfr", "section", "paragraph", "provision", "chapter", "part", "accordance", "applicable", "manufacturer", "manufacturers",
+    "states", "state", "specifies", "specify", "provides", "provide", "which", "when", "where", "then", "than", "also",
+    "ecfr", "binding", "regulation", "guidance", "clause", "clauses", "iso", "subclause",
+}
+LOW_OVERLAP_THRESHOLD = 0.4
+
+
+@dataclass(frozen=True)
+class ValidationProblem:
+    code: str
+    severity: str                  # "error" | "warning"
+    detail: str
+    requirement_id: str | None = None
+    citation: int | None = None
+    sentence: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"code": self.code, "severity": self.severity, "detail": self.detail, "requirement_id": self.requirement_id,
+                "citation": self.citation, "sentence": self.sentence}
+
+
+@dataclass(frozen=True)
+class ValidationReport:
+    status: str
+    problems: tuple[ValidationProblem, ...]
+    addressed: tuple[str, ...]          # satisfied requirements the answer addresses
+    unaddressed: tuple[str, ...]        # satisfied requirements the answer leaves out
+    cited: tuple[int, ...]              # citation markers found, in order of first appearance
+    invalid_citations: tuple[int, ...]
+    truncated: bool
+    finished: bool | None
+    generated_tokens: int | None
+    max_new_tokens: int | None
+    answer_class: str                   # refusal | hedged | answer (project classifier)
+    diagnostics: dict[str, Any] = field(default_factory=dict)
+
+    @property
+    def ok(self) -> bool:
+        return self.status == STATUS_VALID
+
+    @property
+    def errors(self) -> tuple[ValidationProblem, ...]:
+        return tuple(p for p in self.problems if p.severity == "error")
+
+    def codes(self) -> tuple[str, ...]:
+        return tuple(dict.fromkeys(p.code for p in self.problems))
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "status": self.status,
+            "ok": self.ok,
+            "codes": list(self.codes()),
+            "problems": [p.to_dict() for p in self.problems],
+            "addressed": list(self.addressed),
+            "unaddressed": list(self.unaddressed),
+            "cited": list(self.cited),
+            "invalid_citations": list(self.invalid_citations),
+            "truncated": self.truncated,
+            "finished": self.finished,
+            "generated_tokens": self.generated_tokens,
+            "max_new_tokens": self.max_new_tokens,
+            "answer_class": self.answer_class,
+            **self.diagnostics,
+        }
+
+
+# ------------------------------------------------------------ mentions
+
+
+def _mention_patterns(package: GenerationPackage) -> dict[str, list[re.Pattern[str]]]:
+    """Regexes that detect a mention of each requested provision in the answer.
+
+    Full form always ("820.10(b)(2)", spaces tolerated). The short paragraph
+    form ("(b)(2)") only when every requested provision is in the same
+    section, so it cannot be ambiguous.
+    """
+    labels = package.requirement_labels
+    sections: set[str] = set()
+    parsed: dict[str, tuple[str, str, str]] = {}
+    for rid, label in labels.items():
+        m = re.match(r"(\d{1,2}) CFR (?:part (\d+)|(\d+\.\d+[a-z]?)((?:\([A-Za-z0-9]+\))*))$", label)
+        if not m:
+            continue
+        if m.group(2):
+            parsed[rid] = ("part", m.group(2), "")
+        else:
+            parsed[rid] = ("section", m.group(3), m.group(4) or "")
+            sections.add(m.group(3))
+    same_section = len(sections) == 1
+    out: dict[str, list[re.Pattern[str]]] = {}
+    for rid, (kind, number, para) in parsed.items():
+        pats: list[re.Pattern[str]] = []
+        if kind == "part":
+            pats.append(re.compile(rf"\bpart\s+{re.escape(number)}\b", re.IGNORECASE))
+        else:
+            para_re = "".join(rf"\s*\(\s*{re.escape(t)}\s*\)" for t in re.findall(r"\(([A-Za-z0-9]+)\)", para))
+            if para:
+                pats.append(re.compile(rf"(?<![\d.]){re.escape(number)}{para_re}(?!\s*\()"))
+                if same_section:
+                    pats.append(re.compile(rf"(?<![\w)]){para_re.lstrip()}(?!\s*\()"))
+            else:
+                pats.append(re.compile(rf"(?<![\d.]){re.escape(number)}(?![\d.]|\s*\()"))
+        out[rid] = pats
+    return out
+
+
+def _mentions(text: str, patterns: list[re.Pattern[str]]) -> bool:
+    return any(p.search(text) for p in patterns)
+
+
+_TRAILING_MARKS_RE = re.compile(r"([.!?])([\"\u201d')]?)((?:\s*\[\d{1,2}\])+)")
+
+
+def attach_trailing_markers(text: str) -> str:
+    """Move markers written after a full stop ("... chapter. [1]") back inside the
+    sentence so they attach to the statement they follow, not the next one."""
+    return _TRAILING_MARKS_RE.sub(lambda m: " " + " ".join(re.findall(r"\[\d{1,2}\]", m.group(3))) + m.group(1) + m.group(2), text)
+
+
+def _is_negated(sentence: str) -> bool:
+    s = sentence.lower()
+    return any(cue in s for cue in _NEGATION_CUES)
+
+
+def _normalise_figure(token: str) -> str:
+    return token.replace("$", "").replace(",", "").replace(" ", "").strip(".")
+
+
+def _figures(text: str) -> set[str]:
+    return {_normalise_figure(t) for t in _FIGURE_RE.findall(text)} - {""}
+
+
+def _content_words(text: str) -> set[str]:
+    return {w.lower() for w in _WORD_RE.findall(text)} - _STOPWORDS
+
+
+def _source_identity(source) -> tuple[str, str | None, str] | None:
+    f = source.citation_fields or {}
+    if source.corpus != "ecfr" or not f.get("section"):
+        return None
+    return (str(f.get("title") or "21"), f.get("section"), f.get("paragraph") or "")
+
+
+def _related_identity(named: tuple[str, str | None, str], have: tuple[str, str | None, str]) -> bool:
+    """Same provision, or its parent/child (same section, one path a prefix of the other)."""
+    if named[0] != have[0] or named[1] != have[1]:
+        return False
+    a, b = named[2], have[2]
+    return a == b or not a or not b or a.startswith(b + "(") or b.startswith(a + "(")
+
+
+def _degenerate(text: str) -> tuple[bool, str]:
+    sentences = [s for s in split_sentences(text) if len(s) >= 20]
+    if sentences:
+        top, n = Counter(sentences).most_common(1)[0]
+        if n >= _DEGENERATE_SENTENCE_REPEATS:
+            return True, f"sentence repeated {n} times: {top[:60]!r}"
+    tokens = text.split()
+    if len(tokens) >= _DEGENERATE_MIN_TOKENS:
+        grams = [" ".join(tokens[i:i + _DEGENERATE_NGRAM]) for i in range(len(tokens) - _DEGENERATE_NGRAM + 1)]
+        repeated = sum(1 for g, c in Counter(grams).items() if c > 1 for _ in range(c - 1))
+        ratio = repeated / max(len(grams), 1)
+        if ratio > _DEGENERATE_REPEAT_RATIO:
+            return True, f"{ratio:.0%} of 4-grams are repeats"
+    return False, ""
+
+
+# ------------------------------------------------------------ validate
+
+
+def validate_answer(answer: str, package: GenerationPackage, generation: GenerationResult | None = None) -> ValidationReport:
+    """Deterministic checks of `answer` against the package it was generated from."""
+    text = (answer or "").strip()
+    problems: list[ValidationProblem] = []
+    n_sources = len(package.sources)
+    by_index = {s.index: s for s in package.sources}
+    explicit = package.shape not in (SHAPE_GENERAL, SHAPE_DOCKET) and bool(package.requirements)
+
+    # -- output integrity
+    finished = generation.finished if generation is not None else None
+    generated = generation.generated_tokens if generation is not None else None
+    truncated = False
+    if generation is not None:
+        if finished is False:
+            truncated = True
+        elif finished is None and generated is not None and package.max_new_tokens and generated >= package.max_new_tokens:
+            truncated = True
+    if not text:
+        problems.append(ValidationProblem(EMPTY_OUTPUT, "error", "the model produced no text"))
+    else:
+        degenerate, why = _degenerate(text)
+        if degenerate:
+            problems.append(ValidationProblem(DEGENERATE_OUTPUT, "error", why))
+    if truncated:
+        # Naming *which* limit was hit is the difference between an actionable
+        # report and a shrug: an allowance below the ceiling can be raised for
+        # this shape of question, whereas the ceiling itself is the pathology
+        # guard and hitting it usually means the model was not stopping.
+        at_ceiling = package.max_new_tokens >= package.budget.hard_max_tokens
+        which = "the hard safety ceiling" if at_ceiling else "this question's allowance"
+        problems.append(ValidationProblem(
+            TRUNCATED, "error",
+            f"generation stopped at {which} ({generated}/{package.max_new_tokens} tokens) "
+            f"before the answer finished",
+        ))
+
+    # -- citations: every marker must point at a supplied source
+    cited = tuple(dict.fromkeys(int(m) for m in MARK_RE.findall(text)))
+    invalid = tuple(i for i in cited if i < 1 or i > n_sources)
+    for i in invalid:
+        problems.append(ValidationProblem(INVALID_CITATION, "error", f"[{i}] does not correspond to any supplied source (1..{n_sources})", citation=i))
+    for m in MALFORMED_MARK_RE.findall(text):
+        problems.append(ValidationProblem(MALFORMED_CITATION, "warning", f"citation syntax {m!r} is not the [n] form and was not counted"))
+
+    # -- requirements
+    answer_class = classify_answer(text) if text else REFUSAL
+    patterns = _mention_patterns(package)
+    addressed: list[str] = []
+    unaddressed: list[str] = []
+    sentences = split_sentences(attach_trailing_markers(text))
+    if explicit:
+        for rid in package.satisfied_ids:
+            cites_exact = any(rid in by_index[i].requirement_ids and by_index[i].tier == TIER_EXACT for i in cited if i in by_index)
+            if _mentions(text, patterns.get(rid, [])) or cites_exact:
+                addressed.append(rid)
+            else:
+                unaddressed.append(rid)
+                problems.append(ValidationProblem(REQUIREMENT_NOT_ADDRESSED, "error", f"{package.requirement_labels[rid]} has an EXACT source but the answer does not address it", requirement_id=rid))
+        if package.satisfied_ids and answer_class == REFUSAL and text:
+            problems.append(ValidationProblem(REFUSAL_WITH_EVIDENCE, "error", "the answer declines although EXACT sources were supplied for requested provisions"))
+        # a provision with no EXACT source may only be mentioned as not found
+        missing_ids = [rid for rid, _ in package.requirements if rid not in package.satisfied_ids]
+        for rid in missing_ids:
+            for sentence in sentences:
+                if _mentions(sentence, patterns.get(rid, [])) and not _is_negated(sentence):
+                    problems.append(ValidationProblem(ASSERTED_MISSING_PROVISION, "error", f"{package.requirement_labels[rid]} has no EXACT source but is described as if it existed", requirement_id=rid, sentence=sentence))
+                    break
+        # a named provision must be supported by a source of that identity (or its parent/child)
+        identities = {src.index: _source_identity(src) for src in package.sources}
+        for sentence in sentences:
+            marks = [int(m) for m in MARK_RE.findall(sentence) if int(m) in by_index]
+            if not marks:
+                continue
+            for ref in parse_cfr_references(sentence):
+                if ref.section is None:
+                    continue
+                named = (ref.title, ref.section, ref.paragraph_path)
+                if not any(ident and _related_identity(named, ident) for ident in identities.values()):
+                    continue  # the provision is not among the sources; handled by the missing-provision rule
+                if not any(identities.get(i) and _related_identity(named, identities[i]) for i in marks):
+                    # attribute the problem to the requested provision the sentence is about, when there is exactly one
+                    about = [rid for rid in package.satisfied_ids if _mentions(sentence, patterns.get(rid, []))]
+                    rid = about[0] if len(about) == 1 else None
+                    problems.append(ValidationProblem(PROVISION_CITATION_MISMATCH, "error", f"the sentence names {ref.canonical} but cites sources that are not it or its parent/child", requirement_id=rid, citation=marks[0], sentence=sentence))
+                    break
+        # evidence association per sentence
+        for sentence in sentences:
+            marks = [int(m) for m in MARK_RE.findall(sentence)]
+            mentioned = [rid for rid in package.satisfied_ids if _mentions(sentence, patterns.get(rid, []))]
+            if len(mentioned) != 1:
+                continue
+            rid = mentioned[0]
+            valid_marks = [i for i in marks if i in by_index]
+            if not valid_marks:
+                if _OBLIGATION_RE.search(sentence) and not _is_negated(sentence):
+                    problems.append(ValidationProblem(UNCITED_STATEMENT, "warning", "statement about a requested provision carries no citation", requirement_id=rid, sentence=sentence))
+                continue
+            related = [i for i in valid_marks if rid in by_index[i].requirement_ids and by_index[i].tier in (TIER_EXACT, TIER_STRUCTURAL)]
+            discovery = [i for i in valid_marks if by_index[i].tier == TIER_DISCOVERY]
+            if discovery and not related:
+                problems.append(ValidationProblem(DISCOVERY_CITED_FOR_REQUIREMENT, "error", f"a DISCOVERY source is cited as support for {package.requirement_labels[rid]}", requirement_id=rid, citation=discovery[0], sentence=sentence))
+            elif not related:
+                problems.append(ValidationProblem(CITATION_MISMATCH, "error", f"the sources cited for {package.requirement_labels[rid]} are not its EXACT or STRUCTURAL evidence", requirement_id=rid, citation=valid_marks[0], sentence=sentence))
+
+    # figures (amounts, numbers of two or more digits) must come from a supplied source
+    if text:
+        supplied = set()
+        for src in package.sources:
+            supplied |= _figures(src.text) | _figures(src.citation)
+        for rid, label in package.requirements:
+            supplied |= _figures(label)
+        stray = sorted(f for f in _figures(text) if f not in supplied and not any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3))
+        if stray:
+            problems.append(ValidationProblem(UNSUPPORTED_FIGURE, "error", f"figure(s) not found in any supplied source: {', '.join(stray[:6])}"))
+        # low content-word overlap with the cited EXACT source: a warning, not proof of anything
+        for sentence in sentences:
+            marks = [int(m) for m in MARK_RE.findall(sentence) if int(m) in by_index]
+            exact_cited = [by_index[i] for i in marks if by_index[i].tier == TIER_EXACT]
+            if not exact_cited:
+                continue
+            words = _content_words(MARK_RE.sub("", sentence))
+            if len(words) < 4:
+                continue
+            best = max(len(words & _content_words(src.text)) / len(words) for src in exact_cited)
+            if best < LOW_OVERLAP_THRESHOLD:
+                problems.append(ValidationProblem(LOW_OVERLAP, "warning", f"only {best:.0%} of the content words appear in the cited exact source", citation=marks[0], sentence=sentence))
+
+    # answer shape (Stage 12): warnings except a missing item of an explicit enumeration
+    shape_diagnostics = None
+    if text and package.answer_plan is not None:
+        findings, shape_diagnostics = check_shape(attach_trailing_markers(text), package, package.answer_plan)
+        problems.extend(ValidationProblem(f.code, f.severity, f.detail, citation=f.citation, sentence=f.sentence) for f in findings)
+
+    status = STATUS_VALID
+    present = {_CODE_STATUS.get(p.code) for p in problems if p.severity == "error"}
+    for candidate in _STATUS_ORDER:
+        if candidate in present:
+            status = candidate
+            break
+    diagnostics = {
+        "n_sources": n_sources,
+        "explicit": explicit,
+        "cited_tiers": {str(i): by_index[i].tier for i in cited if i in by_index},
+        "warnings": sum(1 for p in problems if p.severity == "warning"),
+        "errors": sum(1 for p in problems if p.severity == "error"),
+    }
+    if shape_diagnostics is not None:
+        diagnostics["shape"] = shape_diagnostics
+    return ValidationReport(
+        status=status,
+        problems=tuple(problems),
+        addressed=tuple(addressed),
+        unaddressed=tuple(unaddressed),
+        cited=cited,
+        invalid_citations=invalid,
+        truncated=truncated,
+        finished=finished,
+        generated_tokens=generated,
+        max_new_tokens=package.max_new_tokens,
+        answer_class=answer_class,
+        diagnostics=diagnostics,
+    )
+
+
+def strip_invalid_citations(answer: str, invalid: tuple[int, ...]) -> str:
+    """Remove markers that point at no supplied source. Nothing is added."""
+    if not invalid:
+        return answer
+    bad = set(invalid)
+    out = MARK_RE.sub(lambda m: "" if int(m.group(1)) in bad else m.group(0), answer)
+    return re.sub(r"[ \t]+([.,;:])", r"\1", re.sub(r"[ \t]{2,}", " ", out)).strip()

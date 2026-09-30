@@ -1,0 +1,41 @@
+{
+  "claims_total": 3,
+  "claims_judged": 3,
+  "supported": 2,
+  "unsupported": 1,
+  "uncertain": 0,
+  "deterministic_statements": 0,
+  "supported_ratio": 0.6667,
+  "questions_with_unsupported_claim": [
+    "S5-042"
+  ],
+  "by_category": {
+    "single": {
+      "YES": 1,
+      "NO": 0,
+      "UNCERTAIN": 0
+    },
+    "missing": {
+      "YES": 1,
+      "NO": 1,
+      "UNCERTAIN": 0
+    }
+  },
+  "unsupported_claims": [
+    {
+      "claim": "21 CFR 820.999: The available regulatory sources do not provide enough information to answer this.",
+      "type": "provision_statement",
+      "provisions": [
+        "r2"
+      ],
+      "cited": [],
+      "cited_tiers": [],
+      "overlap": null,
+      "supported": "NO",
+      "id": "S5-042",
+      "category": "missing"
+    }
+  ],
+  "methodology": "Sentence-level. SUPPORTED: cites an exact source, shares at least 50% of its content words with it and no deterministic check failed on it. NOT SUPPORTED: a deterministic check failed on the sentence (missing provision asserted, figure absent from sources, wrong-source citation) or it shares under 25% of its content words with what it cites. UNCERTAIN: everything between. Refusals and not-found statements are N/A.",
+  "limitations": "Word overlap is not entailment: a paraphrase can share words and still misstate the source, and a correct restatement in different words can score UNCERTAIN. Treat NOT SUPPORTED as reliable and SUPPORTED as unproven."
+}

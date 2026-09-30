@@ -1,0 +1,147 @@
+{
+  "modes": {
+    "full_pipeline_raw": {
+      "questions": 51,
+      "generated": 45,
+      "not_generated": [
+        [
+          "S5-040",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-043",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-044",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-045",
+          "refuse_unsupported"
+        ],
+        [
+          "S5-072",
+          "no_context"
+        ],
+        [
+          "S5-083",
+          "refuse_out_of_scope"
+        ]
+      ],
+      "valid_raw": 0.8889,
+      "valid_final": 0.9778,
+      "valid_only_after_repair": 0.0889,
+      "truncated": 0,
+      "mean_generated_tokens": 110.0,
+      "by_category": {
+        "single": {
+          "generated": 8,
+          "valid_raw": 8,
+          "valid_final": 8,
+          "complete_raw": 8
+        },
+        "parent": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "section": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "multi": {
+          "generated": 5,
+          "valid_raw": 4,
+          "valid_final": 5,
+          "complete_raw": 4
+        },
+        "range": {
+          "generated": 4,
+          "valid_raw": 4,
+          "valid_final": 4,
+          "complete_raw": 4
+        },
+        "missing": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "adversarial": {
+          "generated": 5,
+          "valid_raw": 3,
+          "valid_final": 5,
+          "complete_raw": 4
+        },
+        "general": {
+          "generated": 4,
+          "valid_raw": 4,
+          "valid_final": 4,
+          "complete_raw": 4
+        },
+        "guidance": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "domain_boundary": {
+          "generated": 4,
+          "valid_raw": 4,
+          "valid_final": 4,
+          "complete_raw": 4
+        },
+        "citation": {
+          "generated": 2,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 2
+        },
+        "long": {
+          "generated": 2,
+          "valid_raw": 2,
+          "valid_final": 2,
+          "complete_raw": 2
+        },
+        "refusal": {
+          "generated": 3,
+          "valid_raw": 3,
+          "valid_final": 3,
+          "complete_raw": 3
+        }
+      },
+      "status_raw": {
+        "valid": 40,
+        "incomplete": 2,
+        "unsupported": 1,
+        "citation_invalid": 1,
+        "evidence_mismatched": 1
+      },
+      "status_final": {
+        "valid": 44,
+        "evidence_mismatched": 1
+      }
+    },
+    "controlled_evidence_raw": {
+      "questions": 0,
+      "generated": 0,
+      "not_generated": [],
+      "valid_raw": null,
+      "valid_final": null,
+      "valid_only_after_repair": null,
+      "truncated": 0,
+      "mean_generated_tokens": null,
+      "by_category": {},
+      "status_raw": {},
+      "status_final": {}
+    }
+  },
+  "note": "valid_final counts answers that passed only after deterministic repair; it is not model quality",
+  "localisation": [],
+  "fails_with_context_but_not_with_exact_only": [],
+  "fails_even_with_exact_only": []
+}

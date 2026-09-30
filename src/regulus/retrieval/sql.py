@@ -1,0 +1,166 @@
+"""All SQL used by the lexical retriever. Every statement is a SELECT with
+named server-side parameters (%(name)s). User input is never interpolated.
+
+Index usage (see docs/database_architecture.md):
+  cfr_records_search_idx           GIN  (search_vector)              -> ECFR_FULL_TEXT
+  cfr_records_section_idx          btree(section_number, ordinal)    -> ECFR_EXACT_SECTION, ECFR_EXACT_ROW
+  cfr_records_part_idx             btree(part_number, section, ord)  -> ECFR_EXACT_PART, part filter
+  cfr_sections_number_trgm_idx     GIN  (number gin_trgm_ops)        -> ECFR_TRIGRAM
+  cfr_sections_heading_trgm_idx    GIN  (heading gin_trgm_ops)       -> ECFR_TRIGRAM
+  fda_guidance_chunks_search_idx   GIN  (search_vector)              -> GUIDANCE_FULL_TEXT
+  fda_guidance_docket_idx          btree(docket_number)              -> GUIDANCE_EXACT_DOCKET
+  fda_guidance_sector_idx / _retrieval_idx                            -> guidance filters
+"""
+
+_ECFR_COLUMNS = """
+    r.title, r.chapter, r.subchapter_code, r.part_number, r.section_number,
+    r.paragraph_path, r.path_ordinal, r.ordinal, r.section_heading, r.parent_headings,
+    r.body_text, r.ecfr_permalink, r.govinfo_pdf_url, r.snapshot_date,
+    r.effective_date, r.last_amended_date, r.is_reserved,
+    p.title AS part_title
+"""
+
+_ECFR_FILTERS = """
+    AND r.removed_on IS NULL
+    AND (%(part)s::text IS NULL OR r.part_number = %(part)s)
+    AND (%(section)s::text IS NULL OR r.section_number = %(section)s)
+    AND (%(subchapter)s::text IS NULL OR r.subchapter_code = %(subchapter)s)
+"""
+
+# Exact lookup, section or paragraph level. paragraph = '' returns the whole
+# section; otherwise the paragraph itself plus its descendants ("(b)" -> (b), (b)(1), ...).
+ECFR_EXACT_SECTION = f"""
+SELECT {_ECFR_COLUMNS},
+       CASE WHEN %(paragraph)s = '' OR r.paragraph_path = %(paragraph)s THEN 'exact' ELSE 'descendant' END AS match_kind
+FROM cfr_records r
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE r.section_number = %(section_number)s
+  AND (%(paragraph)s = '' OR r.paragraph_path = %(paragraph)s OR r.paragraph_path LIKE %(paragraph_prefix)s)
+  {_ECFR_FILTERS}
+ORDER BY r.ordinal
+LIMIT %(limit)s
+"""
+
+# Stage 2: exactly one row, the requested paragraph itself (no descendants).
+# Used to fetch the parent paragraph of a requested provision as structural
+# evidence without dragging in the parent's other children.
+ECFR_EXACT_ROW = f"""
+SELECT {_ECFR_COLUMNS}, 'exact' AS match_kind
+FROM cfr_records r
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE r.section_number = %(section_number)s
+  AND COALESCE(r.paragraph_path, '') = %(paragraph)s
+  {_ECFR_FILTERS}
+ORDER BY r.ordinal
+LIMIT %(limit)s
+"""
+
+# Part-level lookup: the first live row of each section in the part, in order.
+ECFR_EXACT_PART = f"""
+SELECT {_ECFR_COLUMNS}, 'exact' AS match_kind
+FROM cfr_records r
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE r.part_number = %(part_number)s
+  AND r.ordinal = 0
+  {_ECFR_FILTERS}
+ORDER BY r.section_number
+LIMIT %(limit)s
+"""
+
+# Full-text search over the generated search_vector (heading weight A, body B).
+# websearch_to_tsquery accepts free text, quoted phrases and -exclusions.
+# ts_rank_cd normalisation 1 divides by 1 + log(document length) so short eCFR
+# paragraphs and long guidance chunks are comparable (measured, see docs).
+ECFR_FULL_TEXT = f"""
+SELECT {_ECFR_COLUMNS}, ts_rank_cd(r.search_vector, q, 1) AS rank
+FROM cfr_records r
+LEFT JOIN cfr_parts p ON p.number = r.part_number,
+     websearch_to_tsquery('english', %(query)s) q
+WHERE r.search_vector @@ q
+  AND NOT r.is_reserved
+  {_ECFR_FILTERS}
+ORDER BY rank DESC, r.section_number, r.ordinal
+LIMIT %(limit)s
+"""
+
+# Trigram search on section numbers and headings (both GIN-indexed on
+# cfr_sections). The % operator applies pg_trgm.similarity_threshold (0.3).
+# Returns the first live row of each matching section so the result is a
+# citable passage, never the whole 218-char-average body scanned by trigram.
+ECFR_TRIGRAM = f"""
+SELECT {_ECFR_COLUMNS},
+       GREATEST(similarity(s.number, %(query)s), similarity(s.heading, %(query)s)) AS sim
+FROM cfr_sections s
+JOIN LATERAL (
+    SELECT * FROM cfr_records rr
+    WHERE rr.section_number = s.number AND rr.removed_on IS NULL
+    ORDER BY rr.ordinal LIMIT 1
+) r ON TRUE
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE (s.number %% %(query)s OR s.heading %% %(query)s)
+  AND NOT s.is_reserved
+  {_ECFR_FILTERS}
+ORDER BY sim DESC, s.number
+LIMIT %(limit)s
+"""
+
+_GUIDANCE_COLUMNS = """
+    c.body_text, c.title_text, c.ordinal, c.start_offset,
+    g.title, g.docket_number, g.status, g.center, g.sector, g.issued_on,
+    g.source_url, g.anchor_part, g.anchor_section, g.doc_class, g.retrievable
+"""
+
+_GUIDANCE_FILTERS = """
+    AND (%(retrievable)s::boolean IS NULL OR g.retrievable = %(retrievable)s)
+    AND (%(sector)s::text IS NULL OR g.sector = %(sector)s)
+    AND (%(center)s::text IS NULL OR g.center = %(center)s)
+    AND (%(status)s::text IS NULL OR g.status = %(status)s)
+    AND (%(anchor_part)s::text IS NULL OR g.anchor_part = %(anchor_part)s)
+    AND (%(anchor_section)s::text IS NULL OR g.anchor_section = %(anchor_section)s)
+"""
+
+# Full-text over chunks joined to their document. The best-ranked candidates
+# are taken first (limit * 10), then at most per_document chunks of the same
+# guidance survive so one long document cannot fill the whole result list.
+GUIDANCE_FULL_TEXT = f"""
+SELECT * FROM (
+    SELECT candidates.*,
+           ROW_NUMBER() OVER (PARTITION BY guidance_id ORDER BY rank DESC, ordinal) AS rn
+    FROM (
+        SELECT {_GUIDANCE_COLUMNS}, c.guidance_id,
+               ts_rank_cd(c.search_vector, q, 1) AS rank
+        FROM fda_guidance_chunks c
+        JOIN fda_guidance g ON g.id = c.guidance_id,
+             websearch_to_tsquery('english', %(query)s) q
+        WHERE c.search_vector @@ q
+          {_GUIDANCE_FILTERS}
+        ORDER BY rank DESC, g.source_url, c.ordinal
+        LIMIT %(candidate_limit)s
+    ) candidates
+) ranked
+WHERE rn <= %(per_document)s
+ORDER BY rank DESC, source_url, ordinal
+LIMIT %(limit)s
+"""
+
+# Exact docket lookup: the opening chunks of the document(s) with that docket.
+GUIDANCE_EXACT_DOCKET = f"""
+SELECT {_GUIDANCE_COLUMNS}
+FROM fda_guidance_chunks c
+JOIN fda_guidance g ON g.id = c.guidance_id
+WHERE g.docket_number = %(docket)s
+  AND c.ordinal < %(per_document)s
+  {_GUIDANCE_FILTERS}
+ORDER BY g.issued_on DESC NULLS LAST, g.source_url, c.ordinal
+LIMIT %(limit)s
+"""
+
+ALL_STATEMENTS = {
+    "ECFR_EXACT_SECTION": ECFR_EXACT_SECTION,
+    "ECFR_EXACT_ROW": ECFR_EXACT_ROW,
+    "ECFR_EXACT_PART": ECFR_EXACT_PART,
+    "ECFR_FULL_TEXT": ECFR_FULL_TEXT,
+    "ECFR_TRIGRAM": ECFR_TRIGRAM,
+    "GUIDANCE_FULL_TEXT": GUIDANCE_FULL_TEXT,
+    "GUIDANCE_EXACT_DOCKET": GUIDANCE_EXACT_DOCKET,
+}

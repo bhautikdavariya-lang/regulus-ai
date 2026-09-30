@@ -1,0 +1,93 @@
+{
+  "modes": {
+    "full_pipeline_raw": {
+      "questions": 2,
+      "generated": 2,
+      "not_generated": [],
+      "valid_raw": 0.5,
+      "valid_final": 1.0,
+      "valid_only_after_repair": 0.5,
+      "truncated": 0,
+      "mean_generated_tokens": 58,
+      "by_category": {
+        "single": {
+          "generated": 1,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 1
+        },
+        "missing": {
+          "generated": 1,
+          "valid_raw": 0,
+          "valid_final": 1,
+          "complete_raw": 1
+        }
+      },
+      "status_raw": {
+        "valid": 1,
+        "unsupported": 1
+      },
+      "status_final": {
+        "valid": 2
+      }
+    },
+    "controlled_evidence_raw": {
+      "questions": 2,
+      "generated": 2,
+      "not_generated": [],
+      "valid_raw": 0.5,
+      "valid_final": 1.0,
+      "valid_only_after_repair": 0.5,
+      "truncated": 0,
+      "mean_generated_tokens": 58,
+      "by_category": {
+        "single": {
+          "generated": 1,
+          "valid_raw": 1,
+          "valid_final": 1,
+          "complete_raw": 1
+        },
+        "missing": {
+          "generated": 1,
+          "valid_raw": 0,
+          "valid_final": 1,
+          "complete_raw": 1
+        }
+      },
+      "status_raw": {
+        "valid": 1,
+        "unsupported": 1
+      },
+      "status_final": {
+        "valid": 2
+      }
+    }
+  },
+  "note": "valid_final counts answers that passed only after deterministic repair; it is not model quality",
+  "localisation": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "full_valid_raw": true,
+      "controlled_valid_raw": true,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": false,
+      "controlled_hallucination_raw": false
+    },
+    {
+      "id": "S5-042",
+      "category": "missing",
+      "full_valid_raw": false,
+      "controlled_valid_raw": false,
+      "full_complete_raw": true,
+      "controlled_complete_raw": true,
+      "full_hallucination_raw": true,
+      "controlled_hallucination_raw": true
+    }
+  ],
+  "fails_with_context_but_not_with_exact_only": [],
+  "fails_even_with_exact_only": [
+    "S5-042"
+  ]
+}

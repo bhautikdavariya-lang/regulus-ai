@@ -1,0 +1,61 @@
+{
+  "stage": 12,
+  "model": "Qwen3-0.6B",
+  "base_model_id": "Qwen/Qwen3-0.6B",
+  "method": "LoRA",
+  "dataset": {
+    "train_examples": 7958,
+    "validation_examples": 1058,
+    "test_examples": 947,
+    "seed": 42,
+    "hash": "656d69b284db62bf945ffd100a4f52b36a1652b06d43b03239e7facba8c4a71b",
+    "version": "v2",
+    "train_examples_used": 7755,
+    "validation_subset_used": 100
+  },
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "trainable_parameters": 10092544,
+    "total_parameters": 606142464
+  },
+  "training": {
+    "learning_rate": 0.0001,
+    "epochs": 0.0928,
+    "max_steps": 200,
+    "steps_completed": 90,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "max_seq_length": 1280,
+    "scheduler": "cosine",
+    "warmup_steps": 15,
+    "duration_seconds": 21571.9
+  },
+  "best_checkpoint": "checkpoint-90",
+  "best_validation_loss": 0.07227404415607452,
+  "base_validation_loss": 1.0956313610076904,
+  "final_training_loss": 0.060354489088058474,
+  "device": "cpu",
+  "dtype": "float32",
+  "dependencies": {
+    "python": "3.11.9",
+    "torch": "2.14.0+cpu",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.2",
+    "numpy": "2.4.6"
+  },
+  "timestamp": "2026-09-21T12:44:05+00:00"
+}

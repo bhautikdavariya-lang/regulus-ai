@@ -1,0 +1,280 @@
+[
+  {
+    "question_id": "P-010",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Selecting qualified investigators", "support": "SUPPORTED", "cite": "812.43(a)", "quote": "A sponsor shall select investigators qualified by training and experience to investigate the device.", "note": ""},
+      {"element": "obtaining IRB and FDA approval", "support": "SUPPORTED", "cite": "812.42", "quote": "A sponsor shall not begin an investigation or part of an investigation until an IRB and FDA have both approved the application or supplemental application relating to the investigation", "note": "Found in 812.42 (supplemental), which G does not cite. 812.40 only states IRB approval and IDE submission."},
+      {"element": "monitoring the investigation", "support": "SUPPORTED", "cite": "812.40", "quote": "ensuring proper monitoring of the investigation", "note": "812.46 covers securing compliance and UADE evaluation."},
+      {"element": "maintaining records", "support": "SUPPORTED", "cite": "812.140(b)", "quote": "Sponsor records. A sponsor shall maintain the following accurate, complete, and current records relating to an investigation:", "note": "Found in 812.140(b) (supplemental, subpart G), which G does not cite. 812.40 routes additional sponsor responsibilities to subpart G."},
+      {"element": "(maintaining) reports", "support": "SUPPORTED", "cite": "812.150(b)", "quote": "Sponsor reports. A sponsor shall prepare and submit the following complete, accurate, and timely reports:", "note": "Found in 812.150(b) (supplemental, subpart G), which G does not cite."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "812.40 expressly routes additional sponsor responsibilities to subparts B and G. The FDA-approval element is in 812.42, and the records and reports elements are in 812.140(b) and 812.150(b); none is cited in G.",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 812.40; 812.42; 812.43; 812.46; 812.140(b); 812.150(b)",
+    "rationale": "The supplemental text shows FDA approval in 812.42 and sponsor records and reports in 812.140(b) and 812.150(b). Adding these to the cited sections supports every J element.",
+    "evidence_refs": [
+      "eCFR 21 CFR 812.40 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 812.42 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 812.43(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 812.46 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 812.140(b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 812.150(b) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "The SME may prefer a narrower answer key, or may also want subpart B provisions (for example the 812.2(b) abbreviated requirements) cited. The question is broad, so how many sections to cite is a judgment call.",
+    "evidence_conflict": false,
+    "needs_research_items": [],
+    "key_elements_issue": "",
+    "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 812.42 settled the FDA-approval element; supplemental 812.140(b) and 812.150(b) settled the records and reports element."
+  },
+  {
+    "question_id": "P-012",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "partial",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "UDI on label and package", "support": "SUPPORTED", "cite": "801.20(a)(1)", "quote": "The label of every medical device shall bear a unique device identifier (UDI) that meets the requirements of this subpart and part 830 of this chapter.", "note": "(a)(2) applies the same to every device package."},
+      {"element": "direct marking requirements", "support": "SUPPORTED", "cite": "801.45(a)", "quote": "A device that must bear a unique device identifier (UDI) on its label must also bear a permanent marking providing the UDI on the device itself", "note": "Found in 801.45 (supplemental), which G does not cite. 801.20(b) cross-references it."},
+      {"element": "device identifier and production identifier", "support": "NOT_FOUND_IN_EVIDENCE", "cite": "", "quote": "", "note": "830.20 (supplemental) sets UDI format and issuing requirements but does not define DI or PI. The DI/PI definition appears in 803.3(bb), which is a Part 803 definition and not in G. The Part 830 definitions section was not retrieved."},
+      {"element": "GUDID data submission", "support": "NOT_FOUND_IN_EVIDENCE", "cite": "", "quote": "", "note": "No Part 830 Subpart E (GUDID) text was retrieved. The supplemental Part 830 sections (830.10, 830.20, 830.40, 830.50, 830.60) do not address GUDID submission."}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The direct-marking element is found only in 801.45, which G omits. The DI/PI and GUDID elements cannot be located in any text held.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "Supplemental 801.45 settles direct marking, but the DI/PI and GUDID elements still have no supporting Part 830 text in the evidence. A full corrected citation therefore cannot be proven.",
+    "evidence_refs": [
+      "eCFR 21 CFR 801.20(a)(1), (a)(2), (b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 801.45(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 830.20 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 803.3(bb) (snapshot 2026-09-03)"
+    ],
+    "confidence": "LOW",
+    "uncertainty": "The subpart-level citation to Part 830 Subparts B and E may be correct, but the Subpart E text and the Part 830 definitions were not retrieved.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "Retrieve 21 CFR Part 830 Subpart E (GUDID) text and confirm the labeler data-submission requirement.",
+      "Retrieve the 21 CFR Part 830 definitions section (likely 830.3) and confirm that it defines the device identifier and production identifier.",
+      "Once those are confirmed, candidate corrected citation: '21 CFR 801.20; 801.45; 830 Subparts B and E' (plus the 830 definitions section if the DI/PI element is kept)."
+    ],
+    "key_elements_issue": "",
+    "pass2_change": "No change in decision (NEEDS_RESEARCH). Supplemental 801.45 moved direct marking to SUPPORTED, but no Part 830 text on DI/PI or GUDID was retrieved."
+  },
+  {
+    "question_id": "R-004",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "User facility death reports to FDA and manufacturer", "support": "SUPPORTED", "cite": "803.30(a)(1)", "quote": "Reports of death. You must submit a report to us as soon as practicable but no more than 10 work days", "note": "The same paragraph says: 'You must also submit the report to the device manufacturer, if known.'"},
+      {"element": "serious injury reports to manufacturer", "support": "SUPPORTED", "cite": "803.30(a)(2)", "quote": "Reports of serious injury. You must submit a report to the manufacturer of the device no later than 10 work days", "note": "Reports go to FDA if the manufacturer is not known."},
+      {"element": "annual reports", "support": "SUPPORTED", "cite": "803.33(a)", "quote": "You must submit to us an annual report on Form FDA 3419. You must submit an annual report by January 1, of each year.", "note": "Found in 803.33 (supplemental), which G does not cite. 803.10(a)(2) also routes user-facility annual reports to 803.33."},
+      {"element": "importer reporting duties", "support": "SUPPORTED", "cite": "803.40(a)", "quote": "You must submit a report to us, and a copy of this report to the manufacturer, as soon as practicable, but no later than 30 calendar days", "note": "803.40(b) covers malfunction reports to the manufacturer."}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The annual-report element is found only in 803.33, which G omits.",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 803.30; 803.33; 803.40",
+    "rationale": "Supplemental 803.33 contains the user-facility annual report requirement. Adding it to G supports all J elements.",
+    "evidence_refs": [
+      "eCFR 21 CFR 803.30(a)(1), (a)(2) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 803.33(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 803.40(a), (b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 803.10(a)(2) (snapshot 2026-09-03)"
+    ],
+    "confidence": "HIGH",
+    "uncertainty": "",
+    "evidence_conflict": false,
+    "needs_research_items": [],
+    "key_elements_issue": "",
+    "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 803.33(a) settled the annual-report element."
+  },
+  {
+    "question_id": "R-006",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Exemptions including actions already reported under Part 803 or Part 1004", "support": "SUPPORTED", "cite": "806.10(f)", "quote": "No report of correction or removal is required under this part, if a report of the correction or removal is required and has been submitted under parts 803 or 1004 of this chapter.", "note": "This is in 806.10(f), not the cited 806.10(c), which lists report contents. The general exempt categories are listed in 806.1(b) (supplemental)."},
+      {"element": "records of non-reportable corrections and removals", "support": "SUPPORTED", "cite": "806.20(a)", "quote": "Each device manufacturer or importer who initiates a correction or removal of a device that is not required to be reported to FDA under § 806.10 shall keep a record of such correction or removal.", "note": "806.1(a) also refers to maintaining records of all corrections and removals regardless of reportability."},
+      {"element": "with rationale", "support": "SUPPORTED", "cite": "806.20(b)(4)", "quote": "Justification for not reporting the correction or removal action to FDA, which shall contain conclusions and any followups, and be reviewed and evaluated by a designated person.", "note": ""}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "806.10(a)(2) expressly routes exemptions to 806.1(b). The supplemental text shows 806.1(b) lists the exempt actions (performance/quality improvements, market withdrawals, routine servicing, stock recoveries), and the question asks which actions are exempt.",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 806.1(b); 806.10(f); 806.20",
+    "rationale": "G's 806.10(c) is report content. The exemption J names is in 806.10(f), the other exempt categories are in 806.1(b), and the record and justification duties are in 806.20.",
+    "evidence_refs": [
+      "eCFR 21 CFR 806.1(a), (b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 806.10(a)(2), (c), (f) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 806.20(a), (b)(4) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "It is a reading question whether actions exempt under 806.1(b) fall within the 806.20 recordkeeping duty. 806.20(a) reaches corrections 'not required to be reported to FDA under § 806.10', and 806.1(a) refers to records of all corrections and removals, but the SME should confirm this.",
+    "evidence_conflict": false,
+    "needs_research_items": [],
+    "key_elements_issue": "",
+    "pass2_change": "Decision unchanged (CORRECTED), but the corrected citation now adds 806.1(b). Supplemental 806.1(b) confirmed it lists the exempt actions that 806.10(a)(2) routes to."
+  },
+  {
+    "question_id": "T-003",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Periodic and annual reports", "support": "PARTIALLY_SUPPORTED", "cite": "1114.41(a)(1)", "quote": "Each applicant must submit a periodic report to the Center for Tobacco Products (CTP) within 60 calendar days of the reporting dates specified in the applicant's marketing granted order", "note": "Periodic reports are supported, but their frequency is set by the marketing granted order. Neither 1114.41 nor 1114.45 prescribes 'annual' reports."},
+      {"element": "adverse experience reporting", "support": "SUPPORTED", "cite": "1114.41(a)(2)", "quote": "The applicant must report all serious and unexpected adverse experiences associated with the tobacco product", "note": "Within 15 calendar days; also summarized in periodic reports under (a)(1)(v)."},
+      {"element": "changes to the product", "support": "PARTIALLY_SUPPORTED", "cite": "1114.41(a)(1)(ii)", "quote": "A description of all changes made to the manufacturing, facilities, or controls during the reporting period", "note": "The reporting duty covers manufacturing, facility and control changes, plus labeling changes under (a)(1)(xiii). Supplemental 1114.39 addresses modifications that require a new or supplemental PMTA, which is a premarket duty, not a postmarket report."},
+      {"element": "records retention", "support": "SUPPORTED", "cite": "1114.45(a)(3)(ii)", "quote": "Records related to postmarket reports, including both periodic and adverse experience reports, must be retained for a period of at least 4 years from the date the report was submitted to FDA", "note": "Found in 1114.45 (supplemental), which G does not cite."}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The records-retention element is found only in 1114.45, which G omits. 1114.39 is not needed for a reporting question.",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 1114.41; 1114.45",
+    "rationale": "Supplemental 1114.45 contains the records-retention requirement, so the citation should add it. The 'annual' wording in J remains unsupported, and correcting it is outside the citation-correction scope.",
+    "evidence_refs": [
+      "eCFR 21 CFR 1114.41(a)(1), (a)(1)(ii), (a)(2) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1114.45(a)(3) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1114.39 (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "The SME may prefer NEEDS_RESEARCH until the 'annual' wording in J is resolved. The periodic-report interval could be annual in practice, but it is set by the order, not by regulation.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "SME to decide whether the 'annual reports' wording in J is acceptable, given that 1114.41(a)(1) ties the periodic-report interval to the marketing granted order."
+    ],
+    "key_elements_issue": "J says 'periodic and annual reports'. 1114.41(a)(1) requires periodic reports at reporting dates specified in the marketing granted order; no annual interval is stated in the regulation.",
+    "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 1114.45 settled records retention. Supplemental 1114.39 was judged not needed for a reporting question."
+  },
+  {
+    "question_id": "T-004",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "partial",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Predicate tobacco product comparison", "support": "NOT_FOUND_IN_EVIDENCE", "cite": "", "quote": "", "note": "1107.1 concerns exemption from demonstrating substantial equivalence. No SE-report content provision (predicate comparison) was retrieved, and the FD&C Act 905(j)/910 statute text is not held."},
+      {"element": "minor modification exemption criteria", "support": "SUPPORTED", "cite": "1107.1(a)(1)", "quote": "Such modification would be a minor modification of a tobacco product that can be sold under the Federal Food, Drug, and Cosmetic Act (a legally marketed tobacco product);", "note": "The criteria also include (a)(2) (an SE report is not necessary to ensure APPH) and (a)(3) (the exemption is otherwise appropriate)."},
+      {"element": "the independent PMTA pathway", "support": "PARTIALLY_SUPPORTED", "cite": "1114.7(a)", "quote": "The PMTA must contain sufficient information for FDA to determine whether any of the grounds for marketing denial order specified in section 910(c)(2) of the Federal Food, Drug, and Cosmetic Act apply", "note": "Supplemental 1114.7 shows the PMTA is a full standalone application, but it does not state that it is 'independent' of a predicate. The supplemental text is truncated at 40,000 characters."}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The SE-report (predicate comparison) provision is not identified in any text held. The part-level '21 CFR 1114' could be narrowed to 1114.7.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "Supplemental 1114.7 partly supports the PMTA limb, but the predicate-comparison element still has no regulatory text in evidence, and the statutory cites cannot be checked.",
+    "evidence_refs": [
+      "eCFR 21 CFR 1107.1(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1114.7(a) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "Two limbs of the distinction rest on the statute (905(j), 910), which is not held.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "Lead only: identify the regulatory SE-report content provision (for example, 21 CFR part 1107 subpart B) that requires comparison to a predicate tobacco product, and consider citing it.",
+      "Verify FD&C Act 905(j) and 910 as the statutory basis for the SE report, exemption and PMTA pathways (statute not held).",
+      "Consider replacing the part-level '21 CFR 1114' with '21 CFR 1114.7'."
+    ],
+    "key_elements_issue": "",
+    "pass2_change": "No change in decision (NEEDS_RESEARCH). Supplemental 1114.7(a) moved the PMTA element from NOT_FOUND to PARTIALLY_SUPPORTED; the predicate-comparison element remains unsupported."
+  },
+  {
+    "question_id": "T-010",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Required warning text", "support": "SUPPORTED", "cite": "1143.3(a)(1)", "quote": "WARNING: This product contains nicotine. Nicotine is an addictive chemical.", "note": ""},
+      {"element": "placement", "support": "SUPPORTED", "cite": "1143.3(a)(2)(i); 1143.3(b)(2)", "quote": "Be located in a conspicuous and prominent place on the two principal display panels of the package", "note": "For advertisements: upper portion of the ad within the trim area, (b)(2)."},
+      {"element": "size", "support": "SUPPORTED", "cite": "1143.3(a)(2)(i)-(ii); 1143.3(b)(2)(i)-(ii)", "quote": "Occupy at least 20 percent of the area of the advertisement", "note": "Packages require at least 30 percent of each principal display panel and at least 12-point font."},
+      {"element": "rotation", "support": "PARTIALLY_SUPPORTED", "cite": "1143.5(c)(2)", "quote": "The warning statements required for advertisements in paragraph (a)(1) of this section must be rotated quarterly in alternating sequence in each advertisement for each brand of cigar", "note": "Rotation and random display (1143.5(c)(1)-(3)) apply only to cigars, which carry six warnings including the nicotine warning (1143.5(a)(1)(vi)). 1143.3 applies to covered tobacco products 'other than cigars', including ENDS, and prescribes a single statement with no rotation."},
+      {"element": "on packages and advertisements", "support": "SUPPORTED", "cite": "1143.3(b)(1)", "quote": "unless each advertisement bears the required warning statement specified in paragraph (a)(1) of this section", "note": ""}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The rotation element is found only in 1143.5(c), for cigars, which G does not cite. Whether it belongs depends on whether the question's 'covered tobacco products' is meant to include cigars.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "Supplemental 1143.5 shows rotation is a cigar-only requirement. For ENDS and the other 1143.3 products, J's 'rotation' is not a requirement, and citation correction alone cannot fix that.",
+    "evidence_refs": [
+      "eCFR 21 CFR 1143.3(a), (b) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 1143.5(a)(1)(vi), (c) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "If the SME reads the question as covering cigars, adding 1143.5(c) would make J supportable, and the row could be CORRECTED to '21 CFR 1143.3; 1143.5(c)'.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "SME to decide the question's scope. If ENDS and non-cigar products only, 'rotation' in J is unsupported and the row cannot be fixed by citation (consider REJECTED or re-keying J). If cigars are included, correct G to '21 CFR 1143.3; 1143.5(c)'."
+    ],
+    "key_elements_issue": "J lists 'rotation' as a requirement for the nicotine addiction warning generally. Under 1143.5(c), rotation and random display apply only to cigar warnings; 1143.3, which covers ENDS and other non-cigar products, prescribes one fixed statement.",
+    "pass2_change": "Decision unchanged (NEEDS_RESEARCH). Supplemental 1143.5(c) located the rotation requirement and confirmed it is limited to cigars; the element moved from NOT_FOUND to PARTIALLY_SUPPORTED."
+  },
+  {
+    "question_id": "C-002",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Ingredient declaration in descending order", "support": "SUPPORTED", "cite": "701.3(a)", "quote": "The label on each package of a cosmetic shall bear a declaration of the name of each ingredient in descending order of predominance", "note": ""},
+      {"element": "principal display panel", "support": "SUPPORTED", "cite": "701.10", "quote": "The principal display panel shall be large enough to accommodate all the mandatory label information required to be placed thereon by this part with clarity and conspicuousness", "note": "Found in 701.10 (supplemental), which G does not cite. 701.11 and 701.13 use the principal display panel for identity and net quantity."},
+      {"element": "name and place of business", "support": "SUPPORTED", "cite": "701.12(a)", "quote": "The label of a cosmetic in package form shall specify conspicuously the name and place of business of the manufacturer, packer, or distributor.", "note": "Found in 701.12 (supplemental), which G does not cite. 701.3(k)(6) cross-references it."},
+      {"element": "net quantity of contents", "support": "SUPPORTED", "cite": "701.13(a)", "quote": "The label of a cosmetic in package form shall bear a declaration of the net quantity of contents.", "note": ""}
+    ],
+    "substantive_judgment": "correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The name-and-place-of-business element is found only in 701.12, and the principal-display-panel rule only in 701.10. G omits both.",
+    "proposed_decision": "CORRECTED",
+    "proposed_corrected_citation": "21 CFR 701.3; 701.10; 701.11; 701.12; 701.13",
+    "rationale": "Supplemental 701.12 and 701.10 contain the two J elements the cited sections lack. Adding them supports all J elements.",
+    "evidence_refs": [
+      "eCFR 21 CFR 701.3(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 701.10 (snapshot 2026-09-03)",
+      "eCFR 21 CFR 701.11(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 701.12(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 701.13(a) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "The 'principal display panel' element in J is terse. The SME may decide the question also reaches other Part 701 provisions (for example 701.2 form of stating requirements), which is a scope judgment.",
+    "evidence_conflict": false,
+    "needs_research_items": [],
+    "key_elements_issue": "",
+    "pass2_change": "NEEDS_RESEARCH -> CORRECTED. Supplemental 701.12(a) settled name and place of business; supplemental 701.10 settled the principal display panel."
+  },
+  {
+    "question_id": "C-003",
+    "citation_correctness": "partially_correct",
+    "provision_exists": "yes",
+    "applicability": "applicable",
+    "elements": [
+      {"element": "Required warning that the safety of the product has not been determined", "support": "PARTIALLY_SUPPORTED", "cite": "740.10(a)", "quote": "Any such ingredient or product whose safety is not adequately substantiated prior to marketing is misbranded", "note": "A warning is required, but the evidence ends at 'the following conspicuous statement on the principal display panel:' and the statement's wording is missing (extraction gap). No supplemental text supplies it."},
+      {"element": "type size and prominence", "support": "SUPPORTED", "cite": "740.2(a)", "quote": "in no case may the letters and/or numbers be less than 1/16 inch in height", "note": "Found in 740.2 (supplemental), which G does not cite. 740.2(a) also requires prominence, conspicuousness and bold type on a contrasting background; 740.10(a) requires the statement on the principal display panel."}
+    ],
+    "substantive_judgment": "partially_correct",
+    "completeness_judgment": "partially_correct",
+    "completeness_note": "The type-size element is found only in 740.2, which G omits.",
+    "proposed_decision": "NEEDS_RESEARCH",
+    "proposed_corrected_citation": null,
+    "rationale": "Supplemental 740.2 settles type size and prominence, which supports adding it to G. The core warning wording in 740.10(a) is still missing from the evidence, so the first element cannot be confirmed.",
+    "evidence_refs": [
+      "eCFR 21 CFR 740.10(a) (snapshot 2026-09-03)",
+      "eCFR 21 CFR 740.2(a) (snapshot 2026-09-03)"
+    ],
+    "confidence": "MEDIUM",
+    "uncertainty": "The missing warning text is an evidence-extraction gap. Once it is confirmed, the row would likely become CORRECTED to '21 CFR 740.2; 740.10'.",
+    "evidence_conflict": false,
+    "needs_research_items": [
+      "Retrieve the full 740.10(a) warning statement (dropped after the colon) and confirm it says the safety of the product has not been determined.",
+      "If confirmed, correct G to '21 CFR 740.2; 740.10'."
+    ],
+    "key_elements_issue": "",
+    "pass2_change": "Decision unchanged (NEEDS_RESEARCH). Supplemental 740.2(a) settled type size and prominence, identifying 740.2 as the section to add; the 740.10(a) warning wording is still missing."
+  }
+]

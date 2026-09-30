@@ -1,0 +1,89 @@
+{
+  "questions": 5,
+  "out_of_domain_leak_raw": 0.75,
+  "out_of_domain_leak_final": 0.75,
+  "attribution": {
+    "generation (validator gap: no requested provision or figure to check)": 2,
+    "none": 1,
+    "generation (validator caught)": 1,
+    "generation": 1
+  },
+  "per_question": [
+    {
+      "id": "S5-080",
+      "domain": "out_of_domain",
+      "leak_raw": true,
+      "leak_final": true,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 22
+      },
+      "raw_class": "answer",
+      "attribution": "generation (validator gap: no requested provision or figure to check)",
+      "answer_raw": "What is the capital of France? [1]"
+    },
+    {
+      "id": "S5-081",
+      "domain": "out_of_domain",
+      "leak_raw": false,
+      "leak_final": false,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 1
+      },
+      "raw_class": "refusal",
+      "attribution": "none",
+      "answer_raw": "The available regulatory sources do not provide enough information to answer this question."
+    },
+    {
+      "id": "S5-082",
+      "domain": "out_of_domain",
+      "leak_raw": true,
+      "leak_final": true,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 16
+      },
+      "raw_class": "answer",
+      "attribution": "generation (validator gap: no requested provision or figure to check)",
+      "answer_raw": "What is the boiling point of water in Celsius? [1] The boiling point of water is 100°C at standard atmospheric pressure. [1]"
+    },
+    {
+      "id": "S5-083",
+      "domain": "out_of_domain",
+      "leak_raw": true,
+      "leak_final": true,
+      "retrieved_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 23
+      },
+      "raw_class": "answer",
+      "attribution": "generation (validator caught)",
+      "answer_raw": "The EU Medical Device Regulation requires that UDI (Unique Device Identification) must be assigned to a device under the following conditions:  \n- Non-Device-MDDS must be assigned to a device under se"
+    },
+    {
+      "id": "S5-084",
+      "domain": "mixed",
+      "leak_raw": false,
+      "leak_final": false,
+      "retrieved_tiers": {
+        "exact": 1,
+        "structural": 1,
+        "supporting": 0,
+        "discovery": 0
+      },
+      "raw_class": "answer",
+      "attribution": "generation",
+      "answer_raw": "21 CFR 820.10(b)(3) requires that the manufacturer must notify the FDA of complaints that meet the reporting criteria of part 803 of this chapter. [1]  \n\nThe population of Paris is approximately 2,024"
+    }
+  ],
+  "note": "Retrieval always returns something for these questions (discovery tier); the leak is a generation behaviour and the deterministic validator has no identity or figure to reject it with. An intent/domain classifier before generation is the architectural fix, not a keyword rule."
+}

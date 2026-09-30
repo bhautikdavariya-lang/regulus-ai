@@ -1,0 +1,180 @@
+====================================================================================================
+[single] What does 21 CFR 820.10(b)(2) require?
+plan: single_provision ['21 CFR 820.10(b)(2)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o')]
+generation: shape=single cap=128 generated=46 finished=True prompt_chars=3738
+validation: initial=valid codes=[] -> final=valid repair=None
+citations: [('21 CFR 820.10(b)(2)', 'cited', 'exact')]
+timings: retrieval_ms=453, context_ms=1, generation_ms=33329, validation_ms=1, total_ms=33784 ms; wall 33.8s; model_called=True
+ANSWER:
+21 CFR 820.10(b)(2) requires that the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable. [1]
+====================================================================================================
+[two] What do 21 CFR 820.10(b)(2) and (b)(4) require?
+plan: multi_provision ['21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(4)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10(b)(4)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o')]
+generation: shape=per_provision cap=192 generated=110 finished=True prompt_chars=3872
+validation: initial=evidence_mismatched codes=['provision_citation_mismatch', 'low_overlap_with_cited_source'] -> final=valid repair=mismatched_statements_replaced
+citations: [('21 CFR 820.10(b)(2)', 'cited', 'exact'), ('21 CFR 820.10(b)(4)', 'cited', 'exact')]
+timings: retrieval_ms=11, context_ms=0, generation_ms=66825, validation_ms=2, total_ms=66839 ms; wall 66.8s; model_called=True
+ANSWER:
+21 CFR 820.10(b)(2): The manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [1].
+21 CFR 820.10(b)(2) (eCFR, binding, verbatim): (2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [1].
+21 CFR 820.10(b)(4) (eCFR, binding, verbatim): (4) For Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter [2].
+====================================================================================================
+[range4] What do 21 CFR 820.10(b)(1) through (b)(4) require?
+plan: range ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(1)', 'exact', 'P'), ('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10(b)(3)', 'exact', 'P'), ('21 CFR 820.10(b)(4)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o')]
+generation: shape=per_provision cap=352 generated=257 finished=True prompt_chars=3881
+validation: initial=valid codes=[] -> final=valid repair=None
+citations: [('21 CFR 820.10(b)(1)', 'cited', 'exact'), ('21 CFR 820.10(b)(2)', 'cited', 'exact'), ('21 CFR 820.10(b)(3)', 'cited', 'exact'), ('21 CFR 820.10(b)(4)', 'cited', 'exact')]
+timings: retrieval_ms=14, context_ms=0, generation_ms=139815, validation_ms=2, total_ms=139832 ms; wall 139.8s; model_called=True
+ANSWER:
+21 CFR 820.10(b)(1): For Clause 7.5.8 in ISO 13485, Identification, the manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter. [1]
+
+21 CFR 820.10(b)(2): For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable. [2]
+
+21 CFR 820.10(b)(3): For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter. [3]
+
+21 CFR 820.10(b)(4): For Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter. [4]
+====================================================================================================
+[range5 (partial)] What do 21 CFR 820.10(b)(1) through (b)(5) require?
+plan: range ['21 CFR 820.10(b)(1)', '21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(3)', '21 CFR 820.10(b)(4)', '21 CFR 820.10(b)(5)']
+coverage: INCOMPLETE missing=['21 CFR 820.10(b)(5)']  action=answer_partial
+selected: [('21 CFR 820.10(b)(1)', 'exact', 'P'), ('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10(b)(3)', 'exact', 'P'), ('21 CFR 820.10(b)(4)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o')]
+generation: shape=per_provision cap=352 generated=291 finished=True prompt_chars=2754
+validation: initial=unsupported codes=['asserted_missing_provision'] -> final=valid repair=extractive_replacement
+citations: [('21 CFR 820.10(b)(1)', 'cited', 'exact'), ('21 CFR 820.10(b)(2)', 'cited', 'exact'), ('21 CFR 820.10(b)(3)', 'cited', 'exact'), ('21 CFR 820.10(b)(4)', 'cited', 'exact')]
+timings: retrieval_ms=15, context_ms=0, generation_ms=149501, validation_ms=6, total_ms=149522 ms; wall 149.5s; model_called=True
+ANSWER:
+The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the requested provision(s) follows.
+21 CFR 820.10(b)(1) (eCFR, binding, verbatim): (1) For Clause 7.5.8 in ISO 13485, Identification, the manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].
+21 CFR 820.10(b)(2) (eCFR, binding, verbatim): (2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [2].
+21 CFR 820.10(b)(3) (eCFR, binding, verbatim): (3) For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter [3].
+21 CFR 820.10(b)(4) (eCFR, binding, verbatim): (4) For Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter [4].
+21 CFR 820.10(b)(5): not found in the available eCFR data.
+====================================================================================================
+[missing child] What does 21 CFR 820.10(b)(5) require?
+plan: single_provision ['21 CFR 820.10(b)(5)']
+coverage: INCOMPLETE missing=['21 CFR 820.10(b)(5)']  action=refuse_unsupported
+selected: [('21 CFR 820.10(b)', 'structural', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o')]
+generation: shape=single cap=128 generated=None finished=None prompt_chars=2669
+citations: []
+timings: retrieval_ms=10, context_ms=0, generation_ms=0, total_ms=11 ms; wall 0.0s; model_called=False
+ANSWER:
+The available eCFR data does not contain 21 CFR 820.10(b)(5), so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+====================================================================================================
+[parent] What does 21 CFR 820.10(b) require?
+plan: single_provision ['21 CFR 820.10(b)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)', 'exact', 'P'), ('21 CFR 820.10', 'structural', 'o'), ('21 CFR 820.10(b)(1)', 'structural', 'o'), ('21 CFR 820.10(b)(2)', 'structural', 'o'), ('21 CFR 820.10(b)(3)', 'structural', 'o'), ('21 CFR 820.10(b)(4)', 'structural', 'o'), ('FDA Guidance: Quality Ma', 'supporting', 'o')]
+generation: shape=single cap=384 generated=197 finished=True prompt_chars=3758
+validation: initial=evidence_mismatched codes=['provision_citation_mismatch', 'low_overlap_with_cited_source'] -> final=valid repair=mismatched_statements_replaced
+citations: [('21 CFR 820.10(b)', 'cited', 'exact'), ('21 CFR 820.10(b)(1)', 'cited', 'structural'), ('21 CFR 820.10(b)(2)', 'cited', 'structural'), ('21 CFR 820.10(b)(3)', 'cited', 'structural'), ('21 CFR 820.10(b)(4)', 'cited', 'structural'), ('FDA Guidance: Quality Ma', 'cited', 'supporting')]
+timings: retrieval_ms=11, context_ms=1, generation_ms=102868, validation_ms=3, total_ms=102884 ms; wall 102.9s; model_called=True
+ANSWER:
+21 CFR 820.10(b) requires that a manufacturer subject to this part must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1] [3]. 
+
+21 CFR 820.10(b)(2) requires that a manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable, and Subclause 7.5.9.1 [4] [7]. 
+
+21 CFR 820.10(b)(3) requires that a manufacturer must notify the FDA of complaints that meet the reporting criteria of part 803 of this chapter [5] [6].
+21 CFR 820.10(b) (eCFR, binding, verbatim): (b) Applicable regulatory requirements. Comply, as appropriate, with the other applicable regulatory requirements in this title, including, but not limited to the following, to fully comply with the listed ISO 13485 Clause: [1].
+====================================================================================================
+[section] What does 21 CFR 820.10 say?
+plan: single_provision ['21 CFR 820.10']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10', 'exact', 'P'), ('21 CFR 820.10(a)', 'exact', 'P'), ('21 CFR 820.10(b)', 'exact', 'P'), ('21 CFR 820.10(b)(1)', 'exact', 'P'), ('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10(b)(3)', 'exact', 'P'), ('21 CFR 820.10(b)(4)', 'exact', 'P'), ('21 CFR 820.10(c)', 'exact', 'P'), ('21 CFR 820.10(c)(1)', 'exact', 'P'), ('21 CFR 820.10(c)(2)', 'exact', 'P'), ('21 CFR 820.10(d)', 'exact', 'P'), ('21 CFR 820.10(e)', 'exact', 'P')]
+generation: shape=single cap=448 generated=170 finished=True prompt_chars=4540
+validation: initial=evidence_mismatched codes=['provision_citation_mismatch', 'low_overlap_with_cited_source'] -> final=valid repair=mismatched_statements_replaced
+citations: [('21 CFR 820.10', 'cited', 'exact'), ('21 CFR 820.10(a)', 'cited', 'exact'), ('21 CFR 820.10(b)', 'cited', 'exact'), ('21 CFR 820.10(b)(1)', 'authoritative', 'exact'), ('21 CFR 820.10(b)(2)', 'authoritative', 'exact'), ('21 CFR 820.10(b)(3)', 'authoritative', 'exact'), ('21 CFR 820.10(b)(4)', 'authoritative', 'exact'), ('21 CFR 820.10(c)', 'authoritative', 'exact'), ('21 CFR 820.10(c)(1)', 'authoritative', 'exact'), ('21 CFR 820.10(c)(2)', 'authoritative', 'exact'), ('21 CFR 820.10(d)', 'authoritative', 'exact'), ('21 CFR 820.10(e)', 'authoritative', 'exact')]
+timings: retrieval_ms=6, context_ms=0, generation_ms=101116, validation_ms=10, total_ms=101131 ms; wall 101.1s; model_called=True
+ANSWER:
+21 CFR 820.10 requires manufacturers to document a quality management system that complies with ISO 13485 and other applicable requirements, including unique device identification and traceability procedures [1]. 
+
+21 CFR 820.10(b) mandates compliance with ISO 13485 Clause 7.5.8, requiring unique device identification [3].
+21 CFR 820.10 (eCFR, binding, verbatim): A manufacturer subject to this part as described by § 820.1(a) must: [1]. (a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and [2]. (b) Applicable regulatory requirements. Comply, as appropriate, with the other applicable regulatory requirements in this title, including, but not limited to the following, to fully comply with the listed ISO 13485 Clause: [3].
+====================================================================================================
+[partly missing] What do 21 CFR 820.10(b)(2) and 21 CFR 820.999 require?
+plan: multiple_reference ['21 CFR 820.10(b)(2)', '21 CFR 820.999']
+coverage: INCOMPLETE missing=['21 CFR 820.999']  action=answer_partial
+selected: [('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10', 'structural', 'o'), ('21 CFR 820.10(b)', 'structural', 'o'), ('21 CFR 520.999(a)', 'discovery', 'o'), ('21 CFR 820.1(a)', 'discovery', 'o'), ('21 CFR 820.3', 'discovery', 'o'), ('21 CFR 820.7', 'discovery', 'o')]
+generation: shape=per_provision cap=128 generated=70 finished=True prompt_chars=4500
+validation: initial=unsupported codes=['asserted_missing_provision'] -> final=valid repair=extractive_replacement
+citations: [('21 CFR 820.10(b)(2)', 'cited', 'exact')]
+timings: retrieval_ms=130, context_ms=3, generation_ms=42639, validation_ms=2, total_ms=42774 ms; wall 42.8s; model_called=True
+ANSWER:
+The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the requested provision(s) follows.
+21 CFR 820.10(b)(2) (eCFR, binding, verbatim): (2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable [1].
+21 CFR 820.999: not found in the available eCFR data.
+====================================================================================================
+[docket] Summarise the guidance in docket FDA-2016-D-2565
+plan: general []
+coverage: NO_EXPLICIT_REQUIREMENTS missing=[]  action=answer
+selected: [('FDA Guidance: 510(k) Thi', 'exact', 'P'), ('FDA Guidance: 510(k) Thi', 'exact', 'P'), ('FDA Guidance: 510(k) Thi', 'exact', 'P')]
+generation: shape=docket cap=160 generated=95 finished=True prompt_chars=5838
+validation: initial=valid codes=['low_overlap_with_cited_source'] -> final=valid repair=None
+citations: [('FDA Guidance: 510(k) Thi', 'cited', 'exact')]
+timings: retrieval_ms=174, context_ms=1, generation_ms=54163, validation_ms=1, total_ms=54340 ms; wall 54.3s; model_called=True
+ANSWER:
+The guidance document outlines the requirements for the 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review, including nonbinding recommendations for industry, food, and drug administration staff, as well as additional copies available. It specifies that comments may not be acted upon until the document is revised or updated. The document also includes a table of contents and nonbinding recommendations for factors used in determining device eligibility and conducting reviews. [1]
+====================================================================================================
+[general] When must a manufacturer notify FDA about a complaint?
+plan: general []
+coverage: NO_EXPLICIT_REQUIREMENTS missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(3)', 'supporting', 'o'), ('FDA Guidance: Medical Ga', 'supporting', 'o'), ('FDA Guidance: Current Go', 'supporting', 'o')]
+generation: shape=general cap=160 generated=27 finished=True prompt_chars=3665
+validation: initial=valid codes=[] -> final=valid repair=None
+citations: [('21 CFR 820.10(b)(3)', 'cited', 'supporting')]
+timings: retrieval_ms=4881, context_ms=8, generation_ms=18846, validation_ms=0, total_ms=23736 ms; wall 23.7s; model_called=True
+ANSWER:
+The manufacturer must notify the FDA of complaints that meet the reporting criteria of part 803 of this chapter. [1]
+====================================================================================================
+[trap: form number] Which FDA form number must be used under 21 CFR 820.10(b)(4)?
+plan: single_provision ['21 CFR 820.10(b)(4)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(4)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o')]
+generation: shape=single cap=128 generated=18 finished=True prompt_chars=1068
+validation: initial=incomplete codes=['refusal_with_evidence', 'low_overlap_with_cited_source'] -> final=valid repair=extractive_replacement
+citations: [('21 CFR 820.10(b)(4)', 'cited', 'exact')]
+timings: retrieval_ms=751, context_ms=0, generation_ms=10127, validation_ms=1, total_ms=10879 ms; wall 10.9s; model_called=True
+ANSWER:
+The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the requested provision(s) follows.
+21 CFR 820.10(b)(4) (eCFR, binding, verbatim): (4) For Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter [1].
+====================================================================================================
+[trap: penalty] What penalty amount does 21 CFR 820.10(b)(3) specify for late complaint notification?
+plan: single_provision ['21 CFR 820.10(b)(3)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(3)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o')]
+generation: shape=single cap=128 generated=34 finished=True prompt_chars=1133
+validation: initial=unsupported codes=['unsupported_figure', 'low_overlap_with_cited_source'] -> final=valid repair=extractive_replacement
+citations: [('21 CFR 820.10(b)(3)', 'cited', 'exact')]
+timings: retrieval_ms=631, context_ms=0, generation_ms=15748, validation_ms=1, total_ms=16380 ms; wall 16.4s; model_called=True
+ANSWER:
+The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the requested provision(s) follows.
+21 CFR 820.10(b)(3) (eCFR, binding, verbatim): (3) For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter [1].
+====================================================================================================
+[trap: world knowledge] What is the capital of France?
+plan: general []
+coverage: NO_EXPLICIT_REQUIREMENTS missing=[]  action=answer
+selected: [('FDA Guidance: Recommenda', 'discovery', 'o'), ('FDA Guidance: Contents o', 'discovery', 'o'), ('21 CFR 1143.5(a)(2)(iv)', 'discovery', 'o')]
+generation: shape=general cap=160 generated=24 finished=True prompt_chars=3639
+validation: initial=valid codes=[] -> final=valid repair=None
+citations: [('FDA Guidance: Recommenda', 'cited', 'discovery')]
+timings: retrieval_ms=1456, context_ms=1, generation_ms=17691, validation_ms=1, total_ms=19150 ms; wall 19.2s; model_called=True
+ANSWER:
+The capital of France is Paris [1]. The available regulatory sources do not provide enough information to answer this question.
+====================================================================================================
+[trap: compare] Compare the requirements of § 820.10(b)(2) and § 820.10(b)(4).
+plan: multi_provision ['21 CFR 820.10(b)(2)', '21 CFR 820.10(b)(4)']
+coverage: COMPLETE missing=[]  action=answer
+selected: [('21 CFR 820.10(b)(2)', 'exact', 'P'), ('21 CFR 820.10(b)(4)', 'exact', 'P'), ('21 CFR 820.10(b)', 'structural', 'o')]
+generation: shape=per_provision cap=192 generated=83 finished=True prompt_chars=1596
+validation: initial=valid codes=[] -> final=valid repair=None
+citations: [('21 CFR 820.10(b)(2)', 'cited', 'exact'), ('21 CFR 820.10(b)(4)', 'cited', 'exact')]
+timings: retrieval_ms=665, context_ms=0, generation_ms=36773, validation_ms=1, total_ms=37439 ms; wall 37.4s; model_called=True
+ANSWER:
+21 CFR 820.10(b)(2): The manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable. [1]  
+
+21 CFR 820.10(b)(4): The manufacturer must handle advisory notices in accordance with the requirements of part 806 of this chapter. [2]

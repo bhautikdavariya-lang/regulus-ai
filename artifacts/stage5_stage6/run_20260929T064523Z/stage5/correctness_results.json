@@ -1,0 +1,661 @@
+{
+  "questions": 51,
+  "raw_correct": 0.5294,
+  "final_correct": 0.6078,
+  "raw_correct_generated_only": 0.4667,
+  "final_correct_generated_only": 0.5556,
+  "correct_only_after_repair": [
+    "S5-024",
+    "S5-051",
+    "S5-053",
+    "S5-071"
+  ],
+  "incorrect_after_repair": [
+    "S5-006",
+    "S5-007",
+    "S5-010",
+    "S5-011",
+    "S5-022",
+    "S5-023",
+    "S5-033",
+    "S5-042",
+    "S5-052",
+    "S5-060",
+    "S5-061",
+    "S5-063",
+    "S5-070",
+    "S5-080",
+    "S5-081",
+    "S5-082",
+    "S5-090",
+    "S5-091",
+    "S5-101",
+    "S5-111"
+  ],
+  "definition": "deterministic validation passed + every requested provision addressed + no unsupported content + refusal expectation met + expected terms present + no claim flagged unsupported; a machine cannot certify that the remaining wording is right",
+  "per_question": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-002",
+      "category": "single",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-003",
+      "category": "single",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-004",
+      "category": "single",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-005",
+      "category": "single",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-006",
+      "category": "single",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "expected terms missing: ['validation']"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "expected terms missing: ['validation']"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-007",
+      "category": "single",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-008",
+      "category": "single",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-010",
+      "category": "parent",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "expected terms missing: ['ISO 13485']"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "expected terms missing: ['ISO 13485']"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-011",
+      "category": "parent",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-012",
+      "category": "section",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-013",
+      "category": "section",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-020",
+      "category": "multi",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-021",
+      "category": "multi",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-022",
+      "category": "multi",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-023",
+      "category": "multi",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "unsupported content"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "unsupported content"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-024",
+      "category": "multi",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "validator: requirement_not_addressed",
+        "incomplete: ['r2']",
+        "expected terms missing: ['complaint']"
+      ],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": true
+    },
+    {
+      "id": "S5-030",
+      "category": "range",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-031",
+      "category": "range",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-032",
+      "category": "range",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-033",
+      "category": "range",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-040",
+      "category": "missing",
+      "generated": false,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-041",
+      "category": "missing",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-042",
+      "category": "missing",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-043",
+      "category": "nonexistent",
+      "generated": false,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-044",
+      "category": "nonexistent",
+      "generated": false,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-045",
+      "category": "nonexistent",
+      "generated": false,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-050",
+      "category": "adversarial",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-051",
+      "category": "adversarial",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "validator: unsupported_figure,low_overlap_with_cited_source",
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": true
+    },
+    {
+      "id": "S5-052",
+      "category": "adversarial",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "expected terms missing: ['830']",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "expected terms missing: ['830']",
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-053",
+      "category": "adversarial",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "validator: requirement_not_addressed",
+        "incomplete: ['r1']",
+        "expected terms missing: ['traceability']"
+      ],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": true
+    },
+    {
+      "id": "S5-054",
+      "category": "adversarial",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-060",
+      "category": "general",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "unsupported content",
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-061",
+      "category": "general",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-062",
+      "category": "general",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-063",
+      "category": "general",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "unsupported content"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "unsupported content"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-070",
+      "category": "guidance",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "expected terms missing: ['510(k)']"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "expected terms missing: ['510(k)']"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-071",
+      "category": "guidance",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "validator: invalid_citation"
+      ],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": true
+    },
+    {
+      "id": "S5-072",
+      "category": "guidance",
+      "generated": false,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-080",
+      "category": "domain_boundary",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "answered without support",
+        "out-of-domain content"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "out-of-domain content"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-081",
+      "category": "domain_boundary",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "answered without support",
+        "out-of-domain content"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "out-of-domain content"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-082",
+      "category": "domain_boundary",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "answered without support",
+        "out-of-domain content"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "out-of-domain content"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-083",
+      "category": "domain_boundary",
+      "generated": false,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-084",
+      "category": "domain_boundary",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-090",
+      "category": "citation",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "expected terms missing: ['820.10(b)(3)']",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "expected terms missing: ['820.10(b)(3)']",
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-091",
+      "category": "citation",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "validator: citation_mismatch,low_overlap_with_cited_source,synthesis_citation_gap",
+        "unsupported content",
+        "expected terms missing: ['(b)(4)']",
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "validator: provision_citation_mismatch,low_overlap_with_cited_source,synthesis_citation_gap",
+        "unsupported content",
+        "expected terms missing: ['(b)(4)']",
+        "claim not supported by its cited source"
+      ],
+      "repaired": true
+    },
+    {
+      "id": "S5-100",
+      "category": "long",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-101",
+      "category": "long",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "unsupported content"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "unsupported content"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-110",
+      "category": "refusal",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    },
+    {
+      "id": "S5-111",
+      "category": "refusal",
+      "generated": true,
+      "raw_correct": false,
+      "raw_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "final_correct": false,
+      "final_reasons": [
+        "claim not supported by its cited source"
+      ],
+      "repaired": false
+    },
+    {
+      "id": "S5-112",
+      "category": "refusal",
+      "generated": true,
+      "raw_correct": true,
+      "raw_reasons": [],
+      "final_correct": true,
+      "final_reasons": [],
+      "repaired": false
+    }
+  ]
+}

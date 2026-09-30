@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regulus"
+version = "0.1.0"
+description = "Regulus AI - FDA / eCFR regulatory assistant (Qwen3 base-model foundation)"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not slow and not integration'"
+markers = [
+    "slow: loads the full model; run explicitly with `pytest -m slow`",
+    "integration: needs the local PostgreSQL database (REGULUS_DATABASE_URL); run with `pytest -m integration`",
+]

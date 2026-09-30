@@ -1,0 +1,4594 @@
+[
+ {
+  "question_id": "X-004",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "partial",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Applicable safety reporting requirements by constituent part",
+    "support": "SUPPORTED",
+    "cite": "4.102(b)(1)",
+    "quote": "you must comply with the requirements for postmarketing safety reporting described in parts 803 and 806 of this chapter with respect to your product",
+    "note": ""
+   },
+   {
+    "element": "five-day reporting",
+    "support": "SUPPORTED",
+    "cite": "4.102(c)(1)(i)",
+    "quote": "Five-day reports;",
+    "note": ""
+   },
+   {
+    "element": "malfunction reporting",
+    "support": "SUPPORTED",
+    "cite": "4.102(c)(1)(ii)",
+    "quote": "Malfunction reports; and",
+    "note": ""
+   },
+   {
+    "element": "shared reporting responsibilities",
+    "support": "SUPPORTED",
+    "cite": "4.103(a)",
+    "quote": "you must provide the information to the other constituent part applicant(s) for the combination product no later than 5 calendar days of your receipt of the information",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 4.100 through 4.105 (21 CFR Part 4, Subpart B)",
+  "rationale": "The draft range 4.100–4.110 overruns Part 4 Subpart B, which in the snapshot is exactly 4.100–4.105 (no 4.106–4.110, not even reserved). Every J element is in 4.100–4.105. Proposed correction is to the range the snapshot holds; it is NOT applied to the workbook.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03: Part 4 section list and subpart structure (Subpart B = 4.100–4.105)",
+   "eCFR snapshot 2026-09-03: 21 CFR 4.100–4.105 text",
+   "automated verification: citation CONTRADICTED (4.110 absent)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "The snapshot is dated 2026-09-03. If 4.106–4.110 were added after that date the draft could be right; the SME must check the live eCFR before recording anything.",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Confirm against the LIVE eCFR that 21 CFR Part 4 Subpart B ends at 4.105 (no 4.106–4.110).",
+   "Decide whether the drafter meant 4.100–4.105 (slip) or intended to reach other provisions; 4.100(c) states the subpart supplements parts 314, 600, 606, 803 and 806 — decide whether completeness requires naming those parts.",
+   "Record CORRECTED with the range you determine, or NEEDS_RESEARCH; do not treat this proposal as the correction."
+  ],
+  "controlled_source": "Live eCFR (Title 21 Part 4) — current text, not the snapshot",
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "X-003",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "The enumerated device provisions added to a drug-based system",
+    "support": "SUPPORTED",
+    "cite": "4.4(b)(1)(i)",
+    "quote": "General requirements and management responsibility. Clause 4.1, Clause 5 and its subclauses, Clause 6.1 of ISO 13485, and § 820.10 of this chapter;",
+    "note": ""
+   },
+   {
+    "element": "(enumeration continued)",
+    "support": "SUPPORTED",
+    "cite": "4.4(b)(1)(iv)",
+    "quote": "Analysis of data, improvement, and complaint handling. Clause 8.2.2 and § 820.35(a) of this chapter, Clause 8.4, and Clause 8.5. and its subclauses of ISO 13485;",
+    "note": ""
+   },
+   {
+    "element": "SME to confirm Part 4 cross-references after the Part 820 restructuring",
+    "support": "SUPPORTED",
+    "cite": "4.4(b)(1)(vi)",
+    "quote": "Servicing activities. Clause 7.5.4 of ISO 13485 and § 820.35(b) of this chapter.",
+    "note": "This J item is a drafting note, not an answer element. The snapshot shows Part 4 already cross-references the QMSR."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "ISO key (column H): 4.1; 5 and subclauses; 6.1; 7.3 and subclauses; 7.4 and subclauses; 7.5.3; 7.5.4; 8.2.2; 8.4; 8.5 and subclauses — plus 21 CFR 820.10, 820.35(a), 820.35(b) as named in 4.4(b)(1). Citation 4.4(b)(1) unchanged.",
+  "rationale": "Citation 4.4(b)(1) is right. Its own text enumerates the ISO clauses a drug-CGMP-based system must also satisfy; the draft ISO key lists only part of them. J also contains a drafting note to the SME ('SME to confirm how Part 4 cross-references read ...'); the snapshot answers it — 4.4(b)(1) now cites ISO 13485 clauses and 820.10/820.35 directly.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03: 21 CFR 4.4(b)(1)(i)–(vi)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Whether G7 expects every clause 4.4(b)(1) enumerates, or only the ones the draft chose, is a scoring-policy decision.",
+  "evidence_conflict": true,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional here: the clauses are named in the CFR text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.3; 7.4; 7.5.3; 7.5.4; 8.5.2; 8.5.3",
+   "clauses_named_in_cited_cfr_text": [
+    "4.1",
+    "5",
+    "6.1",
+    "7.3",
+    "7.4",
+    "8.2.2",
+    "8.4",
+    "8.5",
+    "7.5.3",
+    "7.5.4"
+   ],
+   "internal_crosswalk": "no mapping for 4.4",
+   "note": "Draft omits 4.1, 5, 6.1, 8.2.2 and 8.4, all named in the cited paragraph; 8.5.2/8.5.3 are within the named 8.5.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "J contains a reviewer instruction rather than answer elements.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-001",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Design, manufacture, packaging, labeling, storage, installation, servicing of finished devices for human use",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)",
+    "quote": "the design, manufacture, packaging, labeling, storage, installation, and servicing of all finished devices intended for human use",
+    "note": ""
+   },
+   {
+    "element": "QMS appropriate to the specific device",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)",
+    "quote": "must establish and maintain a quality management system that is appropriate for its specific device(s)",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.1(a) states the activities and the QMS-appropriate-to-device obligation. ISO key 1; 4.1 matches the internal crosswalk for 820.1 and the index titles (Scope; QMS general requirements).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "1; 4.1",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Draft equals crosswalk; titles match the subject.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-002",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Component and part manufacturers are outside the scope",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)(2)",
+    "quote": "The provisions of this part do not apply to manufacturers of components or parts of finished devices",
+    "note": ""
+   },
+   {
+    "element": "FDA encourages voluntary application",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)(2)",
+    "quote": "such manufacturers are encouraged to consider provisions of this regulation as appropriate",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements: all supported from 820.1(a)(2). The row is held at NEEDS_RESEARCH only because of the ISO key: column H = None, while the internal crosswalk maps the whole of 820.1 to clauses 1 and 4.1. The cited paragraph names no clause. Lean: ACCEPTED.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled-source + scoring-policy decision: does an answer to this paragraph-level question reach ISO 13485 Clause 1 (Scope) or 4.1? If yes, H should name it; if no, accept None."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Section-level crosswalk vs paragraph-level 'None'. Under the workbook rule, naming any clause on a None row scores Q=0 AND triggers column M (fabricated citation, G2 zero tolerance). Confirm the answer genuinely reaches no clause before accepting None.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-003",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Blood and blood components are excluded from Part 820",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)(3)",
+    "quote": "The provisions of this part do not apply to manufacturers of blood and blood components used for transfusion or for further manufacturing.",
+    "note": ""
+   },
+   {
+    "element": "those manufacturers are subject to Part 606",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "820.1(a)(3)",
+    "quote": "Such manufacturers are subject to subchapter F of this chapter.",
+    "note": "The text routes them to subchapter F as a whole; J names Part 606 only (G also names 640)."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements: see element notes from 820.1(a)(3). The row is held at NEEDS_RESEARCH only because of the ISO key: column H = None, while the internal crosswalk maps the whole of 820.1 to clauses 1 and 4.1. The cited paragraph names no clause. Lean: ACCEPTED.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled-source + scoring-policy decision: does an answer to this paragraph-level question reach ISO 13485 Clause 1 (Scope) or 4.1? If yes, H should name it; if no, accept None.",
+   "Decide whether J's 'Part 606' is acceptable given the text routes to subchapter F."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Section-level crosswalk vs paragraph-level 'None'. Under the workbook rule, naming any clause on a None row scores Q=0 AND triggers column M (fabricated citation, G2 zero tolerance). Confirm the answer genuinely reaches no clause before accepting None.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "J narrows 'subchapter F' to Part 606.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-004",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "HCT/Ps regulated as devices are in scope and also subject to Part 1271",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)(4)",
+    "quote": "HCT/Ps regulated as devices are also subject to the donor-eligibility requirements set forth in part 1271, subpart C",
+    "note": ""
+   },
+   {
+    "element": "the specifically applicable regulation supersedes the more general one",
+    "support": "SUPPORTED",
+    "cite": "820.1(a)(4)",
+    "quote": "the regulation specifically applicable to the device in question shall supersede the more general regulation",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements: all supported from 820.1(a)(4). The row is held at NEEDS_RESEARCH only because of the ISO key: column H = None, while the internal crosswalk maps the whole of 820.1 to clauses 1 and 4.1. The cited paragraph names no clause. Lean: ACCEPTED.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled-source + scoring-policy decision: does an answer to this paragraph-level question reach ISO 13485 Clause 1 (Scope) or 4.1? If yes, H should name it; if no, accept None."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Section-level crosswalk vs paragraph-level 'None'. Under the workbook rule, naming any clause on a None row scores Q=0 AND triggers column M (fabricated citation, G2 zero tolerance). Confirm the answer genuinely reaches no clause before accepting None.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-005",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "the FD&C Act and applicable FDA regulations govern over the incorporated standard",
+    "support": "SUPPORTED",
+    "cite": "820.1(b)",
+    "quote": "the Federal Food, Drug, and Cosmetic Act and/or its other implementing regulations will control",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements: all supported from 820.1(b). The row is held at NEEDS_RESEARCH only because of the ISO key: column H = None, while the internal crosswalk maps the whole of 820.1 to clauses 1 and 4.1. The cited paragraph names no clause. Lean: ACCEPTED (weaker: the paragraph speaks of ISO clauses generally).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled-source + scoring-policy decision: does an answer to this paragraph-level question reach ISO 13485 Clause 1 (Scope) or 4.1? If yes, H should name it; if no, accept None."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Section-level crosswalk vs paragraph-level 'None'. Under the workbook rule, naming any clause on a None row scores Q=0 AND triggers column M (fabricated citation, G2 zero tolerance). Confirm the answer genuinely reaches no clause before accepting None.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-006",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Refusal to permit inspection is grounds for refusal of admission",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "820.1(c)",
+    "quote": "is subject to refusal of admission to the United States under section 801(a) of the Federal Food, Drug, and Cosmetic Act if, among other things, it appears to be adulterated",
+    "note": "The snapshot's 820.1(c) says nothing about refusing inspection. The inspection element may come from the statute (801(a)) or from the pre-QMSR text; neither is in evidence."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements: see element notes from 820.1(c). The row is held at NEEDS_RESEARCH only because of the ISO key: column H = None, while the internal crosswalk maps the whole of 820.1 to clauses 1 and 4.1. The cited paragraph names no clause. Lean: NEEDS J CHECK.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Controlled-source + scoring-policy decision: does an answer to this paragraph-level question reach ISO 13485 Clause 1 (Scope) or 4.1? If yes, H should name it; if no, accept None.",
+   "Confirm what 820.1(c) says in the live eCFR and whether the 'refuses inspection' element comes from FD&C Act 801(a); J may reflect superseded text."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Section-level crosswalk vs paragraph-level 'None'. Under the workbook rule, naming any clause on a None row scores Q=0 AND triggers column M (fabricated citation, G2 zero tolerance). Confirm the answer genuinely reaches no clause before accepting None.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "J asserts refusal of inspection as the ground; the snapshot 820.1(c) text does not mention inspection.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-007",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Exemption or variance under section 520(f)(2)",
+    "support": "SUPPORTED",
+    "cite": "820.1(d)(1)",
+    "quote": "may petition for an exemption or variance from such requirement in accordance with section 520(f)(2) of the Federal Food, Drug, and Cosmetic Act",
+    "note": ""
+   },
+   {
+    "element": "requested by citizen petition under 10.30",
+    "support": "SUPPORTED",
+    "cite": "820.1(d)(1); 10.30 heading 'Citizen petition.'",
+    "quote": "Petitions for an exemption or variance shall be submitted in accordance with the procedures set forth in § 10.30 of this chapter.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements: all supported from 820.1(d). The row is held at NEEDS_RESEARCH only because of the ISO key: column H = None, while the internal crosswalk maps the whole of 820.1 to clauses 1 and 4.1. The cited paragraph names no clause. Lean: ACCEPTED.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled-source + scoring-policy decision: does an answer to this paragraph-level question reach ISO 13485 Clause 1 (Scope) or 4.1? If yes, H should name it; if no, accept None."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Section-level crosswalk vs paragraph-level 'None'. Under the workbook rule, naming any clause on a None row scores Q=0 AND triggers column M (fabricated citation, G2 zero tolerance). Confirm the answer genuinely reaches no clause before accepting None.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-008",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "ISO 13485 definitions apply except as superseded by 820.3",
+    "support": "SUPPORTED",
+    "cite": "820.3 (intro)",
+    "quote": "The definitions in ISO 13485 and in Clause 3 of ISO 9000 (incorporated by reference, see § 820.7) apply to this part, except as specified in paragraph (b) of this section",
+    "note": ""
+   },
+   {
+    "element": "ISO 9000:2015 Clause 3 separately incorporated",
+    "support": "SUPPORTED",
+    "cite": "820.7(a)",
+    "quote": "Clause 3—Terms and definitions, Fourth edition, September 15, 2015. IBR approved for § 820.3.",
+    "note": ""
+   },
+   {
+    "element": "FD&C Act section 201 definitions supersede correlating standard terms",
+    "support": "SUPPORTED",
+    "cite": "820.3(b)",
+    "quote": "shall supersede the correlating terms and definitions in ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.3 intro and (b) state each element. ISO key '3; ISO 9000 Clause 3' matches the crosswalk (820.3 -> 3) and 820.3/820.7(a) name ISO 9000 Clause 3 directly.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "3; ISO 9000 Clause 3",
+   "clauses_named_in_cited_cfr_text": [
+    "ISO 9000 Clause 3"
+   ],
+   "internal_crosswalk": "820.3 -> 3",
+   "note": "ISO 9000 Clause 3 named in CFR text; ISO 13485 Clause 3 corroborated by crosswalk + index title.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-009",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "'Safety and performance' carries the meaning of 'safety and effectiveness'",
+    "support": "SUPPORTED",
+    "cite": "820.3(b)",
+    "quote": "Safety and Performance shall have the meaning of “safety and effectiveness” in Clause 0.1 of ISO 13485.",
+    "note": ""
+   },
+   {
+    "element": "... as used in the FD&C Act and FDA regulations",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "820.3(b); 820.1(a)",
+    "quote": "does not relieve a manufacturer from any obligation to implement controls or other measures that provide reasonable assurance of safety and effectiveness",
+    "note": "The statutory standard is preserved (820.1(a), 820.3(b) second sentence) but the definition itself points to Clause 0.1."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "820.3(b) defines 'Safety and Performance' by reference to 'safety and effectiveness' in Clause 0.1 of ISO 13485 — so the draft H value 0.1 (flagged by the verifier as outside the index) is named by the CFR text itself. J attributes the meaning to 'the FD&C Act and FDA regulations', which is not what 820.3(b) says.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Decide whether J's attribution ('as used in the FD&C Act') is acceptable or misleading; the SME system cannot correct J."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm Clause 0.1 exists (Introduction — General).",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "0.1; 3",
+   "clauses_named_in_cited_cfr_text": [
+    "0.1"
+   ],
+   "internal_crosswalk": "820.3 -> 3",
+   "note": "0.1 is named in 820.3(b). The internal index starts at clause 1, which is why the verifier could not confirm it.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "J attributes the definition to the FD&C Act; 820.3(b) attributes it to Clause 0.1 of ISO 13485.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-010",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "ISO 13485:2016(E), third edition, March 1, 2016 — IBR approved for 820.1, 820.3, 820.10, 820.35 and 820.45",
+    "support": "SUPPORTED",
+    "cite": "820.7(b)",
+    "quote": "Third edition, March 1, 2016; IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "note": ""
+   },
+   {
+    "element": "ISO 9000:2015(E) Clause 3 — IBR approved for 820.3",
+    "support": "SUPPORTED",
+    "cite": "820.7(a)",
+    "quote": "Clause 3—Terms and definitions, Fourth edition, September 15, 2015. IBR approved for § 820.3.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.7 states the incorporated editions and approvals. Column H 'entire standard' matches 820.7(b), which incorporates the standard as a whole; the index's top-level clauses are 1–8.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Scoring convention for 'entire standard' keys under G7.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm the standard's top-level clauses are 1–8.",
+  "iso_assessment": {
+   "tier": "RANGE",
+   "draft_H": "1 through 8 (entire standard); ISO 9000 Clause 3",
+   "clauses_named_in_cited_cfr_text": [
+    "ISO 13485:2016 as a whole (820.7(b))"
+   ],
+   "internal_crosswalk": "820.7 -> 2",
+   "note": "Crosswalk maps 820.7 to clause 2 (Normative references); the draft's whole-standard reading is supported by 820.7(b). SME to confirm the scoring convention for a whole-standard key.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-011",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Incorporation by reference fixes the 2016 third edition",
+    "support": "SUPPORTED",
+    "cite": "820.7(b)",
+    "quote": "Third edition, March 1, 2016; IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "note": ""
+   },
+   {
+    "element": "a later edition does not apply automatically until FDA amends the regulation",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "820.7 (intro)",
+    "quote": "with the approval of the Director of the Federal Register under 5 U.S.C. 552(a) and 1 CFR part 51",
+    "note": "Edition-specificity is in the text; 'until FDA amends' is the legal consequence of IBR, not stated in 820.7."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.7 states the incorporated editions and approvals. Column H 'entire standard' matches 820.7(b), which incorporates the standard as a whole; the index's top-level clauses are 1–8.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scoring convention for 'entire standard' keys under G7.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm the standard's top-level clauses are 1–8.",
+  "iso_assessment": {
+   "tier": "RANGE",
+   "draft_H": "1 through 8 (entire standard)",
+   "clauses_named_in_cited_cfr_text": [
+    "ISO 13485:2016 as a whole (820.7(b))"
+   ],
+   "internal_crosswalk": "820.7 -> 2",
+   "note": "Crosswalk maps 820.7 to clause 2 (Normative references); the draft's whole-standard reading is supported by 820.7(b). SME to confirm the scoring convention for a whole-standard key.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-012",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Document a QMS that complies with the applicable requirements of ISO 13485 and other applicable requirements of Part 820",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "820.10(b)(1)–(4), (c) and (d) impose further 'must' obligations; the question asks about 820.10 as a whole.",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(a) states J exactly. Two open points: (1) column H '4 through 8' is not in the CFR text, which says 'applicable requirements of ISO 13485'; (2) the question asks what 820.10 requires, and (b)–(e) add further mandatory requirements that G does not cite.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm clauses 4–8 are the requirement clauses (1–3 being scope, normative references, terms).",
+   "Decide whether G should be 820.10 (a)–(d) given the question's wording."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "RANGE",
+   "draft_H": "4 through 8",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "'4 through 8' reads as the requirement clauses; that is ISO content the CFR text does not state.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-013",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "A documented system to assign unique device identification in accordance with Part 830",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(1)",
+    "quote": "the manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter",
+    "note": ""
+   },
+   {
+    "element": "ISO clause 7.5.8",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(1)",
+    "quote": "For Clause 7.5.8 in ISO 13485, Identification",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(b)(1) states J, and names clause 7.5.8 itself — the verifier's UNVERIFIABLE came from the crosswalk holding no mapping for 820.10, not from any doubt about the clause.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional: clause named in CFR text; confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.8",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.8"
+   ],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Exact match with the CFR text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-014",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Documented traceability procedures in accordance with Part 821",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(2)",
+    "quote": "the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable",
+    "note": ""
+   },
+   {
+    "element": "ISO clause 7.5.9.1",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(2)",
+    "quote": "For Clause 7.5.9.1 in ISO 13485, Traceability—General",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(b)(2) states J, and names clause 7.5.9.1 itself — the verifier's UNVERIFIABLE came from the crosswalk holding no mapping for 820.10, not from any doubt about the clause.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional: clause named in CFR text; confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.9.1",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.9.1"
+   ],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Exact match with the CFR text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-015",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Complaints meeting the reporting criteria of Part 803 must be reported to FDA",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(3)",
+    "quote": "the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter",
+    "note": ""
+   },
+   {
+    "element": "ISO clause 8.2.3",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(3)",
+    "quote": "For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(b)(3) states J, and names clause 8.2.3 itself — the verifier's UNVERIFIABLE came from the crosswalk holding no mapping for 820.10, not from any doubt about the clause.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional: clause named in CFR text; confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "8.2.3",
+   "clauses_named_in_cited_cfr_text": [
+    "8.2.3"
+   ],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Exact match with the CFR text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-016",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Advisory notices handled in accordance with Part 806",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(4)",
+    "quote": "advisory notices shall be handled in accordance with the requirements of part 806 of this chapter",
+    "note": ""
+   },
+   {
+    "element": "ISO clause 7.2.3; 8.2.3; 8.3.3",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(4)",
+    "quote": "For Clauses 7.2.3, 8.2.3, and 8.3.3",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(b)(4) states J, and names clause 7.2.3; 8.2.3; 8.3.3 itself — the verifier's UNVERIFIABLE came from the crosswalk holding no mapping for 820.10, not from any doubt about the clause.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional: clause named in CFR text; confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.2.3; 8.2.3; 8.3.3",
+   "clauses_named_in_cited_cfr_text": [
+    "7.2.3; 8.2.3; 8.3.3"
+   ],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Exact match with the CFR text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-017",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Mandatory for Class II and III devices and the listed Class I devices",
+    "support": "SUPPORTED",
+    "cite": "820.10(c)",
+    "quote": "Manufacturers of class II, class III, and those class I devices listed in paragraph (c)(1)",
+    "note": ""
+   },
+   {
+    "element": "ISO clause 7.3 and its subclauses",
+    "support": "SUPPORTED",
+    "cite": "820.10(c)",
+    "quote": "must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(c) states J, and names clause 7.3 and its subclauses itself — the verifier's UNVERIFIABLE came from the crosswalk holding no mapping for 820.10, not from any doubt about the clause.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional: clause named in CFR text; confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.3 and its subclauses",
+   "clauses_named_in_cited_cfr_text": [
+    "7.3 and its subclauses"
+   ],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Exact match with the CFR text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-018",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "FDA extends implantable-device traceability to devices that support or sustain life",
+    "support": "SUPPORTED",
+    "cite": "820.10(d)",
+    "quote": "Manufacturers of devices that support or sustain life",
+    "note": ""
+   },
+   {
+    "element": "ISO clause 7.5.9.2",
+    "support": "SUPPORTED",
+    "cite": "820.10(d)",
+    "quote": "must comply with the requirements in Traceability for Implantable Devices, Clause 7.5.9.2 in ISO 13485",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(d) states J, and names clause 7.5.9.2 itself — the verifier's UNVERIFIABLE came from the crosswalk holding no mapping for 820.10, not from any doubt about the clause.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional: clause named in CFR text; confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.9.2",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.9.2"
+   ],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Exact match with the CFR text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-019",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "The device is adulterated",
+    "support": "SUPPORTED",
+    "cite": "820.10(e)",
+    "quote": "The failure to comply with any applicable requirement in this part renders a device adulterated under section 501(h) of the Federal Food, Drug, and Cosmetic Act.",
+    "note": ""
+   },
+   {
+    "element": "the manufacturer is subject to enforcement action",
+    "support": "SUPPORTED",
+    "cite": "820.10(e)",
+    "quote": "Such a device, as well as any person responsible for the failure to comply, is subject to regulatory action.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "820.10(e) states both elements. Held only for the ISO 'None' key (820.10 has no crosswalk mapping; the paragraph names no clause). Lean: ACCEPTED.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Confirm None is intended (answer reaches no clause)."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.10 -> no mapping",
+   "note": "Enforcement paragraph; no clause named. Low risk, but None rows carry a G2 penalty for any clause named.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-020",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "FDA supplement specifying additional required record content beyond the standard's record control clause",
+    "support": "SUPPORTED",
+    "cite": "820.35 (intro)",
+    "quote": "the manufacturer must include the following information in certain records",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.35 introductory text supplements Clause 4.2.5 with additional record content; clause named in the text and in the crosswalk.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "4.2.5",
+   "clauses_named_in_cited_cfr_text": [
+    "4.2.5"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5 (section level, from the introductory text)",
+   "note": "CFR text and crosswalk agree.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-021",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Records of review, evaluation and investigation",
+    "support": "SUPPORTED",
+    "cite": "820.35(a)",
+    "quote": "the manufacturer shall maintain records of the review, evaluation, and investigation for any complaints",
+    "note": ""
+   },
+   {
+    "element": "including the justification when no investigation is made",
+    "support": "SUPPORTED",
+    "cite": "820.35(a)",
+    "quote": "the manufacturer shall maintain records documenting justification for not performing such investigation",
+    "note": ""
+   },
+   {
+    "element": "ISO clause(s) 8.2.2",
+    "support": "SUPPORTED",
+    "cite": "820.35(a)",
+    "quote": "In addition to Clause 8.2.2 in ISO 13485, Complaint Handling",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "J is stated in 820.35(a). ISO CONFLICT RESOLVED BY CFR TEXT: 820.35(a) itself names clause(s) 8.2.2, exactly the draft. The crosswalk disagrees only because it maps the whole section to the single clause named in the section's introductory text — a granularity artefact, not evidence against the draft.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Human confirmation required because the automated pass flagged a crosswalk conflict.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "8.2.2",
+   "clauses_named_in_cited_cfr_text": [
+    "8.2.2"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5 (section level, from the introductory text)",
+   "note": "Section-level crosswalk vs paragraph-level key; the paragraph text names the draft clause.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-022",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "device name",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)(1)",
+    "quote": "The name of the device serviced;",
+    "note": ""
+   },
+   {
+    "element": "UDI or other identification",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)(2)",
+    "quote": "Any UDI or UPC, and any other device identification(s);",
+    "note": ""
+   },
+   {
+    "element": "date of service",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)(3)",
+    "quote": "The date of service;",
+    "note": ""
+   },
+   {
+    "element": "individual servicing the device",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)(4)",
+    "quote": "The individual(s) who serviced the device;",
+    "note": ""
+   },
+   {
+    "element": "service performed",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)(5)",
+    "quote": "The service performed; and",
+    "note": ""
+   },
+   {
+    "element": "test and inspection data",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)(6)",
+    "quote": "Any test and inspection data.",
+    "note": ""
+   },
+   {
+    "element": "ISO clause(s) 7.5.4",
+    "support": "SUPPORTED",
+    "cite": "820.35(b)",
+    "quote": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "J is stated in 820.35(b). ISO CONFLICT RESOLVED BY CFR TEXT: 820.35(b) itself names clause(s) 7.5.4, exactly the draft. The crosswalk disagrees only because it maps the whole section to the single clause named in the section's introductory text — a granularity artefact, not evidence against the draft.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Human confirmation required because the automated pass flagged a crosswalk conflict.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.4",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.4"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5 (section level, from the introductory text)",
+   "note": "Section-level crosswalk vs paragraph-level key; the paragraph text names the draft clause.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-023",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "The UDI must be recorded for each medical device or batch",
+    "support": "SUPPORTED",
+    "cite": "820.35(c)",
+    "quote": "the UDI must be recorded for each medical device or batch of medical devices.",
+    "note": ""
+   },
+   {
+    "element": "ISO clause(s) 7.5.1; 7.5.8; 7.5.9",
+    "support": "SUPPORTED",
+    "cite": "820.35(c)",
+    "quote": "In addition to the requirements of Clauses 7.5.1, 7.5.8, and 7.5.9 in ISO 13485",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "J is stated in 820.35(c). ISO CONFLICT RESOLVED BY CFR TEXT: 820.35(c) itself names clause(s) 7.5.1; 7.5.8; 7.5.9, exactly the draft. The crosswalk disagrees only because it maps the whole section to the single clause named in the section's introductory text — a granularity artefact, not evidence against the draft.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Human confirmation required because the automated pass flagged a crosswalk conflict.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.1; 7.5.8; 7.5.9",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.1",
+    "7.5.8",
+    "7.5.9"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5 (section level, from the introductory text)",
+   "note": "Section-level crosswalk vs paragraph-level key; the paragraph text names the draft clause.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-027",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Release of labeling for use must be documented",
+    "support": "SUPPORTED",
+    "cite": "820.45(b)",
+    "quote": "The release of the labeling for use must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "note": ""
+   },
+   {
+    "element": "ISO clause(s) 4.2.5",
+    "support": "SUPPORTED",
+    "cite": "820.45(b)",
+    "quote": "The release of the labeling for use must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "note": "Clause named in the regulation text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "J is stated in 820.45(b). ISO CONFLICT RESOLVED BY CFR TEXT: 820.45(b) itself names clause(s) 4.2.5, exactly the draft. The crosswalk disagrees only because it maps the whole section to the single clause named in the section's introductory text — a granularity artefact, not evidence against the draft.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Human confirmation required because the automated pass flagged a crosswalk conflict.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "4.2.5",
+   "clauses_named_in_cited_cfr_text": [
+    "4.2.5"
+   ],
+   "internal_crosswalk": "820.45 -> 7.5.1 (section level, from the introductory text)",
+   "note": "Section-level crosswalk vs paragraph-level key; the paragraph text names the draft clause.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-024",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Records deemed confidential may be marked to aid FDA in determining whether information may be disclosed",
+    "support": "SUPPORTED",
+    "cite": "820.35(d)",
+    "quote": "Records deemed confidential by the manufacturer may be marked to aid FDA in determining whether information may be disclosed under the public information regulation in part 20 of this chapter.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "820.35(d) states J. The ISO key 'None' is doubtful: 820.35's introductory text frames every paragraph as 'in addition to the requirements of Clause 4.2.5', and the crosswalk maps the section to 4.2.5. Under the workbook rule, a vendor naming 4.2.5 here would be scored as a FABRICATED citation (column M, G2 zero tolerance).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Decide whether H should be 4.2.5 (section-intro framing) or None; consult the controlled standard's Control of records clause for scope."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "NONE_CLAIM",
+   "draft_H": "None",
+   "clauses_named_in_cited_cfr_text": [
+    "4.2.5 (section intro)"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5 (section level, from the introductory text)",
+   "note": "The section's own introductory text names 4.2.5; 'None' may penalise a correct answer as fabricated.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-025",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Documented procedures ensuring the integrity of labeling and packaging, supplementing the standard's production control clause",
+    "support": "SUPPORTED",
+    "cite": "820.45 (intro)",
+    "quote": "each manufacturer must document and maintain procedures that provide a detailed description of the activities to ensure the integrity, inspection, storage, and operations for labeling and packaging",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.45 introductory text states the supplement and names Clause 7.5.1; crosswalk agrees.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.1",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.1"
+   ],
+   "internal_crosswalk": "820.45 -> 7.5.1 (section level, from the introductory text)",
+   "note": "CFR text and crosswalk agree.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-026",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Labeling and packaging examined for accuracy prior to release or storage",
+    "support": "SUPPORTED",
+    "cite": "820.45(a)",
+    "quote": "The manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage where applicable",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.45(a) states J; the section is framed as 'in addition to Clause 7.5.1'; crosswalk agrees.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.5.1",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.1 (section intro)"
+   ],
+   "internal_crosswalk": "820.45 -> 7.5.1 (section level, from the introductory text)",
+   "note": "Clause named in the section introductory text.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-028",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Labeling and packaging operations must be controlled to prevent mixups",
+    "support": "SUPPORTED",
+    "cite": "820.45(c)",
+    "quote": "The manufacturer must ensure labeling and packaging operations have been established and maintained to prevent mixups",
+    "note": ""
+   },
+   {
+    "element": "inspection results must be documented",
+    "support": "SUPPORTED",
+    "cite": "820.45(c)",
+    "quote": "Results of such labeling inspection must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "820.45(c) states both J elements and names Clause 4.2.5. The draft also names 4.2.3 (Medical device file): the paragraph mentions 'the medical device file' as where labeling is specified, but does not invoke that clause. Whether 4.2.3 belongs in the key is an ISO/policy question.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: does the answer reach Clause 4.2.3 or only 4.2.5?"
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T3_UNRESOLVED",
+   "draft_H": "4.2.3; 4.2.5",
+   "clauses_named_in_cited_cfr_text": [
+    "4.2.5"
+   ],
+   "internal_crosswalk": "820.45 -> 7.5.1 (section level, from the introductory text)",
+   "note": "4.2.5 named in CFR text. 4.2.3 inferred from the term 'medical device file' only.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-029",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.10(b)–(e), 820.35 and 820.45 impose FDA requirements in addition to the standard",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)",
+    "quote": "Comply, as appropriate, with the other applicable regulatory requirements in this title, including, but not limited to the following, to fully comply with the listed ISO 13485 Clause:",
+    "note": "820.10(e) is an enforcement provision rather than a supplement; SME may want to note that."
+   },
+   {
+    "element": "the balance of the quality system reaches the manufacturer through incorporation by reference",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "ISO key (column H): 4.2.5; 7.2.3; 7.3; 7.5.1; 7.5.4; 7.5.8; 7.5.9 (incl. 7.5.9.1, 7.5.9.2); 8.2.2; 8.2.3; 8.3.3 — every clause named in the cited CFR text. Citation unchanged.",
+  "rationale": "Citation matches J. The ISO key omits clauses that the cited provisions themselves name: 820.10(b)(4) names 7.2.3 and 8.3.3, 820.10(c) names 7.3. The draft lists 4.2.5; 7.5.1; 7.5.4; 7.5.8; 7.5.9; 8.2.2; 8.2.3.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Policy: should H list every clause named in the cited provisions, or only those an answer must reach?",
+  "evidence_conflict": true,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional; clauses are named in CFR text.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "4.2.5; 7.5.1; 7.5.4; 7.5.8; 7.5.9; 8.2.2; 8.2.3",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.8",
+    "7.5.9.1",
+    "8.2.3",
+    "7.2.3",
+    "8.3.3",
+    "7.3",
+    "7.5.9.2",
+    "4.2.5",
+    "8.2.2",
+    "7.5.4",
+    "7.5.1",
+    "7.5.9"
+   ],
+   "internal_crosswalk": "820.10 -> none; 820.35 -> 4.2.5; 820.45 -> 7.5.1",
+   "note": "Draft is a subset of the clauses the cited text names; missing 7.2.3, 7.3, 8.3.3.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-030",
+  "citation_correctness": "undetermined",
+  "provision_exists": "partial",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "ISO 13485:2016 incorporated by reference",
+    "support": "SUPPORTED",
+    "cite": "820.7(b)",
+    "quote": "Third edition, March 1, 2016; IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "note": ""
+   },
+   {
+    "element": "former Subparts C through O reserved",
+    "support": "SUPPORTED",
+    "cite": "cfr_subparts (Part 820)",
+    "quote": "Subparts C-O [Reserved]",
+    "note": ""
+   },
+   {
+    "element": "FR citation of the final rule",
+    "support": "SUPPORTED",
+    "cite": "820.3 source note",
+    "quote": "89 FR 7523, Feb. 2, 2024; 89 FR 82945, Oct. 15, 2024",
+    "note": ""
+   },
+   {
+    "element": "compliance date February 2, 2026",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Effective/compliance date is not held in the snapshot."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Structural elements are established in the snapshot (IBR of ISO 13485 at 820.7(b); Subparts C–O reserved; supplements at 820.10(b)–(e), 820.35, 820.45; FR citation 89 FR 7523, Feb. 2, 2024). The compliance date the question asks for is not in the snapshot. The snapshot also shows a second FR document (89 FR 82945, Oct. 15, 2024) that the key does not mention.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty.",
+   "Check what 89 FR 82945 (Oct. 15, 2024) changed and whether the key should mention it."
+  ],
+  "controlled_source": "Federal Register 89 FR 7523 and 89 FR 82945",
+  "iso_assessment": {
+   "tier": "RANGE",
+   "draft_H": "1 through 8 (entire standard)",
+   "clauses_named_in_cited_cfr_text": [
+    "ISO 13485:2016 as a whole (820.7(b))"
+   ],
+   "internal_crosswalk": "n/a",
+   "note": "Whole-standard key.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-031",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.30 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "820.20-820.30",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(c)",
+    "support": "SUPPORTED",
+    "cite": "820.10(c)",
+    "quote": "must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.30 is reserved in the snapshot, and 820.10(c) is live text that carries the obligation. ISO key named in 820.10(c) itself. The date 'February 2, 2026' in G is not established by the snapshot.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional. Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.3 and its subclauses",
+   "clauses_named_in_cited_cfr_text": [
+    "7.3"
+   ],
+   "internal_crosswalk": "820.30 -> 7.3",
+   "note": "ISO key named in 820.10(c) itself. The date 'February 2, 2026' in G is not established by the snapshot.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-032",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.100 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.100 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Draft is a subset of the crosswalk mapping (crosswalk also lists 8.4 Analysis of data); titles match CAPA.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Decide whether 8.4 should join the ISO key, as the internal crosswalk suggests."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "8.5.2; 8.5.3",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.100 -> 8.4, 8.5.2, 8.5.3",
+   "note": "Draft is a subset of the crosswalk mapping (crosswalk also lists 8.4 Analysis of data); titles match CAPA.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-033",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.198 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.35(a)",
+    "support": "SUPPORTED",
+    "cite": "820.35(a)",
+    "quote": "In addition to Clause 8.2.2 in ISO 13485, Complaint Handling",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.198 is reserved in the snapshot, and 820.35(a) is live text that carries the obligation. 820.35(a) names 8.2.2 directly. Crosswalk for the old section also lists 8.2.1 and 8.2.3.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "8.2.2",
+   "clauses_named_in_cited_cfr_text": [
+    "8.2.2"
+   ],
+   "internal_crosswalk": "820.198 -> 8.2.1, 8.2.2, 8.2.3; 820.35 -> 4.2.5",
+   "note": "820.35(a) names 8.2.2 directly. Crosswalk for the old section also lists 8.2.1 and 8.2.3.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-035",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.20 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "820.20-820.30",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.20 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Draft equals crosswalk; title 'Management responsibility' matches.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "5",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.20 -> 5",
+   "note": "Draft equals crosswalk; title 'Management responsibility' matches.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-036",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.22 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "820.20-820.30",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.22 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Draft equals crosswalk; title 'Internal audit' matches 'quality audit'.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "8.2.4",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.22 -> 8.2.4",
+   "note": "Draft equals crosswalk; title 'Internal audit' matches 'quality audit'.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-037",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.50 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.50 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Draft = crosswalk's 7.4 plus its subclauses (refinement within the parent). Flagged as an ISO conflict only because of the added subclauses.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "7.4; 7.4.1; 7.4.2; 7.4.3",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.50 -> 7.4",
+   "note": "Draft = crosswalk's 7.4 plus its subclauses (refinement within the parent). Flagged as an ISO conflict only because of the added subclauses.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-038",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.75 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.75 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Draft adds 7.5.7 (sterilization/sterile barrier validation), a sibling of the crosswalk's 7.5.6, not a subclause of it.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: does the 820.75 process-validation obligation reach 7.5.7 as well as 7.5.6?"
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T3_UNRESOLVED",
+   "draft_H": "7.5.6; 7.5.7",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.75 -> 7.5.6",
+   "note": "Draft adds 7.5.7 (sterilization/sterile barrier validation), a sibling of the crosswalk's 7.5.6, not a subclause of it.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-039",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.72 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.72 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Draft equals crosswalk; title matches.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "7.6",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.72 -> 7.6",
+   "note": "Draft equals crosswalk; title matches.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-040",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.250 is reserved",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list / reserved records",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Snapshot holds the provision as [Reserved] (range record or reserved subpart)."
+   },
+   {
+    "element": "route to 820.10(a)",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Temporal status established: 820.250 is reserved in the snapshot, and 820.10(a) is live text that carries the obligation. Genuine disagreement: draft 8.2.6 (monitoring and measurement of product) vs crosswalk 8.2.5 (of processes).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row — a wrong answer here is a citation failure by rule; independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: which of 8.2.5 / 8.2.6 (or both) carries the statistical-techniques obligation?"
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T3_UNRESOLVED",
+   "draft_H": "8.1; 8.2.6; 8.4",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.250 -> 8.1, 8.2.5, 8.4",
+   "note": "Genuine disagreement: draft 8.2.6 (monitoring and measurement of product) vs crosswalk 8.2.5 (of processes).",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-034",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "DMR/DHR/DHF terms are not used in the current Part 820",
+    "support": "SUPPORTED",
+    "cite": "Part 820 (whole-part term search)",
+    "quote": "Subparts C-O [Reserved]",
+    "note": "Term search over all live Part 820 records: 0 hits for each legacy term."
+   },
+   {
+    "element": "identify the medical device file clause",
+    "support": "SUPPORTED",
+    "cite": "820.45(c)",
+    "quote": "as specified in the medical device file",
+    "note": ""
+   },
+   {
+    "element": "record control and design and development file clauses",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "crosswalk + index titles",
+    "quote": "",
+    "note": "Clause identities from internal index/crosswalk only."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Established: none of 'master record', 'history record', 'design history', DMR, DHR or DHF appears anywhere in current Part 820; 'medical device file' does (820.3(b), 820.45(c)). 820.181/820.184 fall in reserved Subparts C–O, 820.30 in the reserved 820.20–820.30 range. ISO: 4.2.3 and 4.2.5 equal the crosswalk for 820.181/820.184; 7.3.10 refines the crosswalk's 7.3 for 820.30 (paragraph (j)) with a matching title.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Flagged as ISO conflict by automation (7.3.10 vs 7.3); resolution rests on internal titles, not the standard.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "4.2.3; 4.2.5; 7.3.10",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.181 -> 4.2.3; 820.184 -> 4.2.5, 7.5.1; 820.30 -> 7.3",
+   "note": "7.3.10 is a subclause of the crosswalk's 7.3 with a matching title (Design and development files).",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-041",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No certification requirement appears in Part 820",
+    "support": "SUPPORTED",
+    "cite": "Part 820 whole-part search",
+    "quote": "",
+    "note": "Absence established over the whole (small) part: 'certif' 0, 'registrar' 0, 'notified body' 0."
+   },
+   {
+    "element": "the obligation is to document a QMS complying with the standard",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   },
+   {
+    "element": "A certificate does not exempt a manufacturer from FDA inspection",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "820.1(c)",
+    "quote": "",
+    "note": "820.1(c) does not address inspection or certificates. FDA inspection authority is statutory (not held)."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "'No certification requirement appears in Part 820' is ESTABLISHED: whole-part search finds no 'certif', 'registrar' or 'notified body'. But the second element (a certificate does not exempt from FDA inspection) is not in any cited text, and the cited 820.1(c) concerns refusal of admission of adulterated imports, not inspection.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Identify the authority for 'a certificate does not exempt from inspection' (FD&C Act 704 is a lead; not held) and decide whether 820.1(c) belongs in G."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "1; 4.1",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.1 -> 1, 4.1 (section level)",
+   "note": "Draft equals crosswalk for 820.1.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 820 (all live records)",
+   "method": "term search: certif, registrar, notified body",
+   "result": "NO_RESULT over the whole part",
+   "absence_established": true,
+   "note": "Part 820 is ~16k characters and was inspected in full; absence within Part 820 is established."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "M-042",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "UDI system under Part 830",
+    "support": "SUPPORTED",
+    "cite": "820.10(b)(1)",
+    "quote": "the manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter",
+    "note": ""
+   },
+   {
+    "element": "Part 820 requires the recording of the UDI",
+    "support": "SUPPORTED",
+    "cite": "820.35(c)",
+    "quote": "the UDI must be recorded for each medical device or batch of medical devices.",
+    "note": ""
+   },
+   {
+    "element": "Registration and listing under Part 807",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "Part 807",
+    "quote": "",
+    "note": "Part-level citation; Part 807 text not in this row's evidence."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "CFR elements supported (820.10(b)(1) UDI system per Part 830; 820.35(c) UDI recording). ISO key omits 7.5.1, which the cited 820.35(c) names — and M-023, citing the same paragraph, DOES list 7.5.1. The benchmark is internally inconsistent here.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Resolve the M-023 / M-042 inconsistency: is 7.5.1 in or out for 820.35(c)?",
+   "Confirm Part 807 registration and listing element (part-level citation)."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T3_UNRESOLVED",
+   "draft_H": "7.5.8; 7.5.9",
+   "clauses_named_in_cited_cfr_text": [
+    "7.5.8",
+    "7.5.1",
+    "7.5.9"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5",
+   "note": "Inconsistent with M-023 (same paragraph, H includes 7.5.1).",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-001",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Greenhouse gas emissions reporting is not covered in 21 CFR",
+    "support": "SUPPORTED",
+    "cite": "Title 21 full-text search",
+    "quote": "",
+    "note": "'greenhouse' 0 hits across 65,341 live records."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Absence within Title 21 supported: whole-Title-21 search finds 0 records containing 'greenhouse'; 'emission' hits are electronic-product radiation (Subchapter J), unrelated. The key is a platform-behaviour rule consistent with that.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "All of Title 21 in the snapshot",
+   "method": "term search: greenhouse; emission (reviewed)",
+   "result": "NO_RESULT for subject term",
+   "absence_established": true,
+   "note": "For 'is X covered in 21 CFR', a whole-title search on the subject term is the right scope; residual risk is different wording."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-002",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Primary answer cites the regulation",
+    "support": "SUPPORTED",
+    "cite": "1114.7",
+    "quote": "Constituents, including HPHCs and other constituents, contained within, or emitted from (including its smoke or aerosol), the product",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "1114.7 is PMTA content; HPHC reporting also arises under FD&C Act 904 (see T-012) and SE reports (Part 1107). The question says 'for a tobacco product' generally.",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "1114.7 requires constituent (including HPHC) information in a PMTA; J is a first-tier/second-tier behaviour rule consistent with that.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Completeness depends on whether the question means a PMTA only.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-003",
+  "citation_correctness": "undetermined",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Guidance must not be characterized as creating the requirement",
+    "support": "SUPPORTED",
+    "cite": "10.115(d)(1)",
+    "quote": "Guidance documents do not establish legally enforceable rights or responsibilities. They do not legally bind the public or FDA.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "The behaviour rule (guidance is elaboration, not a source of requirements) is supported by 21 CFR 10.115(d)(1). But the key assumes the HPHC list lives in the guidance tier; the guidance table shows HPHC-related guidance documents but no list document, and the list's actual publication vehicle is not in evidence.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Identify the document that publishes FDA's HPHC list and whether it is a guidance document or a Federal Register notice; the 'guidance tier' framing depends on it."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-004",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Must not state that a guidance document requires anything",
+    "support": "SUPPORTED",
+    "cite": "10.115(d)(1)",
+    "quote": "Guidance documents do not establish legally enforceable rights or responsibilities.",
+    "note": ""
+   },
+   {
+    "element": "state plainly that the regulation does not impose the requirement",
+    "support": "SUPPORTED",
+    "cite": "111.605(a)",
+    "quote": "You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Consistent with evidence: Part 111 treats shelf-life dating as optional ('if shelf life dating is used'), 10.115(d) makes guidance non-binding, and the guidance table holds no dietary-supplement shelf-life guidance (coverage unassessed).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Whether FDA guidance on supplement shelf life exists outside the guidance table is not established.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-005",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "guidance does not create the requirement",
+    "support": "SUPPORTED",
+    "cite": "10.115(d)(1)",
+    "quote": "Guidance documents do not establish legally enforceable rights or responsibilities.",
+    "note": ""
+   },
+   {
+    "element": "route the obligation to the regulation and the standard's purchasing clauses",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "False premise supported: 10.115(d)(1) — guidance does not establish requirements; 820.10(a) carries the obligation via the standard. ISO key 7.4; 7.4.1 is not named in the CFR and 820.10 has no crosswalk mapping (the predecessor 820.50 maps to 7.4).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm supplier qualification sits in 7.4 / 7.4.1."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T3_UNRESOLVED",
+   "draft_H": "7.4; 7.4.1",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.10 -> none (predecessor 820.50 -> 7.4)",
+   "note": "Title concordance only.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-006",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "distinguish the standard incorporated at 820.7(b) from standards that are not",
+    "support": "SUPPORTED",
+    "cite": "820.7(b)",
+    "quote": "ISO 13485:2016(E) (“ISO 13485”), Medical devices—Quality management systems—Requirements for regulatory purposes",
+    "note": ""
+   },
+   {
+    "element": "must not present ISO 14971 as a Title 21 requirement",
+    "support": "SUPPORTED",
+    "cite": "Title 21 full-text search",
+    "quote": "",
+    "note": "'14971' 0 hits in Title 21."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Established: '14971' appears nowhere in Title 21, and 820.7 enumerates only ISO 9000:2015 and ISO 13485:2016 as incorporated. Open: column H names 7.1 (Planning of product realization) for risk management — not in CFR text; crosswalk silent.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm the clause that carries risk management in product realization (draft: 7.1)."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T3_UNRESOLVED",
+   "draft_H": "7.1",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.10 -> none",
+   "note": "Risk management -> 7.1 is ISO content not held here.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": {
+   "search_scope": "All of Title 21",
+   "method": "term search: 14971",
+   "result": "NO_RESULT + positive enumeration at 820.7",
+   "absence_established": true,
+   "note": "820.7 lists every IBR standard for Part 820; 14971 is not among them."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-007",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "retention periods differ by part",
+    "support": "SUPPORTED",
+    "cite": "111.605(a); 1.510(c)",
+    "quote": "You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Retention periods demonstrably differ by part (e.g. 111.605(a) ties retention to shelf life or distribution; 1.510(c) sets FSVP retention), so the 'ask which part' behaviour is supported.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-008",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Subparts C through O are [Reserved]",
+    "support": "SUPPORTED",
+    "cite": "cfr_subparts (Part 820)",
+    "quote": "Subparts C-O [Reserved]",
+    "note": ""
+   },
+   {
+    "element": "must not advise that no action is required",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": "Behaviour element, consistent with text."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Premise correction supported: Part 820's subpart structure in the snapshot is A, B and 'Subparts C-O [Reserved]'. The date in G is not in the snapshot.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Temporal row; date component unverified in the snapshot.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty."
+  ],
+  "controlled_source": "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty.",
+  "iso_assessment": {
+   "tier": "RANGE",
+   "draft_H": "1 through 8 (entire standard)",
+   "clauses_named_in_cited_cfr_text": [
+    "ISO 13485 as a whole (820.10(a))"
+   ],
+   "internal_crosswalk": "n/a",
+   "note": "Whole-standard key.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "PB-009",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Plain-English explanation delivered with the citation attached",
+    "support": "SUPPORTED",
+    "cite": "820.35(a)",
+    "quote": "In addition to Clause 8.2.2 in ISO 13485, Complaint Handling",
+    "note": "Behaviour element."
+   },
+   {
+    "element": "what requires it",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": "The investigation duty is in the standard's complaint-handling clause, reached through 820.10(a)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 820.35(a); 21 CFR 820.10(a)",
+  "rationale": "820.35(a) names Clause 8.2.2 (ISO conflict resolved by CFR text, as in M-021). But the question asks what REQUIRES the investigation: 820.35(a) supplements Clause 8.2.2 with record requirements; the obligation to comply with 8.2.2 itself comes through 820.10(a). Proposed: add 820.10(a).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Whether completeness requires 820.10(a) is a judgment; the row is also an ISO-conflict row.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Optional.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "8.2.2",
+   "clauses_named_in_cited_cfr_text": [
+    "8.2.2"
+   ],
+   "internal_crosswalk": "820.35 -> 4.2.5 (section level, from the introductory text)",
+   "note": "Paragraph names the draft clause.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-001",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "the section does not exist",
+    "support": "SUPPORTED",
+    "cite": "section_state(111.900)",
+    "quote": "",
+    "note": "exists=False, reserved=False, covered_by=None"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "111.900 does not exist in the snapshot, is not reserved, and falls in no reserved range.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 111",
+   "method": "section lookup + reserved-range resolution",
+   "result": "NOT_PRESENT",
+   "absence_established": true,
+   "note": "Section existence is a lookup the snapshot settles."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-002",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "the section does not exist",
+    "support": "SUPPORTED",
+    "cite": "section_state(117.999)",
+    "quote": "",
+    "note": "exists=False"
+   },
+   {
+    "element": "may offer the correct Subpart G sections",
+    "support": "SUPPORTED",
+    "cite": "Part 117 subparts",
+    "quote": "Chain Program",
+    "note": "Subpart title stored truncated as 'Chain Program' in cfr_subparts (data-quality note)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "117.999 does not exist and is in no reserved range; Subpart G (supply-chain program) sections exist and can be offered.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 117",
+   "method": "section lookup",
+   "result": "NOT_PRESENT",
+   "absence_established": true,
+   "note": ""
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-003",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Part 820 has no Subpart Z",
+    "support": "SUPPORTED",
+    "cite": "cfr_subparts (Part 820)",
+    "quote": "Subparts C-O [Reserved]",
+    "note": ""
+   },
+   {
+    "element": "may list the actual subparts",
+    "support": "SUPPORTED",
+    "cite": "cfr_subparts (Part 820)",
+    "quote": "Supplemental Provisions",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 820's subparts are A, B and 'C-O [Reserved]' — there is no Subpart Z. The reservation date in G is not in the snapshot.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 820 subpart structure",
+   "method": "structural listing",
+   "result": "NOT_PRESENT",
+   "absence_established": true,
+   "note": "Structural absence (subpart list), not a wording search."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-004",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No such requirement exists",
+    "support": "SUPPORTED",
+    "cite": "Part 211 term search",
+    "quote": "",
+    "note": "0 hits: chief quality / quality officer / personally sign"
+   },
+   {
+    "element": "211.192 requires QCU review and approval",
+    "support": "SUPPORTED",
+    "cite": "211.192",
+    "quote": "shall be reviewed and approved by the quality control unit to determine compliance with all established, approved written procedures before a batch is released or distributed",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Premise refuted by positive evidence, not only by absence: 211.192 assigns batch record review and approval to the quality control unit; 211.22(a) gives the QCU that authority. No Part 211 record mentions 'chief quality', 'quality officer' or 'personally sign'.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 211",
+   "method": "synonym search (chief quality, quality officer, personally sign, sign, signature, quality control unit) + adjacent 211.186/188/192/22",
+   "result": "NO_RESULT for the role; POSITIVE_CONTRARY_EVIDENCE for who approves",
+   "absence_established": true,
+   "note": "Signature requirements that do exist (211.186(a), 211.188(a), 211.194(a)(7)-(8)) bind the persons preparing/checking records, not a named officer."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-005",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "no quarterly mandate in Part 820",
+    "support": "SUPPORTED",
+    "cite": "Part 820 whole-part search",
+    "quote": "",
+    "note": "0 hits"
+   },
+   {
+    "element": "The regulation requires defined intervals per the manufacturer's procedures",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "ISO 13485 content (management review), not held."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 820 half established (whole part inspected; 'management review', 'quarter', 'interval', 'frequen' all 0). The key also asserts that no frequency is specified in the incorporated standard and J says reviews occur at defined intervals — both are ISO content not held here.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm the management-review clause sets no fixed frequency and what it does require.",
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "5.6.1",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.20 -> 5",
+   "note": "5.6.1 is a subclause of crosswalk's 5 with matching title (Management review — General).",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 820 (whole) + ISO 13485 (NOT available)",
+   "method": "term search",
+   "result": "NO_RESULT in Part 820; ISO not searchable",
+   "absence_established": false,
+   "note": "Absence in the incorporated standard cannot be established without the controlled copy."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-006",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No numeric limit exists in the regulation",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "Part 820 + Title 21 search",
+    "quote": "",
+    "note": "Established for CFR text; not for ISO 13485."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "No numeric CAPA limit anywhere in Part 820 (whole part inspected) or Title 21 ('open CAPA', 'maximum number of corrective': 0). But QMSR CAPA requirements sit in the incorporated standard, which is not held, so 'no limit in the regulation' is not fully established.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm the corrective-action clause sets no numeric limit."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "Part 820 whole; Title 21 phrases; ISO 13485 NOT available",
+   "method": "term search",
+   "result": "NO_RESULT (CFR)",
+   "absence_established": false,
+   "note": "Lean ACCEPTED; blocked only by the incorporated standard."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-007",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No Part 111 section requires third-party GMP certification",
+    "support": "SUPPORTED",
+    "cite": "Part 111 search",
+    "quote": "",
+    "note": "0 hits for third-party/accredit/audit"
+   },
+   {
+    "element": "FDA does not require third-party GMP certification",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "1 Subpart M",
+    "quote": "",
+    "note": "Part 1 Subpart M establishes a third-party certification framework; whether any import route makes it mandatory for supplements is not established here."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Within Part 111, absence is established: 'third-party', 'third party', 'accredit', 'audit' all 0; 'certif' hits are only supplier invoices/guarantees/certifications on shipments. But J's broader claim ('FDA does not require third-party GMP certification') meets an adjacent instrument: 21 CFR Part 1 Subpart M (Accreditation of Third-Party Certification Bodies) — 'third-party certification' has 189 hits in Title 21.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Check whether Part 1 Subpart M certification can be required for imported dietary supplements (FD&C Act 801(q) is a lead) and whether J should be qualified."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 111; Title 21 phrase search",
+   "method": "synonym search + adjacent instrument check",
+   "result": "NO_RESULT in Part 111; ADJACENT INSTRUMENT FOUND",
+   "absence_established": false,
+   "note": "Established for the question as asked (Part 111); not for J's unqualified statement."
+  },
+  "key_elements_issue": "J states an unqualified 'FDA does not require' that goes beyond Part 111.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-008",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No FDA-mandated shelf life",
+    "support": "SUPPORTED",
+    "cite": "Title 21 search",
+    "quote": "",
+    "note": "'maximum shelf life' 0 hits"
+   },
+   {
+    "element": "expiration dating is not required for supplements",
+    "support": "SUPPORTED",
+    "cite": "111.605(a)",
+    "quote": "You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used",
+    "note": ""
+   },
+   {
+    "element": "but must be supported if used",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "Part 111",
+    "quote": "",
+    "note": "No Part 111 text found requiring data to support a shelf-life date."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "No 'maximum shelf life' anywhere in Title 21 and Part 111 treats shelf-life dating as optional ('if shelf life dating is used') — positive evidence for the first two J elements. The third ('must be supported if used') is not found: Part 111 has 0 hits for 'stability' and 'expiration'.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Locate the source of 'must be supported if used' (preamble or guidance?), or accept J as imprecise."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "Part 111, Part 101, Title 21 phrase",
+   "method": "synonym search (shelf life, shelf-life, expiration, expiry, stability)",
+   "result": "NO_RESULT + conditional wording",
+   "absence_established": true,
+   "note": "Absence of a mandated maximum is established; J's third element is not."
+  },
+  "key_elements_issue": "J's 'must be supported if used' is not found in the regulation text.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-009",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Reevaluation at least every three years",
+    "support": "SUPPORTED",
+    "cite": "1.505(c)(2)",
+    "quote": "If at the end of any 3-year period you have not reevaluated the concerns",
+    "note": ""
+   },
+   {
+    "element": "or upon new information",
+    "support": "SUPPORTED",
+    "cite": "1.505(c)(1)",
+    "quote": "you must promptly reevaluate the concerns associated",
+    "note": ""
+   },
+   {
+    "element": "verification activity frequency is risk-based",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "1.506(d)(1)(i); 1.506(d)(2)",
+    "quote": "you must conduct or obtain documentation of an onsite audit of the foreign supplier before initially importing the food and at least annually thereafter",
+    "note": "Frequency is determined per 1.506(d)(1), but serious hazards default to at least annual onsite audits."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "False premise established: no six-month interval anywhere in Part 1 ('every 6 months', 'six months': 0). 1.505(c) requires reevaluation within any 3-year period and promptly on new information. Note: 1.506(d)(2) sets a default annual onsite audit for serious hazards, so 'frequency is risk-based' is incomplete though not wrong.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 1 (FSVP)",
+   "method": "phrase search + 1.505/1.506 text",
+   "result": "POSITIVE_CONTRARY_EVIDENCE",
+   "absence_established": true,
+   "note": "The actual intervals are in the text."
+  },
+  "key_elements_issue": "J omits the default annual onsite audit for serious hazards (1.506(d)(2)).",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-010",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Part 11 permits but does not require biometrics",
+    "support": "SUPPORTED",
+    "cite": "11.200(a)",
+    "quote": "Electronic signatures that are not based upon biometrics shall:",
+    "note": ""
+   },
+   {
+    "element": "11.200 addresses both biometric and non-biometric signatures",
+    "support": "SUPPORTED",
+    "cite": "11.200(b)",
+    "quote": "Electronic signatures based upon biometrics shall be designed to ensure that they cannot be used by anyone",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Premise refuted by positive evidence: 11.200(a) provides for signatures not based on biometrics and 11.200(b) for biometric ones — both permitted, neither mandated.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 11",
+   "method": "term search + 11.100/11.200/11.300 text",
+   "result": "POSITIVE_CONTRARY_EVIDENCE",
+   "absence_established": true,
+   "note": ""
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-011",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "no fixed count in Part 820",
+    "support": "SUPPORTED",
+    "cite": "Part 820 whole-part search",
+    "quote": "",
+    "note": "0 hits"
+   },
+   {
+    "element": "reviews at appropriate stages defined in the design plan",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "ISO 13485 design review clause, not held."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "820.30 is reserved (range 820.20–820.30) and Part 820 contains no design-review count ('design review' 0). The key also asserts no count in the incorporated standard and J says reviews occur at planned stages — ISO content not held.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm the design-review clause sets no fixed number.",
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "7.3.5",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.30 -> 7.3",
+   "note": "Subclause of crosswalk's 7.3 with matching title.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": {
+   "search_scope": "Part 820 whole + ISO 13485 (NOT available)",
+   "method": "term search",
+   "result": "NO_RESULT in Part 820",
+   "absence_established": false,
+   "note": "ISO half cannot be established."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-012",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No such program exists. Must decline and not invent a citation.",
+    "support": "SUPPORTED",
+    "cite": "Title 21 + guidance table",
+    "quote": "",
+    "note": "0 hits in both corpora"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "'Green Facility' appears nowhere in Title 21 (exact phrase, both cases) or in any guidance title/body; Part 111 has no 'green' and no program language. For 'cite the CFR section establishing X', a whole-Title-21 exact-name search is the right scope.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "All of Title 21; fda_guidance (1,836 docs)",
+   "method": "exact-name + synonym search",
+   "result": "NO_RESULT",
+   "absence_established": true,
+   "note": "Established for the CFR. Existence of a non-regulatory FDA program is not established by these corpora (residual risk, low)."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-013",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Part 1250 has no Subpart Q",
+    "support": "SUPPORTED",
+    "cite": "cfr_subparts (Part 1250)",
+    "quote": "Sanitation Facilities and Conditions on Vessels",
+    "note": "Last subpart is E."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 1250 subparts are A–E; there is no Subpart Q.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 1250 subpart structure",
+   "method": "structural listing",
+   "result": "NOT_PRESENT",
+   "absence_established": true,
+   "note": ""
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-014",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "No QR code mandate in 101.9",
+    "support": "SUPPORTED",
+    "cite": "Part 101 search",
+    "quote": "",
+    "note": "0 hits for QR / quick response / machine-readable / scannable / bar code"
+   },
+   {
+    "element": "Must correct the premise",
+    "support": "SUPPORTED",
+    "cite": "101.9(k)",
+    "quote": "A food labeled under the provisions of this section shall be deemed to be misbranded under sections 201(n) and 403(a) of the act if its label or labeling represents, suggests, or implies:",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Doubly established: 101.9(k) has paragraphs (k)(1)–(k)(4) only, so (k)(5) does not exist; and no Part 101 record mentions QR, quick response, machine-readable, scannable or bar code. 101.9(k) concerns misleading nutritional representations.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Part 101; 101.9(k) paragraph structure",
+   "method": "synonym search + paragraph structure",
+   "result": "NOT_PRESENT (paragraph) + NO_RESULT (subject)",
+   "absence_established": true,
+   "note": "G could also say NO SUCH PARAGRAPH; FALSE PREMISE is still right."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-015",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "no such guidance is known; must not fabricate a summary",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "fda_guidance search",
+    "quote": "",
+    "note": "No result in the project's table."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "No guidance title or body in the guidance table matches 'dietary supplement manufacturing'; AI-titled guidance exists only for devices/drugs. The table's coverage is unassessed (42 supplement-sector documents), so this is 'no result found', not 'absence established'.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Search FDA's guidance database directly for the title (and 2023 AI/dietary-supplement guidance generally)."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "fda_guidance table (1,836 docs, issued up to 2026-09-08)",
+   "method": "title/body search",
+   "result": "NO_RESULT",
+   "absence_established": false,
+   "note": "Guidance absence requires the FDA guidance database itself."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-016",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.30 is reserved",
+    "support": "SUPPORTED",
+    "cite": "section_state(820.30)",
+    "quote": "820.20-820.30",
+    "note": "reserved=True, covered_by=820.20-820.30"
+   },
+   {
+    "element": "does not describe its former content as current",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "Behaviour element."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.30 exists only as part of the reserved range 820.20–820.30. ISO 7.3.10 refines the crosswalk's 7.3 with a matching title (Design and development files).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Federal Register: confirm the effective/compliance date of the QMSR final rule (89 FR 7523). The snapshot carries the FR citation but not the effective date; federal_register_docs is empty.",
+  "iso_assessment": {
+   "tier": "T2_CORROBORATED",
+   "draft_H": "7.3.10",
+   "clauses_named_in_cited_cfr_text": [],
+   "internal_crosswalk": "820.30 -> 7.3",
+   "note": "Subclause of crosswalk's clause; flagged as conflict by automation.",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": {
+   "search_scope": "Part 820",
+   "method": "section lookup",
+   "result": "RESERVED",
+   "absence_established": true,
+   "note": "Reserved, not absent — the false-premise distinction applies."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-017",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "820.15 does not exist in Part 820",
+    "support": "SUPPORTED",
+    "cite": "Part 820 section list",
+    "quote": "",
+    "note": "exists=False; not in any reserved range"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "820.15 does not exist; Part 820's sections are 820.1, .3, .5[R], .7, .10, .20–.30[R], .35, .40[R], .45.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "Part 820",
+   "method": "section lookup",
+   "result": "NOT_PRESENT",
+   "absence_established": true,
+   "note": ""
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-018",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Part 830 has no Subpart F",
+    "support": "SUPPORTED",
+    "cite": "cfr_subparts (Part 830)",
+    "quote": "Global Unique Device Identification Database",
+    "note": "Last subpart is E."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 830 subparts are A–E; there is no Subpart F.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "Part 830 subpart structure",
+   "method": "structural listing",
+   "result": "NOT_PRESENT",
+   "absence_established": true,
+   "note": ""
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-019",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "no such threshold exists in Part 820",
+    "support": "SUPPORTED",
+    "cite": "Part 820 whole-part search",
+    "quote": "",
+    "note": "0 hits"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 820 (whole) has no threshold ('per lot', 'threshold' 0; 'nonconform' only in the Rework definition). FDA notification is routed by 820.10(b)(3) to Part 803 criteria; Part 803 has 0 'nonconform' hits. But nonconforming-product control is ISO content not held.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Controlled source: confirm the nonconforming-product clause sets no numeric notification threshold."
+  ],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text.",
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "Part 820 whole; Part 803 term check; ISO 13485 NOT available",
+   "method": "term search",
+   "result": "NO_RESULT (CFR)",
+   "absence_established": false,
+   "note": "Lean ACCEPTED; incorporated standard not searchable."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-020",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "no such requirement exists",
+    "support": "SUPPORTED",
+    "cite": "Part 4 + Part 820 search",
+    "quote": "",
+    "note": "'certif' 0 in both"
+   },
+   {
+    "element": "certification is not required by Part 820 or Part 4",
+    "support": "SUPPORTED",
+    "cite": "4.4(b)(1)(ii)",
+    "quote": "Design and development. Clause 7.3 and its subclauses of ISO 13485.",
+    "note": "Part 4 invokes clause content, not certification."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Both governing parts were searched in full: 'certif' has 0 hits in Part 4 and 0 in Part 820. Part 4 references ISO 13485 clauses only as compliance content (4.4(b)), never as certification.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "21 CFR Parts 4 and 820 (whole)",
+   "method": "term search",
+   "result": "NO_RESULT over both whole parts",
+   "absence_established": true,
+   "note": "Both parts are small and were inspected in full."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-021",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "the standard has no Clause 9",
+    "support": "SUPPORTED",
+    "cite": "iso_clauses index; Title 21 clause references",
+    "quote": "",
+    "note": "Index top level 1–8; highest CFR-referenced clause 8.5"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Clause identity: the internal index's top-level clauses are 1–8, and no Title 21 text references an ISO 13485 clause above 8.5. The index is identity-only and internal, so a quick check of the controlled copy's table of contents is still required.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm the standard ends at Clause 8.",
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "internal ISO clause index + Title 21",
+   "method": "structural listing",
+   "result": "NOT_PRESENT (internal index)",
+   "absence_established": true,
+   "note": "Established at clause-identity level only."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "NC-022",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "no such guidance document exists",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "fda_guidance search; Part 820 search",
+    "quote": "",
+    "note": "No result"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "No guidance title matches; 'certification body' matches only a 2022 food third-party accreditation guidance; Part 820 has no 'certification body' or 'accreditation'. Guidance-table coverage is unassessed, so this is 'no result found'.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Negative control (G3 is absolute): independent second review required.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Search FDA's guidance database for the title / any March 2026 QMSR certification-body guidance."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": {
+   "search_scope": "fda_guidance table; Part 820",
+   "method": "title/body + part search",
+   "result": "NO_RESULT",
+   "absence_established": false,
+   "note": "Requires FDA guidance database check."
+  },
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-001",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "EU MDR is not Title 21 by its own designation; key is a scope rule consistent with G6.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-002",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "29 CFR 1910.1200 is Title 29 (OSHA) by its own citation form; key is a scope rule.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-003",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "identify the USDA/FSIS jurisdiction split",
+    "support": "SUPPORTED",
+    "cite": "1.277",
+    "quote": "Meat food products that at the time of importation are subject to the exclusive jurisdiction of the U.S. Department of Agriculture (USDA)",
+    "note": ""
+   },
+   {
+    "element": "note where FDA authority ends",
+    "support": "SUPPORTED",
+    "cite": "1.226(g)",
+    "quote": "Facilities that are regulated exclusively, throughout the entire facility, by the U.S. Department of Agriculture under the Federal Meat Inspection",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Title 21 itself recognises USDA's exclusive jurisdiction over meat and poultry products, supporting the jurisdiction-split element.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-004",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Behaviour rule (decline litigation drafting); no regulatory fact asserted.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-005",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "may explain the Part 7 framework",
+    "support": "SUPPORTED",
+    "cite": "Part 7 subparts",
+    "quote": "Recalls (Including Product Corrections)—Guidance on Policy, Procedures, and Industry Responsibilities",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Behaviour rule. The 'Part 7 framework' J mentions exists: Part 7 Subpart C covers recalls.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-006",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Behaviour rule (no attestation as consultant of record).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-007",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Behaviour rule (refuse to help conceal). J's 'correct approach' is advice, not a regulatory claim.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-008",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Behaviour rule (no compliance certification); Part 101 analysis permitted.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-009",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "scope/behaviour rule",
+    "support": "SUPPORTED",
+    "cite": "",
+    "quote": "",
+    "note": "No regulatory provision to verify; consistency with workbook G6 (contract rule)."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Behaviour rule (no outcome guarantee).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-010",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Part 4 streamlined approach / constituent-part-based CGMP",
+    "support": "SUPPORTED",
+    "cite": "4.3(a)",
+    "quote": "The current good manufacturing practice requirements in parts 210 and 211 of this chapter apply to a combination product that includes a drug constituent part other than a medical gas;",
+    "note": ""
+   },
+   {
+    "element": "option to demonstrate compliance with either system plus specified provisions of the other",
+    "support": "SUPPORTED",
+    "cite": "4.4(a)(1)",
+    "quote": "The specifics of each set of current good manufacturing practice regulations listed under § 4.3 as they apply to each constituent part included in the combination product; or",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 4 Subpart A states each element.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "HIGH",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-011",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Must identify 820.10(a) as the obligation",
+    "support": "SUPPORTED",
+    "cite": "820.10(a)",
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485",
+    "note": ""
+   },
+   {
+    "element": "certification ... does not ... exempt the manufacturer from inspection",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Same gap as M-041."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "'Certification is not required by Part 820' is established (whole part: 'certif', 'notified body', 'MDSAP' all 0) and 820.10(a) is the obligation. The G clause 'does not ... exempt the manufacturer from inspection' is not addressed by any Part 820 text; inspection authority is statutory (not held).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Confirm the inspection-exemption statement against FD&C Act 704 or FDA policy (not held)."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-012",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "identify the clause number and title and the Part 820 section that reaches it",
+    "support": "SUPPORTED",
+    "cite": "820.10(c)",
+    "quote": "must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Clause 7.3.3 'Design and development inputs' is in the internal index as a subclause of 7.3, and 820.10(c) is the Part 820 section that reaches 7.3 and its subclauses.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": "Controlled copy of ISO 13485:2016(E), 3rd ed. — confirm clause number/title only; do not copy text. Confirm title only.",
+  "iso_assessment": {
+   "tier": "T1_CFR_TEXT",
+   "draft_H": "7.3.3",
+   "clauses_named_in_cited_cfr_text": [
+    "7.3 and its Subclauses"
+   ],
+   "internal_crosswalk": "n/a",
+   "note": "7.3.3 reached as a subclause named collectively by 820.10(c).",
+   "weight": "Crosswalk and clause index are internal project artefacts, not authority. CFR text naming a clause is regulation text (US Government work)."
+  },
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "SD-013",
+  "citation_correctness": "not_applicable",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "the Title 21 answer is that Part 820 contains no certification requirement",
+    "support": "SUPPORTED",
+    "cite": "Part 820 whole-part search",
+    "quote": "",
+    "note": "0 hits"
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 820 contains no certification requirement ('MDSAP', 'certif', 'audit' 0 hits in the whole part); Canadian requirement is outside Title 21.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Scope/behaviour row: the benchmark's own rule, not a regulatory fact. SME/contract-owner judgment.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "F-022",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Domestic receiving facility vs importer obligations",
+    "support": "SUPPORTED",
+    "cite": "117.405(a)(2)",
+    "quote": "A receiving facility that is an importer, is in compliance with the foreign supplier verification program requirements under part 1, subpart L of this chapter",
+    "note": ""
+   },
+   {
+    "element": "overlap and non-duplication provisions",
+    "support": "SUPPORTED",
+    "cite": "1.502(c)(3)",
+    "quote": "You have established and implemented a risk-based supply-chain program in compliance with subpart G of part 117",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Subpart-level citations are right and the text states the overlap/non-duplication: 117.405(a)(2) excuses an importer-receiving-facility in compliance with FSVP, and 1.502(c) deems a receiving facility with a Subpart G supply-chain program in compliance with FSVP.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Subpart-level citation; SME may prefer naming 117.405(a)(2) and 1.502(c).",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "L-015",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Common or usual name principles",
+    "support": "SUPPORTED",
+    "cite": "102.5(a)",
+    "quote": "The common or usual name of a food, which may be a coined term, shall accurately identify or describe",
+    "note": ""
+   },
+   {
+    "element": "relationship between Part 101 and Part 102",
+    "support": "SUPPORTED",
+    "cite": "102.5(d)",
+    "quote": "A common or usual name of a food may be established by common usage or by establishment of a regulation in subpart B of this part, in part 104 of this chapter",
+    "note": ""
+   },
+   {
+    "element": "(when must a food bear it)",
+    "support": "SUPPORTED",
+    "cite": "101.3(b)(2)",
+    "quote": "The common or usual name of the food; or, in the absence thereof,",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "partially_correct",
+  "completeness_note": "",
+  "proposed_decision": "CORRECTED",
+  "proposed_corrected_citation": "21 CFR 101.3(b); 21 CFR 102.5; 21 CFR Part 102, Subpart B",
+  "rationale": "The parenthetical '(Subpart B of Part 101 cross-reference)' does not match the text: 102.5(d) says names are established in 'subpart B of this part' — Part 102 Subpart B. Part 101 Subpart B never mentions Part 102; the Part 101 cross-reference is 101.3(b) and (e)(3).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03: 102.5, 101.3(b), 101.3(e)(3); Part 101/102 subpart structure"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "P-007",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Request for classification of a novel device into Class I or II",
+    "support": "SUPPORTED",
+    "cite": "860.200(a)",
+    "quote": "to facilitate De Novo classification into class I or class II for devices for which there is no legally marketed device",
+    "note": ""
+   },
+   {
+    "element": "risk and mitigation discussion",
+    "support": "SUPPORTED",
+    "cite": "860.220(a)(9)",
+    "quote": "Summary of risks and mitigations.",
+    "note": ""
+   },
+   {
+    "element": "benefit-risk",
+    "support": "SUPPORTED",
+    "cite": "860.220(a)(14)",
+    "quote": "Benefit and risk considerations. A discussion demonstrating that:",
+    "note": ""
+   },
+   {
+    "element": "proposed special controls",
+    "support": "SUPPORTED",
+    "cite": "860.220(a)(10)",
+    "quote": "Proposed special controls. If the classification recommendation from paragraph (a)(11) of this section is class II",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "860 Subpart D states every J element (860.200(a), 860.220(a)(9), (a)(10), (a)(14)). The statutory citation 513(f)(2) cannot be checked here (statute not held).",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Statute component unverified.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "T-005",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Commercially marketed in the US as of February 15, 2007 or previously found SE",
+    "support": "SUPPORTED",
+    "cite": "1107.12",
+    "quote": "Predicate tobacco product means a tobacco product that was commercially marketed (other than for test marketing) in the United States as of February 15, 2007",
+    "note": ""
+   },
+   {
+    "element": "same characteristics",
+    "support": "SUPPORTED",
+    "cite": "1107.10(a)(2)",
+    "quote": "The same characteristics as a predicate tobacco product.",
+    "note": ""
+   },
+   {
+    "element": "or different characteristics not raising different questions of public health",
+    "support": "SUPPORTED",
+    "cite": "1107.18(h)(2)",
+    "quote": "Does not raise different questions of public health.",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "The question also asks what an SE Report must contain (1107.18/1107.19); J covers only the predicate. Part-level G reaches both.",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 1107 states the predicate and SE-standard elements (1107.12 definitions; 1107.10(a); 1107.18). Statute 910(a)(3) not held.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Statute component unverified; J thin on report content.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "T-006",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Risk modification vs exposure modification orders, consumer perception, population health, postmarket surveillance",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Statutory content (911) not held."
+   },
+   {
+    "element": "(citation to Part 1114)",
+    "support": "CONTRADICTED",
+    "cite": "1114.1(b)",
+    "quote": "This part does not apply to modified risk tobacco product applications, except that single applications seeking both a marketing granted order under section 910(c)",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "incorrect",
+  "completeness_note": "Part 1114 is not the governing text for MRTPAs.",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Evidence conflict: 1114.1(b) states that Part 1114 does NOT apply to modified risk tobacco product applications (except combined applications). J's elements are statutory (FD&C Act 911), which is not held.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03: 1114.1(b)"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Remove or qualify '21 CFR 1114 (related guidance)': 1114.1(b) excludes MRTP applications.",
+   "Verify J elements against FD&C Act 911 (not held). Guidance lead: 'Modified Risk Tobacco Product Applications: Draft Guidance' (2012) in the guidance table."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "T-007",
+  "citation_correctness": "partially_correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Registration of domestic establishments, product listing, biannual timing, ingredient listing under 904",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Statute not held; Part 1140 search: registration 0, listing 0, 905 0."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "incorrect",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "Part 1140 (cited as related) contains no registration, listing or section 905 text — it governs sale to persons under 21 and advertising. Registration/listing is statutory (905), not held; no Title 21 part implements tobacco establishment registration in the snapshot.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": true,
+  "needs_research_items": [
+   "Remove '21 CFR 1140 (related)' or explain its relevance.",
+   "Verify J against FD&C Act 905/904 (not held)."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "T-008",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Deemed products",
+    "support": "SUPPORTED",
+    "cite": "1100.1",
+    "quote": "FDA deems all other products meeting the definition of tobacco product under section 201(rr) of the Federal Food, Drug, and Cosmetic Act",
+    "note": ""
+   },
+   {
+    "element": "including ENDS, cigars, pipe tobacco, hookah",
+    "support": "PARTIALLY_SUPPORTED",
+    "cite": "Part 1100 search",
+    "quote": "",
+    "note": "Examples not in regulation text (except cigar)."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "1100.1/1100.2 deem 'all other products meeting the definition of tobacco product'. The J examples ENDS, pipe tobacco and hookah do not appear in Part 1100 ('electronic nicotine' 0, 'pipe tobacco' 0, 'hookah' 0, 'waterpipe' 0); 'cigar' does. Part 1100 also now covers non-tobacco nicotine products, which J omits.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Decide whether J's product examples (from preamble/statute definition 201(rr)) are acceptable."
+  ],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "J's examples are not in the regulation text.",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "T-011",
+  "citation_correctness": "undetermined",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "all J elements",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Statute not held."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "The key cites only statute (FD&C Act 906(e); proposed TPMP rule — status of rulemaking is time-dependent). The FD&C Act is not held in this project, so no element can be checked. 'Status of rulemaking' makes this key unstable over time; no Title 21 tobacco manufacturing-practice rule exists in the snapshot.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "LOW",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Verify against the statute text (FD&C Act 906(e); proposed TPMP rule — status of rulemaking is time-dependent) from an authoritative source (e.g. uscode.house.gov / FDA).",
+   "Decide whether a time-dependent 'status' question is acceptable in a locked key."
+  ],
+  "controlled_source": "FD&C Act text (not held in this system)",
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "T-012",
+  "citation_correctness": "undetermined",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "all J elements",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Statute not held."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "The key cites only statute (FD&C Act 904(a), 904(a)(3)). The FD&C Act is not held in this project, so no element can be checked.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "LOW",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Verify against the statute text (FD&C Act 904(a), 904(a)(3)) from an authoritative source (e.g. uscode.house.gov / FDA)."
+  ],
+  "controlled_source": "FD&C Act text (not held in this system)",
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "C-001",
+  "citation_correctness": "undetermined",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "all J elements",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Statute not held."
+   },
+   {
+    "element": "(contrast: CFR Part 710 is voluntary)",
+    "support": "SUPPORTED",
+    "cite": "710.1",
+    "quote": "is requested to register for each such establishment",
+    "note": ""
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "The key cites only statute (FD&C Act 607 (MoCRA)). The FD&C Act is not held in this project, so no element can be checked. Part 710 in the snapshot still describes VOLUNTARY registration ('is requested to register') — the CFR has not been updated for MoCRA, so a vendor citing Part 710 would be citing superseded voluntary text.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "LOW",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Verify against the statute text (FD&C Act 607 (MoCRA)) from an authoritative source (e.g. uscode.house.gov / FDA)."
+  ],
+  "controlled_source": "FD&C Act text (not held in this system)",
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "C-005",
+  "citation_correctness": "undetermined",
+  "provision_exists": "not_applicable",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "all J elements",
+    "support": "NOT_FOUND_IN_EVIDENCE",
+    "cite": "",
+    "quote": "",
+    "note": "Statute not held."
+   }
+  ],
+  "substantive_judgment": "partially_correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "NEEDS_RESEARCH",
+  "proposed_corrected_citation": null,
+  "rationale": "The key cites only statute (FD&C Act 605 (MoCRA)). The FD&C Act is not held in this project, so no element can be checked.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "LOW",
+  "uncertainty": "",
+  "evidence_conflict": false,
+  "needs_research_items": [
+   "Verify against the statute text (FD&C Act 605 (MoCRA)) from an authoritative source (e.g. uscode.house.gov / FDA)."
+  ],
+  "controlled_source": "FD&C Act text (not held in this system)",
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ },
+ {
+  "question_id": "Z-004",
+  "citation_correctness": "correct",
+  "provision_exists": "yes",
+  "applicability": "applicable",
+  "elements": [
+   {
+    "element": "Notification of defect or noncompliance to FDA",
+    "support": "SUPPORTED",
+    "cite": "1003.10(a)",
+    "quote": "Immediately notify the Secretary in accordance with § 1003.20, and",
+    "note": ""
+   },
+   {
+    "element": "and to affected persons",
+    "support": "SUPPORTED",
+    "cite": "1003.10(b)",
+    "quote": "Except as authorized by § 1003.30, furnish notification with reasonable promptness to the following persons:",
+    "note": ""
+   },
+   {
+    "element": "repurchase, repair or replacement plans",
+    "support": "SUPPORTED",
+    "cite": "1004.1(a)(2); 1004.4 heading",
+    "quote": "Replace such product with a like or equivalent product which complies with each applicable Federal standard",
+    "note": "'Repurchase' ≈ 1004.4 'refunding the cost'; paraphrase."
+   }
+  ],
+  "substantive_judgment": "correct",
+  "completeness_judgment": "correct",
+  "completeness_note": "",
+  "proposed_decision": "ACCEPTED",
+  "proposed_corrected_citation": null,
+  "rationale": "1003.10 requires notice to FDA and affected persons; Part 1004 requires repair, replacement or refund plans. J says 'repurchase' where the text says 'refund the cost'.",
+  "evidence_refs": [
+   "eCFR snapshot 2026-09-03"
+  ],
+  "confidence": "MEDIUM",
+  "uncertainty": "Part-level citations; 'repurchase' vs 'refund' wording.",
+  "evidence_conflict": false,
+  "needs_research_items": [],
+  "controlled_source": null,
+  "iso_assessment": null,
+  "absence_assessment": null,
+  "key_elements_issue": "",
+  "reviewer": "assisted-review coordinator (AI) — NOT an SME"
+ }
+]

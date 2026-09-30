@@ -1,0 +1,66 @@
+{
+  "generated_at_utc": "2026-09-22T12:06:43+00:00",
+  "stage5_run": "smoke_evidence",
+  "baseline_metrics": {
+    "retrieval_ok": 1.0,
+    "coverage_ok": 1.0,
+    "selection_ok": 1.0,
+    "generation_valid_raw_full": null,
+    "generation_valid_raw_controlled": null,
+    "hallucination_any_raw": null,
+    "false_refusal_rate_raw": null,
+    "faithfulness_supported_ratio": null,
+    "domain_leak_raw": null,
+    "truncated_full": 0
+  },
+  "failure_categories": {
+    "not_run": 8
+  },
+  "training_relevant_failures": [],
+  "candidate_training_targets": [],
+  "training_relevant_examples_count": 0,
+  "do_not_train": {
+    "architecture_failures": [],
+    "domain_boundary": [],
+    "reason": "retrieval/coverage/selection failures are code paths, not model behaviour; the domain leak needs an intent check before generation, not weight changes"
+  },
+  "recommended_composition": {
+    "direct_cfr": 0.12,
+    "section_paragraph": 0.08,
+    "definition": 0.03,
+    "grounded_definition": 0.05,
+    "grounded_topic": 0.06,
+    "citation": 0.03,
+    "citation_grounding": 0.06,
+    "fda_guidance": 0.04,
+    "guidance_answer": 0.05,
+    "multi_provision": 0.14,
+    "range_provision": 0.1,
+    "partial_provision": 0.08,
+    "abstention": 0.05,
+    "context_mismatch": 0.05,
+    "wrong_context": 0.04,
+    "partial_context": 0.01,
+    "guidance_mismatch": 0.01
+  },
+  "composition_rationale": "Stage 6 base shares weighted toward multi-provision, range and partial (not-found) answers in the grounded prompt format, with refusal and non-fabrication categories kept; each model-side failure category adds a bounded boost to the dataset categories that train it.",
+  "recommended_validation": {
+    "task_validation_set": "held-out validation split of the Stage 6 dataset, stratified by category (16 examples)",
+    "checkpoint_metric": "task_score = mean of [validator status valid, every requested provision addressed, no unsupported/fabricated content, refusal correctness]; eval_loss only breaks ties",
+    "candidate_rule": "a checkpoint is a candidate only if its task_score is at least the base model's on the same examples",
+    "final_comparison": "Stage 5 dataset, base vs trained, controlled evidence and full pipeline, raw and repaired kept separate"
+  },
+  "recommended_early_stopping": {
+    "metric": "eval_loss",
+    "patience_evals": 3,
+    "note": "stopping on loss bounds the run; selection never uses loss alone"
+  },
+  "risks": [
+    "Stage 12/13 lesson: lower validation loss did not improve the task and taught over-refusal; every candidate must beat the base on task_score",
+    "verbatim-style multi-provision targets could bias the model toward quoting; acceptable for a regulatory system, measured by answer length and repair frequency",
+    "CPU training reaches roughly 100 optimizer steps overnight; the effect may be small",
+    "the Stage 5 set is 50 questions concentrated on part 820 and part 101; improvements there may not generalise"
+  ],
+  "proceed": false,
+  "proceed_reason": "only 0 model-side failures (threshold 3); training is not justified by this evaluation"
+}

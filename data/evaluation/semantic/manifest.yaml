@@ -1,0 +1,93 @@
+# Stage 8 semantic retrieval experiment: tracked configuration.
+# Everything under data/evaluation/semantic/generated/ is derived from this
+# file plus the read-only database and is gitignored.
+version: 1
+
+embedding:
+  model_id: "BAAI/bge-small-en-v1.5"
+  revision: "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
+  dimension: 384
+  pooling: "cls"          # bge models use the [CLS] token
+  normalize: true         # L2-normalised -> cosine similarity == dot product
+  max_length: 512         # tokens; longer texts are truncated
+  # bge recommends this prefix for short queries in query->passage retrieval;
+  # it is applied to queries only, never to corpus passages.
+  query_instruction: "Represent this sentence for searching relevant passages: "
+  batch_size: 16
+
+selection:
+  # Whole eCFR sections (every live paragraph). role: why it is in the corpus.
+  ecfr_sections:
+    # retrieval_v1 / baseline_v1 targets
+    - {section: "820.10", role: target}   # QMSR requirements; 820.10(c) = design and development
+    - {section: "820.1",  role: target}
+    - {section: "820.3",  role: target}
+    - {section: "820.7",  role: target}
+    - {section: "820.35", role: target}
+    - {section: "820.45", role: target}
+    - {section: "211.132", role: target}  # tamper-evident packaging
+    - {section: "211.68",  role: target}  # automatic equipment / data integrity
+    - {section: "211.142", role: target}  # warehousing / storage conditions (baseline-024)
+    - {section: "211.100", role: target}
+    - {section: "211.1",   role: target}
+    - {section: "50.20",   role: target}  # informed consent
+    - {section: "50.25",   role: target}
+    - {section: "56.103",  role: target}  # IRB review
+    - {section: "101.36",  role: target}  # dietary supplement nutrition labeling
+    - {section: "807.81",  role: target}  # premarket notification
+    - {section: "807.87",  role: target}
+    - {section: "803.50",  role: target}  # MDR manufacturer reporting
+    - {section: "11.1",    role: target}  # Part 11
+    - {section: "11.3",    role: target}
+    - {section: "11.10",   role: target}
+    - {section: "11.50",   role: target}
+    - {section: "11.100",  role: target}
+    - {section: "11.200",  role: target}
+    - {section: "7.40",    role: target}  # recall policy
+    - {section: "201.327", role: target}  # sunscreen labeling / SPF
+    - {section: "801.109", role: target}
+    - {section: "314.50",  role: target}  # NDA content
+    - {section: "314.3",   role: target}
+    - {section: "312.20",  role: target}  # IND
+    - {section: "1.1",     role: target}
+    - {section: "201.66",  role: target}  # OTC Drug Facts labeling (baseline-021)
+    - {section: "330.1",   role: target}  # OTC monograph general conditions (baseline-021)
+    - {section: "111.1",   role: target}  # dietary supplement CGMP scope (baseline-018)
+    # distractors: real regulatory text unrelated to the benchmark questions
+    - {section: "352.52",  role: distractor}  # SPF competitor found by lexical search
+    - {section: "101.9",   role: distractor}  # food nutrition labeling
+    - {section: "170.3",   role: distractor}  # food additive definitions
+    - {section: "1141.10", role: distractor}  # cigarette warnings
+    - {section: "606.100", role: distractor}  # blood establishment SOPs
+    - {section: "100.1",   role: distractor}  # preemption petitions
+    - {section: "21.30",   role: distractor}  # trigram junk for 820.30
+    - {section: "111.360", role: distractor}  # trigram junk for 314.999
+    - {section: "1.360",   role: distractor}
+    - {section: "101.4",   role: distractor}
+
+  # FDA guidance documents by docket; the first N chunks of each (by ordinal).
+  guidance_max_chunks_per_document: 60
+  guidance_dockets:
+    - {docket: "FDA-2003-D-0143", role: target}      # Part 11 scope and application
+    - {docket: "FDA-2008-D-0559", role: target}      # process validation
+    - {docket: "FDA-2011-D-0469", role: target}      # human factors / usability
+    - {docket: "FDA-2015-D-4599", role: target}      # human factors content
+    - {docket: "FDA-2021-D-1158", role: target}      # cybersecurity QMS
+    - {docket: "FDA-2016-D-2565", role: target}      # 510(k) third party review
+    - {docket: "FDA-2018-D-2074", role: target}      # voluntary recalls
+    - {docket: "FDA-2018-D-3984", role: target}      # data integrity CGMP
+    - {docket: "FDA-2022-D-0795", role: target}      # computer software assurance QMS
+    - {docket: "FDA-2015-D-0198", role: target}      # CGMP combination products (design controls)
+    - {docket: "FDA-2004-D-0300", role: target}      # quality systems approach to CGMP
+    - {docket: "FDA-2006-D-0031", role: target}      # informed consent
+    - {docket: "FDA-2006-D-0464", role: target}      # exception from informed consent
+    - {docket: "FDA-2017-D-6821", role: target}      # CGMP Q&A / PDUFA fees
+    - {docket: "FDA-2004-D-0371", role: target}      # application user fees
+    - {docket: "FDA-2007-D-0372", role: target}      # dietary supplement AER Q&A (baseline-018)
+    - {docket: "FDA-2012-D-1161", role: distractor}  # home-use design considerations
+    - {docket: "FDA-2000-D-0186", role: distractor}  # glove detention
+    - {docket: "FDA-2011-D-0530", role: distractor}  # mobile medical apps
+    - {docket: "FDA-2012-D-0083", role: distractor}  # heparin
+    - {docket: "FDA-2013-D-0114", role: distractor}  # recalls vs enhancements
+    - {docket: "FDA-2018-D-4726", role: distractor}  # ANDA amendments (fallback junk for baseline-019)
+    - {docket: "FDA-2018-D-0671", role: distractor}  # small business employee count (fallback junk for baseline-021)

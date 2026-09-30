@@ -1,0 +1,40 @@
+Stage 12 training run: config=configs\model_training.yaml model=Qwen/Qwen3-0.6B output=C:\Users\PC-1\Prachi Patel\Regulus AI\models\qwen3-0.6b-lora\stage12_v1
+Hardware: device=cpu dtype=float32 gpu=None gpu_mem_gb=None cpu_threads=4 ram_available_gb=3.11
+NOTE: CPU training is slow (about 45 s per 640-token example on the development machine); the run is step-bounded by training.max_steps.
+Dataset verified: v1 sha256=bee32e320fc5c507... counts={'train': 7566, 'validation': 962, 'test': 917}
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   6%|6         | 19/311 [00:00<00:01, 154.88it/s]Loading weights:  11%|#1        | 35/311 [00:00<00:04, 68.41it/s] Loading weights:  14%|#4        | 45/311 [00:00<00:03, 71.83it/s]Loading weights:  17%|#7        | 54/311 [00:00<00:03, 71.05it/s]Loading weights:  21%|##        | 64/311 [00:00<00:03, 75.26it/s]Loading weights:  25%|##5       | 78/311 [00:00<00:02, 84.70it/s]Loading weights:  28%|##7       | 87/311 [00:01<00:02, 77.98it/s]Loading weights:  31%|###       | 96/311 [00:01<00:03, 63.22it/s]Loading weights:  33%|###3      | 103/311 [00:01<00:03, 60.89it/s]Loading weights:  37%|###7      | 116/311 [00:01<00:02, 74.74it/s]Loading weights:  40%|####      | 125/311 [00:01<00:04, 46.19it/s]Loading weights:  43%|####3     | 134/311 [00:02<00:04, 44.09it/s]Loading weights:  46%|####5     | 142/311 [00:02<00:03, 47.28it/s]Loading weights:  48%|####7     | 148/311 [00:02<00:03, 44.79it/s]Loading weights:  50%|####9     | 155/311 [00:02<00:03, 48.85it/s]Loading weights:  52%|#####1    | 161/311 [00:02<00:03, 46.86it/s]Loading weights:  54%|#####3    | 167/311 [00:02<00:03, 43.66it/s]Loading weights:  55%|#####5    | 172/311 [00:03<00:03, 39.04it/s]Loading weights:  58%|#####8    | 181/311 [00:03<00:03, 35.29it/s]Loading weights:  62%|######1   | 192/311 [00:03<00:02, 46.05it/s]Loading weights:  64%|######3   | 198/311 [00:03<00:02, 43.79it/s]Loading weights:  65%|######5   | 203/311 [00:03<00:02, 38.64it/s]Loading weights:  68%|######7   | 210/311 [00:03<00:02, 41.01it/s]Loading weights:  70%|#######   | 218/311 [00:04<00:01, 47.77it/s]Loading weights:  72%|#######2  | 224/311 [00:04<00:02, 35.80it/s]Loading weights:  75%|#######4  | 233/311 [00:04<00:02, 34.63it/s]Loading weights:  79%|#######9  | 246/311 [00:04<00:01, 49.66it/s]Loading weights:  81%|########1 | 253/311 [00:04<00:01, 50.24it/s]Loading weights:  84%|########3 | 260/311 [00:05<00:01, 40.70it/s]Loading weights:  88%|########7 | 273/311 [00:05<00:00, 53.32it/s]Loading weights:  90%|######### | 280/311 [00:05<00:00, 51.89it/s]Loading weights:  92%|#########1| 286/311 [00:05<00:00, 45.61it/s]Loading weights:  94%|#########3| 292/311 [00:06<00:00, 29.95it/s]Loading weights:  95%|#########5| 297/311 [00:06<00:00, 22.24it/s]Loading weights: 100%|##########| 311/311 [00:06<00:00, 48.07it/s]
+Tokenised: train 7306/7566 (skipped over 1280: 260, truncated: 0, max observed 2712, median 558); eval subset 64/64
+LoRA: trainable 10,092,544 / 606,142,464 (1.665%), targets {'q_proj': 28, 'k_proj': 28, 'v_proj': 28, 'o_proj': 28, 'gate_proj': 28, 'up_proj': 28, 'down_proj': 28}
+Evaluating the base model (no trained adapter yet) on the validation subset ...
+{'eval_loss': '1.208', 'eval_model_preparation_time': '0.052', 'eval_runtime': '621.8', 'eval_samples_per_second': '0.103', 'eval_steps_per_second': '0.103', 'epoch': 0}
+  base eval_loss = 1.2076
+Training: max_steps=40 batch=1 x accum=8 lr=0.0002 scheduler=cosine eval every 20 steps
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+{'loss': '1.048', 'grad_norm': '3.835', 'learning_rate': '0', 'epoch': '0.001095'}
+{'loss': '0.9379', 'grad_norm': '4.184', 'learning_rate': '5e-05', 'epoch': '0.00219'}
+{'loss': '0.5317', 'grad_norm': '1.436', 'learning_rate': '0.00015', 'epoch': '0.00438'}
+{'loss': '0.3008', 'grad_norm': '0.9479', 'learning_rate': '0.0001996', 'epoch': '0.00657'}
+{'loss': '0.3935', 'grad_norm': '1.214', 'learning_rate': '0.0001966', 'epoch': '0.00876'}
+{'loss': '0.3176', 'grad_norm': '0.6584', 'learning_rate': '0.0001906', 'epoch': '0.01095'}
+{'loss': '0.2499', 'grad_norm': '0.6284', 'learning_rate': '0.0001819', 'epoch': '0.01314'}
+{'loss': '0.4511', 'grad_norm': '0.5038', 'learning_rate': '0.0001707', 'epoch': '0.01533'}
+{'loss': '0.2185', 'grad_norm': '0.7821', 'learning_rate': '0.0001574', 'epoch': '0.01752'}
+{'loss': '0.175', 'grad_norm': '0.5272', 'learning_rate': '0.0001423', 'epoch': '0.01971'}
+{'loss': '0.1814', 'grad_norm': '0.4297', 'learning_rate': '0.0001259', 'epoch': '0.0219'}
+{'eval_loss': '0.3765', 'eval_model_preparation_time': '0.052', 'eval_runtime': '629', 'eval_samples_per_second': '0.102', 'eval_steps_per_second': '0.102', 'epoch': '0.0219'}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{'loss': '0.2827', 'grad_norm': '1.007', 'learning_rate': '0.0001087', 'epoch': '0.02409'}
+{'loss': '0.1988', 'grad_norm': '0.5218', 'learning_rate': '9.128e-05', 'epoch': '0.02628'}
+{'loss': '0.3506', 'grad_norm': '0.4635', 'learning_rate': '7.412e-05', 'epoch': '0.02847'}
+{'loss': '0.169', 'grad_norm': '0.6981', 'learning_rate': '5.774e-05', 'epoch': '0.03066'}
+{'loss': '0.1395', 'grad_norm': '0.5392', 'learning_rate': '4.264e-05', 'epoch': '0.03285'}
+{'loss': '0.1111', 'grad_norm': '0.3356', 'learning_rate': '2.929e-05', 'epoch': '0.03504'}
+{'loss': '0.1232', 'grad_norm': '0.4403', 'learning_rate': '1.808e-05', 'epoch': '0.03723'}
+{'loss': '0.1043', 'grad_norm': '0.4871', 'learning_rate': '9.369e-06', 'epoch': '0.03942'}
+{'loss': '0.1116', 'grad_norm': '0.5098', 'learning_rate': '3.407e-06', 'epoch': '0.04161'}
+{'loss': '0.1411', 'grad_norm': '1.554', 'learning_rate': '3.805e-07', 'epoch': '0.0438'}
+{'eval_loss': '0.3014', 'eval_model_preparation_time': '0.052', 'eval_runtime': '556.2', 'eval_samples_per_second': '0.115', 'eval_steps_per_second': '0.115', 'epoch': '0.0438'}
+{'train_runtime': '1.224e+04', 'train_samples_per_second': '0.026', 'train_steps_per_second': '0.003', 'train_loss': '0.2772', 'epoch': '0.0438'}
+Training finished in 204.1 min: {'train_runtime': 12239.0299, 'train_samples_per_second': 0.026, 'train_steps_per_second': 0.003, 'train_loss': 0.2772332921624184, 'epoch': 0.04379961675335341}
+exit=15

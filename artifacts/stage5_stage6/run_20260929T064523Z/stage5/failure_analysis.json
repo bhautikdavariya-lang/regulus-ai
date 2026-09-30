@@ -1,0 +1,572 @@
+{
+  "by_layer": {
+    "none": 36,
+    "generation": 10,
+    "domain_boundary": 3,
+    "retrieval": 2
+  },
+  "by_layer_and_category": {
+    "generation": {
+      "single": 1,
+      "multi": 2,
+      "range": 1,
+      "adversarial": 2,
+      "general": 2,
+      "guidance": 1,
+      "long": 1
+    },
+    "domain_boundary": {
+      "domain_boundary": 3
+    },
+    "retrieval": {
+      "citation": 2
+    },
+    "none": {
+      "single": 7,
+      "parent": 2,
+      "section": 2,
+      "multi": 3,
+      "range": 3,
+      "missing": 3,
+      "nonexistent": 3,
+      "adversarial": 3,
+      "general": 2,
+      "guidance": 2,
+      "domain_boundary": 2,
+      "long": 1,
+      "refusal": 3
+    }
+  },
+  "failures": [
+    {
+      "id": "S5-007",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: scope_expansion, synthesis_citation_gap, 21 CFR 806.1(b)"
+      ],
+      "category": "single"
+    },
+    {
+      "id": "S5-023",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "multi"
+    },
+    {
+      "id": "S5-024",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: requirement_not_addressed",
+        "addressed ['r1'] of ['r1', 'r2']"
+      ],
+      "category": "multi"
+    },
+    {
+      "id": "S5-033",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: low_overlap_with_cited_source, synthesis_citation_gap, 21 CFR 101.13, 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "range"
+    },
+    {
+      "id": "S5-051",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: unsupported_figure, low_overlap_with_cited_source",
+        "unsupported content: unsupported_figure, low_overlap_with_cited_source"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-053",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: requirement_not_addressed",
+        "addressed [] of ['r1']"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-060",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: synthesis_citation_gap, 21 CFR 213.192"
+      ],
+      "category": "general"
+    },
+    {
+      "id": "S5-063",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: repeated_statement, 45 CFR 46.115(a)(2), 21 CFR 56.115(a)(2)"
+      ],
+      "category": "general"
+    },
+    {
+      "id": "S5-071",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: invalid_citation"
+      ],
+      "category": "guidance"
+    },
+    {
+      "id": "S5-080",
+      "layer": "domain_boundary",
+      "reasons": [
+        "model answered an out-of-domain question from its own knowledge (validator has nothing deterministic to reject)"
+      ],
+      "validator_caught": false,
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-081",
+      "layer": "domain_boundary",
+      "reasons": [
+        "model answered an out-of-domain question from its own knowledge (validator has nothing deterministic to reject)"
+      ],
+      "validator_caught": false,
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-082",
+      "layer": "domain_boundary",
+      "reasons": [
+        "model answered an out-of-domain question from its own knowledge (validator has nothing deterministic to reject)"
+      ],
+      "validator_caught": false,
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-090",
+      "layer": "retrieval",
+      "reasons": [
+        "retrieval: parser named ['21 CFR part 803']"
+      ],
+      "category": "citation"
+    },
+    {
+      "id": "S5-091",
+      "layer": "retrieval",
+      "reasons": [
+        "retrieval: parser named ['21 CFR 820.10', '21 CFR part 806']"
+      ],
+      "category": "citation"
+    },
+    {
+      "id": "S5-101",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 101.13, 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "long"
+    }
+  ],
+  "soft": [
+    {
+      "id": "S5-006",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['validation']"
+      ],
+      "soft": true,
+      "category": "single"
+    },
+    {
+      "id": "S5-010",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['ISO 13485']"
+      ],
+      "soft": true,
+      "category": "parent"
+    },
+    {
+      "id": "S5-052",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['830']"
+      ],
+      "soft": true,
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-070",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['510(k)']"
+      ],
+      "soft": true,
+      "category": "guidance"
+    }
+  ],
+  "per_question": [
+    {
+      "id": "S5-001",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-002",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-003",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-004",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-005",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-006",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['validation']"
+      ],
+      "soft": true,
+      "category": "single"
+    },
+    {
+      "id": "S5-007",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: scope_expansion, synthesis_citation_gap, 21 CFR 806.1(b)"
+      ],
+      "category": "single"
+    },
+    {
+      "id": "S5-008",
+      "layer": "none",
+      "reasons": [],
+      "category": "single"
+    },
+    {
+      "id": "S5-010",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['ISO 13485']"
+      ],
+      "soft": true,
+      "category": "parent"
+    },
+    {
+      "id": "S5-011",
+      "layer": "none",
+      "reasons": [],
+      "category": "parent"
+    },
+    {
+      "id": "S5-012",
+      "layer": "none",
+      "reasons": [],
+      "category": "section"
+    },
+    {
+      "id": "S5-013",
+      "layer": "none",
+      "reasons": [],
+      "category": "section"
+    },
+    {
+      "id": "S5-020",
+      "layer": "none",
+      "reasons": [],
+      "category": "multi"
+    },
+    {
+      "id": "S5-021",
+      "layer": "none",
+      "reasons": [],
+      "category": "multi"
+    },
+    {
+      "id": "S5-022",
+      "layer": "none",
+      "reasons": [],
+      "category": "multi"
+    },
+    {
+      "id": "S5-023",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "multi"
+    },
+    {
+      "id": "S5-024",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: requirement_not_addressed",
+        "addressed ['r1'] of ['r1', 'r2']"
+      ],
+      "category": "multi"
+    },
+    {
+      "id": "S5-030",
+      "layer": "none",
+      "reasons": [],
+      "category": "range"
+    },
+    {
+      "id": "S5-031",
+      "layer": "none",
+      "reasons": [],
+      "category": "range"
+    },
+    {
+      "id": "S5-032",
+      "layer": "none",
+      "reasons": [],
+      "category": "range"
+    },
+    {
+      "id": "S5-033",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: low_overlap_with_cited_source, synthesis_citation_gap, 21 CFR 101.13, 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "range"
+    },
+    {
+      "id": "S5-040",
+      "layer": "none",
+      "reasons": [
+        "deterministic refusal as expected (refuse_unsupported)"
+      ],
+      "category": "missing"
+    },
+    {
+      "id": "S5-041",
+      "layer": "none",
+      "reasons": [],
+      "category": "missing"
+    },
+    {
+      "id": "S5-042",
+      "layer": "none",
+      "reasons": [],
+      "category": "missing"
+    },
+    {
+      "id": "S5-043",
+      "layer": "none",
+      "reasons": [
+        "deterministic refusal as expected (refuse_unsupported)"
+      ],
+      "category": "nonexistent"
+    },
+    {
+      "id": "S5-044",
+      "layer": "none",
+      "reasons": [
+        "deterministic refusal as expected (refuse_unsupported)"
+      ],
+      "category": "nonexistent"
+    },
+    {
+      "id": "S5-045",
+      "layer": "none",
+      "reasons": [
+        "deterministic refusal as expected (refuse_unsupported)"
+      ],
+      "category": "nonexistent"
+    },
+    {
+      "id": "S5-050",
+      "layer": "none",
+      "reasons": [],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-051",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: unsupported_figure, low_overlap_with_cited_source",
+        "unsupported content: unsupported_figure, low_overlap_with_cited_source"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-052",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['830']"
+      ],
+      "soft": true,
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-053",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: requirement_not_addressed",
+        "addressed [] of ['r1']"
+      ],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-054",
+      "layer": "none",
+      "reasons": [],
+      "category": "adversarial"
+    },
+    {
+      "id": "S5-060",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: synthesis_citation_gap, 21 CFR 213.192"
+      ],
+      "category": "general"
+    },
+    {
+      "id": "S5-061",
+      "layer": "none",
+      "reasons": [],
+      "category": "general"
+    },
+    {
+      "id": "S5-062",
+      "layer": "none",
+      "reasons": [],
+      "category": "general"
+    },
+    {
+      "id": "S5-063",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: repeated_statement, 45 CFR 46.115(a)(2), 21 CFR 56.115(a)(2)"
+      ],
+      "category": "general"
+    },
+    {
+      "id": "S5-070",
+      "layer": "none",
+      "reasons": [
+        "valid, but expected terms partly absent: [] of ['510(k)']"
+      ],
+      "soft": true,
+      "category": "guidance"
+    },
+    {
+      "id": "S5-071",
+      "layer": "generation",
+      "reasons": [
+        "raw answer failed validation: invalid_citation"
+      ],
+      "category": "guidance"
+    },
+    {
+      "id": "S5-072",
+      "layer": "none",
+      "reasons": [
+        "deterministic refusal as expected (no_context)"
+      ],
+      "category": "guidance"
+    },
+    {
+      "id": "S5-080",
+      "layer": "domain_boundary",
+      "reasons": [
+        "model answered an out-of-domain question from its own knowledge (validator has nothing deterministic to reject)"
+      ],
+      "validator_caught": false,
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-081",
+      "layer": "domain_boundary",
+      "reasons": [
+        "model answered an out-of-domain question from its own knowledge (validator has nothing deterministic to reject)"
+      ],
+      "validator_caught": false,
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-082",
+      "layer": "domain_boundary",
+      "reasons": [
+        "model answered an out-of-domain question from its own knowledge (validator has nothing deterministic to reject)"
+      ],
+      "validator_caught": false,
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-083",
+      "layer": "none",
+      "reasons": [],
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-084",
+      "layer": "none",
+      "reasons": [],
+      "category": "domain_boundary"
+    },
+    {
+      "id": "S5-090",
+      "layer": "retrieval",
+      "reasons": [
+        "retrieval: parser named ['21 CFR part 803']"
+      ],
+      "category": "citation"
+    },
+    {
+      "id": "S5-091",
+      "layer": "retrieval",
+      "reasons": [
+        "retrieval: parser named ['21 CFR 820.10', '21 CFR part 806']"
+      ],
+      "category": "citation"
+    },
+    {
+      "id": "S5-100",
+      "layer": "none",
+      "reasons": [],
+      "category": "long"
+    },
+    {
+      "id": "S5-101",
+      "layer": "generation",
+      "reasons": [
+        "unsupported content: 21 CFR 101.13, 21 CFR 101.9, 21 CFR 101.10, 21 CFR 101.36"
+      ],
+      "category": "long"
+    },
+    {
+      "id": "S5-110",
+      "layer": "none",
+      "reasons": [],
+      "category": "refusal"
+    },
+    {
+      "id": "S5-111",
+      "layer": "none",
+      "reasons": [],
+      "category": "refusal"
+    },
+    {
+      "id": "S5-112",
+      "layer": "none",
+      "reasons": [],
+      "category": "refusal"
+    }
+  ]
+}

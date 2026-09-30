@@ -1,0 +1,923 @@
+{
+  "claims_total": 118,
+  "claims_judged": 115,
+  "supported": 60,
+  "unsupported": 17,
+  "uncertain": 38,
+  "deterministic_statements": 3,
+  "supported_ratio": 0.5217,
+  "questions_with_unsupported_claim": [
+    "S5-007",
+    "S5-011",
+    "S5-022",
+    "S5-033",
+    "S5-042",
+    "S5-051",
+    "S5-052",
+    "S5-060",
+    "S5-061",
+    "S5-090",
+    "S5-091",
+    "S5-111"
+  ],
+  "by_category": {
+    "single": {
+      "YES": 8,
+      "NO": 1,
+      "UNCERTAIN": 0
+    },
+    "parent": {
+      "YES": 1,
+      "NO": 1,
+      "UNCERTAIN": 1
+    },
+    "section": {
+      "YES": 1,
+      "NO": 0,
+      "UNCERTAIN": 4
+    },
+    "multi": {
+      "YES": 11,
+      "NO": 1,
+      "UNCERTAIN": 6
+    },
+    "range": {
+      "YES": 11,
+      "NO": 2,
+      "UNCERTAIN": 5
+    },
+    "missing": {
+      "YES": 5,
+      "NO": 1,
+      "UNCERTAIN": 1
+    },
+    "adversarial": {
+      "YES": 2,
+      "NO": 2,
+      "UNCERTAIN": 1
+    },
+    "general": {
+      "YES": 7,
+      "NO": 4,
+      "UNCERTAIN": 5
+    },
+    "guidance": {
+      "YES": 1,
+      "NO": 0,
+      "UNCERTAIN": 5
+    },
+    "domain_boundary": {
+      "YES": 1,
+      "NO": 0,
+      "UNCERTAIN": 6
+    },
+    "citation": {
+      "YES": 3,
+      "NO": 4,
+      "UNCERTAIN": 0
+    },
+    "long": {
+      "YES": 7,
+      "NO": 0,
+      "UNCERTAIN": 2
+    },
+    "refusal": {
+      "YES": 2,
+      "NO": 1,
+      "UNCERTAIN": 2
+    }
+  },
+  "unsupported_claims": [
+    {
+      "claim": "The report must include either to reduce a risk to health posed by the device or to remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        2
+      ],
+      "cited_tiers": [
+        "structural"
+      ],
+      "overlap": 0.192,
+      "supported": "NO",
+      "id": "S5-007",
+      "category": "single"
+    },
+    {
+      "claim": "21 CFR 101.3(b) requires that the identity statement of food in packaged form be in terms of the name now or hereafter specified in or required by any applicable Federal law or regulation, or the common or usual name of the food, or an appropriately descriptive term, or when the nature of the food i",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.13,
+      "supported": "NO",
+      "id": "S5-011",
+      "category": "parent"
+    },
+    {
+      "claim": "It applies to manufacturers under clause 7.5.9.1 in ISO 13485 [2].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        2
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-022",
+      "category": "multi"
+    },
+    {
+      "claim": "The available regulatory sources do not provide enough information to answer this [1].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-033",
+      "category": "range"
+    },
+    {
+      "claim": "The claim uses one of the terms defined in this section in accordance with the definition for that term [2].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        2
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.143,
+      "supported": "NO",
+      "id": "S5-033",
+      "category": "range"
+    },
+    {
+      "claim": "21 CFR 820.10(b)(2) requires that a manufacturer subject to this part must comply with the other applicable regulatory requirements in this title, including, but not limited to, the following, to fully comply with the listed ISO 13485 Clause [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-042",
+      "category": "missing"
+    },
+    {
+      "claim": "21 CFR 820.10(b)(3) specifies a penalty amount of $1,000 for late complaint notification [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-051",
+      "category": "adversarial"
+    },
+    {
+      "claim": "The manufacturer must comply with 21 CFR 820.10(b)(1) by the date specified in the requirements for a quality management system, as outlined in the applicable regulatory requirements under 21 CFR 820.10(b) [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.125,
+      "supported": "NO",
+      "id": "S5-052",
+      "category": "adversarial"
+    },
+    {
+      "claim": "If applicable, the manufacturer must maintain written records so that data therein can be used for evaluating, at least annually, the quality standards of each medical gas to determine the need for changes in specifications or manufacturing or control procedures [1].",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "supporting"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-060",
+      "category": "general"
+    },
+    {
+      "claim": "If applicable, the manufacturer must have written procedures for the review of the following: complaints, recalls, returned or salvaged medical gases, and investigations conducted under § 213.192 for each medical gas [1].",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "supporting"
+      ],
+      "overlap": 0.071,
+      "supported": "NO",
+      "id": "S5-060",
+      "category": "general"
+    },
+    {
+      "claim": "If applicable, the manufacturer must have written procedures to notify responsible officials of the firm, in writing, of any recalls, reports of inspectional observations by FDA, regulatory actions related to good manufacturing practices brought by FDA, or investigations [1].",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "supporting"
+      ],
+      "overlap": 0.15,
+      "supported": "NO",
+      "id": "S5-060",
+      "category": "general"
+    },
+    {
+      "claim": "A unique device identifier is required to be placed on a device, as specified in the eCFR [1].",
+      "type": "general_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "supporting"
+      ],
+      "overlap": 0.2,
+      "supported": "NO",
+      "id": "S5-061",
+      "category": "general"
+    },
+    {
+      "claim": "21 CFR 803.10(a) requires manufacturers to notify the FDA of complaints meeting part 803 criteria [1].",
+      "type": "provision_statement",
+      "provisions": [
+        "r1"
+      ],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-090",
+      "category": "citation"
+    },
+    {
+      "claim": "21 CFR 820.10 refers to part 806.",
+      "type": "provision_statement",
+      "provisions": [
+        "r1",
+        "r2"
+      ],
+      "cited": [],
+      "cited_tiers": [],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-091",
+      "category": "citation"
+    },
+    {
+      "claim": "It requires manufacturers to document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-091",
+      "category": "citation"
+    },
+    {
+      "claim": "Advisory notices shall be handled in accordance with the requirements of part 806 of this chapter [7].",
+      "type": "provision_statement",
+      "provisions": [
+        "r2"
+      ],
+      "cited": [
+        7
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 1.0,
+      "supported": "NO",
+      "id": "S5-091",
+      "category": "citation"
+    },
+    {
+      "claim": "The requirement applies to devices and persons as specified in the sub-requirements [1].",
+      "type": "provision_statement",
+      "provisions": [],
+      "cited": [
+        1
+      ],
+      "cited_tiers": [
+        "exact"
+      ],
+      "overlap": 0.0,
+      "supported": "NO",
+      "id": "S5-111",
+      "category": "refusal"
+    }
+  ],
+  "raw_answer": {
+    "claims_total": 118,
+    "claims_judged": 115,
+    "supported": 60,
+    "unsupported": 17,
+    "uncertain": 38,
+    "deterministic_statements": 3,
+    "supported_ratio": 0.5217,
+    "questions_with_unsupported_claim": [
+      "S5-007",
+      "S5-011",
+      "S5-022",
+      "S5-033",
+      "S5-042",
+      "S5-051",
+      "S5-052",
+      "S5-060",
+      "S5-061",
+      "S5-090",
+      "S5-091",
+      "S5-111"
+    ],
+    "unsupported_claims": [
+      {
+        "claim": "The report must include either to reduce a risk to health posed by the device or to remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "structural"
+        ],
+        "overlap": 0.192,
+        "supported": "NO",
+        "id": "S5-007",
+        "category": "single"
+      },
+      {
+        "claim": "21 CFR 101.3(b) requires that the identity statement of food in packaged form be in terms of the name now or hereafter specified in or required by any applicable Federal law or regulation, or the common or usual name of the food, or an appropriately descriptive term, or when the nature of the food i",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.13,
+        "supported": "NO",
+        "id": "S5-011",
+        "category": "parent"
+      },
+      {
+        "claim": "It applies to manufacturers under clause 7.5.9.1 in ISO 13485 [2].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-022",
+        "category": "multi"
+      },
+      {
+        "claim": "The available regulatory sources do not provide enough information to answer this [1].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-033",
+        "category": "range"
+      },
+      {
+        "claim": "The claim uses one of the terms defined in this section in accordance with the definition for that term [2].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.143,
+        "supported": "NO",
+        "id": "S5-033",
+        "category": "range"
+      },
+      {
+        "claim": "21 CFR 820.10(b)(2) requires that a manufacturer subject to this part must comply with the other applicable regulatory requirements in this title, including, but not limited to, the following, to fully comply with the listed ISO 13485 Clause [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-042",
+        "category": "missing"
+      },
+      {
+        "claim": "21 CFR 820.10(b)(3) specifies a penalty amount of $1,000 for late complaint notification [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-051",
+        "category": "adversarial"
+      },
+      {
+        "claim": "The manufacturer must comply with 21 CFR 820.10(b)(1) by the date specified in the requirements for a quality management system, as outlined in the applicable regulatory requirements under 21 CFR 820.10(b) [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.125,
+        "supported": "NO",
+        "id": "S5-052",
+        "category": "adversarial"
+      },
+      {
+        "claim": "If applicable, the manufacturer must maintain written records so that data therein can be used for evaluating, at least annually, the quality standards of each medical gas to determine the need for changes in specifications or manufacturing or control procedures [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-060",
+        "category": "general"
+      },
+      {
+        "claim": "If applicable, the manufacturer must have written procedures for the review of the following: complaints, recalls, returned or salvaged medical gases, and investigations conducted under § 213.192 for each medical gas [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.071,
+        "supported": "NO",
+        "id": "S5-060",
+        "category": "general"
+      },
+      {
+        "claim": "If applicable, the manufacturer must have written procedures to notify responsible officials of the firm, in writing, of any recalls, reports of inspectional observations by FDA, regulatory actions related to good manufacturing practices brought by FDA, or investigations [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.15,
+        "supported": "NO",
+        "id": "S5-060",
+        "category": "general"
+      },
+      {
+        "claim": "A unique device identifier is required to be placed on a device, as specified in the eCFR [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.2,
+        "supported": "NO",
+        "id": "S5-061",
+        "category": "general"
+      },
+      {
+        "claim": "21 CFR 803.10(a) requires manufacturers to notify the FDA of complaints meeting part 803 criteria [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-090",
+        "category": "citation"
+      },
+      {
+        "claim": "21 CFR 820.10 refers to part 806.",
+        "type": "provision_statement",
+        "provisions": [
+          "r1",
+          "r2"
+        ],
+        "cited": [],
+        "cited_tiers": [],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "It requires manufacturers to document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "Advisory notices shall be handled in accordance with the requirements of part 806 of this chapter [7].",
+        "type": "provision_statement",
+        "provisions": [
+          "r2"
+        ],
+        "cited": [
+          7
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 1.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "The requirement applies to devices and persons as specified in the sub-requirements [1].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-111",
+        "category": "refusal"
+      }
+    ]
+  },
+  "final_answer": {
+    "claims_total": 128,
+    "claims_judged": 124,
+    "supported": 65,
+    "unsupported": 16,
+    "uncertain": 43,
+    "deterministic_statements": 4,
+    "supported_ratio": 0.5242,
+    "questions_with_unsupported_claim": [
+      "S5-007",
+      "S5-011",
+      "S5-022",
+      "S5-033",
+      "S5-042",
+      "S5-052",
+      "S5-060",
+      "S5-061",
+      "S5-090",
+      "S5-091",
+      "S5-111"
+    ],
+    "unsupported_claims": [
+      {
+        "claim": "The report must include either to reduce a risk to health posed by the device or to remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "structural"
+        ],
+        "overlap": 0.192,
+        "supported": "NO",
+        "id": "S5-007",
+        "category": "single"
+      },
+      {
+        "claim": "21 CFR 101.3(b) requires that the identity statement of food in packaged form be in terms of the name now or hereafter specified in or required by any applicable Federal law or regulation, or the common or usual name of the food, or an appropriately descriptive term, or when the nature of the food i",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.13,
+        "supported": "NO",
+        "id": "S5-011",
+        "category": "parent"
+      },
+      {
+        "claim": "It applies to manufacturers under clause 7.5.9.1 in ISO 13485 [2].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-022",
+        "category": "multi"
+      },
+      {
+        "claim": "The available regulatory sources do not provide enough information to answer this [1].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-033",
+        "category": "range"
+      },
+      {
+        "claim": "The claim uses one of the terms defined in this section in accordance with the definition for that term [2].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          2
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.143,
+        "supported": "NO",
+        "id": "S5-033",
+        "category": "range"
+      },
+      {
+        "claim": "21 CFR 820.10(b)(2) requires that a manufacturer subject to this part must comply with the other applicable regulatory requirements in this title, including, but not limited to, the following, to fully comply with the listed ISO 13485 Clause [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-042",
+        "category": "missing"
+      },
+      {
+        "claim": "The manufacturer must comply with 21 CFR 820.10(b)(1) by the date specified in the requirements for a quality management system, as outlined in the applicable regulatory requirements under 21 CFR 820.10(b) [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.125,
+        "supported": "NO",
+        "id": "S5-052",
+        "category": "adversarial"
+      },
+      {
+        "claim": "If applicable, the manufacturer must maintain written records so that data therein can be used for evaluating, at least annually, the quality standards of each medical gas to determine the need for changes in specifications or manufacturing or control procedures [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-060",
+        "category": "general"
+      },
+      {
+        "claim": "If applicable, the manufacturer must have written procedures for the review of the following: complaints, recalls, returned or salvaged medical gases, and investigations conducted under § 213.192 for each medical gas [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.071,
+        "supported": "NO",
+        "id": "S5-060",
+        "category": "general"
+      },
+      {
+        "claim": "If applicable, the manufacturer must have written procedures to notify responsible officials of the firm, in writing, of any recalls, reports of inspectional observations by FDA, regulatory actions related to good manufacturing practices brought by FDA, or investigations [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.15,
+        "supported": "NO",
+        "id": "S5-060",
+        "category": "general"
+      },
+      {
+        "claim": "A unique device identifier is required to be placed on a device, as specified in the eCFR [1].",
+        "type": "general_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "supporting"
+        ],
+        "overlap": 0.2,
+        "supported": "NO",
+        "id": "S5-061",
+        "category": "general"
+      },
+      {
+        "claim": "21 CFR 803.10(a) requires manufacturers to notify the FDA of complaints meeting part 803 criteria [1].",
+        "type": "provision_statement",
+        "provisions": [
+          "r1"
+        ],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-090",
+        "category": "citation"
+      },
+      {
+        "claim": "21 CFR 820.10 refers to part 806.",
+        "type": "provision_statement",
+        "provisions": [
+          "r1",
+          "r2"
+        ],
+        "cited": [],
+        "cited_tiers": [],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "It requires manufacturers to document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter [1].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "(a) Each device manufacturer or importer who initiates a correction or removal of a device that is not required to be reported to FDA under § 806.10 shall keep a record of such correction or removal [15].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          15
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 1.0,
+        "supported": "NO",
+        "id": "S5-091",
+        "category": "citation"
+      },
+      {
+        "claim": "The requirement applies to devices and persons as specified in the sub-requirements [1].",
+        "type": "provision_statement",
+        "provisions": [],
+        "cited": [
+          1
+        ],
+        "cited_tiers": [
+          "exact"
+        ],
+        "overlap": 0.0,
+        "supported": "NO",
+        "id": "S5-111",
+        "category": "refusal"
+      }
+    ]
+  },
+  "note": "raw_answer is the model's own text; final_answer is after deterministic repair and is not a model-quality figure",
+  "methodology": "Sentence-level. SUPPORTED: cites an exact source, shares at least 50% of its content words with it and no deterministic check failed on it. NOT SUPPORTED: a deterministic check failed on the sentence (missing provision asserted, figure absent from sources, wrong-source citation) or it shares under 25% of its content words with what it cites. UNCERTAIN: everything between. Refusals and not-found statements are N/A.",
+  "limitations": "Word overlap is not entailment: a paraphrase can share words and still misstate the source, and a correct restatement in different words can score UNCERTAIN. Treat NOT SUPPORTED as reliable and SUPPORTED as unproven."
+}

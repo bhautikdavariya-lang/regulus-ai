@@ -1,0 +1,225 @@
+{
+  "questions": 8,
+  "selection_ok": 1.0,
+  "required_exact_preserved": 1.0,
+  "required_dropped_questions": [],
+  "required_truncated_questions": [],
+  "overflow_questions": [],
+  "structural_kept_when_available": 1.0,
+  "discovery_in_context_questions": [
+    "S5-043",
+    "S5-080"
+  ],
+  "mean_context_chars": 3588.4,
+  "optional_truncated_total": 9,
+  "deterministic": 1.0,
+  "failures": [],
+  "per_question": [
+    {
+      "id": "S5-001",
+      "category": "single",
+      "selected": 4,
+      "protected": 1,
+      "dropped": 0,
+      "context_tiers": {
+        "exact": 1,
+        "structural": 1,
+        "supporting": 2,
+        "discovery": 0
+      },
+      "total_chars": 3600,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 2,
+      "required_present_in_context": {
+        "21 CFR 820.10(b)(2)": true
+      },
+      "structural_in_context": 1,
+      "discovery_in_context": 0,
+      "dropped_reasons": [],
+      "ok": true
+    },
+    {
+      "id": "S5-020",
+      "category": "multi",
+      "selected": 5,
+      "protected": 2,
+      "dropped": 0,
+      "context_tiers": {
+        "exact": 2,
+        "structural": 1,
+        "supporting": 2,
+        "discovery": 0
+      },
+      "total_chars": 3600,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 2,
+      "required_present_in_context": {
+        "21 CFR 820.10(b)(2)": true,
+        "21 CFR 820.10(b)(4)": true
+      },
+      "structural_in_context": 1,
+      "discovery_in_context": 0,
+      "dropped_reasons": [],
+      "ok": true
+    },
+    {
+      "id": "S5-030",
+      "category": "range",
+      "selected": 6,
+      "protected": 4,
+      "dropped": 0,
+      "context_tiers": {
+        "exact": 4,
+        "structural": 1,
+        "supporting": 1,
+        "discovery": 0
+      },
+      "total_chars": 3581,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 1,
+      "required_present_in_context": {
+        "21 CFR 820.10(b)(1)": true,
+        "21 CFR 820.10(b)(2)": true,
+        "21 CFR 820.10(b)(3)": true,
+        "21 CFR 820.10(b)(4)": true
+      },
+      "structural_in_context": 1,
+      "discovery_in_context": 0,
+      "dropped_reasons": [],
+      "ok": true
+    },
+    {
+      "id": "S5-041",
+      "category": "missing",
+      "selected": 5,
+      "protected": 4,
+      "dropped": 0,
+      "context_tiers": {
+        "exact": 4,
+        "structural": 1,
+        "supporting": 0,
+        "discovery": 0
+      },
+      "total_chars": 1975,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 0,
+      "required_present_in_context": {
+        "21 CFR 820.10(b)(1)": true,
+        "21 CFR 820.10(b)(2)": true,
+        "21 CFR 820.10(b)(3)": true,
+        "21 CFR 820.10(b)(4)": true
+      },
+      "structural_in_context": 1,
+      "discovery_in_context": 0,
+      "dropped_reasons": [],
+      "ok": true
+    },
+    {
+      "id": "S5-043",
+      "category": "nonexistent",
+      "selected": 7,
+      "protected": 0,
+      "dropped": 1,
+      "context_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 7
+      },
+      "total_chars": 3240,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 0,
+      "required_present_in_context": {},
+      "structural_in_context": 0,
+      "discovery_in_context": 7,
+      "dropped_reasons": [
+        "soft_budget"
+      ],
+      "ok": true
+    },
+    {
+      "id": "S5-060",
+      "category": "general",
+      "selected": 3,
+      "protected": 0,
+      "dropped": 5,
+      "context_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 3,
+        "discovery": 0
+      },
+      "total_chars": 3441,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 2,
+      "required_present_in_context": {},
+      "structural_in_context": 0,
+      "discovery_in_context": 0,
+      "dropped_reasons": [
+        "soft_budget"
+      ],
+      "ok": true
+    },
+    {
+      "id": "S5-070",
+      "category": "guidance",
+      "selected": 3,
+      "protected": 3,
+      "dropped": 0,
+      "context_tiers": {
+        "exact": 3,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 0
+      },
+      "total_chars": 5800,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 0,
+      "required_present_in_context": {},
+      "structural_in_context": 0,
+      "discovery_in_context": 0,
+      "dropped_reasons": [],
+      "ok": true
+    },
+    {
+      "id": "S5-080",
+      "category": "domain_boundary",
+      "selected": 3,
+      "protected": 0,
+      "dropped": 19,
+      "context_tiers": {
+        "exact": 0,
+        "structural": 0,
+        "supporting": 0,
+        "discovery": 3
+      },
+      "total_chars": 3470,
+      "overflow": false,
+      "required_dropped": [],
+      "required_truncated": [],
+      "optional_truncated": 2,
+      "required_present_in_context": {},
+      "structural_in_context": 0,
+      "discovery_in_context": 3,
+      "dropped_reasons": [
+        "filtered",
+        "soft_budget"
+      ],
+      "ok": true
+    }
+  ]
+}
