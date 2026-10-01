@@ -1,0 +1,147 @@
+{
+ "manifest": "post_stage8_baseline",
+ "created_utc": "2026-10-01T05:59:13+00:00",
+ "code": {
+  "git_commit": "e0c3135630f50e7f9a06dbb7a28303909e39175e",
+  "git_dirty": true,
+  "git_dirty_reason": "only this manifest and scripts/write_baseline_manifest.py were uncommitted when it was written; the system code is exactly commit e0c3135"
+ },
+ "model": {
+  "model_id": "Qwen/Qwen3-0.6B",
+  "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "weights_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+  "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+  "tokenizer_config_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+  "device": "cpu",
+  "dtype": "float32",
+  "decoding": {
+   "max_new_tokens": 2048,
+   "do_sample": false,
+   "temperature": null,
+   "top_p": null,
+   "top_k": null,
+   "enable_thinking": false
+  },
+  "backend": "transformers",
+  "generation_budget_note": "adaptive token budget (pipeline_config.generation_budget); max_new_tokens 2048 is the ceiling"
+ },
+ "prompt": {
+  "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79"
+ },
+ "pipeline_config": {
+  "retrieval": {
+   "retriever": "LexicalRetriever",
+   "top_k": 8,
+   "corpus": "all",
+   "min_trigram_similarity": 0.4,
+   "exclude_contextual_only": true,
+   "semantic_fallback": "on"
+  },
+  "coverage": {
+   "no_context_behavior": "refuse",
+   "incomplete_behavior": "partial",
+   "answerability": "gate",
+   "optional_context": "incomplete_only",
+   "scope_policy": "general_knowledge",
+   "evidence_consolidation": "on"
+  },
+  "context": {
+   "max_results": 8,
+   "max_chars_per_result": 1200,
+   "max_total_chars": 3600,
+   "hard_max_results": 24,
+   "hard_max_total_chars": 9000,
+   "required_max_chars_per_result": 4000
+  },
+  "generation_budget": {
+   "policy": "adaptive",
+   "base_tokens": 96,
+   "per_unit_tokens": 160,
+   "range_bonus_tokens": 64,
+   "general_tokens": 384,
+   "max_units": 10,
+   "min_tokens": 256,
+   "evidence_multiple": 1.4,
+   "evidence_cap_fraction": 0.75,
+   "hard_max_tokens": 2048
+  },
+  "validation": {
+   "validation_behavior": "repair"
+  },
+  "repair": {
+   "mode": "post_hoc_deterministic"
+  },
+  "prompt": {
+   "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79",
+   "answer_shape": "adaptive"
+  }
+ },
+ "retriever": {
+  "retriever": "LexicalRetriever+SemanticFallback",
+  "fallback": {
+   "semantic_top_n": 8,
+   "similarity_floor": 0.75,
+   "merge_policy": "interleave",
+   "general_questions": false
+  },
+  "semantic_corpus": "semantic_expanded_v1",
+  "semantic_unavailable": null
+ },
+ "database": {
+  "read_only": "on",
+  "row_counts": {
+   "cfr_records": 65341,
+   "cfr_sections": 7906,
+   "cfr_parts": 250,
+   "fda_guidance": 1836,
+   "fda_guidance_chunks": 68669
+  },
+  "cfr_records_content_md5": "7b1bb7d87c80f0e84797aa962a7693a9",
+  "fda_guidance_chunks_content_md5": "5a2f5e875b2d0f9e54c6cfcfd0d1cf06"
+ },
+ "protected_files_sha256": {
+  "benchmark_workbook": "c009d5f9c649822097b02a6c6aba415715fb0929914ef452acb03c8c3ac4a110",
+  "benchmark_key_baseline": "472d0be153e937f98fa95afeb10e5399c12e2eae12279ee391651fb5802b7454",
+  "diagnostic_set": "f99b1106aba8e0532f9b6efa67437dc72d80c5ecf95d903b746ec107564bff50",
+  "stage5_set": "7cf80fda674fd1abeceef5bf137776c06f21231cdd6b189832830c7ffbbe76fd",
+  "retrieval_set": "db73c6fa7bb934f3353e101b55e40fcae7e8833b005cef19dc27db992303b11c",
+  "semantic_manifest": "5b1e8ccfa3d76a8b539d5622dfac5e67fb3128b846de674764cf81a76b69f901"
+ },
+ "tests": "1266 passed, 1 skipped, 26 deselected (default suite); slow tier: 3 pre-existing failures",
+ "diagnostic_run": {
+  "path": "artifacts/diagnostics/stage8_freeze_20261001T051756Z",
+  "questions": 79,
+  "automatic_status": {
+   "PASS": 46,
+   "FAIL": 15,
+   "NEEDS_REVIEW": 2,
+   "UNVERIFIED_WITH_FAILURES": 3,
+   "UNVERIFIED": 12,
+   "UNVERIFIED_NEEDS_REVIEW": 1
+  },
+  "reviewed_status": {
+   "PASS": 49,
+   "FAIL": 12,
+   "NEEDS_REVIEW": 2,
+   "UNVERIFIED_WITH_FAILURES": 3,
+   "UNVERIFIED": 13
+  },
+  "outcomes_automatic": {
+   "correct": 46,
+   "incorrect": 10,
+   "safe_withheld": 4,
+   "unsupported": 1,
+   "needs_review": 2,
+   "unverified": 16
+  },
+  "determinism": {
+   "identical": 10,
+   "repeats": 10
+  },
+  "run_git_commit": "0f56a2cb801c448cfed6a4d99c0fc484c4e26db5",
+  "run_git_dirty": true,
+  "provenance": "the freeze run was made on the verified working tree before it was committed; that tree was committed unchanged as e0c3135 (run_git_commit records the parent 0f56a2c with dirty=true). Reviewed counts carry the developer reviews in manual_review.jsonl; no SME review."
+ },
+ "evaluation_limitation": "The 300-question benchmark has not yet been expert-verified and therefore does not provide a validated end-to-end accuracy number.",
+ "benchmark_key_status": "300 total / 0 expert verified / 300 pending / 0 disputed"
+}
