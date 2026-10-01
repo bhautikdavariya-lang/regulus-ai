@@ -352,7 +352,7 @@ def test_pipeline_refusal_with_evidence_becomes_extractive():
 
 def test_pipeline_degenerate_general_answer_gets_a_safe_message():
     db = TableDatabase(full_text=[row("801.1", "", 0, rank=0.5)])
-    loop = " ".join(["Labels must carry the name of the product."] * 4)
+    loop = "Labels must carry the name " + "of the product and the name " * 12 + "of the product."  # Stage 8: an in-sentence loop
     p, g = pipeline(db, response=loop)
     out = p.answer("What must a drug label carry?")
     # Stage 5: the answer is withheld by the safe fallback builder, which names the sources but quotes none

@@ -38,6 +38,8 @@ from regulus.evaluation.acceptance_benchmark import (  # noqa: E402
 from regulus.evaluation.acceptance_gate import DEFAULT_KEY_ROOT, gate_status  # noqa: E402
 from regulus.evaluation.key_review import (  # noqa: E402
     DECISIONS,
+    REASON_CATEGORIES,
+    verification_counts,
     JUDGMENT_VALUES,
     Judgment,
     ReviewError,
@@ -114,6 +116,11 @@ def cmd_status(args) -> int:
     print(f"verification  : run {s['verification_run_id']}")
     print(f"review version: v{s['review_version']}")
     print(f"baseline      : {key_root / 'baseline.json'}")
+    v = verification_counts(review)
+    print(f"\nKEY STATUS    : {v['total']} total / {v['expert_verified']} expert verified / {v['pending']} pending / "
+          f"{v['disputed']} disputed ({v['accepted_unsigned']} accepted, awaiting sign-off)")
+    if v["reason_categories"]:
+        print(f"  open reasons: {v['reason_categories']}")
     print(f"\nquestions     : {s['questions']}")
     print(f"by state      : {s['by_state']}")
     print(f"decisions     : {s['decisions_recorded']}")
@@ -239,6 +246,7 @@ def cmd_decide(args) -> int:
             corrected_iso_clause=args.corrected_iso_clause,
             judgments=judgments, evidence_refs=args.evidence or (),
             corrected_key_elements=args.corrected_key_elements,
+            reason_category=args.reason_category,
         )
     except ReviewError as exc:
         print(f"REFUSED: {exc}", file=sys.stderr)
@@ -325,6 +333,8 @@ def main() -> int:
     decide.add_argument("--completeness", choices=JUDGMENT_VALUES, default=None)
     decide.add_argument("--completeness-rationale", default=None)
     decide.add_argument("--evidence", nargs="*", default=None)
+    decide.add_argument("--reason-category", choices=REASON_CATEGORIES, default=None,
+                        help="with NEEDS_RESEARCH or REJECTED: ambiguous, insufficient_evidence or needs_clarification")
     decide.set_defaults(func=cmd_decide)
 
     signoff = sub.add_parser("sign-off")

@@ -25,7 +25,9 @@ GOOD = "21 CFR 820.10(b)(2) requires documented traceability procedures under pa
 PART_803 = [row("803.10", "", 0, text="Generally."),
             row("803.10", "(a)", 1, text="(a) If you are a device user facility, you must submit reports as follows.")]
 INVENTED_TEMPERATURE = "The provision requires storage at 20°C to 25°C [1]."
-LOOP = " ".join(["Labels must carry the name of the product."] * 4)
+# a loop INSIDE one sentence (Stage 8): the 4-gram test rejects it and repetition trimming cannot rescue it;
+# a whole sentence repeated is now trimmed to its first occurrence instead (tests/test_stage8_generation_control.py)
+LOOP = "Labels must carry the name " + "of the product and the name " * 12 + "of the product."
 
 
 def run(question, response=GOOD, table=None, events=None, **cfg):

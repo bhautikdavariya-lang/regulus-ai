@@ -65,6 +65,8 @@ STATES = (
 # What a reviewer may record. VERIFIED is deliberately absent: it is derived
 # at sign-off, never asserted directly.
 DECISIONS = (STATE_ACCEPTED, STATE_CORRECTED, STATE_REJECTED, STATE_NEEDS_RESEARCH)
+# Stage 7: why a row cannot be accepted yet (recorded with NEEDS_RESEARCH or REJECTED; optional)
+REASON_CATEGORIES = ("ambiguous", "insufficient_evidence", "needs_clarification")
 
 # States that settle a row's key. REJECTED settles it too - by removing it.
 RESOLVED = (STATE_ACCEPTED, STATE_CORRECTED, STATE_REJECTED)
@@ -175,8 +177,15 @@ class Decision:
     # Column J. Defaults keep decisions recorded before J could be corrected loadable.
     original_key_elements: str = ""
     corrected_key_elements: str | None = None
+    # Stage 7: ambiguous / insufficient_evidence / needs_clarification (NEEDS_RESEARCH or REJECTED only)
+    reason_category: str | None = None
 
     def __post_init__(self) -> None:
+        if self.reason_category is not None:
+            if self.reason_category not in REASON_CATEGORIES:
+                raise ReviewError(f"reason category must be one of {REASON_CATEGORIES}")
+            if self.state not in (STATE_NEEDS_RESEARCH, STATE_REJECTED):
+                raise ReviewError("a reason category is recorded only with NEEDS_RESEARCH or REJECTED")
         if self.state not in DECISIONS:
             raise ReviewError(
                 f"a reviewer may record {DECISIONS}; {self.state!r} is not one of them "
@@ -233,6 +242,7 @@ class Decision:
             "review_version": self.review_version,
             "original_key_elements": self.original_key_elements,
             "corrected_key_elements": self.corrected_key_elements,
+            "reason_category": self.reason_category,
         }
 
     @classmethod
@@ -250,6 +260,7 @@ class Decision:
             review_version=int(data.get("review_version", 1)),
             original_key_elements=data.get("original_key_elements", ""),
             corrected_key_elements=data.get("corrected_key_elements"),
+            reason_category=data.get("reason_category"),
         )
 
 
@@ -541,6 +552,7 @@ class KeyReview:
         judgments: Iterable[Judgment] = (),
         evidence_refs: Iterable[str] = (),
         corrected_key_elements: str | None = None,
+        reason_category: str | None = None,
     ) -> Decision:
         """Record one decision, carrying the original key beside any correction."""
         question = self.benchmark.get(question_id)
@@ -564,6 +576,7 @@ class KeyReview:
             review_version=self.review_version,
             original_key_elements=question.key_answer_elements,
             corrected_key_elements=corrected_key_elements,
+            reason_category=reason_category,
         ))
 
     # ---- packets
@@ -808,3 +821,30 @@ def load_review(
     review.decisions = read_decisions(root)
     review.signoff = read_signoff(root)
     return review
+
+
+def verification_counts(review: "KeyReview") -> dict[str, Any]:
+    """Stage 7: the honest one-line status of the answer key.
+
+    expert_verified  VERIFIED: resolved, judged and signed off by a named reviewer (the only verified state)
+    accepted_unsigned ACCEPTED by a reviewer but not yet signed off (NOT counted as verified)
+    disputed         CORRECTED (the draft key was wrong) or REJECTED (the row is unusable)
+    pending          everything else: UNREVIEWED, REQUIRES_SME, NEEDS_RESEARCH
+    """
+    counts = {"total": len(review.benchmark.questions), "expert_verified": 0, "accepted_unsigned": 0, "disputed": 0, "pending": 0}
+    reasons: dict[str, int] = {}
+    for q in review.benchmark.questions:
+        state = review.state(q.question_id)
+        if state == STATE_VERIFIED:
+            counts["expert_verified"] += 1
+        elif state == STATE_ACCEPTED:
+            counts["accepted_unsigned"] += 1
+        elif state in (STATE_CORRECTED, STATE_REJECTED):
+            counts["disputed"] += 1
+        else:
+            counts["pending"] += 1
+        d = review.latest(q.question_id)
+        if d is not None and d.reason_category:
+            reasons[d.reason_category] = reasons.get(d.reason_category, 0) + 1
+    counts["reason_categories"] = reasons
+    return counts

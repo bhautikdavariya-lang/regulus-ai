@@ -44,8 +44,17 @@ class ModelConfig:
     # base model. `model.adapter` in the YAML, REGULUS_ADAPTER in the
     # environment ("none" or empty clears it).
     adapter: Path | None = None
+    # Stage 7: where generation runs. "transformers" = in-process (default); "openai_compatible" = an HTTP
+    # server speaking the OpenAI chat-completions API (vLLM, TGI, llama.cpp, MLX-LM: remote or quantized
+    # models) at `endpoint`. The API key, when needed, is read from REGULUS_MODEL_API_KEY only.
+    backend: str = "transformers"
+    endpoint: str | None = None
 
     def validate(self) -> None:
+        if self.backend not in ("transformers", "openai_compatible"):
+            raise ConfigError(f"Invalid backend {self.backend!r}; use transformers or openai_compatible")
+        if self.backend == "openai_compatible" and not self.endpoint:
+            raise ConfigError("backend openai_compatible needs model.endpoint (or REGULUS_MODEL_ENDPOINT)")
         if not _MODEL_ID_RE.match(self.id):
             raise ConfigError(
                 f"Invalid model id {self.id!r}; expected '<org>/<name>' (e.g. Qwen/Qwen3-0.6B)"
@@ -162,6 +171,8 @@ def load_settings(config_path: str | Path | None = None, *, use_dotenv: bool = T
         dtype=(_env("DTYPE") or str(model_data.get("dtype", "auto"))).lower(),
         adapter=_adapter_path(os.environ[ENV_PREFIX + "ADAPTER"] if ENV_PREFIX + "ADAPTER" in os.environ
                               else model_data.get("adapter")),
+        backend=(_env("MODEL_BACKEND") or str(model_data.get("backend", "transformers"))).lower(),
+        endpoint=_env("MODEL_ENDPOINT") or model_data.get("endpoint"),
     )
     model.validate()
 

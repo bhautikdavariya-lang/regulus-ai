@@ -31,6 +31,7 @@ inside its tier, which the registry already did.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
@@ -274,6 +275,31 @@ def is_complete_sentence(text: str) -> bool:
     return (text or "").rstrip().endswith(_SENTENCE_END)
 
 
+def _identity(evidence) -> tuple[str, str] | None:
+    """(section, paragraph path) of an eCFR row, from its citation label ("21 CFR 830.20(b)(1)")."""
+    m = re.match(r"^\d+ CFR (\d{1,4}\.\d{1,4}[a-z]?)((?:\([a-z0-9]{1,4}\))*)$", evidence.citation or "")
+    return (m.group(1), m.group(2)) if m else None
+
+
+def completed_by_protected_children(item, selection: Selection) -> bool:
+    """A requested provision whose text is not a complete sentence reads correctly when the chain it belongs
+    to is present: its own subparagraphs (a lead-in, "A unique device identifier (UDI) must:") or its parent
+    lead-in (a list item, "(a) Be issued under ...;") among the protected evidence. Related material is then
+    not needed (Stage 8: 21 CFR 830.20 kept an off-target guidance chunk, and the model looped on it). A
+    fragment whose chain is NOT present (S5-032, S5-101: requested list items without their lead-in) keeps
+    the full context, as in Stage 6."""
+    own = _identity(item.evidence)
+    if own is None:
+        return False
+    section, path = own
+    for o in selection.selected:
+        if o is item or not o.protected or (oid := _identity(o.evidence)) is None or oid[0] != section:
+            continue
+        if oid[1].startswith(path + "(") or (path.startswith(oid[1] + "(") or (path and not oid[1])):
+            return True
+    return False
+
+
 def required_only(selection: Selection) -> Selection:
     """Only the required (protected) evidence, re-indexed 1..n.
 
@@ -288,3 +314,70 @@ def required_only(selection: Selection) -> Selection:
                                         for s in selection.selected if not s.protected)
     return Selection(items, dropped, selection.policy, sum(s.chars for s in items),
                      {**selection.diagnostics, "required_only": True, "optional_count": 0})
+
+
+# ---------------------------------------------------------------- evidence consolidation (Stage 8)
+
+_RESERVED_RE = re.compile(r"^\W*(?:\([a-z0-9]{1,4}\)\s*)*\[?\s*reserved\s*\]?\W*$", re.I)
+
+
+def _normalised(text: str) -> str:
+    return re.sub(r"\W+", " ", (text or "").lower()).strip()
+
+
+def _trigrams(text: str) -> set[tuple[str, ...]]:
+    w = _normalised(text).split()
+    return {tuple(w[i:i + 3]) for i in range(len(w) - 2)}
+
+
+NEAR_DUPLICATE_MIN = 0.9  # share of the shorter chunk's word 3-grams found in the other
+
+
+def consolidate_evidence(selection: Selection) -> tuple[Selection, dict[str, Any]]:
+    """One evidence item per distinct passage, before the prompt is built (Stage 8).
+
+    * a content-free "[Reserved]" row is dropped, unless it is the only exact evidence of a requested
+      provision (the answer must then be able to say the provision is reserved);
+    * identical text (after normalising case, spacing and punctuation) is kept once WHEN it is the same
+      provision, or is not a CFR provision (guidance chunks); identical wording in two different provisions
+      (21 CFR 117.180(d) and 507.53(d)) stays: they are different rules;
+    * near-duplicate guidance chunks (>= 90 % of the shorter chunk's 3-grams in the other) are kept once;
+      CFR provisions are never merged by similarity (21 CFR 111.155(a), 111.160(a), 111.165(a) share
+      wording but are different provisions).
+    The first occurrence in selection order (the strongest) is kept; every removal is recorded.
+    """
+    kept: list[SelectedEvidence] = []
+    removed: list[dict[str, Any]] = []
+    sole_exact: dict[str, int] = {}
+    for s in selection.selected:
+        for rid in s.evidence.satisfies:
+            sole_exact[rid] = sole_exact.get(rid, 0) + 1
+    for s in selection.selected:
+        ident = _identity(s.evidence)
+        norm = _normalised(s.text)
+        if _RESERVED_RE.match(s.text or "") and not any(sole_exact.get(rid) == 1 for rid in s.evidence.satisfies):
+            removed.append({"key": s.evidence.key, "citation": s.evidence.citation, "reason": "reserved (no content)"})
+            continue
+        duplicate_of = None
+        for k in kept:
+            k_ident = _identity(k.evidence)
+            if _normalised(k.text) == norm and (ident is None or k_ident is None or ident == k_ident):
+                duplicate_of = k
+                break
+            if ident is None and k_ident is None and s.evidence.corpus == k.evidence.corpus != "ecfr":
+                a, b = _trigrams(s.text), _trigrams(k.text)
+                if a and b and len(a & b) / min(len(a), len(b)) >= NEAR_DUPLICATE_MIN:
+                    duplicate_of = k
+                    break
+        if duplicate_of is not None:
+            removed.append({"key": s.evidence.key, "citation": s.evidence.citation, "reason": "duplicate", "kept": duplicate_of.evidence.key})
+            continue
+        kept.append(s)
+    if not removed:
+        return selection, {"removed": []}
+    items = tuple(SelectedEvidence(i, s.evidence, s.text, s.truncated, s.protected, s.reason, s.chars) for i, s in enumerate(kept, start=1))
+    dropped = selection.dropped + tuple(DroppedEvidence(next(s.evidence for s in selection.selected if s.evidence.key == r["key"]),
+                                                         "consolidated_" + ("reserved" if r["reason"].startswith("reserved") else "duplicate"), False)
+                                        for r in removed)
+    return (Selection(items, dropped, selection.policy, sum(s.chars for s in items), {**selection.diagnostics, "consolidated": removed}),
+            {"removed": removed})

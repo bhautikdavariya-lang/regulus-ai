@@ -118,6 +118,10 @@ _SHAPE_WORDS = {
     "firms", "establishment", "establishments", "under", "per", "pursuant", "mean", "means", "meant", "definition",
     "define", "similarity", "similarities", "distinguish", "related", "relate", "relates", "high", "level", "gist",
     "short", "main", "key", "important", "ecfr", "c.f.r", "cfr", "21", "title", "regulation", "regulations",
+    # Stage 8: question verbs of "what does X ...?" name no topic ("What does 21 CFR 830.20 address?" had focus "address")
+    "address", "addresses", "addressed", "concern", "concerns", "govern", "governs", "regulate", "regulates",
+    "establish", "establishes", "specify", "specifies", "prescribe", "prescribes", "mandate", "mandates",
+    "stipulate", "stipulates", "deal", "deals", "talk", "talks", "about", "cover", "covered",
 }
 _WORD_RE = re.compile(r"[a-z][a-z'-]{2,}")
 

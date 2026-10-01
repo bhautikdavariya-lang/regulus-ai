@@ -22,7 +22,7 @@ from regulus.planning.intent import TYPE_DEFINITION, TYPE_EXPLANATION, TYPE_REQU
 from regulus.rag import answerability as A
 from regulus.rag.answer_quality import out_of_scope_answer
 from regulus.rag.evidence_values import requested_value_kind, value_kind_label
-from regulus.rag.generation import UNVALIDATED_PREFIX, extractive_answer, extractive_items
+from regulus.rag.generation import UNVALIDATED_PREFIX, extractive_answer, verbatim_requested
 from regulus.rag.prompt import NO_CONTEXT_ANSWER, incomplete_coverage_answer
 
 # fallback types (recorded in metadata and traces)
@@ -35,8 +35,9 @@ FB_NO_EVIDENCE = "no_evidence"
 FB_VALUE_NOT_ESTABLISHED = "value_not_established"
 FB_VERBATIM_PROVISION = "verbatim_requested_provision"   # the repair quoted the requested provision (allowed)
 FB_UNVALIDATED = "unvalidated_answer_withheld"           # generated answer withheld, nothing quoted
+FB_PREMISE_NOT_ESTABLISHED = "premise_not_established"  # Stage 7: a yes/no premise the identified provision does not state
 FALLBACK_TYPES = (FB_OUT_OF_SCOPE, FB_UNSUPPORTED_REQUEST, FB_AMBIGUOUS, FB_WRONG_PROVISION, FB_PROVISION_NOT_FOUND,
-                  FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED)
+                  FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED, FB_PREMISE_NOT_ESTABLISHED)
 
 QUOTABLE_QUESTION_TYPES = (TYPE_REQUIREMENT, TYPE_EXPLANATION, TYPE_DEFINITION)
 
@@ -90,6 +91,10 @@ def blocked_answer(decision: A.AnswerabilityDecision, sources, notes=(), missing
     """(answer text, fallback type) for a decision the gate blocked."""
     state, conditions = decision.state, decision.blocking_conditions
     listed = consulted(sources)
+    if state == A.OUT_OF_SCOPE and "general_knowledge" in conditions:
+        return ("This does not appear to be a regulatory question. Regulus AI answers questions about U.S. FDA regulations "
+                "(21 CFR) and FDA guidance from verified sources, and none of them addresses this question, so no answer is "
+                "given."), FB_OUT_OF_SCOPE
     if state == A.OUT_OF_SCOPE:
         return out_of_scope_answer(decision.reason.removeprefix("the question ")), FB_OUT_OF_SCOPE
     if state == A.UNSUPPORTED_REQUEST:
@@ -125,11 +130,18 @@ def unvalidated_answer(package, sources, *, quote: bool, requirement_ids=None) -
     """(answer text, fallback type) when a generated answer failed validation and cannot be shown.
     With `quote` the verbatim text of the requested provisions is given, which is grounded by construction."""
     if quote:
-        plan = package.answer_plan
-        if requirement_ids is None and plan is not None and plan.shape.exhaustive and plan.material_items():
-            # an exhaustive request ("list all", "(a) through (e)"): every item of what was asked, verbatim
-            return f"{UNVALIDATED_PREFIX}\n{extractive_items(package, plan.material_items())}", FB_VERBATIM_PROVISION
+        if requirement_ids is None:
+            return f"{UNVALIDATED_PREFIX}\n{verbatim_requested(package)}", FB_VERBATIM_PROVISION
         return f"{UNVALIDATED_PREFIX}\n{extractive_answer(package, requirement_ids)}", FB_VERBATIM_PROVISION
     return ("The generated answer could not be validated against the retrieved regulatory evidence, so it is not shown. "
             "The retrieved sources were not verified to answer the question as asked, so their text is not quoted as an "
             f"answer. {consulted(sources)}").strip(), FB_UNVALIDATED
+
+
+def premise_not_established(package, terms) -> tuple[str, str]:
+    """Stage 7: a yes/no answer affirmed terms that the identified provision's text does not contain. The
+    grounded statement is that the retrieved text does not state them; the provision is quoted verbatim.
+    Only for identified provisions (the caller checks `provision_is_identified`)."""
+    listed = ", ".join(f'"{t}"' for t in terms)
+    return (f"The retrieved text of the requested provision does not state {listed}. What it says, verbatim:\n"
+            f"{extractive_answer(package)}"), FB_PREMISE_NOT_ESTABLISHED

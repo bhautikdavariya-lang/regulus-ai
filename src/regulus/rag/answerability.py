@@ -97,7 +97,7 @@ def reference_targets(plan) -> list[str]:
     return out
 
 
-def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool) -> AnswerabilityDecision:
+def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool, general_knowledge: str | None = None) -> AnswerabilityDecision:
     """The answerability of one question. `sources` are the context sources that would be placed
     in the prompt (anything with .text, and .result.key or .evidence_id to identify it)."""
     texts = [s.text for s in sources]
@@ -112,6 +112,9 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
     # 1. scope: decided from the question (a named non-U.S. framework, no U.S. reference, no CFR provision)
     if analysis.scope_status == SCOPE_OUT:
         return d(OUT_OF_SCOPE, f"the question {analysis.scope_reason}", PROVEN, ("scope",))
+    if general_knowledge:
+        # Stage 7 scope policy (regulus.retrieval.domain): three independent signals agree
+        return d(OUT_OF_SCOPE, f"the question {general_knowledge}", PROBABLE, ("general_knowledge",))
     # 2. requests the sources cannot answer by their nature
     if _DETERMINATION_RE.search(question):
         return d(UNSUPPORTED_REQUEST, "the question asks for a determination about a particular case or a prediction, "

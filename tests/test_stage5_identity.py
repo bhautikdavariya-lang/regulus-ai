@@ -428,8 +428,10 @@ def test_g_the_fingerprint_is_deterministic_and_order_independent():
     assert a == pipeline_fingerprint(_config()) == pipeline_fingerprint(reordered)
     # version 2 since Stage 12 added prompt.answer_shape (docs/adaptive_answer_shape.md);
     # version 3 since the Stage 5 answerability gate added coverage.answerability;
-    # version 4 since Stage 6 added coverage.optional_context
-    assert a.version == 4 and a.algorithm == "sha256" and len(a.value) == 64
+    # version 4 since Stage 6 added coverage.optional_context; version 5 since Stage 7 added
+    # retrieval.semantic_fallback and coverage.scope_policy
+    # version 6 since Stage 8 added coverage.evidence_consolidation
+    assert a.version == 6 and a.algorithm == "sha256" and len(a.value) == 64
 
 
 @pytest.mark.parametrize("section,field,value", [

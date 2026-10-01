@@ -1,0 +1,94 @@
+{
+ "dataset": "/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/data/evaluation/datasets/retrieval_v2.jsonl",
+ "queries": 52,
+ "A_lexical_only": {
+  "recall@1": 0.73,
+  "recall@5": 0.757,
+  "recall@10": 0.757,
+  "mrr": 0.735,
+  "selected_evidence_recall": 0.757,
+  "positive_queries": 37,
+  "fallback_invoked": 0,
+  "scope_general_knowledge": 0
+ },
+ "B_semantic_fallback": {
+  "recall@1": 0.703,
+  "recall@5": 0.757,
+  "recall@10": 0.757,
+  "mrr": 0.715,
+  "selected_evidence_recall": 0.757,
+  "positive_queries": 37,
+  "fallback_invoked": 11,
+  "scope_general_knowledge": 0
+ },
+ "changes": {
+  "unchanged": {
+   "count": 36,
+   "ids": [
+    "retrieval-001",
+    "retrieval-002",
+    "retrieval-003",
+    "retrieval-004",
+    "retrieval-005",
+    "retrieval-006",
+    "retrieval-007",
+    "retrieval-009",
+    "retrieval-010",
+    "retrieval-011",
+    "retrieval-012",
+    "retrieval-013",
+    "retrieval-014",
+    "retrieval-015",
+    "retrieval-016",
+    "retrieval-017",
+    "retrieval-018",
+    "retrieval-019",
+    "retrieval-020",
+    "retrieval-021",
+    "retrieval-022",
+    "retrieval-023",
+    "retrieval-024",
+    "retrieval-025",
+    "retrieval-027",
+    "retrieval-028",
+    "retrieval-029",
+    "retrieval-030",
+    "retrieval-031",
+    "retrieval-032",
+    "retrieval-033",
+    "retrieval-034",
+    "retrieval-036",
+    "retrieval-037",
+    "retrieval-038",
+    "retrieval-039"
+   ]
+  },
+  "negative_control": {
+   "count": 15,
+   "ids": [
+    "retrieval-008",
+    "retrieval-035",
+    "retrieval-040",
+    "retrieval-041",
+    "retrieval-042",
+    "retrieval-043",
+    "retrieval-044",
+    "retrieval-045",
+    "retrieval-046",
+    "retrieval-047",
+    "retrieval-048",
+    "retrieval-049",
+    "retrieval-050",
+    "retrieval-051",
+    "retrieval-052"
+   ]
+  },
+  "degraded": {
+   "count": 1,
+   "ids": [
+    "retrieval-026"
+   ]
+  }
+ },
+ "negative_controls_with_a_match_B": []
+}

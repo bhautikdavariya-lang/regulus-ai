@@ -130,11 +130,18 @@ class Engine:
             from regulus.grounding import DatabaseIdentifierIndex, GroundingConfig, GroundingGate
 
             gate = GroundingGate(DatabaseIdentifierIndex(self.db), GroundingConfig(enabled=True), snapshot_date=self.snapshot)
+        # Stage 7: the answering pipeline's retriever (semantic fallback) and scope policy, built once
+        if getattr(self, "_retrieval", None) is None:
+            from regulus.retrieval.factory import build_retriever
+
+            self._retrieval = build_retriever(self.db, config, lexical=LexicalRetriever(self.db))
+        retriever, scope = self._retrieval
         pipeline = RagPipeline(
-            LexicalRetriever(self.db),
+            retriever,
             QwenGenerator(model, self.tokenizer, gen, self.settings.model.id),
             replace(config, top_k=top_k, generation_budget=budget),
             grounding=gate,
+            scope_policy=scope,
         )
         setup_ms = round((time.perf_counter() - t_setup) * 1000, 2)
         t_answer = time.perf_counter()
@@ -194,7 +201,8 @@ class Engine:
             "citation_support": out.metadata.get("citation_support"),
             # Stage 5 answerability gate and safe fallback (diagnostics panel only)
             **{k: out.metadata.get(k) for k in ("answerability", "generation_called", "generation_blocked", "block_reason",
-                                                "fallback_type", "fallback_reason")},
+                                                "fallback_type", "fallback_reason", "scope_policy", "semantic_fallback",
+                                                "reference_lookup")},
             "timings_ms": out.timings_ms,
             "input_tokens": out.input_tokens,
             "output_tokens": out.output_tokens,

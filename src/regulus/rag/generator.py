@@ -26,6 +26,8 @@ class QwenGenerator:
         self.tokenizer = tokenizer
         self.gen = gen
         self.model_id = model_id
+        # Stage 7: end sentence-repetition loops early (outcome-neutral; regulus.inference.repetition)
+        self.stop_repetition = True
 
     def generate(self, messages: list[Message], max_new_tokens: int | None = None, on_text=None) -> GenerationResult:
         """Stage 4: the pipeline passes the per-question token budget; the
@@ -40,7 +42,7 @@ class QwenGenerator:
             from regulus.inference.streaming import TextCallbackStreamer
 
             streamer = TextCallbackStreamer(self.tokenizer, on_text)
-        return generate_chat(self.model, self.tokenizer, messages, gen, streamer=streamer)
+        return generate_chat(self.model, self.tokenizer, messages, gen, streamer=streamer, stop_repetition=self.stop_repetition)
 
     def describe(self) -> dict[str, Any]:
         return {

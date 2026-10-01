@@ -172,7 +172,9 @@ function gateRows(r) {
   return `
         <tr><td>Answerability</td><td>${esc(a.state)} · ${esc(a.confidence)}${a.acted_on ? "" : " (gate off)"}</td></tr>
         <tr><td>Generation</td><td>${r.generation_blocked ? "blocked: " + esc(r.block_reason || "") : "called"}</td></tr>
-        ${r.fallback_type ? `<tr><td>Fallback</td><td>${esc(r.fallback_type)}${r.fallback_reason ? " · " + esc(r.fallback_reason) : ""}</td></tr>` : ""}`;
+        ${r.fallback_type ? `<tr><td>Fallback</td><td>${esc(r.fallback_type)}${r.fallback_reason ? " · " + esc(r.fallback_reason) : ""}</td></tr>` : ""}
+        ${r.scope_policy ? `<tr><td>Scope</td><td>${esc(r.scope_policy.status)} · ${esc(r.scope_policy.reason)}</td></tr>` : ""}
+        ${r.semantic_fallback ? `<tr><td>Semantic fallback</td><td>${r.semantic_fallback.invoked ? "used (" + esc(r.semantic_fallback.lexical_insufficient || "") + ")" : "not needed"}${r.reference_lookup ? " · reference lookup: " + esc(r.reference_lookup.join(", ")) : ""}</td></tr>` : ""}`;
 }
 
 function timingRows(r) {

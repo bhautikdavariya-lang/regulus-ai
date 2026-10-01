@@ -41,6 +41,8 @@ from regulus.rag import RagPipeline, load_qwen_generator
 from regulus.rag.generation import build_grounded_messages, build_package
 from regulus.rag.validation import validate_answer
 from regulus.retrieval import Database, LexicalRetriever
+from regulus.retrieval.factory import build_retriever
+from regulus.rag.remote_generator import load_generator
 from regulus.stage5.generation_eval import claims, controlled_selection, fabricated_identifiers
 from regulus.system_identity import configured_generation_config, configured_rag_config
 
@@ -188,12 +190,101 @@ def matrix(rows: list[dict]) -> str:
     return "\n".join(lines)
 
 
+class ReplayMismatch(RuntimeError):
+    """The pipeline built a prompt the recorded run never saw: its output cannot be replayed."""
+
+
+class ReplayGenerator:
+    """Stage 7 offline replay. Returns a recorded raw model output only for the exact recorded prompt
+    (SHA-256 of the messages); anything else raises ReplayMismatch. Greedy decoding is deterministic
+    (10/10 repeats in Stages 5 and 6), so for an unchanged prompt this is the output the model would give."""
+
+    def __init__(self, run_dir: Path) -> None:
+        from regulus.observability.trace import sha256
+        self._sha = sha256
+        self.by_hash, self.controlled, self.model = {}, {}, {}
+        for line in (run_dir / "traces.jsonl").read_text(encoding="utf-8").splitlines():
+            t = json.loads(line)
+            if t.get("prompt_hash") and t.get("raw_model_output") is not None:
+                self.by_hash.setdefault(t["prompt_hash"], t)
+            self.controlled.setdefault(t["question_id"], t.get("controlled"))
+            self.model = self.model or (t.get("model") or {})
+        self.tokenizer = None
+
+    def generate(self, messages, max_new_tokens=None, on_text=None):
+        t = self.by_hash.get(self._sha(messages))
+        if t is None:
+            raise ReplayMismatch("no recorded output for this prompt")
+        return GenerationResult("", t["raw_model_output"], t.get("prompt_token_count") or 0, t.get("output_token_count") or 0,
+                                (t.get("timings_ms") or {}).get("generation_ms", 0.0) / 1000.0, finished=t.get("finished"))
+
+    def controlled_for(self, qid):
+        return self.controlled.get(qid)
+
+    def describe(self):
+        return {**self.model, "replayed": True}
+
+
+def reproducibility(settings, config, retriever, info) -> dict:
+    """What a later run must match to be comparable (Stage 7): model, weights, prompt, pipeline, code."""
+    import hashlib
+    import subprocess
+    from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT
+    from regulus.system_identity import pipeline_config
+
+    def git(*a):
+        try:
+            return subprocess.run(["git", *a], cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=10).stdout.strip() or None
+        except Exception:
+            return None
+    weights = sorted(Path(settings.model.cache_dir).glob(f"models--{settings.model.id.replace('/', '--')}/snapshots/*/model.safetensors"))
+    weights_sha = None
+    if weights:
+        h = hashlib.sha256()
+        with weights[0].resolve().open("rb") as f:
+            for chunk in iter(lambda: f.read(1 << 24), b""):
+                h.update(chunk)
+        weights_sha = h.hexdigest()
+    return {"model_id": info.get("model_id"), "model_revision": info.get("model_revision"), "weights_sha256": weights_sha,
+            "device": info.get("device"), "dtype": info.get("dtype"), "decoding": (info.get("generation") or {}),
+            "system_prompt_sha256": hashlib.sha256(GROUNDED_SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
+            "pipeline_config": pipeline_config(config), "retriever": (retriever.describe() if hasattr(retriever, "describe") else None),
+            "git_commit": git("rev-parse", "HEAD"), "git_dirty": bool(git("status", "--porcelain"))}
+
+
+def outcome_counts(rows) -> dict:
+    """Stage 7: what the user received, per keyed question - never merged. correct = PASS;
+    safe_withheld = not PASS and the answer is a deterministic decline/fallback (nothing unsupported shown);
+    unsupported = unsupported content or an out-of-scope answer reached the user; incorrect = the rest."""
+    out = Counter()
+    for r in rows:
+        d, t, exp = r["diag"], r["trace"], r["exp"]
+        if exp.get("expected_behavior") is None:
+            out["unverified"] += 1
+            continue
+        if d["final_status"] == "PASS":
+            out["correct"] += 1
+        elif d["final_status"] == "NEEDS_REVIEW":
+            out["needs_review"] += 1
+        elif t.get("fallback_type") or not t.get("model_called"):
+            out["safe_withheld"] += 1
+        elif any(f["failure_class"] in ("F07", "F02") and f["confidence"] in ("proven", "probable") and f["severity"] != "minor"
+                 for f in d["failures"]):
+            out["unsupported"] += 1
+        else:
+            out["incorrect"] += 1
+    return dict(out)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--ids", nargs="*", default=None)
     ap.add_argument("--label", default="stage4_baseline")
     ap.add_argument("--repeat", type=int, default=0, help="re-run the first N generated questions to check determinism")
     ap.add_argument("--no-controlled", action="store_true")
+    ap.add_argument("--replay-from", default=None, help="Stage 7: answer every question with the pipeline, but take the model output "
+                                                        "from this run's traces when the prompt hash matches (no model loaded); questions "
+                                                        "whose prompt changed are listed as needing live generation")
     ap.add_argument("--from-traces", default=None, help="re-diagnose a saved run (no generation): rebuilds the evidence from the "
                                                           "database, verifies it against the trace hashes, re-applies the rules")
     args = ap.parse_args()
@@ -207,20 +298,30 @@ def main() -> int:
     settings.generation = configured_generation_config(settings)
     if args.from_traces:
         return rediagnose(Path(args.from_traces), items, out_dir, settings)
-    generator = load_qwen_generator(settings, local_files_only=True)
+    replay = ReplayGenerator(Path(args.replay_from)) if args.replay_from else None
+    generator = replay or load_generator(settings, local_files_only=True)   # Stage 7: the configured backend
     db = Database.from_env()
     db.connect()
     config = configured_rag_config(settings)
-    pipeline = RagPipeline(LexicalRetriever(db), generator, config)
+    retriever, scope = build_retriever(db, config)   # Stage 7: the answering pipeline's own retriever and scope policy
+    pipeline = RagPipeline(retriever, generator, config, scope_policy=scope)
     info = generator.describe()
-    rows = []
+    rows, not_replayable = [], []
     with (out_dir / "traces.jsonl").open("w", encoding="utf-8") as tf, (out_dir / "diagnoses.jsonl").open("w", encoding="utf-8") as df:
         for n, exp in enumerate(items, start=1):
             t0 = time.perf_counter()
-            out = pipeline.answer(exp["question"])
-            trace = build_trace(out, question_id=exp["id"], generator_info=info, config=config.to_dict(), tokenizer=generator.tokenizer)
+            try:
+                out = pipeline.answer(exp["question"])
+            except ReplayMismatch as exc:
+                not_replayable.append({"question_id": exp["id"], "reason": str(exc)})
+                print(f"{n:3}/{len(items)} {exp['id']:10} NOT REPLAYABLE (prompt changed; needs live generation)", flush=True)
+                continue
+            trace = build_trace(out, question_id=exp["id"], generator_info=info, config=config.to_dict(), tokenizer=getattr(generator, "tokenizer", None))
             heuristics(out, trace)
-            ctrl = None if args.no_controlled else controlled(pipeline, out)
+            if replay is not None:
+                ctrl = replay.controlled_for(exp["id"]) if out.model_called and not args.no_controlled else None
+            else:
+                ctrl = None if args.no_controlled else controlled(pipeline, out)
             trace["controlled"] = ctrl
             diag = diagnose(trace, exp, ctrl)
             rows.append({"exp": exp, "trace": trace, "diag": diag})
@@ -231,7 +332,7 @@ def main() -> int:
             print(f"{n:3}/{len(items)} {exp['id']:10} {diag['final_status']:24} primary={diag['primary'] or '-':8} "
                   f"{[f['failure_class'] for f in diag['failures']]} {time.perf_counter() - t0:.1f}s", flush=True)
     determinism = []
-    if args.repeat:
+    if args.repeat and replay is None:
         for r in [r for r in rows if r["trace"]["model_called"]][: args.repeat]:
             again = pipeline.answer(r["exp"]["question"])
             determinism.append({"question_id": r["exp"]["id"],
@@ -240,11 +341,13 @@ def main() -> int:
     db.close()
     write_reports(rows, out_dir, determinism, info={"model": info.get("model_id"), "revision": info.get("model_revision"),
                                                     "device": info.get("device"), "dtype": info.get("dtype")},
-                  config_desc={"answer_shape": config.answer_shape, "validation": config.validation_behavior})
+                  config_desc={"answer_shape": config.answer_shape, "validation": config.validation_behavior},
+                  extra={"reproducibility": reproducibility(settings, config, retriever, info),
+                         "replay": {"source": args.replay_from, "not_replayable": not_replayable} if replay else None})
     return 0
 
 
-def write_reports(rows, out_dir, determinism, info, config_desc):
+def write_reports(rows, out_dir, determinism, info, config_desc, extra=None):
     primaries = Counter(r["diag"]["primary"] for r in rows if r["diag"]["primary"])
     by_module = Counter(FAILURE_CLASSES[c].module for c in [r["diag"]["primary"] for r in rows if r["diag"]["primary"]])
     all_records = Counter(f["failure_class"] for r in rows for f in r["diag"]["failures"])
@@ -253,7 +356,8 @@ def write_reports(rows, out_dir, determinism, info, config_desc):
                "all_failure_records_by_class": dict(all_records.most_common()),
                "severity_of_primary": dict(Counter(f["severity"] for r in rows for f in r["diag"]["failures"] if f["primary"])),
                "primary_by_confidence": dict(Counter(f["confidence"] for r in rows for f in r["diag"]["failures"] if f["primary"])),
-               "determinism": determinism, "scorecard": scorecard(rows), "configuration": {**info, **config_desc}}
+               "determinism": determinism, "scorecard": scorecard(rows), "configuration": {**info, **config_desc},
+               "outcomes": outcome_counts(rows), **(extra or {})}
     (out_dir / "scorecard.json").write_text(json.dumps(summary, indent=1, default=dict), encoding="utf-8")
     (out_dir / "root_cause_matrix.md").write_text("# Root-cause matrix\n\n" + matrix(rows) + "\n", encoding="utf-8")
     print(json.dumps({k: summary[k] for k in ("final_status", "primary_failure_by_class", "primary_failure_by_module", "all_failure_records_by_class", "determinism")}, indent=1))

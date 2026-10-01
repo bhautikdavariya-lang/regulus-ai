@@ -485,6 +485,18 @@ def extractive_answer(package: GenerationPackage, requirement_ids: tuple[str, ..
     return "\n".join(blocks)
 
 
+def verbatim_requested(package: GenerationPackage) -> str:
+    """The verbatim text of what was requested (Stage 7: one definition for repair and fallback).
+    An exhaustive request ("list all", "(a) through (e)", several provisions enumerated) gets every
+    material item of its answer plan; otherwise each requested provision's exact sources."""
+    plan = package.answer_plan
+    if plan is not None and plan.shape.exhaustive and plan.material_items():
+        missing = tuple(rid for rid, _ in package.requirements if rid not in package.satisfied_ids)
+        text = extractive_items(package, plan.material_items())
+        return text + ("\n" + extractive_answer(package, missing) if missing else "")  # "X: not found ..." lines
+    return extractive_answer(package)
+
+
 def extractive_items(package: GenerationPackage, indices: tuple[int, ...] | list[int]) -> str:
     """Verbatim text of specific sources (Stage 12: enumeration items the answer left out)."""
     blocks: list[str] = []

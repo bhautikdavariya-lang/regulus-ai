@@ -16,6 +16,8 @@ from typing import TYPE_CHECKING, Any
 
 from regulus.inference.types import GenerationResult
 from regulus.planning import QueryPlan, plan_query
+from regulus.planning.plan import KIND_GENERAL
+from regulus.retrieval.domain import GENERAL_KNOWLEDGE
 from regulus.planning.intent import SCOPE_MIXED, SCOPE_OUT, TYPE_CITATION, QuestionAnalysis, analyze_question
 from regulus.planning.shape import MODE_COMPARISON, MODE_ENUMERATION, MODE_FOCUSED, AnswerShape, analyze_shape
 from regulus.rag import answerability as gate
@@ -32,12 +34,30 @@ from regulus.rag.generation import (
     build_package,
     extractive_answer,
     extractive_items,
+    verbatim_requested,
 )
-from regulus.rag.fallback import FB_UNVALIDATED, blocked_answer, quoting_allowed, unvalidated_answer
-from regulus.rag.selection import Selection, is_complete_sentence, required_only, select_evidence
+from regulus.rag.fallback import (
+    FB_UNVALIDATED,
+    blocked_answer,
+    premise_not_established,
+    provision_is_identified,
+    quoting_allowed,
+    unvalidated_answer,
+)
+from regulus.rag.selection import (
+    Selection,
+    completed_by_protected_children,
+    consolidate_evidence,
+    is_complete_sentence,
+    required_only,
+    select_evidence,
+)
 from regulus.rag.shape_validation import ENUMERATION_INCOMPLETE, MATERIAL_GROUP_UNCOVERED
+from regulus.inference.repetition_text import drop_duplicate_sentences, repeated_sentence
+from regulus.rag.claim_validation import INVENTED_CONDITION, PARAGRAPH_MISATTRIBUTION, UNSUPPORTED_PREMISE
 from regulus.rag.validation import (
     CITATION_MISMATCH,
+    INVALID_CITATION,
     PROVISION_CITATION_MISMATCH,
     REFUSAL_WITH_EVIDENCE,
     STATUS_CITATION_INVALID,
@@ -109,6 +129,16 @@ class RagConfig:
     # and keeps optional supporting/discovery sources only when something requested is missing
     # or no provision was requested; "always" restores the Stage 5 context, for measurement.
     optional_context: str = "incomplete_only"
+    # Stage 7 (docs/retrieval_validation_stage7.md): "general_knowledge" declines a question that names no
+    # provision, uses no word of the database's own regulatory vocabulary and matches no passage
+    # (regulus.retrieval.domain); "off" disables it. Acts only when the pipeline is given a ScopePolicy.
+    scope_policy: str = "general_knowledge"
+    # Stage 7: "on" = the retriever built by regulus.retrieval.factory adds semantic search as a fallback for
+    # insufficient lexical evidence (regulus.retrieval.fallback); "off" = lexical only.
+    semantic_fallback: str = "on"
+    # Stage 8 (docs/generation_control_stage8.md): "on" = drop content-free [Reserved] rows and duplicate passages
+    # before the prompt (regulus.rag.selection.consolidate_evidence); "off" = previous behaviour.
+    evidence_consolidation: str = "on"
 
     def __post_init__(self) -> None:
         if self.top_k <= 0:
@@ -125,6 +155,12 @@ class RagConfig:
             raise ValueError("answerability must be 'gate' or 'off'")
         if self.optional_context not in ("incomplete_only", "always"):
             raise ValueError("optional_context must be 'incomplete_only' or 'always'")
+        if self.scope_policy not in ("general_knowledge", "off"):
+            raise ValueError("scope_policy must be 'general_knowledge' or 'off'")
+        if self.evidence_consolidation not in ("on", "off"):
+            raise ValueError("evidence_consolidation must be 'on' or 'off'")
+        if self.semantic_fallback not in ("on", "off"):
+            raise ValueError("semantic_fallback must be 'on' or 'off'")
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -140,6 +176,9 @@ class RagConfig:
             "answer_shape": self.answer_shape,
             "answerability": self.answerability,
             "optional_context": self.optional_context,
+            "scope_policy": self.scope_policy,
+            "semantic_fallback": self.semantic_fallback,
+            "evidence_consolidation": self.evidence_consolidation,
             "context": self.context.to_dict(),
         }
 
@@ -208,7 +247,8 @@ class RagGenerationResult(GenerationResult):
 
 
 class RagPipeline:
-    def __init__(self, retriever: LexicalRetriever, generator: Generator, config: RagConfig | None = None, grounding=None) -> None:
+    def __init__(self, retriever: LexicalRetriever, generator: Generator, config: RagConfig | None = None, grounding=None,
+                 scope_policy=None) -> None:
         """`grounding` is an optional Stage 13 GroundingGate. It is None by
         default, so the Stage 6/7 pipeline is unchanged. When supplied it runs
         after retrieval and context construction and can replace the generated
@@ -218,10 +258,12 @@ class RagPipeline:
         self.generator = generator
         self.config = config or RagConfig()
         self.grounding = grounding
+        # Stage 7: regulus.retrieval.domain.ScopePolicy (None = no general-knowledge policy)
+        self.scope_policy = scope_policy
 
     # -- steps ---------------------------------------------------------------
 
-    def retrieve(self, question: str, plan: QueryPlan | None = None) -> tuple[SearchResponse, EvidenceRegistry | None]:
+    def retrieve(self, question: str, plan: QueryPlan | None = None, reference_targets: tuple[str, ...] = ()) -> tuple[SearchResponse, EvidenceRegistry | None]:
         """Stage 2: plan-driven retrieval when the retriever supports it.
 
         The plan is built once per question (here if the caller did not pass
@@ -233,7 +275,10 @@ class RagPipeline:
         if run_plan is None:
             return self.retriever.run(question, corpus=self.config.corpus, top_k=self.config.top_k, filters=Filters()), None
         plan = plan if plan is not None else plan_query(question)
-        out = run_plan(plan, corpus=self.config.corpus, top_k=self.config.top_k, filters=Filters())
+        kwargs = {}
+        if reference_targets and "reference_targets" in inspect.signature(run_plan).parameters:
+            kwargs["reference_targets"] = tuple(reference_targets)
+        out = run_plan(plan, corpus=self.config.corpus, top_k=self.config.top_k, filters=Filters(), **kwargs)
         return out.response, out.registry
 
     def is_useful(self, r: RetrievalResult) -> bool:
@@ -268,6 +313,21 @@ class RagPipeline:
                             rationale="a citation lookup: name the provision that answers, not every provision")
         return shape, analysis
 
+    def reference_lookup_plan(self, plan: QueryPlan) -> tuple[QueryPlan, tuple[str, ...]]:
+        """Stage 7: a citation lookup whose only named provisions are the ones being REFERRED TO
+        ("cite the provision that requires ... meeting part 803 criteria") asks for an unnamed provision.
+        With a retriever that can search by content (the semantic fallback), it is re-planned as a content
+        search constrained to evidence that mentions the referenced provision. Without one, the plan is
+        unchanged and the Stage 5 gate declines it (WRONG_PROVISION)."""
+        if self.config.answerability != "gate" or "reference_targets" not in inspect.signature(
+                getattr(self.retriever, "run_plan", lambda *a, **k: None)).parameters:
+            return plan, ()
+        targets = tuple(gate.reference_targets(plan))
+        if not targets or len(targets) != len(plan.requirements) or analyze_question(plan).question_type != TYPE_CITATION:
+            return plan, ()
+        return replace(plan, requirements=(), kind=KIND_GENERAL,
+                       notes=plan.notes + (f"reference lookup: {', '.join(targets)} is referred to, not asked for; searched by content",)), targets
+
     @staticmethod
     def is_subordinate(evidence: Evidence) -> bool:
         """A child paragraph of a requested provision: part of what was asked for."""
@@ -289,13 +349,17 @@ class RagPipeline:
         selection = self.select(registry, shape)
         if (self.config.optional_context == "incomplete_only" and coverage.explicit and coverage.complete
                 and not (shape is not None and shape.mode == MODE_COMPARISON)
-                and all(is_complete_sentence(s.text) for s in selection.selected if s.protected and s.evidence.tier == TIER_EXACT)):
+                and all(is_complete_sentence(s.text) or completed_by_protected_children(s, selection)
+                        for s in selection.selected if s.protected and s.evidence.tier == TIER_EXACT)):
             # Stage 6: the exact evidence is all the model needs, when it is complete text on its own.
             # Kept in full (the Stage 5 context): a comparison, which contrasts each side's applicability and
             # conditions carried by the parent/child paragraphs (AS-05 overstated a scope without them), and a
             # requested provision whose text is a lead-in or a chained fragment, which the model misreads
             # without its parent and siblings (S5-011, S5-032, S5-101). docs/generation_quality_stage6.md
             selection = required_only(selection)
+        if self.config.evidence_consolidation == "on":
+            # Stage 8: one evidence item per distinct passage before the prompt (regulus.rag.selection)
+            selection, _ = consolidate_evidence(selection)
         notes = list(response.notes)
         if coverage.state == STATE_INCOMPLETE:
             notes.append(coverage_note(coverage.missing_labels))
@@ -364,7 +428,7 @@ class RagPipeline:
         replace_all = report.status in (STATUS_EMPTY, STATUS_DEGENERATE, STATUS_UNSUPPORTED) or REFUSAL_WITH_EVIDENCE in codes
         if replace_all:
             if quote and package.satisfied_ids:
-                return f"{UNVALIDATED_PREFIX}\n{extractive_answer(package)}", "extractive_replacement"
+                return f"{UNVALIDATED_PREFIX}\n{verbatim_requested(package)}", "extractive_replacement"
             if sources is not None:
                 return unvalidated_answer(package, sources, quote=False)[0], FB_UNVALIDATED
             return UNVALIDATED_GENERAL, "safe_message"
@@ -372,19 +436,53 @@ class RagPipeline:
         if report.status == STATUS_CITATION_INVALID:
             text = strip_invalid_citations(text, report.invalid_citations)
             repairs.append("invalid_citations_removed")
+        def locate(normalized: str, sentence: str) -> str | None:
+            # the report's sentences come from the unrepaired text; invalid markers may since have been stripped
+            for candidate in (sentence, strip_invalid_citations(sentence, report.invalid_citations)):
+                if candidate and candidate in normalized:
+                    return candidate
+            return None
+
+        # Stage 7: a statement presented as provision X but worded from another provision is replaced IN PLACE by
+        # X's own verbatim text (its source is known: the finding's citation)
+        misattributed = [p for p in report.problems if p.code == PARAGRAPH_MISATTRIBUTION and p.severity == "error" and p.sentence]
+        if misattributed:
+            normalized = attach_trailing_markers(text)
+            for prob in misattributed:
+                found = locate(normalized, prob.sentence)
+                if found and prob.citation is not None:
+                    normalized = normalized.replace(found, extractive_items(package, (prob.citation,)) + "\n")
+            text = normalized.strip()
+            repairs.append("misattributed_statements_replaced")
         # a statement about a requested provision that cites unrelated sources is
         # removed and the provision's verbatim exact text takes its place
         mismatched = [p for p in report.problems if p.code in (CITATION_MISMATCH, PROVISION_CITATION_MISMATCH) and p.sentence]
         if mismatched:
             normalized = attach_trailing_markers(text)
             for prob in mismatched:
-                normalized = normalized.replace(prob.sentence, "")
+                found = locate(normalized, prob.sentence)
+                if found:
+                    normalized = normalized.replace(found, "")
             text = re.sub(r"[ \t]{2,}", " ", normalized).strip()
             affected = tuple(dict.fromkeys(p.requirement_id for p in mismatched if p.requirement_id)) or tuple(package.satisfied_ids)
             affected = tuple(r for r in affected if r not in unquotable)
             if affected:
                 text = (text.rstrip() + "\n" if text.strip() else "") + extractive_answer(package, affected)
             repairs.append("mismatched_statements_replaced")
+        # Stage 7: a statement carrying a condition that no supplied source contains is removed (nothing is added
+        # in its place: the condition has no source to restore)
+        # Only when the rest of the answer had no substantive error: removing sentences from an answer that is
+        # failing for another reason could leave a plausible remainder that no check can see is wrong.
+        invented = [p for p in report.problems if p.code == INVENTED_CONDITION and p.severity == "error" and p.sentence]
+        substantive = {p.code for p in report.errors} - {INVENTED_CONDITION, INVALID_CITATION}
+        if invented and not substantive:
+            normalized = attach_trailing_markers(text)
+            for prob in invented:
+                found = locate(normalized, prob.sentence)
+                if found:
+                    normalized = normalized.replace(found, "")
+            text = re.sub(r"[ \t]{2,}", " ", normalized).strip()
+            repairs.append("invented_conditions_removed")
         missing = tuple(r for r in report.unaddressed if not any(p.requirement_id == r for p in mismatched) and r not in unquotable)
         if missing:
             text = (text.rstrip() + "\n" if text.strip() else "") + extractive_answer(package, missing)
@@ -420,6 +518,13 @@ class RagPipeline:
         fallback_type and fallback_reason."""
         gate_on = self.config.answerability == "gate"
         quote = quoting_allowed(question, plan, shape, analysis, package) if gate_on else True
+        premise = [p for p in report.problems if p.code == UNSUPPORTED_PREMISE and p.severity == "error"]
+        if gate_on and premise and provision_is_identified(plan, package):
+            # Stage 7: a yes/no answer affirmed what the identified provision does not state
+            terms = re.findall(r"'([^']+)'", premise[0].detail) or [premise[0].detail]
+            text, fallback_type = premise_not_established(package, terms)
+            return {"text": text, "repair": fallback_type, "repair_output": text, "final": validate_answer(text, package, gen),
+                    "fallback_type": fallback_type, "fallback_reason": f"the answer affirmed a premise the provision does not state: {premise[0].detail}"}
         kwargs = ({"quote": quote, "unquotable": frozenset(r.id for r in plan.requirements if r.reference.section is None),
                    "sources": sources} if gate_on else {})
         text, repair = self.repair_answer(text, package, report, **kwargs)
@@ -453,10 +558,15 @@ class RagPipeline:
         timings: dict[str, float] = {}
         t0 = time.perf_counter()
         plan = plan_query(question)  # Stage 1: the one and only parse of the question
+        original_plan = plan
+        plan, reference_targets = self.reference_lookup_plan(plan)
         # Stage 12 shape + Stage 3 question analysis (None unless "structured"), decided in one place
         shape, analysis = self.question_view(plan)
         timings["plan_ms"] = round((time.perf_counter() - t0) * 1000, 2)  # part of retrieval_ms
-        response, registry = self.retrieve(question, plan)
+        response, registry = self.retrieve(question, plan, reference_targets)
+        # scope is decided from the question's OWN plan: a reference lookup still names a provision
+        scope_decision = (self.scope_policy.decide(question, original_plan, response.diagnostics, results=bool(response.results))
+                          if self.scope_policy is not None and self.config.scope_policy == "general_knowledge" else None)
         timings["retrieval_ms"] = round((time.perf_counter() - t0) * 1000, 2)
 
         t1 = time.perf_counter()
@@ -509,7 +619,8 @@ class RagPipeline:
         t_gate = time.perf_counter()
         gate_on = self.config.answerability == "gate"
         gate_analysis = analysis if analysis is not None else analyze_question(plan)
-        decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context)
+        decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
+                               general_knowledge=(scope_decision.reason if scope_decision is not None and scope_decision.status == GENERAL_KNOWLEDGE else None))
         conditions = decision.blocking_conditions
         block = gate_on and decision.blocked and not (
             ("no_evidence" in conditions and self.config.no_context_behavior != "refuse")
@@ -562,16 +673,26 @@ class RagPipeline:
                 timings["model_decode_ms"] = round((gen.seconds - gen.first_token_seconds) * 1000, 2)
             raw_model_output = gen.response  # exactly as generated, before any transformation
             answer_text = gen.response.strip()
+            # Stage 8: a sentence-repetition LOOP (3+ copies, citation markers ignored) is left intact so validation
+            # rejects it as degenerate and the repair applies (verbatim provision, or withheld). Keeping the text
+            # before the loop was measured and rejected: for S5-061 and BM-S-001 it was not a valid answer, and
+            # lexical validation could not tell. An identical sentence said twice in a non-looping answer is said once.
+            duplicates_removed = 0
+            if not repeated_sentence(answer_text):
+                answer_text, duplicates_removed = drop_duplicate_sentences(answer_text)
             if analysis is not None:
                 # Stage 3: presentation fixes before validation (markers onto their sentence, no echoed question)
                 answer_text, normalization = normalize_answer(answer_text, question)
             model_called = True
             input_tokens, output_tokens = gen.prompt_tokens, gen.generated_tokens
-            generation_info = {"generated_tokens": gen.generated_tokens, "finished": gen.finished, "prompt_tokens": gen.prompt_tokens}
+            generation_info = {"generated_tokens": gen.generated_tokens, "finished": gen.finished, "prompt_tokens": gen.prompt_tokens,
+                               "stop_reason": getattr(gen, "stop_reason", None)}
             if getattr(gen, "first_token_seconds", None) is not None:
                 generation_info["tokens_per_second"] = round(gen.tokens_per_second, 3)
                 generation_info["decode_tokens_per_second"] = (round(gen.decode_tokens_per_second, 3)
                                                                 if gen.decode_tokens_per_second is not None else None)
+            if duplicates_removed:
+                generation_info["duplicate_sentences_removed"] = duplicates_removed
             if package is not None and self.config.validation_behavior != "off":
                 t3 = time.perf_counter()
                 validation_initial = validate_answer(answer_text, package, gen)
@@ -633,6 +754,11 @@ class RagPipeline:
                 # without run_plan). The registry is the per-requirement record
                 # Stage 3 will consume; the context builder is unchanged.
                 "plan": plan.to_dict(),
+                # Stage 7: the question's own plan when a reference lookup re-planned it as a content search
+                "original_plan": original_plan.to_dict() if plan is not original_plan else None,
+                "reference_lookup": list(reference_targets) or None,
+                "scope_policy": scope_decision.to_dict() if scope_decision is not None else None,
+                "semantic_fallback": response.diagnostics.get("semantic_fallback"),
                 # Stage 12 answer shape: None when answer_shape="off", and on the
                 # legacy path, which has no package for a shape to organise
                 "answer_shape": shape.to_dict() if shape is not None and package is not None else None,

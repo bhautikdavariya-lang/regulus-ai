@@ -17,7 +17,9 @@ from tests.test_answer_validation import ScriptedGenerator
 from tests.test_retrieval_plan import TableDatabase, guidance_row, row
 
 GOOD = "21 CFR 820.10(b)(2) requires documented traceability procedures under part 821, if applicable [1]."
-LOOP = " ".join(["Labels must carry the name of the product."] * 4)
+# a loop INSIDE one sentence (Stage 8): the 4-gram test rejects it and repetition trimming cannot rescue it;
+# a whole sentence repeated is now trimmed to its first occurrence instead (tests/test_stage8_generation_control.py)
+LOOP = "Labels must carry the name " + "of the product and the name " * 12 + "of the product."
 
 
 def run(question, response=GOOD, *, guidance=True, table=None, **cfg):

@@ -76,8 +76,8 @@ def pipeline_config(config: RagConfig) -> dict[str, Any]:
     """The model-independent sections of the evaluation configuration."""
     rag = config.to_dict()
     return {
-        "retrieval": {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only")},
-        "coverage": {k: rag.get(k) for k in ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context")},
+        "retrieval": {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")},
+        "coverage": {k: rag.get(k) for k in ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation")},
         "context": dict(rag.get("context") or {}),
         "generation_budget": dict(rag.get("generation_budget") or {}),
         "validation": {"validation_behavior": rag.get("validation_behavior")},

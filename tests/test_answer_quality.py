@@ -288,10 +288,14 @@ def _flags(answer, question, mode="structured", response=None):
     return {f["flag"] for f in out.metadata["quality_flags"] or []}, out
 
 
-def test_premise_affirmed_without_support_is_flagged():
-    flags, _ = _flags("21 CFR 820.10(b)(2) requires annual traceability audits [1].",
-                      "Does 21 CFR 820.10(b)(2) require annual traceability audits?")
-    assert {"unsupported_claim", "missing_direct_answer"} <= flags
+def test_premise_affirmed_without_support_is_caught_and_not_shown():
+    # Stage 7: validation now catches the affirmed premise (unsupported_premise), so it never reaches the
+    # answer; the identified provision is quoted with a statement that it does not state the premise
+    flags, out = _flags("21 CFR 820.10(b)(2) requires annual traceability audits [1].",
+                        "Does 21 CFR 820.10(b)(2) require annual traceability audits?")
+    assert "unsupported_premise" in out.metadata["validation"]["initial"]["codes"]
+    assert "requires annual traceability audits" not in out.answer and "does not state" in out.answer
+    assert out.metadata["fallback_type"] == "premise_not_established"
 
 
 def test_a_proper_no_answer_is_not_flagged():

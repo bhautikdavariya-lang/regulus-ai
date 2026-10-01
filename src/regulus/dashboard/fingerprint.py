@@ -14,7 +14,8 @@ Pipeline fingerprint
 
     retrieval         retriever, top_k, corpus, min_trigram_similarity,
                       exclude_contextual_only
-    coverage          no_context_behavior, incomplete_behavior, answerability, optional_context
+    coverage          no_context_behavior, incomplete_behavior, answerability, optional_context,
+                      scope_policy, evidence_consolidation
     context           max_results, max_chars_per_result, max_total_chars,
                       hard_max_results, hard_max_total_chars,
                       required_max_chars_per_result
@@ -77,12 +78,15 @@ ALGORITHM = "sha256"
 #    the model is called at all; docs/answerability_gate_stage5.md).
 # 4: the coverage section gained optional_context (Stage 6 exact-evidence context;
 #    docs/generation_quality_stage6.md).
-FINGERPRINT_VERSION = 4
+# 5: retrieval gained semantic_fallback, coverage gained scope_policy (Stage 7;
+#    docs/retrieval_validation_stage7.md).
+# 6: coverage gained evidence_consolidation (Stage 8; docs/generation_control_stage8.md).
+FINGERPRINT_VERSION = 6
 QUESTION_SET_VERSION = 1
 
 FINGERPRINT_FIELDS: dict[str, tuple[str, ...]] = {
-    "retrieval": ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only"),
-    "coverage": ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context"),
+    "retrieval": ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback"),
+    "coverage": ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation"),
     "context": (
         "max_results", "max_chars_per_result", "max_total_chars",
         "hard_max_results", "hard_max_total_chars", "required_max_chars_per_result",

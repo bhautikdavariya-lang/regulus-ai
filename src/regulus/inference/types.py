@@ -26,6 +26,8 @@ class GenerationResult:
     prepare_seconds: float | None = None
     first_token_seconds: float | None = None
     detokenize_seconds: float | None = None
+    # Stage 7: why generation stopped early, when it did ("repetition": a sentence-repetition loop)
+    stop_reason: str | None = None
 
     @property
     def tokens_per_second(self) -> float:

@@ -1,0 +1,293 @@
+{
+ "questions": 78,
+ "final_status": {
+  "PASS": 45,
+  "FAIL": 15,
+  "NEEDS_REVIEW": 2,
+  "UNVERIFIED_WITH_FAILURES": 2,
+  "UNVERIFIED": 13,
+  "UNVERIFIED_NEEDS_REVIEW": 1
+ },
+ "primary_failure_by_class": {
+  "F07": 6,
+  "F15": 5,
+  "F09": 5,
+  "F16": 5,
+  "F14": 4,
+  "F08": 4,
+  "F13": 2,
+  "F02": 1,
+  "F18": 1
+ },
+ "primary_failure_by_module": {
+  "generation": 20,
+  "citations": 5,
+  "presentation": 4,
+  "repair": 2,
+  "scope": 1,
+  "inference": 1
+ },
+ "all_failure_records_by_class": {
+  "F07": 24,
+  "F09": 16,
+  "F08": 8,
+  "F16": 7,
+  "F14": 7,
+  "F15": 5,
+  "F18": 4,
+  "F13": 3,
+  "F02": 1,
+  "F05": 1,
+  "F11": 1,
+  "F12": 1
+ },
+ "severity_of_primary": {
+  "minor": 15,
+  "major": 17,
+  "critical": 1
+ },
+ "primary_by_confidence": {
+  "needs_review": 4,
+  "proven": 19,
+  "probable": 10
+ },
+ "determinism": [],
+ "scorecard": {
+  "intent": {
+   "label": "AUTOMATED",
+   "accuracy": "NOT YET MEASURABLE: no verified intent labels exist",
+   "distribution": {
+    "requirement": 49,
+    "explanation": 17,
+    "comparison": 2,
+    "applicability": 4,
+    "definition": 3,
+    "out_of_scope": 1,
+    "citation_lookup": 1,
+    "procedure": 1
+   },
+   "default_fallback_rate": {
+    "count": 17,
+    "of": 78
+   }
+  },
+  "scope": {
+   "label": "AUTOMATED vs DEVELOPER-KEYED",
+   "keyed_out_of_scope_recognised_by_diagnostic_classifier": {
+    "count": 1,
+    "of": 4
+   },
+   "keyed_out_of_scope_declined_by_current_pipeline": {
+    "count": 3,
+    "of": 4
+   }
+  },
+  "retrieval": {
+   "label": "DEVELOPER-KEYED",
+   "expected_provision_retrieved_as_exact": {
+    "count": 37,
+    "of": 37
+   },
+   "evidence_sufficiency": {
+    "EVIDENCE_SUFFICIENT": 47,
+    "EVIDENCE_NOT_FOUND": 10,
+    "EVIDENCE_PARTIAL": 2,
+    "EVIDENCE_INSUFFICIENT": 8,
+    "UNKNOWN": 11
+   },
+   "requested_value_kind_absent_from_evidence": {
+    "count": 4,
+    "of": 78
+   },
+   "ranking": "NOT YET MEASURABLE automatically: needs a relevance label per candidate"
+  },
+  "generation": {
+   "label": "AUTOMATED",
+   "raw_unsupported_content_F07": {
+    "count": 24,
+    "of": 61
+   },
+   "raw_qualifier_warnings_F08": {
+    "count": 8,
+    "of": 61
+   },
+   "answered_despite_insufficient_evidence_F05": {
+    "count": 1,
+    "of": 61
+   },
+   "raw_claims_supported_heuristic": {
+    "YES": 87,
+    "NO": 69,
+    "UNCERTAIN": 127
+   }
+  },
+  "validation": {
+   "label": "AUTOMATED",
+   "raw_answers_rejected": {
+    "count": 20,
+    "of": 61
+   },
+   "false_negatives_F11": {
+    "count": 1,
+    "of": 61
+   },
+   "false_positives_F10": "NOT YET MEASURABLE automatically: needs SME review of rejected answers"
+  },
+  "repair": {
+   "label": "AUTOMATED",
+   "repair_rate": {
+    "count": 20,
+    "of": 61
+   },
+   "repair_types": {
+    "invented_conditions_removed": 2,
+    "appended_missing_items": 2,
+    "extractive_replacement": 1,
+    "premise_not_established": 1,
+    "invalid_citations_removed": 3,
+    "unvalidated_answer_withheld": 2,
+    "invalid_citations_removed+invented_conditions_removed+failed_repair_fallback": 1,
+    "mismatched_statements_replaced+appended_missing_items+failed_repair_fallback": 1,
+    "mismatched_statements_replaced": 2,
+    "mismatched_statements_replaced+appended_missing_items": 1,
+    "appended_missing_provisions+failed_repair_fallback": 1,
+    "mismatched_statements_replaced+invented_conditions_removed": 1,
+    "truncation_noted": 1,
+    "invented_conditions_removed+appended_missing_items": 1
+   },
+   "final_valid_after_repair": {
+    "count": 15,
+    "of": 20
+   },
+   "irrelevant_fallback_F13": {
+    "count": 3,
+    "of": 78
+   },
+   "repair_failure_F12": {
+    "count": 1,
+    "of": 78
+   }
+  },
+  "citations": {
+   "label": "AUTOMATED",
+   "answers_with_a_marker": {
+    "count": 52,
+    "of": 61
+   },
+   "citation_attribution_F09": {
+    "count": 16,
+    "of": 61
+   },
+   "semantic_citation_correctness": "NOT YET MEASURABLE: requires SME review"
+  },
+  "final_answer": {
+   "label": "DEVELOPER-KEYED machine checks (not SME)",
+   "pass": {
+    "count": 45,
+    "of": 62
+   },
+   "unverified_questions": 16,
+   "correctness_grounding_relevance_structure_precision": "NOT YET MEASURABLE: requires SME review"
+  },
+  "latency_ms": {
+   "label": "AUTOMATED",
+   "first_token_median": null,
+   "generation_median": 0.1,
+   "total_median": 67.5
+  }
+ },
+ "configuration": {
+  "model": "Qwen/Qwen3-0.6B",
+  "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "device": "cpu",
+  "dtype": "float32",
+  "answer_shape": "adaptive",
+  "validation": "repair"
+ },
+ "outcomes": {
+  "correct": 45,
+  "incorrect": 11,
+  "safe_withheld": 3,
+  "unsupported": 1,
+  "needs_review": 2,
+  "unverified": 16
+ },
+ "reproducibility": {
+  "model_id": "Qwen/Qwen3-0.6B",
+  "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "weights_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+  "device": "cpu",
+  "dtype": "float32",
+  "decoding": {},
+  "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79",
+  "pipeline_config": {
+   "retrieval": {
+    "retriever": "LexicalRetriever",
+    "top_k": 8,
+    "corpus": "all",
+    "min_trigram_similarity": 0.4,
+    "exclude_contextual_only": true,
+    "semantic_fallback": "on"
+   },
+   "coverage": {
+    "no_context_behavior": "refuse",
+    "incomplete_behavior": "partial",
+    "answerability": "gate",
+    "optional_context": "incomplete_only",
+    "scope_policy": "general_knowledge"
+   },
+   "context": {
+    "max_results": 8,
+    "max_chars_per_result": 1200,
+    "max_total_chars": 3600,
+    "hard_max_results": 24,
+    "hard_max_total_chars": 9000,
+    "required_max_chars_per_result": 4000
+   },
+   "generation_budget": {
+    "policy": "adaptive",
+    "base_tokens": 96,
+    "per_unit_tokens": 160,
+    "range_bonus_tokens": 64,
+    "general_tokens": 384,
+    "max_units": 10,
+    "min_tokens": 256,
+    "evidence_multiple": 1.4,
+    "evidence_cap_fraction": 0.75,
+    "hard_max_tokens": 2048
+   },
+   "validation": {
+    "validation_behavior": "repair"
+   },
+   "repair": {
+    "mode": "post_hoc_deterministic"
+   },
+   "prompt": {
+    "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79",
+    "answer_shape": "adaptive"
+   }
+  },
+  "retriever": {
+   "retriever": "LexicalRetriever+SemanticFallback",
+   "fallback": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "semantic_corpus": "semantic_expanded_v1",
+   "semantic_unavailable": null
+  },
+  "git_commit": "0f56a2cb801c448cfed6a4d99c0fc484c4e26db5",
+  "git_dirty": true
+ },
+ "replay": {
+  "source": "artifacts/diagnostics/stage6_result_final_20260930T040757Z",
+  "not_replayable": [
+   {
+    "question_id": "S5-090",
+    "reason": "no recorded output for this prompt"
+   }
+  ]
+ }
+}

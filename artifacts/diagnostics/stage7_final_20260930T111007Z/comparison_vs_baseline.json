@@ -1,0 +1,277 @@
+{
+ "a": "artifacts/diagnostics/stage6_result_final_20260930T040757Z",
+ "b": "artifacts/diagnostics/stage7_final_20260930T111007Z",
+ "carried_reviews": [
+  "S5-001",
+  "S5-002",
+  "S5-004",
+  "S5-008",
+  "S5-020",
+  "S5-021",
+  "S5-030",
+  "S5-031",
+  "S5-041",
+  "S5-050",
+  "S5-051",
+  "S5-052",
+  "S5-054",
+  "S5-061",
+  "S5-083",
+  "S5-084",
+  "S5-091",
+  "S5-100",
+  "S5-110",
+  "S5-111",
+  "AS-02",
+  "AS-03",
+  "AS-04",
+  "AS-07",
+  "UI-04",
+  "BM-PB-001"
+ ],
+ "changed_answers_needing_review": [
+  "S5-005",
+  "S5-024",
+  "S5-053",
+  "S5-071",
+  "S5-080",
+  "S5-081",
+  "S5-090",
+  "S5-101",
+  "BM-S-019",
+  "BM-NC-003"
+ ],
+ "protected_pass": {
+  "n": 39,
+  "still_pass_automatic_or_carried": 38,
+  "not_pass": [
+   [
+    "S5-101",
+    "FAIL",
+    "F16"
+   ]
+  ]
+ },
+ "transitions": {
+  "PASS -> PASS": 46,
+  "FAIL -> FAIL": 12,
+  "FAIL -> PASS": 3,
+  "NEEDS_REVIEW -> NEEDS_REVIEW": 2,
+  "UNVERIFIED_WITH_FAILURES -> UNVERIFIED_WITH_FAILURES": 2,
+  "UNVERIFIED -> UNVERIFIED": 12,
+  "UNVERIFIED_WITH_FAILURES -> UNVERIFIED": 1,
+  "UNVERIFIED -> UNVERIFIED_WITH_FAILURES": 1
+ },
+ "changed": [
+  {
+   "id": "S5-005",
+   "a": "PASS",
+   "b": "PASS",
+   "primary_a": null,
+   "primary_b": "F07",
+   "gate": "ANSWERABLE",
+   "repair_b": "invented_conditions_removed",
+   "fallback_b": null,
+   "sources_a": 1,
+   "sources_b": 1
+  },
+  {
+   "id": "S5-024",
+   "a": "FAIL",
+   "b": "PASS",
+   "primary_a": "F12",
+   "primary_b": "F14",
+   "gate": "ANSWERABLE",
+   "repair_b": "extractive_replacement",
+   "fallback_b": null,
+   "sources_a": 7,
+   "sources_b": 7
+  },
+  {
+   "id": "S5-053",
+   "a": "FAIL",
+   "b": "PASS",
+   "primary_a": "F07",
+   "primary_b": "F07",
+   "gate": "ANSWERABLE",
+   "repair_b": "premise_not_established",
+   "fallback_b": "premise_not_established",
+   "sources_a": 1,
+   "sources_b": 1
+  },
+  {
+   "id": "S5-071",
+   "a": "PASS",
+   "b": "PASS",
+   "primary_a": "F09",
+   "primary_b": "F09",
+   "gate": "UNKNOWN",
+   "repair_b": "invalid_citations_removed+invented_conditions_removed",
+   "fallback_b": null,
+   "sources_a": 3,
+   "sources_b": 3
+  },
+  {
+   "id": "S5-080",
+   "a": "FAIL",
+   "b": "PASS",
+   "primary_a": "F02",
+   "primary_b": null,
+   "gate": "OUT_OF_SCOPE",
+   "repair_b": null,
+   "fallback_b": "out_of_scope",
+   "sources_a": 3,
+   "sources_b": 3
+  },
+  {
+   "id": "S5-081",
+   "a": "PASS",
+   "b": "PASS",
+   "primary_a": null,
+   "primary_b": null,
+   "gate": "OUT_OF_SCOPE",
+   "repair_b": null,
+   "fallback_b": "out_of_scope",
+   "sources_a": 1,
+   "sources_b": 1
+  },
+  {
+   "id": "S5-090",
+   "a": "FAIL",
+   "b": "FAIL",
+   "primary_a": "F21",
+   "primary_b": "F13",
+   "gate": "UNKNOWN",
+   "repair_b": "unvalidated_answer_withheld",
+   "fallback_b": "unvalidated_answer_withheld",
+   "sources_a": 19,
+   "sources_b": 4
+  },
+  {
+   "id": "S5-101",
+   "a": "FAIL",
+   "b": "FAIL",
+   "primary_a": "F16",
+   "primary_b": "F16",
+   "gate": "ANSWERABLE",
+   "repair_b": "misattributed_statements_replaced",
+   "fallback_b": null,
+   "sources_a": 8,
+   "sources_b": 8
+  },
+  {
+   "id": "BM-S-019",
+   "a": "UNVERIFIED_WITH_FAILURES",
+   "b": "UNVERIFIED",
+   "primary_a": "F08",
+   "primary_b": "F08",
+   "gate": "UNKNOWN",
+   "repair_b": "invented_conditions_removed",
+   "fallback_b": null,
+   "sources_a": 3,
+   "sources_b": 3
+  },
+  {
+   "id": "BM-NC-003",
+   "a": "UNVERIFIED",
+   "b": "UNVERIFIED_WITH_FAILURES",
+   "primary_a": "F08",
+   "primary_b": "F08",
+   "gate": "ANSWERABLE",
+   "repair_b": "appended_missing_items+failed_repair_fallback",
+   "fallback_b": "unvalidated_answer_withheld",
+   "sources_a": 9,
+   "sources_b": 9
+  }
+ ],
+ "metrics_a": {
+  "status": {
+   "PASS": 46,
+   "FAIL": 15,
+   "NEEDS_REVIEW": 2,
+   "UNVERIFIED_WITH_FAILURES": 3,
+   "UNVERIFIED": 13
+  },
+  "unsupported_generation_raw_F07": 2,
+  "unsupported_reaching_F07_major": 1,
+  "critical": 2,
+  "citation_failures_F09": 16,
+  "citation_failures_F09_major": 9,
+  "qualifier_failures_F08": 8,
+  "qualifier_failures_F08_major": 6,
+  "completeness_failures_F15": 4,
+  "enumeration_incomplete_initial": 2,
+  "safe_fallback_failures_F13_F20": 2,
+  "repair_failures_F12": 1,
+  "degenerate_F18": 4,
+  "model_capability_F16": 7,
+  "generation_called": 63,
+  "blocked": 16,
+  "latency_s": {
+   "median": 12.12,
+   "p90": 49.8,
+   "sum": 1440.1
+  },
+  "generation_s": {
+   "median": 12.07,
+   "p90": 49.42
+  },
+  "first_token_s": {
+   "median": 1.681,
+   "p90": 3.304
+  },
+  "prompt_tokens": {
+   "median": 1326,
+   "p90": 2422
+  },
+  "output_tokens": {
+   "median": 126,
+   "p90": 464
+  }
+ },
+ "metrics_b": {
+  "status": {
+   "PASS": 49,
+   "FAIL": 12,
+   "NEEDS_REVIEW": 2,
+   "UNVERIFIED_WITH_FAILURES": 3,
+   "UNVERIFIED": 13
+  },
+  "unsupported_generation_raw_F07": 2,
+  "unsupported_reaching_F07_major": 0,
+  "critical": 1,
+  "citation_failures_F09": 16,
+  "citation_failures_F09_major": 8,
+  "qualifier_failures_F08": 8,
+  "qualifier_failures_F08_major": 5,
+  "completeness_failures_F15": 4,
+  "enumeration_incomplete_initial": 2,
+  "safe_fallback_failures_F13_F20": 3,
+  "repair_failures_F12": 0,
+  "degenerate_F18": 4,
+  "model_capability_F16": 7,
+  "generation_called": 62,
+  "blocked": 17,
+  "latency_s": {
+   "median": 14.32,
+   "p90": 57.96,
+   "sum": 1545.5
+  },
+  "generation_s": {
+   "median": 14.25,
+   "p90": 56.65
+  },
+  "first_token_s": {
+   "median": 1.844,
+   "p90": 4.498
+  },
+  "prompt_tokens": {
+   "median": 1340.0,
+   "p90": 2422
+  },
+  "output_tokens": {
+   "median": 139.5,
+   "p90": 455
+  }
+ }
+}

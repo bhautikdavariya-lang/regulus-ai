@@ -1,0 +1,85 @@
+"""Repetition detection on text (torch-free; used by generation, validation and the pipeline).
+
+Sentences are compared NORMALISED: citation markers ("[7]", "SOURCE 7"), case, whitespace and
+trailing punctuation are removed, so one sentence repeated with an incrementing citation number
+is recognised as the same sentence (the 21 CFR 830.20 loop, Stage 8 repetition fix).
+"""
+
+from __future__ import annotations
+
+import re
+from collections import Counter
+
+from regulus.evaluation.grounding_eval import split_sentences
+
+SENTENCE_REPEATS = 3        # the validator's threshold (rag.validation._DEGENERATE_SENTENCE_REPEATS)
+MIN_SENTENCE_CHARS = 20     # the validator's minimum sentence length
+
+_MARKS = re.compile(r"\[\s*\d{1,3}\s*\]|\*{0,2}\bsources?\s+\d{1,3}\b\*{0,2}", re.I)
+
+
+def normalise_sentence(sentence: str) -> str:
+    s = _MARKS.sub(" ", sentence or "").lower()
+    s = re.sub(r"^\s*(?:[-*•]|\d{1,2}[.)])\s+", "", s)  # a list bullet is not part of the sentence
+    s = re.sub(r"\s+", " ", s).strip()
+    return s.rstrip(" .;:,")
+
+
+def repeated_sentence(text: str) -> tuple[str, int] | None:
+    sentences = [normalise_sentence(s) for s in split_sentences(text)]
+    sentences = [s for s in sentences if len(s) >= MIN_SENTENCE_CHARS]
+    if not sentences:
+        return None
+    top, n = Counter(sentences).most_common(1)[0]
+    return (top, n) if n >= SENTENCE_REPEATS else None
+
+
+def trim_repetition(text: str) -> tuple[str, int]:
+    """(text up to the end of the first occurrence of any sentence that is later repeated, number of
+    repeated sentences removed). Unchanged text and 0 when nothing repeats."""
+    pieces = re.split(r"(?<=[.!?])(\s+(?:\[\s*\d{1,3}\s*\]\s*)*)", text or "")
+    # pieces alternate: sentence, separator (which may carry a trailing citation marker), sentence, ...
+    seen: set[str] = set()
+    kept: list[str] = []
+    removed = 0
+    for i in range(0, len(pieces), 2):
+        sentence = pieces[i]
+        sep = pieces[i + 1] if i + 1 < len(pieces) else ""
+        key = normalise_sentence(sentence)
+        if len(key) >= MIN_SENTENCE_CHARS and key in seen:
+            removed = sum(1 for j in range(i, len(pieces), 2) if normalise_sentence(pieces[j]))
+            break
+        if len(key) >= MIN_SENTENCE_CHARS:
+            seen.add(key)
+        kept.append(sentence + sep)
+    return ("".join(kept).rstrip(), removed) if removed else (text, 0)
+
+
+
+def drop_duplicate_sentences(text: str) -> tuple[str, int]:
+    """Remove every later copy of a sentence or list item that is IDENTICAL to an earlier one once citation
+    markers, list bullets, case and spacing are ignored (>= 20 characters). Nothing is lost: the first copy
+    stays. Near-identical sentences are NOT touched: measured in Stage 8, their overlap does not separate
+    restatements (0.84) from distinct requirements worded alike (0.83)."""
+    parts = re.split(r"((?<=[.!?])[ \t]+(?:\[\s*\d{1,3}\s*\][ \t]*)*|\n+)", text or "")
+    seen: set[str] = set()
+    out: list[str] = []
+    removed = 0
+    skip_sep = False
+    for i, part in enumerate(parts):
+        if i % 2 == 1:  # separator
+            if not skip_sep:
+                out.append(part)
+            skip_sep = False
+            continue
+        key = normalise_sentence(part)
+        if len(key) >= MIN_SENTENCE_CHARS and key in seen:
+            removed += 1
+            skip_sep = True
+            continue
+        if len(key) >= MIN_SENTENCE_CHARS:
+            seen.add(key)
+        out.append(part)
+    if not removed:
+        return text, 0
+    return re.sub(r"\n{3,}", "\n\n", "".join(out)).strip(), removed

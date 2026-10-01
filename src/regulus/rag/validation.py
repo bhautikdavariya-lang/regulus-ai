@@ -60,6 +60,15 @@ UNSUPPORTED_FIGURE = "unsupported_figure"                 # a number/amount that
 PROVISION_CITATION_MISMATCH = "provision_citation_mismatch"  # names provision X, cites a source that is not X
 LOW_OVERLAP = "low_overlap_with_cited_source"             # warning only: few content words shared with the cited exact source
 
+from regulus.inference.repetition_text import normalise_sentence  # noqa: E402
+from regulus.rag.claim_validation import (  # noqa: E402
+    INVENTED_CONDITION,
+    PARAGRAPH_MISATTRIBUTION,
+    UNSUPPORTED_CLAIM,
+    UNSUPPORTED_PREMISE,
+    check_claims,
+)
+
 _CODE_STATUS = {
     EMPTY_OUTPUT: STATUS_EMPTY,
     DEGENERATE_OUTPUT: STATUS_DEGENERATE,
@@ -75,6 +84,11 @@ _CODE_STATUS = {
     ENUMERATION_INCOMPLETE: STATUS_INCOMPLETE,  # Stage 12: an explicitly requested item is missing
     MATERIAL_GROUP_UNCOVERED: STATUS_INCOMPLETE,  # Stage 12: a synthesis left out a whole requirement group
     PROMPT_ECHO: STATUS_DEGENERATE,             # Stage 12: the answer copies the prompt's instructions
+    # Stage 7 claim-level checks (regulus.rag.claim_validation); a status only when enforced as errors
+    PARAGRAPH_MISATTRIBUTION: STATUS_EVIDENCE_MISMATCHED,
+    INVENTED_CONDITION: STATUS_EVIDENCE_MISMATCHED,   # a removable statement, repaired like a mis-cited one
+    UNSUPPORTED_PREMISE: STATUS_UNSUPPORTED,
+    UNSUPPORTED_CLAIM: STATUS_UNSUPPORTED,
 }
 
 MARK_RE = re.compile(r"(?<![A-Za-z0-9])\[(\d{1,2})\]")
@@ -246,7 +260,10 @@ def _related_identity(named: tuple[str, str | None, str], have: tuple[str, str |
 
 
 def _degenerate(text: str) -> tuple[bool, str]:
-    sentences = [s for s in split_sentences(text) if len(s) >= 20]
+    # sentences compared normalised (citation markers, case, spacing): a sentence repeated with an
+    # incrementing citation number is still the same sentence (regulus.inference.repetition_text)
+    sentences = [normalise_sentence(s) for s in split_sentences(text)]
+    sentences = [s for s in sentences if len(s) >= 20]
     if sentences:
         top, n = Counter(sentences).most_common(1)[0]
         if n >= _DEGENERATE_SENTENCE_REPEATS:
@@ -262,6 +279,15 @@ def _degenerate(text: str) -> tuple[bool, str]:
 
 
 # ------------------------------------------------------------ validate
+
+
+def _is_yes_no(question: str | None) -> bool:
+    if not question:
+        return False
+    from regulus.planning import plan_query
+    from regulus.planning.intent import analyze_question
+
+    return analyze_question(plan_query(question)).is_yes_no
 
 
 def validate_answer(answer: str, package: GenerationPackage, generation: GenerationResult | None = None) -> ValidationReport:
@@ -390,6 +416,12 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
             best = max(len(words & _content_words(src.text)) / len(words) for src in exact_cited)
             if best < LOW_OVERLAP_THRESHOLD:
                 problems.append(ValidationProblem(LOW_OVERLAP, "warning", f"only {best:.0%} of the content words appear in the cited exact source", citation=marks[0], sentence=sentence))
+
+    # claim level (Stage 7): does each statement's wording come from the evidence it presents?
+    if text:
+        for f in check_claims(sentences, package, question=package.question, is_yes_no=_is_yes_no(package.question),
+                              identity=_source_identity, related=_related_identity):
+            problems.append(ValidationProblem(f.code, f.severity, f.detail, requirement_id=f.requirement_id, citation=f.citation, sentence=f.sentence))
 
     # answer shape (Stage 12): warnings except a missing item of an explicit enumeration
     shape_diagnostics = None

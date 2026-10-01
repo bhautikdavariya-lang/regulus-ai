@@ -60,6 +60,7 @@ def generate_chat(
     messages: list[Message],
     gen: GenerationConfig,
     streamer=None,
+    stop_repetition: bool = False,
 ) -> GenerationResult:
     """Generate the next assistant turn for a list of chat messages.
 
@@ -89,6 +90,15 @@ def generate_chat(
         sampling["no_repeat_ngram_size"] = gen.no_repeat_ngram_size
 
     timer = _FirstTokenTimer(streamer)
+    stopper = None
+    if stop_repetition:
+        # Stage 7: end a sentence-repetition loop early (regulus.inference.repetition); outcome-neutral
+        from transformers import StoppingCriteriaList
+
+        from regulus.inference.repetition import RepetitionStop
+
+        stopper = RepetitionStop(tokenizer, inputs["input_ids"].shape[1])
+        sampling["stopping_criteria"] = StoppingCriteriaList([stopper])
     start = time.perf_counter()
     prepare_seconds = start - t_prepare
     output_ids = model.generate(
@@ -117,6 +127,7 @@ def generate_chat(
         prepare_seconds=prepare_seconds,
         first_token_seconds=(timer.first_token_at - start) if timer.first_token_at is not None else None,
         detokenize_seconds=detokenize_seconds,
+        stop_reason=("repetition" if stopper is not None and stopper.triggered else None),
     )
 
 

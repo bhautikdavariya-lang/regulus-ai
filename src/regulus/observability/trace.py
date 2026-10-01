@@ -90,7 +90,7 @@ def build_trace(out, *, question_id: str, generator_info: dict | None = None, co
         "model": {k: (generator_info or {}).get(k) for k in ("model_id", "model_revision", "device", "dtype")},
         "model_called": out.model_called,
         "timings_ms": out.timings_ms,
-        "output_token_count": gen.get("generated_tokens"), "finished": gen.get("finished"),
+        "output_token_count": gen.get("generated_tokens"), "finished": gen.get("finished"), "stop_reason": gen.get("stop_reason"),
         # -- the text at every stage
         "raw_model_output": m.get("raw_model_output"),
         "normalization": m.get("normalization"),
