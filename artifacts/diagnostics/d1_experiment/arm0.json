@@ -1,0 +1,198 @@
+{
+ "arm": "0",
+ "patches": [],
+ "identity": {
+  "model": {
+   "model_id": "Qwen/Qwen3-0.6B",
+   "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+   "device": "cpu",
+   "dtype": "float32",
+   "generation": {
+    "max_new_tokens": 2048,
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "enable_thinking": false
+   }
+  },
+  "config_fingerprint": {
+   "retriever": "LexicalRetriever",
+   "top_k": 8,
+   "corpus": "all",
+   "min_trigram_similarity": 0.4,
+   "no_context_behavior": "refuse",
+   "exclude_contextual_only": true,
+   "incomplete_behavior": "partial",
+   "generation_budget": {
+    "policy": "adaptive",
+    "base_tokens": 96,
+    "per_unit_tokens": 160,
+    "range_bonus_tokens": 64,
+    "general_tokens": 384,
+    "max_units": 10,
+    "min_tokens": 256,
+    "evidence_multiple": 1.4,
+    "evidence_cap_fraction": 0.75,
+    "hard_max_tokens": 2048
+   },
+   "validation_behavior": "repair",
+   "answer_shape": "adaptive",
+   "answerability": "gate",
+   "optional_context": "incomplete_only",
+   "scope_policy": "general_knowledge",
+   "semantic_fallback": "on",
+   "evidence_consolidation": "on",
+   "context": {
+    "max_results": 8,
+    "max_chars_per_result": 1200,
+    "max_total_chars": 3600,
+    "hard_max_results": 24,
+    "hard_max_total_chars": 9000,
+    "required_max_chars_per_result": 4000
+   }
+  },
+  "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79"
+ },
+ "rows": [
+  {
+   "arm": "0",
+   "id": "B-001",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "600.10",
+    "600.11",
+    "210.2"
+   ],
+   "requirements": [
+    "21 CFR part 600",
+    "21 CFR part 211"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 1,
+   "n_sources": 13,
+   "evidence_chars": 6153,
+   "evidence_tokens": 1181,
+   "tokens_before_keyed": 0,
+   "keyed_token_share_pct": 18.63,
+   "keyed_paragraph_coverage": {
+    "600.10": {
+     "paragraphs_in_prompt": 0,
+     "paragraphs_in_section": 7
+    },
+    "600.11": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 28
+    },
+    "210.2": {
+     "paragraphs_in_prompt": 0,
+     "paragraphs_in_section": 3
+    }
+   },
+   "sections": [
+    "600.11",
+    "600.12",
+    "600.13",
+    "600.14",
+    "600.15",
+    "600.20",
+    "600.21",
+    "600.2",
+    "600.3",
+    "600.80",
+    "600.82",
+    "600.90",
+    "211.100"
+   ],
+   "tiers": [
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r2)"
+   ],
+   "prompt_tokens": 2651,
+   "budget": 1696,
+   "generated_tokens": 1154,
+   "finished_with_eos": true,
+   "stop_reason": null,
+   "recall_raw": 0.182,
+   "recall_final": 0.091,
+   "mechanical_pass": 0,
+   "scoring_mode": "substantive_recall",
+   "cites_keyed_section": true,
+   "has_any_citation": true,
+   "model_called": true,
+   "answerability": "ANSWERABLE",
+   "coverage_state": "COMPLETE",
+   "repair": "misattributed_statements_replaced+mismatched_statements_replaced+appended_missing_items",
+   "validation_final": "incomplete",
+   "raw": "[1] 21 CFR 600.11(a) [1]: Work areas shall be kept orderly, clean, and free of dirt, dust, vermin and objects not required for manufacturing. Precautions shall be taken to avoid clogging and back-siphonage of drainage systems. Precautions shall be taken to exclude extraneous infectious agents from manufacturing areas. Work rooms shall be well lighted and ventilated. The ventilation system shall be arranged so as to prevent the dissemination of microorganisms from one manufacturing area to another and to avoid other conditions unfavorable to the safety of the product. Filling rooms, and other rooms where open, sterile operations are conducted, shall be adequate to meet manufacturing needs and such rooms shall be constructed and equipped to permit thorough cleaning and to keep air-borne contaminants at a minimum. If such rooms are used for other purposes, they shall be cleaned and prepared prior to use for sterile operations.\n\n[2] 21 CFR 600.12(a) [2]: Records shall be made, concurrently with the performance, of each step in the manufacture and distribution of products, in such a manner that at any time successive steps in the manufacture and distribution of any lot may be traced by an inspector. Such records shall be legible and indelible, shall identify the person immediately responsible, shall include dates of the various steps, and be as detailed as necessary for clear understanding of each step by one experienced in the manufacture of products.\n\n[3] 21 CFR 600.13 [3]: Manufacturers shall retain for a period of at least 6 months after the expiration date, unless a different time period is specified in additional standards, a quantity of representative material of each lot of each product, sufficient for examination and testing for safety and potency, except Whole Blood, Cryoprecipitated AHF, Platelets, Red Blood Cells, Plasma, and Source Plasma and Allergenic Products prepared to a physician's prescription. Samples so retained shall be selected at random from either final container material, or from bulk and final containers, provided they include at least one final container as a final package, or package-equivalent of such filling of each lot of the product as intended for distribution. Such sample material shall be stored at temperatures and under conditions which will maintain the identity and integrity of the product. Samples retained as required in this section shall be in addition to samples of specific products required to be submitted to the Center for Biologics Evaluation and Research or the Center for Drug Evaluation and Research (see mailing addresses in \u00a7 600.2).\n\n[4] 21 CFR 600.14(a) [4]: Who must report under this section? (1) You, the manufacturer who holds the biological product license and who had control over the product when the deviation occurred, must report under this section. If you arrange for another person to perform a manufacturing, holding, or distribution step, while the product is in your control, that step is performed under your control. You must establish, maintain, and follow a procedure for receiving information from that person on all deviations, complaints, and adverse events concerning the affected product.\n\n[5] 21 CFR 600.15 [5]: The following products shall be maintained during shipment at the specified temperatures:\n\n[6] 21 CFR 600.20 [6]: Inspections shall be made by an officer of the Food and Drug Administration having special knowledge of the methods used in the manufacture and control of products and designated for such purposes by the Commissioner of Food and Drugs, or by any officer, agent, or employee of the Department of Health and Human Services specifically designated for such purpose by the Secretary.\n\n[7] 21 CFR 600.21 [7]: The inspection of an establishment for which a biologics license application is pending need not be made until the establishment is in operation and is manufacturing the complete product for which a biologics license is desired.\n\n[8] 21 CFR 600.2(a) [8]: Licensed biological products regulated by the Center for Biologics Evaluation and Research (CBER). Unless otherwise stated in paragraph (c) of this section, or as otherwise prescribed by FDA regulation, all submissions to CBER referenced in parts 600 through 680 of this chapter, as applicable, must be sent to: Food and Drug Administration, Center for Biologics Evaluation and Research, Document Control Center, 10903 New Hampshire Ave., Bldg. 71, Rm. G112, Silver Spring, MD 20993-0002. Examples of such submissions include: Biologics license applications (BLAs) and their amendments and supplements, biological product deviation reports, fatality reports, and other correspondence. Biological products samples must not be sent to this address but must be sent to the address in paragraph (c) of this section.\n\n[9] 21 CFR 600.3 [9]: As used in this subchapter: [9]\n\n[10] 21 CFR 600.80(a) [10]: Postmarketing reporting of adverse experiences. [10]\n\n[11] 21 CFR 600.82(a) [11]: Notification of a permanent discontinuance or an interruption in manufacturing. [11]\n\n[12] 21 CFR 600.90(a) [12]: Waivers. [12]",
+   "final_answer": "[1] 21 CFR 600.11(a) [1]: Work areas shall be kept orderly, clean, and free of dirt, dust, vermin and objects not required for manufacturing. Precautions shall be taken to avoid clogging and back-siphonage of drainage systems. Precautions shall be taken to exclude extraneous infectious agents from manufacturing areas. Work rooms shall be well lighted and ventilated. The ventilation system shall be arranged so as to prevent the dissemination of microorganisms from one manufacturing area to another and to avoid other conditions unfavorable to the safety of the product. Filling rooms, and other rooms where open, sterile operations are conducted, shall be adequate to meet manufacturing needs and such rooms shall be constructed and equipped to permit thorough cleaning and to keep air-borne contaminants at a minimum. If such rooms are used for other purposes, they shall be cleaned and prepared prior to use for sterile operations [2]. 21 CFR 600.12(a) [2]: Records shall be made, concurrently with the performance, of each step in the manufacture and distribution of products, in such a manner that at any time successive steps in the manufacture and distribution of any lot may be traced by an inspector. Such records shall be legible and indelible, shall identify the person immediately responsible, shall include dates of the various steps, and be as detailed as necessary for clear understanding of each step by one experienced in the manufacture of products [3]. 21 CFR 600.13 [3]: Manufacturers shall retain for a period of at least 6 months after the expiration date, unless a different time period is specified in additional standards, a quantity of representative material of each lot of each product, sufficient for examination and testing for safety and potency, except Whole Blood, Cryoprecipitated AHF, Platelets, Red Blood Cells, Plasma, and Source Plasma and Allergenic Products prepared to a physician's prescription. Samples so retained shall be selected at random from either final container material, or from bulk and final containers, provided they include at least one final container as a final package, or package-equivalent of such filling of each lot of the product as intended for distribution. Such sample material shall be stored at temperatures and under conditions which will maintain the identity and integrity of the product. 21 CFR 600.14(a) [4]: Who must report under this section? (1) You, the manufacturer who holds the biological product license and who had control over the product when the deviation occurred, must report under this section. If you arrange for another person to perform a manufacturing, holding, or distribution step, while the product is in your control, that step is performed under your control. You must establish, maintain, and follow a procedure for receiving information from that person on all deviations, complaints, and adverse events concerning the affected product [5]. 21 CFR 600.15 (eCFR, binding, verbatim): The following products shall be maintained during shipment at the specified temperatures: [5].\n 21 CFR 600.21 [7]: The inspection of an establishment for which a biologics license application is pending need not be made until the establishment is in operation and is manufacturing the complete product for which a biologics license is desired [8]. 21 CFR 600.2(a) [8]: Licensed biological products regulated by the Center for Biologics Evaluation and Research (CBER). Unless otherwise stated in paragraph (c) of this section, or as otherwise prescribed by FDA regulation, all submissions to CBER referenced in parts 600 through 680 of this chapter, as applicable, must be sent to: Food and Drug Administration, Center for Biologics Evaluation and Research, Document Control Center, 10903 New Hampshire Ave., Bldg. 71, Rm. G112, Silver Spring, MD 20993-0002. Examples of such submissions include: Biologics license applications (BLAs) and their amendments and supplements, biological product deviation reports, fatality reports, and other correspondence. Biological products samples must not be sent to this address but must be sent to the address in paragraph (c) of this section [9]. 21 CFR 600.3 [9]: As used in this subchapter: [9]\n\n[10] 21 CFR 600.80(a) [10]: Postmarketing reporting of adverse experiences [10] [11]. 21 CFR 600.82(a) [11]: Notification of a permanent discontinuance or an interruption in manufacturing [11] [12]. 21 CFR 600.90(a) [12]: Waivers [12].\n21 CFR 211.100(a) (eCFR, binding, verbatim): (a) There shall be written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess. Such procedures shall include all requirements in this subpart. These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit [13].",
+   "prompt_sha256": "cd82a62a917489968a08e54f9bd5ff63e34a85cd8838d3381cf33600f316a7c9",
+   "seconds": 201.6
+  },
+  {
+   "arm": "0",
+   "id": "B-002",
+   "type": "Direct Lookup",
+   "part_level_plan": false,
+   "keyed_sections": [
+    "600.80"
+   ],
+   "requirements": [],
+   "keyed_present": true,
+   "keyed_rank": 1,
+   "n_sources": 3,
+   "evidence_chars": 2601,
+   "evidence_tokens": 528,
+   "tokens_before_keyed": 0,
+   "keyed_token_share_pct": 45.08,
+   "keyed_paragraph_coverage": {
+    "600.80": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 133
+    }
+   },
+   "sections": [
+    "600.80",
+    null,
+    null
+   ],
+   "tiers": [
+    "Tier: SUPPORTING (related material; does not stand in for any requested provision)",
+    "Tier: DISCOVERY (found by broad search; not authoritative for any requested provision)",
+    "Tier: DISCOVERY (found by broad search; not authoritative for any requested provision)"
+   ],
+   "prompt_tokens": 1331,
+   "budget": 384,
+   "generated_tokens": 180,
+   "finished_with_eos": true,
+   "stop_reason": null,
+   "recall_raw": 0.444,
+   "recall_final": 0.444,
+   "mechanical_pass": 0,
+   "scoring_mode": "substantive_recall",
+   "cites_keyed_section": false,
+   "has_any_citation": true,
+   "model_called": true,
+   "answerability": "UNKNOWN",
+   "coverage_state": "NO_EXPLICIT_REQUIREMENTS",
+   "repair": null,
+   "validation_final": "valid",
+   "raw": "The adverse experience reporting requirements apply to licensed biological products, as outlined in the eCFR. Specifically, the requirements of paragraphs (c)(1)(i) and (c)(1)(ii) of this section, concerning the submission of postmarketing 15-day Alert reports, also apply to any person whose name appears on the label of a licensed biological product as a manufacturer, packer, distributor, shared manufacturer, joint manufacturer, or any other participant involved in divided manufacturing. If a person elects to submit adverse experience reports to the applicant rather than to FDA, they must submit each report to the applicant within 5 calendar days of initial receipt of the information by the person, and the applicant must comply with the requirements of this section. Under this circumstance, a person who elects to submit reports to the applicant of the final product shall maintain a record of this action [1].",
+   "final_answer": "The adverse experience reporting requirements apply to licensed biological products, as outlined in the eCFR. Specifically, the requirements of paragraphs (c)(1)(i) and (c)(1)(ii) of this section, concerning the submission of postmarketing 15-day Alert reports, also apply to any person whose name appears on the label of a licensed biological product as a manufacturer, packer, distributor, shared manufacturer, joint manufacturer, or any other participant involved in divided manufacturing. If a person elects to submit adverse experience reports to the applicant rather than to FDA, they must submit each report to the applicant within 5 calendar days of initial receipt of the information by the person, and the applicant must comply with the requirements of this section. Under this circumstance, a person who elects to submit reports to the applicant of the final product shall maintain a record of this action [1].",
+   "prompt_sha256": "1f69ee4cd578f6c8f3e7a9533424a35ab5b1ee02ac67cb2c301cf34d9e0c9909",
+   "seconds": 23.1
+  }
+ ]
+}
