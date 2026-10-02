@@ -1,0 +1,44 @@
+OK   1. 300 benchmark ids accounted for
+OK   2. no duplicate ids
+OK   3. no silently omitted question
+OK   4. PASS+FAIL+ERROR+SME = 300
+OK   5. no other result values
+OK   6. every FAIL has a reason
+OK   7. every ERROR has a technical reason
+OK   8. every PASS carries full rubric scores
+OK   9. Failed Questions sheet holds only FAILs
+OK   10. workbook reopens without error
+OK   11. benchmark workbook unchanged
+
+RESULTS {'FAIL': 289, 'ERROR': 1, 'PASS': 10}
+G1 citation accuracy 11.7% (threshold 99%)  -> FAIL
+G2 fabricated citations 2 (threshold 0) -> FAIL
+G3 negative control 36.4% (threshold 100%) -> FAIL
+G4 substantive 26.3% (threshold 95%) -> FAIL
+G5 completeness 5.7% (threshold 90%) -> FAIL
+G6 scope discipline 96.0% (threshold 98%) -> FAIL
+G7 ISO concordance 17.6% of 51 rows (threshold 95%) -> FAIL
+
+  0/28  Dietary Supplements — 21 CFR 111
+  0/22  Human Food — 21 CFR 117
+  1/16  Food Labeling — 21 CFR 101
+  1/28  Drug CGMP — 21 CFR 210/211
+  0/42  Medical Devices — 21 CFR 820 / QMSR
+  0/10  Electronic Records — 21 CFR 11
+  0/7  FSVP — 21 CFR 1 Subpart L
+  1/12  Device Submissions — 21 CFR 807/814/812/860
+  0/8  Device Postmarket — 21 CFR 803/806/7
+  0/12  Tobacco & ENDS — 21 CFR 1100-1150
+  1/5  Cosmetics — 21 CFR 700-740 / MoCRA
+  0/5  Biologics — 21 CFR 600-680
+  0/10  Device Labeling, IVD & UDI — 21 CFR 801/809/830
+  1/10  Drug Labeling, Registration & Listing — 21 CFR 201/207
+  0/10  Clinical & Nonclinical Research — 21 CFR 50/54/56/58/312/812
+  0/10  Food Safety Programs — 21 CFR 108/112/113/114/120/121/123
+  0/7  Food Facility, Records, Transport & Traceability — 21 CFR Part 1
+  0/4  Animal Food — 21 CFR 507/225/558
+  0/6  Radiological Health & Mammography — 21 CFR 900/1002-1040
+  0/4  Combination Products — 21 CFR Part 3 / Part 4
+  0/9  PLATFORM BEHAVIOR — Abstention & Guidance Tier
+  4/22  NEGATIVE CONTROL — Hallucination Trap
+  1/13  SCOPE DISCIPLINE — Boundary Test
