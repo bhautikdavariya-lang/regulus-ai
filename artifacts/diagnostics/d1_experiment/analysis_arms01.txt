@@ -1,0 +1,165 @@
+!! only arms [0, 1] present - arm 2 still running; tables below are partial
+
+
+==============================================================================
+FREEZE VERIFICATION
+==============================================================================
+identity identical across arms: True
+question ids and order identical: True
+rows per arm: {0: 36, 1: 36}
+  arm0 patches: []
+  arm1 patches: ['K1: lexical.order_evidence wrapped; EXACT ties re-sorted by numeric CFR key']
+
+16 non-part-level control rows should be bit-identical in all three arms:
+  arm0 vs arm1: prompt True  raw True  final True
+
+20 part-level rows, prompt changed vs arm0: {1: 20}
+
+==============================================================================
+DELIVERABLE 4 - EVIDENCE METRICS (part-level rows, n=20; keyed subset n=18)
+==============================================================================
+metric                                               arm0       arm1       arm2
+-------------------------------------------------------------------------------
+keyed section present (count)                          18         12          ?
+keyed present (% of keyed rows)                    100.00      66.67          ?
+mean keyed rank (present only)                       4.94       4.08          ?
+keyed rank = 1 (count)                                  5          3          ?
+mean sources in prompt                              13.35      13.75          ?
+mean evidence chars                                  4543       4512          ?
+mean evidence tokens                                  899        906          ?
+mean prompt tokens                                   2227       2248          ?
+mean tokens before keyed section                      209        223          ?
+mean keyed token share %                            12.95      17.25          ?
+max keyed paragraphs in prompt                          1          1          ?
+mean keyed paragraphs in prompt                      0.82       0.57          ?
+mean keyed paragraphs in section                    14.11      14.11          ?
+mean seconds per question                           71.04      55.39          ?
+
+==============================================================================
+DELIVERABLE 5 - ANSWER QUALITY METRICS
+==============================================================================
+
+-- all 36 rows (n=36)
+metric                                               arm0       arm1       arm2
+-------------------------------------------------------------------------------
+mechanical pass (count)                                 9          6          ?
+mechanical pass rate %                              25.00      16.67          ?
+mean key recall, raw output                         0.325      0.291          ?
+mean key recall, final answer                       0.295      0.249          ?
+cites the keyed section (count)                         6          6          ?
+has any citation (count)                               28         27          ?
+model was called (count)                               31         31          ?
+answer withheld/unvalidated (count)                    31         31          ?
+mean generated tokens                                 270        276          ?
+finished on EOS (count)                                26         29          ?
+
+-- part-level rows (n=20)
+metric                                               arm0       arm1       arm2
+-------------------------------------------------------------------------------
+mechanical pass (count)                                 8          5          ?
+mechanical pass rate %                              40.00      25.00          ?
+mean key recall, raw output                         0.430      0.369          ?
+mean key recall, final answer                       0.343      0.261          ?
+cites the keyed section (count)                         6          6          ?
+has any citation (count)                               20         19          ?
+model was called (count)                               20         20          ?
+answer withheld/unvalidated (count)                    20         20          ?
+mean generated tokens                                 386        396          ?
+finished on EOS (count)                                17         20          ?
+
+-- keyed part-level rows (n=18)
+metric                                               arm0       arm1       arm2
+-------------------------------------------------------------------------------
+mechanical pass (count)                                 8          5          ?
+mechanical pass rate %                              44.44      27.78          ?
+mean key recall, raw output                         0.440      0.386          ?
+mean key recall, final answer                       0.344      0.267          ?
+cites the keyed section (count)                         6          6          ?
+has any citation (count)                               18         18          ?
+model was called (count)                               18         18          ?
+answer withheld/unvalidated (count)                    18         18          ?
+mean generated tokens                                 358        351          ?
+finished on EOS (count)                                15         18          ?
+
+-- control (non-part-level) (n=16)
+metric                                               arm0       arm1       arm2
+-------------------------------------------------------------------------------
+mechanical pass (count)                                 1          1          ?
+mechanical pass rate %                               6.25       6.25          ?
+mean key recall, raw output                         0.193      0.193          ?
+mean key recall, final answer                       0.234      0.234          ?
+cites the keyed section (count)                         0          0          ?
+has any citation (count)                                8          8          ?
+model was called (count)                               11         11          ?
+answer withheld/unvalidated (count)                    11         11          ?
+mean generated tokens                                 125        125          ?
+finished on EOS (count)                                 9          9          ?
+
+==============================================================================
+PAIRED SIGNIFICANCE (exact McNemar on mechanical_pass)
+==============================================================================
+  all 36               arm0 -> arm1 (K1)            gained 0  lost 3  p = 0.250
+  part-level 20        arm0 -> arm1 (K1)            gained 0  lost 3  p = 0.250
+  keyed part-level 18  arm0 -> arm1 (K1)            gained 0  lost 3  p = 0.250
+
+==============================================================================
+DELIVERABLE 6 - QUESTION-BY-QUESTION DELTA (part-level rows)
+==============================================================================
+id       type            keyed                    | rank0 rank1 rank2 |  n0  n1  n2 |  rec0  rec1  rec2 | p0 p1 p2
+------------------------------------------------------------------------------------------------------------------
+B-001    Direct Lookup   600.10,600.11,210.2      |     1     3     ? |  13  14   ? |  0.18  0.09     ? |  0  0  ?
+B-005    Direct Lookup   606.20,606.100,606.160   |     1     5     ? |  16  16   ? |  0.60  0.00     ? |  1  0  ?
+C-002    Direct Lookup   701.3,701.11,701.13      |     2     3     ? |  10  10   ? |  0.67  1.00     ? |  1  1  ?
+C-004    Direct Lookup   700.11,700.35            |     1     2     ? |   9  10   ? |  0.85  0.85     ? |  1  1  ?
+D-012    Direct Lookup   211.101                  |     2     -     ? |  18  19   ? |  0.00  0.30     ? |  0  0  ?
+D-013    Direct Lookup   211.103                  |     3     -     ? |  18  19   ? |  0.91  0.27     ? |  1  0  ?
+D-018    Direct Lookup   211.142,211.150          |    15     -     ? |  18  19   ? |  0.36  0.29     ? |  0  0  ?
+D-019    Direct Lookup   211.160                  |    17     -     ? |  18  19   ? |  0.46  0.46     ? |  0  0  ?
+M-004    Cross-Reference 820.1                    |     2     1     ? |   6   6   ? |  0.30  0.40     ? |  0  0  ?
+M-013    Cross-Reference 820.10                   |     1     4     ? |   6   6   ? |  0.38  0.38     ? |  0  0  ?
+M-014    Cross-Reference 820.10                   |     1     4     ? |   6   6   ? |  0.67  0.50     ? |  1  1  ?
+D-023    Application     211.192,211.160          |    17     -     ? |  18  19   ? |  0.07  0.00     ? |  0  0  ?
+E-010    Application     11.10,11.30              |     2     4     ? |  10  10   ? |  0.19  0.19     ? |  0  0  ?
+F-011    Application     117.150                  |    11     -     ? |  23  23   ? |  0.50  0.43     ? |  1  0  ?
+F-009    Distinction     117.135                  |     5    19     ? |  23  23   ? |  0.30  0.30     ? |  0  0  ?
+M-002    Distinction     820.1                    |     2     1     ? |   6   6   ? |  0.14  0.14     ? |  0  0  ?
+M-003    Distinction     820.1                    |     2     1     ? |   6   6   ? |  0.80  0.80     ? |  1  1  ?
+M-009    Distinction     820.3                    |     4     2     ? |   6   6   ? |  0.57  0.57     ? |  1  1  ?
+NC-018   Negative Contro -                        |     -     -     ? |  19  19   ? |  0.50  0.25     ? |  0  0  ?
+SD-010   Scope/Boundary  -                        |     -     -     ? |  18  19   ? |  0.17  0.17     ? |  0  0  ?
+
+==============================================================================
+DELIVERABLE 7 - RESCUED / REGRESSED / STUCK
+==============================================================================
+rescued by K1                                     0  -
+regressed by K1                                   3  B-005, D-013, F-011
+rescued only by K1+ceiling                        0  -
+regressed by K1+ceiling                           0  -
+wrong in all three arms                           0  -
+  ...of which keyed section present in ALL arms   0  -
+keyed present in arm2 but still wrong             0  -
+
+==============================================================================
+EVIDENCE PRESENT vs ANSWER CORRECT (decoupling check)
+==============================================================================
+arm      keyed present & pass   keyed present & fail   absent & pass   absent & fail
+arm0                        8                     10               0               0
+arm1                        5                      7               0               6
+
+Rank-vs-quality, rows where the keyed section is present in both arm0 and arm1:
+  B-001    rank 1 -> 3 (+2)  recall 0.18 -> 0.09 (-0.09)  pass 0 -> 0
+  B-005    rank 1 -> 5 (+4)  recall 0.60 -> 0.00 (-0.60)  pass 1 -> 0
+  C-002    rank 2 -> 3 (+1)  recall 0.67 -> 1.00 (+0.33)  pass 1 -> 1
+  C-004    rank 1 -> 2 (+1)  recall 0.85 -> 0.85 (+0.00)  pass 1 -> 1
+  M-004    rank 2 -> 1 (-1)  recall 0.30 -> 0.40 (+0.10)  pass 0 -> 0
+  M-013    rank 1 -> 4 (+3)  recall 0.38 -> 0.38 (+0.00)  pass 0 -> 0
+  M-014    rank 1 -> 4 (+3)  recall 0.67 -> 0.50 (-0.17)  pass 1 -> 1
+  E-010    rank 2 -> 4 (+2)  recall 0.19 -> 0.19 (+0.00)  pass 0 -> 0
+  F-009    rank 5 -> 19 (+14)  recall 0.30 -> 0.30 (+0.00)  pass 0 -> 0
+  M-002    rank 2 -> 1 (-1)  recall 0.14 -> 0.14 (+0.00)  pass 0 -> 0
+  M-003    rank 2 -> 1 (-1)  recall 0.80 -> 0.80 (+0.00)  pass 1 -> 1
+  M-009    rank 4 -> 2 (-2)  recall 0.57 -> 0.57 (+0.00)  pass 1 -> 1
+
+  rank improved on 4 rows: M-004, M-002, M-003, M-009
+    of those, recall improved on 1, unchanged on 3, fell on 0
+    mechanical pass changed on 0 of 4
