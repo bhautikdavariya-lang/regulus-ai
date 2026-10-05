@@ -44,6 +44,8 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 _SEC_RE = re.compile(r"^(\d{1,4})\.(\d+)([a-zA-Z]*)")
+FULL_HARD_MAX_RESULTS = 400     # arm 4: full sections arrive as one row per paragraph, so the count ceiling
+FULL_PART_ROW_LIMIT = 4000      #        must not bind; the CHARACTER ceiling is the constrained resource
 PART_HARD_MAX_RESULTS = 84      # covers Part 111's 84 live sections, the largest part in the probe
 PART_HARD_MAX_CHARS = 24000     # 84 sections render to ~14k chars; headroom, still far inside the 40,960-token window
 
@@ -123,6 +125,91 @@ def install_k1():
     return "K1: lexical.order_evidence wrapped; EXACT ties re-sorted by numeric CFR key"
 
 
+def _full_part_sql():
+    """ECFR_EXACT_PART with the `ordinal = 0` filter removed, so a whole-Part request returns EVERY
+    paragraph of every section instead of only each section's first row. Derived from the production
+    query by text surgery so the column list and filters stay in lockstep with it."""
+    from regulus.retrieval import sql as rsql
+    q = rsql.ECFR_EXACT_PART
+    q2 = re.sub(r"\n\s*AND r\.ordinal = 0\b", "", q)
+    assert q2 != q, "ECFR_EXACT_PART no longer contains the ordinal filter; revisit arm 4"
+    q3 = q2.replace("ORDER BY r.section_number\n", "ORDER BY r.section_number, r.ordinal\n")
+    assert q3 != q2, "ECFR_EXACT_PART ORDER BY changed; revisit arm 4"
+    return q3
+
+
+def install_full_sections():
+    """Arm 4: whole-Part requests retrieve complete sections, not just paragraph 0."""
+    import regulus.retrieval.lexical as lex
+
+    full_sql = _full_part_sql()
+    real = lex.LexicalRetriever.exact_cfr
+
+    def patched(self, ref, filters, limit):
+        if ref.title != "21" or ref.section is not None:
+            return real(self, ref, filters, limit)
+        rows = self.db.query(full_sql, {**self._ecfr_filter_params(filters),
+                                        "part_number": ref.part, "limit": FULL_PART_ROW_LIMIT})
+        return [self._ecfr_result(row, lex.METHOD_EXACT_CFR,
+                                  lex.exact_score(row["match_kind"], row["ordinal"]),
+                                  {"match_kind": row["match_kind"], "requested": ref.label})
+                for row in rows]
+
+    lex.LexicalRetriever.exact_cfr = patched
+    return ("FULL: lexical.exact_cfr returns every paragraph of every section for whole-Part requests "
+            f"(ordinal filter lifted, row limit {FULL_PART_ROW_LIMIT})")
+
+
+def install_section_contiguous_order():
+    """Arm 4 companion: keep a section's paragraphs together.
+
+    Production orders EXACT evidence by (requirement, ordinal, key). With one row per section every
+    ordinal is 0, so the effective order is the citation string. With full sections the ordinals run
+    0..n and that same rule becomes PARAGRAPH-major - paragraph 0 of every section, then paragraph 1 of
+    every section - which shreds the text. This restores section-major order.
+
+    It deliberately keeps production's ASCII section order rather than numeric order, so arm 4 does not
+    smuggle in K1: the only thing this changes is that paragraphs of one section stay contiguous.
+    """
+    import regulus.retrieval.lexical as lex
+    from regulus.retrieval.evidence import TIER_EXACT
+
+    real = lex.order_evidence
+
+    def patched(evidence, requirements):
+        ordered = list(real(evidence, requirements))
+        order = {r.id: r.order for r in requirements}
+
+        def key(e):
+            ids = e.satisfies or ()
+            first = min((order[i] for i in ids), default=len(order) + 1)
+            md = e.result.metadata
+            return (first, md.get("section") or "", int(md.get("ordinal") or 0))
+
+        exact = sorted((e for e in ordered if e.tier == TIER_EXACT), key=key)
+        return exact + [e for e in ordered if e.tier != TIER_EXACT]
+
+    lex.order_evidence = patched
+    return "ORDER: EXACT evidence ordered section-major (ASCII section, then paragraph ordinal)"
+
+
+def install_ceiling_for(results: int, chars: int, label: str):
+    """Raise the HARD ceilings for whole-part plans only. Soft budgets untouched."""
+    import regulus.rag.pipeline as pipe
+
+    real = pipe.select_evidence
+
+    def patched(registry, policy=None, **kw):
+        reqs = registry.plan.requirements
+        part_level = bool(reqs) and all(r.reference.section is None for r in reqs)
+        if part_level and policy is not None:
+            policy = replace(policy, hard_max_results=results, hard_max_total_chars=chars)
+        return real(registry, policy, **kw)
+
+    pipe.select_evidence = patched
+    return f"CEIL[{label}]: whole-part plans only get hard_max_results={results}, hard_max_total_chars={chars}"
+
+
 def install_ceiling():
     """Raise the HARD ceilings for whole-part plans only. Soft budgets untouched."""
     import regulus.rag.pipeline as pipe
@@ -153,7 +240,7 @@ words = lambda t: {w for w in re.findall(r"[a-z][a-z-]{3,}", (t or "").lower())}
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--set", required=True)
-    ap.add_argument("--arm", required=True, choices=["0", "1", "2"])
+    ap.add_argument("--arm", required=True, choices=["0", "1", "2", "3", "4"])
     ap.add_argument("--out", default=str(ROOT / "artifacts/diagnostics/d1_experiment"))
     ap.add_argument("--pin-budget-from", default=None,
                     help="arm JSON whose per-question generation budget this arm must reuse exactly")
@@ -182,6 +269,14 @@ def main() -> int:
         patches.append(install_k1())
     if args.arm == "2":
         patches.append(install_ceiling())
+    if args.arm == "3":
+        # ceiling ONLY: production ordering, production ordinal=0 retrieval
+        patches.append(install_ceiling_for(PART_HARD_MAX_RESULTS, PART_HARD_MAX_CHARS, "breadth"))
+    if args.arm == "4":
+        # same CHARACTER budget as arm 3, spent on depth instead of breadth
+        patches.append(install_full_sections())
+        patches.append(install_section_contiguous_order())
+        patches.append(install_ceiling_for(FULL_HARD_MAX_RESULTS, PART_HARD_MAX_CHARS, "depth"))
 
     from model_probe_phase3 import RecordingGenerator
     from regulus.config import load_settings

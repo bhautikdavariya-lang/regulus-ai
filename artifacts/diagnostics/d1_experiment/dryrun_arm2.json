@@ -1,0 +1,1061 @@
+{
+ "arm": "2",
+ "patches": [
+  "K1: lexical.order_evidence wrapped; EXACT ties re-sorted by numeric CFR key",
+  "CEIL: pipeline.select_evidence wrapped; whole-part plans only get hard_max_results=84, hard_max_total_chars=24000"
+ ],
+ "rows": [
+  {
+   "arm": "2",
+   "id": "D-013",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "211.103"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 29,
+   "n_sources": 48,
+   "n_distinct_sections": 48,
+   "evidence_chars": 14767,
+   "keyed_paragraph_coverage": {
+    "211.103": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 1
+    }
+   },
+   "sections": [
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.103",
+    "211.105",
+    "211.110",
+    "211.111",
+    "211.113",
+    "211.115",
+    "211.122",
+    "211.125",
+    "211.130",
+    "211.132",
+    "211.134",
+    "211.137",
+    "211.142",
+    "211.150",
+    "211.160",
+    "211.165",
+    "211.166",
+    "211.167",
+    "211.170",
+    "211.173"
+   ],
+   "seconds": 0.15
+  },
+  {
+   "arm": "2",
+   "id": "D-019",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "211.160"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 43,
+   "n_sources": 48,
+   "n_distinct_sections": 48,
+   "evidence_chars": 14767,
+   "keyed_paragraph_coverage": {
+    "211.160": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 6
+    }
+   },
+   "sections": [
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.103",
+    "211.105",
+    "211.110",
+    "211.111",
+    "211.113",
+    "211.115",
+    "211.122",
+    "211.125",
+    "211.130",
+    "211.132",
+    "211.134",
+    "211.137",
+    "211.142",
+    "211.150",
+    "211.160",
+    "211.165",
+    "211.166",
+    "211.167",
+    "211.170",
+    "211.173"
+   ],
+   "seconds": 0.05
+  },
+  {
+   "arm": "2",
+   "id": "D-012",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "211.101"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 28,
+   "n_sources": 48,
+   "n_distinct_sections": 48,
+   "evidence_chars": 14767,
+   "keyed_paragraph_coverage": {
+    "211.101": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 12
+    }
+   },
+   "sections": [
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.103",
+    "211.105",
+    "211.110",
+    "211.111",
+    "211.113",
+    "211.115",
+    "211.122",
+    "211.125",
+    "211.130",
+    "211.132",
+    "211.134",
+    "211.137",
+    "211.142",
+    "211.150",
+    "211.160",
+    "211.165",
+    "211.166",
+    "211.167",
+    "211.170",
+    "211.173"
+   ],
+   "seconds": 0.03
+  },
+  {
+   "arm": "2",
+   "id": "D-023",
+   "type": "Application",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "211.192",
+    "211.160"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 43,
+   "n_sources": 48,
+   "n_distinct_sections": 48,
+   "evidence_chars": 14767,
+   "keyed_paragraph_coverage": {
+    "211.192": {
+     "paragraphs_in_prompt": 0,
+     "paragraphs_in_section": 1
+    },
+    "211.160": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 6
+    }
+   },
+   "sections": [
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.103",
+    "211.105",
+    "211.110",
+    "211.111",
+    "211.113",
+    "211.115",
+    "211.122",
+    "211.125",
+    "211.130",
+    "211.132",
+    "211.134",
+    "211.137",
+    "211.142",
+    "211.150",
+    "211.160",
+    "211.165",
+    "211.166",
+    "211.167",
+    "211.170",
+    "211.173"
+   ],
+   "seconds": 0.04
+  },
+  {
+   "arm": "2",
+   "id": "D-018",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "211.142",
+    "211.150"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 41,
+   "n_sources": 48,
+   "n_distinct_sections": 48,
+   "evidence_chars": 14767,
+   "keyed_paragraph_coverage": {
+    "211.142": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 3
+    },
+    "211.150": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 3
+    }
+   },
+   "sections": [
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.103",
+    "211.105",
+    "211.110",
+    "211.111",
+    "211.113",
+    "211.115",
+    "211.122",
+    "211.125",
+    "211.130",
+    "211.132",
+    "211.134",
+    "211.137",
+    "211.142",
+    "211.150",
+    "211.160",
+    "211.165",
+    "211.166",
+    "211.167",
+    "211.170",
+    "211.173"
+   ],
+   "seconds": 0.04
+  },
+  {
+   "arm": "2",
+   "id": "F-011",
+   "type": "Application",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "117.150"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 25,
+   "n_sources": 61,
+   "n_distinct_sections": 61,
+   "evidence_chars": 10950,
+   "keyed_paragraph_coverage": {
+    "117.150": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 21
+    }
+   },
+   "sections": [
+    "117.1",
+    "117.3",
+    "117.4",
+    "117.5",
+    "117.7",
+    "117.8",
+    "117.9",
+    "117.10",
+    "117.20",
+    "117.35",
+    "117.37",
+    "117.40",
+    "117.80",
+    "117.93",
+    "117.95",
+    "117.110",
+    "117.126",
+    "117.130",
+    "117.135",
+    "117.136",
+    "117.137",
+    "117.139",
+    "117.140",
+    "117.145",
+    "117.150",
+    "117.155",
+    "117.160",
+    "117.165",
+    "117.170",
+    "117.180",
+    "117.190",
+    "117.201",
+    "117.206",
+    "117.251",
+    "117.254",
+    "117.257",
+    "117.260",
+    "117.264",
+    "117.267",
+    "117.270",
+    "117.274",
+    "117.277",
+    "117.280",
+    "117.284",
+    "117.287",
+    "117.301",
+    "117.305",
+    "117.310",
+    "117.315",
+    "117.320",
+    "117.325",
+    "117.330",
+    "117.335",
+    "117.405",
+    "117.410",
+    "117.415",
+    "117.420",
+    "117.425",
+    "117.430",
+    "117.435",
+    "117.475"
+   ],
+   "seconds": 0.05
+  },
+  {
+   "arm": "2",
+   "id": "M-013",
+   "type": "Cross-Reference",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.10"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 4,
+   "n_sources": 6,
+   "n_distinct_sections": 6,
+   "evidence_chars": 3347,
+   "keyed_paragraph_coverage": {
+    "820.10": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 12
+    }
+   },
+   "sections": [
+    "820.1",
+    "820.3",
+    "820.7",
+    "820.10",
+    "820.35",
+    "820.45"
+   ],
+   "seconds": 0.04
+  },
+  {
+   "arm": "2",
+   "id": "M-002",
+   "type": "Distinction",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.1"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 1,
+   "n_sources": 6,
+   "n_distinct_sections": 6,
+   "evidence_chars": 3347,
+   "keyed_paragraph_coverage": {
+    "820.1": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 10
+    }
+   },
+   "sections": [
+    "820.1",
+    "820.3",
+    "820.7",
+    "820.10",
+    "820.35",
+    "820.45"
+   ],
+   "seconds": 0.04
+  },
+  {
+   "arm": "2",
+   "id": "M-003",
+   "type": "Distinction",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.1"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 1,
+   "n_sources": 6,
+   "n_distinct_sections": 6,
+   "evidence_chars": 3347,
+   "keyed_paragraph_coverage": {
+    "820.1": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 10
+    }
+   },
+   "sections": [
+    "820.1",
+    "820.3",
+    "820.7",
+    "820.10",
+    "820.35",
+    "820.45"
+   ],
+   "seconds": 0.02
+  },
+  {
+   "arm": "2",
+   "id": "M-009",
+   "type": "Distinction",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.3"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 2,
+   "n_sources": 6,
+   "n_distinct_sections": 6,
+   "evidence_chars": 3347,
+   "keyed_paragraph_coverage": {
+    "820.3": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 14
+    }
+   },
+   "sections": [
+    "820.1",
+    "820.3",
+    "820.7",
+    "820.10",
+    "820.35",
+    "820.45"
+   ],
+   "seconds": 0.02
+  },
+  {
+   "arm": "2",
+   "id": "M-014",
+   "type": "Cross-Reference",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.10"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 4,
+   "n_sources": 6,
+   "n_distinct_sections": 6,
+   "evidence_chars": 3347,
+   "keyed_paragraph_coverage": {
+    "820.10": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 12
+    }
+   },
+   "sections": [
+    "820.1",
+    "820.3",
+    "820.7",
+    "820.10",
+    "820.35",
+    "820.45"
+   ],
+   "seconds": 0.01
+  },
+  {
+   "arm": "2",
+   "id": "C-004",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "700.11",
+    "700.35"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 2,
+   "n_sources": 12,
+   "n_distinct_sections": 12,
+   "evidence_chars": 8721,
+   "keyed_paragraph_coverage": {
+    "700.11": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 2
+    },
+    "700.35": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 2
+    }
+   },
+   "sections": [
+    "700.3",
+    "700.11",
+    "700.13",
+    "700.14",
+    "700.15",
+    "700.16",
+    "700.18",
+    "700.19",
+    "700.23",
+    "700.25",
+    "700.27",
+    "700.35"
+   ],
+   "seconds": 0.03
+  },
+  {
+   "arm": "2",
+   "id": "B-005",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "606.20",
+    "606.100",
+    "606.160"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 5,
+   "n_sources": 16,
+   "n_distinct_sections": 16,
+   "evidence_chars": 4761,
+   "keyed_paragraph_coverage": {
+    "606.20": {
+     "paragraphs_in_prompt": 0,
+     "paragraphs_in_section": 3
+    },
+    "606.100": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 35
+    },
+    "606.160": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 51
+    }
+   },
+   "sections": [
+    "606.3",
+    "606.40",
+    "606.60",
+    "606.65",
+    "606.100",
+    "606.110",
+    "606.120",
+    "606.121",
+    "606.122",
+    "606.140",
+    "606.145",
+    "606.151",
+    "606.160",
+    "606.165",
+    "606.170",
+    "606.171"
+   ],
+   "seconds": 0.02
+  },
+  {
+   "arm": "2",
+   "id": "M-004",
+   "type": "Cross-Reference",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.1"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 1,
+   "n_sources": 6,
+   "n_distinct_sections": 6,
+   "evidence_chars": 3347,
+   "keyed_paragraph_coverage": {
+    "820.1": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 10
+    }
+   },
+   "sections": [
+    "820.1",
+    "820.3",
+    "820.7",
+    "820.10",
+    "820.35",
+    "820.45"
+   ],
+   "seconds": 0.19
+  },
+  {
+   "arm": "2",
+   "id": "NC-018",
+   "type": "Negative Control",
+   "part_level_plan": true,
+   "keyed_sections": [],
+   "keyed_present": false,
+   "keyed_rank": null,
+   "n_sources": 20,
+   "n_distinct_sections": 20,
+   "evidence_chars": 5096,
+   "keyed_paragraph_coverage": {},
+   "sections": [
+    "830.3",
+    "830.10",
+    "830.20",
+    "830.40",
+    "830.50",
+    "830.60",
+    "830.100",
+    "830.110",
+    "830.120",
+    "830.130",
+    "830.200",
+    "830.210",
+    "830.220",
+    "830.300",
+    "830.310",
+    "830.320",
+    "830.330",
+    "830.340",
+    "830.350",
+    "830.360"
+   ],
+   "seconds": 0.02
+  },
+  {
+   "arm": "2",
+   "id": "F-009",
+   "type": "Distinction",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "117.135"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 19,
+   "n_sources": 61,
+   "n_distinct_sections": 61,
+   "evidence_chars": 10950,
+   "keyed_paragraph_coverage": {
+    "117.135": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 18
+    }
+   },
+   "sections": [
+    "117.1",
+    "117.3",
+    "117.4",
+    "117.5",
+    "117.7",
+    "117.8",
+    "117.9",
+    "117.10",
+    "117.20",
+    "117.35",
+    "117.37",
+    "117.40",
+    "117.80",
+    "117.93",
+    "117.95",
+    "117.110",
+    "117.126",
+    "117.130",
+    "117.135",
+    "117.136",
+    "117.137",
+    "117.139",
+    "117.140",
+    "117.145",
+    "117.150",
+    "117.155",
+    "117.160",
+    "117.165",
+    "117.170",
+    "117.180",
+    "117.190",
+    "117.201",
+    "117.206",
+    "117.251",
+    "117.254",
+    "117.257",
+    "117.260",
+    "117.264",
+    "117.267",
+    "117.270",
+    "117.274",
+    "117.277",
+    "117.280",
+    "117.284",
+    "117.287",
+    "117.301",
+    "117.305",
+    "117.310",
+    "117.315",
+    "117.320",
+    "117.325",
+    "117.330",
+    "117.335",
+    "117.405",
+    "117.410",
+    "117.415",
+    "117.420",
+    "117.425",
+    "117.430",
+    "117.435",
+    "117.475"
+   ],
+   "seconds": 0.04
+  },
+  {
+   "arm": "2",
+   "id": "SD-010",
+   "type": "Scope/Boundary",
+   "part_level_plan": true,
+   "keyed_sections": [],
+   "keyed_present": false,
+   "keyed_rank": null,
+   "n_sources": 48,
+   "n_distinct_sections": 48,
+   "evidence_chars": 14767,
+   "keyed_paragraph_coverage": {},
+   "sections": [
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.103",
+    "211.105",
+    "211.110",
+    "211.111",
+    "211.113",
+    "211.115",
+    "211.122",
+    "211.125",
+    "211.130",
+    "211.132",
+    "211.134",
+    "211.137",
+    "211.142",
+    "211.150",
+    "211.160",
+    "211.165",
+    "211.166",
+    "211.167",
+    "211.170",
+    "211.173"
+   ],
+   "seconds": 0.07
+  },
+  {
+   "arm": "2",
+   "id": "B-001",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "600.10",
+    "600.11",
+    "210.2"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 3,
+   "n_sources": 42,
+   "n_distinct_sections": 42,
+   "evidence_chars": 15712,
+   "keyed_paragraph_coverage": {
+    "600.10": {
+     "paragraphs_in_prompt": 0,
+     "paragraphs_in_section": 7
+    },
+    "600.11": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 28
+    },
+    "210.2": {
+     "paragraphs_in_prompt": 0,
+     "paragraphs_in_section": 3
+    }
+   },
+   "sections": [
+    "600.2",
+    "600.3",
+    "600.11",
+    "600.12",
+    "600.13",
+    "600.14",
+    "600.15",
+    "600.20",
+    "600.21",
+    "600.80",
+    "600.81",
+    "600.82",
+    "600.90",
+    "211.1",
+    "211.3",
+    "211.22",
+    "211.25",
+    "211.28",
+    "211.34",
+    "211.42",
+    "211.44",
+    "211.46",
+    "211.48",
+    "211.50",
+    "211.52",
+    "211.56",
+    "211.58",
+    "211.63",
+    "211.65",
+    "211.67",
+    "211.68",
+    "211.72",
+    "211.80",
+    "211.82",
+    "211.84",
+    "211.86",
+    "211.87",
+    "211.89",
+    "211.94",
+    "211.100",
+    "211.101",
+    "211.105"
+   ],
+   "seconds": 0.04
+  },
+  {
+   "arm": "2",
+   "id": "C-002",
+   "type": "Direct Lookup",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "701.3",
+    "701.11",
+    "701.13"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 3,
+   "n_sources": 10,
+   "n_distinct_sections": 10,
+   "evidence_chars": 4591,
+   "keyed_paragraph_coverage": {
+    "701.3": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 65
+    },
+    "701.11": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 6
+    },
+    "701.13": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 39
+    }
+   },
+   "sections": [
+    "701.1",
+    "701.2",
+    "701.3",
+    "701.9",
+    "701.10",
+    "701.11",
+    "701.12",
+    "701.13",
+    "701.20",
+    "701.30"
+   ],
+   "seconds": 0.01
+  },
+  {
+   "arm": "2",
+   "id": "E-010",
+   "type": "Application",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "11.10",
+    "11.30"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 4,
+   "n_sources": 10,
+   "n_distinct_sections": 10,
+   "evidence_chars": 2465,
+   "keyed_paragraph_coverage": {
+    "11.10": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 14
+    },
+    "11.30": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 1
+    }
+   },
+   "sections": [
+    "11.1",
+    "11.2",
+    "11.3",
+    "11.10",
+    "11.30",
+    "11.50",
+    "11.70",
+    "11.100",
+    "11.200",
+    "11.300"
+   ],
+   "seconds": 0.01
+  }
+ ]
+}
