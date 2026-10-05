@@ -59,6 +59,35 @@ def numeric_cfr_key(section: str | None, paragraph: str, path_ordinal: int):
     return (0, int(m.group(1)), int(m.group(2)), m.group(3).lower(), "", paragraph, path_ordinal)
 
 
+class PinnedBudget:
+    """Transparent generator proxy that forces max_new_tokens to a per-question value.
+
+    Arm 2 enlarges the evidence package, and the production budget policy is adaptive
+    (`evidence_multiple` 1.4, `evidence_cap_fraction` 0.75, `hard_max_tokens` 2048), so a bigger
+    package silently buys a bigger generation allowance. That would confound evidence composition
+    with generation capacity. This pins the allowance to the value Arm 0 actually used for the same
+    question, so the ONLY difference between the arms is which evidence survives selection.
+    """
+
+    def __init__(self, inner, budgets: dict[str, int]) -> None:
+        self.inner, self.budgets = inner, budgets
+        self.model, self.tokenizer = inner.model, inner.tokenizer
+        self.qid: str | None = None
+        self.requested: list[int | None] = []
+
+    @property
+    def calls(self):
+        return self.inner.calls
+
+    def generate(self, messages, max_new_tokens=None, on_text=None):
+        self.requested.append(max_new_tokens)
+        pinned = self.budgets.get(self.qid or "")
+        return self.inner.generate(messages, max_new_tokens=pinned or max_new_tokens, on_text=on_text)
+
+    def __getattr__(self, name):
+        return getattr(self.inner, name)
+
+
 def install_k1():
     """Re-sort tied EXACT evidence into numeric CFR order; leave every other tier as production ordered it."""
     import regulus.retrieval.lexical as lex
@@ -126,9 +155,27 @@ def main() -> int:
     ap.add_argument("--set", required=True)
     ap.add_argument("--arm", required=True, choices=["0", "1", "2"])
     ap.add_argument("--out", default=str(ROOT / "artifacts/diagnostics/d1_experiment"))
+    ap.add_argument("--pin-budget-from", default=None,
+                    help="arm JSON whose per-question generation budget this arm must reuse exactly")
+    ap.add_argument("--only-ids", default=None, help="comma-separated question ids, run in this order")
     args = ap.parse_args()
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     probe = json.loads(Path(args.set).read_text(encoding="utf-8"))
+    if args.only_ids:
+        want = [x.strip() for x in args.only_ids.split(",") if x.strip()]
+        by_id = {it["id"]: it for it in probe}
+        missing = [x for x in want if x not in by_id]
+        if missing:
+            raise SystemExit(f"--only-ids not in the probe set: {missing}")
+        probe = [by_id[x] for x in want]          # run in the order given
+    pinned_budgets: dict[str, int] = {}
+    if args.pin_budget_from:
+        src = json.loads(Path(args.pin_budget_from).read_text(encoding="utf-8"))
+        pinned_budgets = {r["id"]: r["budget"] for r in src["rows"] if r.get("budget")}
+        absent = [it["id"] for it in probe if it["id"] not in pinned_budgets]
+        if absent:
+            raise SystemExit(f"no recorded budget to pin for: {absent}")
+        print(f"pinning generation budget from {args.pin_budget_from} (arm {src['arm']}) for {len(probe)} rows")
 
     patches = []
     if args.arm in ("1", "2"):
@@ -152,11 +199,12 @@ def main() -> int:
     settings.generation = configured_generation_config(settings)
     base = load_generator(settings, local_files_only=True)
     rec = RecordingGenerator(base, base.tokenizer, settings.generation.enable_thinking)
+    gen = PinnedBudget(rec, pinned_budgets) if pinned_budgets else rec
     tok = base.tokenizer
     db = Database.from_env(); db.connect()
     cfg = configured_rag_config(settings)
     retriever, scope = build_retriever(db, cfg)
-    pipe = RagPipeline(retriever, rec, cfg, scope_policy=scope)
+    pipe = RagPipeline(retriever, gen, cfg, scope_policy=scope)
 
     # how many paragraphs each section actually has, for "full section vs paragraph 0 only"
     def section_paragraph_count(sec: str) -> int:
@@ -170,8 +218,12 @@ def main() -> int:
         plan = plan_query(q.question)
         part_level = bool(plan.requirements) and all(r.reference.section is None for r in plan.requirements)
         before = len(rec.calls)
+        if pinned_budgets:
+            gen.qid = qid
+            requested_before = len(gen.requested)
         t0 = time.perf_counter()
         outp = pipe.answer(q.question)
+        requested_budget = (gen.requested[requested_before] if pinned_budgets and len(gen.requested) > requested_before else None)
         calls = rec.calls[before:]
         c = calls[0] if calls else None
         m = outp.metadata
@@ -210,6 +262,7 @@ def main() -> int:
             "keyed_paragraph_coverage": paras_present,
             "sections": sec_of, "tiers": tiers,
             "prompt_tokens": c and c["prompt_tokens_counted"], "budget": c and c["generation_budget_passed"],
+            "budget_pinned_to": pinned_budgets.get(qid), "budget_adaptive_requested": requested_budget,
             "generated_tokens": c and c["generated_tokens"], "finished_with_eos": c and c["finished_with_eos"],
             "stop_reason": c and c["stop_reason"],
             # answer metrics, existing diagnostic scoring only
