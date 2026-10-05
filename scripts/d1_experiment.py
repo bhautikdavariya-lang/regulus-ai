@@ -210,6 +210,66 @@ def install_ceiling_for(results: int, chars: int, label: str):
     return f"CEIL[{label}]: whole-part plans only get hard_max_results={results}, hard_max_total_chars={chars}"
 
 
+def install_h4_complete_sections(db):
+    """H4: supply each selected CFR section COMPLETE, instead of only its first paragraph.
+
+    Why this shape. Production answers a whole-Part question through `ECFR_EXACT_PART`, whose
+    `AND r.ordinal = 0` clause returns the first live row of each section, and `RetrievalResult.text`
+    is one DB row's `body_text`. So one row per section means one PARAGRAPH per section: for 820.1 the
+    model sees paragraph (a) alone, 1,469 of 5,277 chars, and never sees (a)(1)-(a)(4), (b), (c), (d).
+
+    The intervention wraps `regulus.rag.pipeline.select_evidence` and runs the REAL function under the
+    UNCHANGED production policy first, so the set of sections, their order and the keyed section's rank
+    are identical to production by construction. Only then is each selected eCFR section's text replaced
+    by all of its paragraphs, in `path_ordinal, ordinal` order, rendered as ONE source block per
+    section - the same block that was already there, now complete.
+
+    Deliberately NOT done, because each would confound completeness with something else:
+      * no ceiling change - raising `hard_max_total_chars` would let selection pull in MORE sections;
+      * no extra sections, no neighbouring provisions, no whole-Part retrieval;
+      * no reordering, no re-ranking, no change to which requirement anything satisfies;
+      * the per-result cap is simply not re-applied to the expanded text, so expansion cannot truncate.
+
+    Consequence to measure, not to hide: total evidence characters rise well past the production
+    ceiling, and the generation budget stays pinned, so runaway generation is a live risk.
+    """
+    import regulus.rag.pipeline as pipe
+    from regulus.rag.selection import Selection, SelectedEvidence, _block_chars
+    from regulus.retrieval.evidence import TIER_EXACT
+
+    real = pipe.select_evidence
+    cache: dict[str, str] = {}
+
+    def full_section(section: str) -> str:
+        if section not in cache:
+            rows = db.query(
+                "select paragraph_path, body_text from cfr_records where section_number=%s "
+                "order by path_ordinal, ordinal", (section,))
+            cache[section] = "\n".join((r["body_text"] or "").strip() for r in rows if (r["body_text"] or "").strip())
+        return cache[section]
+
+    def patched(registry, policy=None, **kw):
+        sel = real(registry, policy, **kw)          # production policy: identical section set
+        items, changed = [], 0
+        for s in sel.selected:
+            section = s.evidence.result.metadata.get("section")
+            if s.evidence.tier != TIER_EXACT or s.evidence.corpus != "ecfr" or not section:
+                items.append(s); continue
+            text = full_section(section)
+            if not text or len(text) <= len(s.text):
+                items.append(s); continue
+            items.append(SelectedEvidence(s.index, s.evidence, text, False, s.protected, s.reason,
+                                          _block_chars(s.evidence, text, s.index, False)))
+            changed += 1
+        if not changed:
+            return sel
+        return Selection(tuple(items), sel.dropped, sel.policy, sum(x.chars for x in items),
+                         {**sel.diagnostics, "h4_sections_completed": changed})
+
+    pipe.select_evidence = patched
+    return "H4: each selected eCFR section expanded to all its paragraphs (one source block per section)"
+
+
 def install_ceiling():
     """Raise the HARD ceilings for whole-part plans only. Soft budgets untouched."""
     import regulus.rag.pipeline as pipe
@@ -240,7 +300,7 @@ words = lambda t: {w for w in re.findall(r"[a-z][a-z-]{3,}", (t or "").lower())}
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--set", required=True)
-    ap.add_argument("--arm", required=True, choices=["0", "1", "2", "3", "4"])
+    ap.add_argument("--arm", required=True, choices=["0", "1", "2", "3", "4", "h4"])
     ap.add_argument("--out", default=str(ROOT / "artifacts/diagnostics/d1_experiment"))
     ap.add_argument("--pin-budget-from", default=None,
                     help="arm JSON whose per-question generation budget this arm must reuse exactly")
@@ -297,6 +357,8 @@ def main() -> int:
     gen = PinnedBudget(rec, pinned_budgets) if pinned_budgets else rec
     tok = base.tokenizer
     db = Database.from_env(); db.connect()
+    if args.arm == "h4":
+        patches.append(install_h4_complete_sections(db))
     cfg = configured_rag_config(settings)
     retriever, scope = build_retriever(db, cfg)
     pipe = RagPipeline(retriever, gen, cfg, scope_policy=scope)
