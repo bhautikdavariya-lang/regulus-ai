@@ -1,0 +1,250 @@
+{
+ "arm": "h4",
+ "patches": [
+  "H4: each selected eCFR section expanded to all its paragraphs (one source block per section)"
+ ],
+ "identity": {
+  "model": {
+   "model_id": "Qwen/Qwen3-0.6B",
+   "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+   "device": "cpu",
+   "dtype": "float32",
+   "generation": {
+    "max_new_tokens": 2048,
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "enable_thinking": false
+   }
+  },
+  "config_fingerprint": {
+   "retriever": "LexicalRetriever",
+   "top_k": 8,
+   "corpus": "all",
+   "min_trigram_similarity": 0.4,
+   "no_context_behavior": "refuse",
+   "exclude_contextual_only": true,
+   "incomplete_behavior": "partial",
+   "generation_budget": {
+    "policy": "adaptive",
+    "base_tokens": 96,
+    "per_unit_tokens": 160,
+    "range_bonus_tokens": 64,
+    "general_tokens": 384,
+    "max_units": 10,
+    "min_tokens": 256,
+    "evidence_multiple": 1.4,
+    "evidence_cap_fraction": 0.75,
+    "hard_max_tokens": 2048
+   },
+   "validation_behavior": "repair",
+   "answer_shape": "adaptive",
+   "answerability": "gate",
+   "optional_context": "incomplete_only",
+   "scope_policy": "general_knowledge",
+   "semantic_fallback": "on",
+   "evidence_consolidation": "on",
+   "context": {
+    "max_results": 8,
+    "max_chars_per_result": 1200,
+    "max_total_chars": 3600,
+    "hard_max_results": 24,
+    "hard_max_total_chars": 9000,
+    "required_max_chars_per_result": 4000
+   }
+  },
+  "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79"
+ },
+ "rows": [
+  {
+   "arm": "h4",
+   "id": "M-002",
+   "type": "Distinction",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.1"
+   ],
+   "requirements": [
+    "21 CFR part 820"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 2,
+   "n_sources": 6,
+   "evidence_chars": 15864,
+   "evidence_tokens": 3580,
+   "tokens_before_keyed": 576,
+   "keyed_token_share_pct": 29.27,
+   "keyed_paragraph_coverage": {
+    "820.1": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 10
+    }
+   },
+   "sections": [
+    "820.10",
+    "820.1",
+    "820.35",
+    "820.3",
+    "820.45",
+    "820.7"
+   ],
+   "tiers": [
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)"
+   ],
+   "prompt_tokens": 4543,
+   "budget": 1171,
+   "budget_pinned_to": 1171,
+   "budget_adaptive_requested": 1536,
+   "generated_tokens": 198,
+   "finished_with_eos": true,
+   "stop_reason": null,
+   "recall_raw": 0.143,
+   "recall_final": 0.143,
+   "mechanical_pass": 0,
+   "scoring_mode": "substantive_recall",
+   "cites_keyed_section": false,
+   "has_any_citation": true,
+   "model_called": true,
+   "answerability": "ANSWERABLE",
+   "coverage_state": "COMPLETE",
+   "repair": "invalid_citations_removed",
+   "validation_final": "valid",
+   "raw": "Manufacturers of components and parts of finished devices subject to 21 CFR Part 820. [1]  \nIf applicable, the requirements in this part apply to class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section. [1]  \nAs appropriate, the requirements in this part apply to devices that support or sustain life, the failure of which to perform when properly used in accordance with instructions for use provided in the labeling can be reasonably expected to result in a significant injury. [1]  \nWhere applicable, the requirements in this part apply to devices that are imported or offered for import into the United States. [5]  \nAs appropriate, the requirements in this part apply to devices that are imported or offered for import into the United States. [5]  \n\nThe available regulatory sources do not provide enough information to answer this. [9]",
+   "final_answer": "Manufacturers of components and parts of finished devices subject to 21 CFR Part 820. [1] \nIf applicable, the requirements in this part apply to class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section. [1] \nAs appropriate, the requirements in this part apply to devices that support or sustain life, the failure of which to perform when properly used in accordance with instructions for use provided in the labeling can be reasonably expected to result in a significant injury. [1] \nWhere applicable, the requirements in this part apply to devices that are imported or offered for import into the United States. [5] \nAs appropriate, the requirements in this part apply to devices that are imported or offered for import into the United States. [5] \n\nThe available regulatory sources do not provide enough information to answer this.",
+   "prompt_sha256": "7aff61babcb0eb1c4495447c7ccdfe919daf8219d2bee847413a188816718574",
+   "seconds": 44.2
+  },
+  {
+   "arm": "h4",
+   "id": "M-003",
+   "type": "Distinction",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.1"
+   ],
+   "requirements": [
+    "21 CFR part 820"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 2,
+   "n_sources": 6,
+   "evidence_chars": 15864,
+   "evidence_tokens": 3580,
+   "tokens_before_keyed": 576,
+   "keyed_token_share_pct": 29.27,
+   "keyed_paragraph_coverage": {
+    "820.1": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 10
+    }
+   },
+   "sections": [
+    "820.10",
+    "820.1",
+    "820.35",
+    "820.3",
+    "820.45",
+    "820.7"
+   ],
+   "tiers": [
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)"
+   ],
+   "prompt_tokens": 4541,
+   "budget": 1171,
+   "budget_pinned_to": 1171,
+   "budget_adaptive_requested": 1536,
+   "generated_tokens": 250,
+   "finished_with_eos": true,
+   "stop_reason": null,
+   "recall_raw": 0.8,
+   "recall_final": 0.8,
+   "mechanical_pass": 1,
+   "scoring_mode": "substantive_recall",
+   "cites_keyed_section": true,
+   "has_any_citation": true,
+   "model_called": true,
+   "answerability": "ANSWERABLE",
+   "coverage_state": "COMPLETE",
+   "repair": "mismatched_statements_replaced",
+   "validation_final": "valid",
+   "raw": "Manufacturers of blood and blood components are subject to 21 CFR Part 820 [1]. The requirement applies to devices that support or sustain life, including blood and blood components, as specified in the provisions of this part. [1]  \n\nIf applicable, the requirements in 21 CFR 820.10 apply to class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section [1].  \n\nAs appropriate, the requirements in 21 CFR 820.10 also apply to devices that are regulated as implantable medical devices, as specified in the provisions of this part. [1]  \n\nWhere applicable, the requirements in 21 CFR 820.35 apply to the control of records, including complaints and servicing activities. [1]  \n\nThe requirements in 21 CFR 820.3 also apply to the control of records, including unique device identification. [1]  \n\nThe requirements in 21 CFR 820.45 apply to the labeling and packaging controls, including ensuring accuracy and documentation. [1]",
+   "final_answer": "Manufacturers of blood and blood components are subject to 21 CFR Part 820 [1]. The requirement applies to devices that support or sustain life, including blood and blood components, as specified in the provisions of this part [1]. \n\nIf applicable, the requirements in 21 CFR 820.10 apply to class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section [1]. \n\nAs appropriate, the requirements in 21 CFR 820.10 also apply to devices that are regulated as implantable medical devices, as specified in the provisions of this part [1].",
+   "prompt_sha256": "77fc033b556e7039ac54bbc0e7175bee2d935aa071fcffb33d062764a99671b3",
+   "seconds": 42.4
+  },
+  {
+   "arm": "h4",
+   "id": "M-004",
+   "type": "Cross-Reference",
+   "part_level_plan": true,
+   "keyed_sections": [
+    "820.1"
+   ],
+   "requirements": [
+    "21 CFR part 820"
+   ],
+   "keyed_present": true,
+   "keyed_rank": 2,
+   "n_sources": 6,
+   "evidence_chars": 15864,
+   "evidence_tokens": 3580,
+   "tokens_before_keyed": 576,
+   "keyed_token_share_pct": 29.27,
+   "keyed_paragraph_coverage": {
+    "820.1": {
+     "paragraphs_in_prompt": 1,
+     "paragraphs_in_section": 10
+    }
+   },
+   "sections": [
+    "820.10",
+    "820.1",
+    "820.35",
+    "820.3",
+    "820.45",
+    "820.7"
+   ],
+   "tiers": [
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)",
+    "Tier: EXACT (authoritative text of r1)"
+   ],
+   "prompt_tokens": 4561,
+   "budget": 1171,
+   "budget_pinned_to": 1171,
+   "budget_adaptive_requested": 1536,
+   "generated_tokens": 141,
+   "finished_with_eos": true,
+   "stop_reason": null,
+   "recall_raw": 0.4,
+   "recall_final": 0.1,
+   "mechanical_pass": 0,
+   "scoring_mode": "substantive_recall",
+   "cites_keyed_section": true,
+   "has_any_citation": true,
+   "model_called": true,
+   "answerability": "ANSWERABLE",
+   "coverage_state": "COMPLETE",
+   "repair": "unvalidated_answer_withheld",
+   "validation_final": "incomplete",
+   "raw": "Human cells, tissues, and cellular and tissue-based products regulated as devices subject to Part 820, and what else applies to them:  \n[1] 21 CFR 820.10 applies only to class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section, as appropriate.  \n[2] \"as appropriate\" [1]; \"to the extent\" [2]; \"except\" [4]; \"where applicable\" [5]; \"as appropriate\" [5].  \n\nThe available regulatory sources do not provide enough information to answer this.",
+   "final_answer": "The generated answer could not be validated against the retrieved regulatory evidence, so it is not shown. The retrieved sources were not verified to answer the question as asked, so their text is not quoted as an answer. Sources consulted: 21 CFR 820.10, 21 CFR 820.1(a), 21 CFR 820.35, 21 CFR 820.3, 21 CFR 820.45 and 1 more.",
+   "prompt_sha256": "f8a22eb5118a74eacd340369fbdb5ca7d5404d08730ca18d7259fa4975289940",
+   "seconds": 25.4
+  }
+ ]
+}
