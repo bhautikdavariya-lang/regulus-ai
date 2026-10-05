@@ -17,7 +17,8 @@ KEYED = [i for i in PL if R[0][i]["keyed_sections"]]
 
 
 def mcnemar(a, b, rows):
-    """Exact two-sided McNemar on paired binary mechanical_pass."""
+    """Exact two-sided McNemar on paired binary mechanical_pass. Rows absent from either arm are skipped."""
+    rows = [i for i in rows if i in R[a] and i in R[b]]
     n01 = sum(1 for i in rows if not R[a][i]["mechanical_pass"] and R[b][i]["mechanical_pass"])
     n10 = sum(1 for i in rows if R[a][i]["mechanical_pass"] and not R[b][i]["mechanical_pass"])
     n = n01 + n10
@@ -45,18 +46,40 @@ for n in AVAIL:
     print(f"  arm{n} patches: {ARMS[n]['patches']}")
 print(f"\n{len(NPL)} non-part-level control rows should be bit-identical in all three arms:")
 for n in AVAIL[1:]:
-    print(f"  arm0 vs arm{n}: prompt {all(R[0][i]['prompt_sha256']==R[n][i]['prompt_sha256'] for i in NPL)}"
-          f"  raw {all(R[0][i]['raw']==R[n][i]['raw'] for i in NPL)}"
-          f"  final {all(R[0][i]['final_answer']==R[n][i]['final_answer'] for i in NPL)}")
+    sub = [i for i in NPL if i in R[n]]
+    if not sub:
+        print(f"  arm0 vs arm{n}: no control rows in this arm (trimmed set)"); continue
+    print(f"  arm0 vs arm{n} ({len(sub)} rows): prompt {all(R[0][i]['prompt_sha256']==R[n][i]['prompt_sha256'] for i in sub)}"
+          f"  raw {all(R[0][i]['raw']==R[n][i]['raw'] for i in sub)}"
+          f"  final {all(R[0][i]['final_answer']==R[n][i]['final_answer'] for i in sub)}")
+print("\nrows present per arm:", {n: len(R[n]) for n in AVAIL},
+      "   arm2 is a trimmed, ordered subset by design" if 2 in R and len(R[2]) < len(IDS) else "")
+if 2 in R:
+    pins = [(i, R[0][i]["budget"], R[2][i]["budget"], R[2][i].get("budget_adaptive_requested"))
+            for i in R[2] if i in R[0]]
+    bad = [x for x in pins if x[1] != x[2]]
+    print(f"budget pin: {len(pins)-len(bad)}/{len(pins)} rows pinned to arm0's exact budget"
+          + (f"  !! MISMATCH {bad}" if bad else "  (all identical)"))
+    lifted = [x for x in pins if x[3] is not None and x[3] != x[1]]
+    if lifted:
+        print(f"  adaptive policy would have granted a DIFFERENT budget on {len(lifted)} rows: "
+              + ", ".join(f"{i} {req} vs {b0}" for i, b0, _, req in lifted))
+    else:
+        print("  adaptive request equalled arm0's budget on every row (pin was a no-op in effect)")
 print(f"\n{len(PL)} part-level rows, prompt changed vs arm0:",
-      {n: sum(1 for i in PL if R[0][i]["prompt_sha256"] != R[n][i]["prompt_sha256"]) for n in AVAIL[1:]})
+      {n: sum(1 for i in PL if i in R[n] and R[0][i]["prompt_sha256"] != R[n][i]["prompt_sha256"]) for n in AVAIL[1:]})
 
 sec("DELIVERABLE 4 - EVIDENCE METRICS (part-level rows, n=%d; keyed subset n=%d)" % (len(PL), len(KEYED)))
 hdr = f"{'metric':46} {'arm0':>10} {'arm1':>10} {'arm2':>10}"
 print(hdr); print("-" * len(hdr))
 def row(label, fn, rows=None, fmt="{:10.2f}"):
     rows = rows if rows is not None else PL
-    print(f"{label:46} " + " ".join(fmt.format(fn(n, rows)) if n in R else f"{'?':>10}" for n in (0,1,2)))
+    def cell(n):
+        if n not in R:
+            return f"{'?':>10}"
+        sub = [i for i in rows if i in R[n]]
+        return fmt.format(fn(n, sub)) if sub else f"{'-':>10}"
+    print(f"{label:46} " + " ".join(cell(n) for n in (0, 1, 2)))
 row("keyed section present (count)", lambda n, r: sum(1 for i in r if R[n][i]["keyed_present"]), KEYED, "{:10.0f}")
 row("keyed present (% of keyed rows)", lambda n, r: 100 * mean(bool(R[n][i]["keyed_present"]) for i in r), KEYED)
 row("mean keyed rank (present only)", lambda n, r: mean(R[n][i]["keyed_rank"] for i in r if R[n][i]["keyed_rank"]), KEYED)
@@ -91,8 +114,9 @@ sec("PAIRED SIGNIFICANCE (exact McNemar on mechanical_pass)")
 for label, rows in (("all 36", IDS), ("part-level 20", PL), ("keyed part-level 18", KEYED)):
     pairs = [(0, 1, "arm0 -> arm1 (K1)"), (0, 2, "arm0 -> arm2 (K1+ceiling)"), (1, 2, "arm1 -> arm2 (ceiling alone)")]
     for a, b, nm in [x for x in pairs if x[0] in AVAIL and x[1] in AVAIL]:
+        paired = [i for i in rows if i in R[a] and i in R[b]]
         n01, n10, p = mcnemar(a, b, rows)
-        print(f"  {label:20} {nm:28} gained {n01}  lost {n10}  p = {p:.3f}")
+        print(f"  {label:20} {nm:28} gained {n01}  lost {n10}  p = {p:.3f}   (n paired = {len(paired)})")
 
 sec("DELIVERABLE 6 - QUESTION-BY-QUESTION DELTA (part-level rows)")
 h = (f"{'id':8} {'type':15} {'keyed':24} | {'rank0':>5} {'rank1':>5} {'rank2':>5} | "
@@ -113,9 +137,11 @@ buckets = collections.defaultdict(list)
 for i in PL:
     p0, p1, p2 = cls(i)
     pres = [bool(R[n][i]["keyed_present"]) if n in R else False for n in (0, 1, 2)]
+    if i not in R[1]:
+        continue
     if not p0 and p1: buckets["rescued by K1"].append(i)
     if p0 and not p1: buckets["regressed by K1"].append(i)
-    if 2 in R:
+    if 2 in R and i in R[2]:
         if not p0 and not p1 and p2: buckets["rescued only by K1+ceiling"].append(i)
         if p0 and not p2: buckets["regressed by K1+ceiling"].append(i)
         if not p0 and not p1 and not p2:
