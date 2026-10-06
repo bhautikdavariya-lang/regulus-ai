@@ -1,0 +1,191 @@
+{
+  "stage": "A",
+  "deliverable": "6 - baseline failure attribution",
+  "rows": 300,
+  "verdicts": {
+    "FAIL": 289,
+    "PASS": 10,
+    "ERROR": 1
+  },
+  "categories_all_rows": {
+    "MODEL_ANSWER": {
+      "n": 141,
+      "pct_of_300": 47.0
+    },
+    "EVIDENCE_SUPPLY": {
+      "n": 126,
+      "pct_of_300": 42.0
+    },
+    "UNDETERMINED": {
+      "n": 21,
+      "pct_of_300": 7.0
+    },
+    "PASS": {
+      "n": 10,
+      "pct_of_300": 3.3
+    },
+    "CITATION_GROUNDING": {
+      "n": 2,
+      "pct_of_300": 0.7
+    }
+  },
+  "answer_to_the_stage_a_question": {
+    "denominator": "the 290 rows that are not a rubric PASS",
+    "n": 290,
+    "model_answer_failures": {
+      "n": 141,
+      "pct": 48.6
+    },
+    "output_processing_failures": {
+      "n": 0,
+      "pct": 0.0
+    },
+    "citation_grounding_failures": {
+      "n": 2,
+      "pct": 0.7
+    },
+    "evidence_supply_failures": {
+      "n": 126,
+      "pct": 43.4
+    },
+    "cannot_yet_be_determined": {
+      "n": 21,
+      "pct": 7.2
+    }
+  },
+  "subcategories": {
+    "EVIDENCE_SUPPLY/governing_section_not_retrieved": 126,
+    "MODEL_ANSWER/governing_section_supplied": 99,
+    "MODEL_ANSWER/no_governing_section_required": 42,
+    "UNDETERMINED/evaluation_uncertain": 20,
+    "PASS/pass": 10,
+    "CITATION_GROUNDING/substance_right_grounding_wrong": 2,
+    "UNDETERMINED/execution_error": 1
+  },
+  "sensitivity": {
+    "citation_grounding_upper_bound": {
+      "n": 8,
+      "pct": 2.8,
+      "borderline_ids": [
+        "D-013",
+        "E-007",
+        "V-002",
+        "P-007",
+        "P-012",
+        "H-001"
+      ],
+      "note": "substance scored correct (N=2); only the citation verdict is unresolved"
+    },
+    "if_part_level_retrieval_counts_as_evidence_supplied": {
+      "model_answer": {
+        "n": 192,
+        "pct": 66.2
+      },
+      "evidence_supply": {
+        "n": 75,
+        "pct": 25.9
+      },
+      "rows_moved": 51
+    },
+    "undetermined_rows_with_wrong_substance": {
+      "n": 15,
+      "note": "these would move to MODEL_ANSWER or EVIDENCE_SUPPLY, not to a pass"
+    }
+  },
+  "overlays": {
+    "output_processing_contributory": {
+      "n": 5,
+      "ids": [
+        "M-012",
+        "R-007",
+        "B-001",
+        "U-006",
+        "H-006"
+      ]
+    },
+    "no_answer_delivered": {
+      "n": 65,
+      "by_category": {
+        "MODEL_ANSWER": 31,
+        "EVIDENCE_SUPPLY": 25,
+        "PASS": 5,
+        "UNDETERMINED": 4
+      }
+    }
+  },
+  "by_question_type": {
+    "Abstention": {
+      "MODEL_ANSWER": 1
+    },
+    "Application": {
+      "EVIDENCE_SUPPLY": 10,
+      "MODEL_ANSWER": 9,
+      "UNDETERMINED": 1
+    },
+    "Cross-Reference": {
+      "MODEL_ANSWER": 10,
+      "EVIDENCE_SUPPLY": 9,
+      "UNDETERMINED": 1
+    },
+    "Direct Lookup": {
+      "EVIDENCE_SUPPLY": 85,
+      "MODEL_ANSWER": 80,
+      "UNDETERMINED": 16,
+      "PASS": 5,
+      "CITATION_GROUNDING": 2
+    },
+    "Distinction": {
+      "MODEL_ANSWER": 13,
+      "EVIDENCE_SUPPLY": 9,
+      "UNDETERMINED": 1
+    },
+    "Negative Control": {
+      "MODEL_ANSWER": 14,
+      "PASS": 4,
+      "EVIDENCE_SUPPLY": 4
+    },
+    "Scope/Boundary": {
+      "MODEL_ANSWER": 12,
+      "EVIDENCE_SUPPLY": 1,
+      "PASS": 1,
+      "UNDETERMINED": 1
+    },
+    "Temporal/Version": {
+      "EVIDENCE_SUPPLY": 8,
+      "MODEL_ANSWER": 2,
+      "UNDETERMINED": 1
+    }
+  },
+  "cross_check_vs_reviewer_root_cause": {
+    "EVIDENCE_SUPPLY": {
+      "retrieval miss (key section never retrieved)": 66,
+      "model reasoning (right evidence, wrong answer)": 30,
+      "answer suppressed / wrongly declined": 9,
+      "false-premise / trap not detected": 7,
+      "guidance cited over available regulation": 6,
+      "reserved / temporal routing": 5
+    },
+    "MODEL_ANSWER": {
+      "model reasoning (right evidence, wrong answer)": 65,
+      "answer suppressed / wrongly declined": 25,
+      "output shape": 13,
+      "corpus gap (key is statutory or part-level)": 13,
+      "retrieval returned guidance only": 9,
+      "false-premise / trap not detected": 8
+    },
+    "UNDETERMINED": {
+      "retrieval miss (key section never retrieved)": 6,
+      "model reasoning (right evidence, wrong answer)": 5,
+      "answer suppressed / wrongly declined": 3,
+      "guidance cited over available regulation": 2,
+      "citation attachment only": 2,
+      "execution error": 1
+    },
+    "CITATION_GROUNDING": {
+      "citation attachment only": 2
+    },
+    "PASS": {
+      "-": 10
+    }
+  }
+}

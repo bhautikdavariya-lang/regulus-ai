@@ -1,0 +1,102 @@
+{
+  "stage": "A",
+  "deliverable": "5 - citation / grounding diagnostic",
+  "rows": 300,
+  "scored": 299,
+  "withheld_no_answer_to_cite": 46,
+  "delivered_answers": 253,
+  "L1_citation_present": {
+    "with_citation": 222,
+    "pct": 87.7,
+    "without_any_citation": 31,
+    "marker_attached": 192,
+    "prose_reference_only": 55,
+    "guidance_cited_but_no_cfr_section": 70
+  },
+  "L2_citation_resolves": {
+    "fabricated_citation_rubric_M1": 2,
+    "fabricated_ids": [
+      "S-002",
+      "D-015"
+    ],
+    "unresolved_markers_rows": 13,
+    "rows_with_invalid_markers_recorded": 13,
+    "rows_citing_an_absent_section": 12
+  },
+  "L3_points_to_governing_provision": {
+    "cites_governing_section": 78,
+    "pct_of_cited_answers": 35.1,
+    "does_not": 144,
+    "match_was_only_a_section_the_question_named": 15,
+    "located_a_governing_section_not_given_in_the_question": 63
+  },
+  "L4_governing_rule_vs_related_words": {
+    "right_part_wrong_section": 63,
+    "wrong_part_entirely": 18,
+    "no_cfr_section_cited": 45
+  },
+  "L5_unsupported_claims_despite_citation": {
+    "citation_present_but_rubric_L0": 189,
+    "pct_of_cited_answers": 85.1,
+    "citation_present_and_L1": 33,
+    "cites_governing_section_but_still_substantively_wrong_N_lt_2": 70,
+    "validator_support_codes_raised": 80,
+    "code_frequency": {
+      "low_overlap_with_cited_source": 57,
+      "uncited_statement": 19,
+      "provision_citation_mismatch": 18,
+      "unsupported_claim": 15,
+      "condition_not_in_cited_source": 14,
+      "synthesis_citation_gap": 6,
+      "paragraph_misattribution": 3
+    }
+  },
+  "validator_support_vs_rubric_L": {
+    "codes_raised_and_L0": 72,
+    "codes_raised_and_L1": 8,
+    "no_codes_and_L0": 117,
+    "no_codes_and_L1": 25
+  },
+  "by_question_type": {
+    "Abstention": {
+      "n": 1,
+      "cites_governing": 0,
+      "L1": 0
+    },
+    "Application": {
+      "n": 16,
+      "cites_governing": 3,
+      "L1": 0
+    },
+    "Cross-Reference": {
+      "n": 17,
+      "cites_governing": 5,
+      "L1": 2
+    },
+    "Direct Lookup": {
+      "n": 164,
+      "cites_governing": 53,
+      "L1": 21
+    },
+    "Distinction": {
+      "n": 15,
+      "cites_governing": 4,
+      "L1": 0
+    },
+    "Negative Control": {
+      "n": 15,
+      "cites_governing": 4,
+      "L1": 8
+    },
+    "Scope/Boundary": {
+      "n": 14,
+      "cites_governing": 0,
+      "L1": 4
+    },
+    "Temporal/Version": {
+      "n": 11,
+      "cites_governing": 9,
+      "L1": 0
+    }
+  }
+}
