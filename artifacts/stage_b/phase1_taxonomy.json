@@ -1,0 +1,44 @@
+{
+  "stage": "B / evidence supply",
+  "deliverable": "1 and 2 - taxonomy and ranked mechanisms",
+  "population": "the 126 Stage A EVIDENCE_SUPPLY rows",
+  "rows": 126,
+  "mechanisms_ranked_by_rows": [
+    {
+      "stratum": "A2_reachable_at_greater_depth",
+      "rows": 45,
+      "pct_of_126": 35.7,
+      "mechanism": "not returned at top_k=8; the retriever does return it at top_k 24-96"
+    },
+    {
+      "stratum": "A1a_part_listing_ascii_truncated",
+      "rows": 33,
+      "pct_of_126": 26.2,
+      "mechanism": "whole-part request: the part listing is ASCII-ordered and cut at the budget, so which sections are supplied is independent of the question"
+    },
+    {
+      "stratum": "B_unreachable_at_any_tested_depth",
+      "rows": 30,
+      "pct_of_126": 23.8,
+      "mechanism": "never returned at top_k up to 96: a recall problem this retriever cannot solve by depth"
+    },
+    {
+      "stratum": "A1b_guidance_took_the_budget",
+      "rows": 14,
+      "pct_of_126": 11.1,
+      "mechanism": "the governing CFR section was retrieved in the top 8 and guidance chunks filled the prompt budget instead"
+    },
+    {
+      "stratum": "C_corpus_gap_or_reserved",
+      "rows": 4,
+      "pct_of_126": 3.2,
+      "mechanism": "no live rows in the snapshot, or reserved under the QMSR"
+    }
+  ],
+  "headline": {
+    "governing_provision_is_reachable_but_does_not_reach_the_prompt": 92,
+    "pct": 73.0,
+    "unreachable_by_this_retriever": 30,
+    "corpus_gap": 4
+  }
+}

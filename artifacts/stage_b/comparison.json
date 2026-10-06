@@ -1,0 +1,323 @@
+{
+  "arms": [
+    "control",
+    "es1",
+    "es1_deep"
+  ],
+  "rows": 36,
+  "by_arm": {
+    "control": {
+      "n": 36,
+      "errors": 0,
+      "governing_text_supplied": 0,
+      "governing_named_in_prompt_only": 13,
+      "carve_out_present": 23,
+      "mean_blocks": 8.3,
+      "mean_evidence_tokens": 681.7,
+      "mean_prompt_tokens": 1766.6,
+      "total_seconds": 1203.9,
+      "mean_seconds": 33.4,
+      "withheld": 10,
+      "rows_with_hallucination_codes": 0,
+      "hallucination_code_counts": {},
+      "truncation_noticed": 0,
+      "hit_token_ceiling": 0,
+      "mean_generated_tokens": 252.0,
+      "cites_governing": 2
+    },
+    "es1": {
+      "n": 36,
+      "errors": 0,
+      "governing_text_supplied": 14,
+      "governing_named_in_prompt_only": 10,
+      "carve_out_present": 22,
+      "mean_blocks": 8.1,
+      "mean_evidence_tokens": 694.7,
+      "mean_prompt_tokens": 1733.9,
+      "total_seconds": 1365.0,
+      "mean_seconds": 37.9,
+      "withheld": 12,
+      "rows_with_hallucination_codes": 0,
+      "hallucination_code_counts": {},
+      "truncation_noticed": 0,
+      "hit_token_ceiling": 1,
+      "mean_generated_tokens": 310.4,
+      "cites_governing": 9,
+      "evidence_changed": 20,
+      "answer_changed": 18
+    },
+    "es1_deep": {
+      "n": 36,
+      "errors": 0,
+      "governing_text_supplied": 14,
+      "governing_named_in_prompt_only": 10,
+      "carve_out_present": 22,
+      "mean_blocks": 8.2,
+      "mean_evidence_tokens": 694.8,
+      "mean_prompt_tokens": 1735.8,
+      "total_seconds": 1504.0,
+      "mean_seconds": 41.8,
+      "withheld": 12,
+      "rows_with_hallucination_codes": 0,
+      "hallucination_code_counts": {},
+      "truncation_noticed": 0,
+      "hit_token_ceiling": 1,
+      "mean_generated_tokens": 310.4,
+      "cites_governing": 9,
+      "evidence_changed": 21,
+      "answer_changed": 18
+    }
+  },
+  "by_stratum": {
+    "A1a_part_listing_ascii_truncated": {
+      "n": 12,
+      "control": {
+        "governing_text_supplied": 0,
+        "evidence_changed": null,
+        "answer_changed": null
+      },
+      "es1": {
+        "governing_text_supplied": 12,
+        "evidence_changed": 12,
+        "answer_changed": 12
+      },
+      "es1_deep": {
+        "governing_text_supplied": 12,
+        "evidence_changed": 12,
+        "answer_changed": 12
+      }
+    },
+    "A1b_guidance_took_the_budget": {
+      "n": 6,
+      "control": {
+        "governing_text_supplied": 0,
+        "evidence_changed": null,
+        "answer_changed": null
+      },
+      "es1": {
+        "governing_text_supplied": 2,
+        "evidence_changed": 2,
+        "answer_changed": 1
+      },
+      "es1_deep": {
+        "governing_text_supplied": 2,
+        "evidence_changed": 2,
+        "answer_changed": 1
+      }
+    },
+    "A2_reachable_at_greater_depth": {
+      "n": 12,
+      "control": {
+        "governing_text_supplied": 0,
+        "evidence_changed": null,
+        "answer_changed": null
+      },
+      "es1": {
+        "governing_text_supplied": 0,
+        "evidence_changed": 3,
+        "answer_changed": 3
+      },
+      "es1_deep": {
+        "governing_text_supplied": 0,
+        "evidence_changed": 3,
+        "answer_changed": 3
+      }
+    },
+    "B_unreachable_at_any_tested_depth": {
+      "n": 4,
+      "control": {
+        "governing_text_supplied": 0,
+        "evidence_changed": null,
+        "answer_changed": null
+      },
+      "es1": {
+        "governing_text_supplied": 0,
+        "evidence_changed": 2,
+        "answer_changed": 1
+      },
+      "es1_deep": {
+        "governing_text_supplied": 0,
+        "evidence_changed": 2,
+        "answer_changed": 1
+      }
+    },
+    "C_corpus_gap_or_reserved": {
+      "n": 2,
+      "control": {
+        "governing_text_supplied": 0,
+        "evidence_changed": null,
+        "answer_changed": null
+      },
+      "es1": {
+        "governing_text_supplied": 0,
+        "evidence_changed": 1,
+        "answer_changed": 1
+      },
+      "es1_deep": {
+        "governing_text_supplied": 0,
+        "evidence_changed": 2,
+        "answer_changed": 1
+      }
+    }
+  },
+  "scoring_queue": {
+    "es1": {
+      "needs_fresh_verdict": [
+        "A-002",
+        "A-003",
+        "B-003",
+        "D-001",
+        "D-003",
+        "D-004",
+        "D-006",
+        "D-007",
+        "D-009",
+        "D-022",
+        "D-024",
+        "D-026",
+        "D-027",
+        "F-001",
+        "F-002",
+        "G-003",
+        "K-005",
+        "M-034"
+      ],
+      "inherits_stage_a_verdict": [
+        "A-001",
+        "A-004",
+        "B-004",
+        "C-003",
+        "D-005",
+        "D-010",
+        "D-011",
+        "D-014",
+        "D-016",
+        "D-017",
+        "D-020",
+        "D-021",
+        "D-025",
+        "D-028",
+        "E-006",
+        "K-002",
+        "K-004",
+        "NC-005"
+      ]
+    },
+    "es1_deep": {
+      "needs_fresh_verdict": [
+        "A-002",
+        "A-003",
+        "B-003",
+        "D-001",
+        "D-003",
+        "D-004",
+        "D-006",
+        "D-007",
+        "D-009",
+        "D-022",
+        "D-024",
+        "D-026",
+        "D-027",
+        "F-001",
+        "F-002",
+        "G-003",
+        "K-005",
+        "M-034"
+      ],
+      "inherits_stage_a_verdict": [
+        "A-001",
+        "A-004",
+        "B-004",
+        "C-003",
+        "D-005",
+        "D-010",
+        "D-011",
+        "D-014",
+        "D-016",
+        "D-017",
+        "D-020",
+        "D-021",
+        "D-025",
+        "D-028",
+        "E-006",
+        "K-002",
+        "K-004",
+        "NC-005"
+      ]
+    }
+  },
+  "verdicts": {
+    "control": {
+      "source": "Stage A frozen verdicts",
+      "PASS": 0,
+      "N2": 0,
+      "n": 36
+    },
+    "es1": {
+      "n_scored": 36,
+      "missing": [],
+      "PASS": 1,
+      "N2": 1,
+      "N_distribution": {
+        "0": 22,
+        "1": 13,
+        "2": 1
+      },
+      "transitions": {
+        "FAIL->FAIL": 35,
+        "FAIL->PASS": 1
+      },
+      "evidence_now_present_but_still_wrong": [
+        "B-003",
+        "C-003",
+        "D-001",
+        "D-003",
+        "D-006",
+        "D-007",
+        "D-009",
+        "D-022",
+        "D-024",
+        "D-027",
+        "F-001",
+        "F-002",
+        "K-005"
+      ],
+      "evidence_now_present_and_correct": [
+        "D-004"
+      ]
+    },
+    "es1_deep": {
+      "n_scored": 36,
+      "missing": [],
+      "PASS": 1,
+      "N2": 1,
+      "N_distribution": {
+        "0": 22,
+        "1": 13,
+        "2": 1
+      },
+      "transitions": {
+        "FAIL->FAIL": 35,
+        "FAIL->PASS": 1
+      },
+      "evidence_now_present_but_still_wrong": [
+        "B-003",
+        "C-003",
+        "D-001",
+        "D-003",
+        "D-006",
+        "D-007",
+        "D-009",
+        "D-022",
+        "D-024",
+        "D-027",
+        "F-001",
+        "F-002",
+        "K-005"
+      ],
+      "evidence_now_present_and_correct": [
+        "D-004"
+      ]
+    }
+  }
+}
