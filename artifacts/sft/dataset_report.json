@@ -1,0 +1,121 @@
+{
+  "purpose": "SFT dataset for regulatory answer construction - construction only, no training, no inference",
+  "snapshot_date": "2026-09-03",
+  "totals": {
+    "selected": 59,
+    "admitted": 57,
+    "rejected": 2,
+    "train": 42,
+    "validation": 15
+  },
+  "by_failure_mode": {
+    "incomplete_answer": 30,
+    "cross_reference_reasoning": 26,
+    "missing_subordinate_paragraphs": 18,
+    "scope_applicability": 17,
+    "wrong_provision_selection": 15,
+    "evidence_faithful_interpretation": 15,
+    "false_premise_handling": 15,
+    "exceptions_and_conditions": 12,
+    "abstention": 9,
+    "answer_completeness_discipline": 7,
+    "distinction_reasoning": 7,
+    "temporal_version_reasoning": 6
+  },
+  "by_category": {
+    "Direct Lookup": 17,
+    "Cross-Reference": 8,
+    "Negative Control": 8,
+    "Distinction": 7,
+    "Scope/Boundary": 7,
+    "Temporal/Version": 5,
+    "Application": 4,
+    "Abstention": 1
+  },
+  "by_difficulty": {
+    "Trap": 19,
+    "Intermediate": 16,
+    "Advanced": 16,
+    "Basic": 6
+  },
+  "by_cfr_part": {
+    "none": 16,
+    "820": 11,
+    "117": 7,
+    "11": 3,
+    "111": 3,
+    "7": 2,
+    "803": 2,
+    "807": 2,
+    "211": 2,
+    "4": 2,
+    "210": 1,
+    "606": 1,
+    "1003": 1,
+    "207": 1,
+    "806": 1,
+    "1": 1,
+    "801": 1
+  },
+  "by_baseline_attribution": {
+    "MODEL_ANSWER/governing_section_supplied": 34,
+    "MODEL_ANSWER/no_governing_section_required": 20,
+    "EVIDENCE_SUPPLY/governing_section_not_retrieved": 2,
+    "UNDETERMINED/evaluation_uncertain": 1
+  },
+  "split": {
+    "method": "connected components over shared provisions; whole components assigned",
+    "target_validation_fraction": 0.25,
+    "components": 43,
+    "sections_appearing_in_both_splits": [],
+    "leakage_free": true,
+    "validation_categories": {
+      "Direct Lookup": 4,
+      "Cross-Reference": 3,
+      "Distinction": 2,
+      "Negative Control": 2,
+      "Application": 1,
+      "Scope/Boundary": 1,
+      "Temporal/Version": 1,
+      "Abstention": 1
+    }
+  },
+  "audit": {
+    "checks": [
+      "A1 citations supported by own evidence",
+      "A2 no fabricated identifiers",
+      "A3 failure-mode vocabulary",
+      "A4 answer or explicit rejection",
+      "A5 evidence present unless a pure refusal",
+      "A6 unique ids traceable to the benchmark"
+    ],
+    "rejected": [
+      {
+        "id": "M-030",
+        "reason": "The benchmark key for this row is a Federal Register citation (QMSR final rule, 89 FR 7523) and a compliance date, not a CFR provision. The snapshot supports the structural half of the answer - Part 820 now has six live sections (820.1, 820.3, 820.7, 820.10, 820.35, 820.45) with 820.5, 820.20-820.30 and 820.40 reserved, ISO 13485:2016 incorporated at 820.7 - but it does not record the 89 FR 7523 citation or the February 2, 2026 compliance date, and `effective_date` on these records is only the snapshot date. Writing those two facts into an ideal answer would mean sourcing them from outside the supplied evidence, which this dataset forbids. Excluded from train/validation and referred for SME review: if the FR citation and compliance date are added to the evidence corpus, this becomes a strong temporal-reasoning example.",
+        "audit": [
+          "A4"
+        ],
+        "needs_sme": true
+      },
+      {
+        "id": "PB-003",
+        "reason": "The question asks for the specific list of harmful and potentially harmful constituents FDA expects to be tested. The requirement originates in section 904(a)(3) of the FD&C Act and the list itself is published in an FDA guidance document; neither is in the evidence available here. The guidance corpus contains no document listing harmful and potentially harmful constituents (0 rows), and the only Title 21 paragraphs using the phrase are 1107.12 and 1114.3, which reference the concept without enumerating the constituents. Writing the list would mean sourcing ~90 named chemicals from memory, which is exactly the fabrication this dataset is built to train against; writing a bare refusal would contradict the benchmark key, which permits the list as second-tier elaboration once the requirement has been established from the regulation. Excluded from train/validation and referred for SME review: if the HPHC guidance and the statutory provision are added to the evidence corpus, this becomes a strong guidance-tier example.",
+        "audit": [
+          "A4"
+        ],
+        "needs_sme": true
+      }
+    ],
+    "flagged_for_review": [],
+    "needs_sme": [
+      "D-023",
+      "M-034",
+      "M-030",
+      "PB-003"
+    ],
+    "examples_with_verified_absence_evidence": 17,
+    "mean_answer_chars": 1745,
+    "duplicate_ids": []
+  }
+}
