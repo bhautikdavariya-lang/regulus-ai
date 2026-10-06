@@ -1,0 +1,212 @@
+{
+  "stage": 12,
+  "mode": "full",
+  "started_utc": "2026-10-06T07:02:47+00:00",
+  "finished_utc": "2026-10-06T08:57:32+00:00",
+  "training_duration_seconds": 6722.4,
+  "hardware": {
+    "python": "3.11.9",
+    "platform": "macOS-26.1-arm64-arm-64bit",
+    "torch": "2.14.0",
+    "cuda_available": false,
+    "cuda_version": null,
+    "mps_available": true,
+    "cpu_threads": 4,
+    "gpu_name": null,
+    "device": "cpu",
+    "dtype": "float32",
+    "cpu_count": 4,
+    "ram_total_gb": 8.0,
+    "ram_available_gb": 1.69
+  },
+  "dependencies": {
+    "python": "3.11.9",
+    "torch": "2.14.0",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.2",
+    "numpy": "2.4.6"
+  },
+  "dataset_identity": {
+    "files": {
+      "train": {
+        "path": "train.jsonl",
+        "sha256": "aa705ea75f634242154f4a3e4ec231c217b5112141b24099d9023da8280042b2",
+        "examples": 129
+      },
+      "validation": {
+        "path": "validation.jsonl",
+        "sha256": "20370e1d9406b05127d93f50442a79190c1d505b1ea41d6bb3d2847d4bf7872f",
+        "examples": 23
+      },
+      "test": {
+        "path": "validation.jsonl",
+        "sha256": "20370e1d9406b05127d93f50442a79190c1d505b1ea41d6bb3d2847d4bf7872f",
+        "examples": 23
+      }
+    },
+    "manifest": "manifest.json",
+    "dataset_sha256": "782c5740f6fd80d87ea388fbf33987376966b5bc4e661926010c101fb0e672ee",
+    "dataset_version": "sft2-v2.0",
+    "generated_at_utc": "2026-10-06T06:41:57+00:00",
+    "seed": 42,
+    "database_snapshot": "2026-09-03"
+  },
+  "protected_files_sha256": {
+    "baseline_v1.jsonl": "28363d860c50d64f297a40ad48d80cb71c6fcde47a7d8da1ac82609fcd47573d",
+    "retrieval_v1.jsonl": "63f0a0863cfbc42e72161cd1fce176b40fd19a61f6f216e70c3766482f62d106",
+    "retrieval_v2.jsonl": "db73c6fa7bb934f3353e101b55e40fcae7e8833b005cef19dc27db992303b11c",
+    "train.jsonl": "212f3a66c30039d947b51d261ee06b61e2812b1568accda7be39de4337522543",
+    "validation.jsonl": "a93e07f181e79c3dec04310ae5b594ae8e94563b7d6bcbff9301266283509e43"
+  },
+  "tokenization": {
+    "train": {
+      "examples_in": 129,
+      "examples_used": 128,
+      "skipped_over_length": 1,
+      "truncated": 0,
+      "max_seq_length": 2048,
+      "over_length_policy": "skip",
+      "max_token_length_observed": 2145,
+      "median_token_length": 1496,
+      "p95_token_length": 1892,
+      "answer_tokens_mean": 286.9,
+      "category_distribution": {
+        "abstention": 19,
+        "citation_grounding": 10,
+        "direct_cfr": 36,
+        "multi_context": 17,
+        "partial_context": 13,
+        "relationship": 34
+      }
+    },
+    "eval_subset": {
+      "examples_in": 23,
+      "examples_used": 23,
+      "skipped_over_length": 0,
+      "truncated": 0,
+      "max_seq_length": 2048,
+      "over_length_policy": "skip",
+      "max_token_length_observed": 1884,
+      "median_token_length": 1557,
+      "p95_token_length": 1733,
+      "answer_tokens_mean": 313.4,
+      "category_distribution": {
+        "abstention": 4,
+        "citation_grounding": 1,
+        "direct_cfr": 8,
+        "multi_context": 3,
+        "partial_context": 2,
+        "relationship": 5
+      },
+      "stratified": false
+    }
+  },
+  "lora": {
+    "trainable_parameters": 10092544,
+    "total_parameters": 606142464,
+    "trainable_percent": 1.665,
+    "base_parameters_frozen": true,
+    "target_module_counts": {
+      "q_proj": 28,
+      "k_proj": 28,
+      "v_proj": 28,
+      "o_proj": 28,
+      "gate_proj": 28,
+      "up_proj": 28,
+      "down_proj": 28
+    },
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "bias": "none",
+      "task_type": "CAUSAL_LM",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    }
+  },
+  "training_arguments": {
+    "learning_rate": 0.0001,
+    "num_train_epochs": 3.0,
+    "max_steps": -1,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "warmup_steps": 5,
+    "weight_decay": 0.0,
+    "lr_scheduler_type": "cosine",
+    "eval_steps": 8,
+    "save_steps": 8,
+    "save_total_limit": null,
+    "seed": 42,
+    "use_cpu": true,
+    "bf16": false,
+    "fp16": false
+  },
+  "steps_completed": 48,
+  "epochs_completed": 3.0,
+  "examples_seen": 384,
+  "final_training_loss": 1.1541578769683838,
+  "training_losses": [
+    2.0228042602539062,
+    1.3399903774261475,
+    1.751327633857727,
+    1.4683467149734497,
+    1.2728650569915771,
+    1.4350581169128418,
+    1.2139040231704712,
+    1.2764661312103271,
+    1.6585527658462524,
+    1.358116626739502,
+    1.2831214666366577,
+    1.1220242977142334,
+    1.0241668224334717,
+    1.1695747375488281,
+    1.000579833984375,
+    1.3342715501785278,
+    1.0955414772033691,
+    1.0612374544143677,
+    1.031540870666504,
+    0.9795458912849426,
+    1.261029601097107,
+    1.0661267042160034,
+    0.9702877998352051,
+    1.043119192123413,
+    1.1541578769683838
+  ],
+  "eval_losses": [
+    1.4024008512496948,
+    1.2961140871047974,
+    1.2609487771987915,
+    1.2404662370681763,
+    1.2252068519592285,
+    1.2239422798156738
+  ],
+  "base_validation_loss": 1.768721342086792,
+  "best_validation_loss": 1.2239422798156738,
+  "selected_checkpoint_validation_loss": 1.2239422798156738,
+  "best_checkpoint": "checkpoint-48",
+  "adapter_dir": "/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/models/qwen3-0.6b-lora/sft2_v1/adapter",
+  "train_metrics": {
+    "train_runtime": 6720.7369,
+    "train_samples_per_second": 0.057,
+    "train_steps_per_second": 0.007,
+    "train_loss": 1.2380149985353153,
+    "epoch": 3.0
+  },
+  "deadline": null,
+  "inference_check": {
+    "example_id": "sft2-SD-001",
+    "generated_tokens": 43,
+    "seconds": 3.83
+  }
+}

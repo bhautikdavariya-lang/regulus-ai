@@ -1,0 +1,70 @@
+stage: 12
+model:
+  name: Qwen3-0.6B
+  id: Qwen/Qwen3-0.6B
+  cache_dir: models
+  device: auto
+  dtype: auto
+dataset:
+  train: artifacts/sft2/trainer/train.jsonl
+  validation: artifacts/sft2/trainer/validation.jsonl
+  test: artifacts/sft2/trainer/validation.jsonl
+  manifest: artifacts/sft2/trainer/manifest.json
+  expected_hash: 782c5740f6fd80d87ea388fbf33987376966b5bc4e661926010c101fb0e672ee
+  expected_counts:
+    train: 129
+    validation: 23
+    test: 23
+  seed: 42
+  eval_subset: 23
+  eval_stratified: false
+  protected:
+  - data/evaluation/datasets/baseline_v1.jsonl
+  - data/evaluation/datasets/retrieval_v1.jsonl
+  - data/evaluation/datasets/retrieval_v2.jsonl
+  - artifacts/sft2/train.jsonl
+  - artifacts/sft2/validation.jsonl
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+training:
+  learning_rate: 0.0001
+  num_train_epochs: 3.0
+  max_steps: -1
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  warmup_steps: 5
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  logging_steps: 2
+  eval_strategy: steps
+  eval_steps: 8
+  save_strategy: steps
+  save_steps: 8
+  save_total_limit: 3
+  early_stopping_patience: 3
+  max_seq_length: 2048
+  over_length_policy: skip
+  gradient_checkpointing: true
+  seed: 42
+  deadline_local: ''
+  deadline_reserve_seconds: 1500
+  prompt_format: grounded
+  keep_all_checkpoints: true
+output:
+  directory: models/qwen3-0.6b-lora/sft2_v1
+  smoke_directory: models/qwen3-0.6b-lora/sft2_smoke_tmp
+source: configs/sft2_training_v1.yaml
+init_adapter: null

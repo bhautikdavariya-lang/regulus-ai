@@ -1,0 +1,37 @@
+{
+  "dataset_version": "sft2-v2.0",
+  "generated_at_utc": "2026-10-06T06:41:57+00:00",
+  "dataset_sha256": "782c5740f6fd80d87ea388fbf33987376966b5bc4e661926010c101fb0e672ee",
+  "files": {
+    "train": {
+      "path": "train.jsonl",
+      "sha256": "aa705ea75f634242154f4a3e4ec231c217b5112141b24099d9023da8280042b2",
+      "examples": 129
+    },
+    "validation": {
+      "path": "validation.jsonl",
+      "sha256": "20370e1d9406b05127d93f50442a79190c1d505b1ea41d6bb3d2847d4bf7872f",
+      "examples": 23
+    },
+    "test": {
+      "path": "validation.jsonl",
+      "sha256": "20370e1d9406b05127d93f50442a79190c1d505b1ea41d6bb3d2847d4bf7872f",
+      "examples": 23
+    }
+  },
+  "config": {
+    "seed": 42
+  },
+  "database": {
+    "snapshot": {
+      "ecfr_snapshot_date": "2026-09-03"
+    }
+  },
+  "source": {
+    "train": "artifacts/sft2/train.jsonl",
+    "validation": "artifacts/sft2/validation.jsonl",
+    "train_sha256": "212f3a66c30039d947b51d261ee06b61e2812b1568accda7be39de4337522543",
+    "validation_sha256": "a93e07f181e79c3dec04310ae5b594ae8e94563b7d6bcbff9301266283509e43"
+  },
+  "note": "Converted from SFT v2 by scripts/sft2_to_trainer.py; answers and evidence unchanged. The 'test' entry is the validation file: v2 has no test split, the trainer never reads one, and the config schema rejects a zero count. It is NOT an independent held-out set - that role belongs to the 148 benchmark questions not in this dataset."
+}

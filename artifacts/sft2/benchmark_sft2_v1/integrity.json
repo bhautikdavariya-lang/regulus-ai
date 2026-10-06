@@ -1,0 +1,95 @@
+{
+  "experiment": "Regulus AI controlled 300-question benchmark: BASE vs SFT adapter sft2_v1",
+  "naming_note": "The brief calls this 'SFT v1' - the first SFT adapter. On disk it is sft2_v1, named after SFT dataset v2 which trained it. Same object.",
+  "git": {
+    "commit": "9ed34e3b00ab938cce2af648aec3b625aea90043",
+    "tracked_modifications": 0,
+    "src_regulus_unchanged_since_base_run": true,
+    "note": "Working tree carries only untracked additions (experiment scripts, docs and artifacts). No tracked file is modified, added, deleted or renamed."
+  },
+  "benchmark": {
+    "file": "Regulus_AI_Acceptance_Benchmark_REV02_300Q.xlsx",
+    "sha256": "c009d5f9c649822097b02a6c6aba415715fb0929914ef452acb03c8c3ac4a110",
+    "questions": 300,
+    "key_verified_rows": 0,
+    "rubric": "regulus_substantive_rubric_v1 (frozen, columns L-Q)"
+  },
+  "sft_dataset": {
+    "train": "212f3a66c30039d947b51d261ee06b61e2812b1568accda7be39de4337522543",
+    "validation": "a93e07f181e79c3dec04310ae5b594ae8e94563b7d6bcbff9301266283509e43",
+    "trainer_dataset_sha256": "782c5740f6fd80d87ea388fbf33987376966b5bc4e661926010c101fb0e672ee",
+    "counts": {
+      "train": 129,
+      "validation": 23,
+      "total": 152
+    }
+  },
+  "base_model": {
+    "id": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "weights_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b"
+  },
+  "sft_adapter": {
+    "dir": "models/qwen3-0.6b-lora/sft2_v1/adapter",
+    "adapter_model_sha256": "5c113731a3ccaf9493427aac70c03fddfb3af4d0a2e311efd304ca110cbc369e",
+    "selected_checkpoint": "checkpoint-48",
+    "validation_loss": 1.2239422798156738,
+    "base_validation_loss": 1.768721342086792,
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "trainable_pct": 1.665
+    }
+  },
+  "corpus": {
+    "table": "cfr_records (live rows)",
+    "live_rows": 65341,
+    "content_sha256": "f2a32b2c9462fe75f70a5f102510d8fd05db159eeff93661c1fa583005129d4d",
+    "ecfr_snapshot_date": "2026-09-03",
+    "caveat": "The Oct 1 BASE run did not record a corpus hash; this is the first time one has been pinned."
+  },
+  "inference": {
+    "device": "cpu",
+    "dtype": "float32",
+    "do_sample": false,
+    "enable_thinking": false,
+    "max_new_tokens_ceiling": 2048,
+    "allowance": "adaptive per question (answer_length policy)",
+    "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79"
+  },
+  "runner": {
+    "script": "scripts/run_acceptance_test.py",
+    "first_and_only_commit": "b4aaebc",
+    "protocol": "column F verbatim; one stateless pipeline call per question; no retries"
+  },
+  "hardware": {
+    "platform": "macOS-26.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "chip": "Apple M2",
+    "ram_gb": 8,
+    "cpu_threads_reported": 4
+  },
+  "arm_a": {
+    "source": "artifacts/acceptance_test/acceptance_rev02_20261001T083958Z",
+    "reuse_justification": "29/30 stratified questions byte-identical today with no adapter (artifacts/sft2/determinism_check.json); src/regulus unchanged; all reproducibility fields match except git_commit, which touches no production path.",
+    "verdicts": "scoring/verdicts_01..12.jsonl, 300 rows, hand-scored against the frozen rubric",
+    "result": {
+      "PASS": 10,
+      "FAIL": 289,
+      "ERROR": 1
+    }
+  },
+  "populations": {
+    "SEEN": 152,
+    "UNSEEN": 148,
+    "excluded_from_paired_analysis": {
+      "S-025": "Oct 1 BASE = ERROR (QueryCanceled, DB statement timeout) with no model answer; answers successfully today, so the failure was transient infrastructure, not a model effect. Paired populations: 147 UNSEEN / 152 SEEN / 299 total."
+    }
+  },
+  "evidence_supply_control": {
+    "paired_probe": "artifacts/sft2/safety_probe (24 questions, both arms)",
+    "identical_retrieved_evidence": "24/24",
+    "identical_gate_decision": "24/24",
+    "conclusion": "Retrieval and the answerability gate are model-independent; evidence supply is not a confounder."
+  }
+}

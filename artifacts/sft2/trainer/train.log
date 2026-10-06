@@ -1,0 +1,88 @@
+Stage 12 training run: config=configs/sft2_training_v1.yaml model=Qwen/Qwen3-0.6B output=/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/models/qwen3-0.6b-lora/sft2_v1
+Hardware: device=cpu dtype=float32 gpu=None gpu_mem_gb=None cpu_threads=4 ram_available_gb=1.69
+NOTE: CPU training is slow (about 45 s per 640-token example on the development machine); the run is step-bounded by training.max_steps.
+Dataset verified: sft2-v2.0 sha256=782c5740f6fd80d8... counts={'train': 129, 'validation': 23, 'test': 23}
+INFO:regulus.model.loader:Loading Qwen/Qwen3-0.6B (device=cpu, dtype=torch.float32, cache=/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/models)
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:03<15:44,  3.05s/it]Loading weights:  69%|██████▉   | 215/311 [00:03<00:01, 95.62it/s]Loading weights: 100%|██████████| 311/311 [00:03<00:00, 80.18it/s]
+INFO:regulus.model.loader:Model loaded in 4.4s
+Tokenised: train 128/129 (skipped over 2048: 1, truncated: 0, max observed 2145, median 1496); eval subset 23/23
+LoRA: trainable 10,092,544 / 606,142,464 (1.665%), targets {'q_proj': 28, 'k_proj': 28, 'v_proj': 28, 'o_proj': 28, 'gate_proj': 28, 'up_proj': 28, 'down_proj': 28}
+Evaluating the base model (no trained adapter yet) on the validation subset ...
+{'eval_loss': '1.769', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '155.5', 'eval_samples_per_second': '0.148', 'eval_steps_per_second': '0.148', 'epoch': 0}
+  base eval_loss = 1.7687
+Training: max_steps=-1 batch=1 x accum=8 lr=0.0001 scheduler=cosine eval every 8 steps
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+{'loss': '2.023', 'grad_norm': '3.296', 'learning_rate': '0', 'epoch': '0.0625'}
+{'loss': '1.34', 'grad_norm': '2.711', 'learning_rate': '2e-05', 'epoch': '0.125'}
+{'loss': '1.751', 'grad_norm': '2.047', 'learning_rate': '6e-05', 'epoch': '0.25'}
+{'loss': '1.468', 'grad_norm': '1.417', 'learning_rate': '0.0001', 'epoch': '0.375'}
+{'loss': '1.273', 'grad_norm': '0.8833', 'learning_rate': '9.947e-05', 'epoch': '0.5'}
+{'eval_loss': '1.402', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '151.2', 'eval_samples_per_second': '0.152', 'eval_steps_per_second': '0.152', 'epoch': '0.5'}
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+{'loss': '1.435', 'grad_norm': '1.06', 'learning_rate': '9.788e-05', 'epoch': '0.625'}
+{'loss': '1.214', 'grad_norm': '0.9982', 'learning_rate': '9.527e-05', 'epoch': '0.75'}
+{'loss': '1.276', 'grad_norm': '0.8852', 'learning_rate': '9.17e-05', 'epoch': '0.875'}
+{'loss': '1.659', 'grad_norm': '1.102', 'learning_rate': '8.724e-05', 'epoch': '1'}
+{'eval_loss': '1.296', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '126.4', 'eval_samples_per_second': '0.182', 'eval_steps_per_second': '0.182', 'epoch': '1'}
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+{'loss': '1.358', 'grad_norm': '0.9091', 'learning_rate': '8.198e-05', 'epoch': '1.125'}
+{'loss': '1.283', 'grad_norm': '0.9936', 'learning_rate': '7.605e-05', 'epoch': '1.25'}
+{'loss': '1.122', 'grad_norm': '0.8213', 'learning_rate': '6.956e-05', 'epoch': '1.375'}
+{'loss': '1.024', 'grad_norm': '0.9004', 'learning_rate': '6.265e-05', 'epoch': '1.5'}
+{'eval_loss': '1.261', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '139.5', 'eval_samples_per_second': '0.165', 'eval_steps_per_second': '0.165', 'epoch': '1.5'}
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+{'loss': '1.17', 'grad_norm': '0.9892', 'learning_rate': '5.547e-05', 'epoch': '1.625'}
+{'loss': '1.001', 'grad_norm': '0.803', 'learning_rate': '4.817e-05', 'epoch': '1.75'}
+{'loss': '1.334', 'grad_norm': '1.183', 'learning_rate': '4.092e-05', 'epoch': '1.875'}
+{'loss': '1.096', 'grad_norm': '1.059', 'learning_rate': '3.386e-05', 'epoch': '2'}
+{'eval_loss': '1.24', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '116.9', 'eval_samples_per_second': '0.197', 'eval_steps_per_second': '0.197', 'epoch': '2'}
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+{'loss': '1.061', 'grad_norm': '0.8897', 'learning_rate': '2.714e-05', 'epoch': '2.125'}
+{'loss': '1.032', 'grad_norm': '0.8003', 'learning_rate': '2.091e-05', 'epoch': '2.25'}
+{'loss': '0.9795', 'grad_norm': '0.9607', 'learning_rate': '1.53e-05', 'epoch': '2.375'}
+{'loss': '1.261', 'grad_norm': '1.015', 'learning_rate': '1.043e-05', 'epoch': '2.5'}
+{'eval_loss': '1.225', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '142.9', 'eval_samples_per_second': '0.161', 'eval_steps_per_second': '0.161', 'epoch': '2.5'}
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+{'loss': '1.066', 'grad_norm': '0.84', 'learning_rate': '6.398e-06', 'epoch': '2.625'}
+{'loss': '0.9703', 'grad_norm': '0.9472', 'learning_rate': '3.299e-06', 'epoch': '2.75'}
+{'loss': '1.043', 'grad_norm': '0.8679', 'learning_rate': '1.196e-06', 'epoch': '2.875'}
+{'loss': '1.154', 'grad_norm': '0.938', 'learning_rate': '1.334e-07', 'epoch': '3'}
+{'eval_loss': '1.224', 'eval_model_preparation_time': '0.0156', 'eval_runtime': '211.4', 'eval_samples_per_second': '0.109', 'eval_steps_per_second': '0.109', 'epoch': '3'}
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+{'train_runtime': '6721', 'train_samples_per_second': '0.057', 'train_steps_per_second': '0.007', 'train_loss': '1.238', 'epoch': '3'}
+Training finished in 112.0 min: {'train_runtime': 6720.7369, 'train_samples_per_second': 0.057, 'train_steps_per_second': 0.007, 'train_loss': 1.2380149985353153, 'epoch': 3.0}
+  selected-checkpoint eval_loss = 1.2239
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/config.json?%2FQwen%2FQwen3-0.6B%2Fresolve%2Fmain%2Fconfig.json=&etag=%22f5c3703b78ae2a478ae15b247e9f855e0ce2107b%22 "HTTP/1.1 200 OK"
+Reloading the saved adapter on a fresh base model for the inference check ...
+INFO:regulus.model.loader:Loading Qwen/Qwen3-0.6B (device=cpu, dtype=torch.float32, cache=/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/models)
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 38/311 [00:00<00:00, 377.78it/s]Loading weights:  26%|██▌       | 81/311 [00:00<00:00, 383.97it/s]Loading weights:  40%|████      | 125/311 [00:00<00:00, 386.78it/s]Loading weights:  53%|█████▎    | 164/311 [00:00<00:00, 378.46it/s]Loading weights:  65%|██████▍   | 202/311 [00:00<00:00, 267.89it/s]Loading weights:  75%|███████▍  | 233/311 [00:00<00:00, 253.37it/s]Loading weights:  84%|████████▍ | 261/311 [00:01<00:00, 202.08it/s]Loading weights:  91%|█████████▏| 284/311 [00:01<00:00, 171.12it/s]Loading weights:  98%|█████████▊| 304/311 [00:01<00:00, 154.84it/s]Loading weights: 100%|██████████| 311/311 [00:01<00:00, 223.10it/s]
+INFO:regulus.model.loader:Model loaded in 2.6s
+Inference check: 43 tokens in 3.83s -> 'There are no EU MDR Article 10 requirements, and the article does not exist. The EU MDR is the European Medicines and He'
+
+steps=48 examples_seen=384 duration=112.0 min
+validation loss: base=1.768721342086792 best=1.2239422798156738 (checkpoint-48) selected=1.2239422798156738
+final training loss: 1.1541578769683838
+adapter: /Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/models/qwen3-0.6b-lora/sft2_v1/adapter

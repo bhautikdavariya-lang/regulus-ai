@@ -1,0 +1,93 @@
+# First SFT experiment on the hand-authored benchmark-derived dataset (SFT v2).
+#
+#   python scripts/train_model.py --config configs/sft2_training_v1.yaml --allow-unverified-key -v
+#
+# PRE-REGISTERED. Every value below was fixed before the run. No sweep.
+#
+# The single causal intervention is the LoRA adapter. Retrieval, the production prompt, context
+# construction, post-processing, decoding and the benchmark are untouched in both arms; the
+# treatment arm differs only by REGULUS_ADAPTER pointing at this run's adapter.
+#
+# DECISION RULE, fixed in advance:
+#   * The checkpoint carried forward is the one with the LOWEST VALIDATION LOSS. No checkpoint is
+#     ever chosen by its benchmark score - that would select on the test set.
+#   * The primary criterion is the 148 benchmark questions NOT in this dataset. The 152 questions
+#     that ARE in it are reported separately as a memorisation check and are not evidence of
+#     improvement.
+
+model:
+  name: Qwen3-0.6B
+  config: configs/model.yaml          # cpu / float32, same as the baseline acceptance run
+
+dataset:
+  # Converted from artifacts/sft2/{train,validation}.jsonl by scripts/sft2_to_trainer.py.
+  # Answers and evidence blocks are byte-identical to the audited v2 dataset.
+  train: artifacts/sft2/trainer/train.jsonl
+  validation: artifacts/sft2/trainer/validation.jsonl
+  # v2 is a train/validation split. The trainer verifies a test split's identity but never reads it,
+  # and the schema rejects a zero count, so this deliberately points at the validation file rather
+  # than re-cutting the dataset or duplicating a file that could be mistaken for a real holdout.
+  # The genuine held-out set is the 148 benchmark questions absent from this dataset.
+  test: artifacts/sft2/trainer/validation.jsonl
+  manifest: artifacts/sft2/trainer/manifest.json
+  expected_hash: 782c5740f6fd80d87ea388fbf33987376966b5bc4e661926010c101fb0e672ee
+  expected_counts:
+    train: 129
+    validation: 23
+    test: 23
+  seed: 42
+  # All 23 validation examples, every evaluation. No subsetting and no stratification: the split is
+  # already category-stratified by construction, and 23 is small enough to evaluate in full.
+  eval_subset: 23
+  eval_stratified: false
+  protected:
+    - data/evaluation/datasets/baseline_v1.jsonl
+    - data/evaluation/datasets/retrieval_v1.jsonl
+    - data/evaluation/datasets/retrieval_v2.jsonl
+    - artifacts/sft2/train.jsonl
+    - artifacts/sft2/validation.jsonl
+
+# Held identical to Stages 12-14 so this experiment's result is comparable with them.
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+training:
+  # The repo's proven rate. Not tuned here: one clean experiment, and a sweep on 129 examples would
+  # fit the validation set rather than measure anything.
+  learning_rate: 1.0e-4
+  num_train_epochs: 3
+  max_steps: -1                       # epochs decide; 128 usable examples / 8 = 16 steps per epoch
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8      # effective batch 8
+  warmup_steps: 5
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  logging_steps: 2
+  eval_strategy: steps
+  eval_steps: 8                       # twice per epoch -> 6 evaluations
+  save_strategy: steps
+  save_steps: 8
+  save_total_limit: 3
+  keep_all_checkpoints: true          # kept for audit; selection is still by validation loss
+  early_stopping_patience: 3
+  # MEASURED, not guessed: under prompt_format "grounded" these 152 examples run to a mean of 1,444
+  # tokens and a max of 2,145. The repo's usual 1,280 would silently skip 107 of 152. 2,048 skips
+  # exactly one row and keeps the memory footprint as close as possible to the proven envelope.
+  max_seq_length: 2048
+  over_length_policy: skip
+  gradient_checkpointing: true        # required on 8 GB; a prior run stalled without the headroom
+  seed: 42
+  deadline_local: ""                  # no wall-clock cut; stop with Ctrl-C and --finalize if needed
+  # The Stage 4 contract the pipeline uses at inference, so the model is never trained on a prompt
+  # shape it will not meet in production. This is the setting that makes the arms comparable.
+  prompt_format: grounded
+
+output:
+  directory: models/qwen3-0.6b-lora/sft2_v1
+  smoke_directory: models/qwen3-0.6b-lora/sft2_smoke_tmp

@@ -1,0 +1,841 @@
+{
+  "dataset": "benchmark-derived SFT v2 (regulatory answer construction)",
+  "snapshot_date": "2026-09-03",
+  "totals": {
+    "previous_total_v1": 57,
+    "selected_rows": 162,
+    "admitted": 152,
+    "added_vs_v1": 95,
+    "carried_from_v1": 57,
+    "revised_from_v1": 26,
+    "rejected": 10,
+    "train": 129,
+    "validation": 23
+  },
+  "by_category": {
+    "Direct Lookup": 44,
+    "Negative Control": 22,
+    "Distinction": 21,
+    "Cross-Reference": 20,
+    "Application": 18,
+    "Scope/Boundary": 15,
+    "Temporal/Version": 11,
+    "Abstention": 1
+  },
+  "by_failure_mode": {
+    "incomplete_answer": 82,
+    "cross_reference_reasoning": 64,
+    "scope_applicability": 45,
+    "false_premise_handling": 41,
+    "exceptions_and_conditions": 39,
+    "missing_subordinate_paragraphs": 35,
+    "evidence_faithful_interpretation": 35,
+    "distinction_reasoning": 28,
+    "wrong_provision_selection": 17,
+    "abstention": 17,
+    "temporal_version_reasoning": 16,
+    "answer_completeness_discipline": 13,
+    "citation_selection": 8
+  },
+  "by_difficulty": {
+    "Intermediate": 51,
+    "Advanced": 45,
+    "Trap": 45,
+    "Basic": 11
+  },
+  "by_cfr_part": {
+    "820": 38,
+    "none": 28,
+    "117": 14,
+    "111": 14,
+    "211": 9,
+    "1": 5,
+    "11": 4,
+    "4": 4,
+    "101": 4,
+    "807": 3,
+    "803": 3,
+    "7": 3,
+    "801": 3,
+    "207": 2,
+    "507": 2,
+    "50": 2,
+    "56": 2,
+    "210": 1,
+    "606": 1,
+    "806": 1,
+    "1003": 1,
+    "225": 1,
+    "312": 1,
+    "830": 1,
+    "108": 1,
+    "1107": 1,
+    "814": 1,
+    "601": 1,
+    "120": 1
+  },
+  "by_behaviour": {
+    "answer": 98,
+    "abstention": 54
+  },
+  "by_baseline_attribution": {
+    "EVIDENCE_SUPPLY/governing_section_not_retrieved": 59,
+    "MODEL_ANSWER/governing_section_supplied": 50,
+    "MODEL_ANSWER/no_governing_section_required": 31,
+    "UNDETERMINED/evaluation_uncertain": 6,
+    "PASS/pass": 6
+  },
+  "lengths": {
+    "evidence_mean": 1948,
+    "evidence_median": 2388,
+    "evidence_max": 3321,
+    "evidence_over_budget": 10,
+    "answer_mean": 1270,
+    "answer_median": 1308,
+    "answer_max": 2466,
+    "answer_over_target": 88,
+    "answer_under_target": 1,
+    "longest_evidence_example": {
+      "id": "sft2-B-003",
+      "chars": 3321
+    },
+    "longest_answer_example": {
+      "id": "sft2-F-005",
+      "chars": 2466
+    }
+  },
+  "split": {
+    "method": "connected components over shared provisions, assigned whole, stratified by category",
+    "components": 103,
+    "target_validation_fraction": 0.18,
+    "sections_in_both_splits": [],
+    "leakage_free": true,
+    "source_questions_in_both": [],
+    "validation_categories": {
+      "Direct Lookup": 8,
+      "Negative Control": 3,
+      "Cross-Reference": 3,
+      "Distinction": 3,
+      "Application": 2,
+      "Scope/Boundary": 2,
+      "Abstention": 1,
+      "Temporal/Version": 1
+    },
+    "validation_failure_modes": {
+      "incomplete_answer": 13,
+      "cross_reference_reasoning": 9,
+      "scope_applicability": 7,
+      "exceptions_and_conditions": 7,
+      "missing_subordinate_paragraphs": 5,
+      "wrong_provision_selection": 4,
+      "false_premise_handling": 4,
+      "evidence_faithful_interpretation": 4,
+      "abstention": 4,
+      "distinction_reasoning": 4,
+      "answer_completeness_discipline": 2,
+      "temporal_version_reasoning": 1,
+      "citation_selection": 1
+    }
+  },
+  "audit": {
+    "checks": [
+      "A1 section support",
+      "A2 no fabricated identifiers",
+      "A3 mode vocabulary",
+      "A4 answer or explicit rejection",
+      "A5 evidence present unless a pure refusal",
+      "A6 unique traceable ids",
+      "A7 paragraph-level support",
+      "A7b lettered-list and continuation paragraph claims",
+      "A8 production-sized evidence",
+      "A9 concise answer, no visible reasoning"
+    ],
+    "rejected": [
+      {
+        "id": "M-030",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The benchmark key for this row is a Federal Register citation (QMSR final rule, 89 FR 7523) and a compliance date, not a CFR provision. The snapshot supports the structural half of the answer - Part 820 now has six live sections (820.1, 820.3, 820.7, 820.10, 820.35, 820.45) with 820.5, 820.20-820.30 and 820.40 reserved, ISO 13485:2016 incorporated at 820.7 - but it does not record the 89 FR 7523 citation or the February 2, 2026 compliance date, and `effective_date` on these records is only the snapshot date. Writing those two facts into an ideal answer would mean sourcing them from outside the supplied evidence, which this dataset forbids. Excluded from train/validation and referred for SME review: if the FR citation and compliance date are added to the evidence corpus, this becomes a strong temporal-reasoning example.",
+        "needs_sme": true
+      },
+      {
+        "id": "PB-003",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question asks for the specific list of harmful and potentially harmful constituents FDA expects to be tested. The requirement originates in section 904(a)(3) of the FD&C Act and the list itself is published in an FDA guidance document; neither is in the evidence available here. The guidance corpus contains no document listing harmful and potentially harmful constituents (0 rows), and the only Title 21 paragraphs using the phrase are 1107.12 and 1114.3, which reference the concept without enumerating the constituents. Writing the list would mean sourcing ~90 named chemicals from memory, which is exactly the fabrication this dataset is built to train against; writing a bare refusal would contradict the benchmark key, which permits the list as second-tier elaboration once the requirement has been established from the regulation. Excluded from train/validation and referred for SME review: if the HPHC guidance and the statutory provision are added to the evidence corpus, this becomes a strong guidance-tier example.",
+        "needs_sme": true
+      },
+      {
+        "id": "PB-002",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question asks what harmful and potentially harmful constituent data must be submitted for a tobacco product. The packed evidence from 1114.7 covers the general content and format of a premarket tobacco product application but does not contain the paragraph that imposes the HPHC data requirement, and the analyte list itself lives in FDA guidance that is absent from the corpus - the same gap that caused PB-003 to be rejected (0 guidance documents matched). Answering would mean either citing a provision not in the evidence or naming analytes from memory. Excluded and referred for SME review: if the HPHC provision and its guidance are added to the corpus, this becomes a strong guidance-tier example.",
+        "needs_sme": true
+      },
+      {
+        "id": "L-012",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question asks for a three-way distinction between a health claim, a qualified health claim and a structure/function claim. The first and third are defined in the evidence - 101.14(a)(1) defines a health claim and 101.93 covers structure/function statements and their notification - but the qualified health claim is a construct of FDA enforcement discretion articulated in guidance, and neither the significant-scientific-agreement standard nor the qualified-claim disclaimer language is in the packed provision text. Writing the middle term would mean sourcing it from outside the evidence. Excluded and referred for SME review: with the qualified health claim guidance added to the corpus this becomes a strong three-way distinction example.",
+        "needs_sme": true
+      },
+      {
+        "id": "K-010",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question has two halves - how a significant risk device investigation is distinguished from a nonsignificant risk one, and what an IDE application must contain. The packed evidence carries 812.2 applicability and 812.3 definitions, but not the definition of 'significant risk device' at 812.3(m) and not the IDE application contents at 812.20, and adding both at production evidence size would displace the abbreviated-requirements text the first half needs. Excluded and referred for SME review: the row is better split into two questions, one on the risk distinction and one on IDE content.",
+        "needs_sme": true
+      },
+      {
+        "id": "C-004",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question asks which ingredients are prohibited or restricted in cosmetics under Part 700, and the key elements name eight: bithionol, mercury compounds, vinyl chloride propellants, halogenated salicylanilides, chloroform, methylene chloride, hexachlorophene and sunscreens. Each sits in its own section (700.11 through 700.35), and at production evidence size the packing budget carried only three of them (700.11, 700.14, 700.35) even with the other sections added to the record. An answer naming three of eight would be exactly the incompleteness failure this dataset targets, and naming all eight would mean writing five from memory. Excluded and referred for SME review: the row needs either a larger evidence budget than production has, or splitting into per-ingredient questions.",
+        "needs_sme": true
+      },
+      {
+        "id": "T-001",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question asks which statutory provision governs premarket tobacco product applications and what an application must contain. The governing provision is section 910(b) of the FD&C Act, which is statute and is not in the CFR snapshot, and the 'appropriate for the protection of the public health' standard the key elements name is likewise statutory. The packed evidence from 1114.7 covers application content and format but cannot support the statutory half of the answer. Excluded and referred for SME review: with the relevant statutory text added to the corpus this becomes a usable cross-reference example.",
+        "needs_sme": true
+      },
+      {
+        "id": "Z-002",
+        "audit": [
+          "A4"
+        ],
+        "reason": "The question asks about quality assurance for mammography equipment, medical records and mammography reports, plus the medical outcomes audit and the consumer complaint mechanism - five subjects spread across separate sections of Part 900 subpart B. At a production evidence budget the packing cannot carry all five, and an answer covering two or three would be the incompleteness failure this dataset targets. Excluded and referred for SME review: better split into per-subject questions.",
+        "needs_sme": true
+      },
+      {
+        "id": "P-003",
+        "audit": [
+          "A4"
+        ],
+        "reason": "no ideal answer authored"
+      },
+      {
+        "id": "S-004",
+        "audit": [
+          "A4"
+        ],
+        "reason": "no ideal answer authored"
+      }
+    ],
+    "flagged": [
+      {
+        "id": "B-001",
+        "audit": "A9",
+        "answer_chars": 1310,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "B-005",
+        "audit": "A9",
+        "answer_chars": 1664,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "D-023",
+        "audit": "A9",
+        "answer_chars": 1483,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "E-001",
+        "audit": "A9",
+        "answer_chars": 1508,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "E-003",
+        "audit": "A9",
+        "answer_chars": 1250,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "E-010",
+        "audit": "A9",
+        "answer_chars": 1599,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-003",
+        "audit": "A9",
+        "answer_chars": 1479,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-004",
+        "audit": "A9",
+        "answer_chars": 1608,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-009",
+        "audit": "A9",
+        "answer_chars": 1719,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-011",
+        "audit": "A9",
+        "answer_chars": 1518,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-012",
+        "audit": "A9",
+        "answer_chars": 1625,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-015",
+        "audit": "A9",
+        "answer_chars": 1464,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-022",
+        "audit": "A9",
+        "answer_chars": 1591,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "G-010",
+        "audit": "A9",
+        "answer_chars": 1316,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-001",
+        "audit": "A9",
+        "answer_chars": 1452,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-004",
+        "audit": "A8",
+        "evidence_chars": 3164,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "M-042",
+        "audit": "A9",
+        "answer_chars": 1410,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "P-001",
+        "audit": "A9",
+        "answer_chars": 1445,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "PB-004",
+        "audit": "A9",
+        "answer_chars": 1389,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "R-002",
+        "audit": "A9",
+        "answer_chars": 1590,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "R-003",
+        "audit": "A9",
+        "answer_chars": 1511,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "R-006",
+        "audit": "A9",
+        "answer_chars": 1490,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "R-007",
+        "audit": "A9",
+        "answer_chars": 1337,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-005",
+        "audit": "A9",
+        "answer_chars": 1382,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-006",
+        "audit": "A9",
+        "answer_chars": 1475,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-015",
+        "audit": "A9",
+        "answer_chars": 1732,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "SD-010",
+        "audit": "A9",
+        "answer_chars": 1331,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "U-007",
+        "audit": "A9",
+        "answer_chars": 1523,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "X-002",
+        "audit": "A9",
+        "answer_chars": 1408,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "Z-004",
+        "audit": "A9",
+        "answer_chars": 1304,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "A-004",
+        "audit": "A8",
+        "evidence_chars": 3107,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "A-004",
+        "audit": "A9",
+        "answer_chars": 1882,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "A-003",
+        "audit": "A9",
+        "answer_chars": 1749,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "H-006",
+        "audit": "A9",
+        "answer_chars": 1708,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "K-003",
+        "audit": "A9",
+        "answer_chars": 1763,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "K-009",
+        "audit": "A9",
+        "answer_chars": 1832,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "U-008",
+        "audit": "A9",
+        "answer_chars": 1919,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "U-010",
+        "audit": "A9",
+        "answer_chars": 1792,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "X-004",
+        "audit": "A8",
+        "evidence_chars": 3123,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "X-004",
+        "audit": "A9",
+        "answer_chars": 1777,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "Y-004",
+        "audit": "A8",
+        "evidence_chars": 3221,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "S-019",
+        "audit": "A9",
+        "answer_chars": 1458,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-021",
+        "audit": "A9",
+        "answer_chars": 1964,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "K-002",
+        "audit": "A9",
+        "answer_chars": 1987,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-026",
+        "audit": "A9",
+        "answer_chars": 1341,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-012",
+        "audit": "A8",
+        "evidence_chars": 3067,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "S-012",
+        "audit": "A9",
+        "answer_chars": 1489,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "V-005",
+        "audit": "A9",
+        "answer_chars": 1438,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-027",
+        "audit": "A9",
+        "answer_chars": 1223,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-011",
+        "audit": "A9",
+        "answer_chars": 1272,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-028",
+        "audit": "A9",
+        "answer_chars": 1410,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-017",
+        "audit": "A9",
+        "answer_chars": 1654,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "X-003",
+        "audit": "A8",
+        "evidence_chars": 3251,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "X-003",
+        "audit": "A9",
+        "answer_chars": 1431,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-005",
+        "audit": "A9",
+        "answer_chars": 1274,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "L-008",
+        "audit": "A9",
+        "answer_chars": 1219,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "PB-009",
+        "audit": "A9",
+        "answer_chars": 1306,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "U-003",
+        "audit": "A9",
+        "answer_chars": 1707,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-029",
+        "audit": "A9",
+        "answer_chars": 1729,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "K-006",
+        "audit": "A9",
+        "answer_chars": 1342,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "P-002",
+        "audit": "A9",
+        "answer_chars": 1672,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "T-004",
+        "audit": "A9",
+        "answer_chars": 1926,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-041",
+        "audit": "A9",
+        "answer_chars": 1438,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-002",
+        "audit": "A8",
+        "evidence_chars": 3053,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "M-002",
+        "audit": "A9",
+        "answer_chars": 1368,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "D-025",
+        "audit": "A9",
+        "answer_chars": 1707,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-002",
+        "audit": "A9",
+        "answer_chars": 1454,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-009",
+        "audit": "A9",
+        "answer_chars": 1337,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "M-018",
+        "audit": "A9",
+        "answer_chars": 1275,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "PB-005",
+        "audit": "A9",
+        "answer_chars": 1298,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "R-008",
+        "audit": "A9",
+        "answer_chars": 1537,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "NC-009",
+        "audit": "A8",
+        "evidence_chars": 3254,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "NC-009",
+        "audit": "A9",
+        "answer_chars": 1352,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "H-002",
+        "audit": "A9",
+        "answer_chars": 1739,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "P-005",
+        "audit": "A8",
+        "evidence_chars": 3311,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "P-005",
+        "audit": "A9",
+        "answer_chars": 1955,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-018",
+        "audit": "A9",
+        "answer_chars": 1720,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "A-001",
+        "audit": "A9",
+        "answer_chars": 1802,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "D-016",
+        "audit": "A9",
+        "answer_chars": 2331,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-013",
+        "audit": "A9",
+        "answer_chars": 1679,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "G-009",
+        "audit": "A9",
+        "answer_chars": 2004,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "K-005",
+        "audit": "A9",
+        "answer_chars": 2032,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-020",
+        "audit": "A9",
+        "answer_chars": 1212,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "B-003",
+        "audit": "A8",
+        "evidence_chars": 3321,
+        "note": "evidence over the packing budget; verify every paragraph is needed"
+      },
+      {
+        "id": "F-005",
+        "audit": "A9",
+        "answer_chars": 2466,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "L-004",
+        "audit": "A9",
+        "answer_chars": 1202,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "Y-007",
+        "audit": "A9",
+        "answer_chars": 2034,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "D-008",
+        "audit": "A9",
+        "answer_chars": 1521,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-017",
+        "audit": "A9",
+        "answer_chars": 1675,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "E-009",
+        "audit": "A9",
+        "answer_chars": 1436,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "S-011",
+        "audit": "A9",
+        "answer_chars": 1998,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "D-002",
+        "audit": "A9",
+        "answer_chars": 1261,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "D-005",
+        "audit": "A9",
+        "answer_chars": 1404,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-013",
+        "audit": "A9",
+        "answer_chars": 1726,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-019",
+        "audit": "A9",
+        "answer_chars": 1694,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "F-020",
+        "audit": "A9",
+        "answer_chars": 2095,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "L-013",
+        "audit": "A9",
+        "answer_chars": 1750,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      },
+      {
+        "id": "R-001",
+        "audit": "A9",
+        "answer_chars": 1609,
+        "note": "answer over the concision target; acceptable only for a genuine enumeration"
+      }
+    ],
+    "needs_sme": [
+      "B-003",
+      "C-004",
+      "D-023",
+      "K-010",
+      "L-012",
+      "M-030",
+      "M-034",
+      "PB-002",
+      "PB-003",
+      "T-001",
+      "X-003",
+      "Y-004",
+      "Z-002"
+    ],
+    "examples_with_verified_absence_evidence": 38,
+    "duplicate_ids": []
+  }
+}

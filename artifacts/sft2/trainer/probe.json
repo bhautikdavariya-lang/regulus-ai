@@ -1,0 +1,108 @@
+{
+  "adapter": "/Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/models/qwen3-0.6b-lora/sft2_v1/adapter",
+  "probe_max_tokens": 400,
+  "results": {
+    "sft2-SD-001": {
+      "kind": "seen / no sources (scope)",
+      "base": {
+        "text": "The available regulatory sources do not provide enough information to answer this question.",
+        "tokens": 15,
+        "seconds": 3.1,
+        "repetition": 0.0,
+        "hit_cap": false
+      },
+      "sft2_v1": {
+        "text": "There are no EU MDR Article 10 requirements, and the article does not exist. The EU MDR is the European Medicines and Healthcare products Regulation, and the article is not part of it.",
+        "tokens": 43,
+        "seconds": 3.9,
+        "repetition": 0.0,
+        "hit_cap": false
+      }
+    },
+    "sft2-K-005": {
+      "kind": "seen / grounded answer",
+      "base": {
+        "text": "The IRB shall have at least five members, with varying backgrounds to promote complete and adequate review of research activities commonly conducted by the institution. The IRB shall be sufficiently qualified through the experience and expertise of its members, and the diversity of the members, including consideration of race, gender, cultural backgrounds, and sensitivity to such issues as community attitudes, to promote respect for its advice and counsel in safeguarding the rights and welfare of human subjects. The IRB shall include persons knowledgeable in these areas. The criteria for IRB approval of research include ensuring that all of the following requirements are satisfied: (a)(1) (1) Risks to subjects are minimized by using procedures consistent with sound research design and which do not unnecessarily expose subjects to risk, and (ii) whenever appropriate, by using procedures already being performed on the subjects for diagnostic or treatment purposes. (a)(3) (3) Selection of subjects is equitable, considering the purposes of the research and the setting in which the research will be conducted, and particularly cognizant of the special problems of research involving vulnerable populations, such as children, prisoners, pregnant women, handicapped, or mentally disabled persons, or economically or educationally disadvantaged persons. (a)(4) (4) Informed consent will be sought from each prospective subject or the subject's legally authorized representative, in accordance with and to the extent required by part 50. (a)(5) (5) Informed consent will be appropriately documented, in accordance with and to the extent required by § 50.27. (a)(6) (6) Where appropriate, the research plan makes adequate provision for monitoring the data collected to ensure the safety of subjects. (a)(7) (7) Where appropriate, there are adequate provisions to protect the privacy of subjects and to maintain the confidentiality of data. [1]",
+        "tokens": 379,
+        "seconds": 35.6,
+        "repetition": 0.0,
+        "hit_cap": false
+      },
+      "sft2_v1": {
+        "text": "The IRB membership requirement is 21 CFR 56.107(a). It requires an IRB to have at least five members, with varying backgrounds to promote complete and adequate review of research activities commonly conducted by the institution. The IRB must be sufficiently qualified through the experience and expertise of its members, and the diversity of the members, including consideration of race, gender, cultural backgrounds and sensitivity to community attitudes, to promote respect for its advice and counsel in safeguarding the rights and welfare of human subjects. In addition to possessing the professional competence necessary to review the specific research activities, the IRB must be able to ascertain the acceptability of proposed research in terms of institutional commitments and regulations, applicable law and standards of professional conduct and practice.\n\nThe IRB must therefore include persons knowledgeable in those areas. If an IRB regularly reviews research involving a vulnerable category of subjects, such as children, prisoners, pregnant women or handicapped or mentally disabled persons, consideration must be given to the inclusion of one or more individuals who are knowledgeable about and experienced in working with those subjects.\n\nThe IRB approval criteria are 21 CFR 56.111(a). In order to approve research covered by these regulations, the IRB must determine that all of the following requirements are satisfied: (a)(1) Risks to subjects are minimized by using procedures consistent with sound research design and which do not unnecessarily expose subjects to risk, and whenever appropriate, by using procedures already being performed on the subjects for diagnostic or treatment purposes; (a)(3) Selection of subjects is equitable, taking into account the purposes of the research and the setting in which the research will be conducted, and being particularly cognizant of the special problems of research involving vulnerable populations; (a)(4) Informed consent will be sought from each prospective subject or the subject's legally authorized representative in accordance with and to the extent required by part 50; (a)(5) Informed consent",
+        "tokens": 400,
+        "seconds": 35.3,
+        "repetition": 0.0,
+        "hit_cap": true
+      }
+    },
+    "sft2-G-009": {
+      "kind": "seen / grounded answer",
+      "base": {
+        "text": "Who must register a drug establishment with FDA: [1] manufacturers, repackers, relabelers, and salvagers must register each domestic establishment that manufactures, repacks, relabels, or salvages a drug, or an animal feed bearing or containing a new animal drug, and each foreign establishment that manufactures, repacks, relabels, or salvages a drug, or an animal feed bearing or containing a new animal drug, that is imported or offered for import into the United States. [1]\n\nWhen must registration occur and be renewed: [1] each domestic establishment must register no later than 5 calendar days after beginning to manufacture, repack, relabel, or salvage a drug or an animal feed bearing or containing a new animal drug at such establishment. [1]\n\nWhat information is required for registration: [1] the name of the owner or operator of each establishment; if a partnership, the name of each partner; if a corporation, the name of each corporate officer and director, and the place of incorporation; [1] the registration number of each establishment, if previously assigned by FDA; [1] all types of operations performed at each establishment; [1] and with respect to foreign establishments subject to registration, the name, mailing address, telephone number, and email address must be provided. [1]",
+        "tokens": 271,
+        "seconds": 32.3,
+        "repetition": 0.0,
+        "hit_cap": false
+      },
+      "sft2_v1": {
+        "text": "Who must register a drug establishment with FDA? All manufacturers, repackers, relabelers and salvagers must register each domestic establishment that manufactures, repacks, relabels or salvages a drug, or an animal feed bearing or containing a new animal drug, and each foreign establishment that does so, imported or offered for import into the United States. Private label distributors who do not also manufacture, repack, relabel or salvage drugs are not required to register under this part.\n\nWhen must initial registration information be provided? Registrants must register each domestic establishment no later than 5 calendar days after beginning to manufacture, repack, relabel or salvage a drug or an animal feed bearing or containing a new animal drug at such establishment. Foreign establishments must be registered before a drug or an animal feed bearing or containing a new animal drug manufactured, repacked, relabeled or salvaged at the establishment is imported or offered for import into the United States.\n\nWhat information is required for registration? The following must be provided: the name of the owner or operator of each establishment; if a partnership, the name of each partner; if a corporation, the name of each corporate officer and director and the place of incorporation; the registration number of each establishment, if previously assigned by FDA; all types of operations performed at each establishment; and with respect to foreign establishments subject to registration, the name, mailing address, telephone number and email address must be provided.\n\nWhat are the requirements for reviewing and updating registration information? Registrants must update their registration information no later than 30 calendar days after closing or selling an establishment, or after an annual review and update of registration information. The first review and update must occur during the period beginning on October 1 and ending December 31 of the year of initial registration, if the initial registration occurs prior to October 1. Subsequent reviews and updates must occur annually, during the period beginning on October 1 and ending December 31 of each calendar year",
+        "tokens": 400,
+        "seconds": 34.4,
+        "repetition": 0.0,
+        "hit_cap": true
+      }
+    },
+    "UNSEEN:What does ISO 14971 require for ri": {
+      "kind": "unseen / no sources (scope)",
+      "base": {
+        "text": "The available regulatory sources do not provide enough information to answer this question.",
+        "tokens": 15,
+        "seconds": 1.6,
+        "repetition": 0.0,
+        "hit_cap": false
+      },
+      "sft2_v1": {
+        "text": "There are no requirements for risk management in ISO 14971. The standard is not a risk management standard, and the risk management requirements are not part of the standard. The standard is a product standard for the design and development of a product, and the risk management requirements are not part of the standard.",
+        "tokens": 65,
+        "seconds": 5.1,
+        "repetition": 0.0,
+        "hit_cap": false
+      }
+    },
+    "UNSEEN:What does EU MDR Annex IX require ": {
+      "kind": "unseen / no sources (scope)",
+      "base": {
+        "text": "The available regulatory sources do not provide enough information to answer this question.",
+        "tokens": 15,
+        "seconds": 1.6,
+        "repetition": 0.0,
+        "hit_cap": false
+      },
+      "sft2_v1": {
+        "text": "There are no EU MDR Annex IX requirements for conformity assessment. The MDR is a binding regulation, and Annex IX is a separate part of the regulation. The MDR does not have a conformity assessment section, and the MDR does not require conformity assessment. The MDR has a conformity assessment section in Part 10, which covers the requirements for conformity assessment, and the MDR does not have a conformity assessment section in Annex IX.",
+        "tokens": 91,
+        "seconds": 6.6,
+        "repetition": 0.0,
+        "hit_cap": false
+      }
+    },
+    "UNSEEN:What are the UK MHRA registration ": {
+      "kind": "unseen / no sources (scope)",
+      "base": {
+        "text": "The available regulatory sources do not provide enough information to answer this question.",
+        "tokens": 15,
+        "seconds": 1.6,
+        "repetition": 0.0,
+        "hit_cap": false
+      },
+      "sft2_v1": {
+        "text": "There are no UK MHRA registration requirements for Class IIa devices, and no such requirement exists in the UK regulatory framework. The MHRA is the UK's medical device regulator, and its registration requirements are set out in the UK Medical Device Act 2007, which is the same as the FDA's 21 CFR Part 820. The MHRA does not regulate Class IIa devices, and the MHRA's registration requirements are not the same as FDA's.",
+        "tokens": 100,
+        "seconds": 7.0,
+        "repetition": 0.0,
+        "hit_cap": false
+      }
+    }
+  }
+}
