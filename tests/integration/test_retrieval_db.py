@@ -160,3 +160,242 @@ def test_results_serialise_without_internal_ids(retriever):
     text = str(payload)
     assert "guidance_id" not in text and "password" not in text
     assert payload["results"][0]["citation"]["label"] == "21 CFR 801.109(a)"
+
+
+# --------------------------------------------- C1: part-level stems ranked by relevance
+# The live ts_rank_cd signal, against the real corpus. S-002 of the acceptance
+# benchmark is the recorded defect: 84 section stems of Part 111 all scored
+# 100.0, so ASCII key order put the governing section 21 CFR 111.3 46th and the
+# bounded context dropped it.
+
+S002 = ("Where are the definitions that apply to 21 CFR Part 111 located, "
+        "and does Part 111 incorporate definitions from elsewhere?")
+
+
+def _part_stems(db, question):
+    """The part's section STEMS (one per section, as ECFR_EXACT_PART returns them) and the
+    whole registry. C2 adds paragraph rows of the ranked sections as further exact
+    evidence; they are excluded here so the C1 assertions keep measuring the ranking."""
+    from regulus.planning import plan_query
+    from regulus.rag.selection import is_required
+
+    registry = LexicalRetriever(db).run_plan(plan_query(question), corpus="ecfr", top_k=10).registry
+    stems = [e for e in registry.evidence
+             if is_required(e) and "part_expanded_from" not in e.result.metadata]
+    return stems, registry
+
+
+def test_s002_ranks_the_governing_section_first_not_46th(db):
+    stems, _ = _part_stems(db, S002)
+    labels = [e.citation for e in stems]
+    assert len(stems) == 84                      # the whole part is still retrieved
+    assert labels[0] == "21 CFR 111.3"           # was 46th, behind 111.103/111.105/...
+    assert stems[0].result.metadata["ts_rank_cd"] > 0.0
+    assert "definitions" in stems[0].result.metadata["part_rank_query"]
+    # the stems no longer share one score, which is what left ASCII order deciding
+    assert len({e.score for e in stems}) == len(stems)
+    assert all(99.9 < e.score <= 100.0 for e in stems)
+
+
+def test_s002_governing_section_survives_the_selection_ceiling(db):
+    from regulus.rag.selection import select_evidence
+
+    _, registry = _part_stems(db, S002)
+    selection = select_evidence(registry)
+    kept = [s.evidence.citation for s in selection.selected if s.protected]
+    assert "21 CFR 111.3" in kept and kept[0] == "21 CFR 111.3"
+    assert len(kept) < 84  # the ceiling still binds; it now cuts the irrelevant tail
+
+
+def test_part_level_relevance_ranking_is_deterministic_on_the_live_corpus(db):
+    runs = [[(e.citation, e.score) for e in _part_stems(db, S002)[0]] for _ in range(3)]
+    assert all(r == runs[0] for r in runs[1:])
+
+
+# Four acceptance-benchmark part-level questions, from four different Parts, whose
+# governing section the ASCII ordering pushed outside the selection ceiling.
+@pytest.mark.parametrize("question_id, question, governing", [
+    ("S-002", S002, "111.3"),
+    ("F-001", "Who is subject to 21 CFR Part 117 and what are the principal exemptions?", "117.5"),
+    ("L-009", "What are the small-package labeling exemptions and alternatives in Part 101?", "101.9"),
+    ("D-003", "What are the personnel qualification and training requirements under Part 211?", "211.25"),
+])
+def test_relevance_ranking_brings_the_governing_section_inside_the_ceiling(db, question_id, question, governing):
+    """Measured across four Parts: the benchmark's expected section was retrieved but sorted
+    past the ceiling by ASCII order, and relevance ranking brings it inside."""
+    from regulus.rag.selection import select_evidence
+
+    stems, registry = _part_stems(db, question)
+    # one stem per section; the stem's own label may carry a paragraph path ("211.25(a)")
+    sections = [e.result.metadata["section"] for e in stems]
+    assert governing in sections, question_id
+    selection = select_evidence(registry)
+    assert len(selection.selected) < len(stems), question_id  # the ceiling binds: order decides
+    kept = [s.evidence.result.metadata["section"] for s in selection.selected]
+    assert governing in kept, question_id
+    # ASCII section order would have placed it behind more stems than the context can hold
+    assert sorted(sections).index(governing) >= len(selection.selected), question_id
+
+
+def test_part_lookup_without_a_question_keeps_the_pre_c1_order(db):
+    """run() (hybrid retriever, scripts, eval baselines) passes no question: the
+    statement must behave exactly as the plain `ORDER BY r.section_number` did."""
+    resp = LexicalRetriever(db).run("What is in 21 CFR part 111?", corpus="ecfr", top_k=10)
+    exact = [r for r in resp.results if r.retrieval_method == METHOD_EXACT_CFR]
+    assert exact and all(r.relevance_score == 100.0 for r in exact)
+    assert "part_relevance_rank" not in exact[0].metadata
+    assert [r.key for r in exact] == sorted(r.key for r in exact)  # the pre-C1 tie-break
+
+
+# ------------------------------- C2: a ranked part section supplies its own paragraphs
+# Live corpus. 21 CFR 111.3's first row is the lead-in "The definitions and
+# interpretations of terms in section 201 of the ... Act ... apply", and the 28
+# definitions it introduces are the 28 rows below it. C1 ranks 111.3 first; C2
+# must let it reach the prompt with those rows.
+
+
+def test_s002_governing_section_supplies_its_definitions_not_just_the_lead_in(db):
+    stems, registry = _part_stems(db, S002)
+    rows = [e for e in registry.evidence if e.result.metadata.get("section") == "111.3"]
+    assert len(rows) > 1, "111.3 reached the registry as its lead-in only"
+    assert [e.result.metadata["ordinal"] for e in rows] == sorted(e.result.metadata["ordinal"] for e in rows)
+    assert rows[0].result.metadata["part_relevance_rank"] == 0          # C1 ranking intact
+    assert all(e.result.metadata["part_expanded_from"] == "111.3" for e in rows[1:])
+    assert any("means" in e.text for e in rows[1:]), "no definition text was supplied"
+    assert all(e.tier == "exact" and "r1" in e.satisfies for e in rows)
+
+
+def test_s002_definitions_survive_selection_in_document_order(db):
+    from regulus.rag.selection import select_evidence
+
+    _, registry = _part_stems(db, S002)
+    selection = select_evidence(registry)
+    kept = [s for s in selection.selected if s.evidence.result.metadata.get("section") == "111.3"]
+    assert len(kept) > 1 and kept[0].index == 1   # the ranked section leads the context
+    assert [s.evidence.result.metadata["ordinal"] for s in kept] == list(range(len(kept)))
+    assert selection.total_chars <= selection.policy.hard_max_total_chars
+    assert len(selection.selected) <= selection.policy.hard_max_results
+
+
+def test_part_expansion_only_deepens_sections_the_question_matches(db):
+    """Bounded on both axes: at most part_expand_sections matching sections, and the
+    expansion never touches a section C1 gave a zero relevance rank."""
+    r = LexicalRetriever(db)
+    stems, registry = _part_stems(db, S002)
+    expanded = {e.result.metadata["part_expanded_from"] for e in registry.evidence
+                if "part_expanded_from" in e.result.metadata}
+    assert len(expanded) <= r.part_expand_sections
+    ranked = {e.result.metadata["section"] for e in stems if e.result.metadata["ts_rank_cd"] > 0}
+    assert expanded <= ranked, "a section with no relevance signal was expanded"
+    per_section = {}
+    for e in registry.evidence:
+        src = e.result.metadata.get("part_expanded_from")
+        if src:
+            per_section[src] = per_section.get(src, 0) + 1
+    assert all(n <= r.part_expand_rows for n in per_section.values())
+
+
+def test_part_expansion_cannot_pull_in_the_whole_part(db):
+    """84 stems and 29 rows in 111.3 alone: the registry must stay far below the part."""
+    from regulus.retrieval.lexical import LexicalRetriever as LR
+
+    _, registry = _part_stems(db, S002)
+    whole_part = db.query(
+        "SELECT count(*) AS n FROM cfr_records WHERE part_number='111' AND removed_on IS NULL")[0]["n"]
+    required = [e for e in registry.evidence if e.tier == "exact"]
+    r = LR(db)
+    assert len(required) <= 84 + r.part_expand_sections * r.part_expand_rows < whole_part
+
+
+def test_part_expansion_is_deterministic_on_the_live_corpus(db):
+    runs = [[(e.citation, e.score, e.result.metadata["ordinal"])
+             for e in _part_stems(db, S002)[1].evidence] for _ in range(3)]
+    assert all(r == runs[0] for r in runs[1:])
+
+
+def test_section_level_lookup_is_unchanged_by_c2(db):
+    """A section-level request is retrieved exactly as before: same rows, same scores,
+    and no part-expansion metadata anywhere."""
+    resp = LexicalRetriever(db).run("21 CFR 820.10", corpus="ecfr", top_k=20)
+    exact = [r for r in resp.results if r.retrieval_method == METHOD_EXACT_CFR]
+    assert len(exact) == 12
+    assert exact[0].citation.label == "21 CFR 820.10" and exact[0].relevance_score == 100.0
+    assert exact[1].citation.label == "21 CFR 820.10(a)"
+    assert not any("part_expanded_from" in r.metadata for r in resp.results)
+
+
+# ------------------------------------- C3: cross-section ranges against the live corpus
+# "21 CFR 50.50 through 50.56" parses to two endpoints; which sections lie between them
+# is a fact about the corpus. Part 50 holds all seven; Part 820 holds no standalone
+# 820.30 (it sits in a consolidated 820.20-820.30 block), which must not be invented.
+
+RANGE_Q = "What do 21 CFR 50.50 through 50.56 require?"
+
+
+def _expanded(db, question):
+    from regulus.planning import plan_query
+    from regulus.planning.ranges import expand_section_ranges
+
+    return expand_section_ranges(plan_query(question), LexicalRetriever(db).sections_in_part)
+
+
+def test_sections_in_part_returns_document_order_not_ascii_order(db):
+    listing = LexicalRetriever(db).sections_in_part("50")
+    numbers = [n for n, _ in listing]
+    assert numbers == ["50.1", "50.3", "50.20", "50.22", "50.23", "50.24", "50.25", "50.27",
+                       "50.50", "50.51", "50.52", "50.53", "50.54", "50.55", "50.56"]
+    assert numbers != sorted(numbers), "ASCII order would put 50.3 after 50.20"
+    orders = [o for _, o in listing]
+    assert orders == sorted(orders) and len(set(orders)) == len(orders)
+
+
+def test_live_range_expands_to_every_existing_intermediate_section(db):
+    plan, notes = _expanded(db, RANGE_Q)
+    assert [r.canonical for r in plan.requirements] == [f"21 CFR 50.{n}" for n in (50, 51, 52, 53, 54, 55, 56)]
+    assert any("expanded to 7 sections" in n for n in notes)
+
+
+def test_live_range_does_not_invent_an_endpoint_the_corpus_lacks(db):
+    """Part 820 has no standalone 820.30; only the real 820.35 is added."""
+    plan, _ = _expanded(db, "What do 21 CFR 820.30 through 820.40 require?")
+    assert [r.canonical for r in plan.requirements] == ["21 CFR 820.30", "21 CFR 820.35", "21 CFR 820.40"]
+    known = {n for n, _ in LexicalRetriever(db).sections_in_part("820")}
+    assert "820.30" not in known and "820.35" in known
+
+
+def test_live_range_is_retrieved_through_the_ordinary_exact_section_path(db):
+    plan, _ = _expanded(db, RANGE_Q)
+    registry = LexicalRetriever(db).run_plan(plan, corpus="ecfr", top_k=8).registry
+    assert registry.unresolved_requirements() == ()   # all seven exist and were retrieved
+    for req in plan.requirements:
+        assert registry.exact_for(req.id), req.canonical
+    assert not any("part_expanded_from" in e.result.metadata for e in registry.evidence)
+
+
+def test_live_range_selection_still_respects_both_ceilings(db):
+    from regulus.rag.selection import select_evidence
+
+    plan, _ = _expanded(db, RANGE_Q)
+    registry = LexicalRetriever(db).run_plan(plan, corpus="ecfr", top_k=8).registry
+    selection = select_evidence(registry)
+    assert len(selection.selected) <= selection.policy.hard_max_results == 24
+    assert selection.total_chars <= selection.policy.hard_max_total_chars == 9000
+    # the range does not fit; the overflow is recorded rather than silently dropped
+    assert len(selection.diagnostics["required_dropped"]) > 0
+
+
+def test_live_range_expansion_is_deterministic(db):
+    runs = [[r.canonical for r in _expanded(db, RANGE_Q)[0].requirements] for _ in range(3)]
+    assert all(r == runs[0] for r in runs[1:])
+
+
+def test_a_live_non_range_question_is_not_touched_by_c3(db):
+    from regulus.planning import plan_query
+    from regulus.planning.ranges import expand_section_ranges
+
+    sections_in_part = LexicalRetriever(db).sections_in_part
+    for q in ("What does 21 CFR 820.10 require?", "What is in 21 CFR part 111?",
+              "21 CFR 820.10(b)(1) through (b)(4)"):
+        before = plan_query(q)
+        after, notes = expand_section_ranges(before, sections_in_part)
+        assert after is before and notes == (), q

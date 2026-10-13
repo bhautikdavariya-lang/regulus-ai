@@ -24,6 +24,7 @@ run(query)      Stage 5-7 query-level path, kept unchanged for the hybrid
 from __future__ import annotations
 
 import logging
+import re
 import time
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Iterable
@@ -32,6 +33,7 @@ from regulus.retrieval.base import Filters, normalise_corpus
 from regulus.retrieval.citations import build_ecfr_citation, build_guidance_citation
 from regulus.retrieval.db import Database
 from regulus.retrieval.models import (
+    METHOD_DEFINITION,
     METHOD_EXACT_CFR,
     METHOD_EXACT_DOCKET,
     METHOD_FULL_TEXT,
@@ -50,8 +52,17 @@ from regulus.retrieval.evidence import (
     classify_result,
     order_evidence,
 )
-from regulus.retrieval.query import QueryType, classify, fallback_terms, looks_like_identifier
-from regulus.retrieval.ranking import exact_score, full_text_or_score, full_text_score, merge, structural_score, trigram_score
+from regulus.retrieval.query import QueryType, classify, definition_term, fallback_terms, looks_like_identifier
+from regulus.retrieval.ranking import (
+    definition_score,
+    exact_score,
+    full_text_or_score,
+    full_text_score,
+    merge,
+    part_stem_score,
+    structural_score,
+    trigram_score,
+)
 from regulus.retrieval.references import CfrReference, _PARA_TOKEN_RE
 from regulus.retrieval import sql
 
@@ -60,8 +71,9 @@ if TYPE_CHECKING:
 
 log = logging.getLogger("regulus.retrieval")
 
-DEFAULT_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM)
-PRIMARY_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT)
+DEFAULT_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_DEFINITION)
+PRIMARY_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_DEFINITION)
+DEFINITION_LIMIT = 3  # the asked term's definitions kept as evidence; many parts define the same term
 TRIGRAM_MAX_WORDS = 4
 # Stage 7 controlled OR fallback defaults
 DEFAULT_ENABLE_OR_FALLBACK = True
@@ -74,6 +86,26 @@ GUIDANCE_CANDIDATE_MULTIPLIER = 10  # chunks ranked before the per-document cap 
 # returns the paragraph and its descendants; a section lookup returns every
 # row of the section. This is a resource guardrail, not a relevance cut.
 DEFAULT_EXACT_ROW_LIMIT = 100
+# Stage 2, part-level depth. A part-level request retrieves the first row of
+# each section of the part (ECFR_EXACT_PART, `ordinal = 0`), which for many
+# sections is a lead-in - "The definitions and interpretations of terms in
+# section 201 of the act apply ..." - whose substance lives in the rows below
+# it. The sections the question actually matches are expanded to their own
+# paragraph rows, through ECFR_EXACT_SECTION, so a part-level answer can quote
+# the provision instead of its lead-in. Bounded on both axes: only the N
+# best-ranked MATCHING sections are expanded, and at most M rows of each, in the
+# spirit of chunks_per_document - one section must not fill the whole context.
+#
+# 3 sections x 2 rows is what the existing ceilings afford, measured over the 113
+# part-level acceptance questions (retrieval + selection only, no generation):
+# the expected section reaches the prompt with substantive rows, not just its
+# lead-in, for 73 of 152 expected sections against 1 before, while 130 of the 132
+# that C1 already delivered stay. Going wider (4x2) or deeper (3x3, 2x6) buys no
+# further depth and costs 6 more of those - the 9,000-character ceiling is full
+# either way, so depth is paid for out of breadth. Raising the ceiling is a
+# separate question and is deliberately not touched here.
+DEFAULT_PART_EXPAND_SECTIONS = 3
+DEFAULT_PART_EXPAND_ROWS = 2
 DISCOVERY_METHODS = (METHOD_FULL_TEXT_OR, METHOD_TRIGRAM)
 
 
@@ -141,6 +173,8 @@ class LexicalRetriever:
         primary_min_results: int = DEFAULT_PRIMARY_MIN_RESULTS,
         fallback_max_terms: int = DEFAULT_FALLBACK_MAX_TERMS,
         exact_row_limit: int = DEFAULT_EXACT_ROW_LIMIT,
+        part_expand_sections: int = DEFAULT_PART_EXPAND_SECTIONS,
+        part_expand_rows: int = DEFAULT_PART_EXPAND_ROWS,
     ) -> None:
         """enable_or_fallback=False reproduces the Stage 5 retriever exactly.
 
@@ -155,12 +189,16 @@ class LexicalRetriever:
             raise ValueError("primary_min_results and fallback_max_terms must be >= 0")
         if exact_row_limit <= 0:
             raise ValueError("exact_row_limit must be positive")
+        if part_expand_sections < 0 or part_expand_rows < 0:
+            raise ValueError("part_expand_sections and part_expand_rows must be >= 0")
         self.db = db
         self.chunks_per_document = chunks_per_document
         self.enable_or_fallback = enable_or_fallback
         self.primary_min_results = primary_min_results
         self.fallback_max_terms = fallback_max_terms
         self.exact_row_limit = exact_row_limit
+        self.part_expand_sections = part_expand_sections
+        self.part_expand_rows = part_expand_rows
 
     def describe(self) -> dict[str, Any]:
         return {
@@ -169,6 +207,8 @@ class LexicalRetriever:
             "primary_min_results": self.primary_min_results,
             "fallback_max_terms": self.fallback_max_terms,
             "chunks_per_document": self.chunks_per_document,
+            "part_expand_sections": self.part_expand_sections,
+            "part_expand_rows": self.part_expand_rows,
         }
 
     # -- public API --------------------------------------------------------
@@ -356,7 +396,7 @@ class LexicalRetriever:
                 if ref.key in exact_cache:
                     rows = exact_cache[ref.key]  # duplicate reference: reuse, no second query
                 else:
-                    rows = timed(f"{METHOD_EXACT_CFR}:{req.id}", self.exact_cfr, ref, filters, self.exact_row_limit)
+                    rows = timed(f"{METHOD_EXACT_CFR}:{req.id}", self.exact_cfr, ref, filters, self.exact_row_limit, question)
                     exact_cache[ref.key] = rows
                 if not rows:
                     note = (
@@ -382,8 +422,21 @@ class LexicalRetriever:
                     "any retrieved passages are related material only and do not show that the docket exists."
                 )
 
+        # 3a. a definitional question about one term ("What does FDA stand for?")
+        # names no provision, and its words ("stand for") are not the words the
+        # CFR defines with ("FDA means ..."): look the term's definition up. When
+        # the CFR defines it, that IS the evidence, and the question's own
+        # keyword search is skipped - its frame words only match noise ("stand"
+        # in "good standing"). When it does not, retrieval is unchanged.
+        term = definition_term(question) if not plan.requirements else None
+        definitions: list[RetrievalResult] = []
+        if term is not None and ecfr_on and METHOD_DEFINITION in enabled:
+            definitions = timed(METHOD_DEFINITION, self.definition_ecfr, term, filters, DEFINITION_LIMIT)
+            if definitions:
+                notes.append(f"The CFR's own definition of \"{term}\" was retrieved; the keyword search was not run.")
+
         # 3. supporting: the question's own full-text search on each corpus
-        if METHOD_FULL_TEXT in enabled:
+        if METHOD_FULL_TEXT in enabled and not definitions:
             if ecfr_on:
                 timed(f"{METHOD_FULL_TEXT}:ecfr", self.full_text_ecfr, question, filters, text_limit)
             if guidance_on:
@@ -422,7 +475,7 @@ class LexicalRetriever:
         # 5. general search (no requirements): the legacy trigram and question-level fallback
         question_fallback_terms: list[str] = []
         question_fallback_used = False
-        if not plan.requirements:
+        if not plan.requirements and not definitions:
             if trigram_on and self._should_run_trigram(question, counts, top_k):
                 timed(METHOD_TRIGRAM, self.trigram_ecfr, question, filters, text_limit)
             primary_count = len({c.key for c in candidates if c.retrieval_method in PRIMARY_METHODS})
@@ -522,16 +575,30 @@ class LexicalRetriever:
 
     # -- method implementations -------------------------------------------
 
-    def exact_cfr(self, ref: CfrReference, filters: Filters, limit: int) -> list[RetrievalResult]:
+    def exact_cfr(self, ref: CfrReference, filters: Filters, limit: int, question: str | None = None) -> list[RetrievalResult]:
         """The requested section/paragraph rows. A paragraph returns itself plus
         its descendants (match_kind exact / descendant); a section returns all
-        its rows; a part returns the first row of each section."""
+        its rows; a part returns the first row of each section.
+
+        `question` is used for part-level references only. It orders the part's
+        section stems by relevance (it never filters them - see ECFR_EXACT_PART)
+        and decides which of them are deepened to their own paragraph rows (see
+        part_section_rows). It never touches a section- or paragraph-level
+        lookup. Omitting it scores and orders a part by ASCII section number and
+        deepens nothing, which is the behaviour this method had before either.
+        """
         if ref.title != "21":
             return []  # the corpus holds Title 21 only; other titles cannot match
         params = self._ecfr_filter_params(filters)
-        if ref.section is None:
-            rows = self.db.query(sql.ECFR_EXACT_PART, {**params, "part_number": ref.part, "limit": limit})
+        part_level = ref.section is None
+        if part_level:
+            rank_query = self.part_rank_query(question)
+            rows = self.db.query(
+                sql.ECFR_EXACT_PART,
+                {**params, "part_number": ref.part, "query": rank_query, "limit": limit},
+            )
         else:
+            rank_query = ""
             rows = self.db.query(
                 sql.ECFR_EXACT_SECTION,
                 {
@@ -543,10 +610,89 @@ class LexicalRetriever:
                 },
             )
         out = []
-        for row in rows:
-            score = exact_score(row["match_kind"], row["ordinal"])
-            out.append(self._ecfr_result(row, METHOD_EXACT_CFR, score, {"match_kind": row["match_kind"], "requested": ref.label}))
+        expand: list[tuple[str, float]] = []  # (section_number, score) of the sections to deepen
+        for position, row in enumerate(rows):
+            meta = {"match_kind": row["match_kind"], "requested": ref.label}
+            if part_level and rank_query:
+                # the rows arrive in relevance order, so the position IS the rank
+                score = part_stem_score(position)
+                meta.update(part_relevance_rank=position, part_rank_query=rank_query,
+                            ts_rank_cd=float(row["rank"]))
+                if float(row["rank"]) > 0.0 and len(expand) < self.part_expand_sections:
+                    expand.append((row["section_number"], score))
+            else:
+                # no relevance signal to spend (no question, or no term survived
+                # selection): score and order the part exactly as before C1
+                score = exact_score(row["match_kind"], row["ordinal"])
+            out.append(self._ecfr_result(row, METHOD_EXACT_CFR, score, meta))
+        for section, score in expand:
+            out += self.part_section_rows(section, score, ref, filters)
         return out
+
+    def part_section_rows(self, section: str, score: float, ref: CfrReference, filters: Filters) -> list[RetrievalResult]:
+        """The substantive paragraph rows of one section of a requested part.
+
+        A part-level request only ever saw each section's FIRST row, so a section
+        whose first row is a lead-in reached the prompt without the provision it
+        introduces. These are the rest of that section's rows, fetched with the
+        same ECFR_EXACT_SECTION statement a section-level request uses, so the
+        rows, their citations, their metadata and their match_kind are the ones
+        the registry already knows how to classify - a part-level requirement
+        makes every row of the part exact evidence either way.
+
+        They carry their section's own relevance score, not one of their own:
+        `order_evidence` breaks a score tie inside the exact tier by `ordinal`,
+        which is document order, so each expanded section's rows follow its stem
+        in the order the CFR prints them and the sections stay in C1's order.
+        Nothing here re-ranks, and no row is added for a section C1 did not rank.
+        """
+        if self.part_expand_rows <= 0:
+            return []
+        rows = self.db.query(
+            sql.ECFR_EXACT_SECTION,
+            {
+                **self._ecfr_filter_params(filters),
+                "section_number": section,
+                "paragraph": "",
+                "paragraph_prefix": "(%",
+                # +1: the stem (ordinal 0) is already in the result and is skipped below
+                "limit": self.part_expand_rows + 1,
+            },
+        )
+        return [
+            self._ecfr_result(row, METHOD_EXACT_CFR, score,
+                              {"match_kind": row["match_kind"], "requested": ref.label,
+                               "part_expanded_from": section})
+            for row in rows if row["ordinal"] != 0
+        ]
+
+    def part_rank_query(self, question: str | None) -> str:
+        """The tsquery text that orders a requested part's section stems.
+
+        The Stage 7 term selection (`fallback_terms`) is reused unchanged: it
+        already drops question words and the regulatory words so common in this
+        corpus that they carry no signal ("requirements", "section", "part",
+        "applicable", ...), which is exactly what must not drive this ranking.
+        The terms are OR-ed, as in the OR fallback, because a part-level
+        question rarely has every term in one section stem and
+        websearch_to_tsquery's default AND would score every stem 0.
+
+        Returns "" when there is no question or no term survives selection; the
+        statement then falls back to plain ASCII section order.
+        """
+        terms = fallback_terms(question or "", self.fallback_max_terms)
+        return " or ".join(terms)
+
+    def sections_in_part(self, part: str) -> list[tuple[str, int]]:
+        """(section number, sort_order) for every section of `part`, in document order.
+
+        Stage 1 uses this to fill in a cross-section range; see
+        regulus.planning.ranges. It is a listing, not a retrieval leg: it returns
+        no passages, scores nothing and feeds no evidence of its own. The rows it
+        names are retrieved afterwards by the ordinary exact-section path.
+        """
+        rows = self.db.query(sql.ECFR_PART_SECTIONS, {"part_number": part})
+        return [(row["number"], row["sort_order"]) for row in rows]
 
     def exact_row(self, section: str, paragraph_path: str, filters: Filters) -> list[RetrievalResult]:
         """Stage 2: exactly one eCFR row (a parent paragraph fetched as structural context)."""
@@ -562,6 +708,12 @@ class LexicalRetriever:
             {**self._guidance_filter_params(filters), "docket": docket, "per_document": self.chunks_per_document, "limit": limit},
         )
         return [self._guidance_result(row, METHOD_EXACT_DOCKET, exact_score("exact", row["ordinal"]), {"requested": docket}) for row in rows]
+
+    def definition_ecfr(self, term: str, filters: Filters, limit: int) -> list[RetrievalResult]:
+        pattern = r"^\s*(\([0-9A-Za-z]{1,6}\)\s*)*" + re.escape(term).replace("\\ ", r"\s+") + r"\s+means\M"
+        rows = self.db.query(sql.ECFR_DEFINITION, {**self._ecfr_filter_params(filters), "query": term, "pattern": pattern,
+                                                   "limit": limit})
+        return [self._ecfr_result(row, METHOD_DEFINITION, definition_score(i), {"defines": term}) for i, row in enumerate(rows)]
 
     def full_text_ecfr(self, query: str, filters: Filters, limit: int) -> list[RetrievalResult]:
         rows = self.db.query(sql.ECFR_FULL_TEXT, {**self._ecfr_filter_params(filters), "query": query, "limit": limit})

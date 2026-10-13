@@ -220,6 +220,9 @@ class AnswerPlan:
     related: tuple[int, ...]
     sources: tuple[PlannedSource, ...]
     notes: tuple[str, ...] = field(default_factory=tuple)
+    # The time periods a value question needs, when the requested provision states more than one
+    # (`value_entries`). Empty for every other question, which then renders exactly as before.
+    values: tuple["ValueEntry", ...] = field(default_factory=tuple)
 
     def source(self, index: int) -> PlannedSource | None:
         return next((s for s in self.sources if s.index == index), None)
@@ -245,7 +248,126 @@ class AnswerPlan:
             "shape": self.shape.to_dict(), "mode": self.mode, "lead_in": list(self.lead_in),
             "groups": [g.to_dict() for g in self.groups], "context": list(self.context), "related": list(self.related),
             "sources": [s.to_dict() for s in self.sources], "notes": list(self.notes),
+            **({"values": [v.to_dict() for v in self.values]} if self.values else {}),
         }
+
+
+# ------------------------------------------------------------------ value plan
+#
+# A focused question that asks for a TIME PERIOD of a provision stating more than one gets, from
+# the pipeline, the periods paired with what each applies to - the model is never asked to work
+# that pairing out. Measured on 21 CFR 312.32 with the production engine (greedy): asked "How
+# quickly must IND safety reports be submitted?", the focused instruction ("state only what the
+# provision says about the focus") made the model state (c)(1)'s 15 days alone, because (c)(1)
+# shares four of the question's words and (c)(2) one. Every instruction that instead asked the
+# model to give "each period and what it applies to" made it invent the pairing, and invent it
+# wrongly ("a serious and unexpected suspected adverse reaction ... 7 calendar days"). Handed the
+# pairing, in each source's own words, it stated both rules correctly, with their own triggers and
+# citations, in about a fifth of the length.
+
+_PERIOD_KINDS = ("deadline", "duration_or_frequency")
+_PERIOD_NUM = r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty|sixty|ninety)"
+_PERIOD_RE = re.compile(rf"\b({_PERIOD_NUM})[\s-]+((?:calendar|working|business)[\s-]+)?(days?|weeks?|months?|years?|hours?)\b", re.I)
+# A paragraph designation, however many tokens, before the paragraph's own heading: "(c)(1) IND
+# safety reports. The sponsor ...". `extract_heading` reads a single token only and is used for
+# group headings elsewhere, so it is left as it is.
+_DESIGNATION_RE = re.compile(r"^\s*(?:\([A-Za-z0-9]{1,4}\)\s*)+")
+_OWN_HEADING_RE = re.compile(r"^([A-Z][A-Za-z ,'\u2014-]{1,90}?)\.\s")
+_SENTENCE_END_RE = re.compile(r"(?<=[a-z0-9)])\.(?=\s|$)")
+_CLAUSE_BREAK_RE = re.compile(r"[,;:]\s+|(?<=[.])\s+")
+_LEADING_CONJUNCTION_RE = re.compile(r"^(?:but|and|or|then|so)\s+", re.I)
+_WORD_RE = re.compile(r"[A-Za-z][A-Za-z-]+")
+# Question words that name the VALUE asked for rather than a condition it applies to.
+_VALUE_WORDS = frozenset({"deadline", "deadlines", "timeframe", "timeframes", "time", "limit", "limits", "timeline",
+                          "timelines", "quickly", "soon", "long", "often", "rapidly", "promptly", "calendar-day",
+                          "calendar", "day", "days", "period", "periods", "frequency", "frequently", "within", "many"})
+NAMED_CONDITION_SHARE = 0.6  # share of the question's condition words a heading must carry to be the one it names
+
+
+@dataclass(frozen=True)
+class ValueEntry:
+    value: str            # "7 calendar days"
+    index: int            # the SOURCE stating it
+    condition: str        # that paragraph's own eCFR heading: what the period applies to
+    clause: str           # the source's own words around the period, through the end of its sentence
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"value": self.value, "index": self.index, "condition": self.condition, "clause": self.clause}
+
+
+def _paragraph_heading(text: str) -> str | None:
+    body = _DESIGNATION_RE.sub("", text or "", count=1)
+    if body == (text or ""):
+        return None
+    m = _OWN_HEADING_RE.match(body)
+    heading = m.group(1).strip() if m else None
+    return heading if heading and 1 <= len(heading.split()) <= 10 else None
+
+
+def _periods(text: str) -> list[tuple[str, re.Match[str]]]:
+    out: list[tuple[str, re.Match[str]]] = []
+    for m in _PERIOD_RE.finditer(text or ""):
+        unit = m.group(3).lower().rstrip("s") + "s"
+        convention = re.sub(r"[\s-]+", " ", m.group(2) or "").strip().lower()
+        value = " ".join(x for x in (m.group(1).lower(), convention, unit) if x)
+        if value not in (v for v, _ in out):
+            out.append((value, m))
+    return out
+
+
+def _value_clause(text: str, match: re.Match[str]) -> str:
+    """From the clause boundary before the period to the end of its sentence, verbatim: the event it
+    runs from and any cross-reference after it come with it."""
+    end = _SENTENCE_END_RE.search(text, match.end())
+    starts = [b.end() for b in _CLAUSE_BREAK_RE.finditer(text, 0, match.start())]
+    clause = text[starts[-1] if starts else 0: end.start() if end else len(text)].strip()
+    return _LEADING_CONJUNCTION_RE.sub("", clause)
+
+
+def _stems(text: str) -> set[str]:
+    return {w.lower()[:5] for w in _WORD_RE.findall(text or "")}
+
+
+def value_entries(value_kind: str | None, shape: AnswerShape | None, sources) -> tuple[ValueEntry, ...]:
+    """The periods a focused period question needs, each with what it applies to - or () to leave the
+    prompt exactly as it was.
+
+    Fires only for a FOCUSED question asking for a time period whose requested provision's EXACT
+    sources state at least two DIFFERENT periods. Each distinct period is represented once, by the
+    first source in document order that states it, and every one of those sources must carry its
+    own paragraph heading - the heading is what the period is said to apply to, so a period without
+    one makes the plan abstain rather than describe it in words the pipeline made up.
+
+    A question that names one of those conditions is already about one period, and the focused
+    answer handles it: "the reporting deadline for an unexpected fatal or life-threatening suspected
+    adverse reaction" names (c)(2)'s heading and gets () - its prompt is unchanged. Words the
+    question shares with the SECTION's heading ("IND safety reporting") name the whole section, not
+    one condition in it, so they do not narrow anything.
+    """
+    if value_kind not in _PERIOD_KINDS or shape is None or shape.mode != MODE_FOCUSED:
+        return ()
+    exact = [s for s in sources if s.tier == TIER_EXACT and getattr(s, "corpus", "ecfr") == "ecfr"]
+    first: dict[str, tuple[object, re.Match[str]]] = {}
+    for s in exact:
+        for value, m in _periods(s.text):
+            first.setdefault(value, (s, m))
+    if len(first) < 2:
+        return ()
+    entries = []
+    for value, (s, m) in first.items():
+        heading = _paragraph_heading(s.text)
+        if heading is None:
+            return ()
+        entries.append(ValueEntry(value, s.index, heading, _value_clause(s.text, m)))
+    umbrella = set().union(*(_stems(s.heading or "") for s in exact))
+    condition_words = [t for t in shape.focus_terms if t not in _VALUE_WORDS and t.lower()[:5] not in umbrella]
+    if condition_words:
+        named = [e for e in entries
+                 if sum(1 for t in condition_words if t.lower()[:5] in _stems(e.condition)) / len(condition_words)
+                 >= NAMED_CONDITION_SHARE]
+        if len(named) == 1:
+            return ()
+    return tuple(entries)
 
 
 # ------------------------------------------------------------------ build
@@ -527,6 +649,9 @@ def plan_lines(plan: AnswerPlan, texts: dict[int, str] | None = None) -> list[st
     lines = [f"  answer shape: {title}"]
     if plan.shape.focus_terms and mode == MODE_FOCUSED:
         lines.append(f"  focus: {', '.join(plan.shape.focus_terms)}")
+    if plan.values:
+        lines.append("  periods stated, each with the reports it applies to and when it runs from: "
+                     + "; ".join(f"{v.condition}: {v.clause} [{v.index}]" for v in plan.values))
     if mode == MODE_SYNTHESIS:
         order = []
         for g in [g for g in groups if g.kind != GROUP_DOCUMENT] or list(groups):
@@ -585,7 +710,12 @@ def format_line(plan: AnswerPlan, profile: str | None = None) -> str:
     """The shape-specific ANSWER FORMAT line: short, list-free, no length.
     `profile` (answer-quality Stage 3) is a lead instruction for the question type,
     placed first; without it the line is exactly the Stage 12 line."""
-    if plan.mode == MODE_FOCUSED and plan.shape.focus_terms:
+    if plan.values:
+        line = ("ANSWER FORMAT: the question asks for a time period, and the requested provision states more than one. In "
+                "plain sentences, give each period listed under \"periods stated\" in the words given there, with the "
+                "reports it applies to and when it runs from, each sentence ending with that period's own source number in "
+                "brackets. Do not give a period for any other reports, and do not describe the rest of the provision. " + _KEEP)
+    elif plan.mode == MODE_FOCUSED and plan.shape.focus_terms:
         line = ("ANSWER FORMAT: plain sentences stating only what the requested provision says about the focus, each "
                 "ending with the source number in brackets. Do not describe the rest of the provision. " + _KEEP)
     else:

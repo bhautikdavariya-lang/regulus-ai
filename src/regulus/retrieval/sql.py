@@ -55,16 +55,49 @@ ORDER BY r.ordinal
 LIMIT %(limit)s
 """
 
-# Part-level lookup: the first live row of each section in the part, in order.
+# Part-level lookup: the first live row of each section in the part, most
+# relevant to the question first.
+#
+# Every stem of a part is equally "exact" - the request named the part, not a
+# section - so an identifier score cannot order them and ASCII section order
+# decided which ones a bounded context kept (21 CFR 111.3, the definitions
+# section, sorted behind 111.103/111.105/... and was dropped). `rank` is the
+# question's lexical relevance from the same search_vector and the same
+# ts_rank_cd normalisation ECFR_FULL_TEXT uses, so heading matches (weight A)
+# outrank body matches (weight B).
+#
+# There is deliberately no `search_vector @@ q` filter here: this is an exact
+# identifier lookup, not a search. Every live stem of the part is still
+# returned; relevance only orders them. websearch_to_tsquery('english', '')
+# is an empty tsquery and ts_rank_cd then returns 0 for every row, so an empty
+# %(query)s reproduces the previous plain `ORDER BY r.section_number` exactly
+# (verified against Parts 111, 117, 211, 803, 820 and 1271).
 ECFR_EXACT_PART = f"""
-SELECT {_ECFR_COLUMNS}, 'exact' AS match_kind
+SELECT {_ECFR_COLUMNS}, 'exact' AS match_kind,
+       ts_rank_cd(r.search_vector, q, 1) AS rank
 FROM cfr_records r
-LEFT JOIN cfr_parts p ON p.number = r.part_number
+LEFT JOIN cfr_parts p ON p.number = r.part_number,
+     websearch_to_tsquery('english', %(query)s) q
 WHERE r.part_number = %(part_number)s
   AND r.ordinal = 0
   {_ECFR_FILTERS}
-ORDER BY r.section_number
+ORDER BY rank DESC, r.section_number
 LIMIT %(limit)s
+"""
+
+# Every section of one part, in the corpus's own document order. Used by Stage 1
+# to fill in a cross-section range ("50.50 through 50.56"): the question names
+# only the endpoints, and which sections sit between them is a fact about the
+# corpus, not about the identifier. `sort_order` is the authoritative order
+# (unique and non-null on cfr_sections, and it agrees with numeric section order
+# in every part of this corpus, which ASCII order does not: 50.3 < 50.20).
+# Reserved sections are returned: they exist, and the existing selection and
+# consolidation rules already decide what a "[Reserved]" row is worth.
+ECFR_PART_SECTIONS = """
+SELECT s.number, s.sort_order
+FROM cfr_sections s
+WHERE s.part_number = %(part_number)s
+ORDER BY s.sort_order
 """
 
 # Full-text search over the generated search_vector (heading weight A, body B).
@@ -155,10 +188,29 @@ ORDER BY g.issued_on DESC NULLS LAST, g.source_url, c.ordinal
 LIMIT %(limit)s
 """
 
+# The CFR's own definition of one term: a paragraph that OPENS with the term
+# (after its paragraph label, if any) followed by "means" - the definitional
+# convention of every Title 21 definitions section ("(x) FDA means the Food and
+# Drug Administration."). The full-text condition only narrows the scan through
+# the GIN index; the regular expression decides. Shortest paragraphs first.
+ECFR_DEFINITION = f"""
+SELECT {_ECFR_COLUMNS}
+FROM cfr_records r
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE r.search_vector @@ websearch_to_tsquery('english', %(query)s)
+  AND r.body_text ~* %(pattern)s
+  AND NOT r.is_reserved
+  {_ECFR_FILTERS}
+ORDER BY length(r.body_text), r.section_number, r.ordinal
+LIMIT %(limit)s
+"""
+
 ALL_STATEMENTS = {
+    "ECFR_DEFINITION": ECFR_DEFINITION,
     "ECFR_EXACT_SECTION": ECFR_EXACT_SECTION,
     "ECFR_EXACT_ROW": ECFR_EXACT_ROW,
     "ECFR_EXACT_PART": ECFR_EXACT_PART,
+    "ECFR_PART_SECTIONS": ECFR_PART_SECTIONS,
     "ECFR_FULL_TEXT": ECFR_FULL_TEXT,
     "ECFR_TRIGRAM": ECFR_TRIGRAM,
     "GUIDANCE_FULL_TEXT": GUIDANCE_FULL_TEXT,

@@ -36,8 +36,10 @@ from dataclasses import dataclass, field
 from typing import Any, Callable
 
 from regulus.rag.context import ContextPolicy, ContextSource, TRUNCATION_MARK, render_source
+from regulus.rag.evidence_values import evidence_has_value, selection_value_kind
 from regulus.retrieval.evidence import TIER_DISCOVERY, TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, Evidence, EvidenceRegistry
 from regulus.retrieval.models import METHOD_EXACT_DOCKET, RetrievalResult
+from regulus.retrieval.query import fallback_terms
 
 REASON_REQUIRED_EXACT = "required_exact"          # tier exact, satisfies a requirement
 REASON_REQUIRED_DOCKET = "required_docket"        # the requested guidance document
@@ -53,6 +55,16 @@ DROP_MAX_RESULTS = "max_results"                  # optional evidence: max_resul
 DROP_FILTERED = "filtered"                        # optional evidence excluded by the pipeline's usefulness rule
 
 MIN_SQUEEZED_CHARS = 200  # an optional source is shortened to fit only if at least this much text remains
+
+_PREFIX = 6  # a question term matches a passage on its first this-many characters ("reporting" ~ "reports")
+
+# A paragraph pointing at other paragraphs: "under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii),
+# or (c)(1)(iv) of this section", "except as provided in paragraph (d)". Used to keep what a
+# paragraph refers to with it; see `_referenced_paths`.
+_REF_CUE_RE = re.compile(r"\bparagraphs?\b", re.I)
+_REF_RUN_RE = re.compile(r"(?:\(\s*[A-Za-z0-9]{1,4}\s*\)|[\s,;]|\band\b|\bor\b|\bthrough\b|\bto\b)+", re.I)
+_REF_SPLIT_RE = re.compile(r"[,;]|\band\b|\bor\b|\bthrough\b|\bto\b", re.I)
+_REF_TOKEN_RE = re.compile(r"\(\s*([A-Za-z0-9]{1,4})\s*\)")
 
 
 @dataclass(frozen=True)
@@ -161,14 +173,160 @@ def _block_chars(evidence: Evidence, text: str, index: int, truncated: bool) -> 
     return len(render_source(probe))
 
 
+def _match_keys(question: str) -> tuple[str, ...]:
+    """Prefix keys for the question's salient terms.
+
+    The terms are the retrieval layer's own (`regulus.retrieval.query.fallback_terms`), so
+    selection and retrieval agree on what a question is about. A hyphenated term is split into
+    its parts ("7-calendar-day" -> "calendar", "day"); a bare number or a section number is
+    dropped, because it discriminates nothing inside the section it names.
+    """
+    keys: list[str] = []
+    for term in fallback_terms(question or ""):
+        for part in term.strip('"').split("-"):
+            part = part.strip(".()").lower()
+            if len(part) < 3 or part.replace(".", "").isdigit():
+                continue
+            key = part[:_PREFIX]
+            if key not in keys:
+                keys.append(key)
+    return tuple(keys)
+
+
+def _referenced_paths(text: str) -> frozenset[str]:
+    """The paragraph paths this paragraph points at, as "(c)(1)(i)" strings.
+
+    Only the explicit "paragraph(s) ..." form, and only the paths themselves: a reference to
+    another SECTION carries its own section number and is not one of these. Deliberately literal -
+    it is used to keep a cross-referenced list together, not to resolve citations.
+    """
+    found: set[str] = set()
+    for cue in _REF_CUE_RE.finditer(text or ""):
+        run = _REF_RUN_RE.match(text, cue.end())
+        if run is None:
+            continue
+        for piece in _REF_SPLIT_RE.split(run.group(0)):
+            tokens = _REF_TOKEN_RE.findall(piece)
+            if tokens:
+                found.add("".join(f"({t})" for t in tokens))
+    return frozenset(found)
+
+
+def _relevance(text: str, keys: tuple[str, ...]) -> int:
+    """How many of the question's terms this passage contains."""
+    low = (text or "").lower()
+    return sum(1 for k in keys if k in low)
+
+
+def _paragraph_of(evidence: Evidence) -> tuple[str, str] | None:
+    """(section, paragraph path) of an eCFR row, from the row itself.
+
+    The retriever's own metadata, not the citation label: `_identity` parses the label with a
+    lowercase-only paragraph pattern and so cannot read "(c)(1)(i)(A)".
+    """
+    md = evidence.result.metadata
+    section = md.get("section")
+    if evidence.corpus != "ecfr" or not section:
+        return None
+    return (str(section), str(md.get("paragraph_path") or ""))
+
+
+def _one_section(required: list[Evidence]) -> bool:
+    """True when every required row is a paragraph of the SAME eCFR section.
+
+    This is the only case `_required_order` may reorder. The registry hands required evidence
+    over in requirement order and then document order, and for a single requested section that
+    document order is all there is - nothing in it reflects the question. For a requested PART it
+    is different: the rows are section stems the retriever has already ranked by relevance to the
+    question (C1), and a second, cruder ranking here would override a better one. Measured over
+    the 300-question benchmark, reordering part-level evidence dropped the very sections the
+    question named (21 CFR 111.105 for "what must quality control personnel do", 111.210 for
+    "what must the master manufacturing record include"), so it is left alone.
+    """
+    ids = [_paragraph_of(e) for e in required]
+    return all(i is not None for i in ids) and len({i[0] for i in ids}) == 1
+
+
+def _required_order(required: list[Evidence], question: str | None) -> list[Evidence]:
+    """The order in which required evidence competes for the hard ceiling.
+
+    Document order spends the ceiling on whatever comes first, which for a whole requested
+    section means the paragraphs the question did not ask about: answering "the 7-calendar-day
+    deadline in 21 CFR 312.32" spent 4,416 of 9,000 characters on the (a) definitions and then
+    dropped (c)(2), the 298-character paragraph that states that deadline. Ordering the
+    competition by relevance keeps the paragraphs the question is about.
+
+    Shared wording alone is not enough. A question can name the KIND of value it wants without
+    using any of the regulation's words: asked for the IND safety reporting "timeframes" of 21 CFR
+    312.32, term overlap scored (c)(2) - the 7-calendar-day rule, and the answer - at one word and
+    the (c)(1) family at three, because (c)(2) says "notify FDA" rather than "IND safety report".
+    So a paragraph that STATES a value of the kind asked for is preferred over one that merely
+    shares words, and term overlap then orders each group. Only four of this section's 25
+    paragraphs state a time period, and (c)(2) is one of them.
+
+    A lead-in inherits both signals from its own subparagraphs, so a parent is never ranked below
+    a child and a kept fragment always arrives with the text that introduces it. Document order
+    breaks every tie, so with no question, no salient terms, no value asked for, no overlap, or
+    evidence that is not one section's paragraphs, the order - and therefore the selected set - is
+    exactly what it was before.
+    """
+    keys = _match_keys(question or "")
+    kind = selection_value_kind(question or "")
+    if (not keys and kind is None) or len(required) < 2 or not _one_section(required):
+        return required
+    own = [_relevance(e.text, keys) for e in required]
+    states = [1 if kind and evidence_has_value(kind, [e.text]) else 0 for e in required]
+    paths = [_paragraph_of(e)[1] for e in required]  # one section: _one_section checked it
+    best, has = list(own), list(states)
+    for i, path in enumerate(paths):
+        for j, other in enumerate(paths):
+            if j != i and path and other.startswith(path + "("):  # j is a subparagraph of i
+                best[i] = max(best[i], own[j])
+                has[i] = max(has[i], states[j])
+    # What a paragraph POINTS AT belongs with it: the 15-calendar-day clock of 21 CFR
+    # 312.32(c)(1) runs from the sponsor's determination "under paragraph (c)(1)(i), (c)(1)(ii),
+    # (c)(1)(iii), or (c)(1)(iv)", and ranking those four against each other on incidental word
+    # overlap kept (ii) and (iii) and dropped (i) and (iv) - half of one list, which invites
+    # exactly the misattribution this ranking exists to prevent. A referenced paragraph therefore
+    # inherits the referring paragraph's term score, so a cross-referenced list is kept or dropped
+    # as a unit, and an exception ("except as provided in paragraph (d)") comes with its rule.
+    #
+    # Only when a value kind was asked for, because that is the only case this repairs. The value
+    # flag ranks ahead of term overlap and so can separate members of one list; plain term overlap
+    # breaks its ties by document order, which already keeps a list together. Measured: with the
+    # propagation unconditional, "What follow-up does 21 CFR 312.32 require?" - which asks for no
+    # value - dropped (d)(1), "the sponsor must promptly investigate all safety information it
+    # receives", to make room for the (c)(1) reporting conditions. Worse evidence for that
+    # question, so the propagation does not apply to it.
+    #
+    # The value flag itself is NOT propagated: a condition does not state the value asked for, and
+    # spreading the flag would flatten the very signal that finds the answer-bearing paragraph.
+    if kind is not None:
+        referenced = [_referenced_paths(e.text) for e in required]
+        inherited = list(best)
+        for i, refs in enumerate(referenced):
+            for j, path in enumerate(paths):
+                if j != i and path and path in refs:
+                    inherited[j] = max(inherited[j], best[i])
+        best = inherited
+    if not any(best) and not any(has):
+        return required
+    return [e for _, _, _, e in sorted(((-has[i], -best[i], i, e) for i, e in enumerate(required)))]
+
+
 def select_evidence(
     registry: EvidenceRegistry,
     policy: ContextPolicy | None = None,
     *,
     optional_filter: Callable[[RetrievalResult], bool] | None = None,
     material: Callable[[Evidence], bool] | None = None,
+    question: str | None = None,
 ) -> Selection:
-    """Deterministic, requirement-aware selection. Same inputs, same output."""
+    """Deterministic, requirement-aware selection. Same inputs, same output.
+
+    `question`, when given, decides only which required evidence is kept if it does not all fit
+    inside the hard ceilings (`_required_order`); the selected sources are always presented in
+    document order. Without it, or when nothing has to be dropped, the result is unchanged."""
     policy = policy or ContextPolicy()
     selected: list[SelectedEvidence] = []
     dropped: list[DroppedEvidence] = []
@@ -178,23 +336,33 @@ def select_evidence(
     def gap() -> int:
         return 2 if selected else 0  # blank line between blocks
 
-    # Phase 1: required evidence, in registry order (requirement order, then document order)
-    for e in registry.evidence:
-        if not is_required(e):
-            continue
+    # Phase 1: required evidence. It competes for the hard ceiling in `_required_order` - document
+    # order, or relevance to the question when one is given - and is then presented in document
+    # order. A block's length depends on its index only through its "SOURCE n" line, so the kept
+    # set occupies the same total either way and the accounting below is order-independent.
+    registry_order = [e for e in registry.evidence if is_required(e)]
+    position = {e.evidence_id: i for i, e in enumerate(registry_order)}
+    competition = _required_order(registry_order, question)
+    keep: list[tuple[Evidence, str, bool]] = []
+    for e in competition:
         text, truncated = _truncate(_clean(e.text), policy.required_max_chars_per_result)
-        index = len(selected) + 1
-        chars = _block_chars(e, text, index, truncated)
-        if len(selected) >= policy.hard_max_results:
+        chars = _block_chars(e, text, len(keep) + 1, truncated)
+        if len(keep) >= policy.hard_max_results:
             dropped.append(DroppedEvidence(e, DROP_HARD_CEILING_COUNT, required=True))
             continue
-        if used + gap() + chars > policy.hard_max_total_chars:
+        if used + (2 if keep else 0) + chars > policy.hard_max_total_chars:
             dropped.append(DroppedEvidence(e, DROP_HARD_CEILING_CHARS, required=True))
             continue
+        used += (2 if keep else 0) + chars
+        keep.append((e, text, truncated))
+    for e, text, truncated in sorted(keep, key=lambda k: position[k[0].evidence_id]):
         if truncated:
             required_truncated.append(e.evidence_id)
-        used += gap() + chars
-        selected.append(SelectedEvidence(index, e, text, truncated, True, _reason(e), chars))
+        index = len(selected) + 1
+        selected.append(SelectedEvidence(index, e, text, truncated, True, _reason(e),
+                                         _block_chars(e, text, index, truncated)))
+    used = sum(s.chars for s in selected) + 2 * max(len(selected) - 1, 0)
+    required_by_relevance = [e.evidence_id for e in competition] != [e.evidence_id for e in registry_order]
 
     required_count = len(selected)
     required_chars = used
@@ -261,6 +429,7 @@ def select_evidence(
         "required_truncated": required_truncated,
         "optional_dropped": [d.evidence.evidence_id for d in dropped if not d.required],
         "soft_budget_exceeded_by_required": required_chars > policy.max_total_chars or required_count > policy.max_results,
+        **({"required_order": "relevance"} if required_by_relevance else {}),
         "tier_counts": {t: sum(1 for s in selected if s.evidence.tier == t) for t in (TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY)},
     }
     return Selection(tuple(selected), tuple(dropped), policy, used, diagnostics)

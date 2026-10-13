@@ -287,7 +287,16 @@ def classify_result(
 
 
 def order_evidence(evidence: list[Evidence], requirements: tuple["Requirement", ...]) -> list[Evidence]:
-    """Exact (requirement order, then document order), structural, then the rest by score."""
+    """Exact (requirement order, then score, then document order), structural, then the rest by score.
+
+    Score precedes `ordinal` in the exact tier so that the one kind of exact
+    evidence document order cannot separate - the section stems of a requested
+    PART, all at ordinal 0 - is ordered by the question's relevance instead of
+    by its key (see ranking.part_stem_score). For every other exact row the
+    term is inert, not a behaviour change: exact_score is
+    `base - 0.001 * ordinal`, strictly decreasing in `ordinal`, so -score and
+    `ordinal` impose the same order on the rows of one requirement.
+    """
     order = {r.id: r.order for r in requirements}
 
     def first_order(ids: tuple[str, ...]) -> int:
@@ -297,9 +306,9 @@ def order_evidence(evidence: list[Evidence], requirements: tuple["Requirement", 
         ordinal = e.result.metadata.get("ordinal")
         ordinal = int(ordinal) if isinstance(ordinal, int) else 0
         if e.tier == TIER_EXACT:
-            return (0, first_order(e.satisfies), ordinal, e.key)
+            return (0, first_order(e.satisfies), -e.score, ordinal, e.key)
         if e.tier == TIER_STRUCTURAL:
-            return (1, first_order(e.structural_for), ordinal, e.key)
-        return (2 if e.tier == TIER_SUPPORTING else 3, -e.score, 0, e.key)
+            return (1, first_order(e.structural_for), 0.0, ordinal, e.key)
+        return (2 if e.tier == TIER_SUPPORTING else 3, -e.score, 0.0, 0, e.key)
 
     return sorted(evidence, key=sort_key)

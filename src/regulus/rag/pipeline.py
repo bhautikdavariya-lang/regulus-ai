@@ -17,10 +17,12 @@ from typing import TYPE_CHECKING, Any
 from regulus.inference.types import GenerationResult
 from regulus.planning import QueryPlan, plan_query
 from regulus.planning.plan import KIND_GENERAL
+from regulus.planning.ranges import expand_section_ranges
 from regulus.retrieval.domain import GENERAL_KNOWLEDGE
 from regulus.planning.intent import SCOPE_MIXED, SCOPE_OUT, TYPE_CITATION, QuestionAnalysis, analyze_question
 from regulus.planning.shape import MODE_COMPARISON, MODE_ENUMERATION, MODE_FOCUSED, AnswerShape, analyze_shape
 from regulus.rag import answerability as gate
+from regulus.rag.citation_repair import repoint_citations
 from regulus.rag.answer_quality import mixed_scope_note, normalize_answer, out_of_scope_answer, quality_flags
 from regulus.rag.context import ContextBundle, ContextPolicy, build_context, render_selection
 from regulus.rag.citations import ROLE_CONTEXT, RagCitation, build_answer_citations, citation_support
@@ -77,6 +79,7 @@ from regulus.retrieval.base import Filters
 from regulus.retrieval.evidence import REL_CHILD, TIER_EXACT, TIER_STRUCTURAL, Evidence, EvidenceRegistry
 from regulus.retrieval.lexical import LexicalRetriever, SearchResponse
 from regulus.retrieval.models import METHOD_TRIGRAM, RetrievalResult
+from regulus.traceability import evidence as evidence_trace
 
 _CITE_RE = re.compile(r"\[(\d{1,2})\]")
 # Stage 5: final validation states that mean the shown text is not grounded (a repair that failed)
@@ -201,6 +204,10 @@ class RagAnswer:
     selection: Selection | None = None        # Stage 3 selection (None on the legacy path)
     package: GenerationPackage | None = None  # Stage 4 generation contract (None on the legacy path)
     validation: ValidationReport | None = None  # Stage 4 final validation (None when not generated/validated)
+    # The exact evidence placed in the prompt (regulus.traceability). Kept out of
+    # to_dict()/diagnostics so existing artifacts keep their shape; None means the
+    # evidence was not captured, never that it was empty.
+    evidence_snapshot: evidence_trace.EvidenceSnapshot | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -313,6 +320,21 @@ class RagPipeline:
                             rationale="a citation lookup: name the provision that answers, not every provision")
         return shape, analysis
 
+    def complete_plan(self, plan: QueryPlan) -> QueryPlan:
+        """Stage 1, corpus-aware: fill in a cross-section range the parser could not.
+
+        "21 CFR 50.50 through 50.56" parses to its two endpoints, because which
+        sections lie between them is a fact about the corpus, not about the
+        identifier (regulus.planning.ranges). A retriever that can list a part's
+        sections finishes the range here, once, before anything reads the plan, so
+        retrieval, coverage, selection and the prompt all see the same requirements.
+        Retrievers that cannot (hybrid, semantic, test fakes) leave the plan alone.
+        """
+        sections_in_part = getattr(self.retriever, "sections_in_part", None)
+        if sections_in_part is None:
+            return plan
+        return expand_section_ranges(plan, sections_in_part)[0]
+
     def reference_lookup_plan(self, plan: QueryPlan) -> tuple[QueryPlan, tuple[str, ...]]:
         """Stage 7: a citation lookup whose only named provisions are the ones being REFERRED TO
         ("cite the provision that requires ... meeting part 803 criteria") asks for an unnamed provision.
@@ -333,20 +355,25 @@ class RagPipeline:
         """A child paragraph of a requested provision: part of what was asked for."""
         return evidence.tier == TIER_STRUCTURAL and REL_CHILD in evidence.relations.values()
 
-    def select(self, registry: EvidenceRegistry, shape: AnswerShape | None = None) -> Selection:
+    def select(self, registry: EvidenceRegistry, shape: AnswerShape | None = None, question: str | None = None) -> Selection:
         """Stage 3 selection; with a Stage 12 shape, children of requested
         provisions are kept like required evidence instead of competing for the
-        soft budget. Stage 5 calls this too, so it measures what the pipeline uses."""
-        material = self.is_subordinate if shape is not None else None
-        return select_evidence(registry, self.config.context, optional_filter=self.is_useful, material=material)
+        soft budget. Stage 5 calls this too, so it measures what the pipeline uses.
 
-    def build_bundle(self, response: SearchResponse, registry: EvidenceRegistry | None, shape: AnswerShape | None = None) -> tuple[ContextBundle, CoverageReport | None, Selection | None]:
+        `question` only decides which required evidence survives the hard ceilings when a
+        requested provision has more paragraphs than fit; see `selection._required_order`."""
+        material = self.is_subordinate if shape is not None else None
+        return select_evidence(registry, self.config.context, optional_filter=self.is_useful, material=material,
+                               question=question)
+
+    def build_bundle(self, response: SearchResponse, registry: EvidenceRegistry | None, shape: AnswerShape | None = None,
+                     question: str | None = None) -> tuple[ContextBundle, CoverageReport | None, Selection | None]:
         """Stage 3: coverage -> selection -> rendering when a registry exists;
         the legacy filter + build_context otherwise."""
         if registry is None:
             return build_context(self.select_useful(response.results), self.config.context, notes=response.notes), None, None
         coverage = check_coverage(registry)
-        selection = self.select(registry, shape)
+        selection = self.select(registry, shape, question)
         if (self.config.optional_context == "incomplete_only" and coverage.explicit and coverage.complete
                 and not (shape is not None and shape.mode == MODE_COMPARISON)
                 and all(is_complete_sentence(s.text) or completed_by_protected_children(s, selection)
@@ -389,6 +416,28 @@ class RagPipeline:
                 )
             )
         return sorted(out, key=lambda c: c.index)
+
+    @staticmethod
+    def _capture_evidence(question, bundle: ContextBundle, package: GenerationPackage | None,
+                          coverage: CoverageReport | None, prompt_sent: str | None):
+        """The exact evidence of this answer, from the same frozen object the prompt
+        was rendered from, checked against the prompt actually sent. Observational:
+        it reads, never changes, and a failure yields None (not captured)."""
+        if package is not None:
+            from regulus.rag.generation import SOURCES_CLOSE, SOURCES_OPEN
+            sources, point = package.sources, evidence_trace.CAPTURE_PACKAGE
+        else:
+            from regulus.rag.prompt import SOURCES_CLOSE, SOURCES_OPEN
+            sources, point = bundle.sources, evidence_trace.CAPTURE_CONTEXT
+        return evidence_trace.capture_safely(
+            sources, capture_point=point,
+            prompt_sources=evidence_trace.sources_block(prompt_sent, SOURCES_OPEN, SOURCES_CLOSE),
+            model_called=prompt_sent is not None,
+            question=package.question if package is not None else question,
+            requirements=package.requirements if package is not None else (),
+            satisfied_ids=coverage.satisfied_ids if coverage is not None else (),
+            missing_labels=coverage.missing_labels if coverage is not None else (),
+            coverage_explicit=bool(coverage.explicit) if coverage is not None else False)
 
     # -- Stage 4: generation contract, validation, repair --------------------
 
@@ -558,6 +607,7 @@ class RagPipeline:
         timings: dict[str, float] = {}
         t0 = time.perf_counter()
         plan = plan_query(question)  # Stage 1: the one and only parse of the question
+        plan = self.complete_plan(plan)  # ... and the one and only corpus lookup it needs
         original_plan = plan
         plan, reference_targets = self.reference_lookup_plan(plan)
         # Stage 12 shape + Stage 3 question analysis (None unless "structured"), decided in one place
@@ -570,7 +620,7 @@ class RagPipeline:
         timings["retrieval_ms"] = round((time.perf_counter() - t0) * 1000, 2)
 
         t1 = time.perf_counter()
-        bundle, coverage, selection = self.build_bundle(response, registry, shape)
+        bundle, coverage, selection = self.build_bundle(response, registry, shape, question)
         timings["context_ms"] = round((time.perf_counter() - t1) * 1000, 2)
         emit("context", {"no_context": bundle.is_empty, "sources": [
             {"index": s.index, "citation": s.result.citation.label, "corpus": s.result.corpus, "url": s.result.source_url,
@@ -627,6 +677,7 @@ class RagPipeline:
             or ("requested_provision_not_found" in conditions and self.config.incomplete_behavior != "partial"))
         fallback_type: str | None = None
         fallback_reason: str | None = None
+        prompt_sent: str | None = None  # the user message actually sent to the model, for evidence capture
         timings["answerability_ms"] = round((time.perf_counter() - t_gate) * 1000, 2)
         if grounding_decision is not None and grounding_decision.refused:
             answer_text = grounding_decision.answer
@@ -656,6 +707,7 @@ class RagPipeline:
         else:
             t2 = time.perf_counter()
             messages = build_grounded_messages(package) if package is not None else build_messages(question, bundle.text)
+            prompt_sent = messages[-1]["content"]
             timings["prompt_ms"] = round((time.perf_counter() - t2) * 1000, 2)
             emit("generation_started", {"max_new_tokens": package.max_new_tokens if package is not None else None})
             on_text = (lambda text: emit("delta", {"text": text})) if on_event is not None else None
@@ -683,6 +735,11 @@ class RagPipeline:
             if analysis is not None:
                 # Stage 3: presentation fixes before validation (markers onto their sentence, no echoed question)
                 answer_text, normalization = normalize_answer(answer_text, question)
+            # a marker attached to words that exactly ONE supplied source states verbatim, and its cited source
+            # does not, is renumbered to that source (the model was measured to cite by paragraph number)
+            repointed = []
+            if package is not None:
+                answer_text, repointed = repoint_citations(answer_text, [(s.index, s.text) for s in package.sources])
             model_called = True
             input_tokens, output_tokens = gen.prompt_tokens, gen.generated_tokens
             generation_info = {"generated_tokens": gen.generated_tokens, "finished": gen.finished, "prompt_tokens": gen.prompt_tokens,
@@ -693,6 +750,8 @@ class RagPipeline:
                                                                 if gen.decode_tokens_per_second is not None else None)
             if duplicates_removed:
                 generation_info["duplicate_sentences_removed"] = duplicates_removed
+            if repointed:
+                generation_info["citations_repointed"] = [r.to_dict() for r in repointed]
             if package is not None and self.config.validation_behavior != "off":
                 t3 = time.perf_counter()
                 validation_initial = validate_answer(answer_text, package, gen)
@@ -742,6 +801,7 @@ class RagPipeline:
             selection=selection,
             package=package,
             validation=validation_final,
+            evidence_snapshot=self._capture_evidence(question, bundle, package, coverage, prompt_sent),
             no_context=no_context,
             model_called=model_called,
             timings_ms=timings,

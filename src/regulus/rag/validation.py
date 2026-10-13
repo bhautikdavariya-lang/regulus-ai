@@ -104,6 +104,17 @@ _DEGENERATE_NGRAM = 4
 _DEGENERATE_REPEAT_RATIO = 0.5
 _DEGENERATE_SENTENCE_REPEATS = 3
 _FIGURE_RE = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?|(?<![\w.(\[])\d{2,}(?:[.,]\d+)*(?![\w(])")
+# A regulatory period carries its own unit, so it is a figure however few digits it has:
+# "_FIGURE_RE" needs two of them, which made "7 calendar days" invisible to the fabrication
+# check. Asked to contrast the 15- and 7-calendar-day deadlines of 21 CFR 312.32 with (c)(2)
+# missing from its evidence, the model asserted a 7-calendar-day deadline that no supplied source
+# stated, and the check passed it.
+_PERIOD_RE = re.compile(r"(?<![\w.])(\d{1,3})(?:\.\d+)?[\s-]*(?:calendar|business|working)?[\s-]*"
+                        r"(?:days?|weeks?|months?|years?|hours?|minutes?)\b", re.I)
+_NUMBER_WORDS = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7",
+                 "eight": "8", "nine": "9", "ten": "10", "eleven": "11", "twelve": "12"}
+_WORD_PERIOD_RE = re.compile(r"\b(" + "|".join(_NUMBER_WORDS) + r")[\s-]+(?:calendar|business|working)?[\s-]*"
+                             r"(?:days?|weeks?|months?|years?|hours?|minutes?)\b", re.I)
 _WORD_RE = re.compile(r"[A-Za-z][A-Za-z'-]{2,}")
 _STOPWORDS = {
     "the", "and", "for", "with", "that", "this", "must", "shall", "are", "was", "were", "have", "has", "not", "its",
@@ -238,6 +249,23 @@ def _normalise_figure(token: str) -> str:
 
 def _figures(text: str) -> set[str]:
     return {_normalise_figure(t) for t in _FIGURE_RE.findall(text)} - {""}
+
+
+def _periods(text: str) -> set[str]:
+    """Numbers that measure a period of time in `text` ("7 calendar days" -> "7")."""
+    return {m.group(1).lstrip("0") or "0" for m in _PERIOD_RE.finditer(text or "")}
+
+
+def _supplied_figures(text: str) -> set[str]:
+    """Every number a source can be said to supply: the figures proper, the periods it states, and
+    the periods it spells out, so an answer that writes "7 calendar days" for a source's "seven
+    calendar days" is not accused of inventing it.
+
+    Counting every digit run instead - paragraph numbering included - was measured over the 300
+    recorded acceptance answers to suppress seven findings the old rule made, one of them on a row
+    the rubric scores N=2; this form keeps all of them and adds two, both on N=0 rows."""
+    return (_figures(text) | _periods(text)
+            | {_NUMBER_WORDS[m.group(1).lower()] for m in _WORD_PERIOD_RE.finditer(text or "")})
 
 
 def _content_words(text: str) -> set[str]:
@@ -398,10 +426,12 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
     if text:
         supplied = set()
         for src in package.sources:
-            supplied |= _figures(src.text) | _figures(src.citation)
+            supplied |= _supplied_figures(src.text) | _supplied_figures(src.citation)
         for rid, label in package.requirements:
-            supplied |= _figures(label)
-        stray = sorted(f for f in _figures(text) if f not in supplied and not any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3))
+            supplied |= _supplied_figures(label)
+        stray = sorted((_figures(text) | _periods(text)) - supplied
+                       - {f for f in _figures(text) | _periods(text)
+                          if any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3)})
         if stray:
             problems.append(ValidationProblem(UNSUPPORTED_FIGURE, "error", f"figure(s) not found in any supplied source: {', '.join(stray[:6])}"))
         # low content-word overlap with the cited EXACT source: a warning, not proof of anything

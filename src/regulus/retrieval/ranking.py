@@ -4,6 +4,10 @@ Score components (documented in docs/lexical_retrieval.md):
     exact_cfr     100.0 for the requested section/paragraph rows,
                    95.0 for descendant paragraphs of a requested paragraph,
                    minus 0.001 * ordinal so document order is preserved on ties
+    part stem     100.0 minus 0.001 * relevance rank for the section stems of a
+                  requested PART, where the rank is the question's lexical
+                  relevance (ECFR_EXACT_PART); the part's stems are otherwise
+                  indistinguishable and fell back to ASCII section order
     exact_docket  100.0 minus 0.001 * chunk ordinal
     structural     90.0 for the parent paragraph fetched as context (Stage 2)
     full_text     50.0 * ts_rank_cd(search_vector, websearch_to_tsquery(query), 1)
@@ -29,6 +33,7 @@ from __future__ import annotations
 
 from regulus.retrieval.models import (
     METHOD_EXACT_CFR,
+    METHOD_DEFINITION,
     METHOD_EXACT_DOCKET,
     METHOD_FULL_TEXT,
     METHOD_FULL_TEXT_OR,
@@ -44,11 +49,17 @@ ORDER_TIEBREAK = 0.001
 FULL_TEXT_SCALE = 50.0
 FULL_TEXT_OR_SCALE = 5.0
 TRIGRAM_SCALE = 5.0
+# A paragraph that defines the very term a definitional question asks about
+# ("FDA means the Food and Drug Administration" for "What does FDA stand for?")
+# is matched by identity of the term, not by word overlap: below every exact and
+# structural row, above any text match (whose normalised scores stay near 30).
+DEFINITION_SCORE = 80.0
 
 METHOD_PRIORITY = {
     METHOD_EXACT_CFR: 3,
     METHOD_EXACT_DOCKET: 3,
     METHOD_FULL_TEXT: 2,
+    METHOD_DEFINITION: 2,
     METHOD_FULL_TEXT_OR: 1,
     METHOD_TRIGRAM: 1,
     METHOD_SEMANTIC: 0,  # experimental; scores are cosine similarities, not merged with lexical scores
@@ -60,9 +71,30 @@ def exact_score(match_kind: str, ordinal: int) -> float:
     return base - ORDER_TIEBREAK * int(ordinal)
 
 
+def part_stem_score(relevance_rank: int) -> float:
+    """Score of one section stem of a requested part, by its relevance rank.
+
+    A part-level request makes every stem of the part exact evidence, so
+    `exact_score` gives them all 100.0 and nothing orders them but their key.
+    `relevance_rank` is the stem's 0-based position under ECFR_EXACT_PART's
+    `ORDER BY rank DESC, r.section_number`: the question's lexical relevance
+    first, ASCII section order among equally (ir)relevant stems. It is spent
+    here as the same 0.001 step `exact_score` spends on document order, so the
+    scores stay inside the exact band - LexicalRetriever.exact_row_limit caps
+    the rank at 99, hence the band is [99.901, 100.0], above
+    EXACT_DESCENDANT_SCORE - and exact evidence still outranks every text match.
+    """
+    return EXACT_SCORE - ORDER_TIEBREAK * int(relevance_rank)
+
+
 def structural_score(ordinal: int) -> float:
     """Parent paragraph of a requested provision: below any exact row, above every text match."""
     return STRUCTURAL_SCORE - ORDER_TIEBREAK * ordinal
+
+
+def definition_score(position: int) -> float:
+    """A definition of the asked term, in the statement's order (shortest paragraph first)."""
+    return DEFINITION_SCORE - ORDER_TIEBREAK * int(position)
 
 
 def full_text_score(rank: float) -> float:

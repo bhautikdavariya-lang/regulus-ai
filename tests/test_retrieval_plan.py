@@ -12,7 +12,7 @@ import pytest
 
 from regulus.planning import plan_query
 from regulus.rag import RagConfig, RagPipeline
-from regulus.retrieval import Evidence, EvidenceRegistry, LexicalRetriever, PlanRetrieval, RetrievalResult
+from regulus.retrieval import Evidence, EvidenceRegistry, Filters, LexicalRetriever, PlanRetrieval, RetrievalResult
 from regulus.retrieval import sql as sql_module
 from regulus.retrieval.evidence import (
     REL_CHILD,
@@ -86,11 +86,27 @@ class TableDatabase:
             for r in rows:
                 r["match_kind"] = "exact" if para == "" or r["paragraph_path"] == para else "descendant"
             return sorted(rows, key=lambda r: r["ordinal"])[: params["limit"]]
+        if name == "ECFR_PART_SECTIONS":
+            # sections of the part, in document order; sort_order is the table position
+            seen, out = set(), []
+            for r in self.table:
+                if r["part_number"] == params["part_number"] and r["section_number"] not in seen:
+                    seen.add(r["section_number"])
+                    out.append({"number": r["section_number"], "sort_order": len(out)})
+            return out
         if name == "ECFR_EXACT_ROW":
             return [dict(r, match_kind="exact") for r in self.table
                     if r["section_number"] == params["section_number"] and r["paragraph_path"] == params["paragraph"]][:1]
         if name == "ECFR_EXACT_PART":
-            return [dict(r, match_kind="exact") for r in self.table if r["part_number"] == params["part_number"] and r["ordinal"] == 0]
+            # the statement orders by the question's relevance, then section number, and
+            # always returns a `rank` column; `part_rank` on a table row stands in for
+            # ts_rank_cd so a test can say which stems the question actually matches
+            rows = [dict(r, match_kind="exact", rank=float(r.get("part_rank", 0.0)))
+                    for r in self.table if r["part_number"] == params["part_number"] and r["ordinal"] == 0]
+            if not params.get("query"):
+                for r in rows:
+                    r["rank"] = 0.0  # no query text -> ts_rank_cd is 0 for every row
+            return sorted(rows, key=lambda r: (-r["rank"], r["section_number"]))[: params["limit"]]
         if name == "ECFR_FULL_TEXT":
             return [dict(r) for r in (self.canned["or_ecfr"] if " or " in params["query"] or params["query"] in ("820.10", "820.30", "820.99", "820.999") else self.canned["full_text"])]
         if name == "GUIDANCE_FULL_TEXT":
@@ -488,3 +504,299 @@ def test_legacy_run_is_unchanged_in_shape():
     db = TableDatabase()
     resp = LexicalRetriever(db).run("What does 820.10(b)(2) require?", corpus="ecfr")
     assert resp.results[0].citation.label == "21 CFR 820.10(b)(2)" and "ECFR_EXACT_ROW" not in db.names()
+
+
+# ------------------------------------------- C1: part-level stems ranked by relevance
+#
+# A part-level request makes every section stem of the part exact evidence with
+# the same identifier score, so before C1 the only thing ordering them was the
+# ASCII sort of their key. On S-002 ("Where are the definitions that apply to
+# 21 CFR Part 111 located...") that put 21 CFR 111.3 - the part's definitions
+# section - 46th of 84 stems, behind 111.103/111.105/111.110/..., and the
+# bounded context dropped it. These tests cover the production transformation;
+# the live ts_rank_cd signal itself is covered in tests/integration.
+
+# Part 111 as the defect saw it: the governing section sorts late in ASCII order
+# ("111.3" > "111.103"), and only it answers a question about definitions.
+PART_111 = [
+    row("111.3", "", 0, text="The definitions in section 201 of the act apply, and the following apply as well."),
+    row("111.103", "", 0, text="written procedures for quality control operations"),
+    row("111.105", "", 0, text="what quality control personnel must do"),
+    row("111.110", "", 0, text="quality control operations for laboratory operations"),
+    row("111.117", "", 0, text="quality control operations for equipment and utensils"),
+]
+# the relevance the live statement would compute: a heading/body hit on
+# "definitions" for 111.3, nothing for the quality-control sections
+PART_111_RANKED = [dict(r, part_rank=0.56 if r["section_number"] == "111.3" else 0.0) for r in PART_111]
+
+S002 = "Where are the definitions that apply to 21 CFR Part 111 located, and does Part 111 incorporate definitions from elsewhere?"
+
+
+def part_order(question, table=PART_111_RANKED, **kw):
+    reg = run(question, TableDatabase(table), **kw).registry
+    return labels(reg.exact_for("r1"))
+
+
+def test_part_stems_are_ordered_by_question_relevance_not_by_key():
+    """Test A: the S-002 case. 111.3 must lead, ahead of the ASCII-first stems."""
+    assert part_order(S002)[0] == "21 CFR 111.3"
+    # and the ranking is carried by the score, which is what selection reads
+    reg = run(S002, TableDatabase(PART_111_RANKED)).registry
+    stems = reg.exact_for("r1")
+    assert [e.citation for e in stems] == ["21 CFR 111.3", "21 CFR 111.103", "21 CFR 111.105",
+                                          "21 CFR 111.110", "21 CFR 111.117"]
+    assert stems[0].score > stems[1].score > stems[2].score  # strictly ordered, no ties left
+    assert stems[0].result.metadata["part_relevance_rank"] == 0
+    assert stems[0].result.metadata["ts_rank_cd"] > 0.0
+    assert all(e.result.metadata["ts_rank_cd"] == 0.0 for e in stems[1:])
+    # every stem is still exact evidence for the part: ranking orders, it never filters
+    assert len(stems) == len(PART_111) and reg.unresolved_requirements() == ()
+
+
+def test_part_stem_ranking_asks_the_database_for_the_questions_topical_terms():
+    """The relevance signal is the Stage 7 term selection, so the generic regulatory
+    words that would otherwise drive the ranking are not in the query at all."""
+    db = TableDatabase(PART_111_RANKED)
+    run(S002, db)
+    params = next(p for n, p in db.calls if n == "ECFR_EXACT_PART")
+    terms = params["query"].split(" or ")
+    assert "definitions" in terms and "incorporate" in terms
+    for generic in ("requirements", "labeling", "records", "procedures", "applicable", "section", "part"):
+        assert generic not in terms, generic
+    # OR, not AND: a part-level question rarely has every term in one section stem
+    assert " or " in params["query"]
+
+
+def test_part_stem_scores_stay_inside_the_exact_band():
+    """The rank is spent as the same 0.001 step exact_score spends on document order, so
+    exact evidence still outranks descendants, structural context and every text match."""
+    stems = run(S002, TableDatabase(PART_111_RANKED)).registry.exact_for("r1")
+    assert all(99.9 < e.score <= 100.0 for e in stems)
+    # exact_row_limit bounds the rank, so the band cannot grow without bound
+    from regulus.retrieval.ranking import EXACT_DESCENDANT_SCORE, STRUCTURAL_SCORE, part_stem_score
+    assert part_stem_score(LexicalRetriever(TableDatabase()).exact_row_limit - 1) > EXACT_DESCENDANT_SCORE > STRUCTURAL_SCORE
+
+
+def test_a_part_question_with_no_topical_term_keeps_the_pre_c1_scores():
+    """No term survives selection -> no relevance signal -> the pre-C1 score and order.
+    Reached through exact_cfr directly, the way run() reaches it."""
+    db = TableDatabase(PART_111_RANKED)
+    ref = plan_query("21 CFR part 111").requirements[0].reference
+    rows = LexicalRetriever(db).exact_cfr(ref, Filters(), 100)
+    params = next(p for n, p in db.calls if n == "ECFR_EXACT_PART")
+    assert params["query"] == ""
+    assert all(r.relevance_score == 100.0 for r in rows)
+    assert "part_relevance_rank" not in rows[0].metadata
+    assert [r.citation.label for r in rows][0] == "21 CFR 111.103"  # ASCII order, as before C1
+
+
+def test_part_stem_ranking_is_deterministic():
+    """Test B: same inputs, same order and same scores, every time."""
+    runs = [[(e.citation, e.score) for e in run(S002, TableDatabase(PART_111_RANKED)).registry.exact_for("r1")]
+            for _ in range(5)]
+    assert all(r == runs[0] for r in runs[1:])
+    # equally irrelevant stems are not left to chance either: they keep section order
+    flat = [dict(r, part_rank=0.0) for r in PART_111]
+    runs = [part_order(S002, flat) for _ in range(5)]
+    assert all(r == runs[0] for r in runs[1:])
+    assert runs[0] == ["21 CFR 111.103", "21 CFR 111.105", "21 CFR 111.110", "21 CFR 111.117", "21 CFR 111.3"]
+
+
+def test_relevance_wins_when_it_conflicts_with_alphabetical_order():
+    """Test D: the relevant stem sorts LAST in ASCII order and still leads - and with a
+    budget that fits two sources it is kept while the ASCII-first stems are dropped."""
+    from regulus.rag.context import ContextPolicy
+    from regulus.rag.selection import select_evidence
+
+    reg = run(S002, TableDatabase(PART_111_RANKED)).registry
+    ascii_first = sorted(e.citation for e in reg.exact_for("r1"))[0]
+    assert ascii_first == "21 CFR 111.103"  # what the old ordering selected first
+    assert labels(reg.exact_for("r1"))[0] == "21 CFR 111.3"
+
+    tight = ContextPolicy(max_results=2, hard_max_results=2)
+    kept = [s.evidence.citation for s in select_evidence(reg, tight).selected]
+    assert kept[0] == "21 CFR 111.3"
+    assert "21 CFR 111.105" not in kept and "21 CFR 111.110" not in kept
+
+
+def test_relevance_ranking_does_not_touch_other_retrieval_paths():
+    """Test C: section-, paragraph- and question-level retrieval are unchanged."""
+    db = TableDatabase()
+    reg = run("What does 21 CFR 820.10(b) require?", db).registry
+    # the section statement is never asked for a relevance ranking
+    assert all("query" not in p for n, p in db.calls if n.startswith("ECFR_EXACT_S") or n == "ECFR_EXACT_ROW")
+    # exact rows keep the documented identifier scores, descendants keep document order
+    assert labels(reg.exact_for("r1")) == ["21 CFR 820.10(b)"]
+    assert reg.exact_for("r1")[0].score == 100.0 - 0.001 * 2
+    assert labels(reg.structural_for("r1")) == [
+        "21 CFR 820.10", "21 CFR 820.10(b)(1)", "21 CFR 820.10(b)(2)",
+        "21 CFR 820.10(b)(3)", "21 CFR 820.10(b)(4)",
+    ]
+    # supporting evidence still orders by score alone
+    sup = [row("211.1", "", 0, rank=0.2), row("211.2", "", 0, rank=0.9)]
+    reg = run("What does 21 CFR 820.10(b) require?", TableDatabase(full_text=sup)).registry
+    supporting = [e for e in reg.evidence if e.tier == TIER_SUPPORTING]
+    assert labels(supporting) == ["21 CFR 211.2", "21 CFR 211.1"]
+
+
+def test_legacy_query_level_part_lookup_is_unchanged():
+    """Test C, second path: run() (hybrid retriever, scripts, eval baselines) asks for no
+    ranking, so a part lookup there returns the statement's plain section order."""
+    db = TableDatabase(PART_111_RANKED)
+    resp = LexicalRetriever(db).run("What is in 21 CFR part 111?", corpus="ecfr", top_k=10)
+    params = next(p for n, p in db.calls if n == "ECFR_EXACT_PART")
+    assert params["query"] == ""
+    exact = [r for r in resp.results if r.retrieval_method == METHOD_EXACT_CFR]
+    assert all(r.relevance_score == 100.0 for r in exact)
+    assert [r.citation.label for r in exact] == sorted(r.citation.label for r in exact)
+
+
+# ------------------------------------- C2: a ranked part section supplies its own paragraphs
+#
+# ECFR_EXACT_PART returns the FIRST row of each section (`ordinal = 0`). For many
+# sections that row is a lead-in: 21 CFR 111.3's is "The definitions and
+# interpretations of terms in section 201 of the act apply ...", and the 28
+# definitions it introduces are the rows below it. C1 ranks 111.3 first; C2 lets
+# it supply those rows, through the same ECFR_EXACT_SECTION statement a
+# section-level request uses. Only sections the question MATCHES are expanded,
+# at most part_expand_sections of them and part_expand_rows rows each.
+
+# 111.3 is a lead-in plus three definitions; 111.105 is a lead-in plus (a),(b),(c)
+PART_111_DEEP = PART_111_RANKED + [
+    row("111.3", "", 1, text="Actual yield means the quantity that is actually produced.", path_ordinal=2),
+    row("111.3", "", 2, text="Batch means a specific quantity of a dietary supplement.", path_ordinal=3),
+    row("111.3", "", 3, text="Component means any substance intended for use.", path_ordinal=4),
+    row("111.105", "(a)", 1, text="(a) Approving or rejecting all processes and specifications;"),
+    row("111.105", "(b)", 2, text="(b) Reviewing and approving the documentation for suppliers;"),
+    row("111.105", "(c)", 3, text="(c) Reviewing and approving in-process specifications;"),
+]
+
+
+def test_a_ranked_part_section_supplies_its_substantive_rows():
+    """Test A: the S-002 case. 111.3 reaches the prompt with its definitions, not just
+    the lead-in that introduces them."""
+    db = TableDatabase(PART_111_DEEP)
+    reg = LexicalRetriever(db, part_expand_rows=3).run_plan(plan_query(S002)).registry
+    rows_1113 = [e for e in reg.exact_for("r1") if e.result.metadata["section"] == "111.3"]
+    assert len(rows_1113) == 4  # the lead-in plus its three definitions
+    assert [e.result.metadata["ordinal"] for e in rows_1113] == [0, 1, 2, 3]
+    assert "Actual yield means" in rows_1113[1].text
+    # the stem is still the stem: C1's ranking metadata is untouched
+    assert rows_1113[0].result.metadata["part_relevance_rank"] == 0
+    assert "part_expanded_from" not in rows_1113[0].result.metadata
+    assert all(e.result.metadata["part_expanded_from"] == "111.3" for e in rows_1113[1:])
+    # the expanded rows are exact evidence for the part requirement, like every row of it
+    assert all(e.tier == TIER_EXACT and e.satisfies == ("r1",) for e in rows_1113)
+
+
+def test_expanded_rows_follow_their_own_section_in_document_order():
+    """Test B: a multi-paragraph section keeps (a),(b),(c) order, and the sections keep
+    C1's relevance order around them."""
+    # a question that matches both 111.3 and 111.105
+    table = [dict(r, part_rank={"111.3": 0.9, "111.105": 0.5}.get(r["section_number"], 0.0))
+             if r["ordinal"] == 0 else dict(r) for r in PART_111_DEEP]
+    reg = LexicalRetriever(TableDatabase(table), part_expand_rows=3).run_plan(plan_query(S002)).registry
+    seen = [(e.result.metadata["section"], e.result.metadata["ordinal"]) for e in reg.exact_for("r1")]
+    assert seen[:4] == [("111.3", 0), ("111.3", 1), ("111.3", 2), ("111.3", 3)]
+    assert seen[4:8] == [("111.105", 0), ("111.105", 1), ("111.105", 2), ("111.105", 3)]
+    paras = [e.result.metadata["paragraph_path"] for e in reg.exact_for("r1")[4:8]]
+    assert paras == [None, "(a)", "(b)", "(c)"]
+    assert [e.citation for e in reg.exact_for("r1")[5:8]] == ["21 CFR 111.105(a)", "21 CFR 111.105(b)", "21 CFR 111.105(c)"]
+
+
+def test_only_matching_sections_are_expanded_and_only_up_to_the_bounds():
+    """Test E, first half: C2 is bounded on both axes and never expands a section the
+    question does not match, so a part question cannot pull in the whole part."""
+    db = TableDatabase(PART_111_DEEP)
+    run(S002, db)
+    expanded = [p["section_number"] for n, p in db.calls if n == "ECFR_EXACT_SECTION"]
+    assert expanded == ["111.3"]  # 111.105 has ts_rank 0 for this question: not expanded
+    # the row cap is passed to the statement, +1 for the stem it skips
+    r = LexicalRetriever(TableDatabase(PART_111_DEEP), part_expand_rows=2)
+    assert [e.result.metadata["ordinal"] for e in r.run_plan(plan_query(S002)).registry.exact_for("r1")
+            if e.result.metadata["section"] == "111.3"] == [0, 1, 2]
+    # and the section cap bounds how many sections are deepened
+    table = [dict(r, part_rank=0.5) if r["ordinal"] == 0 else dict(r) for r in PART_111_DEEP]
+    db = TableDatabase(table)
+    LexicalRetriever(db, part_expand_sections=2).run_plan(plan_query(S002))
+    assert len([n for n, _ in db.calls if n == "ECFR_EXACT_SECTION"]) == 2
+
+
+def test_part_expansion_is_off_without_a_relevance_signal():
+    """No C1 ranking signal -> nothing to deepen -> exactly the pre-C1 part behaviour."""
+    db = TableDatabase(PART_111_DEEP)
+    ref = plan_query("21 CFR part 111").requirements[0].reference
+    rows = LexicalRetriever(db).exact_cfr(ref, Filters(), 100)
+    assert not [n for n, _ in db.calls if n == "ECFR_EXACT_SECTION"]
+    assert all(r.relevance_score == 100.0 for r in rows)
+    assert len(rows) == 5  # the five stems, nothing deeper
+
+
+def test_part_expansion_respects_the_existing_ceilings():
+    """Test E: the expanded rows go through select_evidence like any required evidence -
+    they are bounded by the hard ceilings and recorded when dropped, never smuggled in."""
+    from regulus.rag.context import ContextPolicy
+    from regulus.rag.selection import DROP_HARD_CEILING_COUNT, select_evidence
+
+    reg = LexicalRetriever(TableDatabase(PART_111_DEEP), part_expand_rows=3).run_plan(plan_query(S002)).registry
+    assert len(reg.exact_for("r1")) == 8  # 5 stems + 3 expanded rows of 111.3
+
+    full = select_evidence(reg)
+    assert len(full.selected) == 8 and not full.diagnostics["required_dropped"]
+
+    tight = select_evidence(reg, ContextPolicy(max_results=3, hard_max_results=3))
+    assert len(tight.selected) == 3
+    assert len(tight.diagnostics["required_dropped"]) == 5
+    assert all(d.reason == DROP_HARD_CEILING_COUNT for d in tight.dropped if d.required)
+    # depth goes to the ranked section first, so the ceiling cuts the irrelevant tail
+    assert [s.evidence.result.metadata["section"] for s in tight.selected] == ["111.3"] * 3
+
+    chars = select_evidence(reg, ContextPolicy(max_results=8, max_total_chars=300, hard_max_total_chars=300))
+    assert sum(s.chars for s in chars.selected) <= 300
+    assert chars.diagnostics["required_dropped"]
+
+
+def test_part_expansion_default_bounds_are_the_measured_ones():
+    """The defaults are tuned against the existing ceilings (see lexical.py); a change to
+    them changes what every part-level question sends to the model."""
+    r = LexicalRetriever(TableDatabase())
+    assert (r.part_expand_sections, r.part_expand_rows) == (3, 2)
+    reg = run(S002, TableDatabase(PART_111_DEEP)).registry
+    rows = [e for e in reg.exact_for("r1") if e.result.metadata["section"] == "111.3"]
+    assert [e.result.metadata["ordinal"] for e in rows] == [0, 1, 2]  # lead-in + 2 rows
+
+
+def test_part_expansion_is_deterministic():
+    """Test F: identical input, identical evidence order, scores and selection."""
+    from regulus.rag.selection import select_evidence
+
+    def once():
+        reg = run(S002, TableDatabase(PART_111_DEEP)).registry
+        sel = select_evidence(reg)
+        return ([(e.citation, e.score, e.result.metadata["ordinal"]) for e in reg.evidence],
+                [s.evidence.key for s in sel.selected])
+
+    runs = [once() for _ in range(5)]
+    assert all(r == runs[0] for r in runs[1:])
+
+
+def test_section_level_retrieval_is_unchanged_by_c2():
+    """Test C: a section-level request still uses ECFR_EXACT_SECTION the same way, with
+    its own paragraph scores, and asks for no part expansion."""
+    db = TableDatabase()
+    reg = run("What does 21 CFR 820.10 say?", db).registry
+    calls = [p for n, p in db.calls if n == "ECFR_EXACT_SECTION"]
+    assert len(calls) == 1 and calls[0]["paragraph"] == "" and calls[0]["limit"] == 100
+    assert len(reg.exact_for("r1")) == 8
+    assert labels(reg.exact_for("r1"))[:3] == ["21 CFR 820.10", "21 CFR 820.10(a)", "21 CFR 820.10(b)"]
+    assert [e.score for e in reg.exact_for("r1")][:3] == [100.0, 100.0 - 0.001, 100.0 - 0.002]
+    assert not any("part_expanded_from" in e.result.metadata for e in reg.evidence)
+
+
+def test_non_part_question_issues_no_expansion_query():
+    """Test D: a paragraph-level question's retrieval is untouched by C2."""
+    db = TableDatabase()
+    reg = run("What does 21 CFR 820.10(b)(2) require?", db).registry
+    assert [n for n, _ in db.calls if n.startswith("ECFR_EXACT")] == ["ECFR_EXACT_SECTION", "ECFR_EXACT_ROW"]
+    assert labels(reg.exact_for("r1")) == ["21 CFR 820.10(b)(2)"]
+    assert not any("part_expanded_from" in e.result.metadata for e in reg.evidence)

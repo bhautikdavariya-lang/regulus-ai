@@ -17,8 +17,10 @@ METHOD_EXACT_DOCKET = "exact_docket"
 METHOD_FULL_TEXT = "full_text"
 METHOD_FULL_TEXT_OR = "full_text_or"  # Stage 7 controlled OR fallback
 METHOD_TRIGRAM = "trigram"
+METHOD_DEFINITION = "definition"  # the CFR's own definition of a term a definitional question asks about
 METHOD_SEMANTIC = "semantic"  # Stage 8 experiment; never used by LexicalRetriever
-METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_SEMANTIC)
+METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_SEMANTIC,
+           METHOD_DEFINITION)
 
 
 @dataclass(frozen=True)

@@ -31,8 +31,21 @@ VALUE_KINDS: tuple[tuple[str, re.Pattern[str], re.Pattern[str], str], ...] = (
                 r"|\bat\s+what\s+temperature\b|\bhow\s+(?:hot|cold|warm)\b", re.I),
      re.compile(r"-?\d+(?:\.\d+)?\s*°\s*[CF]?|\b\d+(?:\.\d+)?\s*degrees?\b", re.I),
      "specific temperature or temperature range"),
+    # A regulatory "deadline" is normally a PERIOD ("no later than 7 calendar days after the
+    # sponsor's initial receipt of the information"), not a calendar date, so either kind of value
+    # establishes it. Before this entry existed, "deadline" fell to the "date" kind below, whose
+    # evidence pattern matches only calendar dates: asked for the reporting deadline of 21 CFR
+    # 312.32(c)(2), the gate withheld a correct answer although (c)(2) was in front of the model.
+    # It stays ahead of "date" and narrower than it: "by what date", "compliance date" and
+    # "effective date" are still calendar dates and are unaffected.
+    ("deadline",
+     re.compile(r"\bdeadlines?\b", re.I),
+     re.compile(r"\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}\b"
+                r"|\b\d{1,2}/\d{1,2}/\d{2,4}\b|\b(?:19|20)\d{2}\b"
+                r"|\b(?:\d+|" + _NUM_WORDS + r")[\s-]+(?:calendar\s+|working\s+|business\s+)?(?:days?|weeks?|months?|years?|hours?)\b", re.I),
+     "date or time period"),
     ("date",
-     re.compile(r"\b(?:by|on)\s+what\s+date\b|\b(?:what|which)\s+date\b|\bdeadline\b|\bcompliance\s+date\b|\beffective\s+date\b"
+     re.compile(r"\b(?:by|on)\s+what\s+date\b|\b(?:what|which)\s+date\b|\bcompliance\s+date\b|\beffective\s+date\b"
                 r"|\bwhen\s+did\b", re.I),
      re.compile(r"\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}\b"
                 r"|\b\d{1,2}/\d{1,2}/\d{2,4}\b|\b(?:19|20)\d{2}\b", re.I),
@@ -70,6 +83,32 @@ def requested_value_kind(question: str) -> str | None:
         if asks.search(question or ""):
             return kind
     return None
+
+
+# Wordings that ask WITHIN WHAT TIME something must happen without using any of the words above.
+# They are deliberately NOT in VALUE_KINDS: that tuple drives the answerability gate, which
+# WITHHOLDS an answer when the evidence holds no value of the kind asked for, and widening what
+# the gate withholds on is a different and riskier change than widening what selection prefers.
+_PERIOD_SYNONYMS = re.compile(r"\btime[\s-]*frames?\b|\btime[\s-]+limits?\b|\btime[\s-]+periods?\b"
+                              r"|\btimelines?\b|\bhow\s+(?:quickly|rapidly|promptly)\b", re.I)
+
+
+def selection_value_kind(question: str) -> str | None:
+    """The kind of value a question asks for, for RANKING evidence rather than gating it.
+
+    The same kinds the answerability gate uses, plus the period wordings it does not act on:
+    "timeframes", "time limits", "time periods", "timeline", "how quickly". Asked for the IND
+    safety reporting *timeframes* of 21 CFR 312.32, selection scored (c)(2) - the 7-calendar-day
+    rule - on one shared word and the (c)(1) family on three, so the paragraph that answered the
+    question lost the hard ceiling to paragraphs that did not.
+
+    Ranking can only reorder a competition that the ceilings already force, so a wrong answer
+    here costs a less relevant paragraph; a wrong answer in the gate costs a withheld answer.
+    """
+    kind = requested_value_kind(question)
+    if kind is None and _PERIOD_SYNONYMS.search(question or ""):
+        return "duration_or_frequency"
+    return kind
 
 
 def value_request_is_whole_question(question: str, kind: str) -> bool:

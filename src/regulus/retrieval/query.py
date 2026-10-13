@@ -137,6 +137,32 @@ def fallback_terms(query: str, max_terms: int = 8) -> list[str]:
     return phrases + chosen[:budget]
 
 
+# A definitional question about ONE short term. Narrow on purpose: "What does
+# FDA stand for?", "What does adulterated mean?", "What is the meaning/definition
+# of X?", "Define X", "What is meant by X?". A question that names a provision,
+# carries a number, or asks about more than a short term is not one of these;
+# its own retrieval is unchanged.
+_DEFINITION_QUESTION_RES = tuple(re.compile(p, re.IGNORECASE) for p in (
+    r"^\s*what\s+(?:does|do)\s+(?:the\s+)?(?:term\s+|acronym\s+|abbreviation\s+)?[\"'“]?(?P<term>[^?\"'”]+?)[\"'”]?\s+(?:stand\s+for|mean)\s*\??\s*$",
+    r"^\s*what\s+is\s+(?:the\s+)?(?:meaning|definition)\s+of\s+(?:the\s+)?(?:term\s+|acronym\s+|abbreviation\s+)?[\"'“]?(?P<term>[^?\"'”]+?)[\"'”]?\s*\??\s*$",
+    r"^\s*define\s+(?:the\s+)?(?:term\s+)?[\"'“]?(?P<term>[^?\"'”]+?)[\"'”]?\s*[.?]?\s*$",
+    r"^\s*what\s+is\s+meant\s+by\s+(?:the\s+)?(?:term\s+)?[\"'“]?(?P<term>[^?\"'”]+?)[\"'”]?\s*\??\s*$",
+))
+_DEFINITION_TERM_RE = re.compile(r"^[A-Za-z][A-Za-z&/\-]*(?:\s+[A-Za-z][A-Za-z&/\-]*){0,4}$")
+_DEFINITION_TERM_STOP = frozenset({"it", "this", "that", "these", "those", "they", "he", "she", "you", "we", "i"})
+
+
+def definition_term(question: str) -> str | None:
+    """The term a definitional question asks about, or None."""
+    for pattern in _DEFINITION_QUESTION_RES:
+        m = pattern.match(question or "")
+        if m:
+            term = re.sub(r"^(?:a|an|the)\s+", "", " ".join(m.group("term").split()), flags=re.IGNORECASE)
+            if _DEFINITION_TERM_RE.match(term) and term.lower() not in _DEFINITION_TERM_STOP:
+                return term
+    return None
+
+
 def looks_like_identifier(query: str) -> bool:
     """Short queries with a dotted number ("820.3", "801.109 labeling") benefit
     from trigram matching on section numbers."""

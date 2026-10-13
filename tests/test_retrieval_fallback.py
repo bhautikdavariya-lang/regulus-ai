@@ -198,7 +198,11 @@ def test_methods_argument_can_disable_fallback_and_describe_reports_config():
     resp = LexicalRetriever(fake).run(LONG_Q, corpus="ecfr", methods=[METHOD_FULL_TEXT])
     assert not _or_calls(fake) and not resp.diagnostics["fallback_used"]
     d = LexicalRetriever(fake, primary_min_results=2).describe()
-    assert d == {"retriever": "LexicalRetriever", "enable_or_fallback": True, "primary_min_results": 2, "fallback_max_terms": 8, "chunks_per_document": 3}
+    assert d == {"retriever": "LexicalRetriever", "enable_or_fallback": True, "primary_min_results": 2,
+                 "fallback_max_terms": 8, "chunks_per_document": 3,
+                 "part_expand_sections": 3, "part_expand_rows": 2}
     with pytest.raises(ValueError):
         LexicalRetriever(fake, primary_min_results=-1)
+    with pytest.raises(ValueError):
+        LexicalRetriever(fake, part_expand_sections=-1)
     assert "diagnostics" in resp.to_dict()

@@ -23,13 +23,14 @@ generated answer fails validation.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any
 
 from regulus.inference.types import Message
 from regulus.planning.plan import KIND_GENERAL, KIND_MULTI, KIND_MULTIPLE_REFERENCE, KIND_RANGE, KIND_SINGLE, QueryPlan
 from regulus.planning.shape import AnswerShape
-from regulus.rag.answer_plan import AnswerPlan, build_answer_plan, format_line, plan_lines, profile_for
+from regulus.rag.answer_plan import AnswerPlan, build_answer_plan, format_line, plan_lines, profile_for, value_entries
+from regulus.rag.evidence_values import selection_value_kind
 from regulus.rag.context import CORPUS_LABEL
 from regulus.rag.coverage import CoverageReport
 from regulus.rag.selection import Selection
@@ -292,6 +293,12 @@ class GenerationPackage:
     # Answer-quality Stage 3: the question analysis (regulus.planning.intent). When
     # present, the ANSWER FORMAT line leads with the question type's profile.
     question_analysis: Any = None
+    # The requested provisions' own EXACT rows that the hard ceiling kept out of the context,
+    # as (citation, text). Never rendered: the prompt is exactly what it was. It lets an
+    # assessment know the evidence it judges against is not the whole of what was asked for -
+    # "What does 21 CFR 312.32 require?" loses (c)(2), the 7-day rule, and (d)(1)-(3) to the
+    # ceiling, and an answer complete against what remained was assessed complete.
+    withheld: tuple[tuple[str, str], ...] = ()
 
     @property
     def weak_evidence(self) -> bool:
@@ -392,6 +399,10 @@ def build_package(
     # Stage 12 organises the evidence; it never feeds the budget above, which
     # is computed from exactly the same inputs whether or not a shape is set.
     answer_plan = build_answer_plan(answer_shape, sources, plan.requirements) if answer_shape is not None else None
+    if answer_plan is not None:
+        values = value_entries(selection_value_kind(plan.question or ""), answer_shape, sources)
+        if values:
+            answer_plan = replace(answer_plan, values=values)
     return GenerationPackage(
         question=plan.normalized_question or plan.question,
         requirements=tuple((r.id, r.canonical) for r in plan.requirements),
@@ -405,6 +416,8 @@ def build_package(
         budget=budget,
         answer_plan=answer_plan,
         question_analysis=question_analysis,
+        withheld=tuple((d.evidence.citation, d.evidence.text) for d in selection.dropped
+                       if d.required and d.evidence.corpus == "ecfr"),
     )
 
 

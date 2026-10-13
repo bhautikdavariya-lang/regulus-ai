@@ -436,6 +436,59 @@ def _expand_range(start: CfrReference, end: CfrReference, raw: str) -> tuple[lis
     return inner, "expanded"
 
 
+# ---------------------------------------------------------------- cross-section ranges
+#
+# `_expand_range` above enumerates PARAGRAPH ranges, which it can do from the
+# identifiers alone: "(b)(1) through (b)(4)" is (b)(2) and (b)(3), whether or not
+# those paragraphs exist. A SECTION range cannot be enumerated that way - nothing
+# in "50.50 through 50.56" says which of 50.51..50.55 the CFR actually has, and
+# guessing would invent provisions - so this module leaves such a range at its two
+# endpoints and says so in a note. The two helpers below are what a caller that
+# DOES have the corpus needs in order to finish the job (regulus.planning.ranges);
+# they stay here, beside the parsing rules they belong to, and neither touches a
+# database.
+
+_SECTION_KEY_RE = re.compile(r"^(?P<part>\d{1,4})\.(?P<number>\d{1,4})(?P<suffix>[a-z]?)$")
+
+
+def section_sort_key(section_number: str) -> tuple[int, str] | None:
+    """Document-order key for a section number within its part, or None if unparseable.
+
+    Numeric, not lexical: 50.3 comes before 50.20, which ASCII order gets wrong.
+    A letter suffix sorts after the bare number (184.1141 < 184.1141a < 184.1141b).
+    A consolidated block ("820.20-820.30", 8 of them in this corpus) is keyed by the
+    section it starts at, which is where the CFR prints it.
+    """
+    m = _SECTION_KEY_RE.match((section_number or "").strip().split("-", 1)[0])
+    return (int(m.group("number")), m.group("suffix")) if m else None
+
+
+def section_range_endpoints(start: CfrReference, end: CfrReference) -> tuple[tuple[int, str], tuple[int, str]] | None:
+    """The sort keys of a cross-section range's endpoints, or None if it is not one.
+
+    None means "not a cross-section range this module would hand over", for any of
+    the reasons `_expand_range` already declines on, so a caller cannot widen the
+    semantics by accident:
+      * different titles or different parts - the range is not inside one part;
+      * either endpoint is part-level, or carries a paragraph path - "50.50(a)
+        through 50.56(c)" asks for paragraphs, which is not this;
+      * the same section at both ends - that is a paragraph range, already handled;
+      * the end does not follow the start - a reversed range keeps its endpoints,
+        as it does for paragraphs;
+      * an unparseable section number.
+    """
+    if start.title != end.title or start.part != end.part:
+        return None
+    if start.section is None or end.section is None or start.section == end.section:
+        return None
+    if start.paragraph_path or end.paragraph_path:
+        return None
+    lo, hi = section_sort_key(start.section), section_sort_key(end.section)
+    if lo is None or hi is None or hi <= lo:
+        return None
+    return lo, hi
+
+
 def scan_references(text: str) -> ReferenceScan:
     """Find every CFR reference in `text`, in order, with ranges expanded."""
     norm = normalise_text(text)
