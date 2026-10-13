@@ -9,7 +9,8 @@ import psycopg
 import pytest
 
 from regulus.retrieval import Database, DatabaseConfigError, Filters, LexicalRetriever, QueryType
-from regulus.retrieval.models import METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_TRIGRAM
+from regulus.retrieval.models import (METHOD_DEFINITION, METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT,
+                                     METHOD_TRIGRAM)
 
 pytestmark = pytest.mark.integration
 
@@ -399,3 +400,35 @@ def test_a_live_non_range_question_is_not_touched_by_c3(db):
         before = plan_query(q)
         after, notes = expand_section_ranges(before, sections_in_part)
         assert after is before and notes == (), q
+
+
+# ------------------------------------------------------------- definition retrieval on the live corpus
+
+def _defines(term: str):
+    """A paragraph that OPENS with the term (after its paragraph label, if any) followed by "means"."""
+    import re
+
+    return re.compile(r"^\s*(?:\([0-9A-Za-z]{1,6}\)\s*)*" + r"\s+".join(map(re.escape, term.split())) + r"\s+means\b", re.I)
+
+
+@pytest.mark.parametrize("term", ["FDA", "drug product"])
+def test_definition_lookup_returns_only_the_cfrs_own_definitions(db, term):
+    """ECFR_DEFINITION's PostgreSQL regular expression, on the real corpus: one-word and multi-word terms,
+    with and without a paragraph label, and nothing that merely mentions the term."""
+    rows = LexicalRetriever(db).definition_ecfr(term, Filters(), 3)
+    assert 1 <= len(rows) <= 3
+    assert all(r.retrieval_method == METHOD_DEFINITION for r in rows)
+    assert all(_defines(term).match(r.text) for r in rows), [r.text[:80] for r in rows]
+
+
+def test_definition_lookup_of_an_undefined_term_returns_nothing(db):
+    assert LexicalRetriever(db).definition_ecfr("zzqx nonexistent", Filters(), 3) == []
+
+
+def test_a_definitional_question_retrieves_the_definition_and_skips_the_keyword_search(db):
+    from regulus.planning import plan_query
+
+    resp = LexicalRetriever(db).run_plan(plan_query("What does FDA stand for?"), corpus="ecfr", top_k=8).response
+    methods = {r.retrieval_method for r in resp.results}
+    assert METHOD_DEFINITION in methods and METHOD_FULL_TEXT not in methods
+    assert any("keyword search was not run" in n for n in resp.notes)
