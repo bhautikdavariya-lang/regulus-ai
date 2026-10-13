@@ -236,6 +236,19 @@ def _unstated_figure(claim: str, passage_text: str) -> str | None:
     return None
 
 
+def _agency_duty_unstated(claim: str, passage_text: str) -> bool:
+    """True when `claim` places the obligation on FDA and `passage_text` gives FDA no such role.
+
+    A passive duty of the regulated party ("... shall be thoroughly investigated") restated as FDA's
+    ("FDA must thoroughly investigate ...") agreed on strength and polarity, its duty-holder was
+    undetermined because the passage names none, and "fda" is a framing word for the term checks - so
+    the role inversion was supported (Stage A). Narrow on purpose, measured on the 299 hand-scored
+    acceptance answers: FDA speaking the rule ("FDA requires that ...") is not FDA's duty, a regulated
+    party named for a passive rule ("the manufacturer must ...") is not touched, and FDA as the passive
+    agent ("... by FDA") counts as the passage giving FDA the role. Withholds support; never contradicts."""
+    return OP.agency_is_obligated(claim) and not OP.agency_role_stated(passage_text)
+
+
 def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorComparison",
                  evidence: Sequence[Passage] | None) -> dict[str, Any]:
     """Does this passage, on its own, establish the claim's core proposition?
@@ -253,6 +266,7 @@ def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorCompa
     silent = ev_ops.get("strength") is None and ev_ops.get("polarity") is None
     narrowing = _unstated_narrowing(claim, alignment.passage.text)
     figure = _unstated_figure(claim, alignment.passage.text)
+    agency = _agency_duty_unstated(claim, alignment.passage.text)
     if distinct:
         verdict, reason = "blocked", (f"the claim names {', '.join(distinct)}, which {alignment.passage.citation} does "
                                       f"not and another source does ({'; '.join(f'{t}: {v[0]}' for t, v in distinct.items())})")
@@ -262,6 +276,9 @@ def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorCompa
     elif figure is not None:
         verdict, reason = "not_established", (f"the claim states {figure}, which {alignment.passage.citation} "
                                               f"does not state")
+    elif agency:
+        verdict, reason = "not_established", (f"the claim places the requirement on FDA, which "
+                                              f"{alignment.passage.citation} does not")
     elif verbatim:
         verdict, reason = "established", f"{alignment.verbatim_coverage:.0%} verbatim"
     elif (len(agreed) >= MIN_OPERATORS_AGREED and framed >= MIN_PARAPHRASE_OVERLAP
@@ -535,7 +552,7 @@ def judge_item(claim: str, head: str, item: str, candidates: Sequence[Passage], 
             continue
         comparison = OP.compare(item_plain, p.text, authority=p.authority)
         if comparison.conflicts or comparison.support_blocked or _unstated_narrowing(item_plain, p.text) \
-                or _unstated_figure(item_plain, p.text):
+                or _unstated_figure(item_plain, p.text) or _agency_duty_unstated(item_plain, p.text):
             continue
         if (OP.polarity(item_plain) == OP.NEGATE) != (OP.polarity(p.text) == OP.NEGATE):
             continue
@@ -612,7 +629,7 @@ def judge_descriptive(claim: str, alignments: Sequence[Alignment], *,
             continue
         comparison = OP.compare(plain, p.text, authority=p.authority)
         if comparison.conflicts or comparison.support_blocked or comparison.omissions or _unstated_narrowing(plain, p.text) \
-                or _unstated_figure(plain, p.text):
+                or _unstated_figure(plain, p.text) or _agency_duty_unstated(plain, p.text):
             continue
         pool = list(evidence) if evidence else [a.passage for a in alignments]
         if distinguishing_terms(claim, p, pool):
@@ -677,7 +694,7 @@ def judge_definition(claim: str, alignments: Sequence[Alignment], *,
             continue
         comparison = OP.compare(plain, p.text, authority=p.authority)
         if (comparison.conflicts or comparison.support_blocked or _unstated_narrowing(plain, p.text)
-                or _unstated_figure(plain, p.text)):
+                or _unstated_figure(plain, p.text) or _agency_duty_unstated(plain, p.text)):
             continue
         pool = list(evidence) if evidence else candidates
         reason = (f"a definition: {p.citation} defines {term} as \"{' '.join(definiens)}\", word for word what the "

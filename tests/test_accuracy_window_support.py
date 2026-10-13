@@ -116,11 +116,10 @@ def test_a_merged_claim_that_reverses_polarity_or_modality_is_contradicted(claim
 # ------------------------------------------------------------- pre-existing single-sentence gaps (no window involved)
 
 
-@pytest.mark.xfail(strict=True, reason="pre-existing: the paraphrase judge has no actor-substitution check; a passive "
-                                       "duty of the manufacturer restated as FDA's is supported")
 def test_a_duty_reassigned_to_fda_is_not_supported():
+    """Was a strict xfail (Stage A): the role inversion is now withheld - unverifiable, never contradicted."""
     claim = "FDA must thoroughly investigate any unexplained discrepancy or failure of a batch to meet its specifications."
-    assert claim_final(FOCUSED, claim) != AN.SUPPORTED
+    assert claim_final(FOCUSED, claim) == AN.UNVERIFIABLE
 
 
 def test_a_duty_narrowed_to_undistributed_batches_is_not_supported():

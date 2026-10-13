@@ -351,6 +351,24 @@ def duty_holder(text: str) -> str | None:
     return holder
 
 
+_AGENCY_AS_AGENT_RE = re.compile(r"\bby\s+(?:the\s+)?(?:FDA|Food\s+and\s+Drug\s+Administration|agency|Commissioner)\b", re.I)
+
+
+def agency_is_obligated(text: str) -> bool:
+    """Whether `text` places its obligation or permission ON FDA - "FDA must investigate ...", "FDA may
+    withdraw ..." - as opposed to FDA speaking the rule through a directive verb ("FDA requires that
+    ingredients be declared ..."), where the duty is someone else's (see duty_holder)."""
+    body = main_clause(text)
+    modal = _first_modal(body)
+    return duty_holder(text) == "fda" and modal is not None and not _DIRECTIVE_RE.match(body, modal)
+
+
+def agency_role_stated(text: str) -> bool:
+    """Whether `text` itself gives FDA the acting role: FDA as its duty-holder, or as the agent of a
+    passive rule ("... may be withdrawn by FDA"). FDA as a recipient ("submitted to FDA") is not."""
+    return duty_holder(text) == "fda" or bool(_AGENCY_AS_AGENT_RE.search(text or ""))
+
+
 def actors(text: str) -> frozenset[str]:
     return frozenset(name for name, pattern in ACTORS.items() if pattern.search(text or ""))
 
