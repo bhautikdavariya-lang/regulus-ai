@@ -1,4 +1,4 @@
-"""The live answer-accuracy rubric: `regulus_live_evidence_assessment_v1`.
+"""The live answer-accuracy rubric: `regulus_live_evidence_assessment_v2`.
 
 This is NOT the acceptance benchmark's rubric. `regulus_substantive_rubric_v1`
 (docs/STAGE_A_RUBRIC.md) is contractual, is scored by a human against the text
@@ -37,6 +37,13 @@ The consequence is deliberate and must not be "fixed" by loosening it: a
 correct answer written as a paraphrase is NOT established, and the rubric
 returns `unable_to_determine` rather than a number. Abstention is the safe
 error here; a false pass is not.
+
+That paragraph describes v1. v2 (RUBRIC_ID below) keeps the caution but decides
+substantive correctness per claim: a claim is borne out when it is verbatim in
+the evidence or a paraphrase whose regulatory operators (strength, polarity,
+duty-holder, quantities, dates, conditions) all agree with it, and question
+relevance is a seventh, absolute dimension. A paraphrase whose operators cannot
+be compared is still not established.
 """
 
 from __future__ import annotations

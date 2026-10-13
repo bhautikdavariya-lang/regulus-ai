@@ -10,7 +10,7 @@ an assessment object.
     assessment = evaluate_safely(question, out.answer, package=out.package,
                                  validation=out.validation, coverage=out.coverage)
 
-The rubric it applies, `regulus_live_evidence_assessment_v1`, is NOT the
+The rubric it applies, `regulus_live_evidence_assessment_v2`, is NOT the
 acceptance benchmark's `regulus_substantive_rubric_v1`; see rubric.py for the
 difference and for why this evaluator abstains as often as it does.
 """

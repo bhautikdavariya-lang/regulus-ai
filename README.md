@@ -189,6 +189,29 @@ Client-facing AI system specialised in FDA and eCFR regulatory information.
     previous behaviour for comparison; `scripts/evaluate_answer_shape.py` runs
     the live check on `data/evaluation/datasets/answer_shape_v1.jsonl`.
 
+23. Live answer accuracy (`docs/LIVE_ANSWER_ACCURACY.md`, which describes v1
+    and notes what changed; the evaluator emits
+    `regulus_live_evidence_assessment_v2`): the test UI shows a per-answer
+    accuracy assessment of the delivered answer against the authoritative
+    evidence retrieved for its own question, over seven dimensions (answers the
+    question, substantive correctness, evidence support, citation correctness,
+    unsupported claims, completeness, scope) with a documented deduction
+    formula, read as PASS / FAIL / NOT EVALUATED with a score out of 100. A
+    statement counts as borne out only when it is verbatim in that evidence or
+    a paraphrase whose regulatory operators (strength, polarity, duty-holder,
+    quantities, dates, conditions) all agree with it - never by word overlap,
+    because span-support and content-recall scoring were measured at 85.5% and
+    97.8% false passes against the frozen substantive rubric
+    (`docs/STAGE_A_VALIDATOR_LIMITATION.md`) - and it abstains rather than
+    issuing a number it cannot support. The
+    evaluator is an observer: `regulus.accuracy` runs after
+    `RagPipeline.answer()` returns, nothing under `regulus.rag` imports it, and
+    `--no-accuracy` (or `{"accuracy": false}` per request) leaves the answer,
+    its citations and its evidence byte-for-byte unchanged -
+    `scripts/accuracy_regression.py` and `tests/test_accuracy_observer.py`
+    verify that. It is NOT the 300-question acceptance score and no system
+    change may be justified by moving it.
+
 Use of the existing (UNVERIFIED) embeddings, a full-database semantic index,
 reranking, APIs, UI and deployment are later stages and are intentionally
 absent. The lexical retriever and the un-finetuned base model remain the
