@@ -1,0 +1,96 @@
+{
+ "_about": "Phase 2J relative-clause regression rows (from Phase 2I, artifacts/accuracy/measurement_audit_phase2i_20261009T044401Z/work/controls_real.json). 'evidence' is VERBATIM eCFR text from the local read-only snapshot (table cfr_records, snapshot_date and content_sha256 recorded per row). 'claim' is CONSTRUCTED for testing (one qualifier or modal changed) and is not authentic regulatory text. Do not edit.",
+ "rows": [
+  {
+   "id": "RC1",
+   "phase2i_id": "T1a",
+   "citation": "21 CFR 213.122(e)",
+   "evidence": "(e) Labels, labeling, and other packaging materials that are obsolete, outdated, or that do not meet applicable requirements shall be destroyed.",
+   "evidence_scope": "sentence",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "ab14c46adede5e6dd35225303183d61ad9577a7bc8beba25e7f564560e5a490f",
+   "claim": "Labels, labeling, and other packaging materials that are obsolete or outdated shall be destroyed.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "no_conflict",
+   "why": "'that do not meet applicable requirements' qualifies which materials; the duty 'shall be destroyed' is affirmative"
+  },
+  {
+   "id": "RC2",
+   "phase2i_id": "T2b",
+   "citation": "21 CFR 212.40(c)",
+   "evidence": "You must not use in PET drug production any lot that does not meet its specifications, including any expiration date if applicable, or that has not yet received its material release.",
+   "evidence_scope": "sentence",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "3005e2bcc7f4c970bd8b92ffe72e182554cfe7a725435c412fc7a00de3996d17",
+   "claim": "You must use in PET drug production any lot that does not meet its specifications.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "conflict",
+   "why": "'must not use' vs 'must use' (both carry the same negated relative clause)"
+  },
+  {
+   "id": "RC3",
+   "phase2i_id": "T2c",
+   "citation": "21 CFR 101.36(b)(2)(i)",
+   "evidence": "Any (b)(2)-dietary ingredients that are not present, or that are present in amounts that can be declared as zero in § 101.9(c), shall not be declared (e.g., amounts corresponding to less than 2 percent of the RDI for vitamins and minerals).",
+   "evidence_scope": "sentence",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "20614d372ea1278f0dc9d0e439e306db5394cb40595b05810762f3779411b9b2",
+   "claim": "Any (b)(2)-dietary ingredients that are not present shall be declared.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "conflict",
+   "why": "'shall not be declared' vs 'shall be declared'"
+  },
+  {
+   "id": "RC4",
+   "phase2i_id": "T4d",
+   "citation": "21 CFR 211.115(a)",
+   "evidence": "(a) Written procedures shall be established and followed prescribing a system for reprocessing batches that do not conform to standards or specifications and the steps to be taken to insure that the reprocessed batches will conform with all established standards, specifications, and characteristics.",
+   "evidence_scope": "sentence",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "6c7007ac67aacfb674ee56b76cb01b9fa39ebfe2c93013ec817ab6376bcc7670",
+   "claim": "Written procedures shall be established and followed prescribing a system for reprocessing batches that conform to standards or specifications.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "conflict",
+   "why": "'batches that do not conform' vs 'that conform' - a different category"
+  },
+  {
+   "id": "RC5",
+   "phase2i_id": "T4c",
+   "citation": "21 CFR 109.15(b)(2)(i)",
+   "evidence": "On or before Sept. 4, 1973, any such fluid formulated with PCB's must to the fullest extent possible commensurate with current good manufacturing practices be replaced with a heat exchange fluid that does not contain PCB's.",
+   "evidence_scope": "sentence",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "51d2dc011fb4b804b3dcc15e6c588d0af34209a8784569b028c3b010d60b6246",
+   "claim": "On or before Sept. 4, 1973, any such fluid formulated with PCB's must to the fullest extent possible commensurate with current good manufacturing practices be replaced with a heat exchange fluid that contains PCB's.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "conflict",
+   "why": "'fluid that does not contain PCB's' vs 'that contains'"
+  },
+  {
+   "id": "RC6",
+   "phase2i_id": "T5a",
+   "citation": "21 CFR 73.3110(c)(1)",
+   "evidence": "Chlorophyllin-copper complex may be used at levels that do not exceed 0.003 percent by weight of the bone cement.",
+   "evidence_scope": "sentence",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "009ef7a88a66548fbe9141f829520cbfea06449b137b806cd8d3fe606191cce4",
+   "claim": "Chlorophyllin-copper complex may be used at levels exceeding 0.003 percent by weight of the bone cement.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "conflict",
+   "why": "'levels that do not exceed' vs 'levels exceeding'"
+  },
+  {
+   "id": "RC7",
+   "phase2i_id": "T3b",
+   "citation": "21 CFR 701.13(d)",
+   "evidence": "(d) The declaration may contain common or decimal fractions. A common fraction shall be in terms of halves, quarters, eighths, sixteenths, or thirty-seconds; except that if there exists a firmly established, general consumer usage and trade custom of employing different common fractions in the net quantity declaration of a particular commodity they may be employed. A common fraction shall be reduced to its lowest terms; a decimal fraction shall not be carried out to more than two places. A statement that includes small fractions of an ounce shall be deemed to permit smaller variations than one which does not include such fractions.",
+   "evidence_scope": "paragraph",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "ea48022d88ac5d36843983546e1d3658cb289408b3536300e9d5d39a4b8440fc",
+   "claim": "A decimal fraction may be carried out to more than two places.",
+   "claim_provenance": "CONSTRUCTED for testing: a single qualifier or modal edit of the real text. NOT regulatory text.",
+   "expect": "conflict",
+   "why": "'a decimal fraction shall not be carried out to more than two places'"
+  }
+ ]
+}

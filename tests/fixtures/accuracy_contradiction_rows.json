@@ -1,0 +1,259 @@
+{
+ "_about": "Phase 2G contradiction-scope regression rows H-003 and D-009, copied verbatim from artifacts/accuracy/priority3_claim_extraction_ab_2026-10-08/frozen_inputs_60.json (acceptance run rev02 answers; evidence LEGACY_RECONSTRUCTED from the read-only eCFR snapshot by the labels the run recorded - NOT an exact prompt-evidence snapshot). Frozen so the regressions run without a database. Do not edit.",
+ "rows": [
+  {
+   "id": "H-003",
+   "N": 1,
+   "M": 0,
+   "type": "Direct Lookup",
+   "question": "What prior notice must be given for food offered for import, and when must it be submitted?",
+   "answer": "Prior notice of imported food must be submitted to FDA, and it must be confirmed by FDA for review. If you are an authorized user of CBP’s ABI/ACE/ITDS, you may submit prior notice through either the ABI/ACE/ITDS interface or FDA PNSI. If you are not an authorized user, you may submit prior notice through FDA PNSI. The prior notice submission must be confirmed by FDA before the food is sent (21 CFR 1.279). The PN Confirmation Number must appear on the Customs Declaration that accompanies the package (21 CFR 1.279(e)). [3]",
+   "model_called": true,
+   "fallback_type": null,
+   "scope": null,
+   "answerability": "UNKNOWN",
+   "sources": [
+    {
+     "index": 1,
+     "citation": "21 CFR 1.279(a)",
+     "text": "(a) Except as provided in paragraph (c) of this section, you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review as follows:",
+     "heading": "When must prior notice be submitted to FDA?",
+     "citation_fields": {
+      "title": "21",
+      "section": "1.279",
+      "paragraph": "(a)"
+     }
+    }
+   ],
+   "requirements": [],
+   "satisfied_ids": [],
+   "missing_labels": [],
+   "explicit": false,
+   "dockets_lost": 1
+  },
+  {
+   "id": "D-009",
+   "N": 0,
+   "M": 0,
+   "type": "Direct Lookup",
+   "question": "What testing and approval requirements apply to incoming components under Part 211?",
+   "answer": "Under Part 211, incoming components must be tested and approved to ensure they meet the required standards of identity, strength, quality, and purity. Written procedures for production and process control must be established and followed, including changes, to ensure the drug products have these characteristics. These procedures shall be approved by the appropriate organizational units and reviewed by the quality control unit. If appropriate, written procedures shall include the charge-in of components, ensuring that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess. Written procedures shall also include the calculation of yield, which shall be performed by one person and independently verified by another, or by automated equipment under § 211.68, if verified by one person. Equipment identification shall be properly maintained to indicate the contents and phase of processing. Written procedures shall also include time limitations on production to ensure the quality of the drug product. Written procedures shall include control of microbiological contamination to prevent objectionable microorganisms in drug products not required to be sterile. Written procedures shall establish a system for reprocessing batches that do not conform to standards or specifications, and steps to ensure they conform. Written procedures shall include materials examination and usage criteria, labeling and packaging materials, and tamper-evident packaging requirements for OTC drug products. These requirements shall be documented and followed. The expiration date of a drug product shall be determined by appropriate stability testing described in § 211.166. Written procedures shall also include general requirements for specifications, standards, sampling plans, test procedures, and other laboratory control mechanisms. The requirements in this subpart shall be followed and documented. The expiration date shall be determined by appropriate stability testing. The records shall include component, drug product container, closure, and labeling records [1].",
+   "model_called": true,
+   "fallback_type": null,
+   "scope": null,
+   "answerability": "ANSWERABLE",
+   "sources": [
+    {
+     "index": 1,
+     "citation": "21 CFR 211.100(a)",
+     "text": "(a) There shall be written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess. Such procedures shall include all requirements in this subpart. These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit.",
+     "heading": "Written procedures; deviations.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.100",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 2,
+     "citation": "21 CFR 211.101",
+     "text": "Written production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess:\n(a) The batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient.\n(b) Components for drug product manufacturing shall be weighed, measured, or subdivided as appropriate. If a component is removed from the original container to another, the new container shall be identified with the following information:\n(1) Component name or item code;\n(2) Receiving or control number;\n(3) Weight or measure in new container;\n(4) Batch for which component was dispensed, including its product name, strength, and lot number.\n(c) Weighing, measuring, or subdividing operations for components shall be adequately supervised. Each container of component dispensed to manufacturing shall be examined by a second person to assure that:\n(1) The component was released by the quality control unit;\n(2) The weight or measure is correct as stated in the batch production records;\n(3) The containers are properly identified. If the weighing, measuring, or subdividing operations are performed by automated equipment under § 211.68, only one person is needed to assure paragraphs (c)(1), (c)(2), and (c)(3) of this section.\n(d) Each component shall either be added to the batch by one person and verified by a second person or, if the components are added by automated equipment under § 211.68, only verified by one person.",
+     "heading": "Charge-in of components.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.101",
+      "paragraph": ""
+     }
+    },
+    {
+     "index": 3,
+     "citation": "21 CFR 211.103",
+     "text": "Actual yields and percentages of theoretical yield shall be determined at the conclusion of each appropriate phase of manufacturing, processing, packaging, or holding of the drug product. Such calculations shall either be performed by one person and independently verified by a second person, or, if the yield is calculated by automated equipment under § 211.68, be independently verified by one person.",
+     "heading": "Calculation of yield.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.103",
+      "paragraph": ""
+     }
+    },
+    {
+     "index": 4,
+     "citation": "21 CFR 211.105(a)",
+     "text": "(a) All compounding and storage containers, processing lines, and major equipment used during the production of a batch of a drug product shall be properly identified at all times to indicate their contents and, when necessary, the phase of processing of the batch.",
+     "heading": "Equipment identification.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.105",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 5,
+     "citation": "21 CFR 211.110(a)",
+     "text": "(a) To assure batch uniformity and integrity of drug products, written procedures shall be established and followed that describe the in-process controls, and tests, or examinations to be conducted on appropriate samples of in-process materials of each batch. Such control procedures shall be established to monitor the output and to validate the performance of those manufacturing processes that may be responsible for causing variability in the characteristics of in-process material and the drug product. Such control procedures shall include, but are not limited to, the following, where appropriate:",
+     "heading": "Sampling and testing of in-process materials and drug products.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.110",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 6,
+     "citation": "21 CFR 211.111",
+     "text": "When appropriate, time limits for the completion of each phase of production shall be established to assure the quality of the drug product. Deviation from established time limits may be acceptable if such deviation does not compromise the quality of the drug product. Such deviation shall be justified and documented.",
+     "heading": "Time limitations on production.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.111",
+      "paragraph": ""
+     }
+    },
+    {
+     "index": 7,
+     "citation": "21 CFR 211.113(a)",
+     "text": "(a) Appropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed.",
+     "heading": "Control of microbiological contamination.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.113",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 8,
+     "citation": "21 CFR 211.115(a)",
+     "text": "(a) Written procedures shall be established and followed prescribing a system for reprocessing batches that do not conform to standards or specifications and the steps to be taken to insure that the reprocessed batches will conform with all established standards, specifications, and characteristics.",
+     "heading": "Reprocessing.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.115",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 9,
+     "citation": "21 CFR 211.122(a)",
+     "text": "(a) There shall be written procedures describing in sufficient detail the receipt, identification, storage, handling, sampling, examination, and/or testing of labeling and packaging materials; such written procedures shall be followed. Labeling and packaging materials shall be representatively sampled, and examined or tested upon receipt and before use in packaging or labeling of a drug product.",
+     "heading": "Materials examination and usage criteria.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.122",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 10,
+     "citation": "21 CFR 211.125(a)",
+     "text": "(a) Strict control shall be exercised over labeling issued for use in drug product labeling operations.",
+     "heading": "Labeling issuance.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.125",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 11,
+     "citation": "21 CFR 211.130",
+     "text": "There shall be written procedures designed to assure that correct labels, labeling, and packaging materials are used for drug products; such written procedures shall be followed. These procedures shall incorporate the following features:\n(a) Prevention of mixups and cross-contamination by physical or spatial separation from operations on other drug products.\n(b) Identification and handling of filled drug product containers that are set aside and held in unlabeled condition for future labeling operations to preclude mislabeling of individual containers, lots, or portions of lots. Identification need not be applied to each individual container but shall be sufficient to determine name, strength, quantity of contents, and lot or control number of each container.\n(c) Identification of the drug product with a lot or control number that permits determination of the history of the manufacture and control of the batch.\n(d) Examination of packaging and labeling materials for suitability and correctness before packaging operations, and documentation of such examination in the batch production record.\n(e) Inspection of the packaging and labeling facilities immediately before use to assure that all drug products have been removed from previous operations. Inspection shall also be made to assure that packaging and labeling materials not suitable for subsequent operations have been removed. Results of inspection shall be documented in the batch production records.",
+     "heading": "Packaging and labeling operations.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.130",
+      "paragraph": ""
+     }
+    },
+    {
+     "index": 12,
+     "citation": "21 CFR 211.132(a)",
+     "text": "(a) General. The Food and Drug Administration has the authority under the Federal Food, Drug, and Cosmetic Act (the act) to establish a uniform national requirement for tamper-evident packaging of OTC drug products that will improve the security of OTC drug packaging and help assure the safety and effectiveness of OTC drug products. An OTC drug product (except a dermatological, dentifrice, insulin, or lozenge product) for retail sale that is not packaged in a tamper-resistant package or that is not properly labeled under this section is adulterated under section 501 of the act or misbranded under section 502 of the act, or both.",
+     "heading": "Tamper-evident packaging requirements for over-the-counter (OTC) human drug products.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.132",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 13,
+     "citation": "21 CFR 211.134(a)",
+     "text": "(a) Packaged and labeled products shall be examined during finishing operations to provide assurance that containers and packages in the lot have the correct label.",
+     "heading": "Drug product inspection.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.134",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 14,
+     "citation": "21 CFR 211.137(a)",
+     "text": "(a) To assure that a drug product meets applicable standards of identity, strength, quality, and purity at the time of use, it shall bear an expiration date determined by appropriate stability testing described in § 211.166.",
+     "heading": "Expiration dating.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.137",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 15,
+     "citation": "21 CFR 211.142",
+     "text": "Written procedures describing the warehousing of drug products shall be established and followed. They shall include:\n(a) Quarantine of drug products before release by the quality control unit.\n(b) Storage of drug products under appropriate conditions of temperature, humidity, and light so that the identity, strength, quality, and purity of the drug products are not affected.",
+     "heading": "Warehousing procedures.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.142",
+      "paragraph": ""
+     }
+    },
+    {
+     "index": 16,
+     "citation": "21 CFR 211.150",
+     "text": "Written procedures shall be established, and followed, describing the distribution of drug products. They shall include:\n(a) A procedure whereby the oldest approved stock of a drug product is distributed first. Deviation from this requirement is permitted if such deviation is temporary and appropriate.\n(b) A system by which the distribution of each lot of drug product can be readily determined to facilitate its recall if necessary.",
+     "heading": "Distribution procedures.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.150",
+      "paragraph": ""
+     }
+    },
+    {
+     "index": 17,
+     "citation": "21 CFR 211.160(a)",
+     "text": "(a) The establishment of any specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms required by this subpart, including any change in such specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms, shall be drafted by the appropriate organizational unit and reviewed and approved by the quality control unit. The requirements in this subpart shall be followed and shall be documented at the time of performance. Any deviation from the written specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms shall be recorded and justified.",
+     "heading": "General requirements.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.160",
+      "paragraph": "(a)"
+     }
+    },
+    {
+     "index": 18,
+     "citation": "21 CFR 211.184",
+     "text": "These records shall include the following:\n(a) The identity and quantity of each shipment of each lot of components, drug product containers, closures, and labeling; the name of the supplier; the supplier's lot number(s) if known; the receiving code as specified in § 211.80; and the date of receipt. The name and location of the prime manufacturer, if different from the supplier, shall be listed if known.\n(b) The results of any test or examination performed (including those performed as required by § 211.82(a), § 211.84(d), or § 211.122(a)) and the conclusions derived therefrom.\n(c) An individual inventory record of each component, drug product container, and closure and, for each component, a reconciliation of the use of each lot of such component. The inventory record shall contain sufficient information to allow determination of any batch or lot of drug product associated with the use of each component, drug product container, and closure.\n(d) Documentation of the examination and review of labels and labeling for conformity with established specifications in accord with §§ 211.122(c) and 211.130(c).\n(e) The disposition of rejected components, drug product containers, closure, and labeling.",
+     "heading": "Component, drug product container, closure, and labeling records.",
+     "citation_fields": {
+      "title": "21",
+      "section": "211.184",
+      "paragraph": ""
+     }
+    }
+   ],
+   "requirements": [
+    [
+     "r1",
+     "21 CFR part 211"
+    ]
+   ],
+   "satisfied_ids": [],
+   "missing_labels": [
+    "21 CFR part 211"
+   ],
+   "explicit": true,
+   "dockets_lost": 0
+  }
+ ]
+}
