@@ -123,12 +123,11 @@ def test_a_duty_reassigned_to_fda_is_not_supported():
     assert claim_final(FOCUSED, claim) != AN.SUPPORTED
 
 
-@pytest.mark.xfail(strict=True, reason="pre-existing: 'only ... not distributed' narrows 'whether or not distributed' "
-                                       "and is supported")
 def test_a_duty_narrowed_to_undistributed_batches_is_not_supported():
+    """Was a strict xfail (Stage A): the narrowing is now withheld - unverifiable, never contradicted."""
     claim = ("Only a failure of a batch that has not been distributed to meet its specifications must be thoroughly "
              "investigated.")
-    assert claim_final(FOCUSED, claim) != AN.SUPPORTED
+    assert claim_final(FOCUSED, claim) == AN.UNVERIFIABLE
 
 
 @pytest.mark.xfail(strict=True, reason="pre-existing: a period the evidence never states is supported by the evaluator "

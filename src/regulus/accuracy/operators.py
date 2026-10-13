@@ -583,6 +583,32 @@ _RESTRICTIVE_ONLY_RE = re.compile(
     r"\bonly\s+(?:if|when|where|upon|after|before|for|to the extent|in accordance|as provided|with)\b", re.I)
 
 
+# A restrictive word that narrows WHAT a requirement covers ("Only a failure of a batch that has
+# not been distributed must be investigated", "applies solely to ...", "is limited to ..."), in
+# any position - _RESTRICTIVE_ONLY_RE above catches only the conditional "only if/when/..." form.
+# "not only ... but also" adds rather than restricts, "if only" is not a restriction, and "not limited
+# to" says a list is NOT exhaustive (acceptance row M-001: "include, but are not limited to, ...").
+_RESTRICTIVE_SCOPE_RE = re.compile(r"(?<!\bnot )(?<!\bif )\b(only|solely|exclusively)\b|(?<!\bnot )\blimited\s+to\b", re.I)
+# What counts as the EVIDENCE stating a restriction of its own: the same words, the conditional
+# form, or the negative forms condition_preserved already treats as equivalent (except, unless,
+# other than, not ... until/unless/before) - here with up to three words between "not" and the
+# connective, so "shall not be released until ..." counts as the restriction it is.
+_EVIDENCE_RESTRICTS_RE = re.compile(r"\bexcept\b|\bother\s+than\b|\bno\s+\w+\s+(?:other|but)\b"
+                                    r"|\bnot\s+(?:\w+\s+){0,3}(?:until|unless|before|except)\b", re.I)
+
+
+def restrictive_scope(text: str) -> str | None:
+    """The restrictive word that narrows a requirement in `text`, or None."""
+    m = _RESTRICTIVE_SCOPE_RE.search(text or "")
+    return " ".join(m.group(0).lower().split()) if m else None
+
+
+def states_a_restriction(text: str) -> bool:
+    """Whether `text` itself restricts what its rule covers, in any wording this module recognises."""
+    return (restrictive_scope(text) is not None or condition_preserved(RESTRICTIVE_ONLY, text)
+            or bool(_EVIDENCE_RESTRICTS_RE.search(text or "")))
+
+
 # "provided that" states a condition the permission or requirement depends on
 # (21 CFR 606.110(a): "may be at variance with the additional standards ...
 # provided that: ..."). answer_plan's list has no entry for it (row B-005).

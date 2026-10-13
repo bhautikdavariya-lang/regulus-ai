@@ -203,6 +203,21 @@ def core_overlap(claim: str, passage: Passage) -> float:
     return sum(1 for t in core if any(same_term(t, h) for h in have)) / len(core)
 
 
+def _unstated_narrowing(claim: str, passage_text: str) -> str | None:
+    """The restrictive word ("only", "solely", "exclusively", "limited to") with which `claim` narrows
+    a requirement, when `passage_text` states no restriction of its own; None otherwise.
+
+    Operators and terms can all agree while the scope is changed ("Only a failure of a batch that has
+    not been distributed must be investigated" against "... whether or not the batch has already been
+    distributed"), so a narrowing the passage does not state withholds support on every support path.
+    It never contradicts: the narrowing may be true for reasons this passage does not give. The
+    conditional form ("only if ...") is a condition and is compared by the operators instead."""
+    narrowing = OP.restrictive_scope(claim)
+    if narrowing is None or OP.RESTRICTIVE_ONLY in OP.conditions(claim) or OP.states_a_restriction(passage_text):
+        return None
+    return narrowing
+
+
 def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorComparison",
                  evidence: Sequence[Passage] | None) -> dict[str, Any]:
     """Does this passage, on its own, establish the claim's core proposition?
@@ -218,9 +233,13 @@ def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorCompa
     agreed = list(comparison.agreed)
     ev_ops = comparison.evidence_operators or {}
     silent = ev_ops.get("strength") is None and ev_ops.get("polarity") is None
+    narrowing = _unstated_narrowing(claim, alignment.passage.text)
     if distinct:
         verdict, reason = "blocked", (f"the claim names {', '.join(distinct)}, which {alignment.passage.citation} does "
                                       f"not and another source does ({'; '.join(f'{t}: {v[0]}' for t, v in distinct.items())})")
+    elif narrowing is not None:
+        verdict, reason = "not_established", (f"the claim narrows the requirement with '{narrowing}', which "
+                                              f"{alignment.passage.citation} does not state")
     elif verbatim:
         verdict, reason = "established", f"{alignment.verbatim_coverage:.0%} verbatim"
     elif (len(agreed) >= MIN_OPERATORS_AGREED and framed >= MIN_PARAPHRASE_OVERLAP
@@ -493,7 +512,7 @@ def judge_item(claim: str, head: str, item: str, candidates: Sequence[Passage], 
         if not (verbatim or by_terms):
             continue
         comparison = OP.compare(item_plain, p.text, authority=p.authority)
-        if comparison.conflicts or comparison.support_blocked:
+        if comparison.conflicts or comparison.support_blocked or _unstated_narrowing(item_plain, p.text):
             continue
         if (OP.polarity(item_plain) == OP.NEGATE) != (OP.polarity(p.text) == OP.NEGATE):
             continue
@@ -569,7 +588,7 @@ def judge_descriptive(claim: str, alignments: Sequence[Alignment], *,
         if (OP.polarity(plain) == OP.NEGATE) != (OP.polarity(p.text) == OP.NEGATE):
             continue
         comparison = OP.compare(plain, p.text, authority=p.authority)
-        if comparison.conflicts or comparison.support_blocked or comparison.omissions:
+        if comparison.conflicts or comparison.support_blocked or comparison.omissions or _unstated_narrowing(plain, p.text):
             continue
         pool = list(evidence) if evidence else [a.passage for a in alignments]
         if distinguishing_terms(claim, p, pool):
@@ -633,7 +652,7 @@ def judge_definition(claim: str, alignments: Sequence[Alignment], *,
         if _defines(p.text, term) != definiens:
             continue
         comparison = OP.compare(plain, p.text, authority=p.authority)
-        if comparison.conflicts or comparison.support_blocked:
+        if comparison.conflicts or comparison.support_blocked or _unstated_narrowing(plain, p.text):
             continue
         pool = list(evidence) if evidence else candidates
         reason = (f"a definition: {p.citation} defines {term} as \"{' '.join(definiens)}\", word for word what the "
