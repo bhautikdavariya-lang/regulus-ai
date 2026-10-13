@@ -67,6 +67,8 @@ def record(q, out, seconds: float) -> dict:
         "no_context": out.no_context,
         "citations": [{"index": c.index, "label": c.label} for c in out.citations],
         "evidence": [s.result.citation.label for s in out.context.sources],
+        # the exact evidence placed in the prompt, fingerprinted (regulus.traceability); replayable as-is
+        "evidence_snapshot": out.evidence_snapshot.to_dict() if out.evidence_snapshot is not None else None,
         "answerability": (m.get("answerability") or {}).get("state"),
         "scope": m.get("scope"),
         "fallback_type": m.get("fallback_type"),

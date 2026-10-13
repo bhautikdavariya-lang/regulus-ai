@@ -230,7 +230,7 @@ def reproducibility(settings, config, retriever, info) -> dict:
     import hashlib
     import subprocess
     from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT
-    from regulus.system_identity import pipeline_config
+    from regulus.system_identity import decoding_config, pipeline_config
 
     def git(*a):
         try:
@@ -245,8 +245,23 @@ def reproducibility(settings, config, retriever, info) -> dict:
             for chunk in iter(lambda: f.read(1 << 24), b""):
                 h.update(chunk)
         weights_sha = h.hexdigest()
+    # The generator reports the decoding settings it was built with, but not all
+    # of the ones the pipeline fingerprint covers: repetition_penalty and
+    # no_repeat_ngram_size were absent, and a field recorded as null hashes
+    # differently from the same field recorded with its value. A run missing them
+    # can therefore never be shown to measure the configured pipeline, however
+    # identical it was (see docs/model_dashboard_architecture.md and the
+    # acceptance adapter). The gap is filled from the configured values the
+    # generator was built from, and ONLY for fields the generator did not report,
+    # so nothing it did report is ever overwritten.
+    reported = dict(info.get("generation") or {})
+    configured = decoding_config(settings.generation) if getattr(settings, "generation", None) is not None else {}
+    filled = sorted(name for name, value in configured.items() if name not in reported)
+    decoding = {**{name: configured[name] for name in filled}, **reported}
+    if filled:
+        decoding["_filled_from_configuration"] = filled
     return {"model_id": info.get("model_id"), "model_revision": info.get("model_revision"), "weights_sha256": weights_sha,
-            "device": info.get("device"), "dtype": info.get("dtype"), "decoding": (info.get("generation") or {}),
+            "device": info.get("device"), "dtype": info.get("dtype"), "decoding": decoding,
             "system_prompt_sha256": hashlib.sha256(GROUNDED_SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
             "pipeline_config": pipeline_config(config), "retriever": (retriever.describe() if hasattr(retriever, "describe") else None),
             "git_commit": git("rev-parse", "HEAD"), "git_dirty": bool(git("status", "--porcelain"))}
