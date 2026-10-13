@@ -11,9 +11,18 @@ Then open http://127.0.0.1:8000 in a browser.
 
 What it exposes, per question: the generated answer, the authoritative
 citations, every retrieved source with its score and retrieval method, the
-grounding gate's decision, and the timings. Adapter and gate can be switched
-from the page without restarting, so base / Stage 12 / Stage 13 and gate
-on / off can be compared on the same question.
+grounding gate's decision, the timings, and the live answer-accuracy
+assessment. Adapter and gate can be switched from the page without restarting,
+so base / Stage 12 / Stage 13 and gate on / off can be compared on the same
+question.
+
+The accuracy assessment (regulus.accuracy) is an OBSERVER and is deliberately
+wired in here rather than in the pipeline: it runs after `pipeline.answer()`
+has returned, reads only what the RagAnswer already carries, and cannot reach
+the answer. `src/regulus/rag/` is untouched by the feature, so with
+`--no-accuracy` (or `{"accuracy": false}` in the request) the answer, its
+citations and its evidence are the same objects they would be without it.
+Verify with `python scripts/accuracy_regression.py`.
 
 The database is opened read-only through the Stage 5 layer; nothing here
 writes anything.
@@ -31,6 +40,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
+from regulus.accuracy import RUBRIC_ID as ACCURACY_RUBRIC_ID
 from regulus.config import PROJECT_ROOT, load_settings
 from regulus.evaluation.runner import sanitize_error
 
@@ -70,6 +80,51 @@ class Engine:
         self.snapshot = self.db.query("SELECT max(snapshot_date)::text AS d FROM cfr_records WHERE removed_on IS NULL")[0]["d"]
         self._models: dict[str, object] = {"": self.base_model}
         self._adapter_info: dict[str, dict] = {"": self.default_info}
+        # The accuracy evaluator's optional existence check reuses the Stage 13
+        # identifier index (read-only, one indexed lookup per unaccounted-for
+        # section). Default on; --no-accuracy turns the whole feature off.
+        self.accuracy = True
+        # "semantic" reuses the pinned bge-small encoder already in this
+        # repository to choose WHICH evidence passage each claim is compared
+        # against; it never decides correctness. "lexical" needs no model at all.
+        self.accuracy_alignment = "semantic"
+        self._identifier_index = None
+        self._aligner = None
+
+    def aligner(self):
+        """The claim-to-evidence aligner, built once per process.
+
+        The embedder is ~33M parameters and about 300 MB resident, loaded on
+        first use and then shared by every question. It is a separate model from
+        the answering model and is never asked to generate anything.
+        """
+        if self._aligner is None:
+            from regulus.accuracy.alignment import LexicalAligner, SemanticAligner
+
+            if self.accuracy_alignment != "semantic":
+                self._aligner = LexicalAligner()
+            else:
+                try:
+                    from regulus.retrieval.semantic import TransformersEmbedder, load_manifest
+
+                    t0 = time.perf_counter()
+                    embedder = TransformersEmbedder(load_manifest().embedding,
+                                                    cache_dir=self.settings.model.cache_dir, local_files_only=True)
+                    self._aligner = SemanticAligner(embedder)
+                    print(f"Accuracy aligner: {embedder.describe()['model_id']} in "
+                          f"{time.perf_counter() - t0:.1f}s", flush=True)
+                except Exception as exc:  # no index, no weights, anything: fall back, never fail answering
+                    print(f"Accuracy aligner: semantic alignment unavailable ({type(exc).__name__}: {exc}); "
+                          f"using lexical alignment", flush=True)
+                    self._aligner = LexicalAligner()
+        return self._aligner
+
+    def identifier_index(self):
+        if self._identifier_index is None:
+            from regulus.grounding import DatabaseIdentifierIndex
+
+            self._identifier_index = DatabaseIdentifierIndex(self.db)
+        return self._identifier_index
 
     # -- adapters ---------------------------------------------------------
 
@@ -104,7 +159,8 @@ class Engine:
     # -- answering --------------------------------------------------------
 
     def ask(self, question: str, *, adapter: str = "", grounding: bool = False,
-            top_k: int = 8, max_new_tokens: int | None = None, on_event=None) -> dict:
+            top_k: int = 8, max_new_tokens: int | None = None, on_event=None,
+            accuracy: bool | None = None) -> dict:
         """Answer one question. `on_event` (streaming) is passed to the pipeline
         unchanged; the returned dict is the same with or without it."""
         from dataclasses import replace
@@ -208,11 +264,57 @@ class Engine:
             "output_tokens": out.output_tokens,
             "adapter": {"id": adapter, "name": adapter_info.get("adapter_name"), "r": adapter_info.get("r"), "dataset_hash": adapter_info.get("dataset_hash")},
             "snapshot_date": self.snapshot,
+            # the exact evidence placed in the prompt, with its fingerprint (regulus.traceability)
+            "evidence_snapshot": out.evidence_snapshot.to_dict() if out.evidence_snapshot is not None else None,
         }
         # latency baseline: server-side stages around the pipeline
         result["server_timings_ms"] = {"engine_setup_ms": setup_ms, "pipeline_answer_ms": answer_ms,
                                        "response_build_ms": round((time.perf_counter() - t_build) * 1000, 2)}
+        # ---- answer accuracy: strictly after the final answer, strictly read-only.
+        # `out` is not consulted again below and `result["answer"]` is already set:
+        # whatever happens here, the answer has been delivered. evaluate_safely
+        # never raises.
+        if self.accuracy if accuracy is None else accuracy:
+            t_acc = time.perf_counter()
+            result["accuracy"] = self.accuracy_payload(out)
+            result["server_timings_ms"]["accuracy_ms"] = round((time.perf_counter() - t_acc) * 1000, 2)
         return result
+
+    def accuracy_payload(self, out) -> dict:
+        """The assessment as the page receives it: the evaluator's own dict, plus
+        the per-question status read from it (regulus.accuracy.review). Kept inside
+        the one `accuracy` object, so the response with the feature on still
+        differs from the response with it off by that key alone."""
+        from regulus.accuracy.review import question_review
+
+        payload = self.assess(out).to_dict()
+        payload["question_review"] = question_review(payload, question=out.question)
+        return payload
+
+    def assess(self, out):
+        """The live accuracy assessment of a finished RagAnswer.
+
+        Every argument comes off the RagAnswer; nothing is retrieved, generated
+        or recomputed, and no model is called.
+        """
+        from regulus.accuracy import evaluate_safely
+
+        analysis = out.metadata.get("question_analysis") or {}
+        return evaluate_safely(
+            out.question,
+            out.answer,
+            package=out.package,
+            evidence=out.evidence_snapshot,   # the exact evidence the prompt carried (None: not captured)
+            citations=out.citations,
+            validation=out.validation,
+            coverage=out.coverage,
+            model_called=out.model_called,
+            fallback_type=out.metadata.get("fallback_type"),
+            scope_status=analysis.get("scope_status"),
+            answerability=out.metadata.get("answerability"),
+            identifier_index=self.identifier_index(),
+            aligner=self.aligner(),
+        )
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -250,6 +352,10 @@ class Handler(BaseHTTPRequestHandler):
                 "dtype": str(self.engine.base_model.dtype).replace("torch.", ""),
                 "snapshot_date": self.engine.snapshot,
                 "defaults": {"top_k": 8, "max_new_tokens": self.engine.settings.answer_length.max_new_tokens},
+                "accuracy": {"enabled": self.engine.accuracy, "rubric_id": ACCURACY_RUBRIC_ID,
+                             "alignment": self.engine.accuracy_alignment,
+                             "note": ("an evidence-based assessment of this one answer; not the 300-question "
+                                      "acceptance-test score")},
                 "answer_length": {
                     "policy": self.engine.settings.answer_length.policy,
                     "ceiling": self.engine.settings.answer_length.max_new_tokens,
@@ -262,12 +368,18 @@ class Handler(BaseHTTPRequestHandler):
 
     @staticmethod
     def _ask_kwargs(body: dict) -> dict:
-        return {
+        out = {
             "adapter": str(body.get("adapter") or ""),
             "grounding": bool(body.get("grounding")),
             "top_k": max(1, min(int(body.get("top_k") or 8), 20)),
             "max_new_tokens": (max(64, min(int(body["max_new_tokens"]), 4096)) if body.get("max_new_tokens") else None),
         }
+        # Passed on only when the request actually asks, so that a request that
+        # says nothing about accuracy calls ask() exactly as it was called before
+        # the feature existed. The regression harness sends false for Run A.
+        if "accuracy" in body:
+            out["accuracy"] = bool(body["accuracy"])
+        return out
 
     def do_POST(self) -> None:
         path = urlparse(self.path).path
@@ -391,6 +503,11 @@ def main() -> int:
                    help="override model.device (configs/model.yaml / REGULUS_DEVICE); mps = Apple GPU, opt-in")
     p.add_argument("--dtype", choices=("auto", "float32", "float16", "bfloat16"), default=None,
                    help="override model.dtype (configs/model.yaml / REGULUS_DTYPE)")
+    p.add_argument("--no-accuracy", action="store_true",
+                   help="do not assess answer accuracy; the answer, citations and evidence are unchanged either way")
+    p.add_argument("--accuracy-alignment", choices=("semantic", "lexical"), default="semantic",
+                   help="how the accuracy evaluator picks which evidence passage a claim is compared against "
+                        "(semantic reuses the pinned bge-small encoder; it never decides correctness)")
     p.add_argument("--answer-shape", choices=("off", "adaptive", "structured"), default=None,
                    help="override RagConfig.answer_shape; 'structured' = answer-quality Stage 3 (default: as configured)")
     args = p.parse_args()
@@ -406,6 +523,8 @@ def main() -> int:
         settings.model.validate()
     Handler.engine = Engine(settings, offline=args.offline)
     Handler.engine.answer_shape = args.answer_shape
+    Handler.engine.accuracy = not args.no_accuracy
+    Handler.engine.accuracy_alignment = args.accuracy_alignment
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print()
     print(f"  Regulus test UI:  http://{args.host}:{args.port}")
