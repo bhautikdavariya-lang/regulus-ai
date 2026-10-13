@@ -176,6 +176,38 @@ def pipeline_fingerprint(config: Mapping[str, Any]) -> PipelineFingerprint:
     return PipelineFingerprint(version=FINGERPRINT_VERSION, algorithm=ALGORITHM, value=_sha256(payload))
 
 
+def config_differences(a: Mapping[str, Any], b: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Every fingerprinted field on which two configurations differ.
+
+    Two hashes tell a reader that a run measured a different pipeline; they do
+    not tell anyone WHICH setting differs, which is the only form in which the
+    information is actionable. A field absent from one side appears here with
+    `null`, because `normalize_evaluation_config` has already turned "not
+    recorded" into an explicit null -- so this also distinguishes "configured
+    differently" from "never recorded".
+
+    Pure comparison over the normalised forms: it adds nothing to the digest
+    and cannot change any fingerprint.
+    """
+    left, right = normalize_evaluation_config(a), normalize_evaluation_config(b)
+    out: list[dict[str, Any]] = []
+    for section in FINGERPRINT_FIELDS:
+        ls, rs = left.get(section), right.get(section)
+        if ls == rs:
+            continue
+        if ls is None or rs is None:
+            out.append({"field": section, "recorded": ls, "current": rs,
+                        "note": "the whole section is absent on one side"})
+            continue
+        for name in FINGERPRINT_FIELDS[section]:
+            if ls.get(name) != rs.get(name):
+                out.append({"field": f"{section}.{name}", "recorded": ls.get(name), "current": rs.get(name),
+                            "note": ("not recorded by the run" if ls.get(name) is None else
+                                     "not recorded by the current configuration" if rs.get(name) is None else
+                                     "configured differently")})
+    return out
+
+
 @dataclass(frozen=True)
 class QuestionSetIdentity:
     sha256: str

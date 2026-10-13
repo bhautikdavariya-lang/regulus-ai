@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from . import freshness as F
-from .adapters import legacy, stage5, training
+from .adapters import acceptance, legacy, stage5, training
 from .schemas import (
     CURRENT,
     KIND_EVALUATION,
@@ -55,6 +55,11 @@ class Root:
 
 DEFAULT_ROOTS: tuple[Root, ...] = (
     Root("artifacts", "*/*/*", False, "Stage 5 evaluation runs"),
+    # An acceptance run directory sits two levels under artifacts/, so the
+    # three-level root above never reached it: only its scoring/ subdirectory
+    # was ever offered to an adapter, and none claimed that. Without this root
+    # a hand-scored 300-question evaluation is invisible to the dashboard.
+    Root("artifacts/acceptance_test", "*", False, "acceptance-test runs"),
     Root("models/qwen3-0.6b-lora", "*", False, "LoRA training runs"),
     Root("data/evaluation/results", "**/*.json", True, "legacy evaluation results"),
 )
@@ -62,6 +67,7 @@ DEFAULT_ROOTS: tuple[Root, ...] = (
 # Order matters only in that the first adapter to claim a candidate wins;
 # the three detectors are disjoint in practice.
 ADAPTERS = (
+    ("acceptance", acceptance, KIND_EVALUATION),
     ("stage5", stage5, KIND_EVALUATION),
     ("legacy", legacy, KIND_EVALUATION),
     ("training", training, KIND_TRAINING),
@@ -70,6 +76,7 @@ ADAPTERS = (
 # The headline numbers each kind of run shows in a list, in this order. A key
 # that a run does not have is simply skipped.
 SUMMARY_KEYS = (
+    "acceptance_full_pass", "acceptance_substantive_correct", "acceptance_citation_accuracy",
     "correctness_final", "correctness_raw", "valid_raw", "recall_at_1", "mrr",
     "manual_score_mean", "completion_rate", "final_eval_loss", "base_eval_loss",
     "total_steps", "e2e_latency_p50",

@@ -331,3 +331,105 @@ read-only check against the real Stage 5 baseline when it is present.
 * No composite quality score.
 * No automatic accept or reject decision. The dashboard measures; a person
   decides.
+
+---
+
+## Appendix: the acceptance evaluation (added 2026-10-07)
+
+### What was wrong
+
+A fifth artifact family existed and the dashboard could not see it. The 300-question
+vendor acceptance test writes `artifacts/acceptance_test/<label>_<timestamp>/`, two
+levels under `artifacts/`; the `artifacts/*/*/*` root is three levels deep, so the
+only candidate it ever produced was the run's `scoring/` subdirectory, which no
+adapter claimed. The result: a hand-scored 300-row evaluation under
+`regulus_substantive_rubric_v1` sat on disk while the Overview said "this model has
+not been evaluated" without naming it.
+
+Note what was **not** wrong. No metric was hard-coded, no stale number was presented
+as current, and `freshness` was already refusing to fall back. The defect was
+silence, not misrepresentation.
+
+### What was added
+
+| Piece | Purpose |
+|---|---|
+| `adapters/acceptance.py` | reads a run directory into an `EvaluationRun`: the rubric columns L–Q as metrics, the workbook's own seven gates, the per-question verdicts, and the caveats |
+| `Root("artifacts/acceptance_test", "*")` | makes the run directory a candidate at all |
+| `acceptance_view.py` | decides which run is the authoritative benchmark result, and assembles its provenance |
+| `/api/acceptance/current` | serves it, always with `is_current` |
+| `fingerprint.config_differences` | names the settings two configurations differ on, so a staleness reason is actionable |
+| `metrics.py` definitions | eleven `acceptance_*` definitions; an undefined key raises by design |
+
+The adapter scores nothing. The rubric is applied by a human reading each answer
+against the verified corpus; the adapter tabulates the recorded verdicts and reports
+how each was arrived at.
+
+### Selection: why not the newest file
+
+Recency is the **last** tie-break, never a test. A run is a candidate only if its
+scoring covers the benchmark, the run itself finished, and it records which weights it
+evaluated; the configured model is preferred before recency applies. Every run that is
+not chosen appears in `rejected` with the condition it failed, so the choice is
+auditable rather than asserted. A newer run scored on 224 of 300 rows loses to an
+older fully scored one, and `tests/test_dashboard_acceptance.py` pins that.
+
+### Three facts that travel with every number
+
+1. **The answer key is a draft.** 0 of 300 rows are SME-verified. The workbook states
+   that an unverified key invalidates the entire result, so these numbers are
+   indicative, not contractual.
+2. **Inherited verdicts.** A comparative run may carry a row's verdict over from an
+   earlier run when the delivered answer did not change — 187 of 300 for the C1+C2+C3
+   run. Legitimate protocol, but not a hand reading of that run, so the split is
+   counted and shown. A run that records no basis at all reports "unrecorded", never 0.
+3. **ERROR rows.** A row with no answer to judge is excluded from every rate and
+   counted separately, because the rubric says ERROR is a technical failure and never a
+   bad answer.
+
+### Why no acceptance run can be CURRENT
+
+Measured, not assumed. Every acceptance run fingerprints to `97b3693c5e63`; the
+configured system is `31dbd9533e59`. Exactly three fingerprinted fields differ:
+
+```
+decoding.repetition_penalty      run null    configured 1      not recorded by the run
+decoding.no_repeat_ngram_size    run null    configured 0      not recorded by the run
+validation.validation_behavior   run repair  configured annotate   configured differently
+```
+
+The first two were a **recording gap**: `QwenGenerator.describe()` reports six decoding
+settings and the fingerprint covers seven. `reproducibility()` in
+`scripts/run_diagnostics.py` now fills any fingerprinted field the generator did not
+report from the configured values it was built from, marking them in
+`decoding._filled_from_configuration`, and never overwriting a value the generator did
+report. Future runs are therefore judgeable. **Existing artifacts are immutable and
+were not touched**, so the runs already on disk can never become CURRENT.
+
+The third is an **open architectural decision**, deliberately left alone:
+`describe_settings` defines the current pipeline with `evaluation_rag_config`
+(`validation_behavior="annotate"`, the Stage 5 protocol), while the acceptance test
+runs the production pipeline (`repair`). Both deliver the same answer by design — Stage
+5 keeps the raw answer and applies the same deterministic repair afterwards — but they
+hash differently, so a future acceptance run would still differ on this one field
+(verified: its fingerprint becomes `cf148fd57387`). Resolving it means changing what
+"current" means for every run in the registry, which is not a change to make as a side
+effect of adding an adapter. **Until it is decided, the acceptance result is reported
+as STALE with the three fields named, and the Overview headline continues to say the
+configured model has not been evaluated.**
+
+### The two accuracy numbers must never be combined
+
+| | Live per-answer indicator | Acceptance evaluation |
+|---|---|---|
+| Rubric | `regulus_live_evidence_assessment_v1` | `regulus_substantive_rubric_v1` |
+| Measures | one answer against the evidence retrieved for its own question | 300 controlled questions against a draft answer key |
+| Scored by | deterministic identity checks | a human reading each answer |
+| Where | beside the answer in the test console | the dashboard's acceptance section |
+| Ground truth | none; it abstains instead of guessing | the workbook's key, unverified |
+
+Live questions have no known ground truth, so the per-answer indicator is never
+aggregated into an overall accuracy. `tests/test_dashboard_acceptance.py` asserts that
+no dashboard module imports `regulus.accuracy`, that no metric definition is sourced
+from live questions, and that running the live evaluator leaves the acceptance payload
+byte-identical. See [LIVE_ANSWER_ACCURACY.md](LIVE_ANSWER_ACCURACY.md).

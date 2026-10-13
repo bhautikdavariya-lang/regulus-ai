@@ -14,8 +14,8 @@ An artifact that no adapter claims is listed as UNSUPPORTED_SCHEMA by the
 registry rather than being silently skipped.
 """
 
-from . import legacy, stage5, training
+from . import acceptance, legacy, stage5, training
 
-ADAPTERS = (stage5, legacy, training)
+ADAPTERS = (acceptance, stage5, legacy, training)
 
-__all__ = ["ADAPTERS", "legacy", "stage5", "training"]
+__all__ = ["ADAPTERS", "acceptance", "legacy", "stage5", "training"]

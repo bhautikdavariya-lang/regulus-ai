@@ -102,6 +102,25 @@ def selection_key(experiment: Experiment) -> tuple:
     return (completion_time(experiment), experiment.path)
 
 
+def _pipeline_differences(experiment: Experiment, current: CurrentSystem) -> list[dict[str, Any]]:
+    """The fingerprinted settings on which this run and the configuration differ.
+
+    Needs a recorded configuration on both sides; an empty list means the diff
+    could not be computed, never that the two agree (the caller only asks when
+    the digests already differ).
+    """
+    recorded = (experiment.configuration or {}).get("evaluation_config")
+    configured = current.evaluation_config
+    if not isinstance(recorded, dict) or not isinstance(configured, dict):
+        return []
+    try:
+        from .fingerprint import config_differences
+
+        return config_differences(recorded, configured)
+    except Exception:
+        return []
+
+
 def _model_check(run, current) -> tuple[str, str | None]:
     """'match', or a mismatch code and sentence."""
     differences = []
@@ -196,10 +215,20 @@ def assess(experiment: Experiment, current: CurrentSystem) -> FreshnessResult:
         ))
     if (recorded.get("version"), recorded.get("value")) != (configured.get("version"), configured.get("value")):
         checks["pipeline"] = "mismatch"
+        # Name the settings, not just the hashes: "two digests differ" is not
+        # actionable, "validation_behavior was repair, the configuration says
+        # annotate" is. The diff is computed from the two recorded
+        # configurations and is reported whenever both sides have one.
+        differences = _pipeline_differences(experiment, current)
+        checks["pipeline_differences"] = differences
+        detail = ("; ".join(f"{d['field']}: run {d['recorded']!r} vs configured {d['current']!r}"
+                            for d in differences[:4]) if differences else "")
+        if differences and len(differences) > 4:
+            detail += f"; and {len(differences) - 4} more field(s)"
         return result("pipeline_fingerprint_mismatch", (
             f"same weights, different pipeline: the run's fingerprint {str(recorded.get('value'))[:12]} "
             f"(v{recorded.get('version')}) is not the configured {str(configured.get('value'))[:12]} "
-            f"(v{configured.get('version')})"
+            f"(v{configured.get('version')})" + (f". Differs on {detail}" if detail else "")
         ))
     checks["pipeline"] = "match"
 

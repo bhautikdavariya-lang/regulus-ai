@@ -479,6 +479,12 @@ function fmtValue(m) {
     return Number.isInteger(v) ? v.toLocaleString() : v.toLocaleString(undefined, {maximumFractionDigits:3});
   return String(v);
 }
+// A bare ratio, formatted exactly as fmtValue formats a ratio metric, for the
+// places that hold a number rather than a MetricResult (a gate's measurement).
+function ratioText(v) {
+  if (v === null || v === undefined) return "\u2013";
+  return (v * 100).toFixed(v * 100 >= 99.95 || v === 0 ? 0 : 1) + "%";
+}
 function fmtNumber(v, digits=4) {
   if (v === null || v === undefined) return "—";
   return typeof v === "number" ? (Number.isInteger(v) ? v.toLocaleString() : v.toFixed(digits)) : String(v);
@@ -747,8 +753,9 @@ V.analysis = async () => {
   const view = $("#view");
   const h = await api("/api/model-health/current");
   view.innerHTML = "";
-  if (h.state === "not_evaluated") return renderNotEvaluated(view, h);
+  if (h.state === "not_evaluated") { renderNotEvaluated(view, h); return renderAcceptance(view); }
   renderSummary(view, h);
+  return renderAcceptance(view);
 };
 
 // the full record of the current evaluation (the Phase 3 route)
@@ -756,8 +763,9 @@ V.overview = async () => {
   const view = $("#view");
   const h = await api("/api/model-health/current");
   view.innerHTML = "";
-  if (h.state === "not_evaluated") return renderNotEvaluated(view, h);
+  if (h.state === "not_evaluated") { renderNotEvaluated(view, h); return renderAcceptance(view); }
   await renderAnalysis(view, h);
+  return renderAcceptance(view);
 };
 
 V.experiment = async (id, query = {}) => {
@@ -1239,6 +1247,137 @@ function renderNotEvaluated(view, h) {
         el("div", {class:"body"}, latest.warning,
           latest.status_reason ? el("div", {class:"sub", style:"margin-top:5px"}, latest.status_reason) : null))));
   }
+}
+
+/* ============================================ ACCEPTANCE BENCHMARK RESULT */
+// The controlled 300-question evaluation, with the provenance every number on
+// it is tied to. Deliberately a SEPARATE section from the Overview headline:
+// the headline answers "has the configured system been evaluated?", this
+// answers "what does the benchmark say, and what produced it?". The section
+// never renders a number without `is_current` and the warnings beside it.
+async function renderAcceptance(view) {
+  let a;
+  try { a = await api("/api/acceptance/current"); } catch (e) { return; }
+  const card = el("div", {class:"card"});
+  card.appendChild(el("h3", {}, "Acceptance evaluation (controlled benchmark)"));
+
+  if (!a.available) {
+    card.appendChild(el("div", {class:"banner warn"}, el("b", {}, "⚠"),
+      el("div", {class:"body"}, el("b", {}, "No benchmark result. "), a.reason)));
+    if ((a.rejected || []).length) card.appendChild(rejectedList(a.rejected));
+    view.appendChild(card);
+    return;
+  }
+
+  const pv = a.provenance, h = a.headline;
+  // freshness first, so a number is never read before its status
+  card.appendChild(el("div", {class:"spread"},
+    el("div", {class:"eyebrow"}, a.is_current ? "Current validated evaluation" : "Historical evaluation"),
+    statusPill(pv.evaluation_status, a.freshness && a.freshness.reason)));
+  for (const w of (a.warnings || [])) {
+    card.appendChild(el("div", {class:"banner warn", style:"margin-top:10px"}, el("b", {}, "⚠"),
+      el("div", {class:"body"}, w)));
+  }
+  if (a.freshness && a.freshness.reason && !a.is_current) {
+    card.appendChild(el("div", {class:"sub", style:"margin-top:8px"}, "Freshness engine: ", a.freshness.reason));
+    const diffs = (a.freshness.checks || {}).pipeline_differences || [];
+    if (diffs.length) {
+      card.appendChild(el("div", {style:"margin-top:8px"},
+        el("div", {class:"eyebrow"}, "Settings that differ from the configured system"),
+        el("table", {class:"tbl"},
+          el("thead", {}, el("tr", {}, el("th", {}, "Setting"), el("th", {}, "This run"),
+                              el("th", {}, "Configured now"), el("th", {}, "")) ),
+          el("tbody", {}, diffs.map(d => el("tr", {},
+            el("td", {class:"mono"}, d.field),
+            el("td", {class:"mono"}, String(d.recorded)),
+            el("td", {class:"mono"}, String(d.current)),
+            el("td", {class:"sub"}, d.note)))))));
+    }
+  }
+
+  if (h) {
+    card.appendChild(el("div", {class:"hero", style:"margin-top:12px"},
+      el("div", {class:"eyebrow"}, h.label, infoIcon(h.definition_key)),
+      el("h2", {}, ratioText(h.value)),
+      el("div", {class:"ident"}, h.sample_note, " rows pass the full rubric verdict")));
+  }
+  card.appendChild(el("div", {class:"sub", style:"margin-top:4px"}, a.not_the_live_indicator));
+
+  // §3: the provenance the metrics are tied to
+  card.appendChild(el("div", {style:"margin-top:14px"},
+    el("div", {class:"eyebrow"}, "Data source"),
+    kvList([
+      ["Benchmark / evaluation", pv.evaluation],
+      ["Benchmark file", pv.benchmark_file, true],
+      ["Benchmark sha256", pv.benchmark_sha256, true],
+      ["Run ID", pv.run_id, true],
+      ["Artifact", pv.artifact, true],
+      ["Evaluated", fmtDate(pv.evaluated_at)],
+      ["Model", pv.model_label],
+      ["Model revision", pv.model_revision, true],
+      ["Adapter", pv.adapter],
+      ["Retrieval configuration", pv.retrieval],
+      ["Pipeline fingerprint", (pv.pipeline_fingerprint || {}).value, true],
+      ["Rubric", pv.rubric, true],
+      ["Questions", `${pv.questions} of ${pv.benchmark_questions} benchmark rows carry a verdict`],
+      ["Evaluation status", pv.evaluation_status],
+      ["Scoring basis", Object.entries(pv.scoring_basis || {}).map(([k, v]) => `${k}: ${v}`).join(", ") || "not recorded"],
+      ["Answer key", (pv.key_verification || {}).status || "not recorded"],
+      ["Git commit", (pv.git_commit || "").slice(0, 12) + (pv.git_dirty ? " (working tree dirty)" : ""), true],
+      ["Protocol", pv.protocol],
+    ])));
+
+  // the workbook's own seven gates
+  if ((a.gates || []).length) {
+    card.appendChild(el("div", {style:"margin-top:14px"},
+      el("div", {class:"eyebrow"}, "Contractual gates (thresholds are the workbook's)"),
+      el("table", {class:"tbl"},
+        el("thead", {}, el("tr", {}, el("th", {}, "Gate"), el("th", {}, "Metric"), el("th", {}, "Threshold"),
+                            el("th", {}, "Measured"), el("th", {}, ""))),
+        el("tbody", {}, a.gates.map(g => el("tr", {},
+          el("td", {class:"mono"}, g.gate_id),
+          el("td", {}, g.metric, g.absolute ? el("span", {class:"sub"}, " · absolute") : null),
+          el("td", {class:"mono"}, `${g.comparison} ${g.threshold}`),
+          el("td", {class:"mono"}, g.measured == null ? "\u2013"
+            : (g.unit === "count" ? String(g.measured) : ratioText(g.measured))),
+          el("td", {}, mark(g.passed))))))));
+  }
+
+  // every rubric dimension, with its counts
+  if ((a.metrics || []).length) {
+    card.appendChild(el("div", {style:"margin-top:14px"},
+      el("div", {class:"eyebrow"}, "Rubric dimensions"),
+      el("table", {class:"tbl"},
+        el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Value"), el("th", {}, "Counts"), el("th", {}, ""))),
+        el("tbody", {}, a.metrics.map(m => el("tr", {},
+          el("td", {}, m.display_name, infoIcon(m.definition_key)),
+          el("td", {class:"mono"}, m.value == null ? "not recorded" : fmtValue(m)),
+          el("td", {class:"mono sub"}, m.sample_note || "–"),
+          el("td", {class:"sub"}, m.note || (m.status === "missing" ? "not recorded by this run" : ""))))))));
+  }
+
+  if ((a.caveats || []).length) {
+    card.appendChild(el("details", {style:"margin-top:12px"},
+      el("summary", {}, `What this run does and does not establish (${a.caveats.length})`),
+      el("ul", {class:"sub", style:"margin:8px 0 0;padding-left:18px"},
+        a.caveats.map(c => el("li", {}, c)))));
+  }
+  if ((a.rejected || []).length) card.appendChild(rejectedList(a.rejected));
+  view.appendChild(card);
+}
+
+// Why the displayed run is the one displayed: the runs that were not chosen,
+// each with the condition it failed. Recency is the last tie-break, never a
+// reason on its own.
+function rejectedList(rejected) {
+  return el("details", {style:"margin-top:12px"},
+    el("summary", {}, `Other acceptance runs on this machine, and why they are not shown (${rejected.length})`),
+    el("table", {class:"tbl", style:"margin-top:8px"},
+      el("thead", {}, el("tr", {}, el("th", {}, "Run"), el("th", {}, "Not shown because"), el("th", {}, ""))),
+      el("tbody", {}, rejected.map(r => el("tr", {},
+        el("td", {class:"mono"}, r.run),
+        el("td", {}, String(r.rejected_because).replace(/_/g, " ")),
+        el("td", {class:"sub"}, r.detail || r.status_reason || ""))))));
 }
 
 /* ===================================================== QUESTION ANALYSIS */

@@ -46,6 +46,7 @@ from regulus.dashboard.observatory import (  # noqa: E402
     question_detail,
     question_list,
 )
+from regulus.dashboard.acceptance_view import payload as acceptance_payload  # noqa: E402
 from regulus.dashboard.benchmark_review import review_status  # noqa: E402
 from regulus.dashboard.registry import DEFAULT_ROOTS, Registry  # noqa: E402
 from regulus.dashboard.schemas import KIND_EVALUATION, KIND_TRAINING  # noqa: E402
@@ -235,6 +236,14 @@ class Handler(BaseHTTPRequestHandler):
         # the adapters; the browser parses no artifact and computes no metric.
         if path == "/api/benchmark-review/status":
             return _json_response(self, review_status(STATE.root))
+        # The controlled acceptance evaluation and its provenance. Separate from
+        # /api/model-health/current on purpose: that endpoint answers "has the
+        # CONFIGURED system been evaluated?", this one answers "which acceptance
+        # run is the authoritative benchmark result, and what produced it?".
+        # Neither may stand in for the other, and this payload always carries
+        # is_current so the page cannot present one as the other.
+        if path == "/api/acceptance/current":
+            return _json_response(self, acceptance_payload(registry))
 
         if path == "/api/model-health/current":
             return _json_response(self, current_health(registry, registry.thresholds))

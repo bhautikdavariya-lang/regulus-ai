@@ -683,6 +683,101 @@ _DEFINITIONS: tuple[MetricDefinition, ...] = (
         caveats="A mean, unlike the Stage 5 percentiles, so one very slow answer moves it. Do not compare it against a p50.",
         source_hint="data/evaluation/results/*.json",
     ),
+    # ------------------------------------------- acceptance test (hand-scored)
+    # These are the contractual rubric's own columns, scored by a human reading
+    # each answer against the verified corpus under `regulus_substantive_rubric_v1`
+    # (docs/STAGE_A_RUBRIC.md). The dashboard tabulates recorded verdicts; it
+    # scores nothing. Every one of them carries the same two caveats, which the
+    # run's `problems` state in full: the answer key is an unverified draft, and
+    # a comparative run may inherit a row's verdict from an earlier run.
+    _d(
+        key="acceptance_full_pass", name="Acceptance Pass Rate", family=CORRECTNESS,
+        definition="Share of scored benchmark rows that pass the acceptance rubric's whole verdict rule.",
+        calculation="rows with L=1 and M=0 and N=2 and O>=1 and P=1 and Q in {1, blank} / rows scored (ERROR rows excluded)",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="Hand-scored against a DRAFT answer key: the workbook requires SME verification before the test is administered and states that an unverified key invalidates the result, so this is indicative, not contractual. It is also not the live per-answer accuracy indicator, which measures one answer against its own evidence under a different rubric.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_citation_accuracy", name="Citation Accuracy (L)", family=CITATION,
+        definition="Share of scored rows where every citation is correct to the section, and to the paragraph wherever the statement asserts a paragraph-level requirement.",
+        calculation="rows with L=1 / rows scored",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="A correct answer carrying no citation at all scores 0 here. Gate G1 requires 99%.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_fabrication_rate", name="Fabricated Citations (M)", family=FAITHFULNESS,
+        definition="Share of scored rows that cite a CFR section, ISO clause, guidance title, warning letter or docket that does not exist.",
+        calculation="rows with M=1 / rows scored",
+        direction=LOWER_IS_BETTER, unit=RATIO,
+        caveats="Gate G2 is zero and absolute: one fabricated identifier fails the run outright. A superseded provision is a citation error, not a fabrication.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_substantive_correct", name="Substantive Correctness, fully correct (N=2)", family=CORRECTNESS,
+        definition="Share of scored rows whose substance is correct and would survive review by a qualified regulatory professional.",
+        calculation="rows with N=2 / rows scored",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="Getting who is subject to a requirement wrong is N=0, not N=1, however accurate the rest is. Gate G4 scores points earned out of maximum on the 0-2 scale, not this share.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_substantive_partial", name="Substantive Correctness, directionally right (N>=1)", family=CORRECTNESS,
+        definition="Share of scored rows that are at least directionally right about the requirement asked about.",
+        calculation="rows with N>=1 / rows scored",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="N=1 means incomplete in a way that could mislead, or a recommendation stated as a requirement. It is NOT a pass and must never be quoted as accuracy.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_completeness", name="Completeness (O>=1)", family=CORRECTNESS,
+        definition="Share of scored rows where at least the primary governing section was surfaced.",
+        calculation="rows with O>=1 / rows scored",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="O=1 still means related governing sections are missing. Gate G5 scores points out of maximum on the 0-2 scale.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_scope_discipline", name="Scope Discipline (P)", family=CORRECTNESS,
+        definition="Share of scored rows that stayed within Title 21 or flagged a question outside it, rendered no legal advice, guaranteed no compliance outcome and reproduced no copyrighted standard text.",
+        calculation="rows with P=1 / rows scored",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="The easiest dimension to pass: a refusal scores 1 here. A high value says little on its own.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_iso_concordance", name="ISO 13485 Concordance (Q)", family=CORRECTNESS,
+        definition="Share of in-scope rows that identified the ISO 13485 clause by number and routed the requirement through the correct Part 820 section.",
+        calculation="in-scope rows with Q=1 / in-scope rows (those the workbook puts in ISO scope)",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="The denominator is only the rows the workbook scopes for ISO, so it is much smaller than the benchmark. A wrong clause number also sets M=1.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_negative_control_pass", name="Negative-control Pass Rate", family=CORRECTNESS,
+        definition="Share of the benchmark's negative-control rows that pass: the answer states that the section, clause, rule or guidance does not exist, or correctly declines.",
+        calculation="negative-control rows passing the verdict rule / negative-control rows scored",
+        direction=HIGHER_IS_BETTER, unit=RATIO,
+        caveats="Gate G3 requires 100% and is absolute. Hedging without stating that the premise is false does not pass.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_rows_hand_scored", name="Rows Read by Hand for This Run", family=HUMAN,
+        definition="How many of the run's rows a human read and scored for THIS run, rather than inheriting a verdict from an earlier run.",
+        calculation="rows with scoring_basis = manual_rubric_read / rows with a verdict",
+        direction=HIGHER_IS_BETTER, unit=COUNT,
+        caveats="An inherited verdict is carried over on the grounds that the delivered answer did not change. That is a legitimate protocol for a comparative run, but it is not evidence about this run's answers, so the split is reported rather than hidden.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
+    _d(
+        key="acceptance_rows_errored", name="Rows With No Answer to Judge", family=DATASET,
+        definition="How many rows recorded a technical execution failure, so no answer exists to score.",
+        calculation="rows with result = ERROR / rows with a verdict",
+        direction=LOWER_IS_BETTER, unit=COUNT,
+        caveats="Excluded from every rate above, because the rubric says ERROR is a technical failure and never a bad answer. Counting them as failures would understate the model; ignoring them silently would overstate the coverage.",
+        source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
+    ),
 )
 
 REGISTRY: dict[str, MetricDefinition] = {d.key: d for d in _DEFINITIONS}
