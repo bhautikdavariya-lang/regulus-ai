@@ -218,6 +218,24 @@ def _unstated_narrowing(claim: str, passage_text: str) -> str | None:
     return narrowing
 
 
+def _unstated_figure(claim: str, passage_text: str) -> str | None:
+    """A figure the claim asserts - a quantity with its unit, or a date - that `passage_text` does
+    not state at all; None otherwise.
+
+    Operators that cannot compare a figure leave it undetermined, so "... must be thoroughly
+    investigated within 30 days" was supported by a passage stating no period, on strength and
+    polarity alone. A figure the passage never states withholds support on every support path; it
+    never contradicts (the figure may be right, from another provision). Whether a figure the passage
+    DOES state is used correctly stays with the operators' quantity, limit and date comparisons."""
+    stated = OP.stated_numbers(passage_text)
+    passage_dates = OP.dates(passage_text)
+    for kind, value in OP.figures(claim):
+        if value in stated or (kind == "date" and value in passage_dates):
+            continue
+        return f"{value} {kind}" if kind != "date" else value
+    return None
+
+
 def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorComparison",
                  evidence: Sequence[Passage] | None) -> dict[str, Any]:
     """Does this passage, on its own, establish the claim's core proposition?
@@ -234,12 +252,16 @@ def content_gate(claim: str, alignment: Alignment, comparison: "OP.OperatorCompa
     ev_ops = comparison.evidence_operators or {}
     silent = ev_ops.get("strength") is None and ev_ops.get("polarity") is None
     narrowing = _unstated_narrowing(claim, alignment.passage.text)
+    figure = _unstated_figure(claim, alignment.passage.text)
     if distinct:
         verdict, reason = "blocked", (f"the claim names {', '.join(distinct)}, which {alignment.passage.citation} does "
                                       f"not and another source does ({'; '.join(f'{t}: {v[0]}' for t, v in distinct.items())})")
     elif narrowing is not None:
         verdict, reason = "not_established", (f"the claim narrows the requirement with '{narrowing}', which "
                                               f"{alignment.passage.citation} does not state")
+    elif figure is not None:
+        verdict, reason = "not_established", (f"the claim states {figure}, which {alignment.passage.citation} "
+                                              f"does not state")
     elif verbatim:
         verdict, reason = "established", f"{alignment.verbatim_coverage:.0%} verbatim"
     elif (len(agreed) >= MIN_OPERATORS_AGREED and framed >= MIN_PARAPHRASE_OVERLAP
@@ -512,7 +534,8 @@ def judge_item(claim: str, head: str, item: str, candidates: Sequence[Passage], 
         if not (verbatim or by_terms):
             continue
         comparison = OP.compare(item_plain, p.text, authority=p.authority)
-        if comparison.conflicts or comparison.support_blocked or _unstated_narrowing(item_plain, p.text):
+        if comparison.conflicts or comparison.support_blocked or _unstated_narrowing(item_plain, p.text) \
+                or _unstated_figure(item_plain, p.text):
             continue
         if (OP.polarity(item_plain) == OP.NEGATE) != (OP.polarity(p.text) == OP.NEGATE):
             continue
@@ -588,7 +611,8 @@ def judge_descriptive(claim: str, alignments: Sequence[Alignment], *,
         if (OP.polarity(plain) == OP.NEGATE) != (OP.polarity(p.text) == OP.NEGATE):
             continue
         comparison = OP.compare(plain, p.text, authority=p.authority)
-        if comparison.conflicts or comparison.support_blocked or comparison.omissions or _unstated_narrowing(plain, p.text):
+        if comparison.conflicts or comparison.support_blocked or comparison.omissions or _unstated_narrowing(plain, p.text) \
+                or _unstated_figure(plain, p.text):
             continue
         pool = list(evidence) if evidence else [a.passage for a in alignments]
         if distinguishing_terms(claim, p, pool):
@@ -652,7 +676,8 @@ def judge_definition(claim: str, alignments: Sequence[Alignment], *,
         if _defines(p.text, term) != definiens:
             continue
         comparison = OP.compare(plain, p.text, authority=p.authority)
-        if comparison.conflicts or comparison.support_blocked or _unstated_narrowing(plain, p.text):
+        if (comparison.conflicts or comparison.support_blocked or _unstated_narrowing(plain, p.text)
+                or _unstated_figure(plain, p.text)):
             continue
         pool = list(evidence) if evidence else candidates
         reason = (f"a definition: {p.citation} defines {term} as \"{' '.join(definiens)}\", word for word what the "

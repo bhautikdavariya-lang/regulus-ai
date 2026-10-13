@@ -130,12 +130,11 @@ def test_a_duty_narrowed_to_undistributed_batches_is_not_supported():
     assert claim_final(FOCUSED, claim) == AN.UNVERIFIABLE
 
 
-@pytest.mark.xfail(strict=True, reason="pre-existing: a period the evidence never states is supported by the evaluator "
-                                       "(the pipeline's validation withholds such an answer before delivery)")
 def test_a_period_the_evidence_never_states_is_not_supported_by_the_evaluator():
+    """Was a strict xfail (Stage A): the unstated period is now withheld - unverifiable, never contradicted."""
     claim = ("Any unexplained discrepancy or failure of a batch to meet its specifications must be thoroughly "
              "investigated within 30 days.")
-    assert claim_final(FOCUSED, claim) != AN.SUPPORTED
+    assert claim_final(FOCUSED, claim) == AN.UNVERIFIABLE
 
 
 def test_a_period_the_evidence_never_states_is_withheld_by_the_pipeline():

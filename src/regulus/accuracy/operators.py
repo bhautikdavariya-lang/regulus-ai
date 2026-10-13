@@ -370,6 +370,27 @@ def quantities(text: str) -> frozenset[tuple[str, str]]:
     return frozenset(out)
 
 
+_ANY_NUMBER_RE = re.compile(r"(?<![\w.])(\d+(?:,\d{3})*(?:\.\d+)?)(?![\w])")
+_ANY_NUMBER_WORD_RE = re.compile(rf"\b({'|'.join(_NUM_WORDS)})\b", re.I)
+
+
+def stated_numbers(text: str) -> frozenset[str]:
+    """Every number `text` states, normalised, as digits or as a number word ("thirty" -> "30").
+    Deliberately generous: it decides only whether a figure appears in a passage at all."""
+    out = {_normalise_number(m.group(1)) for m in _ANY_NUMBER_RE.finditer(text or "")}
+    out |= {_NUM_WORDS[m.group(1).lower()] for m in _ANY_NUMBER_WORD_RE.finditer(text or "")}
+    return frozenset(out)
+
+
+def figures(text: str) -> tuple[tuple[str, str], ...]:
+    """The figures a claim asserts that a passage would have to state: unit-bearing quantities
+    ("30 days" -> ("day", "30")) and dates. Bare numbers (section numbers, paragraph labels) are not
+    figures here, and neither is a form number ("Form FDA 3500A", acceptance row R-004): that is an
+    identifier, checked as one elsewhere, not a measure."""
+    return (tuple(sorted(q for q in quantities(text) if q[0] != "form"))
+            + tuple(("date", d) for d in sorted(dates(text))))
+
+
 def dates(text: str) -> frozenset[str]:
     out: set[str] = set()
     for m in _DATE_RE.finditer(text or ""):
