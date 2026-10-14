@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import threading
 import time
@@ -42,6 +43,7 @@ from urllib.parse import urlparse
 
 from regulus.accuracy import RUBRIC_ID as ACCURACY_RUBRIC_ID
 from regulus.config import PROJECT_ROOT, load_settings
+from regulus.conversations import (CANCELLED, ERROR, OK, ConversationNotFound, ConversationStore, InvalidInput)
 from regulus.evaluation.runner import sanitize_error
 
 WEB_DIR = PROJECT_ROOT / "web"
@@ -50,6 +52,7 @@ ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
 # one inference at a time: the model is not safe to share across threads and
 # this machine cannot run two anyway
 _LOCK = threading.Lock()
+_CONVERSATION_PATH = re.compile(r"/api/conversations/([A-Za-z0-9-]{1,64})")
 
 
 class Engine:
@@ -319,6 +322,9 @@ class Engine:
 
 class Handler(BaseHTTPRequestHandler):
     engine: Engine = None  # set on the class before serving
+    # Chat history (regulus.conversations): None when the store could not be opened, in which case
+    # answering works exactly as before and only the history endpoints report it unavailable.
+    store: ConversationStore | None = None
 
     def log_message(self, fmt, *args):  # quieter console
         if "api/ask" in (args[0] if args else ""):
@@ -356,6 +362,11 @@ class Handler(BaseHTTPRequestHandler):
                              "alignment": self.engine.accuracy_alignment,
                              "note": ("an evidence-based assessment of this one answer; not the 300-question "
                                       "acceptance-test score")},
+                "conversations": {
+                    "enabled": self.store is not None,
+                    "context": ("each question is answered on its own: earlier messages are kept as history "
+                                "but are never sent to the model or used as evidence"),
+                },
                 "answer_length": {
                     "policy": self.engine.settings.answer_length.policy,
                     "ceiling": self.engine.settings.answer_length.max_new_tokens,
@@ -364,7 +375,45 @@ class Handler(BaseHTTPRequestHandler):
                 },
             })
             return
+        if path == "/api/conversations":
+            if self._history_available():
+                self._json(200, {"conversations": self.store.list_conversations()})
+            return
+        match = _CONVERSATION_PATH.fullmatch(path)
+        if match:
+            if self._history_available():
+                try:
+                    self._json(200, {"conversation": self.store.get_conversation(match.group(1))})
+                except ConversationNotFound:
+                    self._json(404, {"error": "conversation not found"})
+                except InvalidInput as exc:
+                    self._json(400, {"error": str(exc)})
+            return
         self._json(404, {"error": "not found"})
+
+    # -- conversations ------------------------------------------------------
+
+    def _history_available(self) -> bool:
+        if self.store is None:
+            self._json(503, {"error": "conversation history is unavailable on this server"})
+            return False
+        return True
+
+    def _record_turn(self, conversation: tuple[str, str], status: str, content: str, result: dict | None) -> dict:
+        """Record how a conversation turn ended. Never raises: a failed save is reported to the page
+        (saved: false) rather than hiding the answer that was delivered."""
+        cid, tid = conversation
+        t0 = time.perf_counter()
+        try:
+            self.store.record_answer(cid, tid, status, content, result)
+            saved = True
+        except Exception as exc:  # the answer stands even if history could not record it
+            traceback.print_exc()
+            print(f"  chat: turn {tid[:8]} NOT recorded ({type(exc).__name__})", flush=True)
+            saved = False
+        print(f"  chat: conversation {cid[:8]} turn {tid[:8]} {status} recorded={saved} "
+              f"in {round((time.perf_counter() - t0) * 1000, 2)} ms", flush=True)
+        return {"id": cid, "turn_id": tid, "saved": saved}
 
     @staticmethod
     def _ask_kwargs(body: dict) -> dict:
@@ -385,6 +434,10 @@ class Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         if path == "/api/ask/stream":
             self._ask_stream()
+            return
+        if path == "/api/conversations":
+            if self._history_available():
+                self._json(201, {"conversation": self.store.create_conversation()})
             return
         if path != "/api/ask":
             self._json(404, {"error": "not found"})
@@ -443,6 +496,24 @@ class Handler(BaseHTTPRequestHandler):
         if not question:
             self._json(400, {"error": "question must not be empty"})
             return
+        # A conversation turn: the question is recorded before anything is generated, and a turn that
+        # was already answered is replayed rather than generated - and stored - a second time. A
+        # request without conversation fields takes exactly the path it always did.
+        conversation = None
+        if body.get("conversation_id") is not None or body.get("turn_id") is not None:
+            if not self._history_available():
+                return
+            cid, tid = body.get("conversation_id"), body.get("turn_id")
+            try:
+                self.store.add_user_message(cid, tid, question)
+                stored = self.store.answer_for(cid, tid)
+            except ConversationNotFound:
+                self._json(404, {"error": "conversation not found"})
+                return
+            except InvalidInput as exc:
+                self._json(400, {"error": str(exc)})
+                return
+            conversation = (cid, tid)
 
         self.send_response(200)
         self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
@@ -470,6 +541,13 @@ class Handler(BaseHTTPRequestHandler):
 
         try:
             send({"type": "start"})
+            if conversation is not None and stored is not None and stored["status"] == OK:
+                replay = dict(stored["result"] or {"answer": stored["content"]})
+                replay["conversation"] = {"id": conversation[0], "turn_id": conversation[1], "saved": True,
+                                          "replayed": True}
+                send({"type": "final", "result": replay})
+                print(f"  chat: turn {conversation[1][:8]} already answered; replayed the stored answer", flush=True)
+                return
             t0 = time.perf_counter()
             with _LOCK:
                 lock_wait_ms = round((time.perf_counter() - t0) * 1000, 2)
@@ -477,13 +555,19 @@ class Handler(BaseHTTPRequestHandler):
             result["wall_seconds"] = round(time.perf_counter() - t0, 1)
             result.setdefault("server_timings_ms", {}).update({"lock_wait_ms": lock_wait_ms})
             result["stream"] = {**stats, "final_ms": round((time.perf_counter() - t_request) * 1000, 2)}
+            if conversation is not None:
+                result["conversation"] = self._record_turn(conversation, OK, result.get("answer") or "", result)
             send({"type": "final", "result": result})
             print(f"  stream: {stats['deltas']} deltas, first at {stats['first_delta_ms']} ms, "
                   f"final at {result['stream']['final_ms']} ms", flush=True)
         except ClientDisconnected:
             print(f"  stream: client disconnected after {stats['deltas']} deltas; generation stopped", flush=True)
+            if conversation is not None:
+                self._record_turn(conversation, CANCELLED, "Stopped before the answer was complete.", None)
         except Exception as exc:  # never leak a path or a stack trace to the page
             traceback.print_exc()
+            if conversation is not None:
+                self._record_turn(conversation, ERROR, "Request failed: " + sanitize_error(exc), None)
             try:
                 send({"type": "error", "error": sanitize_error(exc)})
             except ClientDisconnected:
@@ -522,6 +606,11 @@ def main() -> int:
                                   dtype=args.dtype or settings.model.dtype)
         settings.model.validate()
     Handler.engine = Engine(settings, offline=args.offline)
+    try:
+        Handler.store = ConversationStore()
+        print(f"Conversation history: {Handler.store.path}", flush=True)
+    except Exception as exc:  # answering must not depend on history
+        print(f"Conversation history unavailable ({type(exc).__name__}: {exc}); answering is unaffected", flush=True)
     Handler.engine.answer_shape = args.answer_shape
     Handler.engine.accuracy = not args.no_accuracy
     Handler.engine.accuracy_alignment = args.accuracy_alignment

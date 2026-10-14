@@ -28,6 +28,8 @@ models/qwen3-0.6b-lora/*smoke_tmp/
 # Data (keep folder structure, not contents)
 data/raw/*
 data/processed/*
+# chat conversations (local SQLite, scripts/serve_ui.py): user content, never committed
+data/chat/
 !data/**/.gitkeep
 
 # Evaluation: benchmark datasets ARE tracked; run results are not (commit
