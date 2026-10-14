@@ -1,0 +1,323 @@
+[
+ {
+  "row": "H-003",
+  "N": null,
+  "claim": "If you are an authorized user of CBP’s ABI/ACE/ITDS, you may submit prior notice through either the ABI/ACE/ITDS interface or FDA PNSI.",
+  "claim_ops": {
+   "main_clause": "you may submit prior notice through either the ABI/ACE/ITDS interface or FDA PNSI.",
+   "strength": "permissive",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "support_basis": "operator_conflict",
+  "final": "contradicted",
+  "support_reason": "the answer states a permissive requirement where the evidence is mandatory (compared with 21 CFR 1.279(a) (SOURCE 1))",
+  "answer_verdict": "incorrect",
+  "score": 0,
+  "candidates": [
+   {
+    "citation": "21 CFR 1.279(a)",
+    "authority": "binding_regulation",
+    "seq": 0,
+    "text": "(a) Except as provided in paragraph (c) of this section, you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review as follows:",
+    "evidence_ops": {
+     "main_clause": "(a) you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review as follows:",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [
+     {
+      "operator": "strength",
+      "detail": "the answer states a permissive requirement where the evidence is mandatory",
+      "claim": "permissive",
+      "evidence": "mandatory"
+     }
+    ],
+    "agreed": [
+     "polarity"
+    ],
+    "relations": []
+   }
+  ]
+ },
+ {
+  "row": "H-003",
+  "N": null,
+  "claim": "If you are not an authorized user, you may submit prior notice through FDA PNSI.",
+  "claim_ops": {
+   "main_clause": "you may submit prior notice through FDA PNSI.",
+   "strength": "permissive",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "support_basis": "operator_conflict",
+  "final": "contradicted",
+  "support_reason": "the answer states a permissive requirement where the evidence is mandatory (compared with 21 CFR 1.279(a) (SOURCE 1))",
+  "answer_verdict": "incorrect",
+  "score": 0,
+  "candidates": [
+   {
+    "citation": "21 CFR 1.279(a)",
+    "authority": "binding_regulation",
+    "seq": 0,
+    "text": "(a) Except as provided in paragraph (c) of this section, you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review as follows:",
+    "evidence_ops": {
+     "main_clause": "(a) you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review as follows:",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [
+     {
+      "operator": "strength",
+      "detail": "the answer states a permissive requirement where the evidence is mandatory",
+      "claim": "permissive",
+      "evidence": "mandatory"
+     }
+    ],
+    "agreed": [
+     "polarity"
+    ],
+    "relations": []
+   }
+  ]
+ },
+ {
+  "row": "D-009",
+  "N": null,
+  "claim": "Written procedures shall include control of microbiological contamination to prevent objectionable microorganisms in drug products not required to be sterile.",
+  "claim_ops": {
+   "main_clause": "Written procedures shall include control of microbiological contamination",
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "support_basis": "not_decisive",
+  "final": "unverifiable",
+  "support_reason": "aligned to 21 CFR 211.101 (SOURCE 2), but it does not establish the claim: the claim names contamin, microbiological, microorganism, objectionabl, prevent, steril, which 21 CFR 211.101 does not and another source does (contamin: 21 CFR 211.113(a); microbiological: 21 CFR 211.113(a); microorganism: 21 CFR 211.113(a); objectionabl: 21 CFR 211.113(a); prevent: 21 CFR 211.113(a); steril: 21 CFR 211.113(a))",
+  "answer_verdict": "partial",
+  "score": 35,
+  "candidates": [
+   {
+    "citation": "21 CFR 211.113(a)",
+    "authority": "binding_regulation",
+    "seq": 0,
+    "text": "(a) Appropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed.",
+    "evidence_ops": {
+     "main_clause": "(a) Appropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed.",
+     "strength": "mandatory",
+     "polarity": "negate",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [
+     {
+      "operator": "polarity",
+      "detail": "the answer is affirm where the evidence is negate",
+      "claim": "affirm",
+      "evidence": "negate"
+     }
+    ],
+    "agreed": [
+     "strength"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 0,
+    "text": "Written production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess:\n(a) The batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient.",
+    "evidence_ops": {
+     "main_clause": "Written production and control procedures shall include the following, which are designed",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 1,
+    "text": "(b) Components for drug product manufacturing shall be weighed, measured, or subdivided as appropriate.",
+    "evidence_ops": {
+     "main_clause": "(b) Components for drug product manufacturing shall be weighed, measured, or subdivided as appropriate.",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": [
+      "as appropriate"
+     ]
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 2,
+    "text": "If a component is removed from the original container to another, the new container shall be identified with the following information:\n(1) Component name or item code;\n(2) Receiving or control number;\n(3) Weight or measure in new container;\n(4) Batch for which component was dispensed, including its product name, strength, and lot number.",
+    "evidence_ops": {
+     "main_clause": "the new container shall be identified with the following information:\n(1) Component name or item code;\n(2) Receiving or control number;\n(3) Weight or measure in new container;\n(4) Batch for which component was dispensed, including its product name, strength, and lot number.",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 3,
+    "text": "(c) Weighing, measuring, or subdividing operations for components shall be adequately supervised.",
+    "evidence_ops": {
+     "main_clause": "(c) Weighing, measuring, or subdividing operations for components shall be adequately supervised.",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 4,
+    "text": "Each container of component dispensed to manufacturing shall be examined by a second person to assure that:\n(1) The component was released by the quality control unit;\n(2) The weight or measure is correct as stated in the batch production records;\n(3) The containers are properly identified.",
+    "evidence_ops": {
+     "main_clause": "Each container of component dispensed to manufacturing shall be examined by a second person",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 5,
+    "text": "If the weighing, measuring, or subdividing operations are performed by automated equipment under § 211.68, only one person is needed to assure paragraphs (c)(1), (c)(2), and (c)(3) of this section.",
+    "evidence_ops": {
+     "main_clause": "measuring, or subdividing operations are performed by automated equipment under § 211.68, only one person is needed",
+     "strength": null,
+     "polarity": null,
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.101",
+    "authority": "binding_regulation",
+    "seq": 6,
+    "text": "(d) Each component shall either be added to the batch by one person and verified by a second person or, if the components are added by automated equipment under § 211.68, only verified by one person.",
+    "evidence_ops": {
+     "main_clause": "(d) Each component shall either be added to the batch by one person and verified by a second person or, only verified by one person.",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.100(a)",
+    "authority": "binding_regulation",
+    "seq": 0,
+    "text": "(a) There shall be written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess.",
+    "evidence_ops": {
+     "main_clause": "(a) There shall be written procedures for production and process control designed",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.100(a)",
+    "authority": "binding_regulation",
+    "seq": 1,
+    "text": "Such procedures shall include all requirements in this subpart.",
+    "evidence_ops": {
+     "main_clause": "Such procedures shall include all requirements in this subpart.",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   },
+   {
+    "citation": "21 CFR 211.100(a)",
+    "authority": "binding_regulation",
+    "seq": 2,
+    "text": "These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit.",
+    "evidence_ops": {
+     "main_clause": "These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit.",
+     "strength": "mandatory",
+     "polarity": "affirm",
+     "duty_holder": null,
+     "conditions": []
+    },
+    "conflicts": [],
+    "agreed": [
+     "strength",
+     "polarity"
+    ],
+    "relations": []
+   }
+  ]
+ }
+]

@@ -1,0 +1,96 @@
+--- artifacts/accuracy/ui_evaluation_score_20261009T072052Z/snapshot_before/answer_ui_stream_harness.js	2026-10-09 12:50:52
++++ tests/answer_ui_stream_harness.js	2026-10-09 12:51:46
+@@ -13,7 +13,15 @@
+ //
+ // Scenario "file" merges payload.result into the final result and types
+ // payload.page_question into the question box: real evaluator output, built in
+-// Python, rendered by the page (tests/test_accuracy_ui.py).
++// Python, rendered by the page (tests/test_accuracy_ui.py). With payload.sequence
++// (a list of {page_question, result}) the page asks each in turn in ONE session
++// and the output adds `finals`, the evaluation block after each answer.
++//
++//   node tests/answer_ui_stream_harness.js scores <values.json>
++//
++// Calls the page's own evaluationScore() and renderEvaluation() on each value,
++// including values JSON cannot carry ("__NaN__", "__Infinity__", "__-Infinity__",
++// "__undefined__"), and prints what each renders.
+ "use strict";
+ const fs = require("fs");
+ const path = require("path");
+@@ -71,6 +79,9 @@
+ if (ACCURACY[scenario]) final.accuracy = ACCURACY[scenario];
+ const fromFile = scenario === "file" ? JSON.parse(fs.readFileSync(process.argv[3], "utf8")) : null;
+ if (fromFile) Object.assign(final, fromFile.result || {});
++const SPECIAL = { __NaN__: NaN, __Infinity__: Infinity, "__-Infinity__": -Infinity, __undefined__: undefined };
++const steps = fromFile && Array.isArray(fromFile.sequence)
++  ? fromFile.sequence.map(st => ({ question: st.page_question, final: { ...final, ...(st.result || {}) } })) : null;
+ const lines = [
+   { type: "start" },
+   { type: "context", sources: [{ index: 1, citation: "21 CFR 820.10(b)(2)" }], no_context: false },
+@@ -78,19 +89,24 @@
+   { type: "delta", text: "Draft " }, { type: "delta", text: "answer " }, { type: "delta", text: "[9]." },
+   { type: "generation_finished", generated_tokens: 3, finished: true },
+ ];
+-if (scenario !== "error" && scenario !== "truncated") lines.push({ type: "final", result: final });
+-if (scenario === "error") lines.push({ type: "error", error: "model crashed mid-generation" });
+-const payload = lines.map(l => JSON.stringify(l) + "\n").join("");
+-// split at deliberately awkward places, including inside a JSON line and a multi-byte-safe boundary
+-const cuts = [7, 40, 41, 90, 130, 131];
+-// and a cut in the middle of every later line, so each delta arrives in its own read, split mid-JSON
+-let pos = 0;
+-for (const l of lines.map(x => JSON.stringify(x) + "\n")) { if (pos > 131) cuts.push(pos + Math.floor(l.length / 2)); pos += l.length; }
+-cuts.sort((a, b) => a - b);
+-const chunks = [];
+-let last = 0;
+-for (const c of cuts.filter(c => c < payload.length)) { chunks.push(payload.slice(last, c)); last = c; }
+-chunks.push(payload.slice(last));
++function chunksFor(finalResult) {
++  const all = lines.slice();
++  if (scenario !== "error" && scenario !== "truncated") all.push({ type: "final", result: finalResult });
++  if (scenario === "error") all.push({ type: "error", error: "model crashed mid-generation" });
++  const payload = all.map(l => JSON.stringify(l) + "\n").join("");
++  // split at deliberately awkward places, including inside a JSON line and a multi-byte-safe boundary
++  const cuts = [7, 40, 41, 90, 130, 131];
++  // and a cut in the middle of every later line, so each delta arrives in its own read, split mid-JSON
++  let pos = 0;
++  for (const l of all.map(x => JSON.stringify(x) + "\n")) { if (pos > 131) cuts.push(pos + Math.floor(l.length / 2)); pos += l.length; }
++  cuts.sort((a, b) => a - b);
++  const out = [];
++  let last = 0;
++  for (const c of cuts.filter(c => c < payload.length)) { out.push(payload.slice(last, c)); last = c; }
++  out.push(payload.slice(last));
++  return out;
++}
++let chunks = chunksFor(final);
+ 
+ const encoder = new TextEncoder();
+ const fetchStub = async (url) => {
+@@ -110,11 +126,26 @@
+ vm.runInContext(script, ctx);
+ el("q").value = (fromFile && fromFile.page_question) || "What does 21 CFR 820.10(b)(2) require?";
+ (async () => {
+-  await ctx.ask();
++  if (scenario === "scores") {
++    const values = JSON.parse(fs.readFileSync(process.argv[3], "utf8")).map(v => (v in SPECIAL ? SPECIAL[v] : v));
++    console.log(JSON.stringify(values.map(v => {
++      const e = { status: "fail", label: "FAIL", live_check_score: v, explanation: "x", basis: "b" };
++      return { value: String(v), score: ctx.evaluationScore(e), html: ctx.renderEvaluation(e, null) };
++    })));
++    return;
++  }
++  const finals = [];
++  for (const st of steps || []) {
++    el("q").value = st.question;
++    chunks = chunksFor(st.final);
++    await ctx.ask();
++    finals.push(els.out.innerHTML);
++  }
++  if (!steps) await ctx.ask();
+   const out = els.out.innerHTML;
+   console.log(JSON.stringify({
+     draft_seen: snapshots.some(s => s.includes("draft · generating") && s.includes("Draft answer")),
+     final_out: out, status: els.status.textContent, stop_hidden: els.stop.hidden, ask_disabled: els.ask.disabled,
+-    answer_shown: out.includes("Validated answer [1]."),
++    answer_shown: out.includes("Validated answer [1]."), finals,
+   }));
+ })();

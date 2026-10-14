@@ -1,0 +1,12 @@
+#### NUM2
+FAILED tests/test_accuracy_relative_clause.py::test_RC1_213_122e_a_negated_qualifier_narrows_the_items_it_does_not_negate_the_rule
+FAILED tests/test_accuracy_relative_clause.py::test_RC2_212_40c_must_use_is_not_must_not_use
+FAILED tests/test_accuracy_relative_clause.py::test_RC3_101_36b2i_shall_be_declared_is_not_shall_not_be_declared
+3 failed, 1837 passed, 1 skipped, 47 deselected in 58.40s
+NUM2           passed 9/15 | T1a:false polarity conflict T1b:false polarity conflict T1c:false polarity conflict T2a:ok T2b:FALSE PARTIAL (drops_a_condition) T2c:FALSE SUPPORT (paraphrase) T3b:ok T3c:false polarity conflict T4a:ok T4b:ok T4c:ok T4d:ok T4e:ok T5a:ok T5b:ok
+NUM2         decisions 7/11 | extraction 5/5 | DX2:FALSE SUPPORT (descriptive) DX4:false contradiction (polarity; final supported) DX6:false contradiction (polarity,strength; final supported) DX9:FALSE SUPPORT (descriptive)
+NUM2         numeric cases 14/16 | N12:false contradiction/block (['polarity', 'strength'], block=False, final contradicted) N15:FALSE SUPPORT
+NUM2           false-conflict fixed 10/88 | real-operator kept 44/44 | INV unchanged 18/18 | genuine kept 19/19 | readings 6/6 | replay new 0 removed 0
+NUM2          m-cases 20/36 | FAIL: PR1(paraph/-) PR3(adjace/-) PR7(paraph/polarity,strength) MR1(verbat/-) MR5(not_de/-) MR7(operat/polarity,strength) DQ3(verbat/-) DQ4(verbat/-) NN2(operat/polarity) T3c(not_de/polarity) DX4(verbat/polarity) DX2(descri/-) N9(paraph/-) N10(descri/-) N12(operat/polarity,strength) N15(paraph/-)
+probes ok: 11
+compare calls 5829 with conflicts 374 row-runs 170

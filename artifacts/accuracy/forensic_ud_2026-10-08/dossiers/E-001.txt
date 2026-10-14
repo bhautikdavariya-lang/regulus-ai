@@ -1,0 +1,52 @@
+########## E-001  N=1 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=scope
+Q: What is the scope of 21 CFR Part 11 and to which records does it apply?
+KEY: 21 CFR 11.1; 11.2 | Records in electronic form created, modified, maintained, archived, retrieved, or transmitted under predicate rules; electronic signatures; permitted use.
+REV: key_sections=11.1;11.2; key_section_state=present;present; key_retrieved=yes; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=model reasoning (right evidence, wrong answer); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Quotes 11.1(a) accurately, then garbles the scope: it says the part applies to 'electronic records, electronic signatures, and handwritten signatures executed on paper'. 11.1(b) applies to records in electronic form created, modified, maintained, archived, retrieved or transmitted under agency records requirements, and expressly does not apply to paper records transmitted electronically. The marker citation points to 11.100(a), not 11.1.
+EVAL: Draft key 11.1/11.2 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=ANSWERABLE validation=valid
+ANSWER: The scope of 21 CFR Part 11 is defined in section 11.1(a), which states that the regulations set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equivalent to paper records and handwritten signatures executed on paper. This applies to electronic records, electronic signatures, and handwritten signatures executed on paper. The records in question are those that are maintained and used in accordance with the requirements of this part.
+
+[1]
+EVIDENCE LABELS (10, lost=0):
+     21 CFR 11.100(a)
+     21 CFR 11.10
+     21 CFR 11.1(a)
+     21 CFR 11.200(a)
+     21 CFR 11.2(a)
+     21 CFR 11.300
+     21 CFR 11.30
+     21 CFR 11.3(a)
+     21 CFR 11.50(a)
+     21 CFR 11.70
+SOURCES:
+   [21 CFR 11.100(a)] (General requirements.) '(a) Each electronic signature shall be unique to one individual and shall not be reused by, or reassigned to, anyone else.'
+   [21 CFR 11.10] (Controls for closed systems.) 'Persons who use closed systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, when appropriate, the confidentiality of electronic records, and to ensure that'
+   [21 CFR 11.1(a)] (Scope.) '(a) The regulations in this part set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equivalent to paper records'
+   [21 CFR 11.200(a)] (Electronic signature components and controls.) '(a) Electronic signatures that are not based upon biometrics shall:'
+   [21 CFR 11.2(a)] (Implementation.) '(a) For records required to be maintained but not submitted to the agency, persons may use electronic records in lieu of paper records or electronic signatures in lieu of traditional signatures, in whole or in part, provided that the requirements of this part '
+   [21 CFR 11.300] (Controls for identification codes/passwords.) 'Persons who use electronic signatures based upon use of identification codes in combination with passwords shall employ controls to ensure their security and integrity. Such controls shall include:\n(a) Maintaining the uniqueness of each combined identification'
+   [21 CFR 11.30] (Controls for open systems.) 'Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their'
+   [21 CFR 11.3(a)] (Definitions.) '(a) The definitions and interpretations of terms contained in section 201 of the act apply to those terms when used in this part.'
+   [21 CFR 11.50(a)] (Signature manifestations.) '(a) Signed electronic records shall contain information associated with the signing that clearly indicates all of the following:'
+   [21 CFR 11.70] (Signature/record linking.) 'Electronic signatures and handwritten signatures executed to electronic records shall be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary'
+REQS: [['r1', '21 CFR part 11']] satisfied=[]
+INTENT: topic=['scop', 'record'] elements=["the question's subject"] parts=['11'] sections=[]
+VERDICT: 3 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=["the question's subject"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 3
+  C1: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=correct
+      text: The scope of 21 CFR Part 11 is defined in section 11.1(a), which states that the regulations set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equival
+      support_reason: aligned to 21 CFR 11.1(a) (SOURCE 3), but only 1 regulatory operator(s) could be decided (actor) and 89% of its terms appear there; unmatched: defined, scope
+      rel_reason: the regulation it corresponds to (21 CFR 11.10, 21 CFR 11.1(a), 21 CFR 11.2(a) ...) is about scop/record | found=0.92
+      evidence: [{'citation': '21 CFR 11.10', 'source_index': 2, 'heading': 'Controls for closed systems.', 'text': 'Persons who use closed systems to create, modify, maintain, or transmit electronic records shall em ops={'actor': 'matched', 'strength': 'undetermined', 'polarity': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}
+  C2: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=missing
+      text: This applies to electronic records, electronic signatures, and handwritten signatures executed on paper.
+      support_reason: aligned to 21 CFR 11.70 (SOURCE 10), but only 0 regulatory operator(s) could be decided (none) and 71% of its terms appear there; unmatched: applies, paper
+      rel_reason: the regulation it corresponds to (21 CFR 11.100(a), 21 CFR 11.10, 21 CFR 11.1(a) ...) is about scop/record | found=1.0
+      evidence: [{'citation': '21 CFR 11.100(a)', 'source_index': 1, 'heading': 'General requirements.', 'text': '(a) Each electronic signature shall be unique to one individual and shall not be reused by, or reassig ops={'strength': 'undetermined', 'polarity': 'undetermined', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}
+  C3: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=missing
+      text: The records in question are those that are maintained and used in accordance with the requirements of this part.
+      support_reason: aligned to 21 CFR 11.2(a) (SOURCE 5), but only 0 regulatory operator(s) could be decided (none) and 50% of its terms appear there; unmatched: question, used
+      rel_reason: the regulation it corresponds to (21 CFR 11.10, 21 CFR 11.2(a), 21 CFR 11.300 ...) is about record | found=0.5
+      evidence: [{'citation': '21 CFR 11.10', 'source_index': 2, 'heading': 'Controls for closed systems.', 'text': 'Persons who use closed systems to create, modify, maintain, or transmit electronic records shall em ops={'strength': 'undetermined', 'polarity': 'undetermined', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}

@@ -1,0 +1,30 @@
+########## D-005  N=0 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=direct_lookup
+Q: What building and facility requirements apply to aseptic processing areas?
+KEY: 21 CFR 211.42(c)(10) | Separate or defined areas, floors/walls/ceilings smooth and cleanable, HEPA-filtered air under positive pressure, environmental monitoring, air pressure differential systems.
+REV: key_sections=211.42; key_section_state=present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=no; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Declines ('sources do not provide enough information') although 211.42 is in the snapshot. Nothing on defined aseptic areas, smooth cleanable surfaces, air filtered through high-efficiency particulate air filters under positive pressure, environmental monitoring or pressure differential systems.
+EVAL: Draft key 211.42(c)(10) verified correct against the snapshot. Safe but incorrect: an answerable question left unanswered.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The available regulatory sources do not provide enough information to answer this question.
+EVIDENCE LABELS (8, lost=1):
+     21 CFR 112.126(a)
+     21 CFR 111.460(a)
+     21 CFR 112.129
+     21 CFR 803.30(a)
+     21 CFR 112.130
+     21 CFR 507.7(a)
+     21 CFR 112.133
+   X FDA Guidance: Sterile Drug Products Produced by Aseptic Processing — Current Good Manufacturing Practice: Guidance for Industry (final, 2004-10-04, Do
+SOURCES:
+   [21 CFR 112.126(a)] (What requirements apply to my buildings?) '(a) All of the following requirements apply regarding buildings:'
+   [21 CFR 111.460(a)] (What requirements apply to holding in-process material?) '(a) You must identify and hold in-process material under conditions that protect against mixup, contamination, and deterioration.'
+   [21 CFR 112.129] (What requirements apply to toilet facilities?) 'All of the following requirements apply to toilet facilities:\n(a) You must provide personnel with adequate, readily accessible toilet facilities, including toilet facilities readily accessible to growing areas during harvesting activities.\n(b) Your toilet faci'
+   [21 CFR 803.30(a)] (If I am a user facility, what reporting requirements apply to me?) '(a) You must submit reports to the manufacturer or to us, or both, as specified in paragraphs (a)(1) and (a)(2) of this section as follows:'
+   [21 CFR 112.130] (What requirements apply for hand-washing facilities?) 'All of the following requirements apply to hand-washing facilities:\n(a) You must provide personnel with adequate, readily accessible hand-washing facilities during growing activities that take place in a fully-enclosed building, and during covered harvest, pac'
+   [21 CFR 507.7(a)] (Requirements that apply to a qualified facility.) '(a) A qualified facility must submit the following attestations to FDA:'
+   [21 CFR 112.133] (What requirements apply to plumbing?) 'The plumbing must be of an adequate size and design and be adequately installed and maintained to:\n(a) Distribute water under pressure as needed, in sufficient quantities, in all areas where used for covered activities, for sanitary operations, or for hand-was'
+REQS: [] satisfied=[]
+INTENT: topic=['build', 'facil', 'aseptic', 'process', 'area'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: the answer declines, and neither the pipeline state nor the retrieved evidence establishes whether the question could have been answered | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "the answer declines, and neither the pipeline state nor the retrieved evidence establishes whether the question could have been answered", "evidence": []}
+SENTENCES: 0

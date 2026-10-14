@@ -1,0 +1,524 @@
+{
+ "F1 broad: (c)(1) only": {
+  "expect": "not_pass",
+  "question": "What does 21 CFR 312.32 require?",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "detail": "the question asks what 21 CFR 312.32 requires, and the answer does not address 21 CFR 312.32(c)(2), 21 CFR 312.32(d)(1), 21 CFR 312.32(d)(2), 21 CFR 312.32(d)(3), which states a requirement of it",
+   "delivered": "The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3]\n21 CFR 312.32(a) (eCFR, binding, verbatim): Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201clife-threatening\u201d if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [1].\n21 CFR 312.32(b) (eCFR, binding, verbatim): (b) Review of safety information. The sponsor must promptly review all information relevant to the safety of the drug obtained or otherwise received by the sponsor from foreign or domestic sources, including information derived from any clinical or epidemiological investigations, animal or in vitro studies, reports in the scientific literature, and unpublished scientific papers, as well as reports from foreign regulatory authorities and reports of foreign commercial marketing experience for drugs that are not marketed in the United States [2].",
+   "mode": "synthesis",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(b)"
+    ]
+   ]
+  }
+ },
+ "F2 broad: complete": {
+  "expect": "pass",
+  "question": "What does 21 CFR 312.32 require?",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "detail": "the statements that answer the question cover what it asks for",
+   "delivered": "The sponsor must promptly review all information relevant to the safety of the drug obtained or otherwise received by the sponsor from foreign or domestic sources, including information derived from any clinical or epidemiological investigations, animal or in vitro studies, reports in the scientific literature, and unpublished scientific papers, as well as reports from foreign regulatory authorities and reports of foreign commercial marketing experience for drugs that are not marketed in the United States. [2] The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3] The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information. [5] The sponsor must promptly investigate all safety information it receives. [7] Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [8] If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [9]\n21 CFR 312.32(a) (eCFR, binding, verbatim): Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201clife-threatening\u201d if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [1].",
+   "mode": "synthesis",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(b)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(3)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ]
+   ]
+  }
+ },
+ "F2x broad: complete incl. (c)(1)(i) lead-in": {
+  "expect": "record",
+  "question": "What does 21 CFR 312.32 require?",
+  "production": {
+   "label": "FAIL",
+   "score": 0,
+   "completeness": "pass",
+   "detail": "the statements that answer the question cover what it asks for",
+   "delivered": "The sponsor must promptly review all information relevant to the safety of the drug obtained or otherwise received by the sponsor from foreign or domestic sources, including information derived from any clinical or epidemiological investigations, animal or in vitro studies, reports in the scientific literature, and unpublished scientific papers, as well as reports from foreign regulatory authorities and reports of foreign commercial marketing experience for drugs that are not marketed in the United States. [2] The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3] Serious and unexpected suspected adverse reaction. The sponsor must report any suspected adverse reaction that is both serious and unexpected. The sponsor must report an adverse event as a suspected adverse reaction only if there is evidence to suggest a causal relationship between the drug and the adverse event, such as: [4] The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information. [5] The sponsor must promptly investigate all safety information it receives. [7] Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [8] If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [9]\n21 CFR 312.32(a) (eCFR, binding, verbatim): Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201clife-threatening\u201d if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [1].",
+   "mode": "synthesis",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(b)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)(i)"
+    ],
+    [
+     "contradicted",
+     "21 CFR 312.32(c)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(3)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ]
+   ]
+  }
+ },
+ "F3 broad: missing the 7-day rule": {
+  "expect": "not_pass",
+  "question": "What does 21 CFR 312.32 require?",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "detail": "the question asks what 21 CFR 312.32 requires, and the answer does not address 21 CFR 312.32(c)(2), which states a requirement of it",
+   "delivered": "The sponsor must promptly review all information relevant to the safety of the drug obtained or otherwise received by the sponsor from foreign or domestic sources, including information derived from any clinical or epidemiological investigations, animal or in vitro studies, reports in the scientific literature, and unpublished scientific papers, as well as reports from foreign regulatory authorities and reports of foreign commercial marketing experience for drugs that are not marketed in the United States. [2] The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3] The sponsor must promptly investigate all safety information it receives. [7] Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [8] If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [9]\n21 CFR 312.32(a) (eCFR, binding, verbatim): Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201clife-threatening\u201d if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [1].",
+   "mode": "synthesis",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(b)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(3)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ]
+   ]
+  }
+ },
+ "F4 broad: missing follow-up (d)": {
+  "expect": "not_pass",
+  "question": "What does 21 CFR 312.32 require?",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "detail": "the question asks what 21 CFR 312.32 requires, and the answer does not address 21 CFR 312.32(d)(1), 21 CFR 312.32(d)(2), 21 CFR 312.32(d)(3), which states a requirement of it",
+   "delivered": "The sponsor must promptly review all information relevant to the safety of the drug obtained or otherwise received by the sponsor from foreign or domestic sources, including information derived from any clinical or epidemiological investigations, animal or in vitro studies, reports in the scientific literature, and unpublished scientific papers, as well as reports from foreign regulatory authorities and reports of foreign commercial marketing experience for drugs that are not marketed in the United States. [2] The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3] The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information. [5]\n21 CFR 312.32(a) (eCFR, binding, verbatim): Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201clife-threatening\u201d if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [1].",
+   "mode": "synthesis",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(b)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ]
+   ]
+  }
+ },
+ "F5 focused 7-day: correct": {
+  "expect": "pass",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "delivered": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction is no later than 7 calendar days after the sponsor's initial receipt of the information [5].",
+   "mode": "focused",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(c)(2)"
+    ]
+   ]
+  }
+ },
+ "F6 focused 7-day: drops the trigger": {
+  "expect": "not_pass",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "production": {
+   "label": "FAIL",
+   "score": 55,
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "delivered": "An unexpected fatal or life-threatening suspected adverse reaction must be reported to FDA no later than 7 calendar days [5].",
+   "mode": "focused",
+   "claims": [
+    [
+     "partially_supported",
+     "21 CFR 312.32(c)(2)"
+    ]
+   ]
+  }
+ },
+ "F7 focused 7-day: wrong deadline": {
+  "expect": "not_pass",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "production": {
+   "label": "FAIL",
+   "score": 0,
+   "completeness": "fail",
+   "detail": "the answer does not address: the question's subject",
+   "delivered": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction is no later than 15 calendar days after the sponsor's initial receipt of the information [5].",
+   "mode": "focused",
+   "claims": [
+    [
+     "contradicted",
+     "21 CFR 312.32(d)(3)"
+    ]
+   ]
+  }
+ },
+ "F8 focused follow-up: correct (known false fail)": {
+  "expect": "known_fail",
+  "question": "What follow-up does 21 CFR 312.32 require after an IND safety report?",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(c), which states a requirement on it",
+   "delivered": "The sponsor must promptly investigate all safety information it receives. [7] Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [8] If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [9]",
+   "mode": "focused",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(d)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(2)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(d)(3)"
+    ]
+   ]
+  }
+ },
+ "F9a 211.25 (c) only": {
+  "expect": "not_pass",
+  "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(a), 21 CFR 211.25(b), which states a requirement on it",
+   "delivered": "There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]",
+   "mode": "focused",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 211.25(c)"
+    ]
+   ]
+  }
+ },
+ "F9b 211.25 (a) only": {
+  "expect": "not_pass",
+  "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(b), 21 CFR 211.25(c), which states a requirement on it",
+   "delivered": "Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them. [1]",
+   "mode": "focused",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ]
+   ]
+  }
+ },
+ "F9c 211.25 all three": {
+  "expect": "pass",
+  "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "delivered": "Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them. [1] Each person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions in such a manner as to provide assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess. [2] There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]",
+   "mode": "focused",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(b)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(c)"
+    ]
+   ]
+  }
+ },
+ "F9d 'What does 211.25 require?' (c) only": {
+  "expect": "pass_after_repair",
+  "question": "What does 21 CFR 211.25 require?",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "detail": "the statements that answer the question cover what it asks for",
+   "delivered": "There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]\n21 CFR 211.25(a) (eCFR, binding, verbatim): (a) Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them [1].\n21 CFR 211.25(b) (eCFR, binding, verbatim): (b) Each person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions in such a manner as to provide assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess [2].",
+   "mode": "synthesis",
+   "claims": [
+    [
+     "supported",
+     "21 CFR 211.25(c)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 211.25(a)"
+    ]
+   ]
+  }
+ },
+ "P1 broad: (c)(1) only [production DB]": {
+  "expect": "not_pass",
+  "question": "What does 21 CFR 312.32 require?",
+  "production": {
+   "label": "NOT FULLY EVALUATED",
+   "score": 95,
+   "completeness": "not_established",
+   "detail": "10 paragraph(s) of 21 CFR 312.32 that state a requirement (21 CFR 312.32(c)(1)(iii), 21 CFR 312.32(c)(1)(iv), 21 CFR 312.32(c)(1)(v), 21 CFR 312.32(c)(2) ...) were not in the evidence, so whether the answer covers what 21 CFR 312.32 requires cannot be established",
+   "delivered": "The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [8]\n21 CFR 312.32(a) (eCFR, binding, verbatim): (a) Definitions. The following definitions of terms apply to this section: [1].\n21 CFR 312.32(a) (eCFR, binding, verbatim): Adverse event means any untoward medical occurrence associated with the use of a drug in humans, whether or not considered drug related [2].\n21 CFR 312.32(a) (eCFR, binding, verbatim): Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201clife-threatening\u201d if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [3].\n21 CFR 312.32(a) (eCFR, binding, verbatim): Serious adverse event or serious suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201cserious\u201d if, in the view of either the investigator or sponsor, it results in any of the following outcomes: Death, a life-threatening adverse event, inpatient hospitalization or prolongation of existing hospitalization, a persistent or significant incapacity or substantial disruption of the ability to conduct normal life functions, or a congenital anomaly/birth defect. Important medical events that may not result in death, be life-threatening, or require hospitalization may be considered serious when, based upon appropriate medical judgment, they may jeopardize the patient or subject and may require medical or surgical intervention to prevent one of the outcomes listed in this definition. Examples of such medical events include allergic bronchospasm requiring intensive treatment in an emergency room or at home, blood dyscrasias or convulsions that do not result in inpatient hospitalization, or the development of drug dependency or drug abuse [4].\n21 CFR 312.32(a) (eCFR, binding, verbatim): Suspected adverse reaction means any adverse event for which there is a reasonable possibility that the drug caused the adverse event. For the purposes of IND safety reporting, \u201creasonable possibility\u201d means there is evidence to suggest a causal relationship between the drug and the adverse event. Suspected adverse reaction implies a lesser degree of certainty about causality than adverse reaction, which means any adverse event caused by a drug [5].\n21 CFR 312.32(a) (eCFR, binding, verbatim): Unexpected adverse event or unexpected suspected adverse reaction. An adverse event or suspected adverse reaction is considered \u201cunexpected\u201d if it is not listed in the investigator brochure or is not listed at the specificity or severity that has been observed; or, if an investigator brochure is not required or available, is not consistent with the risk information described in the general investigational plan or elsewhere in the current application, as amended. For example, under this definition, hepatic necrosis would be unexpected (by virtue of greater severity) if the investigator brochure referred only to elevated hepatic enzymes or hepatitis. Similarly, cerebral thromboembolism and cerebral vasculitis would be unexpected (by virtue of greater specificity) if the investigator brochure listed only cerebral vascular accidents. \u201cUnexpected,\u201d as used in this definition, also refers to adverse events or suspected adverse reactions that are mentioned in the investigator brochure as occurring with a class of drugs or as anticipated from the pharmacological properties of the drug, but are not specifically mentioned as occurring with the particular drug under investigation [6].\n21 CFR 312.32(b) (eCFR, binding, verbatim): (b) Review of safety information. The sponsor must promptly review all information relevant to the safety of the drug obtained or otherwise received by the sponsor from foreign or domestic sources, including information derived from any clinical or epidemiological investigations, animal or in vitro studies, reports in the scientific literature, and unpublished scientific papers, as well as reports from foreign regulatory authorities and reports of foreign commercial marketing experience for drugs that are not marketed in the United States [7].\n21 CFR 312.32(d) (eCFR, binding, verbatim): (d) Followup [14].",
+   "sources": [
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(b)",
+    "21 CFR 312.32(c)(1)",
+    "21 CFR 312.32(c)(1)(i)",
+    "21 CFR 312.32(c)(1)(i)(A)",
+    "21 CFR 312.32(c)(1)(i)(B)",
+    "21 CFR 312.32(c)(1)(i)(C)",
+    "21 CFR 312.32(c)(1)(ii)",
+    "21 CFR 312.32(d)"
+   ],
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(c)(1)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(a)"
+    ],
+    [
+     "supported",
+     "21 CFR 312.32(b)"
+    ]
+   ]
+  }
+ },
+ "P5 focused 7-day: correct [production DB]": {
+  "expect": "pass",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "delivered": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32 is no later than 7 calendar days after the sponsor's initial receipt of the information [9].",
+   "sources": [
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(a)",
+    "21 CFR 312.32(c)(1)",
+    "21 CFR 312.32(c)(1)(i)",
+    "21 CFR 312.32(c)(1)(ii)",
+    "21 CFR 312.32(c)(1)(iii)",
+    "21 CFR 312.32(c)(1)(iv)",
+    "21 CFR 312.32(c)(1)(v)",
+    "21 CFR 312.32(c)(2)",
+    "21 CFR 312.32(c)(5)",
+    "21 CFR 312.32(d)",
+    "21 CFR 312.32(d)(3)"
+   ],
+   "claims": [
+    [
+     "supported",
+     "21 CFR 312.32(c)(2)"
+    ]
+   ]
+  }
+ }
+}

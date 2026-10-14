@@ -1,0 +1,34 @@
+########## K-003  N=0 M=0 L=0 O=0 result=FAIL  type=Cross-Reference  intent=direct_lookup
+Q: What additional safeguards apply to children enrolled in a clinical investigation of a drug or device?
+KEY: 21 CFR 50.50 through 50.56 | Risk and benefit categories, IRB findings, assent of the child and permission of parents or guardians.
+REV: key_sections=50.50;50.56; key_section_state=present;present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=no; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Answers with the contents of a device description for a submission - how the device functions, materials, dimensions, component diagrams. Nothing about children: the risk and benefit categories of 50.51 to 50.54, the IRB findings, the assent of the child, the permission of parents or guardians, or the advocate required for wards.
+EVAL: Draft key 50.50 through 50.56 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The FDA requires that children enrolled in a clinical investigation of a drug or device must have a complete and accurate investigational device description (IDE) that includes an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device. Additionally, the device description must include an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties. If the device consists of multiple components, a diagram identifying how the different components of the device system work together may be beneficial. The device description should also include a discussion of the physical specifications, dimensions, and other relevant attributes. If the device contains multiple functions, the FDA does not regulate the Non-Device-MDDS functions contained in a multiple function device product. The device must also include an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties.
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Factors to Consider When Making Benefit-Risk Determinations for Medical Device Investigational Device Exemptions: Guidance for Investiga
+   X FDA Guidance: Medical Device Data Systems, Medical Image Storage Devices, and Medical Image Communications Devices: Guidance for Industry and Food and
+     21 CFR 801.109(a)
+SOURCES:
+   [21 CFR 801.109(a)] (Prescription devices.) '(a) The device is:'
+REQS: [] satisfied=[]
+INTENT: topic=['safeguard', 'children', 'enroll', 'clinical', 'investig'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: 1 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=["the question's subject"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 3
+  C1: final=unverifiable support=unverifiable/no_evidence rel=relevant cit=missing
+      text: The FDA requires that children enrolled in a clinical investigation of a drug or device must have a complete and accurate investigational device description (IDE) that includes an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about children/enroll/clinical/investig | found=0.0
+      evidence: [] ops={}
+  C2: final=unverifiable support=unverifiable/no_evidence rel=undetermined cit=missing
+      text: Additionally, the device description must include an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties.
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence, and the statement names nothing the question asks about | found=0.0
+      evidence: [] ops={}
+  C3: final=unverifiable support=unverifiable/no_evidence rel=undetermined cit=missing
+      text: The device must also include an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties.
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence, and the statement names nothing the question asks about | found=0.0
+      evidence: [] ops={}

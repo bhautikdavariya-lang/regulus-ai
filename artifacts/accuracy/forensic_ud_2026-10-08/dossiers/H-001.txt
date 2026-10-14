@@ -1,0 +1,19 @@
+########## H-001  N=2 M=0 L=0 O=2 result=FAIL  type=Direct Lookup  intent=direct_lookup
+Q: Which facilities must register with FDA, and how often must registration be renewed?
+KEY: 21 CFR 1.225; 21 CFR 1.230; 21 CFR 1.231 | Domestic and foreign facilities that manufacture, process, pack or hold food for consumption in the United States; biennial renewal.
+REV: key_sections=1.225;1.230;1.231; key_section_state=present;present;present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=yes; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Borderline. The substance is right and complete: facilities manufacturing, processing, packing or holding food for consumption in the United States must register before beginning those operations, initial registration is submitted once, and renewal falls between 1 October and 31 December of each even-numbered year, with an abbreviated renewal where nothing has changed and a United States agent for foreign facilities. It fails on authority and self-consistency: only two guidances are cited rather than 1.225 and 1.230, and the closing sentence says the evidence does not establish the frequency the answer has just given.
+EVAL: Verified against 1.225 and 1.230 in the snapshot; draft key verified correct. An SME may wish to revisit: substance 2/2 and completeness 2/2, failure is citation accuracy plus a contradictory closing sentence.
+PIPE: model_called=True fallback=None answerability=PARTIALLY_ANSWERABLE validation=valid
+ANSWER: Facilities must register with the FDA before they begin manufacturing, processing, or holding food for consumption in the United States. A food facility is required to submit an initial registration to the FDA only once. The registration must be renewed every other year during the period beginning on October 1 and ending on December 31 of each even-numbered year. If a facility has not had any changes to its registration information since the previous registration, renewal, or update, FDA provides an abbreviated biennial renewal process. Foreign facilities must designate a U.S. agent who lives or maintains a place of business in the United States and is physically present. The registration must be renewed every other year. [1][2]
+The retrieved evidence does not establish the time period or frequency asked for.
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)
+   X FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-
+   X FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['facil', 'regist', 'renew'] elements=['Which facilities must register with FDA', 'how often must registration be renewed'] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

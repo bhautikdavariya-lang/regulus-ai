@@ -1,0 +1,68 @@
+########## F-004  N=1 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=direct_lookup
+Q: What sanitation requirements apply to plant and grounds under Part 117 Subpart B?
+KEY: 21 CFR 117.20; 117.35 | Grounds maintenance, plant construction and design, sanitary operations, cleaning and sanitizing, pest control.
+REV: key_sections=117.20;117.35; key_section_state=present;present; key_retrieved=yes; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=model reasoning (right evidence, wrong answer); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: The grounds-protection statement is substantively right but cited to 117.10 (personnel) instead of 117.20(a), 117.35 sanitary operations is omitted entirely, and the answer then declares the sources insufficient.
+EVAL: Draft key 117.20/117.35 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=ANSWERABLE validation=valid
+ANSWER: Under Part 117 Subpart B, sanitation requirements apply to plant and grounds. The requirements include ensuring the grounds are kept in a condition that protects against contamination of food, with methods for adequate maintenance. The grounds must be maintained in a condition that will protect against the contamination of food, and the methods for adequate maintenance must include [1].  
+
+The available regulatory sources do not provide enough information to answer this question.
+EVIDENCE LABELS (23, lost=0):
+     21 CFR 117.10
+     21 CFR 117.110(a)
+     21 CFR 117.126(a)
+     21 CFR 117.130(a)
+     21 CFR 117.135(a)(1)
+     21 CFR 117.136(a)
+     21 CFR 117.137
+     21 CFR 117.139
+     21 CFR 117.140(a)
+     21 CFR 117.145
+     21 CFR 117.150(a)
+     21 CFR 117.155(a)
+     21 CFR 117.160(a)
+     21 CFR 117.165(a)
+     21 CFR 117.170(a)
+     21 CFR 117.180(a)
+     21 CFR 117.190(a)
+     21 CFR 117.1(a)
+     21 CFR 117.201(a)
+     21 CFR 117.206(a)
+     21 CFR 117.20(a)
+     21 CFR 117.251(a)
+     21 CFR 117.254(a)
+SOURCES:
+   [21 CFR 117.10] (Personnel.) 'The management of the establishment must take reasonable measures and precautions to ensure the following:\n(a) Disease control. Any person who, by medical examination or supervisory observation, is shown to have, or appears to have, an illness, open lesion, in'
+   [21 CFR 117.110(a)] (Defect action levels.) '(a) The manufacturer, processor, packer, and holder of food must at all times utilize quality control operations that reduce natural or unavoidable defects to the lowest level currently feasible.'
+   [21 CFR 117.126(a)] (Food safety plan.) '(a) Requirement for a food safety plan.'
+   [21 CFR 117.130(a)] (Hazard analysis.) '(a) Requirement for a hazard analysis.'
+   [21 CFR 117.135(a)(1)] (Preventive controls.) '(a)(1) You must identify and implement preventive controls to provide assurances that any hazards requiring a preventive control will be significantly minimized or prevented and the food manufactured, processed, packed, or held by your facility will not be adu'
+   [21 CFR 117.136(a)] (Circumstances in which the owner, operator, or agent in charge of a manufacturing/processing facility is not required to implement a preventive control.) '(a) Circumstances. If you are a manufacturer/processor, you are not required to implement a preventive control when you identify a hazard requiring a preventive control (identified hazard) and any of the following circumstances apply:'
+   [21 CFR 117.137] (Provision of assurances required under § 117.136(a)(2), (3), and (4).) 'A facility that provides a written assurance under § 117.136(a)(2), (3), or (4) must act consistently with the assurance and document its actions taken to satisfy the written assurance.'
+   [21 CFR 117.139] (Recall plan.) 'For food with a hazard requiring a preventive control:\n(a) You must establish a written recall plan for the food.\n(b) The written recall plan must include procedures that describe the steps to be taken, and assign responsibility for taking those steps, to perf'
+   [21 CFR 117.140(a)] (Preventive control management components.) '(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taki'
+   [21 CFR 117.145] (Monitoring.) "As appropriate to the nature of the preventive control and its role in the facility's food safety system:\n(a) Written procedures. You must establish and implement written procedures, including the frequency with which they are to be performed, for monitoring t"
+   [21 CFR 117.150(a)] (Corrective actions and corrections.) '(a) Corrective action procedures. As appropriate to the nature of the hazard and the nature of the preventive control, except as provided by paragraph (c) of this section:'
+   [21 CFR 117.155(a)] (Verification.) "(a) Verification activities. Verification activities must include, as appropriate to the nature of the preventive control and its role in the facility's food safety system:"
+   [21 CFR 117.160(a)] (Validation.) "(a) You must validate that the preventive controls identified and implemented in accordance with § 117.135 are adequate to control the hazard as appropriate to the nature of the preventive control and its role in the facility's food safety system."
+   [21 CFR 117.165(a)] (Verification of implementation and effectiveness.) '(a) Verification activities. You must verify that the preventive controls are consistently implemented and are effectively and significantly minimizing or preventing the hazards. To do so you must conduct activities that include the following, as appropriate t'
+   [21 CFR 117.170(a)] (Reanalysis.) '(a) You must conduct a reanalysis of the food safety plan as a whole at least once every 3 years;'
+   [21 CFR 117.180(a)] (Requirements applicable to a preventive controls qualified individual and a qualified auditor.) '(a) One or more preventive controls qualified individuals must do or oversee the following:'
+   [21 CFR 117.190(a)] (Implementation records required for this subpart.) '(a) You must establish and maintain the following records documenting implementation of the food safety plan:'
+   [21 CFR 117.1(a)] (Applicability and status.) '(a) The criteria and definitions in this part apply in determining whether a food is:'
+   [21 CFR 117.201(a)] (Modified requirements that apply to a qualified facility.) '(a) Attestations to be submitted. A qualified facility must submit the following attestations to FDA:'
+   [21 CFR 117.206(a)] (Modified requirements that apply to a facility solely engaged in the storage of unexposed packaged food.) '(a) If a facility that is solely engaged in the storage of unexposed packaged food stores any such refrigerated packaged food that requires time/temperature control to significantly minimize or prevent the growth of, or toxin production by pathogens, the facil'
+   [21 CFR 117.20(a)] (Plant and grounds.) '(a) Grounds. The grounds about a food plant under the control of the operator must be kept in a condition that will protect against the contamination of food. The methods for adequate maintenance of grounds must include:'
+   [21 CFR 117.251(a)] (Circumstances that may lead FDA to withdraw a qualified facility exemption.) '(a) FDA may withdraw a qualified facility exemption under § 117.5(a):'
+   [21 CFR 117.254(a)] (Issuance of an order to withdraw a qualified facility exemption.) '(a) An FDA Division Director in whose division the qualified facility is located (or, in the case of a foreign facility, the Director of the Office of Compliance in the Center for Food Safety and Applied Nutrition), or an FDA official senior to either such Dir'
+REQS: [['r1', '21 CFR part 117']] satisfied=[]
+INTENT: topic=['sanit', 'plant', 'ground'] elements=["the question's subject"] parts=['117'] sections=[]
+VERDICT: 1 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=["the question's subject"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 1
+  C1: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=correct
+      text: The grounds must be maintained in a condition that will protect against the contamination of food, and the methods for adequate maintenance must include [1].
+      support_reason: aligned to 21 CFR 117.20(a) (SOURCE 21), but only 2 regulatory operator(s) could be decided (strength, polarity) and 60% of its terms appear there; unmatched: adequate, maintained, maintenance, methods
+      rel_reason: the regulation it corresponds to (21 CFR 117.10, 21 CFR 117.20(a)) is about plant/ground | found=1.0
+      evidence: [{'citation': '21 CFR 117.10', 'source_index': 1, 'heading': 'Personnel.', 'text': 'The management of the establishment must take reasonable measures and precautions to ensure the following:\n(a) Dise ops={'strength': 'matched', 'polarity': 'matched', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}

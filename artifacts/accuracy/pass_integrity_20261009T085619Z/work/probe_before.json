@@ -1,0 +1,539 @@
+[
+ {
+  "probe": "POS 211.25 all cited",
+  "status": "FAIL",
+  "score": 55,
+  "pass_allowed": true,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "partial",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 3 statement(s) answer a different question",
+  "claims": [
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "POS 1.379(b)",
+  "status": "FAIL",
+  "score": 0,
+  "pass_allowed": true,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "fail",
+   "substantive_correctness": "fail",
+   "evidence_support": "not_applicable",
+   "citation_correctness": "not_applicable",
+   "fabrication_free": "pass",
+   "completeness": "not_established",
+   "scope_correct": "pass"
+  },
+  "why": "Answers a different question: none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 1.379(b)) says nothing about",
+  "claims": [
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "A1 one correct marker, rest uncited (all verbatim)",
+  "status": "FAIL",
+  "score": 55,
+  "pass_allowed": true,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "partial",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 3 statement(s) answer a different question",
+  "claims": [
+   [
+    "irrelevant",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "supported_with_citation_defect",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "A2 one correct marker + uncited FABRICATED claim",
+  "status": "FAIL",
+  "score": 55,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 1 statement(s) could not be verified",
+  "claims": [
+   [
+    "unverifiable",
+    "no_evidence",
+    "missing"
+   ],
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "A3 marker supports neighbour, not its own sentence",
+  "status": "FAIL",
+  "score": 40,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "partial",
+   "evidence_support": "not_established",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 1 statement(s) could not be verified",
+  "claims": [
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "unverifiable",
+    "no_evidence",
+    "unverified"
+   ]
+  ]
+ },
+ {
+  "probe": "A4 no citation at all",
+  "status": "FAIL",
+  "score": 15,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "partial",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "fail",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 3 statement(s) answer a different question",
+  "claims": [
+   [
+    "irrelevant",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "supported_with_citation_defect",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "missing"
+   ],
+   [
+    "supported_with_citation_defect",
+    "verbatim",
+    "missing"
+   ]
+  ]
+ },
+ {
+  "probe": "B1 four supported + one fabricated requirement",
+  "status": "FAIL",
+  "score": 55,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "partial",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 1 statement(s) could not be verified; 3 statement(s) answer a different question",
+  "claims": [
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "irrelevant",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "unverifiable",
+    "no_evidence",
+    "unverified"
+   ]
+  ]
+ },
+ {
+  "probe": "B2 correct rule, wrong exception (5 years for OTC)",
+  "status": "FAIL",
+  "score": 0,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "fail",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "fail",
+   "scope_correct": "pass"
+  },
+  "why": "Incorrect: 1 statement(s) that address the question are contradicted by the evidence: the answer is affirm where the evidence is negate (compared with 21 CFR 211.180(a) (SOURCE 1))",
+  "claims": [
+   [
+    "contradicted",
+    "operator_conflict",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "B3 correct number on the wrong requirement",
+  "status": "NOT EVALUATED",
+  "score": null,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "not_established",
+   "evidence_support": "not_established",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "not_established",
+   "scope_correct": "pass"
+  },
+  "why": "Cannot be verified: 1 statement(s) address the question but none could be verified against the retrieved evidence",
+  "claims": [
+   [
+    "unverifiable",
+    "not_decisive",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "B3b ... cited to the paragraph the number comes from",
+  "status": "NOT EVALUATED",
+  "score": null,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "not_established",
+   "evidence_support": "not_established",
+   "citation_correctness": "not_established",
+   "fabrication_free": "pass",
+   "completeness": "not_established",
+   "scope_correct": "pass"
+  },
+  "why": "Cannot be verified: 1 statement(s) address the question but none could be verified against the retrieved evidence",
+  "claims": [
+   [
+    "unverifiable",
+    "not_decisive",
+    "unverified"
+   ]
+  ]
+ },
+ {
+  "probe": "B4 invented exception",
+  "status": "FAIL",
+  "score": 0,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "fail",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "fail",
+   "scope_correct": "pass"
+  },
+  "why": "Incorrect: 1 statement(s) that address the question are contradicted by the evidence: the answer conditions the requirement on 'except', which this evidence does not (compared with",
+  "claims": [
+   [
+    "contradicted",
+    "operator_conflict",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "B5 servicing items as complaint-record contents",
+  "status": "NOT EVALUATED",
+  "score": null,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "not_established",
+   "evidence_support": "not_established",
+   "citation_correctness": "not_established",
+   "fabrication_free": "pass",
+   "completeness": "not_established",
+   "scope_correct": "pass"
+  },
+  "why": "Cannot be verified: 1 statement(s) address the question but none could be verified against the retrieved evidence",
+  "claims": [
+   [
+    "unverifiable",
+    "not_decisive",
+    "unverified"
+   ]
+  ]
+ },
+ {
+  "probe": "B5b ... one item, cited to (b)(3)",
+  "status": "NOT EVALUATED",
+  "score": null,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "not_established",
+   "evidence_support": "not_established",
+   "citation_correctness": "not_established",
+   "fabrication_free": "pass",
+   "completeness": "not_established",
+   "scope_correct": "pass"
+  },
+  "why": "Cannot be verified: 1 statement(s) address the question but none could be verified against the retrieved evidence",
+  "claims": [
+   [
+    "unverifiable",
+    "not_decisive",
+    "unverified"
+   ]
+  ]
+ },
+ {
+  "probe": "B6 correct + reversed limit",
+  "status": "FAIL",
+  "score": 55,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "partial",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 1 statement(s) answer a different question",
+  "claims": [
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ],
+   [
+    "irrelevant",
+    "operator_conflict",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "D1 asks for exceptions, omits the OTC exception",
+  "status": "FAIL",
+  "score": 0,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "fail",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "fail",
+   "scope_correct": "pass"
+  },
+  "why": "Incorrect: 1 statement(s) that address the question are contradicted by the evidence: the answer is affirm where the evidence is negate (compared with 21 CFR 211.180(a) (SOURCE 1))",
+  "claims": [
+   [
+    "contradicted",
+    "operator_conflict",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "D2 asks several requirements, gives one",
+  "status": "PASS",
+  "score": 100,
+  "pass_allowed": false,
+  "FALSE_PASS": true,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "pass",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Correct: all 1 statement(s) answer the question and are supported by the evidence",
+  "claims": [
+   [
+    "supported",
+    "verbatim",
+    "correct"
+   ]
+  ]
+ },
+ {
+  "probe": "D3 definition + unsupported extra claim",
+  "status": "FAIL",
+  "score": 55,
+  "pass_allowed": false,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "partial",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Partially correct: 1 statement(s) could not be verified",
+  "claims": [
+   [
+    "supported",
+    "definition",
+    "correct"
+   ],
+   [
+    "unverifiable",
+    "no_evidence",
+    "unverified"
+   ]
+  ]
+ },
+ {
+  "probe": "D4 correct definition",
+  "status": "PASS",
+  "score": 100,
+  "pass_allowed": true,
+  "FALSE_PASS": false,
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "pass",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "pass",
+   "scope_correct": "pass"
+  },
+  "why": "Correct: all 1 statement(s) answer the question and are supported by the evidence",
+  "claims": [
+   [
+    "supported",
+    "definition",
+    "correct"
+   ]
+  ]
+ }
+]

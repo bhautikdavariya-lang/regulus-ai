@@ -1,0 +1,27 @@
+--- artifacts/accuracy/ui_evaluation_score_20261009T072052Z/snapshot_before/review.py	2026-10-09 12:50:52
++++ src/regulus/accuracy/review.py	2026-10-09 12:51:00
+@@ -55,6 +55,12 @@
+     return {"state": d["state"], "label": STATE_LABEL[d["state"]], "detail": str(d.get("detail") or "")}
+ 
+ 
++def _score(value: Any) -> int | None:
++    """The evaluator's score as displayed: `rubric.score()` is max(0, 100 - deductions),
++    an integer from 0 to 100. Anything else is not that score and is not shown."""
++    return value if type(value) is int and 0 <= value <= 100 else None
++
++
+ def _short(text: Any) -> str:
+     text = " ".join(str(text or "").split())
+     return text if len(text) <= _MAX_EXPLANATION else text[: _MAX_EXPLANATION - 1].rstrip() + "…"
+@@ -73,8 +79,9 @@
+             "substantive_correctness": _dimension(dims, R.SUBSTANTIVE),
+             "citation_correctness": _dimension(dims, R.CITATION),
+             "explanation": _short(explanation),
+-            # the evaluator's own 0-100 deduction score; shown only as a detail, never as accuracy
+-            "live_check_score": score,
++            # the evaluator's own score (rubric.score: 100 minus deductions, 0-100). An evaluation
++            # score, never a percentage of factual accuracy; None when there is no valid one.
++            "live_check_score": _score(score),
+             "rubric_id": R.RUBRIC_ID,
+             "basis": BASIS,
+         }

@@ -1,0 +1,29 @@
+########## E-007  N=2 M=0 L=0 O=1 result=FAIL  type=Direct Lookup  intent=list
+Q: What are the signature/record linking requirements?
+KEY: 21 CFR 11.70 | Signatures linked to their records so they cannot be excised, copied, or transferred to falsify another record.
+REV: key_sections=11.70; key_section_state=present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=yes; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=yes; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Borderline. The requirement is stated accurately and in full - signatures must be linked to their records so they cannot be excised, copied or otherwise transferred to falsify a record by ordinary means - but it is attributed to an FDA clinical-investigations guidance rather than to 11.70, the answer carries an invalid citation marker that resolved to no source, and a stray fragment ('subsequent to the 74 See § 11.10(b)') is left in the text.
+EVAL: Draft key 11.70 verified correct against the snapshot. An SME may wish to revisit: substance 2/2, failure is citation accuracy.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: What are the signature/record linking requirements? [1] The FDA guidance specifies that electronic signatures must be linked to the respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary means. [2] Additionally, any changes made to the record, including those subsequent to the 74 See § 11.10(b), must be reflected in the audit trail.
+EVIDENCE LABELS (3, lost=1):
+   X FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, 
+   X FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, 
+     21 CFR 1.360(a)
+SOURCES:
+   [21 CFR 1.360(a)] (What are the record retention requirements?) '(a) You must create the required records when you receive and release food, except to the extent that the information is contained in existing records.'
+REQS: [] satisfied=[]
+INTENT: topic=['signatur', 'record', 'link'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: 2 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=["the question's subject"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 2
+  C1: final=unverifiable support=unverifiable/no_evidence rel=relevant cit=invalid
+      text: The FDA guidance specifies that electronic signatures must be linked to the respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary means [2].
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about signatur/record/link | found=0.0
+      evidence: [] ops={}
+  C2: final=unverifiable support=unverifiable/no_evidence rel=partially_relevant cit=missing
+      text: Additionally, any changes made to the record, including those subsequent to the 74 See § 11.10(b), must be reflected in the audit trail.
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about record | found=0.0
+      evidence: [] ops={}

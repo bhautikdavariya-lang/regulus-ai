@@ -1,0 +1,278 @@
+{
+ "0": [
+  "AMBIGUOUS",
+  "-",
+  "claim extraction",
+  "garbled sentence ('with CGMP requirements requirements apply except...'); 606.100(a) exempts clinical investigations from SOP rule only"
+ ],
+ "1": [
+  "AMBIGUOUS",
+  "-",
+  "operator logic",
+  "606.121(a) states the PURPOSE of the label rules (to facilitate a uniform label); the claim turns it into a mandate"
+ ],
+ "2": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "606.165(a) states it ('shall include a system by which distribution or receipt of each unit can be readily determined to facilitate its recall'); modal-less claim gets 0 agreeing operators; descriptive path needs a 6-word run (has 4)"
+ ],
+ "3": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "terminology normalization",
+  "606.171(a) heading and its 2nd sentence state who must report; the candidate chosen is the question sentence 'Who must report under this section?' (3 operators agree, 100% core) so term overlap is 50% - offline variant V1 (stemmed overlap) credits it: the unstemmed overlap missed deviations/deviation"
+ ],
+ "4": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "claim extraction",
+  "'The requirement' = the net-quantity declaration of the previous sentence; 701.13(a) 'The label of a cosmetic in package form shall bear a declaration of net quantity'; antecedent not carried, claim has no modal"
+ ],
+ "5": [
+  "AMBIGUOUS",
+  "-",
+  "evidence limitation",
+  "700.14(a) captured says vinyl chloride aerosol products are 'deemed to be adulterated'; 'prohibited or restricted' needs legal inference; the prohibition text (b) not captured"
+ ],
+ "6": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.15(a) captured is background only (photosensitizers); the restriction is in (b), not captured. Guard flags 'prohibit' (an operator word) - latent misclassification, same verdict"
+ ],
+ "7": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.16(a) captured: 'deleterious substance'; no prohibition/restriction stated"
+ ],
+ "8": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.19(a) captured: cancer risk finding; no prohibition stated"
+ ],
+ "9": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.16(a): no prohibition stated"
+ ],
+ "10": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.18(a): 'deleterious substance'; no prohibition stated"
+ ],
+ "11": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.19(a): no prohibition stated"
+ ],
+ "12": [
+  "AMBIGUOUS",
+  "-",
+  "evidence limitation",
+  "700.14(a): aerosol product containing vinyl chloride 'deemed to be adulterated' - prohibited only by legal inference"
+ ],
+ "13": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.15(a): no prohibition stated"
+ ],
+ "14": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "700.13(a): background only"
+ ],
+ "15": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership: 211.100 is not a personnel qualification/training requirement (row N=0)"
+ ],
+ "16": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (personnel training)"
+ ],
+ "17": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (personnel training)"
+ ],
+ "18": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "no source says personnel training requirements are established by organizational/QC units"
+ ],
+ "19": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership: 'consultant requirements' (211.34) do not include production procedures (row N=0)"
+ ],
+ "20": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "21": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "22": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "23": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "24": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "25": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "26": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "27": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "28": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "29": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (consultants)"
+ ],
+ "30": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "no source states consultant requirements are established by organizational units"
+ ],
+ "31": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (ventilation requirements)"
+ ],
+ "32": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false list membership (ventilation requirements)"
+ ],
+ "33": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "other: multi-source conjunction",
+  "'The procedures' = 211.100(a) production/process control procedures, which 'shall include all requirements in this subpart'; each listed item is a separate Subpart F section (211.101, .103, .105, .110, .111, .113), all captured. No single passage states the conjunction"
+ ],
+ "34": [
+  "AMBIGUOUS",
+  "-",
+  "other",
+  "211.122 heading is 'Materials examination and usage criteria' and (a) requires written procedures for examining materials, but 'The procedures' refers to production procedures (Subpart F), and 211.122 is Subpart G"
+ ],
+ "35": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "211.132(a) states FDA's AUTHORITY to establish a requirement, not that requirements 'shall be established'"
+ ],
+ "36": [
+  "AMBIGUOUS",
+  "-",
+  "other",
+  "211.68(a) 2nd sentence requires routine calibration/inspection/checking of drug equipment, but the claim attributes it to 21 CFR 111.30 (dietary supplements); verbless fragment"
+ ],
+ "37": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "no source states that calibration intervals must be determined"
+ ],
+ "38": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "no source requires records to be displayed or made available to personnel"
+ ],
+ "39": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "the component testing provision (211.84) was not retrieved; no captured source states it"
+ ],
+ "40": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "distinguishing-term guard",
+  "211.100(a) states written production/process control procedures, 'including any changes', designed to assure identity/strength/quality/purity; 'these characteristics' is a mid-sentence anaphor (antecedent in the previous sentence) and 'characteristic' is flagged as distinguishing; raw overlap 58% also below 70%"
+ ],
+ "41": [
+  "AMBIGUOUS",
+  "-",
+  "claim extraction",
+  "templated sentence 'X requirements shall be documented and followed'"
+ ],
+ "42": [
+  "AMBIGUOUS",
+  "-",
+  "other",
+  "circular: 'the records shall include ... records'; 211.184 heading names those record kinds"
+ ],
+ "43": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "terminology normalization + claim extraction",
+  "after the bold label the sentence is VERBATIM 213.84(c); the label ('Testing and approval or rejection of components, containers, and closures (eCFR 21 CFR 213.84(c))') is kept in the claim and dilutes verbatim coverage and overlap to 57%; offline variant V1 (stemmed overlap) credits it"
+ ],
+ "44": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "claim extraction",
+  "pointer sentence ('requirements ... are outlined in 21 CFR 111.55'); 111.55 does require implementing a production and process control system; modal-less claim, 0 operators"
+ ],
+ "45": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "other: multi-source conjunction",
+  "written procedures (211.100(a): 'shall include all requirements in this subpart') + 211.103 yield, 211.105 equipment identification, 211.110 sampling/testing; no single passage"
+ ]
+}

@@ -1,0 +1,22 @@
+########## M-036  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=list
+Q: What are the quality audit requirements of 21 CFR 820.22?
+KEY: TEMPORAL TRAP — 820.22 is [Reserved]; the requirement reaches the manufacturer through 21 CFR 820.10(a) | Must state that 820.22 is reserved and route auditing to 820.10(a) and the standard's internal audit clause.
+REV: key_sections=820.22;820.10; key_section_state=inside_reserved_span;present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=reserved / temporal routing; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Declines and infers nothing about 820.22. The reserved status and the routing of internal auditing to 820.10(a) and the standard's internal audit clause are not stated.
+EVAL: Confirmed against the snapshot: 820.22 falls inside the reserved span. Draft clause 8.2.4 not named, so concordance scores 0.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.22, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (4, lost=1):
+   X FDA Guidance: Postmarket Management of Cybersecurity in Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2016-12-
+     21 CFR 822.22(a)
+     21 CFR 822.20
+     21 CFR 20.22(a)
+SOURCES:
+   [21 CFR 822.22(a)] (What recourse do I have if I do not agree with your decision?) '(a) If you disagree with us about the content of your plan or if we disapprove your plan, or if you believe there is a less burdensome approach that will answer the surveillance question, you may request review of our decision by:'
+   [21 CFR 822.20] (What are the consequences if I fail to submit a postmarket surveillance plan, my plan is disapproved and I fail to submit a new plan, or I fail to conduct surveillance in accordance with my approved plan?) 'The failure to have an approved postmarket surveillance plan or failure to conduct postmarket surveillance in accordance with the approved plan constitutes failure to comply with section 522 of the act. Your failure would be a prohibited act under section 301('
+   [21 CFR 20.22(a)] (Partial disclosure of records.) '(a) If a record contains both disclosable and nondisclosable information, the nondisclosable information will be deleted and the remaining record will be disclosed unless the two are so inextricably intertwined that it is not feasible to separate them or relea'
+REQS: [['r1', '21 CFR 820.22']] satisfied=[]
+INTENT: topic=['qual', 'audit'] elements=["the question's subject"] parts=['820'] sections=['820.22']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about qual/audit; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about qual/audit; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

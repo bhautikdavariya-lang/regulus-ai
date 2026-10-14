@@ -1,0 +1,19 @@
+########## A-003  N=1 M=0 L=0 O=1 result=FAIL  type=Cross-Reference  intent=direct_lookup
+Q: What supply-chain program requirements apply to an animal food facility, and when is the receiving facility responsible for it?
+KEY: 21 CFR 507.105 through 507.175 | Written supply-chain program, supplier approval and verification activities, and the circumstances in which the requirement does not apply.
+REV: key_sections=507.105;507.175; key_section_state=present;present; key_retrieved=part_only; evidence_kind=guidance_only; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=retrieval returned guidance only; guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Gets approved suppliers, temporary receipt from unapproved suppliers subject to verification, and the frequency determination, but not the second half of the question: when the receiving facility is not responsible, namely an importer complying with the foreign supplier verification programme and animal food supplied for research or evaluation use. One sentence is repeated, and only guidances are cited.
+EVAL: Draft key 507.105 through 507.175 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The supply-chain program requirements apply to an animal food facility, and the receiving facility is responsible for it. The receiving facility must ensure that raw materials and other ingredients for their products are received only from approved suppliers, or if received on a temporary basis from unapproved suppliers, they must ensure those materials are subject to verification activities. 
+
+[1] The receiving facility must ensure that raw materials and other ingredients for their products are received only from approved suppliers, or — if received on a temporary basis from unapproved suppliers — ensuring those materials are subject to verification activities. [2] The receiving facility must have a supply-chain program (21 CFR part 507 subpart E). The receiving facility must determine the frequency of conducting supplier verification activities. The receiving facility must conduct supplier verification activities for raw materials and other ingredients. The receiving facility must ensure that the supplier verification activities are conducted in accordance with the requirements of this rule.
+EVIDENCE LABELS (2, lost=2):
+   X FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FD
+   X FDA Guidance: CVM GFI #241 Small Entity Compliance Guide – What You Need to Know About the FDA Regulation: Current Good Manufacturing Practice, Hazard
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['supply-chain', 'program', 'facil', 'receiv'] elements=['What supply-chain program requirements apply to an animal food facility', 'when is the receiving facility responsible for it'] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

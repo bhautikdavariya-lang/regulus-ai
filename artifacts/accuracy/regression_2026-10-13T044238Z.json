@@ -1,0 +1,232 @@
+{
+  "generated_at": "2026-10-13T044238Z",
+  "questions": 3,
+  "arms": "both",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": [],
+    "exact_evidence_for_every_answer": true
+  },
+  "latency_ms": {
+    "accuracy_min": 256.62,
+    "accuracy_max": 617.95,
+    "accuracy_mean": 384.697,
+    "answer_seconds_mean": 31.74
+  },
+  "rows": [
+    {
+      "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+      "answer_seconds": 15.22,
+      "answer": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32 is no later than 7 calendar days after the sponsor's initial receipt of the information [9]. [1]",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(i)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(c)(1)(iii)",
+        "21 CFR 312.32(c)(1)(iv)",
+        "21 CFR 312.32(c)(1)(v)",
+        "21 CFR 312.32(c)(2)",
+        "21 CFR 312.32(c)(5)",
+        "21 CFR 312.32(d)",
+        "21 CFR 312.32(d)(3)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 617.95,
+        "status": "evaluated",
+        "accuracy": 100,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 1 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2",
+          "recomputed_from_text": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2",
+          "evaluator_live": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2",
+          "evaluator_replay": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "c7883b08a2b9c37218f435a96f3a76774b729e829df58459a95218e19fa24643",
+        "model_called": true,
+        "items": 12,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 8.66,
+          "on": 8.54
+        },
+        "added_seconds": -0.12
+      }
+    },
+    {
+      "question": "What follow-up does 21 CFR 312.32 require after an IND safety report?",
+      "answer_seconds": 61.71,
+      "answer": "[1] The sponsor must report any findings from epidemiological studies, pooled analysis of multiple studies, or clinical studies (other than those reported under paragraph (c)(1)(i) of this section), whether or not conducted under an IND, and whether or not conducted by the sponsor, that suggest a significant risk in humans exposed to the drug. [5]  \n[2] The sponsor must notify FDA and all participating investigators in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. [4]  \n[7] The sponsor must submit each IND safety report in a narrative format or on FDA Form 3500A or in an electronic format that FDA can process, review, and archive. [7]  \n[12] Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., “Followup IND Safety Report.” [12]  \n[13] If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [13]",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(b)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(c)(1)(iii)",
+        "21 CFR 312.32(c)(1)(v)",
+        "21 CFR 312.32(c)(3)",
+        "21 CFR 312.32(c)(4)",
+        "21 CFR 312.32(d)",
+        "21 CFR 312.32(d)(1)",
+        "21 CFR 312.32(d)(2)",
+        "21 CFR 312.32(d)(3)",
+        "21 CFR 312.32(e)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 279.52,
+        "status": "evaluated",
+        "accuracy": 100,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 5 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb",
+          "recomputed_from_text": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb",
+          "evaluator_live": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb",
+          "evaluator_replay": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "db80a9298ac711f64aea6cf1b82cfc6929fb754d1f11943c5905d1f772133e62",
+        "model_called": true,
+        "items": 14,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 39.89,
+          "on": 65.5
+        },
+        "added_seconds": 25.61
+      }
+    },
+    {
+      "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+      "answer_seconds": 18.29,
+      "answer": "Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them.\n\nEach person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions in such a manner as to provide assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess.\n\nThere shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]",
+      "citations": [
+        "21 CFR 211.25(a)",
+        "21 CFR 211.25(b)",
+        "21 CFR 211.25(c)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 256.62,
+        "status": "evaluated",
+        "accuracy": 100,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 5 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "recomputed_from_text": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "evaluator_live": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "evaluator_replay": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "95fa88b44e3ef01f3b18e173117b514fffb1fc01e5386a5ce9a925e04633eb85",
+        "model_called": true,
+        "items": 3,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 16.49,
+          "on": 16.97
+        },
+        "added_seconds": 0.48
+      }
+    }
+  ]
+}

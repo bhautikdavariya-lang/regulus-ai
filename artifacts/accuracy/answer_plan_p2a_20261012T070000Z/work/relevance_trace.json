@@ -1,0 +1,610 @@
+{
+ "paraphrased_correct_7": {
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "pass",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "fail",
+   "scope_correct": "pass"
+  },
+  "claims": [
+   {
+    "claim": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 7 calendar days after the sponsor's initial receipt of the information [9].",
+    "split_from": null,
+    "relevance": {
+     "verdict": "relevant",
+     "reason": "the regulation it corresponds to (21 CFR 312.32(c)(2)) is about ind/safety/report",
+     "content": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 7 calendar days after the sponsor's initial receipt of the information  .",
+     "basis": "evidence",
+     "topic_hits": [
+      "ind",
+      "safety",
+      "report"
+     ],
+     "evidence": [
+      "21 CFR 312.32(c)(2)"
+     ],
+     "checks": {
+      "lead_restating_question": null,
+      "content_found_in_evidence": 1.0,
+      "evidence_passages": 1,
+      "domain": "consistent",
+      "provision": "consistent",
+      "section": "consistent"
+     }
+    },
+    "evidence": [
+     {
+      "citation": "21 CFR 312.32(c)(2)",
+      "source_index": 9,
+      "heading": "IND safety reporting.",
+      "text": "The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information."
+     }
+    ],
+    "support": "supported",
+    "support_basis": "paraphrase",
+    "support_reason": "not verbatim, but strength, polarity, actor, quantity:day agree with 21 CFR 312.32(c)(2) (SOURCE 9) and 100% of its core terms are in that passage",
+    "operators": {
+     "strength": "matched",
+     "polarity": "matched",
+     "actor": "matched",
+     "quantity": "matched",
+     "date": "undetermined"
+    },
+    "operator_trace": {
+     "evidence_citation": "21 CFR 312.32(c)(2)",
+     "source_type": "binding_regulation",
+     "claim_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "evidence_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "conflicts": [],
+     "relations": [],
+     "support_blocked": null,
+     "verdict": "paraphrase_equivalent",
+     "content_gate": {
+      "content_gate_verdict": "established",
+      "content_support_reason": "strength, polarity, actor, quantity:day agree, 100% of its terms and 100% of its core terms are present",
+      "support_block_reason": null,
+      "distinguishing_terms": [],
+      "distinguishing_term_sources": {},
+      "core_overlap": 1.0,
+      "term_overlap": 1.0,
+      "raw_term_overlap": 1.0,
+      "verbatim_coverage": 0.47,
+      "operators_agreed": [
+       "strength",
+       "polarity",
+       "actor",
+       "quantity:day"
+      ],
+      "operator_silent_passage": false,
+      "core_object_match": true,
+      "core_subject_match": true,
+      "core_action_match": "matched",
+      "core_actor_match": "matched",
+      "condition_match": true,
+      "material_omissions": [],
+      "candidate_selection": {
+       "passage": "21 CFR 312.32(c)(2)",
+       "method": "lexical",
+       "similarity": null
+      }
+     }
+    },
+    "citation": "correct",
+    "citation_detail": "cites 21 CFR 312.32(c)(2), which supports it",
+    "final": "supported",
+    "claim_id": "s0",
+    "sentence_index": 0,
+    "normalized_text": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 7 calendar days after the sponsor's initial receipt of the information  .",
+    "resolved_from": null,
+    "subclaim": null,
+    "candidate_evidence": [
+     "21 CFR 312.32(c)(2)",
+     "21 CFR 312.32(c)(1)",
+     "21 CFR 312.32(d)(3)"
+    ],
+    "selected_evidence": "21 CFR 312.32(c)(2)",
+    "match_path": "sentence",
+    "citation_trace": {
+     "kind": "own",
+     "markers": [
+      {
+       "marker": 9,
+       "source": "21 CFR 312.32(c)(2)",
+       "verdict": "paraphrase_equivalent",
+       "supports": true
+      }
+     ],
+     "rule": "a cited source supports the claim"
+    }
+   }
+  ],
+  "verdict": {
+   "verdict": "correct",
+   "reason": "all 1 statement(s) answer the question and are supported by the evidence",
+   "counts": {
+    "supported": 1,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "elements_covered": [
+    "the question's subject"
+   ],
+   "elements_missing": [],
+   "elements_unverified": []
+  }
+ },
+ "both_correct_paraphrased": {
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "pass",
+   "evidence_support": "pass",
+   "citation_correctness": "pass",
+   "fabrication_free": "pass",
+   "completeness": "fail",
+   "scope_correct": "pass"
+  },
+  "claims": [
+   {
+    "claim": "The sponsor must submit an IND safety report no later than 15 calendar days after determining that the information qualifies for reporting [2].",
+    "split_from": null,
+    "relevance": {
+     "verdict": "relevant",
+     "reason": "the regulation it corresponds to (21 CFR 312.32(c)(1)) is about ind/safety/report",
+     "content": "The sponsor must submit an IND safety report no later than 15 calendar days after determining that the information qualifies for reporting  .",
+     "basis": "evidence",
+     "topic_hits": [
+      "ind",
+      "safety",
+      "report"
+     ],
+     "evidence": [
+      "21 CFR 312.32(c)(1)"
+     ],
+     "checks": {
+      "lead_restating_question": null,
+      "content_found_in_evidence": 1.0,
+      "evidence_passages": 1,
+      "domain": "consistent",
+      "provision": "consistent",
+      "section": "consistent"
+     }
+    },
+    "evidence": [
+     {
+      "citation": "21 CFR 312.32(c)(1)",
+      "source_index": 2,
+      "heading": "IND safety reporting.",
+      "text": "The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical"
+     }
+    ],
+    "support": "supported",
+    "support_basis": "paraphrase",
+    "support_reason": "not verbatim, but strength, polarity, actor, quantity:day agree with 21 CFR 312.32(c)(1) (SOURCE 2) and 100% of its core terms are in that passage",
+    "operators": {
+     "strength": "matched",
+     "polarity": "matched",
+     "actor": "matched",
+     "quantity": "matched",
+     "date": "undetermined"
+    },
+    "operator_trace": {
+     "evidence_citation": "21 CFR 312.32(c)(1)",
+     "source_type": "binding_regulation",
+     "claim_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "evidence_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "conflicts": [],
+     "relations": [],
+     "support_blocked": null,
+     "verdict": "paraphrase_equivalent",
+     "content_gate": {
+      "content_gate_verdict": "established",
+      "content_support_reason": "strength, polarity, actor, quantity:day agree, 85% of its terms and 100% of its core terms are present",
+      "support_block_reason": null,
+      "distinguishing_terms": [],
+      "distinguishing_term_sources": {},
+      "core_overlap": 1.0,
+      "term_overlap": 0.85,
+      "raw_term_overlap": 0.85,
+      "verbatim_coverage": 0.27,
+      "operators_agreed": [
+       "strength",
+       "polarity",
+       "actor",
+       "quantity:day"
+      ],
+      "operator_silent_passage": false,
+      "core_object_match": true,
+      "core_subject_match": true,
+      "core_action_match": "matched",
+      "core_actor_match": "matched",
+      "condition_match": true,
+      "material_omissions": [],
+      "candidate_selection": {
+       "passage": "21 CFR 312.32(c)(1)",
+       "method": "lexical",
+       "similarity": null
+      }
+     }
+    },
+    "citation": "correct",
+    "citation_detail": "cites 21 CFR 312.32(c)(1), which supports it",
+    "final": "supported",
+    "claim_id": "s0",
+    "sentence_index": 0,
+    "normalized_text": "The sponsor must submit an IND safety report no later than 15 calendar days after determining that the information qualifies for reporting  .",
+    "resolved_from": null,
+    "subclaim": null,
+    "candidate_evidence": [
+     "21 CFR 312.32(c)(1)",
+     "21 CFR 312.32(d)(3)",
+     "21 CFR 312.32(c)(1)(v)"
+    ],
+    "selected_evidence": "21 CFR 312.32(c)(1)",
+    "match_path": "sentence",
+    "citation_trace": {
+     "kind": "own",
+     "markers": [
+      {
+       "marker": 2,
+       "source": "21 CFR 312.32(c)(1)",
+       "verdict": "paraphrase_equivalent",
+       "supports": true
+      }
+     ],
+     "rule": "a cited source supports the claim"
+    }
+   },
+   {
+    "claim": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 7 calendar days after the sponsor's initial receipt of the information [9].",
+    "split_from": null,
+    "relevance": {
+     "verdict": "relevant",
+     "reason": "the regulation it corresponds to (21 CFR 312.32(c)(2)) is about ind/safety/report",
+     "content": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 7 calendar days after the sponsor's initial receipt of the information  .",
+     "basis": "evidence",
+     "topic_hits": [
+      "ind",
+      "safety",
+      "report"
+     ],
+     "evidence": [
+      "21 CFR 312.32(c)(2)"
+     ],
+     "checks": {
+      "lead_restating_question": null,
+      "content_found_in_evidence": 1.0,
+      "evidence_passages": 1,
+      "domain": "consistent",
+      "provision": "consistent",
+      "section": "consistent"
+     }
+    },
+    "evidence": [
+     {
+      "citation": "21 CFR 312.32(c)(2)",
+      "source_index": 9,
+      "heading": "IND safety reporting.",
+      "text": "The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information."
+     }
+    ],
+    "support": "supported",
+    "support_basis": "paraphrase",
+    "support_reason": "not verbatim, but strength, polarity, actor, quantity:day agree with 21 CFR 312.32(c)(2) (SOURCE 9) and 100% of its core terms are in that passage",
+    "operators": {
+     "strength": "matched",
+     "polarity": "matched",
+     "actor": "matched",
+     "quantity": "matched",
+     "date": "undetermined"
+    },
+    "operator_trace": {
+     "evidence_citation": "21 CFR 312.32(c)(2)",
+     "source_type": "binding_regulation",
+     "claim_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "evidence_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "conflicts": [],
+     "relations": [],
+     "support_blocked": null,
+     "verdict": "paraphrase_equivalent",
+     "content_gate": {
+      "content_gate_verdict": "established",
+      "content_support_reason": "strength, polarity, actor, quantity:day agree, 100% of its terms and 100% of its core terms are present",
+      "support_block_reason": null,
+      "distinguishing_terms": [],
+      "distinguishing_term_sources": {},
+      "core_overlap": 1.0,
+      "term_overlap": 1.0,
+      "raw_term_overlap": 1.0,
+      "verbatim_coverage": 0.47,
+      "operators_agreed": [
+       "strength",
+       "polarity",
+       "actor",
+       "quantity:day"
+      ],
+      "operator_silent_passage": false,
+      "core_object_match": true,
+      "core_subject_match": true,
+      "core_action_match": "matched",
+      "core_actor_match": "matched",
+      "condition_match": true,
+      "material_omissions": [],
+      "candidate_selection": {
+       "passage": "21 CFR 312.32(c)(2)",
+       "method": "lexical",
+       "similarity": null
+      }
+     }
+    },
+    "citation": "correct",
+    "citation_detail": "cites 21 CFR 312.32(c)(2), which supports it",
+    "final": "supported",
+    "claim_id": "s1",
+    "sentence_index": 1,
+    "normalized_text": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 7 calendar days after the sponsor's initial receipt of the information  .",
+    "resolved_from": null,
+    "subclaim": null,
+    "candidate_evidence": [
+     "21 CFR 312.32(c)(2)",
+     "21 CFR 312.32(c)(1)",
+     "21 CFR 312.32(d)(3)"
+    ],
+    "selected_evidence": "21 CFR 312.32(c)(2)",
+    "match_path": "sentence",
+    "citation_trace": {
+     "kind": "own",
+     "markers": [
+      {
+       "marker": 9,
+       "source": "21 CFR 312.32(c)(2)",
+       "verdict": "paraphrase_equivalent",
+       "supports": true
+      }
+     ],
+     "rule": "a cited source supports the claim"
+    }
+   }
+  ],
+  "verdict": {
+   "verdict": "correct",
+   "reason": "all 2 statement(s) answer the question and are supported by the evidence",
+   "counts": {
+    "supported": 2,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "elements_covered": [
+    "the question's subject"
+   ],
+   "elements_missing": [],
+   "elements_unverified": []
+  }
+ },
+ "reversed_15_for_fatal": {
+  "dims": {
+   "question_relevance": "pass",
+   "substantive_correctness": "fail",
+   "evidence_support": "pass",
+   "citation_correctness": "not_established",
+   "fabrication_free": "pass",
+   "completeness": "fail",
+   "scope_correct": "pass"
+  },
+  "claims": [
+   {
+    "claim": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 15 calendar days after initial receipt of the information [9].",
+    "split_from": null,
+    "relevance": {
+     "verdict": "relevant",
+     "reason": "the regulation it corresponds to (21 CFR 312.32(c)(1)) is about ind/safety/report",
+     "content": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 15 calendar days after initial receipt of the information  .",
+     "basis": "evidence",
+     "topic_hits": [
+      "ind",
+      "safety",
+      "report"
+     ],
+     "evidence": [
+      "21 CFR 312.32(c)(1)"
+     ],
+     "checks": {
+      "lead_restating_question": null,
+      "content_found_in_evidence": 1.0,
+      "evidence_passages": 1,
+      "domain": "consistent",
+      "provision": "consistent",
+      "section": "consistent"
+     }
+    },
+    "evidence": [
+     {
+      "citation": "21 CFR 312.32(c)(1)",
+      "source_index": 2,
+      "heading": "IND safety reporting.",
+      "text": "The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical"
+     }
+    ],
+    "support": "contradicted",
+    "support_basis": "operator_conflict",
+    "support_reason": "the answer states day ['15'] where the evidence states ['7'] (the statement is about 21 CFR 312.32(c)(2), which the evidence supplies, not about 21 CFR 312.32(c)(1), which it was aligned to)",
+    "operators": {
+     "strength": "matched",
+     "polarity": "matched",
+     "actor": "matched",
+     "date": "undetermined",
+     "quantity": "mismatched"
+    },
+    "operator_trace": {
+     "evidence_citation": "21 CFR 312.32(c)(1)",
+     "source_type": "binding_regulation",
+     "claim_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "evidence_operators": {
+      "strength": "mandatory",
+      "polarity": "affirm",
+      "duty_holder": "sponsor",
+      "conditions": []
+     },
+     "conflicts": [
+      {
+       "operator": "quantity",
+       "claim": [
+        "15"
+       ],
+       "evidence": [
+        "7"
+       ]
+      }
+     ],
+     "relations": [],
+     "support_blocked": null,
+     "verdict": "contradicted",
+     "content_gate": {
+      "content_gate_verdict": "blocked",
+      "content_support_reason": null,
+      "support_block_reason": "the claim names fatal, initial, life, receipt, threaten, unexpect, which 21 CFR 312.32(c)(1) does not and another source does (fatal: 21 CFR 312.32(c)(2); initial: 21 CFR 312.32(c)(2); life: 21 CFR 312.32(c)(2); receipt: 21 CFR 312.32(c)(2); threaten: 21 CFR 312.32(c)(2); unexpect: 21 CFR 312.32(c)(1)(i))",
+      "distinguishing_terms": [
+       "fatal",
+       "initial",
+       "life",
+       "receipt",
+       "threaten",
+       "unexpect"
+      ],
+      "distinguishing_term_sources": {
+       "fatal": [
+        "21 CFR 312.32(c)(2)"
+       ],
+       "initial": [
+        "21 CFR 312.32(c)(2)",
+        "21 CFR 312.32(d)(3)"
+       ],
+       "life": [
+        "21 CFR 312.32(c)(2)"
+       ],
+       "receipt": [
+        "21 CFR 312.32(c)(2)"
+       ],
+       "threaten": [
+        "21 CFR 312.32(c)(2)"
+       ],
+       "unexpect": [
+        "21 CFR 312.32(c)(1)(i)",
+        "21 CFR 312.32(c)(2)"
+       ]
+      },
+      "core_overlap": 0.44,
+      "term_overlap": 0.44,
+      "raw_term_overlap": 0.47,
+      "verbatim_coverage": 0.22,
+      "operators_agreed": [
+       "strength",
+       "polarity",
+       "actor",
+       "quantity:day"
+      ],
+      "operator_silent_passage": false,
+      "core_object_match": false,
+      "core_subject_match": false,
+      "core_action_match": "matched",
+      "core_actor_match": "matched",
+      "condition_match": true,
+      "material_omissions": [],
+      "candidate_selection": {
+       "passage": "21 CFR 312.32(c)(1)",
+       "method": "lexical",
+       "similarity": null
+      }
+     }
+    },
+    "citation": "unverified",
+    "citation_detail": "cites 21 CFR 312.32(c)(2); the captured evidence does not establish the claim",
+    "final": "contradicted",
+    "claim_id": "s0",
+    "sentence_index": 0,
+    "normalized_text": "The sponsor must notify FDA of any unexpected fatal or life-threatening suspected adverse reaction no later than 15 calendar days after initial receipt of the information  .",
+    "resolved_from": null,
+    "subclaim": null,
+    "candidate_evidence": [
+     "21 CFR 312.32(c)(2)",
+     "21 CFR 312.32(c)(1)",
+     "21 CFR 312.32(d)(3)"
+    ],
+    "selected_evidence": "21 CFR 312.32(c)(1)",
+    "match_path": "sentence",
+    "citation_trace": {
+     "kind": "own",
+     "markers": [
+      {
+       "marker": 9,
+       "source": "21 CFR 312.32(c)(2)",
+       "verdict": "undecidable",
+       "supports": false
+      }
+     ],
+     "rule": "no captured source establishes the claim, so neither can the citation"
+    }
+   }
+  ],
+  "verdict": {
+   "verdict": "incorrect",
+   "reason": "1 statement(s) that address the question are contradicted by the evidence: the answer states day ['15'] where the evidence states ['7'] (the statement is about 21 CFR 312.32(c)(2), which the evidence supplies, not about 21 CFR 312.32(c)(1), which it was aligned to)",
+   "counts": {
+    "supported": 0,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 1,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "elements_covered": [],
+   "elements_missing": [
+    "the question's subject"
+   ],
+   "elements_unverified": []
+  }
+ }
+}

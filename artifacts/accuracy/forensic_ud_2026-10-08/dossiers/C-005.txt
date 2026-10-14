@@ -1,0 +1,17 @@
+########## C-005  N=1 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=direct_lookup
+Q: What adverse event reporting obligations does MoCRA create for cosmetic responsible persons?
+KEY: FD&C Act 605 (MoCRA) | Serious adverse event reports within 15 business days, records retention, contact information on label.
+REV: key_sections=; key_section_state=none; key_retrieved=n/a; evidence_kind=guidance_only; corpus_sufficient=no; substantively_correct=partly; mechanical_root_cause=corpus gap (key is statutory or part-level); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: The 15-business-day deadline is right, but the surrounding detail is dietary-supplement adverse event guidance (MedWatch section G block 4, forwarding between responsible persons) rather than the cosmetic regime, and the records retention period and the requirement for contact information on the label are missing.
+EVAL: Draft key FD&C Act 605 verified correct; no single section to check in the snapshot. The authority cited is the dietary supplement guidance.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The adverse event reporting obligations created by MoCRA for cosmetic responsible persons include submitting serious adverse event reports within 15 business days of receiving additional information, with the date entered in section G, block 4, of the MedWatch form or on the "Introduction" page for the electronic version. Prompt submission is important for public health reasons. If a responsible person receives a report from another responsible person, they must submit a serious adverse event report to FDA within the same timeframe as any report received from an initial reporter. The deadline for submitting serious adverse event reports to FDA applies to reports received by phone or mail, even if a report has already been submitted [1].
+EVIDENCE LABELS (2, lost=1):
+   X FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by 
+   X FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by 
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['advers', 'event', 'report', 'mocra', 'person'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

@@ -1,0 +1,17 @@
+########## H-006  N=1 M=0 L=0 O=0 result=FAIL  type=Cross-Reference  intent=scope
+Q: Which foods are subject to the additional traceability recordkeeping requirements, and what must be recorded?
+KEY: 21 CFR 1.1300; 21 CFR 1.1310; 21 CFR 1.1315 | Foods on the Food Traceability List; critical tracking events and key data elements; traceability lot codes.
+REV: key_sections=1.1300;1.1310;1.1315; key_section_state=present;present;present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: The coverage half is broadly right - foods on the Food Traceability List and foods containing them as listed ingredients - but what must be recorded is never given: the critical tracking events, the key data elements and the traceability lot codes. The answer also closes with the artefact 'The update to the FTL is scheduled for YY' and cites nothing.
+EVAL: Draft key 1.1300/1.1310/1.1315 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The additional traceability recordkeeping requirements apply to certain foods listed on the Food Traceability List (FTL), and to foods containing listed foods as ingredients, provided the listed food remains in the same form (e.g., fresh) as it appears on the list. The recordkeeping requirements apply to all persons subject to the Food Traceability Rule, and certain exemptions are available. The consequences of failure to comply with the Food Traceability Rule are prohibited under section 301(e) of the FD&C Act, except when such violation is committed by a farm. The update to the FTL is scheduled for YY.
+EVIDENCE LABELS (2, lost=1):
+   X FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA R
+   X FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA R
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['traceabil', 'recordkeep', 'record'] elements=['Which foods are subject to the additional traceability recordkeeping requirements', 'what must be recorded'] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

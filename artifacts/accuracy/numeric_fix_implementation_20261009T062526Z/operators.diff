@@ -1,0 +1,247 @@
+--- artifacts/accuracy/numeric_fix_implementation_20261009T062526Z/snapshot_before/accuracy/operators.py	2026-10-09 11:55:30
++++ src/regulus/accuracy/operators.py	2026-10-09 12:01:22
+@@ -24,6 +24,7 @@
+     polarity      AFFIRM / NEGATE / none
+     actor         manufacturer, importer, applicant, …
+     quantities    numbers with their unit kind (days, percent, degrees, …)
++                  and, for a numeric LIMIT, its direction, boundary and what it measures
+     dates         calendar dates and years
+     conditions    the conditional qualifiers of regulus.rag.answer_plan
+ 
+@@ -44,6 +45,7 @@
+ from dataclasses import dataclass
+ from typing import Any
+ 
++from regulus.accuracy.intent import stem
+ from regulus.rag.answer_plan import (
+     CONDITIONAL_QUALIFIERS,
+     QUALIFIER_EQUIVALENTS,
+@@ -373,8 +375,204 @@
+     for m in _DATE_RE.finditer(text or ""):
+         out.add(next(g for g in m.groups() if g))
+     return frozenset(out)
++
++
++# ------------------------------------------------------------ numeric limits
++
++# A number is evidence of agreement only together with what it bounds. The
++# quantity operator compares values within a kind, so it agreed that "at least
++# 1 year" and "less than 1 year" state the same rule, that "not more than 0.1
++# percent" of an impurity is the 0.1 percent use level a claim attached it to,
++# that 15 business days are 15 calendar days and 143 °C is 143 °F. Each of those
++# claims was credited (measured in artifacts/accuracy/measurement_audit_phase2l_*
++# and _phase2m_*; regression rows in tests/test_accuracy_numeric_limits.py).
++#
++# A limit is a bound phrase, a number and a unit, with the words before and
++# after it. Two limits are compared only when the value and the unit are
++# identical - nothing is ever converted - and the surrounding words show they
++# bound the same thing. Anything less certain is no finding.
+ 
++CONFLICT_LIMIT = "limit_direction"
+ 
++_LIMIT_NUMBER = rf"(\d+(?:,\d{{3}})*(?:\.\d+)?|{'|'.join(_NUM_WORDS)})"
++_LIMIT_UNIT = (r"(percent|%|°\s*[CF]|degrees?(?:\s+(?:C|F|Celsius|Fahrenheit))?|"
++               r"(?:calendar\s+|business\s+|working\s+)?days?|weeks?|months?|years?|hours?|minutes?|"
++               r"milligrams?|mg|grams?|g|kilograms?|kg|milliliters?|ml|liters?|ppm|ppb)(?![A-Za-z])")
++# Ordered: the negation-bearing and longer forms first, so "not more than" is
++# never read as "more than"; a span belongs to the first pattern that claims it.
++_LIMIT_PATTERNS: tuple[tuple[str, str], ...] = (
++    ("<=", r"\b(?:(?:do|does|did|shall|must|may|will|can|should)\s+not\s+exceed|not\s+to\s+exceed|not\s+exceeding|"
++           r"no\s+more\s+than|not\s+more\s+than|at\s+most|up\s+to|no\s+longer\s+than|not\s+longer\s+than|maximum\s+of|within)"),
++    (">=", r"\b(?:at\s+least|not\s+less\s+than|no\s+less\s+than|no\s+fewer\s+than|not\s+fewer\s+than|minimum\s+of)"),
++    ("<", r"\b(?:less\s+than|fewer\s+than|below|under|shorter\s+than)"),
++    (">", r"\b(?:exceed(?:s|ed|ing)?|more\s+than|greater\s+than|above|over|longer\s+than|in\s+excess\s+of)"),
++)
++_LIMIT_RE = tuple((relation, re.compile(phrase + r"\s+(?:a\s+(?:period|total|level)\s+of\s+)?" + _LIMIT_NUMBER
++                                         + r"\s*" + _LIMIT_UNIT, re.I))
++                  for relation, phrase in _LIMIT_PATTERNS)
++_LIMIT_UPPER = frozenset({"<=", "<"})
++_LIMIT_REVERSED = {">": "<=", ">=": "<", "<": ">=", "<=": ">"}
++_LIMIT_TIME = frozenset({"day", "calendar day", "business day", "working day", "week", "month", "year", "hour", "minute"})
++_LIMIT_NEGATOR_RE = re.compile(r"\b(?:not|no|never|cannot|neither|nor)\b", re.I)
++# "shall not be retained for more than 1 year" is "at most 1 year": a modal
++# negation directly governing the verb the limit completes turns the limit
++# around. Any other negation ("No record shall ...", a second "not") leaves its
++# scope unclear, and the limit is not read.
++_GOVERNING_NEGATION_RE = re.compile(r"\b(?:shall|must|may|will)\s+not\s+(?:be\s+)?[a-z]+(?:\s+(?:for|to|by))?\s*$", re.I)
++_LIMIT_STOP = frozenset("""a an the of to for in on at by with from and or that which who is are be been may must shall can
++will used use any each such its their this these those than as""".split())
++_LIMIT_AFTER_SKIP = frozenset({"weight", "after", "before", "per"})
++# "children under 12 years of age" says WHO a provision covers, not a limit the
++# provision imposes: reversing it names another population, which no wording
++# comparison can judge.
++_AGE_RE = re.compile(r"\s*(?:of\s+age|old)\b", re.I)
++_CLAUSE_SPLIT_RE = re.compile(r"[.;:]\s")
++
++
++@dataclass(frozen=True)
++class Limit:
++    relation: str | None          # "<=", "<", ">=", ">"; None when the reading is ambiguous
++    value: str | None = None
++    unit: str | None = None
++    before: frozenset[str] = frozenset()    # stems of the words that name what is bounded
++    after: frozenset[str] = frozenset()     # ... and of what it is measured of or counted from
++    age: bool = False
++
++    @property
++    def ambiguous(self) -> bool:
++        return self.relation is None
++
++
++def _limit_unit(unit: str) -> str:
++    u = re.sub(r"\s+", " ", unit.lower()).strip()
++    if u in ("%", "percent"):
++        return "percent"
++    scale = re.fullmatch(r"(?:°|degrees?)\s*(c|f|celsius|fahrenheit)?", u)
++    if scale:
++        return "degree" + (f" {scale.group(1)[0]}" if scale.group(1) else "")
++    for name, short in (("milligram", "mg"), ("kilogram", "kg"), ("gram", "g"), ("milliliter", "ml"), ("liter", "l")):
++        if u.rstrip("s") == name:
++            return short
++    return u[:-1] if u.endswith("s") else u
++
++
++def _limit_terms(text: str) -> list[str]:
++    return [stem(w) for w in re.findall(r"[A-Za-z][A-Za-z\-]+", text) if w.lower() not in _LIMIT_STOP]
++
++
++def numeric_limits(text: str) -> list[Limit]:
++    """Every numeric limit the text states, in order. A limit whose clause
++    carries a negation outside its own bound phrase is returned ambiguous."""
++    t = text or ""
++    found = [(m, relation) for relation, pattern in _LIMIT_RE for m in pattern.finditer(t)]
++    spans = [(m.start(), m.end()) for m, _ in found]
++    taken: list[tuple[int, int]] = []
++    out: list[tuple[int, Limit]] = []
++    for m, relation in found:
++        if any(m.start() < end and start < m.end() for start, end in taken):
++            continue
++        taken.append((m.start(), m.end()))
++        number, unit = m.group(m.lastindex - 1), _limit_unit(m.group(m.lastindex))
++        if m.group(0).lower().startswith("within") and unit not in _LIMIT_TIME:
++            continue                                     # "within" bounds only a duration
++        clause = _CLAUSE_SPLIT_RE.split(t[: m.start()])[-1]
++        offset = m.start() - len(clause)
++        scan = clause
++        for start, end in spans:                         # "not more than 0.1 percent": that "not" is its own limit's
++            if start >= offset and end <= m.start():
++                scan = scan[: start - offset] + " " * (end - start) + scan[end - offset:]
++        if _LIMIT_NEGATOR_RE.search(scan):
++            if len(_LIMIT_NEGATOR_RE.findall(scan)) == 1 and _GOVERNING_NEGATION_RE.search(scan):
++                relation = _LIMIT_REVERSED[relation]
++            else:
++                out.append((m.start(), Limit(None)))
++                continue
++        after = _CLAUSE_SPLIT_RE.split(t[m.end():])[0]
++        out.append((m.start(), Limit(relation, _normalise_number(_NUM_WORDS.get(number.lower(), number)), unit,
++                                     frozenset(_limit_terms(clause)[-4:]),
++                                     frozenset([w for w in _limit_terms(after) if w not in _LIMIT_AFTER_SKIP][:4]),
++                                     bool(_AGE_RE.match(t[m.end():])))))
++    return [limit for _, limit in sorted(out, key=lambda pair: pair[0])]
++
++
++def _same_limit_scope(mine: Limit, theirs: Limit) -> bool:
++    """The same value and unit bounding the same thing: a shared word before the
++    number, and - where both say what it is of or counted from - a shared word after."""
++    return (mine.value == theirs.value and mine.unit == theirs.unit and bool(mine.before & theirs.before)
++            and not (mine.after and theirs.after and not mine.after & theirs.after))
++
++
++def compare_limits(claim: str, evidence: str) -> tuple[str, str, str, str] | None:
++    """("conflict", why, claim limit, evidence limit) when the claim reverses a
++    limit the evidence states; ("blocked", ...) when it states the same limit
++    with another boundary (at least vs more than) or reverses an age threshold;
++    None when nothing is comparable or the claim's reading is ambiguous."""
++    mine, theirs = numeric_limits(claim), numeric_limits(evidence)
++    if any(limit.ambiguous for limit in mine):
++        return None
++    blocked = None
++    for c in mine:
++        same = [e for e in theirs if not e.ambiguous and _same_limit_scope(c, e)]
++        relations = {e.relation for e in same}
++        if len(relations) != 1:
++            continue                                     # nothing comparable, or the evidence reads two ways
++        (relation,) = relations
++        if relation == c.relation:
++            continue
++        shown = (f"{c.relation} {c.value} {c.unit}", f"{relation} {c.value} {c.unit}")
++        if c.age or any(e.age for e in same):
++            blocked = blocked or ("blocked", f"the answer applies the rule to ages '{shown[0]}' where the evidence "
++                                             f"applies it to '{shown[1]}'", *shown)
++        elif (c.relation in _LIMIT_UPPER) != (relation in _LIMIT_UPPER):
++            return ("conflict", f"the answer bounds {c.value} {c.unit} as '{c.relation}' where the evidence bounds "
++                                f"it as '{relation}'", *shown)
++        else:
++            blocked = blocked or ("blocked", f"the answer's boundary '{c.relation}' {c.value} {c.unit} differs from "
++                                             f"the evidence's '{relation}'", *shown)
++    return blocked
++
++
++def measured_quantity_mismatch(claim: str, evidence: str) -> str | None:
++    """The claim's number appears in the evidence only as the limit on a
++    DIFFERENT stated quantity ("0.1 percent by weight of twine" against "not
++    more than 0.1 percent by weight of ethylene glycol")."""
++    mine, theirs = numeric_limits(claim), numeric_limits(evidence)
++    if any(limit.ambiguous for limit in mine):
++        return None
++    for c in mine:
++        same = [e for e in theirs if not e.ambiguous and e.value == c.value and e.unit == c.unit]
++        if c.after and same and all(e.after and not c.after & e.after for e in same):
++            return f"the answer's {c.value} {c.unit} is, in the evidence, the limit on a different quantity"
++    return None
++
++
++_DAY_COUNT_RE = re.compile(r"(\d+(?:\.\d+)?)[\s-]*(calendar|business|working)[\s-]+days?\b", re.I)
++_TEMPERATURE_RE = re.compile(r"(-?\d+(?:\.\d+)?)\s*(?:°\s*|degrees?\s+)(C|F|Celsius|Fahrenheit)(?![A-Za-z])", re.I)
++
++
++def _conventions(text: str) -> dict[tuple[str, str], set[str]]:
++    out: dict[tuple[str, str], set[str]] = {}
++    for m in _DAY_COUNT_RE.finditer(text or ""):
++        kind = "business" if m.group(2).lower() in ("business", "working") else "calendar"
++        out.setdefault(("days", _normalise_number(m.group(1))), set()).add(kind)
++    for m in _TEMPERATURE_RE.finditer(text or ""):
++        out.setdefault(("degrees", _normalise_number(m.group(1))), set()).add(m.group(2)[0].upper())
++    return out
++
++
++def convention_mismatch(claim: str, evidence: str) -> str | None:
++    """The same number counted in another explicitly stated convention:
++    calendar vs business (or working) days, °C vs °F. Never converted; an
++    unqualified "days" or "degrees" is not a mismatch."""
++    mine, theirs = _conventions(claim), _conventions(evidence)
++    for (kind, value), conventions in mine.items():
++        other = theirs.get((kind, value))
++        if other and not conventions & other:
++            return (f"the answer states {value} {kind} as {'/'.join(sorted(conventions))} where the evidence states "
++                    f"{value} {kind} as {'/'.join(sorted(other))}")
++    return None
++
++
+ # "shall be approved ONLY upon examination" makes examination necessary; drop
+ # "only" and it reads as sufficient. regulus.rag.answer_plan's qualifier list
+ # (which serves the generation prompt and is not modified here) has no entry for
+@@ -630,6 +828,23 @@
+                                   sorted(mine), sorted(theirs)))
+     if not claim_kinds:
+         undetermined.append(CONFLICT_QUANTITY)
++
++    # -- numeric limits: a matching number agrees only as the same limit on the
++    # same quantity. A reversed limit is a conflict; the same number with another
++    # boundary, quantity, day count, temperature scale or population is not
++    # agreement, and the passage cannot support the claim - but it does not
++    # contradict it either.
++    limit = compare_limits(claim, evidence)
++    if limit is not None and limit[0] == "conflict":
++        conflicts.append(note(CONFLICT_LIMIT, limit[1], limit[2], limit[3]))
++    else:
++        mismatch = (limit[1] if limit else None) or measured_quantity_mismatch(claim, evidence) \
++            or convention_mismatch(claim, evidence)
++        if mismatch:
++            agreed = [name for name in agreed if not name.startswith(f"{CONFLICT_QUANTITY}:")]
++            relate(CONFLICT_QUANTITY, "not_the_same_limit", None, None, mismatch)
++            if support_blocked is None:
++                support_blocked = mismatch
+ 
+     # -- dates
+     if not c.dates:

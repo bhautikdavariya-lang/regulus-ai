@@ -1,0 +1,271 @@
+{
+ "note": "Frozen for Priority 2 regression. Question, delivered answer and human labels from acceptance_rev02 (artifacts/stage_a/dataset.jsonl). Evidence is LEGACY_RECONSTRUCTED: eCFR rows fetched by label; guidance chunks are each document's top full-text matches for the question, because the run predates exact evidence capture. These rows test operator logic on real guidance text, not live retrieval.",
+ "rows": [
+  {
+   "id": "E-007",
+   "question": "What are the signature/record linking requirements?",
+   "answer": "What are the signature/record linking requirements? [1] The FDA guidance specifies that electronic signatures must be linked to the respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary means. [2] Additionally, any changes made to the record, including those subsequent to the 74 See § 11.10(b), must be reflected in the audit trail.",
+   "N": 2,
+   "M": 0,
+   "notes": "Borderline. The requirement is stated accurately and in full - signatures must be linked to their records so they cannot be excised, copied or otherwise transferred to falsify a record by ordinary means - but it is attributed to an FDA clinical-investigations guidance rather than to 11.70, the answer carries an invalid citation marker that resolved to no source, and a stray fragment ('subsequent to the 74 See § 11.10(b)') is left in the text.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, Docket FDA-2017-D-1105)",
+     "text": "roved the contents of this document”) should be placed elsewhere in the document linking the\nsignature to the electronic record.\nQ24. What methods might be used to create valid electronic signatures?\nAlthough part 11 specifies criteria under which FDA considers electronic signatures to be\ntrustworthy, reliable, and generally equivalent to handwritten signatures executed on paper,82\npart 11 regulations do not specify a particular method to create a valid electronic signature.\nExamples of methods used to create valid electronic signatures include, but are not limited to, the\nuse of computer-readable ID cards, biometrics, digital signatures,83 and username and password\ncombinations.\nVarious commercial off-the-shelf electronic signature services are available to create valid\nelectronic signatures. Regulated entities should ensure that these services conform to part 11\nrequirements based on information from the commercial off-the-shelf electronic signature\nservice providers or their own validation of the services when warranted.\nQ25. Does FDA consider signatures drawn with a finger or an electronic stylus on a\nmobile platform or other electronic system to be electronic signatures?\nNo. Signatures drawn with a finger or an electronic stylus are considered handwritten\nsignatures.84 A handwritten signature executed to an electronic record must be linked to its\nrespective electronic record.85 The handwritten signature should be placed on the electronic",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, Docket FDA-2017-D-1105)",
+     "text": "onbinding Recommendations\n4\ncomponent of GCP, and part 11 regulations help ensure that the electronic records and data for a\nclinical investigation are trustworthy and reliable.\nA. Electronic Records\nElectronic records used in clinical investigations that fall under the scope of part 11 requirements\ninclude:\n• Records needed for FDA to reconstruct a clinical investigation that are maintained and\nretained under predicate rules in electronic form in place of paper form or where the\nelectronic record is relied on to perform regulated activities21\n• Records submitted to FDA in electronic form under predicate rules, even if such records\nare not specifically identified in FDA regulations22\nQ1. Are electronic records from real-world data sources submitted to FDA as part of a\nmarketing application or under other predicate rules subject to part 11\nrequirements?\nAs stated in the guidance for industry Use of Electronic Health Record Data in Clinical\nInvestigations (July 2018), FDA does not intend to assess compliance of an electronic health\nrecord (EHR) system23 or other electronic systems that are sources of real-world data (RWD)24\nwith part 11 regulations. These electronic systems may contain electronic records (e.g., hospital\nadmission records, pharmacy records, laboratory records, imaging records) created during the\ncourse of patient care or for other purposes that are used to support marketing applications or",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "21 CFR 1.360(a)",
+     "text": "(a) You must create the required records when you receive and release food, except to the extent that the information is contained in existing records.",
+     "heading": "What are the record retention requirements?",
+     "corpus": "ecfr"
+    }
+   ]
+  },
+  {
+   "id": "H-001",
+   "question": "Which facilities must register with FDA, and how often must registration be renewed?",
+   "answer": "Facilities must register with the FDA before they begin manufacturing, processing, or holding food for consumption in the United States. A food facility is required to submit an initial registration to the FDA only once. The registration must be renewed every other year during the period beginning on October 1 and ending on December 31 of each even-numbered year. If a facility has not had any changes to its registration information since the previous registration, renewal, or update, FDA provides an abbreviated biennial renewal process. Foreign facilities must designate a U.S. agent who lives or maintains a place of business in the United States and is physically present. The registration must be renewed every other year. [1][2]\nThe retrieved evidence does not establish the time period or frequency asked for.",
+   "N": 2,
+   "M": 0,
+   "notes": "Borderline. The substance is right and complete: facilities manufacturing, processing, packing or holding food for consumption in the United States must register before beginning those operations, initial registration is submitted once, and renewal falls between 1 October and 31 December of each even-numbered year, with an abbreviated renewal where nothing has changed and a United States agent for foreign facilities. It fails on authority and self-consistency: only two guidances are cited rather than 1.225 and 1.230, and the closing sentence says the evidence does not establish the frequency the answer has just given.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "text": "er?\nYour facility must register before you begin manufacturing/processing, packing, or holding food\nfor consumption in the United States.\nHow Often Must a Facility Register or Renew its Registration?\nA food facility is required to submit an initial registration to FDA only once. Section 415(a)(3)\nof the FD&C Act, as amended by section 102 of FSMA, requires your facility to renew its\nregistration with FDA every other year during the period beginning on October 1 and ending on\nDecember 31 of each even-numbered year.\nIs a Facility Required to Resubmit all of the Registration Information during the\nBiennial Renewal Process?\nNo. FDA has an abbreviated biennial registration renewal process for a registrant of a facility that\nhas not had any changes to its registration information since the registrant submitted the previous\nregistration, registration renewal, or update for the facility.\nWho May Register a Facility?\nThe owner, operator, or agent in charge of a facility, or an individual authorized by one of them,\nmay register that facility.\nForeign facilities must designate a U.S. agent, who lives or maintains a place of business in the\nUnited States and is physically present in the United States, for purposes of communication\nbetween the facility and FDA. The U.S. agent also may be authorized to register the facility.\nWhat If Your Facility Fails to Register, Renew, or Update its Registration?",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "text": "rent company?\"\nThe term \"parent company\" is used in 21 CFR 1.232(a)(4) and is intended to have the meaning it\nhas in the corporate context. If a facility is part of a company that is owned by another\ncorporation, then the corporation would be the parent company. For example, if a facility is\nowned by Company X, and Company X is a subsidiary of Corporation Y, then the owner of the\nfacility is Company X and the parent company is Corporation Y.\nD. When Must You Register or Renew Your Registration?\n1. When Must You Register?\nD.1.1 When must you register initially under the food facility registration requirements?\nIf you are required to register with FDA, you must register before your facility begins\nmanufacturing/processing, packing, or holding operations.\n2. Biennial Registration Renewal\nD.2.1 When does a facility that is required to register with FDA need to submit a\nregistration renewal to FDA?\nSection 415(a)(3) of the FD&C Act requires facilities that are required to register with FDA to\nrenew their registrations every other year, during the period beginning on October 1 and ending\nContains Nonbinding Recommendations\n37\non December 31 of each even-numbered year.\nFDA will consider a registration for a food facility to be expired if the registration is not renewed\nas required (21 CFR 1.241(b)). FDA will consider a food facility with an expired registration to\nhave failed to register in accordance with section 415 (21 CFR 1.241(b)). The failure to register a",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "text": "e\nsame address associated with your registration. FDA will not provide you with a confirmation of\nyour registration renewal until FDA verifies the accuracy of your UFI and verifies that the facility-\nspecific address associated with the UFI is the same address associated with your registration.\n• For registrations submitted by mail or fax, after you submit your registration, FDA will verify the\naccuracy of your facility’s UFI and will also verify that the facility-specific address associated\nwith the UFI is the same address associated with your registration. FDA will not confirm your\nregistration or provide you with a registration number until FDA verifies the accuracy of your\nfacility’s UFI and verifies that the facility-specific address associated with the UFI is the same\naddress associated with your registration.\n• For registration renewals submitted by mail or fax, after you submit your registration renewal,\nFDA will provide you with a confirmation of your registration renewal. When you add or update\nyour facility’s UFI as part of your registration renewal, FDA will verify the accuracy of your\nfacility’s UFI and will also verify that the facility-specific address associated with the UFI is the\nsame address associated with your registration. FDA will not provide you with a confirmation of\nyour registration renewal until FDA verifies the accuracy of your UFI and verifies that the facility-",
+     "heading": null,
+     "corpus": "fda_guidance"
+    }
+   ]
+  },
+  {
+   "id": "K-003",
+   "question": "What additional safeguards apply to children enrolled in a clinical investigation of a drug or device?",
+   "answer": "The FDA requires that children enrolled in a clinical investigation of a drug or device must have a complete and accurate investigational device description (IDE) that includes an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device. Additionally, the device description must include an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties. If the device consists of multiple components, a diagram identifying how the different components of the device system work together may be beneficial. The device description should also include a discussion of the physical specifications, dimensions, and other relevant attributes. If the device contains multiple functions, the FDA does not regulate the Non-Device-MDDS functions contained in a multiple function device product. The device must also include an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties.",
+   "N": 0,
+   "M": 0,
+   "notes": "Answers with the contents of a device description for a submission - how the device functions, materials, dimensions, component diagrams. Nothing about children: the risk and benefit categories of 50.51 to 50.54, the IRB findings, the assent of the child, the permission of parents or guardians, or the advocate required for wards.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Factors to Consider When Making Benefit-Risk Determinations for Medical Device Investigational Device Exemptions: Guidance for Investigational Device Exemption Sponsors, Sponsor-Investigators and Food and Drug Administration Staff (final, 2017-01-13, Docket FDA-2015-D-1777)",
+     "text": "cription of this device (a description of each important component, ingredient,\nproperty, and principle of operation of the device and any anticipated changes in the\ndevice during the investigation).\nDeficiencies related to an incomplete or inadequate investigational device description\nare the single most common type of non-protocol related deficiency in IDE applications\nthat fail to attain full approval. This Appendix lists the device attributes that CDRH\nrecommends be included in the IDE device description.\nThe investigational device description should include an explanation of how the device\nfunctions, the scientific concepts that form the basis for the device, and the significant physical\nand performance characteristics of the device, such as device design, material used, and physical\nproperties. A complete description of the device may be facilitated by the submission of\nengineering schematics or other figures. If the device consists of multiple components, a diagram\nidentifying how the different components of the device system work together may be beneficial.\nThe device description should also include a discussion of the physical specifications,\ndimensions and mechanical tolerances of the investigational device. Of note, the Device\nEvaluation Strategy worksheet recommended in FDA’s Early Feasibility Guidance provides\nsimilar information and can also be used to address the recommendations provided here.",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Medical Device Data Systems, Medical Image Storage Devices, and Medical Image Communications Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-09-28, Docket FDA-2014-D-0798)",
+     "text": "al device\ndata and results are utilized on hardware that is not intended by the hardware manufacturer for a\ndevice function under section 201(h) of the FD&C Act. For example, general-purpose hardware\nIT infrastructure intended for data transfer (e.g., network router), data storage (e.g., network\nattached storage (NAS)), conversion of data (e.g., PDF software), and display of data (computer\nmonitor) are not device functions. Such products do not meet the definition of a device in section\n201(h) of the FD&C Act for either the software or hardware function and are therefore not\nregulated as devices.\nC. Multiple Function Device Products that contain\nMDDS\nConsistent with section 520(o)(2) of the FD&C Act, which describes the regulation of a product\nwith multiple functions, including at least one device function and at least one software function\nthat is not a device, FDA does not regulate the Non-Device-MDDS functions contained in a\nmultiple function device product. If a multiple function device product contains Device-MDDS\nfunctions, FDA does not, at this time and based on our current understanding of the risks of these\ndevices, intend to enforce the requirements under the FD&C Act. However, FDA may assess the\nimpact that such Non-Device-MDDS and Device-MDDS functions have on the safety and\neffectiveness of the device function(s) in the multiple function device product. FDA’s\nrecommendations on the regulation of such products with multiple functions is provided in the",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "21 CFR 801.109(a)",
+     "text": "(a) The device is:",
+     "heading": "Prescription devices.",
+     "corpus": "ecfr"
+    }
+   ]
+  },
+  {
+   "id": "H-006",
+   "question": "Which foods are subject to the additional traceability recordkeeping requirements, and what must be recorded?",
+   "answer": "The additional traceability recordkeeping requirements apply to certain foods listed on the Food Traceability List (FTL), and to foods containing listed foods as ingredients, provided the listed food remains in the same form (e.g., fresh) as it appears on the list. The recordkeeping requirements apply to all persons subject to the Food Traceability Rule, and certain exemptions are available. The consequences of failure to comply with the Food Traceability Rule are prohibited under section 301(e) of the FD&C Act, except when such violation is committed by a farm. The update to the FTL is scheduled for YY.",
+   "N": 1,
+   "M": 0,
+   "notes": "The coverage half is broadly right - foods on the Food Traceability List and foods containing them as listed ingredients - but what must be recorded is never given: the critical tracking events, the key data elements and the traceability lot codes. The answer also closes with the artefact 'The update to the FTL is scheduled for YY' and cites nothing.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA Regulation (final, 2023-05-18, Docket FDA-2023-D-1336)",
+     "text": "on Who Is Not Subject to the Food Traceability Rule? (§ 1.1330(c)) ........................................ 19\nM. What Records Must I Keep When I Am the First Land-Based Receiver of a Food on the FTL\nthat was Obtained From a Fishing Vessel? (§ 1.1335) ........................................................................... 19\nN. What Records Must I Keep and Provide When I Ship a Food on the FTL? (§ 1.1340) ............. 20\nO. What Records Must I Keep When I Receive a Food on the FTL? (§ 1.1345(a), (c)) .................. 20\nP. What Records Must I Keep When I Receive a Food on the FTL from a Person Who Is Not\nSubject to the Food Traceability Rule? (§ 1.1345(b)) ............................................................................ 21\nQ. What Records Must I Keep When I Transform a Food on the FTL? (§ 1.1350) ........................ 21\nR. Under What Circumstances Will FDA Modify the Requirements of the Food Traceability Rule\nThat Apply to a Food or Type of Entity or Exempt a Food or Type of Entity from the\nRequirements of the Food Traceability Rule? (§ 1.1360(a)) ................................................................. 22\nS. What Records Must I Maintain if I Am Subject to FDA’s Food Facility Registration\nRequirements but I Qualify for Modified Requirements or an Exemption from the Food\nTraceability Rule Requirements? (§ 1.1360(b)) ..................................................................................... 22",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA Regulation (final, 2023-05-18, Docket FDA-2023-D-1336)",
+     "text": "UU. If I Keep Electronic Records, Must I Comply with the Requirements of 21 CFR Part\n11? (§ 1.1455(e))\nRecords that are established or maintained to satisfy the requirements of the Food Traceability\nRule and that meet the definition of electronic records in 21 CFR 11.3(b)(6) are exempt from the\nrequirements of 21 CFR part 11 (“Electronic Records; Electronic Signatures”). However, records\nthat satisfy the requirements of the Food Traceability Rule but that are also required under other\napplicable statutory provisions or regulations remain subject to part 11, if not otherwise exempt.\nVV. If I Already Keep Records of Some of the Information Required Under the Food\nTraceability Rule, Must I Duplicate These Existing Records to Comply with the Rule? (§\n1.1455(f))\nNo, you do not need to duplicate existing records you have (e.g., records that you keep in the\nordinary course of business or that you maintain to comply with other Federal, State, Tribal,\nterritorial, or local regulations) if they contain the information required by the Food Traceability\nRule. You may supplement any such existing records as necessary to include all of the information\nrequired by the rule.\nWW. Must I Keep All the Required Information in a Single Set of Records? (§ 1.1455(g))\nNo, you do not have to keep all of the information required by the Food Traceability Rule in a\nsingle set of records. However, your traceability plan must indicate the format and location of the",
+     "heading": null,
+     "corpus": "fda_guidance"
+    }
+   ]
+  },
+  {
+   "id": "C-005",
+   "question": "What adverse event reporting obligations does MoCRA create for cosmetic responsible persons?",
+   "answer": "The adverse event reporting obligations created by MoCRA for cosmetic responsible persons include submitting serious adverse event reports within 15 business days of receiving additional information, with the date entered in section G, block 4, of the MedWatch form or on the \"Introduction\" page for the electronic version. Prompt submission is important for public health reasons. If a responsible person receives a report from another responsible person, they must submit a serious adverse event report to FDA within the same timeframe as any report received from an initial reporter. The deadline for submitting serious adverse event reports to FDA applies to reports received by phone or mail, even if a report has already been submitted [1].",
+   "N": 1,
+   "M": 0,
+   "notes": "The 15-business-day deadline is right, but the surrounding detail is dietary-supplement adverse event guidance (MedWatch section G block 4, forwarding between responsible persons) rather than the cosmetic regime, and the records retention period and the requirement for contact information on the label are missing.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+     "text": "mpleting the minimum data\nelements listed in Question 13, then the responsible person should submit the serious\nadverse event report within 15 business days of the date the additional information was\nreceived, with that date entered in section G, block 4, of the paper version of the\nMedWatch form or on the “Introduction” page for the electronic version as indicated\nabove.\nAlthough the FD&C Act does not expressly require a responsible person to take action in\nthe event that it receives a report of a serious adverse event in which the initial reporter\nidentifies the suspect dietary supplement as one manufactured, packaged, or distributed\nby another responsible person, we recommend that such reports be promptly forwarded to\nthat other responsible person. In the event that a responsible person receives a report of\nan adverse event regarding one of its products from another responsible person, the\nresponsible person whose product was involved must submit a serious adverse event\nreport to FDA within the same timeframe applicable to any report received from an initial\nreporter (i.e., 15 business days from receipt), even if a serious adverse event report has\nalready been submitted to FDA by the first responsible person (see \"Suspect Dietary\nSupplement\" discussion in Question 13).\n11. [Updated September 2013] How is a serious adverse event report for a dietary\nsupplement submitted to FDA?\nA serious adverse event report for a dietary supplement is submitted to FDA on either the",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+     "text": "y deadline for submitting\nserious adverse event reports to FDA, expressly applies to serious adverse event reports\nresulting from information received by the responsible person through the address or\ntelephone number on the product label. Although the FD&C Act does not expressly\nprovide a timeframe for serious adverse event reports that the responsible person receives\nby other means (such as by e-mail or fax), the reporting of such adverse events is\nrequired by the plain language of section 761(b)(1) of the FD&C Act (providing that the\nresponsible person \"shall submit . . . any report received of a serious adverse event\nassociated with such dietary supplement when used in the United States . . . .\" (emphasis\nadded)), and we recommend that such reports be submitted to FDA within the same\ntimeframe as reports received by phone or mail, i.e., within 15 business days of their\nreceipt by the responsible person.\nPrompt submission of serious adverse event reports is important for public health\nreasons. Delayed reporting of some serious adverse events to FDA solely because of the\nmedium through which the adverse event was reported to the responsible person would\nlessen the effectiveness of adverse event reporting as an early warning sign of possible\nsafety problems with dietary supplements. Without prompt notification of all serious\nadverse events associated with dietary supplements, FDA would be unable to investigate",
+     "heading": null,
+     "corpus": "fda_guidance"
+    }
+   ]
+  },
+  {
+   "id": "L-010",
+   "question": "How must major food allergens be declared on a food label?",
+   "answer": "The FDA requires that major food allergens be declared either in the ingredient list or in a \"Contains\" statement printed immediately after, or adjacent to, the ingredient list (section 403(w)(1) of the FD&C Act). If the food source is declared in the ingredient list and a \"Contains\" statement is also used, then the food source of all of the major food allergens must be declared in the \"Contains\" statement, even if they are declared in the ingredient list (section 403(w)(1) of the FD&C Act). If the major food allergen is already declared within the Supplement Facts label, it does not need to be declared elsewhere on the dietary supplement’s label. The FDA guidance specifies how dietary supplements must be labeled, including the use of \"Contains\" statements and the declaration of allergens in both the ingredient list and the \"Contains\" statement. If the major food allergen is declared in the ingredient list and a \"Contains\" statement is used, then the food source of all of the major food allergens must be declared in the \"Contains\" statement, even if they are declared in the ingredient list. The FDA guidance also specifies that infant formulas must declare the name of the source of the major food allergen. [1]",
+   "N": 2,
+   "M": 0,
+   "notes": "Substantively correct: allergens are declared either by food source name in the ingredient list or in a 'Contains' statement immediately after or adjacent to it, and where a 'Contains' statement is used it must name the food source of every major allergen. Correctly cited to section 403(w)(1) of the FD&C Act, with the Supplement Facts and infant-formula points also right.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+     "text": "guidances means that something is suggested or recommended, but not\nrequired.\nII. Questions and Answers\nA. General Information\nA.1 What foods and food groups are designated as “major food allergens”?\nUnder section 201(qq) of the FD&C Act, a “major food allergen” is one of the following foods\nor food groups, or an ingredient that contains protein derived from one of the following:\nFoods Food Groups\nMilk Fish (such as bass, flounder, cod)\nEggs Crustacean shellfish (such as crab, lobster, shrimp)\nPeanuts Tree nuts (such as almonds, walnuts, pecans)\nWheat\nSoybeans\nSesame\nA.2 Are there foods or food groups that are allergens, other than those designated as\n“major food allergens” under the FD&C Act?\nYes. There are over 160 foods that have been reported to cause allergic reactions in addition to\nthe list of major food allergens that account for most food allergies in the United States.\nAlthough sensitive individuals may react to other foods, the labels of packaged foods containing\nallergens from foods other than the major food allergens are not required to list the food source\nof those allergens in the way required by the FD&C Act.\nA.3 Can FDA change the list of major food allergens that are defined in the FD&C Act?\nAs explained above in section I. Introduction, the FD&C Act defines “major food allergen.”\nFDA cannot alter the statutory list of the nine major food allergens, but the law also allows FDA",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+     "text": "sitive?\nNo. The purpose of the “Contains” statement as required by section 403(w) of the FD&C Act is\nto declare the presence of major food allergens. If the “Contains” statement was used to list: (a)\nfood allergens other than the major food allergens; or (b) food substances that are not food\nallergens to which individuals may be sensitive, it may become more difficult for consumers to\neasily determine if a food contains a major food allergen, which would undermine the purpose of\nthe “Contains” statement. Therefore, reserving the use of the “Contains” statement for its\nintended purpose enhances the clarity and directness of communicating information about the\nmajor food allergens for allergic consumers.\nHowever, FDA does not object to voluntary statements about other allergen information that are\nseparate from the “Contains” statement as long as they are truthful and not misleading.\nD.11 Is a major food allergen that has been unintentionally incorporated in a food as the\nresult of cross-contact subject to the food allergen labeling requirements of the FD&C Act?\nNo. The food allergen labeling requirements of the FD&C Act do not apply to a major\nfood allergen that is unintentionally incorporated in a food as a result of cross-contact. In\nthe context of food allergens, “cross-contact” occurs when an allergenic food is\nunintentionally incorporated into another food that is not intended to contain that allergenic",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)",
+     "text": "e foreign words to be translated into English.\nC. Statements Intended for Specific Religious Needs\nSome statements on infant formulas that are meant to serve specific religious needs may be confusing\nfor the general population, e.g., “Contains No Dairy Ingredients. Manufactured on Dairy Equipment”\non kosher/halal infant formulas. Manufacturers who wish to include religious statements on infant\nformula products should ensure that the intent of the statement is clear to consumers and not\nconfusingly similar to information required for other purposes.\nD. Allergen Statement\nSection 403(w) of the FD&C Act (21 U.S.C. 343(w)) requires that major food allergens be identified\non the label. Generally, major food allergens must be identified either in a statement beginning with\nthe word “Contains” or by common or usual name of the allergen as part of the list of ingredients\n(section 403(w)(1) of the FD&C Act (21 U.S.C. 343(w)(1)). Section 201(qq) of the FD&C Act (21\nU.S.C. 321(qq)) defines “major food allergen” to include nine types of foods, including milk and\nsoybeans, and also extends the definition of “major food allergen” (subject to exceptions) to food\ningredients that contain protein derived from one of the nine types of foods (including milk and\nsoybeans).\nContains Nonbinding Recommendations\n12\nInfant formulas, like other foods, must also declare the name of the source of the major food allergen",
+     "heading": null,
+     "corpus": "fda_guidance"
+    }
+   ]
+  },
+  {
+   "id": "D-005",
+   "question": "What building and facility requirements apply to aseptic processing areas?",
+   "answer": "The available regulatory sources do not provide enough information to answer this question.",
+   "N": 0,
+   "M": 0,
+   "notes": "Declines ('sources do not provide enough information') although 211.42 is in the snapshot. Nothing on defined aseptic areas, smooth cleanable surfaces, air filtered through high-efficiency particulate air filters under positive pressure, environmental monitoring or pressure differential systems.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "21 CFR 112.126(a)",
+     "text": "(a) All of the following requirements apply regarding buildings:",
+     "heading": "What requirements apply to my buildings?",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "21 CFR 111.460(a)",
+     "text": "(a) You must identify and hold in-process material under conditions that protect against mixup, contamination, and deterioration.",
+     "heading": "What requirements apply to holding in-process material?",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "21 CFR 112.129",
+     "text": "All of the following requirements apply to toilet facilities:\n(a) You must provide personnel with adequate, readily accessible toilet facilities, including toilet facilities readily accessible to growing areas during harvesting activities.\n(b) Your toilet facilities must be designed, located, and maintained to:\n(1) Prevent contamination of covered produce, food contact surfaces, areas used for a covered activity, water sources, and water distribution systems with human waste;\n(2) Be directly accessible for servicing, be serviced and cleaned at a frequency sufficient to ensure suitability of use, and be kept supplied with toilet paper; and\n(3) Provide for the sanitary disposal of waste and toilet paper.\n(c) During growing activities that take place in a fully-enclosed building, and during covered harvesting, packing, or holding activities, you must provide a hand-washing station in sufficiently close proximity to toilet facilities to make it practical for persons who use the toilet facility to wash their hands.",
+     "heading": "What requirements apply to toilet facilities?",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "21 CFR 803.30(a)",
+     "text": "(a) You must submit reports to the manufacturer or to us, or both, as specified in paragraphs (a)(1) and (a)(2) of this section as follows:",
+     "heading": "If I am a user facility, what reporting requirements apply to me?",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "21 CFR 112.130",
+     "text": "All of the following requirements apply to hand-washing facilities:\n(a) You must provide personnel with adequate, readily accessible hand-washing facilities during growing activities that take place in a fully-enclosed building, and during covered harvest, packing, or holding activities.\n(b) Your hand-washing facilities must be furnished with:\n(1) Soap (or other effective surfactant);\n(2) Running water that satisfies the requirements of § 112.44(a) for water used to wash hands; and\n(3) Adequate drying devices (such as single service towels, sanitary towel service, or electric hand dryers).\n(c) You must provide for appropriate disposal of waste (for example, waste water and used single-service towels) associated with a hand-washing facility and take appropriate measures to prevent waste water from a hand-washing facility from contaminating covered produce, food contact surfaces, areas used for a covered activity, agricultural water sources, and agricultural water distribution systems with known or reasonably foreseeable hazards.\n(d) You may not use antiseptic hand rubs as a substitute for soap (or other effective surfactant) and water.",
+     "heading": "What requirements apply for hand-washing facilities?",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "21 CFR 507.7(a)",
+     "text": "(a) A qualified facility must submit the following attestations to FDA:",
+     "heading": "Requirements that apply to a qualified facility.",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "21 CFR 112.133",
+     "text": "The plumbing must be of an adequate size and design and be adequately installed and maintained to:\n(a) Distribute water under pressure as needed, in sufficient quantities, in all areas where used for covered activities, for sanitary operations, or for hand-washing and toilet facilities;\n(b) Properly convey sewage and liquid disposable waste;\n(c) Avoid being a source of contamination to covered produce, food contact surfaces, areas used for a covered activity, or agricultural water sources; and\n(d) Not allow backflow from, or cross connection between, piping systems that discharge waste water or sewage and piping systems that carry water used for a covered activity, for sanitary operations, or for use in hand-washing facilities.",
+     "heading": "What requirements apply to plumbing?",
+     "corpus": "ecfr"
+    },
+    {
+     "citation": "FDA Guidance: Sterile Drug Products Produced by Aseptic Processing — Current Good Manufacturing Practice: Guidance for Industry (final, 2004-10-04, Docket FDA-2003-D-0145)",
+     "text": "an aseptic processing\nroom should be minimized. The flow of personnel should be designed to limit the frequency\nwith which entries and exits are made to and from an aseptic processing room and, most\nsignificant, its critical area. Regarding the latter, the number of transfers into the critical area of\na traditional cleanroom, or an isolator, should be minimized. To prevent changes in air currents\nthat introduce lower quality air, movement adjacent to the critical area should be appropriately\nrestricted.\nAny intervention or stoppage during an aseptic process can increase the risk of contamination.\nThe design of equipment used in aseptic processing should limit the number and complexity of\naseptic interventions by personnel. For example, personnel intervention can be reduced by\nintegrating an on-line weight check device, thus eliminating a repeated manual activity within\nthe critical area. Rather than performing an aseptic connection, sterilizing the preassembled\nconnection using sterilize-in-place (SIP) technology also can eliminate a significant aseptic\nmanipulation. Automation of other process steps, including the use of technologies such as\nrobotics, can further reduce risk to the product.\nProducts should be transferred under appropriate cleanroom conditions. For example,\nlyophilization processes include transfer of aseptically filled product in partially sealed\ncontainers. To prevent contamination, a partially closed sterile product should be transferred",
+     "heading": null,
+     "corpus": "fda_guidance"
+    }
+   ]
+  },
+  {
+   "id": "C-003",
+   "question": "What warning statement requirements apply to cosmetics whose safety has not been substantiated?",
+   "answer": "The available regulatory sources do not provide enough information to answer this question. [1]",
+   "N": 0,
+   "M": 0,
+   "notes": "Declines and cites a draft guidance on cigarette and smokeless tobacco warning plans. 740.10's requirement - the conspicuous statement on the principal display panel that the safety of the product has not been determined, with its type size and prominence conditions - is in the snapshot and is never given.",
+   "model_called": true,
+   "fallback_type": null,
+   "evidence_basis": "legacy_reconstructed: CFR rows by label; guidance chunks = the document's top full-text matches for the question (the live run did not record chunk ids)",
+   "sources": [
+    {
+     "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+     "text": "tatements on batches of packages\nsimultaneously (1,000 of warning 1, 1,000 of warning 2, etc.).\nThis should result in an equal display of the four different required warning statements for each brand\nof product, subject to minor variations due to normal commercial printing and manufacturing\npractices.\nTo ensure that the required warning statements are randomly displayed and in as equal a number of\ntimes as is possible on each brand during a 12-month period, that all four required warning statements\nare displayed at the same time, and that the required warning statements are randomly distributed in all\nareas of the United States in which the product is marketed, we will:\nUpon smokeless tobacco product being manufactured, store products in shipping containers. Each\ncontainer will include all required warning statements in as equal a number as possible. When an\norder is placed, we will ship such container(s).\nOR\nSeparate smokeless tobacco product packages by required warning statement at the time of\nmanufacture. W hen an order is placed, we will fill the order with as equal a number of packages as is\npossible from each separate inventory of these warning statements.\n3\nAppendix B – Example Smokeless Tobacco Warning Plan\nIII. Warning Plan for Smokeless Tobacco Product Advertising\nIn accordance with Section 3 of the Smokeless Tobacco Act, each smokeless tobacco advertisement\nmust bear one of the four required warning statements. Additionally, the warning statement must appear",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)",
+     "text": "is responsible for or directs the required warning statements. However, this does not relieve a\nretailer of liability if the retailer displays, in a location open to the public, an advertisement that\ndoes not contain a health warning or contains a health warning that has been altered by the\nretailer in a way that is material to the requirements of § 1143.5.\nWarning Plans. The requirement for submission of warning plans to FDA for cigars and\nthe specific requirements relating to random display and distribution of required warning\nstatements on cigar packaging and quarterly rotation of required warning statements in\ncigar advertising appear at § 1143.5. The requirement to submit a warning plan to FDA will\ntake effect 12 months after May 10, 2016 (§ 1143.13(b)). Twenty-four months after May\n10, 2016, the requirement to carry warning statements on cigar packages and\nadvertising becomes effective (§ 1143.13(a)). Under the warning plan requirements set\nforth in § 1143.5, each person required to randomly display and distribute or rotate\nwarnings in accordance with an FDA-approved plan under this part shall submit a\nproposed warning plan to FDA no later than either 12 months after May 10, 2016, or 12\nmonths before advertising or commercially marketing a product that is subject to such\nrequirement, whichever is later (§ 1143.5(c)(3)).\nContains Nonbinding Recommendations\n4\nIn particular, in accordance with (§ 1143.5(c)(1), warning plans for cigar packaging",
+     "heading": null,
+     "corpus": "fda_guidance"
+    },
+    {
+     "citation": "FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)",
+     "text": "he packaging\nrequirements. In this circumstance, retailers must post a warning sign that lists all six of\nthe required warning statements at the point-of-sale, in accordance with the requirements set\nforth in § 1143.5(a)(3). Retailers of cigars sold individually and not in product packaging are\nnot required to submit a warning plan for warnings on packages, because the warning signs\nposted at the retailer’s point-of-sale will include all six warnings applicable to cigars. Cigar\nretailers are responsible for creating and posting these signs in accordance with §\n1143.5(a)(3)(i)-(iv).\nAdvertisements. Once the required warning statements take effect, it will be unlawful for any\ncigar manufacturer, packager, importer, distributor, or retailer to advertise or cause to be\nadvertised within the United States any cigar unless the advertising bears one of the required\nwarning statements, in accordance with an FDA-approved warning plan (§ 1143.5(b)(1) and\n(b)(2)). As with packaging, retailers may be exempt from this requirement under certain\ncircumstances, which are described in § 1143.5(b)(3). Specifically, the warning statement\nrequirements for advertisements outlined in § 1143.5(b) apply to a retailer only if that retailer\nis responsible for or directs the required warning statements. However, this does not relieve a\nretailer of liability if the retailer displays, in a location open to the public, an advertisement that",
+     "heading": null,
+     "corpus": "fda_guidance"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+--- artifacts/accuracy/ui_evaluation_integration_20261009T065501Z/snapshot_before/index.html	2026-10-09 12:25:01
++++ web/index.html	2026-10-09 12:26:06
+@@ -201,60 +201,89 @@
+         <tr><td>After generation</td><td>validation ${f(t.validation_ms)} · citations ${f(t.citations_ms)} · diagnostics ${f(t.metadata_ms)} · response build ${f(s.response_build_ms)}${s.accuracy_ms == null ? "" : " · accuracy " + f(s.accuracy_ms)}</td></tr>`;
+ }
+ 
+-// Answer accuracy. The server decides everything shown here; the page adds no
+-// judgement of its own and never invents a number when the server sent none.
+-const ACC_STATE_CLASS = { pass: "ok", fail: "stop", partial: "warn", not_established: "mut", not_applicable: "mut" };
++// Per-question evaluation. The server decides every status shown here
++// (regulus.accuracy.review reads the live assessment of THIS answer); the page
++// adds no judgement of its own, except that it never shows PASS for a result
++// that is missing, incomplete, inconsistent or not this question's. No
++// percentage is shown as "accuracy": the evaluator's 0-100 check score appears
++// only in the details, labelled for what it is.
++const ACC_STATE_CLASS = { pass: "ok", fail: "stop", partial: "warn", not_established: "muted", not_applicable: "muted" };
++const EVAL_CLASS = { pass: "ok", fail: "stop", not_evaluated: "mut" };
++const EVAL_LABELS = { pass: ["PASS"], fail: ["FAIL"], not_evaluated: ["NOT EVALUATED", "NOT FULLY EVALUATED"] };
+ 
+-function accPill(a) {
+-  if (!a) return "";
+-  if (a.status === "evaluated") return pill(`accuracy ${a.accuracy}%`, a.accuracy === 100 ? "ok" : a.accuracy === 0 ? "stop" : "warn");
+-  if (a.status === "not_applicable") return pill("accuracy not scored", "mut");
+-  return pill("accuracy unknown", "mut");
++function evaluationOf(r, asked) {
++  if (!r || !("accuracy" in r)) return null;          // evaluation is off: the page is the page it was
++  const a = r.accuracy;
++  const v = a && typeof a === "object" ? a.question_review : null;
++  const none = why => ({ status: "not_evaluated", label: "NOT EVALUATED", explanation: why,
++                         substantive_correctness: null, citation_correctness: null, live_check_score: null,
++                         basis: (v && typeof v === "object" && v.basis) || "" });
++  if (!v || typeof v !== "object" || !EVAL_LABELS[v.status]) return none("No usable evaluation result was returned for this answer.");
++  if (v.question !== r.question || (asked != null && r.question !== asked)) {
++    return none("The evaluation result is not for this question, so it is not shown.");
++  }
++  const sub = v.substantive_correctness, cite = v.citation_correctness;
++  if (v.status === "pass" && !(a.status === "evaluated" && sub && sub.state === "pass"
++                               && cite && (cite.state === "pass" || cite.state === "not_applicable"))) {
++    return none("The evaluation result is inconsistent, so it is not shown.");
++  }
++  return EVAL_LABELS[v.status].includes(v.label) ? v : { ...v, label: EVAL_LABELS[v.status][0] };
+ }
+ 
+-function renderAccuracy(a) {
+-  if (!a) return "";
+-  const scored = a.status === "evaluated";
+-  const value = scored
+-    ? `<div class="acc-value" style="color:var(--${a.accuracy === 100 ? "ok" : a.accuracy === 0 ? "stop" : "warn"})">${a.accuracy}%</div>`
+-    : `<div class="acc-value unknown">${esc(a.status === "not_applicable" ? "Not scored" : "Unable to determine")}</div>`;
+-  const rows = (a.dimensions || []).map(d => `
++function evalPill(e) {
++  return e ? pill(`evaluation: ${e.label}`, EVAL_CLASS[e.status]) : "";
++}
++
++function renderEvaluation(e, a) {
++  if (!e) return "";
++  const line = (name, d) => `
++          <tr><td class="dim">${name}</td>
++            <td class="why">${d && typeof d === "object" ? esc(d.label) + (d.detail ? " — " + esc(d.detail) : "") : "not available"}</td></tr>`;
++  // the individual checks belong with a decided (or partly decided) result only
++  const decided = e.status !== "not_evaluated" || e.label === "NOT FULLY EVALUATED";
++  const dims = decided && a && Array.isArray(a.dimensions) ? a.dimensions.filter(d => d && typeof d === "object") : [];
++  const rows = dims.map(d => `
+         <tr>
+           <td class="dim">${esc(d.label)}</td>
+-          <td class="state" style="color:var(--${ACC_STATE_CLASS[d.state] === "mut" ? "muted" : ACC_STATE_CLASS[d.state]})"
++          <td class="state" style="color:var(--${ACC_STATE_CLASS[d.state] || "muted"})"
+               title="${esc(d.state)}: ${esc(d.claim)}">${esc(d.glyph)}</td>
+           <td class="why">${esc(d.detail)}</td>
+         </tr>`).join("");
+-  const points = (a.deductions || []).map(d => `${esc(d.dimension)} ${esc(d.state)} −${d.points}`).join(" · ");
++  const points = (a && Array.isArray(a.deductions) ? a.deductions : []).map(d => `${esc(d.dimension)} ${esc(d.state)} −${esc(d.points)}`).join(" · ");
++  const score = typeof e.live_check_score === "number" ? e.live_check_score : null;
+   return `
+       <div class="acc">
+         <div class="acc-top">
+-          <div class="acc-score"><div class="acc-label">Answer Accuracy</div>${value}</div>
+-          <p class="acc-basis">${esc(a.basis || "")} ${esc(a.not_the_benchmark || "")}</p>
++          <div class="acc-score"><div class="acc-label">Evaluation of this answer</div>
++            <div class="acc-value${e.status === "not_evaluated" ? " unknown" : ""}" style="color:var(--${e.status === "pass" ? "ok" : e.status === "fail" ? "stop" : "muted"})">${esc(e.label)}</div></div>
++          <p class="acc-basis">${esc(e.basis || "")}</p>
+         </div>
+-        <p class="sub" style="margin:8px 0 0">${esc(a.reason || "")}</p>
+-        <details>
+-          <summary>Component assessment</summary>
++        <table class="acc-table">${line("Substantive correctness", e.substantive_correctness)}${line("Citation correctness", e.citation_correctness)}
++        </table>
++        <p class="sub" style="margin:8px 0 0">${esc(e.explanation || "")}</p>
++        ${rows ? `<details>
++          <summary>All checks</summary>
+           <table class="acc-table">${rows}</table>
+           <p class="sub" style="margin:8px 0 0">
+-            ${scored ? `Score 100 − deductions${points ? " (" + points + ")" : " (none)"} = ${a.accuracy}%. ` : ""}
+-            Rubric <code>${esc(a.rubric_id || "")}</code>; decided from identifier comparison and verbatim
+-            containment only. A dimension marked “?” was not decidable from this evidence and is not
+-            counted as either a pass or a failure.
++            ${score !== null ? `Live check score ${score}/100 (100 − deductions${points ? ": " + points : ": none"}). It summarises these checks; it is not an accuracy percentage. ` : ""}
++            Rubric <code>${esc(e.rubric_id || (a && a.rubric_id) || "")}</code>; decided from identifier comparison,
++            verbatim containment and regulatory-operator agreement with the retrieved evidence. A check marked “?”
++            was not decidable from this evidence and is counted as neither a pass nor a failure.
+           </p>
+-        </details>
++        </details>` : ""}
+       </div>`;
+ }
+ 
+-function render(r) {
++function render(r, asked) {
+   const refused = !r.model_called;
++  const evaluation = evaluationOf(r, asked);
+   const head = [
+     refused ? pill("model not called", "warn") : pill("generated", "ok"),
+     renderGrounding(r.grounding),
+     pill(`${r.sources.length} sources`, "mut"),
+     pill(`${r.wall_seconds}s`, "mut"),
+     r.output_tokens != null ? pill(`${r.output_tokens} tokens out`, "mut") : "",
+-    accPill(r.accuracy),
++    evalPill(evaluation),
+   ].join(" ");
+ 
+   const cites = r.citations.length
+@@ -276,7 +305,7 @@
+     <div class="card">
+       <div class="meta">${head}</div>
+       <div class="answer">${esc(r.answer)}</div>
+-      ${renderAccuracy(r.accuracy)}
++      ${renderEvaluation(evaluation, r.accuracy)}
+     </div>
+     <div class="card">
+       <label>Citations</label>
+@@ -368,7 +397,7 @@
+       else if (ev.type === "final") {
+         finished = true;
+         const tParsed = performance.now();
+-        render(ev.result);
++        render(ev.result, question);
+         const tRendered = performance.now();
+         const ms = x => Math.round(x);
+         $("status").textContent = `first text ${firstText === null ? "— (no model text)" : ms(firstText) + " ms"} · `

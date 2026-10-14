@@ -1,0 +1,57 @@
+--- artifacts/accuracy/ui_evaluation_score_20261009T072052Z/snapshot_before/index.html	2026-10-09 12:50:52
++++ web/index.html	2026-10-09 12:51:20
+@@ -72,6 +72,9 @@
+   .acc-value { font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.2; }
+   .acc-value.unknown { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0; }
+   .acc-basis { flex:1 1 260px; margin:2px 0 0; font-size:12.5px; color:var(--muted); }
++  .acc-points { margin-top:4px; font-size:15px; font-weight:600; }
++  .acc-points.unknown { color:var(--muted); font-weight:500; }
++  .acc-note { margin:2px 0 0; max-width:240px; font-size:12px; color:var(--muted); }
+   .acc details { margin-top:10px; }
+   table.acc-table td { padding:3px 0; }
+   table.acc-table td.dim { color:var(--ink); width:auto; padding-right:10px; }
+@@ -230,6 +233,18 @@
+   return EVAL_LABELS[v.status].includes(v.label) ? v : { ...v, label: EVAL_LABELS[v.status][0] };
+ }
+ 
++// The evaluator's own score: regulus.accuracy.rubric.score() = max(0, 100 - deductions),
++// an integer from 0 to 100, issued only for an evaluated answer and forwarded by
++// regulus.accuracy.review as live_check_score. Shown only when it is exactly that;
++// never inferred from the status, never defaulted to 0 or 100. It never decides
++// the status either: a 90 can sit under FAIL.
++const SCORE_NOTE = "Evaluation score based on the system's checks; it is not a percentage of factual accuracy.";
++
++function evaluationScore(e) {
++  const s = e && typeof e === "object" ? e.live_check_score : undefined;
++  return typeof s === "number" && Number.isInteger(s) && s >= 0 && s <= 100 ? s : null;
++}
++
+ function evalPill(e) {
+   return e ? pill(`evaluation: ${e.label}`, EVAL_CLASS[e.status]) : "";
+ }
+@@ -250,12 +265,14 @@
+           <td class="why">${esc(d.detail)}</td>
+         </tr>`).join("");
+   const points = (a && Array.isArray(a.deductions) ? a.deductions : []).map(d => `${esc(d.dimension)} ${esc(d.state)} −${esc(d.points)}`).join(" · ");
+-  const score = typeof e.live_check_score === "number" ? e.live_check_score : null;
++  const score = evaluationScore(e);
+   return `
+       <div class="acc">
+         <div class="acc-top">
+           <div class="acc-score"><div class="acc-label">Evaluation of this answer</div>
+-            <div class="acc-value${e.status === "not_evaluated" ? " unknown" : ""}" style="color:var(--${e.status === "pass" ? "ok" : e.status === "fail" ? "stop" : "muted"})">${esc(e.label)}</div></div>
++            <div class="acc-value${e.status === "not_evaluated" ? " unknown" : ""}" style="color:var(--${e.status === "pass" ? "ok" : e.status === "fail" ? "stop" : "muted"})">${esc(e.label)}</div>
++            <div class="acc-points${score === null ? " unknown" : ""}">${score === null ? "Score unavailable" : `Evaluation score ${score}/100`}</div>
++            <p class="acc-note">${esc(SCORE_NOTE)}</p></div>
+           <p class="acc-basis">${esc(e.basis || "")}</p>
+         </div>
+         <table class="acc-table">${line("Substantive correctness", e.substantive_correctness)}${line("Citation correctness", e.citation_correctness)}
+@@ -265,7 +282,7 @@
+           <summary>All checks</summary>
+           <table class="acc-table">${rows}</table>
+           <p class="sub" style="margin:8px 0 0">
+-            ${score !== null ? `Live check score ${score}/100 (100 − deductions${points ? ": " + points : ": none"}). It summarises these checks; it is not an accuracy percentage. ` : ""}
++            ${score !== null ? `How the evaluation score is calculated: 100 minus the deductions for these checks (${points || "none"}), never below 0. ` : ""}
+             Rubric <code>${esc(e.rubric_id || (a && a.rubric_id) || "")}</code>; decided from identifier comparison,
+             verbatim containment and regulatory-operator agreement with the retrieved evidence. A check marked “?”
+             was not decidable from this evidence and is counted as neither a pass nor a failure.

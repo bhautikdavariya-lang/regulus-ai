@@ -1,0 +1,45 @@
+########## A-001  N=1 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=direct_lookup
+Q: What current good manufacturing practice requirements apply to the manufacturing, processing, packing, and holding of animal food?
+KEY: 21 CFR 507.14 through 507.28 | Personnel, plant and grounds, sanitation, water supply and plumbing, equipment and utensils, processes and controls, warehousing and distribution, and holding and distribution of human food by-products.
+REV: key_sections=507.14;507.28; key_section_state=present;present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=yes; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: States that subpart B current good manufacturing practice and subpart C preventive controls apply, but gives none of the requirements asked for: personnel hygiene, plant and grounds, sanitation, water supply and plumbing, equipment and utensils, processes and controls, warehousing and distribution, and the holding and distribution of human food by-products. The main claim is cited to a third-party certification guidance.
+EVAL: Draft key 507.14 through 507.28 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The current good manufacturing practice requirements apply to the manufacturing, processing, packing, and holding of animal food as outlined in the FDA guidance. These requirements include:
+
+- Preventive Controls for Animal Food (PCAF) which apply to the manufacturing, processing, packing, or holding of animal food. The scope generally applies to facilities required to register with the FDA under section 415 of the FD&C Act because they manufacture, process, pack, or hold animal food for consumption in the United States (21 CFR 507.5(a)), unless an exemption applies. [1]
+
+- Preventive Controls for Human Food (PCHF) which apply to the manufacturing, processing, packing, or holding of human food. [2]
+
+The guidance also specifies that for facilities manufacturing, processing, packing, or holding animal food, the CGMP regulations in 21 CFR part 507, subpart B, and the hazard analysis and risk-based preventive controls regulations in 21 CFR part 507, subpart C apply. [1]
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Draft Guidance for Industry: Questions and Answers on the Accredited Third-Party Certification Program (draft, 2022-04-28, Docket FDA-20
+   X FDA Guidance: CVM GFI #235 Current Good Manufacturing Practice Requirements for Food for Animals (final, 2017-10-20, Docket FDA-2016-D-1229)
+     21 CFR 4.3
+SOURCES:
+   [21 CFR 4.3] (What current good manufacturing practice requirements apply to my combination product?) 'If you manufacture a combination product, the requirements listed in this section apply as follows:\n(a) The current good manufacturing practice requirements in parts 210 and 211 of this chapter apply to a combination product that includes a drug constituent pa'
+REQS: [] satisfied=[]
+INTENT: topic=['process', 'pack', 'hold'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: 3 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=["the question's subject"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 4
+  C1: final=unverifiable support=unverifiable/no_evidence rel=relevant cit=correct
+      text: - Preventive Controls for Animal Food (PCAF) which apply to the manufacturing, processing, packing, or holding of animal food.
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about process/pack/hold | found=0.0
+      evidence: [] ops={}
+  C2: final=unverifiable support=unverifiable/no_evidence rel=undetermined cit=correct
+      text: The scope generally applies to facilities required to register with the FDA under section 415 of the FD&C Act because they manufacture, process, pack, or hold animal food for consumption in the United States (21 CFR 507.5(a)), unless an exemption applies [1].
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence, and the statement names nothing the question asks about | found=0.0
+      evidence: [] ops={}
+  C3: final=unverifiable support=unverifiable/no_evidence rel=relevant cit=invalid
+      text: - Preventive Controls for Human Food (PCHF) which apply to the manufacturing, processing, packing, or holding of human food [2].
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about process/pack/hold | found=0.0
+      evidence: [] ops={}
+  C4: final=unverifiable support=unverifiable/no_evidence rel=relevant cit=correct
+      text: The guidance also specifies that for facilities manufacturing, processing, packing, or holding animal food, the CGMP regulations in 21 CFR part 507, subpart B, and the hazard analysis and risk-based preventive controls regulations in 21 CFR part 507, subpart C apply [1].
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about process/pack/hold | found=0.0
+      evidence: [] ops={}

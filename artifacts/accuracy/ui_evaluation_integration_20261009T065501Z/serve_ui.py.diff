@@ -1,0 +1,25 @@
+--- artifacts/accuracy/ui_evaluation_integration_20261009T065501Z/snapshot_before/serve_ui.py	2026-10-09 12:25:01
++++ scripts/serve_ui.py	2026-10-09 12:25:17
+@@ -276,10 +276,21 @@
+         # never raises.
+         if self.accuracy if accuracy is None else accuracy:
+             t_acc = time.perf_counter()
+-            result["accuracy"] = self.assess(out).to_dict()
++            result["accuracy"] = self.accuracy_payload(out)
+             result["server_timings_ms"]["accuracy_ms"] = round((time.perf_counter() - t_acc) * 1000, 2)
+         return result
+ 
++    def accuracy_payload(self, out) -> dict:
++        """The assessment as the page receives it: the evaluator's own dict, plus
++        the per-question status read from it (regulus.accuracy.review). Kept inside
++        the one `accuracy` object, so the response with the feature on still
++        differs from the response with it off by that key alone."""
++        from regulus.accuracy.review import question_review
++
++        payload = self.assess(out).to_dict()
++        payload["question_review"] = question_review(payload, question=out.question)
++        return payload
++
+     def assess(self, out):
+         """The live accuracy assessment of a finished RagAnswer.
+ 

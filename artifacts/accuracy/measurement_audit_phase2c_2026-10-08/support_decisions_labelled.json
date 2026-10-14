@@ -1,0 +1,4746 @@
+[
+ {
+  "row": "B-001",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s9",
+  "claim": "21 CFR 600.13 [3]: Manufacturers shall retain for a period of at least 6 months after the expiration date, unless a different time period is specified in additional standards, a quantity of representative material of each lot of each product, sufficient for examination and testing for safety and pot",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 600.13",
+  "passage": "Manufacturers shall retain for a period of at least 6 months after the expiration date, unless a different time period is specified in additional standards, a quantity of representative material of each lot of each product, sufficient for examination and testing for safety and potency, except Whole Blood, Cryoprecipitated AHF, Platelets, Red Blood Cells, Plasma, and Source Plasma and Allergenic Products prepared to a physician's prescription.",
+  "coverage": 0.98,
+  "run": 44,
+  "missing_stems": [
+   "pot"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": [
+    "except",
+    "unless"
+   ]
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": [
+    "except",
+    "unless"
+   ]
+  },
+  "relations": [],
+  "reason": "100% of it is verbatim in 21 CFR 600.13 (SOURCE 3) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb00"
+ },
+ {
+  "row": "B-002",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "Specifically, the requirements of paragraphs (c)(1)(i) and (c)(1)(ii) of this section, concerning the submission of postmarketing 15-day Alert reports, also apply to any person whose name appears on the label of a licensed biological product as a manufacturer, packer, distributor, shared manufacture",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 600.80(c)(1)(iii)",
+  "passage": "The requirements of paragraphs (c)(1)(i) and (c)(1)(ii) of this section, concerning the submission of postmarketing 15-day Alert reports, also apply to any person whose name appears on the label of a licensed biological product as a manufacturer, packer, distributor, shared manufacturer, joint manufacturer, or any other participant involved in divided manufacturing.",
+  "coverage": 0.96,
+  "run": 45,
+  "missing_stems": [
+   "specifically"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "98% of it is verbatim in 21 CFR 600.80(c)(1)(iii) (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb01"
+ },
+ {
+  "row": "B-002",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "If a person elects to submit adverse experience reports to the applicant rather than to FDA, they must submit each report to the applicant within 5 calendar days of initial receipt of the information by the person, and the applicant must comply with the requirements of this section.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 600.80(c)(1)(iii)",
+  "passage": "If a person elects to submit adverse experience reports to the applicant rather than to FDA, the person must submit, by any appropriate means, each report to the applicant within 5 calendar days of initial receipt of the information by the person, and the applicant must then comply with the requirements of this section.",
+  "coverage": 0.46,
+  "run": 22,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, quantity:day agree with 21 CFR 600.80(c)(1)(iii) (SOURCE 1) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para00"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0",
+  "claim": "Under Part 601, a biologics license application must be approved upon examination of the product and upon a determination that the product complies with the standards established in the regulations in this chapter, including but not limited to the good manufacturing practice requirements set forth i",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 601.20(a)",
+  "passage": "A biologics license application shall be approved only upon examination of the product and upon a determination that the product complies with the standards established in the biologics license application and the requirements prescribed in the regulations in this chapter including but not limited to the good manufacturing practice requirements set forth in parts 210, 211, 600, 606, and 820 of this chapter.",
+  "coverage": 0.44,
+  "run": 19,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "only (restrictive)"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'only (restrictive)' and the answer does not (21 CFR 601.20(a) (SOURCE 4))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop00"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "The application must be submitted in electronic format, with the electronic submission in a form that FDA can process, review, and archive.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 601.14(a)",
+  "passage": "Electronic format submissions must be in a form that FDA can process, review, and archive.",
+  "coverage": 0.45,
+  "run": 10,
+  "missing_stems": [
+   "applic",
+   "submitt"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 601.14(a) (SOURCE 2) and 70% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para01"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "For foreign establishments and products, samples for each importation must be at least two final containers of each lot of product, obtained by the District Director of Customs and forwarded to the Director, Center for Biologics Evaluation and Research or the Director, Center for Drug Evaluation and",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 601.15",
+  "passage": "Random samples of each importation, obtained by the District Director of Customs and forwarded to the Director, Center for Biologics Evaluation and Research or the Director, Center for Drug Evaluation and Research (see mailing addresses in § 600.2(c) of this chapter) must be at least two final containers of each lot of product.",
+  "coverage": 0.55,
+  "run": 26,
+  "missing_stems": [
+   "establish",
+   "foreign"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "establishment",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 601.15 (SOURCE 3) and 86% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para02"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s4",
+  "claim": "A copy of the associated documents must accompany the shipment [3].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 601.15",
+  "passage": "A copy of the associated documents which describe and identify the shipment must accompany the shipment for forwarding with the samples to the Director, Center for Biologics Evaluation and Research or the Director, Center for Drug Evaluation and Research (see mailing addresses in § 600.2(c)).",
+  "coverage": 0.6,
+  "run": 6,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 601.15 (SOURCE 3) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para03"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s5",
+  "claim": "A biologics license issued to a manufacturer covering all locations of manufacture shall authorize persons other than such manufacturer to conduct at places other than such locations the initial, and partial manufacturing of a product for shipment solely to such manufacturer only to the extent that ",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 601.22",
+  "passage": "A biologics license issued to a manufacturer and covering all locations of manufacture shall authorize persons other than such manufacturer to conduct at places other than such locations the initial, and partial manufacturing of a product for shipment solely to such manufacturer only to the extent that the names of such persons and places are registered with the Commissioner of Food and Drugs and it is found upon application of such manufacturer, that the product is in short supply due either to the peculiar growth requirements of the organism involved or to the scarcity of the animal required for manufacturing purposes, and such manufacturer has established with respect to such persons and places such procedures, inspections, tests or other arrangements as will ensure full compliance with the applicable regulations of this subchapter related to continued safety, purity, and potency.",
+  "coverage": 0.85,
+  "run": 39,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": [
+    "only (restrictive)",
+    "to the extent"
+   ]
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": [
+    "only (restrictive)",
+    "to the extent"
+   ]
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, actor, invented_condition agree with 21 CFR 601.22 (SOURCE 6) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para04"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s6",
+  "claim": "The scope of this subpart applies to radiopharmaceuticals intended for in vivo administration for diagnostic and monitoring use.",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 601.30",
+  "passage": "This subpart applies to radiopharmaceuticals intended for in vivo administration for diagnostic and monitoring use.",
+  "coverage": 0.83,
+  "run": 15,
+  "missing_stems": [
+   "scop"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "83% of it is verbatim in 21 CFR 601.30 (SOURCE 10) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb02"
+ },
+ {
+  "row": "B-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s10",
+  "claim": "The application must be submitted within 60 days of the anniversary date of approval of each product under the license.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 601.28",
+  "passage": "Sponsors of licensed biological products shall submit the following information each year within 60 days of the anniversary date of approval of each product under the license to the Director, Center for Biologics Evaluation and Research or the Director, Center for Drug Evaluation and Research (see mailing addresses in § 600.2(a) or (b) of this chapter):\n(a) Summary.",
+  "coverage": 0.75,
+  "run": 15,
+  "missing_stems": [
+   "applic",
+   "submitt"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "sponsor",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, quantity:day agree with 21 CFR 601.28 (SOURCE 8) and 78% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para05"
+ },
+ {
+  "row": "B-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "The use of plateletpheresis and leukapheresis procedures may vary with additional standards in part 640 of this chapter [1].",
+  "path": "descriptive",
+  "basis": "descriptive",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 606.110(a)",
+  "passage": "(a) The use of plateletpheresis and leukapheresis procedures to obtain a product for a specific recipient may be at variance with the additional standards for specific products prescribed in this part provided that:",
+  "coverage": 0.39,
+  "run": 7,
+  "missing_stems": [
+   "vary"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "a descriptive restatement: 86% of its terms, with a 7-word verbatim run, are in 21 CFR 606.110(a) (SOURCE 2), it names no other party, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "desc00"
+ },
+ {
+  "row": "B-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s6",
+  "claim": "Records must be maintained concurrently with each significant step in the collection, processing, compatibility testing, storage, and distribution of blood and blood components [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 606.160(a)(1)",
+  "passage": "(a)(1) Records shall be maintained concurrently with the performance of each significant step in the collection, processing, compatibility testing, storage and distribution of each unit of blood and blood components so that all steps can be clearly traced.",
+  "coverage": 0.57,
+  "run": 13,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 606.160(a)(1) (SOURCE 9) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para06"
+ },
+ {
+  "row": "B-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s8",
+  "claim": "Adverse reaction files must be maintained for each unit of blood or blood product [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 606.170(a)",
+  "passage": "(a) Records shall be maintained of any reports of complaints of adverse reactions regarding each unit of blood or blood product arising as a result of blood collection or transfusion.",
+  "coverage": 0.5,
+  "run": 7,
+  "missing_stems": [
+   "file"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 606.170(a) (SOURCE 11) and 71% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para07"
+ },
+ {
+  "row": "B-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s10",
+  "claim": "Facilities must be clean, orderly, and suitable for operations [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 606.40",
+  "passage": "Facilities shall be maintained in a clean and orderly manner, and shall be of suitable size, construction and location to facilitate adequate cleaning, maintenance and proper operations.",
+  "coverage": 0.11,
+  "run": 1,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, actor agree with 21 CFR 606.40 (SOURCE 14) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para08"
+ },
+ {
+  "row": "B-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s12",
+  "claim": "Supplies and reagents used in processing must be stored safely and orderly [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 606.65",
+  "passage": "All supplies and reagents used in the collection, processing, compatibility testing, storage and distribution of blood and blood components shall be stored in a safe, sanitary and orderly manner.",
+  "coverage": 0.42,
+  "run": 5,
+  "missing_stems": [
+   "safely"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 606.65 (SOURCE 16) and 86% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para09"
+ },
+ {
+  "row": "C-002",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "The principal display panel must be large enough to accommodate all mandatory label information with clarity and conspicuousness.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 701.10",
+  "passage": "The principal display panel shall be large enough to accommodate all the mandatory label information required to be placed thereon by this part with clarity and conspicuousness and without obscuring designs, vignettes, or crowding.",
+  "coverage": 0.33,
+  "run": 6,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 701.10 (SOURCE 1) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para10"
+ },
+ {
+  "row": "C-002",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "The label shall specify the identity of the commodity and the name and place of business of the manufacturer, packer, or distributor.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 701.12(a)",
+  "passage": "(a) The label of a cosmetic in package form shall specify conspicuously the name and place of business of the manufacturer, packer, or distributor.",
+  "coverage": 0.55,
+  "run": 12,
+  "missing_stems": [
+   "commod",
+   "ident"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 701.12(a) (SOURCE 3) and 80% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para11"
+ },
+ {
+  "row": "C-004",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "The use of chlorofluorocarbons as propellants in cosmetics is prohibited [8].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 700.23",
+  "passage": "The use of chlorofluorocarbons in cosmetics as propellants in self-pressurized containers is prohibited as provided in § 2.125 of this chapter.",
+  "coverage": 0.4,
+  "run": 4,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 700.23 (SOURCE 8) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para12"
+ },
+ {
+  "row": "C-004",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s1",
+  "claim": "These ingredients are deemed to be adulterated under section 601(a) of the Federal Food, Drug, and Cosmetic Act [1].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 700.11(a)",
+  "passage": "Accordingly, any cosmetic containing bithionol is deemed to be adulterated under section 601(a) of the Federal Food, Drug, and Cosmetic Act.",
+  "coverage": 0.84,
+  "run": 16,
+  "missing_stems": [
+   "ingredient"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "84% of it is verbatim in 21 CFR 700.11(a) (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb03"
+ },
+ {
+  "row": "C-004",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s8",
+  "claim": "The use of bithionol in cosmetics is prohibited [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "partially_relevant",
+  "source": "21 CFR 700.23",
+  "passage": "The use of chlorofluorocarbons in cosmetics as propellants in self-pressurized containers is prohibited as provided in § 2.125 of this chapter.",
+  "coverage": 0.38,
+  "run": 3,
+  "missing_stems": [
+   "bithionol"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 700.23 (SOURCE 8) and 75% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para13"
+ },
+ {
+  "row": "D-004",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s0.7",
+  "claim": "Under Part 211, the consultant requirements include microbiological contamination control.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.110(a)",
+  "passage": "Such control procedures shall include, but are not limited to, the following, where appropriate:",
+  "coverage": 0.14,
+  "run": 1,
+  "missing_stems": [
+   "consultant",
+   "contamin",
+   "microbiological"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": [
+    "where appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'where appropriate' and the answer does not (21 CFR 211.110(a) (SOURCE 5))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop01"
+ },
+ {
+  "row": "D-004",
+  "N": 0,
+  "aligner": "lexical",
+  "claim_id": "s0.13",
+  "claim": "Under Part 211, the consultant requirements include drug product inspection.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.101",
+  "passage": "(b) Components for drug product manufacturing shall be weighed, measured, or subdivided as appropriate.",
+  "coverage": 0.29,
+  "run": 2,
+  "missing_stems": [
+   "consultant",
+   "inspect"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 211.101 (SOURCE 2))",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop02"
+ },
+ {
+  "row": "D-004",
+  "N": 0,
+  "aligner": "lexical",
+  "claim_id": "s2",
+  "claim": "The written procedures shall include the following sub-requirements: [1][2][3][4][5][6][7][8][9][10][11][12][13][14][15][16][17][18].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.101",
+  "passage": "Written production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess:\n(a) The batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient.",
+  "coverage": 0.56,
+  "run": 5,
+  "missing_stems": [
+   "sub"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.101 (SOURCE 2) and 75% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para14"
+ },
+ {
+  "row": "D-007",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s0",
+  "claim": "Under Part 211, written procedures for production and process control must be established to ensure the identity, strength, quality, and purity of drug products.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.100(a)",
+  "passage": "(a) There shall be written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess.",
+  "coverage": 0.33,
+  "run": 7,
+  "missing_stems": [
+   "ensur",
+   "establish"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.100(a) (SOURCE 1) and 85% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para15"
+ },
+ {
+  "row": "D-007",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "These procedures shall include all requirements in this subpart, and written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.100(a)",
+  "passage": "These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit.",
+  "coverage": 0.71,
+  "run": 25,
+  "missing_stems": [
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.100(a) (SOURCE 1) and 92% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para16"
+ },
+ {
+  "row": "D-007",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "The procedures shall establish and follow written procedures for reprocessing batches that do not conform to standards or specifications [8].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.115(a)",
+  "passage": "(a) Written procedures shall be established and followed prescribing a system for reprocessing batches that do not conform to standards or specifications and the steps to be taken to insure that the reprocessed batches will conform with all established standards, specifications, and characteristics.",
+  "coverage": 0.58,
+  "run": 11,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.115(a) (SOURCE 8) and 78% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para17"
+ },
+ {
+  "row": "D-007",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s6",
+  "claim": "Written procedures shall be established and followed for packaging and labeling operations [11].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.122(a)",
+  "passage": "(a) There shall be written procedures describing in sufficient detail the receipt, identification, storage, handling, sampling, examination, and/or testing of labeling and packaging materials; such written procedures shall be followed.",
+  "coverage": 0.33,
+  "run": 4,
+  "missing_stems": [
+   "establish",
+   "oper"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.122(a) (SOURCE 9) and 71% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para18"
+ },
+ {
+  "row": "D-007",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s9",
+  "claim": "The expiration date of a drug product shall be determined by appropriate stability testing described in § 211.166 [14].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.137(a)",
+  "passage": "(a) To assure that a drug product meets applicable standards of identity, strength, quality, and purity at the time of use, it shall bear an expiration date determined by appropriate stability testing described in § 211.166.",
+  "coverage": 0.5,
+  "run": 9,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.137(a) (SOURCE 14) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para19"
+ },
+ {
+  "row": "D-008",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s5",
+  "claim": "- **Calibration procedures** and records must be maintained, as required by 21 CFR 111.30.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.68(a)",
+  "passage": "Written records of those calibration checks and inspections shall be maintained.",
+  "coverage": 0.14,
+  "run": 2,
+  "missing_stems": [
+   "procedur"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.68(a) (SOURCE 2) and 75% of its terms are in that passage",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para20"
+ },
+ {
+  "row": "D-008",
+  "N": 0,
+  "aligner": "lexical",
+  "claim_id": "s5",
+  "claim": "- **Calibration procedures** and records must be maintained, as required by 21 CFR 111.30.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 213.68(a)",
+  "passage": "Written procedures and records of calibration, inspections, and checks shall be maintained.",
+  "coverage": 0.21,
+  "run": 3,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 213.68(a) (SOURCE 3) and 100% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para21"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "These procedures shall be approved by the appropriate organizational units and reviewed by the quality control unit.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 211.100(a)",
+  "passage": "These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit.",
+  "coverage": 0.47,
+  "run": 8,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.100(a) (SOURCE 1) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para22"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s5",
+  "claim": "Equipment identification shall be properly maintained to indicate the contents and phase of processing.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.105(a)",
+  "passage": "(a) All compounding and storage containers, processing lines, and major equipment used during the production of a batch of a drug product shall be properly identified at all times to indicate their contents and, when necessary, the phase of processing of the batch.",
+  "coverage": 0.21,
+  "run": 3,
+  "missing_stems": [
+   "identific",
+   "maintain"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.105(a) (SOURCE 4) and 75% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para23"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s8",
+  "claim": "Written procedures shall establish a system for reprocessing batches that do not conform to standards or specifications, and steps to ensure they conform.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 211.115(a)",
+  "passage": "(a) Written procedures shall be established and followed prescribing a system for reprocessing batches that do not conform to standards or specifications and the steps to be taken to insure that the reprocessed batches will conform with all established standards, specifications, and characteristics.",
+  "coverage": 0.61,
+  "run": 14,
+  "missing_stems": [
+   "ensur"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.115(a) (SOURCE 8) and 82% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para24"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s11",
+  "claim": "The expiration date of a drug product shall be determined by appropriate stability testing described in § 211.166.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "partially_relevant",
+  "source": "21 CFR 211.137(a)",
+  "passage": "(a) To assure that a drug product meets applicable standards of identity, strength, quality, and purity at the time of use, it shall bear an expiration date determined by appropriate stability testing described in § 211.166.",
+  "coverage": 0.5,
+  "run": 9,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.137(a) (SOURCE 14) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para25"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s12",
+  "claim": "Written procedures shall also include general requirements for specifications, standards, sampling plans, test procedures, and other laboratory control mechanisms.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 211.160(a)",
+  "passage": "(a) The establishment of any specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms required by this subpart, including any change in such specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms, shall be drafted by the appropriate organizational unit and reviewed and approved by the quality control unit.",
+  "coverage": 0.32,
+  "run": 6,
+  "missing_stems": [
+   "general",
+   "written"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "laboratory",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.160(a) (SOURCE 17) and 82% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "para26"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s14",
+  "claim": "The expiration date shall be determined by appropriate stability testing.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "partially_relevant",
+  "source": "21 CFR 211.137(a)",
+  "passage": "(a) To assure that a drug product meets applicable standards of identity, strength, quality, and purity at the time of use, it shall bear an expiration date determined by appropriate stability testing described in § 211.166.",
+  "coverage": 0.5,
+  "run": 5,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.137(a) (SOURCE 14) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para27"
+ },
+ {
+  "row": "D-009",
+  "N": 0,
+  "aligner": "lexical",
+  "claim_id": "s3",
+  "claim": "If appropriate, written procedures shall include the charge-in of components, ensuring that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "partially_relevant",
+  "source": "21 CFR 211.101",
+  "passage": "Written production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess:\n(a) The batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient.",
+  "coverage": 0.61,
+  "run": 19,
+  "missing_stems": [
+   "appropriat",
+   "charg",
+   "component",
+   "ensur"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.101 (SOURCE 2) and 75% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para28"
+ },
+ {
+  "row": "D-010",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "sampled can be achieved by performing testing for conformance with written specifications or by an identity test on the component accompanied by an acceptable certificate of analysis from the supplier, provided that the firm establishes and maintains a program to ensure the reliability of the suppli",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 213.84(c)",
+  "passage": "This requirement can be met by performing testing for conformance with written specifications or by an identity test on the component accompanied by an acceptable certificate of analysis from the supplier, provided that the firm establishes and maintains a program to ensure the reliability of the supplier's capabilities through appropriate assessment and testing procedures.",
+  "coverage": 0.89,
+  "run": 41,
+  "missing_stems": [
+   "achiev",
+   "sampl"
+  ],
+  "claim_ops": {
+   "strength": "permissive",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "92% of it is verbatim in 21 CFR 213.84(c) (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb04"
+ },
+ {
+  "row": "D-010",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "- **Quality control operations for components, packaging, and labels** (eCFR 21 CFR 111.120(d)): Approving or rejecting any treatment and in-process adjustments of components, packaging, or labels to make them suitable for use in the manufacture of a dietary supplement.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 111.113(b)(1)",
+  "passage": "(b)(1) When there is a deviation or unanticipated occurrence during the production and in-process control system that results in or could lead to adulteration of a component, dietary supplement, or packaging, or could lead to the use of a label not specified in the master manufacturing record, quality control personnel must reject the component, dietary supplement, packaging, or label unless it approves a treatment, an in-process adjustment, or reprocessing to correct the applicable deviation or occurrence.",
+  "coverage": 0.07,
+  "run": 3,
+  "missing_stems": [
+   "make",
+   "oper",
+   "suitabl"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "unless"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'unless' and the answer does not (21 CFR 111.113(b)(1) (SOURCE 4))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop03"
+ },
+ {
+  "row": "D-010",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s4",
+  "claim": "- **Identification of containers and closures** (eCFR 21 CFR 111.113(b)(1)): Each container or grouping of containers for components or drug product containers, or closures shall be identified with a distinctive code for each lot in each shipment received.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "partially_relevant",
+  "source": "21 CFR 211.80(d)",
+  "passage": "(d) Each container or grouping of containers for components or drug product containers, or closures shall be identified with a distinctive code for each lot in each shipment received.",
+  "coverage": 0.7,
+  "run": 28,
+  "missing_stems": [
+   "identific"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.80(d) (SOURCE 3) and 93% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para29"
+ },
+ {
+  "row": "D-019",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0",
+  "claim": "Under Part 211, written procedures shall be established and followed to ensure the identity, strength, quality, and purity of drug products.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 211.100(a)",
+  "passage": "(a) There shall be written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess.",
+  "coverage": 0.33,
+  "run": 6,
+  "missing_stems": [
+   "ensur",
+   "establish",
+   "follow"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.100(a) (SOURCE 1) and 73% of its terms are in that passage",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para30"
+ },
+ {
+  "row": "D-019",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s7.2",
+  "claim": "The records include drug product container.",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 211.184",
+  "passage": "(c) An individual inventory record of each component, drug product container, and closure and, for each component, a reconciliation of the use of each lot of such component.",
+  "coverage": 0.5,
+  "run": 3,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"drug product container\": 100% of it is verbatim in 21 CFR 211.184 (SOURCE 18), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list00"
+ },
+ {
+  "row": "D-019",
+  "N": 1,
+  "aligner": "lexical",
+  "claim_id": "s0",
+  "claim": "Under Part 211, written procedures shall be established and followed to ensure the identity, strength, quality, and purity of drug products.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 211.101",
+  "passage": "Written production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess:\n(a) The batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient.",
+  "coverage": 0.33,
+  "run": 6,
+  "missing_stems": [
+   "ensur"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 211.101 (SOURCE 2) and 82% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para31"
+ },
+ {
+  "row": "E-001",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0",
+  "claim": "The scope of 21 CFR Part 11 is defined in section 11.1(a), which states that the regulations set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equival",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 11.1(a)",
+  "passage": "(a) The regulations in this part set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equivalent to paper records and handwritten signatures executed on paper.",
+  "coverage": 0.9,
+  "run": 26,
+  "missing_stems": [
+   "equival"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "95% of it is verbatim in 21 CFR 11.1(a) (SOURCE 3) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb05"
+ },
+ {
+  "row": "E-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.1",
+  "claim": "The FDA requires additional controls for open systems, including ensuring the authenticity.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 11.30",
+  "passage": "Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their creation to the point of their receipt.",
+  "coverage": 0.17,
+  "run": 2,
+  "missing_stems": [
+   "additional",
+   "fda"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 11.30 (SOURCE 1))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop04"
+ },
+ {
+  "row": "E-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.2",
+  "claim": "The FDA requires additional controls for open systems, including integrity.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 11.30",
+  "passage": "Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their creation to the point of their receipt.",
+  "coverage": 0.2,
+  "run": 2,
+  "missing_stems": [
+   "additional",
+   "fda"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 11.30 (SOURCE 1))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop05"
+ },
+ {
+  "row": "E-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.3",
+  "claim": "The FDA requires additional controls for open systems, including confidentiality of electronic records.",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 11.30",
+  "passage": "Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their creation to the point of their receipt.",
+  "coverage": 0.31,
+  "run": 4,
+  "missing_stems": [
+   "additional",
+   "fda"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the listed item \"confidentiality of electronic records\": 100% of it is verbatim in 21 CFR 11.30 (SOURCE 1), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "list01"
+ },
+ {
+  "row": "E-005",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "The Replacement Reagent Policy applies only to open systems.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 11.30",
+  "passage": "Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their creation to the point of their receipt.",
+  "coverage": 0.22,
+  "run": 2,
+  "missing_stems": [
+   "appl",
+   "policy",
+   "reagent",
+   "replac"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 11.30 (SOURCE 1))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop06"
+ },
+ {
+  "row": "E-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0",
+  "claim": "The requested provision requires that electronic signatures based on identification codes and passwords must be controlled to ensure security and integrity.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 11.300",
+  "passage": "Persons who use electronic signatures based upon use of identification codes in combination with passwords shall employ controls to ensure their security and integrity.",
+  "coverage": 0.14,
+  "run": 3,
+  "missing_stems": [
+   "controll",
+   "request"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 11.300 (SOURCE 1) and 82% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para32"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.3",
+  "claim": "The CGMP requirements under Part 117 Subpart B include food safety plan.",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.190(a)",
+  "passage": "(a) You must establish and maintain the following records documenting implementation of the food safety plan:",
+  "coverage": 0.25,
+  "run": 3,
+  "missing_stems": [
+   "cgmp",
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"food safety plan\": 100% of it is verbatim in 21 CFR 117.190(a) (SOURCE 17), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "list02"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.5",
+  "claim": "The CGMP requirements under Part 117 Subpart B include preventive controls.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.18,
+  "run": 2,
+  "missing_stems": [
+   "cgmp",
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop07"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.6",
+  "claim": "The CGMP requirements under Part 117 Subpart B include circumstances in which preventive controls are not required.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.12,
+  "run": 2,
+  "missing_stems": [
+   "cgmp",
+   "circumstanc",
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop08"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.7",
+  "claim": "The CGMP requirements under Part 117 Subpart B include assurances under preventive controls.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.15,
+  "run": 2,
+  "missing_stems": [
+   "assuranc",
+   "cgmp",
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop09"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.8",
+  "claim": "The CGMP requirements under Part 117 Subpart B include recall plans.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.139",
+  "passage": "(b) The written recall plan must include procedures that describe the steps to be taken, and assign responsibility for taking those steps, to perform the following actions as appropriate to the facility:\n(1) Directly notify the direct consignees of the food being recalled, including how to return or dispose of the affected food;\n(2) Notify the public about any hazard presented by the food when appropriate to protect public health;\n(3) Conduct effectiveness checks to verify that the recall is carried out; and\n(4) Appropriately dispose of recalled food—e.g., through reprocessing, reworking, diverting to a use that does not present a safety concern, or destroying the food.",
+  "coverage": 0.09,
+  "run": 1,
+  "missing_stems": [
+   "cgmp",
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.139 (SOURCE 8))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop10"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.9",
+  "claim": "The CGMP requirements under Part 117 Subpart B include preventive control management components.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.31,
+  "run": 4,
+  "missing_stems": [
+   "cgmp",
+   "subpart"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop11"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "- 21 CFR 117.110(a) mandates quality control operations to reduce defects to the lowest feasible level.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.110(a)",
+  "passage": "(a) The manufacturer, processor, packer, and holder of food must at all times utilize quality control operations that reduce natural or unavoidable defects to the lowest level currently feasible.",
+  "coverage": 0.24,
+  "run": 4,
+  "missing_stems": [
+   "mandat"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "packer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 117.110(a) (SOURCE 2) and 89% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para33"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s5",
+  "claim": "- 21 CFR 117.135(a)(1) requires preventive controls to minimize or prevent hazards.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.14,
+  "run": 2,
+  "missing_stems": [
+   "hazard",
+   "minimiz",
+   "prevent"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop12"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s7",
+  "claim": "- 21 CFR 117.137 requires written assurances to act consistently with them.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.137",
+  "passage": "A facility that provides a written assurance under § 117.136(a)(2), (3), or (4) must act consistently with the assurance and document its actions taken to satisfy the written assurance.",
+  "coverage": 0.25,
+  "run": 3,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 117.137 (SOURCE 7) and 75% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "para34"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s9",
+  "claim": "- 21 CFR 117.140(a) requires preventive control management components.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.4,
+  "run": 4,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop13"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s12",
+  "claim": "- 21 CFR 117.155(a) mandates verification activities.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.155(a)",
+  "passage": "Verification activities must include, as appropriate to the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.25,
+  "run": 2,
+  "missing_stems": [
+   "mandat"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.155(a) (SOURCE 12))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop14"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s13",
+  "claim": "- 21 CFR 117.160(a) requires validation of preventive controls.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.160(a)",
+  "passage": "(a) You must validate that the preventive controls identified and implemented in accordance with § 117.135 are adequate to control the hazard as appropriate to the nature of the preventive control and its role in the facility's food safety system.",
+  "coverage": 0.2,
+  "run": 2,
+  "missing_stems": [
+   "valid"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.160(a) (SOURCE 13))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop15"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s15",
+  "claim": "- 21 CFR 117.170(a) requires reanalysis every 3 years.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.170(a)",
+  "passage": "(a) You must conduct a reanalysis of the food safety plan as a whole at least once every 3 years;",
+  "coverage": 0.3,
+  "run": 3,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, quantity:year agree with 21 CFR 117.170(a) (SOURCE 15) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para35"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s16",
+  "claim": "- 21 CFR 117.180(a) requires implementation records.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.190(a)",
+  "passage": "(a) You must establish and maintain the following records documenting implementation of the food safety plan:",
+  "coverage": 0.12,
+  "run": 1,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 117.190(a) (SOURCE 17) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para36"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s19",
+  "claim": "- 21 CFR 117.206(a) requires temperature control activities for unexposed packaged food.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.206(a)",
+  "passage": "(a) If a facility that is solely engaged in the storage of unexposed packaged food stores any such refrigerated packaged food that requires time/temperature control to significantly minimize or prevent the growth of, or toxin production by pathogens, the facility must conduct the following activities as appropriate to ensure the effectiveness of the temperature controls:",
+  "coverage": 0.23,
+  "run": 3,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.206(a) (SOURCE 20))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop16"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s20",
+  "claim": "- 21 CFR 117.20(a) requires grounds maintenance.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.20(a)",
+  "passage": "The methods for adequate maintenance of grounds must include:",
+  "coverage": 0.12,
+  "run": 1,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 117.20(a) (SOURCE 21) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para37"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s21",
+  "claim": "- 21 CFR 117.251(a) states that FDA may withdraw an exemption.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.251(a)",
+  "passage": "(a) FDA may withdraw a qualified facility exemption under § 117.5(a):",
+  "coverage": 0.25,
+  "run": 3,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "permissive",
+   "polarity": "negate",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "permissive",
+   "polarity": "negate",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, actor agree with 21 CFR 117.251(a) (SOURCE 22) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para38"
+ },
+ {
+  "row": "F-003",
+  "N": 1,
+  "aligner": "lexical",
+  "claim_id": "s5",
+  "claim": "- 21 CFR 117.135(a)(1) requires preventive controls to minimize or prevent hazards.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.206(a)",
+  "passage": "(a) If a facility that is solely engaged in the storage of unexposed packaged food stores any such refrigerated packaged food that requires time/temperature control to significantly minimize or prevent the growth of, or toxin production by pathogens, the facility must conduct the following activities as appropriate to ensure the effectiveness of the temperature controls:",
+  "coverage": 0.21,
+  "run": 3,
+  "missing_stems": [
+   "hazard",
+   "preventiv"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.206(a) (SOURCE 20))",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop17"
+ },
+ {
+  "row": "F-004",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "The grounds must be maintained in a condition that will protect against the contamination of food, and the methods for adequate maintenance must include [1].",
+  "path": "adjacent_window",
+  "basis": "adjacent_window",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 117.20(a)",
+  "passage": "The grounds about a food plant under the control of the operator must be kept in a condition that will protect against the contamination of food.",
+  "coverage": 0.46,
+  "run": 11,
+  "missing_stems": [
+   "adequat",
+   "maintain",
+   "maintenanc",
+   "method"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "across two adjacent sentences of one source: not verbatim, but strength, polarity agree with 21 CFR 117.20(a) (SOURCE 21) and 90% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "adja00"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "The requirements for a preventive control management components include ensuring the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system [19].",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.71,
+  "run": 25,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "facility",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop18"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s4",
+  "claim": "The requirements for monitoring include conducting activities that include verification, reanalysis, and validation of the preventive controls [15].",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 117.155(a)",
+  "passage": "Verification activities must include, as appropriate to the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.18,
+  "run": 3,
+  "missing_stems": [
+   "conduct",
+   "monitor",
+   "reanalysi",
+   "valid"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.155(a) (SOURCE 12))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop19"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s6",
+  "claim": "The requirements for verification include ensuring the preventive controls are consistently implemented and effectively and significantly minimizing or preventing the hazards [16].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 117.165(a)",
+  "passage": "You must verify that the preventive controls are consistently implemented and are effectively and significantly minimizing or preventing the hazards.",
+  "coverage": 0.38,
+  "run": 8,
+  "missing_stems": [
+   "ensur",
+   "verific"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"ensuring the preventive controls are consistently implemented and effectively an\": 90% of its terms, with a 8-word verbatim run, are in 21 CFR 117.165(a) (SOURCE 14), the source its heading refers to, an",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list03"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s7",
+  "claim": "The requirements for reanalysis include conducting a reanalysis of the food safety plan as a whole at least once every 3 years [15].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 117.170(a)",
+  "passage": "(a) You must conduct a reanalysis of the food safety plan as a whole at least once every 3 years;",
+  "coverage": 0.73,
+  "run": 16,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"conducting a reanalysis of the food safety plan as a whole at least once every 3\": 94% of it is verbatim in 21 CFR 117.170(a) (SOURCE 15), the source its heading refers to, and no regulatory operator dis",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list04"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s8",
+  "claim": "The requirements for implementation records include documenting the implementation of the food safety plan [17].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 117.190(a)",
+  "passage": "(a) You must establish and maintain the following records documenting implementation of the food safety plan:",
+  "coverage": 0.43,
+  "run": 6,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"documenting the implementation of the food safety plan\": 100% of its terms, with a 6-word verbatim run, are in 21 CFR 117.190(a) (SOURCE 17), the source its heading refers to, and no regulatory operator ",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list05"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s11",
+  "claim": "The requirements for withdrawal of an exemption include approving an order to withdraw the exemption before the order is issued [23].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 117.254(a)",
+  "passage": "(a) An FDA Division Director in whose division the qualified facility is located (or, in the case of a foreign facility, the Director of the Office of Compliance in the Center for Food Safety and Applied Nutrition), or an FDA official senior to either such Director, must approve an order to withdraw the exemption before the order is issued.",
+  "coverage": 0.55,
+  "run": 11,
+  "missing_stems": [
+   "withdrawal"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"approving an order to withdraw the exemption before the order is issued\": 92% of it is verbatim in 21 CFR 117.254(a) (SOURCE 23), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list06"
+ },
+ {
+  "row": "F-007",
+  "N": 1,
+  "aligner": "lexical",
+  "claim_id": "s0",
+  "claim": "Under Part 117, a food safety plan must contain requirements for hazard analysis and preventive controls, as appropriate to the nature of the preventive control and its role in the facility's food safety system [1].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 117.160(a)",
+  "passage": "(a) You must validate that the preventive controls identified and implemented in accordance with § 117.135 are adequate to control the hazard as appropriate to the nature of the preventive control and its role in the facility's food safety system.",
+  "coverage": 0.59,
+  "run": 19,
+  "missing_stems": [
+   "analysi",
+   "contain",
+   "plan"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity, invented_condition agree with 21 CFR 117.160(a) (SOURCE 13) and 79% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "para39"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.1",
+  "claim": "Under Part 117, a process preventive control is a measure implemented to prevent hazards that require a preventive control, such as contamination or microbial growth.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 117.160(a)",
+  "passage": "(a) You must validate that the preventive controls identified and implemented in accordance with § 117.135 are adequate to control the hazard as appropriate to the nature of the preventive control and its role in the facility's food safety system.",
+  "coverage": 0.09,
+  "run": 2,
+  "missing_stems": [
+   "contamin",
+   "growth",
+   "measur",
+   "microbial",
+   "prevent",
+   "proces"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.160(a) (SOURCE 13))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop20"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.2",
+  "claim": "Under Part 117, a process preventive control is a measure implemented to prevent hazards that require a preventive control, such as is subject to the requirements of § 117.135.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.12,
+  "run": 3,
+  "missing_stems": [
+   "hazard",
+   "implement",
+   "measur",
+   "prevent",
+   "proces"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop21"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1.2",
+  "claim": "A sanitation preventive control is a measure to prevent hazards related to sanitation, such as is also subject to the requirements of § 117.135.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.12,
+  "run": 3,
+  "missing_stems": [
+   "hazard",
+   "measur",
+   "prevent",
+   "relat",
+   "sanit"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop22"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2.2",
+  "claim": "An allergen preventive control is a measure to prevent allergens, such as is also subject to the requirements of § 117.135.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.14,
+  "run": 3,
+  "missing_stems": [
+   "allergen",
+   "measur",
+   "prevent"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop23"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "The requirements apply as appropriate to the nature of the preventive control and its role in the facility's food safety system.",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 117.145",
+  "passage": "As appropriate to the nature of the preventive control and its role in the facility's food safety system:\n(a) Written procedures.",
+  "coverage": 0.86,
+  "run": 19,
+  "missing_stems": [
+   "apply"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "facility",
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "facility",
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 117.145 (SOURCE 10) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb06"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s8",
+  "claim": "The modified requirements apply to a qualified facility solely engaged in the storage of unexposed packaged food as specified in § 117.20(a).",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "partially_relevant",
+  "source": "21 CFR 117.206(a)",
+  "passage": "(a) If a facility that is solely engaged in the storage of unexposed packaged food stores any such refrigerated packaged food that requires time/temperature control to significantly minimize or prevent the growth of, or toxin production by pathogens, the facility must conduct the following activities as appropriate to ensure the effectiveness of the temperature controls:",
+  "coverage": 0.39,
+  "run": 9,
+  "missing_stems": [
+   "apply",
+   "modif",
+   "qualif"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "facility",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.206(a) (SOURCE 20))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop24"
+ },
+ {
+  "row": "F-009",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s10",
+  "claim": "The issuance of an order to withdraw a qualified facility exemption is approved by an FDA official senior to the Division Director as specified in § 117.254(a) [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.254(a)",
+  "passage": "(a) An FDA Division Director in whose division the qualified facility is located (or, in the case of a foreign facility, the Director of the Office of Compliance in the Center for Food Safety and Applied Nutrition), or an FDA official senior to either such Director, must approve an order to withdraw the exemption before the order is issued.",
+  "coverage": 0.18,
+  "run": 5,
+  "missing_stems": [
+   "issuanc"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": "negate",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but polarity, actor agree with 21 CFR 117.254(a) (SOURCE 23) and 83% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "para40"
+ },
+ {
+  "row": "F-012",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s2",
+  "claim": "Part 117 requires corrective actions and corrections, as appropriate to the nature of the hazard and the nature of the preventive control, except as provided by paragraph (c) of this section, [15].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.150(a)",
+  "passage": "As appropriate to the nature of the hazard and the nature of the preventive control, except as provided by paragraph (c) of this section:",
+  "coverage": 0.86,
+  "run": 24,
+  "missing_stems": [
+   "action",
+   "correct",
+   "correctiv"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 117.150(a) (SOURCE 11) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb07"
+ },
+ {
+  "row": "F-012",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s5",
+  "claim": "Part 117 requires implementation records documenting the implementation of the food safety plan, [17].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.190(a)",
+  "passage": "(a) You must establish and maintain the following records documenting implementation of the food safety plan:",
+  "coverage": 0.6,
+  "run": 6,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 117.190(a) (SOURCE 17) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para41"
+ },
+ {
+  "row": "F-012",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s7",
+  "claim": "Part 117 requires activities to ensure the effectiveness of the temperature controls, [22].",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 117.206(a)",
+  "passage": "(a) If a facility that is solely engaged in the storage of unexposed packaged food stores any such refrigerated packaged food that requires time/temperature control to significantly minimize or prevent the growth of, or toxin production by pathogens, the facility must conduct the following activities as appropriate to ensure the effectiveness of the temperature controls:",
+  "coverage": 0.89,
+  "run": 8,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "facility",
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "verbatim, but the evidence limits the requirement with 'as appropriate' and the answer does not",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_PARTIAL",
+  "idx": "drop25"
+ },
+ {
+  "row": "F-012",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s9",
+  "claim": "Part 117 requires FDA to approve an order to withdraw a qualified facility exemption, [23].",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.254(a)",
+  "passage": "(a) An FDA Division Director in whose division the qualified facility is located (or, in the case of a foreign facility, the Director of the Office of Compliance in the Center for Food Safety and Applied Nutrition), or an FDA official senior to either such Director, must approve an order to withdraw the exemption before the order is issued.",
+  "coverage": 0.45,
+  "run": 5,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "duty_holder": "fda",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 117.254(a) (SOURCE 23) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para42"
+ },
+ {
+  "row": "F-012",
+  "N": 1,
+  "aligner": "lexical",
+  "claim_id": "s1",
+  "claim": "Part 117 also requires validation that the preventive controls are effectively and significantly minimizing or preventing the hazards, as appropriate to the facility, the food, and the nature of the preventive control and its role in the facility's food safety system, [13].",
+  "path": "adjacent_window",
+  "basis": "adjacent_window",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 117.165(a)",
+  "passage": "You must verify that the preventive controls are consistently implemented and are effectively and significantly minimizing or preventing the hazards.",
+  "coverage": 0.23,
+  "run": 9,
+  "missing_stems": [
+   "appropriat",
+   "facil",
+   "food",
+   "natur",
+   "role",
+   "safety",
+   "system",
+   "valid"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "across two adjacent sentences of one source: not verbatim, but strength, polarity, invented_condition agree with 21 CFR 117.165(a) (SOURCE 14) and 94% of its terms are in that passage",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_SUPPORT",
+  "idx": "adja01"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.1",
+  "claim": "The Part 117 supply-chain program differs from the FSVP requirements for importers in that it focuses on food safety and quality control measures, including the implementation of preventive controls.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.07,
+  "run": 2,
+  "missing_stems": [
+   "chain",
+   "diff",
+   "focus",
+   "fsvp",
+   "implement",
+   "import",
+   "measur",
+   "program",
+   "qual",
+   "supply"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "importer",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop26"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.2",
+  "claim": "The Part 117 supply-chain program differs from the FSVP requirements for importers in that it focuses on food safety and quality control measures, including hazard analysis.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.160(a)",
+  "passage": "(a) You must validate that the preventive controls identified and implemented in accordance with § 117.135 are adequate to control the hazard as appropriate to the nature of the preventive control and its role in the facility's food safety system.",
+  "coverage": 0.07,
+  "run": 2,
+  "missing_stems": [
+   "analysi",
+   "chain",
+   "diff",
+   "focus",
+   "fsvp",
+   "import",
+   "measur",
+   "program",
+   "qual",
+   "supply"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "importer",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.160(a) (SOURCE 13))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop27"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s0.3",
+  "claim": "The Part 117 supply-chain program differs from the FSVP requirements for importers in that it focuses on food safety and quality control measures, including verification processes.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.155(a)",
+  "passage": "Verification activities must include, as appropriate to the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.07,
+  "run": 2,
+  "missing_stems": [
+   "chain",
+   "diff",
+   "focus",
+   "fsvp",
+   "import",
+   "measur",
+   "process",
+   "program",
+   "qual",
+   "supply"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": "importer",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.155(a) (SOURCE 12))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop28"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "The program requires the establishment to ensure the lowest possible defect levels, implement a food safety plan, and conduct preventive control management components.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.155(a)",
+  "passage": "Verification activities must include, as appropriate to the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.09,
+  "run": 2,
+  "missing_stems": [
+   "component",
+   "conduct",
+   "defect",
+   "ensur",
+   "establish",
+   "impl",
+   "level",
+   "lowest",
+   "manag",
+   "plan",
+   "possibl",
+   "program"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.155(a) (SOURCE 12))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop29"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s4.1",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as identifying hazards.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.24,
+  "run": 5,
+  "missing_stems": [
+   "hazard",
+   "identify",
+   "measur",
+   "specific",
+   "sub"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop30"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s4.2",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as implementing preventive controls.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.23,
+  "run": 5,
+  "missing_stems": [
+   "implement",
+   "measur",
+   "specific",
+   "sub"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop31"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "lexical",
+  "claim_id": "s1",
+  "claim": "The program requires the establishment to ensure the lowest possible defect levels, implement a food safety plan, and conduct preventive control management components.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.17,
+  "run": 4,
+  "missing_stems": [
+   "conduct",
+   "defect",
+   "establish",
+   "impl",
+   "level",
+   "lowest",
+   "plan",
+   "possibl",
+   "program"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop32"
+ },
+ {
+  "row": "F-022",
+  "N": 1,
+  "aligner": "lexical",
+  "claim_id": "s4.3",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as maintaining records.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "irrelevant",
+  "rel": "irrelevant",
+  "source": "21 CFR 117.140(a)",
+  "passage": "(a) Except as provided by paragraphs (b) and (c) of this section, the preventive controls required under § 117.135 are subject to the following preventive control management components as appropriate to ensure the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system:",
+  "coverage": 0.24,
+  "run": 5,
+  "missing_stems": [
+   "maintain",
+   "measur",
+   "record",
+   "specific",
+   "sub"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": [
+    "as appropriate"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'as appropriate' and the answer does not (21 CFR 117.140(a) (SOURCE 9))",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop33"
+ },
+ {
+  "row": "G-004",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.1",
+  "claim": "The format and content requirements for the Drug Facts labeling of an over-the-counter (OTC) drug product include the title \"Drug Facts\" and \"Drug Facts (continued)\" appearing on each panel.",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 201.66(c)(1)",
+  "passage": "If the drug facts labeling appears on more than one panel, the title “Drug Facts (continued)” shall appear at the top of each subsequent panel containing such information.",
+  "coverage": 0.13,
+  "run": 4,
+  "missing_stems": [
+   "content",
+   "count",
+   "format",
+   "otc",
+   "over",
+   "product"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"the title \"Drug Facts\" and \"Drug Facts (continued)\" appearing on each panel\": 100% of its terms, with a 4-word verbatim run, are in 21 CFR 201.66(c)(1) (SOURCE 2), the source its heading refers to, and n",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list07"
+ },
+ {
+  "row": "G-004",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.2",
+  "claim": "The format and content requirements for the Drug Facts labeling of an over-the-counter (OTC) drug product include the title using uppercase letters for \"Drug\" and \"Facts.\".",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 201.66(d)(1)",
+  "passage": "(1) The title “Drug Facts” or “Drug Facts (continued)” shall use uppercase letters for the first letter of the words “Drug” and “Facts.” All headings and subheadings in paragraphs (c)(2) through (c)(9) of this section shall use an uppercase letter for the first letter in the first word and lowercase letters for all other words.",
+  "coverage": 0.11,
+  "run": 3,
+  "missing_stems": [
+   "content",
+   "count",
+   "format",
+   "label",
+   "otc",
+   "over",
+   "product",
+   "using"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"the title using uppercase letters for \"Drug\" and \"Facts.\"\": 100% of its terms, with a 3-word verbatim run, are in 21 CFR 201.66(d)(1) (SOURCE 3), the source its heading refers to, and no regulatory opera",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list08"
+ },
+ {
+  "row": "G-004",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "The headings and subheadings in paragraphs (c)(2) through (c)(9) of this section use uppercase letters for the first word and lowercase letters for all other words.",
+  "path": "descriptive",
+  "basis": "descriptive",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 201.66(d)(1)",
+  "passage": "(1) The title “Drug Facts” or “Drug Facts (continued)” shall use uppercase letters for the first letter of the words “Drug” and “Facts.” All headings and subheadings in paragraphs (c)(2) through (c)(9) of this section shall use an uppercase letter for the first letter in the first word and lowercase letters for all other words.",
+  "coverage": 0.46,
+  "run": 13,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "a descriptive restatement: 100% of its terms, with a 13-word verbatim run, are in 21 CFR 201.66(d)(1) (SOURCE 3), it names no other party, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "desc01"
+ },
+ {
+  "row": "G-004",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s3",
+  "claim": "The letter height or type size for the title \"Drug Facts\" shall be larger than the largest type size used in the Drug Facts labeling, and the letter height or type size for the title \"Drug Facts (continued)\" shall be no smaller than 8-point type.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 201.66(d)(2)",
+  "passage": "(2) The letter height or type size for the title “Drug Facts” shall appear in a type size larger than the largest type size used in the Drug Facts labeling.",
+  "coverage": 0.26,
+  "run": 12,
+  "missing_stems": [
+   "continu",
+   "point",
+   "small"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 201.66(d)(2) (SOURCE 4) and 77% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para43"
+ },
+ {
+  "row": "G-008",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "The bar code requirements requirement does not apply to prescription drugs sold directly to patients by manufacturers, repackers, relabelers, or private label distributors, but versions of the same drug sold to or used in hospitals are subject to the bar code requirements.",
+  "path": "descriptive",
+  "basis": "descriptive",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 201.25(b)(1)(ii)",
+  "passage": "(ii) The bar code requirement does not apply to prescription drugs sold by a manufacturer, repacker, relabeler, or private label distributor directly to patients, but versions of the same drug product that are sold to or used in hospitals are subject to the bar code requirements.",
+  "coverage": 0.31,
+  "run": 13,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": null,
+   "polarity": "negate",
+   "duty_holder": "distributor",
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": "negate",
+   "duty_holder": "distributor",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "a descriptive restatement: 100% of its terms, with a 13-word verbatim run, are in 21 CFR 201.25(b)(1)(ii) (SOURCE 1), it names no other party, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "desc02"
+ },
+ {
+  "row": "G-010",
+  "N": 1,
+  "aligner": "semantic",
+  "claim_id": "s1",
+  "claim": "Each finished drug product or unfinished drug subject to the listing requirements must have a unique NDC to identify its labeler, product, and package size and type.",
+  "path": "sentence",
+  "basis": "paraphrase",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 207.33(a)",
+  "passage": "Each finished drug product or unfinished drug subject to the listing requirements of this part must have a unique NDC to identify its labeler, product, and package size and type.",
+  "coverage": 0.56,
+  "run": 15,
+  "missing_stems": [],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "not verbatim, but strength, polarity agree with 21 CFR 207.33(a) (SOURCE 1) and 100% of its terms are in that passage",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "para44"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.1",
+  "claim": "21 CFR 820.35 adds the name of the device [3].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "For complaints that must be reported to FDA under part 803 of this chapter, complaints that a manufacturer determines must be investigated, and complaints that the manufacturer investigated regardless of those requirements, the manufacturer must record the following information:\n(1) The name of the device;\n(2) The date the complaint was received;\n(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);\n(4) The name, address, and phone number of the complainant;\n(5) The nature and details of the complaint;\n(6) Any correction or corrective action taken; and\n(7) Any reply to the complainant.",
+  "coverage": 0.83,
+  "run": 5,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"the name of the device\": 100% of it is verbatim in 21 CFR 820.35 (SOURCE 1), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list09"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.2",
+  "claim": "21 CFR 820.35 adds the date the complaint was received [4].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(a)(2)",
+  "passage": "(2) The date the complaint was received;",
+  "coverage": 0.86,
+  "run": 6,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 820.35(a)(2) (SOURCE 4) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb08"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.3",
+  "claim": "21 CFR 820.35 adds the name, address, and phone number of the complainant [6].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(a)(4)",
+  "passage": "(4) The name, address, and phone number of the complainant;",
+  "coverage": 0.9,
+  "run": 9,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "90% of it is verbatim in 21 CFR 820.35(a)(4) (SOURCE 6) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb09"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.4",
+  "claim": "21 CFR 820.35 adds the nature and details of the complaint [5].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(a)(5)",
+  "passage": "(5) The nature and details of the complaint;",
+  "coverage": 0.88,
+  "run": 7,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "88% of it is verbatim in 21 CFR 820.35(a)(5) (SOURCE 7) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb10"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.5",
+  "claim": "21 CFR 820.35 adds any correction or corrective action taken [7].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(a)(6)",
+  "passage": "(6) Any correction or corrective action taken; and",
+  "coverage": 0.86,
+  "run": 6,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 820.35(a)(6) (SOURCE 8) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb11"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.6",
+  "claim": "21 CFR 820.35 adds any reply to the complainant [8].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "For complaints that must be reported to FDA under part 803 of this chapter, complaints that a manufacturer determines must be investigated, and complaints that the manufacturer investigated regardless of those requirements, the manufacturer must record the following information:\n(1) The name of the device;\n(2) The date the complaint was received;\n(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);\n(4) The name, address, and phone number of the complainant;\n(5) The nature and details of the complaint;\n(6) Any correction or corrective action taken; and\n(7) Any reply to the complainant.",
+  "coverage": 0.83,
+  "run": 5,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"any reply to the complainant\": 100% of it is verbatim in 21 CFR 820.35 (SOURCE 1), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list10"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.7",
+  "claim": "21 CFR 820.35 adds the name of the device serviced [11].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(b)(1)",
+  "passage": "(1) The name of the device serviced;",
+  "coverage": 0.86,
+  "run": 6,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 820.35(b)(1) (SOURCE 11) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb12"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.8",
+  "claim": "21 CFR 820.35 adds any UDI or UPC, and any other device identification(s) [12].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(b)(2)",
+  "passage": "(2) Any UDI or UPC, and any other device identification(s);",
+  "coverage": 0.91,
+  "run": 10,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "91% of it is verbatim in 21 CFR 820.35(b)(2) (SOURCE 12) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb13"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.9",
+  "claim": "21 CFR 820.35 adds the date of service [13].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:\n(1) The name of the device serviced;\n(2) Any UDI or UPC, and any other device identification(s);\n(3) The date of service;\n(4) The individual(s) who serviced the device;\n(5) The service performed; and\n(6) Any test and inspection data.",
+  "coverage": 0.8,
+  "run": 4,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"the date of service\": 100% of it is verbatim in 21 CFR 820.35 (SOURCE 1), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list11"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.10",
+  "claim": "21 CFR 820.35 adds the individual(s) who serviced the device [14].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35(b)(4)",
+  "passage": "(4) The individual(s) who serviced the device;",
+  "coverage": 0.88,
+  "run": 7,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "88% of it is verbatim in 21 CFR 820.35(b)(4) (SOURCE 14) and no regulatory operator disagrees",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb14"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.11",
+  "claim": "21 CFR 820.35 adds the service performed [15].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:\n(1) The name of the device serviced;\n(2) Any UDI or UPC, and any other device identification(s);\n(3) The date of service;\n(4) The individual(s) who serviced the device;\n(5) The service performed; and\n(6) Any test and inspection data.",
+  "coverage": 0.75,
+  "run": 3,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"the service performed\": 100% of it is verbatim in 21 CFR 820.35 (SOURCE 1), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list12"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "semantic",
+  "claim_id": "s0.12",
+  "claim": "21 CFR 820.35 adds any test and inspection data [16] [1].",
+  "path": "list_item",
+  "basis": "list_item",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:\n(1) The name of the device serviced;\n(2) Any UDI or UPC, and any other device identification(s);\n(3) The date of service;\n(4) The individual(s) who serviced the device;\n(5) The service performed; and\n(6) Any test and inspection data.",
+  "coverage": 0.83,
+  "run": 5,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "the listed item \"any test and inspection data\": 100% of it is verbatim in 21 CFR 820.35 (SOURCE 1), the source its heading refers to, and no regulatory operator disagrees",
+  "aligners": [
+   "semantic",
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "list13"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.2",
+  "claim": "21 CFR 820.35 adds the date the complaint was received [4].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "For complaints that must be reported to FDA under part 803 of this chapter, complaints that a manufacturer determines must be investigated, and complaints that the manufacturer investigated regardless of those requirements, the manufacturer must record the following information:\n(1) The name of the device;\n(2) The date the complaint was received;\n(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);\n(4) The name, address, and phone number of the complainant;\n(5) The nature and details of the complaint;\n(6) Any correction or corrective action taken; and\n(7) Any reply to the complainant.",
+  "coverage": 0.86,
+  "run": 6,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb15"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.3",
+  "claim": "21 CFR 820.35 adds the name, address, and phone number of the complainant [6].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "For complaints that must be reported to FDA under part 803 of this chapter, complaints that a manufacturer determines must be investigated, and complaints that the manufacturer investigated regardless of those requirements, the manufacturer must record the following information:\n(1) The name of the device;\n(2) The date the complaint was received;\n(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);\n(4) The name, address, and phone number of the complainant;\n(5) The nature and details of the complaint;\n(6) Any correction or corrective action taken; and\n(7) Any reply to the complainant.",
+  "coverage": 0.9,
+  "run": 9,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "90% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb16"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.4",
+  "claim": "21 CFR 820.35 adds the nature and details of the complaint [5].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "For complaints that must be reported to FDA under part 803 of this chapter, complaints that a manufacturer determines must be investigated, and complaints that the manufacturer investigated regardless of those requirements, the manufacturer must record the following information:\n(1) The name of the device;\n(2) The date the complaint was received;\n(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);\n(4) The name, address, and phone number of the complainant;\n(5) The nature and details of the complaint;\n(6) Any correction or corrective action taken; and\n(7) Any reply to the complainant.",
+  "coverage": 0.88,
+  "run": 7,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "88% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb17"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.5",
+  "claim": "21 CFR 820.35 adds any correction or corrective action taken [7].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported_with_citation_defect",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "For complaints that must be reported to FDA under part 803 of this chapter, complaints that a manufacturer determines must be investigated, and complaints that the manufacturer investigated regardless of those requirements, the manufacturer must record the following information:\n(1) The name of the device;\n(2) The date the complaint was received;\n(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);\n(4) The name, address, and phone number of the complainant;\n(5) The nature and details of the complaint;\n(6) Any correction or corrective action taken; and\n(7) Any reply to the complainant.",
+  "coverage": 0.86,
+  "run": 6,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb18"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.7",
+  "claim": "21 CFR 820.35 adds the name of the device serviced [11].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:\n(1) The name of the device serviced;\n(2) Any UDI or UPC, and any other device identification(s);\n(3) The date of service;\n(4) The individual(s) who serviced the device;\n(5) The service performed; and\n(6) Any test and inspection data.",
+  "coverage": 0.86,
+  "run": 6,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "86% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb19"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.8",
+  "claim": "21 CFR 820.35 adds any UDI or UPC, and any other device identification(s) [12].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:\n(1) The name of the device serviced;\n(2) Any UDI or UPC, and any other device identification(s);\n(3) The date of service;\n(4) The individual(s) who serviced the device;\n(5) The service performed; and\n(6) Any test and inspection data.",
+  "coverage": 0.91,
+  "run": 10,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "91% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb20"
+ },
+ {
+  "row": "M-020",
+  "N": 2,
+  "aligner": "lexical",
+  "claim_id": "s0.10",
+  "claim": "21 CFR 820.35 adds the individual(s) who serviced the device [14].",
+  "path": "sentence",
+  "basis": "verbatim",
+  "final": "supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.35",
+  "passage": "In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:\n(1) The name of the device serviced;\n(2) Any UDI or UPC, and any other device identification(s);\n(3) The date of service;\n(4) The individual(s) who serviced the device;\n(5) The service performed; and\n(6) Any test and inspection data.",
+  "coverage": 0.88,
+  "run": 7,
+  "missing_stems": [
+   "adds"
+  ],
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": []
+  },
+  "relations": [],
+  "reason": "88% of it is verbatim in 21 CFR 820.35 (SOURCE 1) and no regulatory operator disagrees",
+  "aligners": [
+   "lexical"
+  ],
+  "label": "SAFE_SUPPORT",
+  "idx": "verb21"
+ },
+ {
+  "row": "M-034",
+  "N": 0,
+  "aligner": "semantic",
+  "claim_id": "s3.2",
+  "claim": "- A Design History File is a record of the design of the device, including it is required to be maintained by the manufacturer.",
+  "path": "sentence",
+  "basis": "drops_a_condition",
+  "final": "partially_supported",
+  "rel": "relevant",
+  "source": "21 CFR 820.45",
+  "passage": "(a) The manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage where applicable, to include the following:\n(1) The correct unique device identifier (UDI) or universal product code (UPC), or any other device identification(s);\n(2) Expiration date;\n(3) Storage instructions;\n(4) Handling instructions; and\n(5) Any additional processing instructions.",
+  "coverage": 0.09,
+  "run": 2,
+  "missing_stems": [
+   "design",
+   "file",
+   "history",
+   "maintain",
+   "record"
+  ],
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": null,
+   "conditions": []
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "duty_holder": "manufacturer",
+   "conditions": [
+    "where applicable"
+   ]
+  },
+  "relations": [],
+  "reason": "the evidence limits the requirement with 'where applicable' and the answer does not (21 CFR 820.45 (SOURCE 5))",
+  "aligners": [
+   "semantic"
+  ],
+  "label": "FALSE_PARTIAL",
+  "idx": "drop34"
+ }
+]

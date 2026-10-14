@@ -1,0 +1,255 @@
+[
+ {
+  "probe": "P1 different ranges, both true",
+  "claim": "Records shall be retained for no more than 3 years after the expiration date of the batch.",
+  "evidence": "shall be retained for at least 1 year after the expiration date of the batch",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    "<=",
+    "3",
+    "year"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    ">=",
+    "1",
+    "year"
+   ]
+  ]
+ },
+ {
+  "probe": "P2 unit mismatch (months vs year)",
+  "claim": "Records shall be retained for less than 12 months after the expiration date of the batch.",
+  "evidence": "shall be retained for at least 1 year after the expiration date of the batch",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    "<",
+    "12",
+    "month"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    ">=",
+    "1",
+    "year"
+   ]
+  ]
+ },
+ {
+  "probe": "P3 percent vs ppm, no conversion",
+  "claim": "Its fat content is greater than 1000 ppm.",
+  "evidence": "Its fat content is not more than 0.1 percent",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    ">",
+    "1000",
+    "ppm"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "0.1",
+    "percent"
+   ]
+  ]
+ },
+ {
+  "probe": "P4 negation scope outside bound (claim)",
+  "claim": "No record shall be retained for less than 1 year after the expiration date of the batch.",
+  "evidence": "shall be retained for at least 1 year after the expiration date of the batch",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    "ambiguous",
+    "None",
+    "None"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    ">=",
+    "1",
+    "year"
+   ]
+  ]
+ },
+ {
+  "probe": "P5 different event, same number",
+  "claim": "FDA must hold a hearing within 20 calendar days after the appeal is filed.",
+  "evidence": "FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ]
+ },
+ {
+  "probe": "P5b different event, opposite direction",
+  "claim": "FDA must hold a hearing more than 20 calendar days after the appeal is filed.",
+  "evidence": "FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    ">",
+    "20",
+    "calendar day"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ]
+ },
+ {
+  "probe": "P5c same subject, different trailing event",
+  "claim": "FDA may detain an article of food for more than 20 calendar days after the appeal is filed.",
+  "evidence": "FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    ">",
+    "20",
+    "calendar day"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ]
+ },
+ {
+  "probe": "P6 calendar vs business days",
+  "claim": "FDA may detain an article of food for more than 20 business days after the detention order is issued.",
+  "evidence": "FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    ">",
+    "20",
+    "business day"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ]
+ },
+ {
+  "probe": "P7 reversed, real reversal",
+  "claim": "FDA may detain an article of food for a period exceeding 20 calendar days after the detention order is issued.",
+  "evidence": "FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "expect": "conflict",
+  "got": "conflict",
+  "detail": "the answer bounds 20 calendar day as '>' where the evidence bounds it as '<='",
+  "ok": true,
+  "claim_bounds": [
+   [
+    ">",
+    "20",
+    "calendar day"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ]
+ },
+ {
+  "probe": "P8 equivalent ('maximum of')",
+  "claim": "FDA may detain an article of food for a maximum of 20 calendar days after the detention order is issued.",
+  "evidence": "FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "expect": null,
+  "got": null,
+  "detail": null,
+  "ok": true,
+  "claim_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    "<=",
+    "20",
+    "calendar day"
+   ]
+  ]
+ },
+ {
+  "probe": "P9 written-out number",
+  "claim": "Records shall be retained for less than one year after the expiration date of the batch.",
+  "evidence": "shall be retained for at least 1 year after the expiration date of the batch",
+  "expect": "conflict",
+  "got": "conflict",
+  "detail": "the answer bounds 1 year as '<' where the evidence bounds it as '>='",
+  "ok": true,
+  "claim_bounds": [
+   [
+    "<",
+    "1",
+    "year"
+   ]
+  ],
+  "evidence_bounds": [
+   [
+    ">=",
+    "1",
+    "year"
+   ]
+  ]
+ }
+]

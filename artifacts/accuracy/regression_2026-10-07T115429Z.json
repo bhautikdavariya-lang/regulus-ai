@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-10-07T115429Z",
+  "questions": 1,
+  "arms": "payload",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": []
+  },
+  "latency_ms": {
+    "accuracy_min": 0.53,
+    "accuracy_max": 0.53,
+    "accuracy_mean": 0.53,
+    "answer_seconds_mean": 0.69
+  },
+  "rows": [
+    {
+      "question": "What does 21 CFR 820.30(a) require?",
+      "answer_seconds": 0.69,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 0.53,
+        "status": "not_applicable",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_applicable",
+          "evidence_support": "not_applicable",
+          "citation_correctness": "not_applicable",
+          "fabrication_free": "pass",
+          "completeness": "partial",
+          "scope_correct": "pass"
+        },
+        "reason": "The answer states no regulatory requirement — it declines, or withholds what could not be validated — so there is no regulatory claim to score."
+      }
+    }
+  ]
+}

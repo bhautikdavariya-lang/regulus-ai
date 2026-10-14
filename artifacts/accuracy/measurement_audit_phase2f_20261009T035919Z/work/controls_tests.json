@@ -1,0 +1,230 @@
+[
+ {
+  "control_id": "G01",
+  "test": "tests/test_accuracy_claims.py::test_3_wrong_modal_strength_is_contradicted",
+  "kind": "must vs may (wrong modal)",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer of any class III device may establish procedures to control the design of the device.",
+  "evidence": "Each manufacturer of any class III or class II device shall establish and maintain procedures to control the design of the device in order to ensure that specified design requirements are met.",
+  "expect": [
+   "strength"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G02",
+  "test": "tests/test_accuracy_claims.py::test_3b_stating_a_permission_as_a_requirement_is_also_contradicted",
+  "kind": "permission stated as a requirement",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer shall establish a quality audit schedule.",
+  "evidence": "Each manufacturer may establish a quality audit schedule at its own discretion.",
+  "expect": [
+   "strength"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G03",
+  "test": "tests/test_accuracy_claims.py::test_4_wrong_polarity_is_contradicted",
+  "kind": "prohibited (may not) vs permitted",
+  "authority": "binding_regulation",
+  "claim": "A device may be released for distribution until the acceptance activities are completed.",
+  "evidence": "A device may not be released for distribution until the acceptance activities are completed.",
+  "expect": [
+   "polarity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G04",
+  "test": "tests/test_accuracy_claims.py::test_5_wrong_numeric_value_is_contradicted",
+  "kind": "conflicting time period",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer shall review and evaluate all complaints within 90 days of receipt.",
+  "evidence": "Each manufacturer shall review and evaluate all complaints within 30 days of receipt.",
+  "expect": [
+   "quantity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G05",
+  "test": "tests/test_accuracy_claims.py::test_6_wrong_actor_is_contradicted",
+  "kind": "different duty holder",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer shall submit a report to FDA no later than 30 calendar days after the day of receipt.",
+  "evidence": "Each importer shall submit a report to FDA no later than 30 calendar days after the day of receipt.",
+  "expect": [
+   "actor"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G06",
+  "test": "tests/test_accuracy_claims.py::test_7b_inventing_a_condition_is_contradicted",
+  "kind": "conflicting applicability condition (invented)",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer of any class III device shall establish and maintain procedures to control the design of the device, if applicable.",
+  "evidence": "Each manufacturer of any class III or class II device shall establish and maintain procedures to control the design of the device in order to ensure that specified design requirements are met.",
+  "expect": [
+   "invented_condition"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G07",
+  "test": "tests/test_accuracy_guidance_logic.py::test_4_an_actual_negation_is_still_a_contradiction[binding]",
+  "kind": "must vs must not",
+  "authority": "binding_regulation",
+  "claim": "The manufacturer must submit the report to FDA.",
+  "evidence": "The manufacturer must not submit the report to FDA.",
+  "expect": [
+   "polarity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G08",
+  "test": "tests/test_accuracy_guidance_logic.py::test_4_an_actual_negation_is_still_a_contradiction[guidance]",
+  "kind": "must vs must not (guidance)",
+  "authority": "guidance",
+  "claim": "The manufacturer must submit the report to FDA.",
+  "evidence": "The manufacturer must not submit the report to FDA.",
+  "expect": [
+   "polarity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G09",
+  "test": "tests/test_accuracy_guidance_logic.py::test_5_prohibited_versus_permitted_is_still_a_contradiction[binding]",
+  "kind": "required/prohibited vs permitted",
+  "authority": "binding_regulation",
+  "claim": "The use of vinyl chloride in cosmetic aerosol products is prohibited.",
+  "evidence": "The use of vinyl chloride in cosmetic aerosol products is permitted.",
+  "expect": [
+   "polarity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G10",
+  "test": "tests/test_accuracy_guidance_logic.py::test_5_prohibited_versus_permitted_is_still_a_contradiction[guidance]",
+  "kind": "prohibited vs permitted (guidance)",
+  "authority": "guidance",
+  "claim": "The use of vinyl chloride in cosmetic aerosol products is prohibited.",
+  "evidence": "The use of vinyl chloride in cosmetic aerosol products is permitted.",
+  "expect": [
+   "polarity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G11",
+  "test": "tests/test_accuracy_guidance_logic.py::test_1_should_in_guidance_does_not_contradict_must (binding half)",
+  "kind": "must vs should in regulation",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer must maintain complaint files.",
+  "evidence": "Manufacturers should maintain complaint files.",
+  "expect": [
+   "strength"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G12",
+  "test": "tests/test_accuracy_guidance_logic.py::test_a_modal_mismatch_against_binding_regulation_is_still_a_contradiction",
+  "kind": "shall vs may (verbatim 820.30(a) text)",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer of any class III or class II device may establish procedures to control the design of the device.",
+  "evidence": "Each manufacturer of any class III or class II device shall establish procedures to control the design of the device.",
+  "expect": [
+   "strength"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G13",
+  "test": "tests/test_accuracy_guidance_logic.py::test_a_duty_on_a_different_regulated_party_is_still_a_contradiction_in_regulation",
+  "kind": "different duty holder",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer shall submit a report to FDA no later than 30 calendar days after receipt.",
+  "evidence": "Each importer shall submit a report to FDA no later than 30 calendar days after receipt.",
+  "expect": [
+   "actor"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G14",
+  "test": "tests/test_accuracy_guidance_logic.py::test_a_different_number_is_still_a_contradiction_against_guidance",
+  "kind": "conflicting time limit (guidance)",
+  "authority": "guidance",
+  "claim": "Complaints must be evaluated within 90 days of receipt.",
+  "evidence": "FDA recommends that complaints be evaluated within 30 days of receipt.",
+  "expect": [
+   "quantity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G15",
+  "test": "tests/test_accuracy_guidance_logic.py::test_an_invented_condition_is_judged_only_against_a_passage_that_states_the_rule",
+  "kind": "requirement vs invented exception",
+  "authority": "binding_regulation",
+  "claim": "Records must be kept for two years, except when the product is exported.",
+  "evidence": "Records must be kept for two years.",
+  "expect": [
+   "invented_condition"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G16",
+  "test": "tests/test_accuracy_guidance_logic.py::test_a_guidance_exclusion_is_not_the_governing_provision_excluding_the_claim (eCFR half)",
+  "kind": "applies vs does not apply (applicability / exception)",
+  "authority": "binding_regulation",
+  "claim": "The recordkeeping requirements apply to farms that sell directly to consumers.",
+  "evidence": "The recordkeeping requirements do not apply to farms that sell directly to consumers.",
+  "expect": [],
+  "expected_verdict": "INCORRECT answer",
+  "level": "verdict",
+  "note": "the test's INCORRECT verdict comes from the applicability-exclusion path, not an operator conflict ('do not apply' carries no modal, so polarity is undetermined); checked by the full test suite"
+ },
+ {
+  "control_id": "G17",
+  "test": "tests/test_accuracy_relevance.py::test_14_a_close_match_that_says_the_opposite_is_contradicted_not_supported",
+  "kind": "shall not vs may (discard)",
+  "authority": "binding_regulation",
+  "claim": "Records may be discarded and retained for a period of two years.",
+  "evidence": "Records shall not be discarded and shall be retained for a period of two years.",
+  "expect": [
+   "polarity"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G18",
+  "test": "tests/test_accuracy_relevance.py::test_12_multi_claim_answer_mixing_correct_and_incorrect",
+  "kind": "shall vs may (verbatim 820.50(a) text)",
+  "authority": "binding_regulation",
+  "claim": "21 CFR 820.50(a): Each manufacturer may establish procedures to ensure that all purchased product conforms to specified requirements.",
+  "evidence": "Each manufacturer shall establish and maintain procedures to ensure that all purchased or otherwise received product and services conform to specified requirements.",
+  "expect": [
+   "strength"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ },
+ {
+  "control_id": "G19",
+  "test": "tests/test_accuracy_claims.py::test_a_conflict_outranks_every_amount_of_surface_agreement",
+  "kind": "verbatim except the modal",
+  "authority": "binding_regulation",
+  "claim": "Each manufacturer of any class III or class II device may establish procedures to control the design of the device in order to ensure that specified design requirements are met.",
+  "evidence": "Each manufacturer of any class III or class II device shall establish and maintain procedures to control the design of the device in order to ensure that specified design requirements are met.",
+  "expect": [
+   "strength"
+  ],
+  "expected_verdict": "CONTRADICTED"
+ }
+]

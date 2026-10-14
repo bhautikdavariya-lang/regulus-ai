@@ -1,0 +1,17 @@
+########## B-004  N=1 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=explanation
+Q: How are manufacturing changes to a licensed biological product reported?
+KEY: 21 CFR 601.12 | Prior approval supplement, changes being effected in 30 days, changes being effected, annual report categories based on potential to affect product quality.
+REV: key_sections=601.12; key_section_state=present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Mentions tiered reporting but gives none of 601.12's four categories - prior approval supplement, supplement with changes being effected in 30 days, changes being effected, and annual report - and attributes prior approval supplements to 601.12(e). The 'change plan' it describes comes from a guidance, and one citation marker resolved to no source.
+EVAL: Draft key 601.12 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The FDA requires that manufacturing changes to a licensed biological product be reported in accordance with the tiered-reporting system, which is based on quality risk assessment and risk management principles. If a change is approved, it must be submitted as a PAS (major change) under 21 CFR 601.12(e). If a change is minor, the CP (change plan) may be submitted for a single or multiple related changes, covering a single or multiple BLAs (biological license applications). The CP may also enable greater predictability in the timing of implementation of CMC changes, placing the product into distribution sooner, and improving the product supply chain planning. The sources that support these requirements are [1][2].
+EVIDENCE LABELS (2, lost=1):
+   X FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 20
+   X FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 20
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['chang', 'licens', 'report'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

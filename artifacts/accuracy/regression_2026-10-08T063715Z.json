@@ -1,0 +1,164 @@
+{
+  "generated_at": "2026-10-08T063715Z",
+  "questions": 2,
+  "arms": "both",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": [],
+    "exact_evidence_for_every_answer": true
+  },
+  "latency_ms": {
+    "accuracy_min": 109.99,
+    "accuracy_max": 278.76,
+    "accuracy_mean": 194.375,
+    "answer_seconds_mean": 17.29
+  },
+  "rows": [
+    {
+      "question": "What does 21 CFR 820.35 add to the record control requirements of the incorporated standard?",
+      "answer_seconds": 20.36,
+      "answer": "21 CFR 820.35 adds the name of the device [3], the date the complaint was received [4], the name, address, and phone number of the complainant [6], the nature and details of the complaint [5], any correction or corrective action taken [7], any reply to the complainant [8], the name of the device serviced [11], any UDI or UPC, and any other device identification(s) [12], the date of service [13], the individual(s) who serviced the device [14], the service performed [15], and any test and inspection data [16]. [1]",
+      "citations": [
+        "21 CFR 820.35",
+        "21 CFR 820.35(a)",
+        "21 CFR 820.35(a)(1)",
+        "21 CFR 820.35(a)(2)",
+        "21 CFR 820.35(a)(3)",
+        "21 CFR 820.35(a)(4)",
+        "21 CFR 820.35(a)(5)",
+        "21 CFR 820.35(a)(6)",
+        "21 CFR 820.35(a)(7)",
+        "21 CFR 820.35(b)",
+        "21 CFR 820.35(b)(1)",
+        "21 CFR 820.35(b)(2)",
+        "21 CFR 820.35(b)(3)",
+        "21 CFR 820.35(b)(4)",
+        "21 CFR 820.35(b)(5)",
+        "21 CFR 820.35(b)(6)",
+        "21 CFR 820.35(c)",
+        "21 CFR 820.35(d)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 278.76,
+        "status": "unable_to_determine",
+        "accuracy": null,
+        "dimensions": {
+          "question_relevance": "not_established",
+          "substantive_correctness": "not_established",
+          "evidence_support": "not_applicable",
+          "citation_correctness": "not_applicable",
+          "fabrication_free": "pass",
+          "completeness": "not_established",
+          "scope_correct": "pass"
+        },
+        "reason": "Cannot be verified: no statement could be related to the question or checked against evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "fa2451337503d88436ab9226843d5cfbcfefe67ec6fa5aa3afbaa7b92c2daee8",
+          "recomputed_from_text": "fa2451337503d88436ab9226843d5cfbcfefe67ec6fa5aa3afbaa7b92c2daee8",
+          "evaluator_live": "fa2451337503d88436ab9226843d5cfbcfefe67ec6fa5aa3afbaa7b92c2daee8",
+          "evaluator_replay": "fa2451337503d88436ab9226843d5cfbcfefe67ec6fa5aa3afbaa7b92c2daee8"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "79e29d886c66133dee8b335c4763784ebba009945e0b615490bf9c596378c1d6",
+        "model_called": true,
+        "items": 18,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "unable_to_determine",
+          "accuracy": null,
+          "verdict": "unverifiable"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 15.0,
+          "on": 14.85
+        },
+        "added_seconds": -0.15
+      }
+    },
+    {
+      "question": "Which facilities must register with FDA, and how often must registration be renewed?",
+      "answer_seconds": 14.22,
+      "answer": "Facilities must register with the FDA before they begin manufacturing, processing, or holding food for consumption in the United States. A food facility is required to submit an initial registration to the FDA only once. The registration must be renewed every other year during the period beginning on October 1 and ending on December 31 of each even-numbered year. If a facility has not had any changes to its registration information since the previous registration, renewal, or update, FDA provides an abbreviated biennial renewal process. Foreign facilities must designate a U.S. agent who lives or maintains a place of business in the United States and is physically present. The registration must be renewed every other year. [1][2]\nThe retrieved evidence does not establish the time period or frequency asked for.",
+      "citations": [
+        "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+        "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 109.99,
+        "status": "evaluated",
+        "accuracy": 40,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "partial",
+          "evidence_support": "not_established",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Partially correct: 1 statement(s) could not be verified; 1 statement(s) only partly address the question - e.g. the regulation it corresponds to (FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)) is about facil"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "678b0d62c082e6098f4c86919aa4e4e997c17f1456fa427c9b3e4ec9bc778959",
+          "recomputed_from_text": "678b0d62c082e6098f4c86919aa4e4e997c17f1456fa427c9b3e4ec9bc778959",
+          "evaluator_live": "678b0d62c082e6098f4c86919aa4e4e997c17f1456fa427c9b3e4ec9bc778959",
+          "evaluator_replay": "678b0d62c082e6098f4c86919aa4e4e997c17f1456fa427c9b3e4ec9bc778959"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "5c80051684784906fdd33a61a971c49f7c16436dab001fcf6c4986e47039d241",
+        "model_called": true,
+        "items": 3,
+        "guidance_items": 3,
+        "truncated_items": 3,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 40,
+          "verdict": "partial"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 12.47,
+          "on": 12.52
+        },
+        "added_seconds": 0.05
+      }
+    }
+  ]
+}

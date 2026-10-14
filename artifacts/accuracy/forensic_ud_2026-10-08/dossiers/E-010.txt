@@ -1,0 +1,40 @@
+########## E-010  N=1 M=0 L=0 O=0 result=FAIL  type=Application  intent=application
+Q: A firm uses a cloud-hosted LIMS. Which Part 11 provisions apply to the vendor's controls, and how does the FDA guidance on scope and application affect enforcement discretion?
+KEY: 21 CFR 11.10; 11.30; FDA Part 11 Scope and Application guidance (2003) | Narrow interpretation of scope, enforcement discretion on validation, audit trails, legacy systems, and record copies; predicate rule requirements remain in effect.
+REV: key_sections=11.10;11.30; key_section_state=present;present; key_retrieved=yes; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=guidance cited over available regulation; guidance_in_answer=yes; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Mischaracterises the 2003 scope and application guidance as 'setting the criteria for when electronic records are considered trustworthy'. Its actual effect - a narrow reading of Part 11 scope and enforcement discretion over validation, audit trails, legacy systems and record copies, while predicate rule requirements remain fully in force - is absent, as is any treatment of which controls bind a cloud vendor. Uncited.
+EVAL: Draft key 11.10, 11.30 and the 2003 guidance verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=ANSWERABLE validation=incomplete
+ANSWER: A firm using a cloud-hosted LIMS applies provisions from 21 CFR 11.100(a) and 11.10, focusing on the vendor's controls. These provisions ensure the authenticity, integrity, and confidentiality of electronic records, and that electronic signatures cannot be repudiated. The FDA guidance on scope and application affects enforcement discretion by setting the criteria for when electronic records are considered trustworthy, reliable, and generally equivalent to paper records.
+EVIDENCE LABELS (10, lost=0):
+     21 CFR 11.100(a)
+     21 CFR 11.10
+     21 CFR 11.1(a)
+     21 CFR 11.200(a)
+     21 CFR 11.2(a)
+     21 CFR 11.300
+     21 CFR 11.30
+     21 CFR 11.3(a)
+     21 CFR 11.50(a)
+     21 CFR 11.70
+SOURCES:
+   [21 CFR 11.100(a)] (General requirements.) '(a) Each electronic signature shall be unique to one individual and shall not be reused by, or reassigned to, anyone else.'
+   [21 CFR 11.10] (Controls for closed systems.) 'Persons who use closed systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, when appropriate, the confidentiality of electronic records, and to ensure that'
+   [21 CFR 11.1(a)] (Scope.) '(a) The regulations in this part set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equivalent to paper records'
+   [21 CFR 11.200(a)] (Electronic signature components and controls.) '(a) Electronic signatures that are not based upon biometrics shall:'
+   [21 CFR 11.2(a)] (Implementation.) '(a) For records required to be maintained but not submitted to the agency, persons may use electronic records in lieu of paper records or electronic signatures in lieu of traditional signatures, in whole or in part, provided that the requirements of this part '
+   [21 CFR 11.300] (Controls for identification codes/passwords.) 'Persons who use electronic signatures based upon use of identification codes in combination with passwords shall employ controls to ensure their security and integrity. Such controls shall include:\n(a) Maintaining the uniqueness of each combined identification'
+   [21 CFR 11.30] (Controls for open systems.) 'Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their'
+   [21 CFR 11.3(a)] (Definitions.) '(a) The definitions and interpretations of terms contained in section 201 of the act apply to those terms when used in this part.'
+   [21 CFR 11.50(a)] (Signature manifestations.) '(a) Signed electronic records shall contain information associated with the signing that clearly indicates all of the following:'
+   [21 CFR 11.70] (Signature/record linking.) 'Electronic signatures and handwritten signatures executed to electronic records shall be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary'
+REQS: [['r1', '21 CFR part 11']] satisfied=[]
+INTENT: topic=['cloud-host', 'lims', "vendor'", 'control', 'guidanc', 'scop', 'affect', 'enforc', 'discret'] elements=["A firm uses a cloud-hosted LIMS. Which Part 11 provisions apply to the vendor's controls", 'how does the FDA guidance on scope and application affect enforcement discretion'] parts=['11'] sections=[]
+VERDICT: 1 statement(s) address the question but none could be verified against the retrieved evidence | missing=['how does the FDA guidance on scope and application affect enforcement discretion'] unverified=["A firm uses a cloud-hosted LIMS. Which Part 11 provisions apply to the vendor's controls"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 1
+  C1: final=unverifiable support=unverifiable/no_evidence rel=partially_relevant cit=correct
+      text: A firm using a cloud-hosted LIMS applies provisions from 21 CFR 11.100(a) and 11.10, focusing on the vendor's controls.
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about cloud-host/lims/vendor'/control | found=0.2
+      evidence: [{'citation': '21 CFR 11.10', 'source_index': 2, 'heading': 'Controls for closed systems.', 'text': 'Persons who use closed systems to create, modify, maintain, or transmit electronic records shall em ops={}

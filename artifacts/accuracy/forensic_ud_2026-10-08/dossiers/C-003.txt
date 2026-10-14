@@ -1,0 +1,18 @@
+########## C-003  N=0 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=direct_lookup
+Q: What warning statement requirements apply to cosmetics whose safety has not been substantiated?
+KEY: 21 CFR 740.10 | Required warning that the safety of the product has not been determined, type size and prominence.
+REV: key_sections=740.10; key_section_state=present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=no; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Declines and cites a draft guidance on cigarette and smokeless tobacco warning plans. 740.10's requirement - the conspicuous statement on the principal display panel that the safety of the product has not been determined, with its type size and prominence conditions - is in the snapshot and is never given.
+EVAL: Draft key 740.10 verified correct against the snapshot. Safe but incorrect, and the authority cited is from the wrong product area.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The available regulatory sources do not provide enough information to answer this question. [1]
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-20
+   X FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)
+   X FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['warn', 'stat', 'safety', 'substantiat'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "the answer declines, and neither the pipeline state nor the retrieved evidence establishes whether the question could have been answered", "evidence": []}
+SENTENCES: None

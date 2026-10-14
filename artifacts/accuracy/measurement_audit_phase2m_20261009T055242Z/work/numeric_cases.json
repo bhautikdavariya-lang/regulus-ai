@@ -1,0 +1,259 @@
+{
+ "texts": {
+  "21 CFR 211.180(a)": {
+   "text": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "f9881945c94aca8b2b41e64fba2269e24ceec47c22d453cbd58e732bc1c5af9c"
+  },
+  "21 CFR 172.836(c)(3)(ii)": {
+   "text": "(ii) It is used with sorbitan monostearate in any combination of up to 0.5 percent of polysorbate 60 and up to 1 percent of sorbitan monostearate: Provided, That the total combination does not exceed 1 percent of the weight of the finished nonstandardized confectionery coating or standardized cacao product.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "db15ac1131523ea2ee6089039ccd326bdc7b446f0b36712d06bd0045f515e6c3"
+  },
+  "21 CFR 177.1390(c)(1)(i)(b)": {
+   "text": "(b) Polymeric resin blends formulated from a base polymer complying with item 2.2 or 3.2 of the table in § 177.1520(c) blended with no more than 10 percent by weight of a copolymer of ethylene and vinyl acetate complying with § 177.1350.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "a838dfc76026f83beffa2da81c91c1fc97c5e89e8a23ee8365038ccc2c8f6143"
+  },
+  "21 CFR 131.160(b)(2)": {
+   "text": "(2) Sodium citrate in an amount not more than 0.1 percent may be added prior to culturing as a flavor precursor.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "db1b1842136b81529a9ae01cde44702730f394ba89c4e24be8a90d93ee2dc31d"
+  },
+  "21 CFR 178.3760": {
+   "text": "Polyethylene glycol (400) monolaurate containing not more than 0.1 percent by weight of ethylene and/or diethylene glycol may be used at a level not to exceed 0.3 percent by weight of twine as a finish on twine to be used for tying meat provided the twine fibers are produced from nylon resins complying with § 177.1500 of this chapter.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "732a20b3e3d42f458113585a89c64b51c39ae9bfc89159ceb19509afff455d22"
+  },
+  "21 CFR 112.203(d)(2)": {
+   "text": "(2) Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "b8a0297e0db05c22d0b956fc66007881fa4f3ffc2b1126477f1a25e17803c74e"
+  },
+  "21 CFR 112.204(a)": {
+   "text": "(a) Comply with applicable requirements of this part within 120 calendar days of the date from receipt of the order or, if operations have ceased and will not resume within 120 calendar days, before the beginning of operations in the next growing season, or within a reasonable timeframe, agreed to by FDA, based on a written justification, submitted to FDA, for a timeframe that exceeds 120 calendar days from the date of receipt of the order; or",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "58f3f0de11dceebd7491e8423293523daa01d756adb74c368cc09450455eec79"
+  },
+  "21 CFR 1.379(a)": {
+   "text": "(a) FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued. However, an article may be detained for 10 additional calendar days if a greater period of time is required to institute a seizure or injunction action. The authorized FDA representative may approve the additional 10-calendar day detention period at the time the detention order is issued, or at any time within the 20-calendar day period by amending the detention order.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "51cbb3aa287d204b6340f453685a0e5c2793e2a3edc3cf5ea0dbe73a0f96c24a"
+  },
+  "21 CFR 73.3110(c)(1)": {
+   "text": "(1) The color additive chlorophyllin-copper complex, oil soluble (5 percent in palm oil, peanut oil, and hydrogenated peanut oil), may be safely used to color polymethylmethacrylate bone cement. Chlorophyllin-copper complex may be used at levels that do not exceed 0.003 percent by weight of the bone cement.",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "009ef7a88a66548fbe9141f829520cbfea06449b137b806cd8d3fe606191cce4"
+  }
+ },
+ "cases": [
+  {
+   "id": "N1",
+   "category": "reversed direction (>= vs <)",
+   "citation": "21 CFR 211.180(a)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "f9881945c94aca8b2b41e64fba2269e24ceec47c22d453cbd58e732bc1c5af9c",
+   "evidence": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for less than 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "'at least 1 year' vs 'less than 1 year'"
+  },
+  {
+   "id": "N2",
+   "category": "equivalent formulation (>=)",
+   "citation": "21 CFR 211.180(a)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "f9881945c94aca8b2b41e64fba2269e24ceec47c22d453cbd58e732bc1c5af9c",
+   "evidence": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for no less than 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "equivalent",
+   "why": "'at least' == 'no less than'"
+  },
+  {
+   "id": "N3",
+   "category": "inclusive vs strict (>= vs >)",
+   "citation": "21 CFR 211.180(a)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "f9881945c94aca8b2b41e64fba2269e24ceec47c22d453cbd58e732bc1c5af9c",
+   "evidence": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for more than 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "boundary",
+   "why": "'at least 1 year' vs 'more than 1 year': same direction, different boundary"
+  },
+  {
+   "id": "N4",
+   "category": "reversed direction ('up to' vs 'above')",
+   "citation": "21 CFR 172.836(c)(3)(ii)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "db15ac1131523ea2ee6089039ccd326bdc7b446f0b36712d06bd0045f515e6c3",
+   "evidence": "(ii) It is used with sorbitan monostearate in any combination of up to 0.5 percent of polysorbate 60 and up to 1 percent of sorbitan monostearate: Provided, That the total combination does not exceed 1 percent of the weight of the finished nonstandardized confectionery coating or standardized cacao product.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(ii) It is used with sorbitan monostearate in any combination of above 0.5 percent of polysorbate 60 and up to 1 percent of sorbitan monostearate: Provided, That the total combination does not exceed 1 percent of the weight of the finished nonstandardized confectionery coating or standardized cacao product.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "'up to 0.5 percent' vs 'above 0.5 percent'"
+  },
+  {
+   "id": "N5",
+   "category": "equivalent formulation (<=)",
+   "citation": "21 CFR 177.1390(c)(1)(i)(b)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "a838dfc76026f83beffa2da81c91c1fc97c5e89e8a23ee8365038ccc2c8f6143",
+   "evidence": "(b) Polymeric resin blends formulated from a base polymer complying with item 2.2 or 3.2 of the table in § 177.1520(c) blended with no more than 10 percent by weight of a copolymer of ethylene and vinyl acetate complying with § 177.1350.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(b) Polymeric resin blends formulated from a base polymer complying with item 2.2 or 3.2 of the table in § 177.1520(c) blended with at most 10 percent by weight of a copolymer of ethylene and vinyl acetate complying with § 177.1350.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "equivalent",
+   "why": "'no more than' == 'at most'"
+  },
+  {
+   "id": "N6",
+   "category": "reversed direction (<= vs >)",
+   "citation": "21 CFR 177.1390(c)(1)(i)(b)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "a838dfc76026f83beffa2da81c91c1fc97c5e89e8a23ee8365038ccc2c8f6143",
+   "evidence": "(b) Polymeric resin blends formulated from a base polymer complying with item 2.2 or 3.2 of the table in § 177.1520(c) blended with no more than 10 percent by weight of a copolymer of ethylene and vinyl acetate complying with § 177.1350.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(b) Polymeric resin blends formulated from a base polymer complying with item 2.2 or 3.2 of the table in § 177.1520(c) blended with more than 10 percent by weight of a copolymer of ethylene and vinyl acetate complying with § 177.1350.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "'no more than 10 percent' vs 'more than 10 percent'"
+  },
+  {
+   "id": "N7",
+   "category": "reversed direction, decimal percent",
+   "citation": "21 CFR 131.160(b)(2)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "db1b1842136b81529a9ae01cde44702730f394ba89c4e24be8a90d93ee2dc31d",
+   "evidence": "(2) Sodium citrate in an amount not more than 0.1 percent may be added prior to culturing as a flavor precursor.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(2) Sodium citrate in an amount greater than 0.1 percent may be added prior to culturing as a flavor precursor.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "'not more than 0.1 percent' vs 'greater than 0.1 percent'"
+  },
+  {
+   "id": "N8",
+   "category": "strictly different boundary (<= vs <)",
+   "citation": "21 CFR 131.160(b)(2)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "db1b1842136b81529a9ae01cde44702730f394ba89c4e24be8a90d93ee2dc31d",
+   "evidence": "(2) Sodium citrate in an amount not more than 0.1 percent may be added prior to culturing as a flavor precursor.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(2) Sodium citrate in an amount less than 0.1 percent may be added prior to culturing as a flavor precursor.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "boundary",
+   "why": "'not more than 0.1' vs 'less than 0.1': same direction, different boundary"
+  },
+  {
+   "id": "N9",
+   "category": "different quantity in the same sentence (scope)",
+   "citation": "21 CFR 178.3760",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "732a20b3e3d42f458113585a89c64b51c39ae9bfc89159ceb19509afff455d22",
+   "evidence": "Polyethylene glycol (400) monolaurate containing not more than 0.1 percent by weight of ethylene and/or diethylene glycol may be used at a level not to exceed 0.3 percent by weight of twine as a finish on twine to be used for tying meat provided the twine fibers are produced from nylon resins complying with § 177.1500 of this chapter.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "Polyethylene glycol (400) monolaurate may be used at a level exceeding 0.1 percent by weight of twine as a finish on twine to be used for tying meat.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "no_numeric",
+   "why": "0.1 percent bounds the glycol content, not the twine level; levels between 0.1 and 0.3 percent are permitted - no comparable bound"
+  },
+  {
+   "id": "N16",
+   "category": "reversed direction, 'not to exceed' with decimal",
+   "citation": "21 CFR 178.3760",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "732a20b3e3d42f458113585a89c64b51c39ae9bfc89159ceb19509afff455d22",
+   "evidence": "Polyethylene glycol (400) monolaurate containing not more than 0.1 percent by weight of ethylene and/or diethylene glycol may be used at a level not to exceed 0.3 percent by weight of twine as a finish on twine to be used for tying meat provided the twine fibers are produced from nylon resins complying with § 177.1500 of this chapter.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "Polyethylene glycol (400) monolaurate may be used at a level exceeding 0.3 percent by weight of twine as a finish on twine to be used for tying meat.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "'not to exceed 0.3 percent' vs 'exceeding 0.3 percent'"
+  },
+  {
+   "id": "N10",
+   "category": "different units ('calendar days' vs 'business days')",
+   "citation": "21 CFR 112.203(d)(2)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "b8a0297e0db05c22d0b956fc66007881fa4f3ffc2b1126477f1a25e17803c74e",
+   "evidence": "(2) Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(2) Appeal the order within 15 business days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "no_numeric",
+   "why": "different unit: never compared"
+  },
+  {
+   "id": "N11",
+   "category": "reversed duration ('within' vs 'more than ... after')",
+   "citation": "21 CFR 112.203(d)(2)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "b8a0297e0db05c22d0b956fc66007881fa4f3ffc2b1126477f1a25e17803c74e",
+   "evidence": "(2) Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(2) Appeal the order more than 15 calendar days after the date of receipt of the order in accordance with the requirements of § 112.206.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "'within 15 calendar days' vs 'more than 15 calendar days after'"
+  },
+  {
+   "id": "N12",
+   "category": "equivalent formulation, duration",
+   "citation": "21 CFR 1.379(a)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "51cbb3aa287d204b6340f453685a0e5c2793e2a3edc3cf5ea0dbe73a0f96c24a",
+   "evidence": "(a) FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(a) FDA may detain an article of food for a reasonable period of no more than 20 calendar days after the detention order is issued.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "equivalent",
+   "why": "'may not exceed 20 calendar days' == 'no more than 20 calendar days'"
+  },
+  {
+   "id": "N13",
+   "category": "same number in an unrelated passage",
+   "citation": "21 CFR 112.204(a)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "58f3f0de11dceebd7491e8423293523daa01d756adb74c368cc09450455eec79",
+   "evidence": "(a) Comply with applicable requirements of this part within 120 calendar days of the date from receipt of the order or, if operations have ceased and will not resume within 120 calendar days, before the beginning of operations in the next growing season, or within a reasonable timeframe, agreed to by FDA, based on a written justification, submitted to FDA, for a timeframe that exceeds 120 calendar days from the date of receipt of the order; or",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "FDA may detain an article of food for a period longer than 120 calendar days.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "no_numeric",
+   "why": "the 120 days bound compliance timing, not detention: no shared quantity"
+  },
+  {
+   "id": "N14",
+   "category": "missing number (qualifier only)",
+   "citation": "21 CFR 73.3110(c)(1)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "009ef7a88a66548fbe9141f829520cbfea06449b137b806cd8d3fe606191cce4",
+   "evidence": "Chlorophyllin-copper complex may be used at levels that do not exceed 0.003 percent by weight of the bone cement.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "Chlorophyllin-copper complex may be used at levels that exceed the permitted limit.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "no number to compare; the JR qualifier must catch 'that exceed' vs 'that do not exceed'"
+  },
+  {
+   "id": "N15",
+   "category": "negation outside the bound phrase",
+   "citation": "21 CFR 211.180(a)",
+   "snapshot_date": "2026-09-03",
+   "content_sha256": "f9881945c94aca8b2b41e64fba2269e24ceec47c22d453cbd58e732bc1c5af9c",
+   "evidence": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "evidence_provenance": "REAL (verbatim eCFR sentence)",
+   "claim": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall not be retained for more than 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+   "claim_provenance": "CONSTRUCTED",
+   "expect": "conflict",
+   "why": "numeric check must abstain (scope ambiguous); the polarity operator must still catch it"
+  }
+ ]
+}

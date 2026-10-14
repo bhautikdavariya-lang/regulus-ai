@@ -1,0 +1,54 @@
+--- src/regulus/accuracy/evaluator.py	2026-10-13 10:41:02
++++ src/regulus/accuracy/evaluator.py	2026-10-13 11:59:27
+@@ -34,6 +34,7 @@
+ from regulus.accuracy import abstention as AB
+ from regulus.accuracy import answer as AN
+ from regulus.accuracy import claims as CL
++from regulus.accuracy import verdicts as VD
+ from regulus.accuracy import intent as IN
+ from regulus.accuracy import operators as OP
+ from regulus.accuracy import relevance as RV
+@@ -255,6 +256,27 @@
+     def represented(i: int) -> bool:
+         return i in covered or reproduced(i)
+ 
++    # PROTOTYPE (Stage B design): obligation units within one paragraph = its mandatory sentences
++    sentence_units: dict[int, list] = {}
++    for p in passages:
++        if p.source_index in by_src:
++            sentence_units.setdefault(p.source_index, []).append(p)
++
++    def units_in(e: dict) -> set[tuple[int, int]]:
++        i, text = e.get("source_index"), normalise(e.get("text") or "")
++        return {(i, x.seq) for x in sentence_units.get(i, ()) if normalise(x.text)[:60] and
++                (normalise(x.text)[:60] in text or text[:60] in normalise(x.text))}
++
++    def reproduced_text(text: str) -> bool:
++        own = normalise(text)
++        n = len(own.split())
++        return n > 0 and longest_run(answer_words, own)[0] >= max(min(SYNTHESIS_VERBATIM_RUN, n), SYNTHESIS_VERBATIM_SHARE * n)
++
++    covered_units = {u for c in answering if c.final in decided for e in c.evidence[:1] for u in units_in(e)}
++    # an unverifiable statement ADDRESSES an obligation sentence holding at least half of its core terms
++    touched_units = {(i, x.seq) for c in claims if c.final == AN.UNVERIFIABLE
++                     for i, xs in sentence_units.items() for x in xs if VD.core_overlap(c.claim, x) >= 0.5}
++
+     missing: list[str] = []
+     maybe: list[str] = []
+     for g in getattr(plan, "groups", ()) or ():
+@@ -266,6 +288,15 @@
+                 continue                                   # the detail of another obligation, not a unit
+             items = ([j for j in members if paths[i] and paths[j].startswith(paths[i] + "(")]
+                      if (by_src[i].text or "").rstrip().endswith(":") else [])
++            if not items:
++                units = [x for x in sentence_units.get(i, ()) if OP.strength(x.text) == OP.MANDATORY]
++                if len(units) > 1:                         # several obligations in one paragraph: each is a unit
++                    for x in units:
++                        if (i, x.seq) in covered_units or reproduced_text(x.text):
++                            continue
++                        label = f"{by_src[i].citation} (\"{' '.join(x.text.split()[:8])} ...\")"
++                        (maybe if (i, x.seq) in touched_units else missing).append(label)
++                    continue
+             if represented(i) or any(represented(j) for j in items):
+                 continue
+             (maybe if (touched & ({i} | set(items))) else missing).append(by_src[i].citation)

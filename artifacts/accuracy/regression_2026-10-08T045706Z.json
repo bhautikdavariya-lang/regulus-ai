@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-10-08T045706Z",
+  "questions": 2,
+  "arms": "both",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": []
+  },
+  "latency_ms": {
+    "accuracy_min": 252.25,
+    "accuracy_max": 395.86,
+    "accuracy_mean": 324.055,
+    "answer_seconds_mean": 32.54
+  },
+  "rows": [
+    {
+      "question": "What does 21 CFR 820.10 require?",
+      "answer_seconds": 45.3,
+      "answer": "21 CFR 820.10 requires that a manufacturer subject to this part must document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part. The manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter, if applicable, and procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable, and notify FDA of complaints that meet the reporting criteria of part 803 of this chapter. Advisory notices shall be handled in accordance with the requirements of part 806 of this chapter. The requirements in Design and Development apply to class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section. Devices automated with computer software must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485. The devices listed in the following table must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485. Devices that support or sustain life must comply with the requirements in Traceability for Implantable Devices, Clause 7.5.9.2 in ISO 13485, in addition to all other applicable requirements in this part, as appropriate. The failure to comply with any applicable requirement in this part renders a device adulterated under section 501(h) of the Federal Food, Drug, and Cosmetic Act. Such a device, as well as any person responsible for the failure to comply, is subject to regulatory action. [4][5]",
+      "citations": [
+        "21 CFR 820.10",
+        "21 CFR 820.10(a)",
+        "21 CFR 820.10(b)",
+        "21 CFR 820.10(b)(1)",
+        "21 CFR 820.10(b)(2)",
+        "21 CFR 820.10(b)(3)",
+        "21 CFR 820.10(b)(4)",
+        "21 CFR 820.10(c)",
+        "21 CFR 820.10(c)(1)",
+        "21 CFR 820.10(c)(2)",
+        "21 CFR 820.10(d)",
+        "21 CFR 820.10(e)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 395.86,
+        "status": "unable_to_determine",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_established",
+          "evidence_support": "not_established",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Not enough can be established from the authoritative evidence to score this answer. 4 of 8 statement(s) are borne out by the evidence; 4 could not be decided and 0 are about nothing in it"
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 39.25,
+          "on": 38.16
+        },
+        "added_seconds": -1.09
+      }
+    },
+    {
+      "question": "What records must a device manufacturer keep for complaints?",
+      "answer_seconds": 19.78,
+      "answer": "The device manufacturer must keep records that include information evaluated to determine if an event was reportable, all medical device reports and information submitted to the FDA, any information evaluated for preparing annual reports, and systems that ensure access to information for timely follow-up and inspection. These records must be documented in written MDR procedures, located in a separate section, and describe how investigations are conducted. If the manufacturer ceases marketing the device, they still have an obligation to report adverse events involving the device. If the manufacturer purchases a device under 510(k), they remain obligated to report adverse events for the devices they manufactured. The packaging and labeling of the devices should identify the manufacturer with corresponding address and contact information. If the manufacturer agrees to assume responsibility for reporting adverse events, a written agreement should be documented. The requirement applies to all devices manufactured and distributed by the manufacturer. [1] [2]",
+      "citations": [
+        "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 252.25,
+        "status": "unable_to_determine",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_established",
+          "evidence_support": "not_established",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "not_established",
+          "scope_correct": "pass"
+        },
+        "reason": "Not enough can be established from the authoritative evidence to score this answer. 1 of 6 statement(s) are borne out by the evidence; 5 could not be decided and 0 are about nothing in it"
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 21.41,
+          "on": 17.97
+        },
+        "added_seconds": -3.44
+      }
+    }
+  ]
+}

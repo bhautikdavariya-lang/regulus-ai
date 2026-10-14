@@ -1,0 +1,21 @@
+########## M-032  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=list
+Q: What are the corrective and preventive action requirements of 21 CFR 820.100?
+KEY: TEMPORAL TRAP — 820.100 is [Reserved]; the requirement reaches the manufacturer through 21 CFR 820.10(a) | Must state that 820.100 is reserved and route CAPA to 820.10(a) and the standard's corrective and preventive action clauses.
+REV: key_sections=820.100;820.10; key_section_state=absent;present; key_retrieved=yes; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=false-premise / trap not detected; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Avoids the trap - it refuses to describe 820.100 and will not infer its contents, so no superseded corrective and preventive action text is passed off as current. But it attributes the gap to missing data rather than stating that 820.100 is reserved, and does not route the requirement to 820.10(a) and the standard's corrective and preventive action clauses.
+EVAL: Confirmed against the snapshot: 820.100 has no current text. Draft clauses 8.5.2 and 8.5.3 not named, so concordance scores 0.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.100, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (4, lost=1):
+   X FDA Guidance: Current Good Manufacturing Practice Requirements for Combination Products: Guidance for Industry and FDA Staff (final, 2017-01-11, Docke
+   X FDA Guidance: Current Good Manufacturing Practice Requirements for Combination Products: Guidance for Industry and FDA Staff (final, 2017-01-11, Docke
+     21 CFR 820.10
+     21 CFR 520.100(a)
+SOURCES:
+   [21 CFR 820.10] (Requirements for a quality management system.) 'A manufacturer subject to this part as described by § 820.1(a) must:\n(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of th'
+   [21 CFR 520.100(a)] (Amprolium.) '(a) Specifications.'
+REQS: [['r1', '21 CFR 820.100']] satisfied=[]
+INTENT: topic=['correctiv', 'preventiv', 'action'] elements=["the question's subject"] parts=['820'] sections=['820.100']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about correctiv/preventiv/action; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about correctiv/preventiv/action; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

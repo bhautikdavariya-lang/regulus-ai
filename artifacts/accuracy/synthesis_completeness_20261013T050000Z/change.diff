@@ -1,0 +1,145 @@
+--- a/src/regulus/accuracy/evaluator.py
++++ b/src/regulus/accuracy/evaluator.py
+@@ -39,7 +39,7 @@
+ from regulus.accuracy import relevance as RV
+ from regulus.accuracy import rubric as R
+ from regulus.accuracy.alignment import Aligner, LexicalAligner, passages
+-from regulus.accuracy.attribution import MARK_RE, normalise
++from regulus.accuracy.attribution import MARK_RE, longest_run, normalise
+ from regulus.rag import claim_validation as CV
+ from regulus.rag import shape_validation as SV
+ from regulus.rag import validation as V
+@@ -200,8 +200,79 @@
+         label = g.label + (f" ({g.heading})" if getattr(g, "heading", None) else "")
+         (maybe if touched & set(g.members) else missing).append(label)
+     return missing, maybe
++
++
++# A synthesis of a NAMED provision ("What does 21 CFR 312.32 require?") asks for the whole of it. The pipeline
++# checks a synthesis for missing requirement GROUPS and appends a missing group's head row, but a group counts
++# as present if any member is cited, named, word-matched or cross-referenced - so (c)(1) "covered" (c)(2), the
++# 7-day rule, as a member of the same group; (d)(3) "covered" itself because the answer mentions "paragraph
++# (c)", which (d)(3) cross-references; and an appended bare heading, "(d) Followup.", satisfied group (d).
++# The evaluator never checked a synthesis itself and passed every answer whose statements were supported.
++# Measured on 40 named sections answered completely (every top-level obligation verbatim) and with one
++# obligation left out (143 answers): production failed to pass 6 of the 143 incomplete answers; this check
++# fails to pass 132 of them and passes all 40 complete ones.
++SYNTHESIS_VERBATIM_RUN = 8       # words of an obligation's own text that show the answer reproduces it ...
++SYNTHESIS_VERBATIM_SHARE = 0.6   # ... covering at least this share of it, so shared boilerplate is not enough
++
++
++def _synthesis_gap(package, answer, answering, claims, passages) -> tuple[list[str], list[str], list[str]] | None:
++    """For a SYNTHESIS of a named provision: (missing, addressed_but_unverified, withheld_obligations).
++
++    The unit is a top-level obligation of the requested provision: a source that states a mandatory
++    requirement and is not a subparagraph of another source that does. Lists under one obligation are its
++    detail, not further units, so the check asks for the provision's obligations - not for every paragraph.
++    An obligation is represented by a statement verified against it, or by the answer reproducing it
++    (a verbatim run of at least SYNTHESIS_VERBATIM_RUN words - all of it, when it is shorter - that is also
++    SYNTHESIS_VERBATIM_SHARE of it: what repair appends counts, a shared stock phrase does not). A lead-in
++    ("Labeling must include:") is represented when it or any of its items is. A bare heading states no
++    obligation and so never stands in for one. As in _focus_gap, an obligation that only unverifiable
++    statements touch is unverified rather than omitted. None when the plan is not a synthesis of a named
++    provision.
++
++    `withheld_obligations` are obligation-bearing rows of the requested provision that the hard ceiling kept
++    out of the evidence: whatever the answer says, its completeness cannot then be established from it.
++    """
++    plan = getattr(package, "answer_plan", None)
++    requested = {rid for rid, _ in (getattr(package, "requirements", None) or ())}
++    if plan is None or getattr(getattr(plan, "shape", None), "mode", None) != "synthesis" or not requested:
++        return None
++    by_src = {s.index: s for s in getattr(package, "sources", ()) or ()}
++    decided = (AN.SUPPORTED, AN.SUPPORTED_WITH_CITATION_DEFECT, AN.PARTIALLY_SUPPORTED, AN.CONTRADICTED)
++    covered = {e.get("source_index") for c in answering if c.final in decided for e in c.evidence[:1]}
++    by_citation = {p.citation: p.source_index for p in passages}
++    touched = {e.get("source_index") for c in claims if c.final == AN.UNVERIFIABLE for e in c.evidence}
++    touched |= {by_citation.get(c.candidate_evidence[0]) for c in claims
++                if c.final == AN.UNVERIFIABLE and c.candidate_evidence}
++    mandatory = {i for i, s in by_src.items() if OP.strength(s.text or "") == OP.MANDATORY}
++    paths = {i: (getattr(s, "citation_fields", None) or {}).get("paragraph") or "" for i, s in by_src.items()}
++    answer_words = normalise(answer or "").split()
++
++    def reproduced(i: int) -> bool:
++        own = normalise(by_src[i].text or "")
++        n = len(own.split())
++        return n > 0 and longest_run(answer_words, own)[0] >= max(min(SYNTHESIS_VERBATIM_RUN, n), SYNTHESIS_VERBATIM_SHARE * n)
+ 
++    def represented(i: int) -> bool:
++        return i in covered or reproduced(i)
+ 
++    missing: list[str] = []
++    maybe: list[str] = []
++    for g in getattr(plan, "groups", ()) or ():
++        if getattr(g, "kind", None) != "requirement" or not set(g.requirement_ids) & requested:
++            continue
++        members = [i for i in g.members if i in by_src]
++        for i in [i for i in members if i in mandatory]:
++            if any(j != i and j in mandatory and paths[j] and paths[i].startswith(paths[j] + "(") for j in members):
++                continue                                   # the detail of another obligation, not a unit
++            items = ([j for j in members if paths[i] and paths[j].startswith(paths[i] + "(")]
++                     if (by_src[i].text or "").rstrip().endswith(":") else [])
++            if represented(i) or any(represented(j) for j in items):
++                continue
++            (maybe if (touched & ({i} | set(items))) else missing).append(by_src[i].citation)
++    withheld = sorted({c for c, t in getattr(package, "withheld", ()) or () if OP.strength(t or "") == OP.MANDATORY})
++    return missing, maybe, withheld
++
++
+ def _group_text(members) -> str:
+     return " ".join(f"{p.heading or ''} {p.text}" for p in members)
+ 
+@@ -590,6 +661,29 @@
+                 f"{', '.join(maybe)} states a requirement on what the question asks, and only statements that could not "
+                 f"be verified address it", tuple(maybe))
+ 
++    # ---- completeness of a synthesis of a named provision: every top-level obligation of it (see
++    # _synthesis_gap). As above, only a PASS is re-examined, and it can only be withdrawn.
++    sgap = _synthesis_gap(package, answer, answering, claims, candidates) if not abstained.declined else None
++    if sgap is not None and results and results[-1].dimension == R.COMPLETENESS and results[-1].state == R.PASS:
++        missing, maybe, withheld = sgap
++        asked = ", ".join(label for _, label in (getattr(package, "requirements", None) or ()))
++        if missing:
++            results[-1] = DimensionResult(
++                R.COMPLETENESS, R.FAIL,
++                f"the question asks what {asked} requires, and the answer does not address {', '.join(missing)}, "
++                f"which states a requirement of it", tuple(missing))
++        elif maybe:
++            results[-1] = DimensionResult(
++                R.COMPLETENESS, R.NOT_ESTABLISHED,
++                f"{', '.join(maybe)} states a requirement of {asked}, and only statements that could not be verified "
++                f"address it", tuple(maybe))
++        elif withheld:
++            shown = ", ".join(withheld[:4]) + (" ..." if len(withheld) > 4 else "")
++            results[-1] = DimensionResult(
++                R.COMPLETENESS, R.NOT_ESTABLISHED,
++                f"{len(withheld)} paragraph(s) of {asked} that state a requirement ({shown}) were not in the evidence, "
++                f"so whether the answer covers what {asked} requires cannot be established", tuple(withheld))
++
+     # ---- scope
+     scope_codes = [c for c in _SCOPE_FAIL if c in errors]
+     # only in the answer's own voice: a verbatim passage is the regulation speaking
+--- a/src/regulus/rag/generation.py
++++ b/src/regulus/rag/generation.py
+@@ -293,6 +293,12 @@
+     # Answer-quality Stage 3: the question analysis (regulus.planning.intent). When
+     # present, the ANSWER FORMAT line leads with the question type's profile.
+     question_analysis: Any = None
++    # The requested provisions' own EXACT rows that the hard ceiling kept out of the context,
++    # as (citation, text). Never rendered: the prompt is exactly what it was. It lets an
++    # assessment know the evidence it judges against is not the whole of what was asked for -
++    # "What does 21 CFR 312.32 require?" loses (c)(2), the 7-day rule, and (d)(1)-(3) to the
++    # ceiling, and an answer complete against what remained was assessed complete.
++    withheld: tuple[tuple[str, str], ...] = ()
+ 
+     @property
+     def weak_evidence(self) -> bool:
+@@ -410,6 +416,8 @@
+         budget=budget,
+         answer_plan=answer_plan,
+         question_analysis=question_analysis,
++        withheld=tuple((d.evidence.citation, d.evidence.text) for d in selection.dropped
++                       if d.required and d.evidence.corpus == "ecfr"),
+     )
+ 
+ 

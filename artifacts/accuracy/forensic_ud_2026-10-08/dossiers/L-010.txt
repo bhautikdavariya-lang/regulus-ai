@@ -1,0 +1,18 @@
+########## L-010  N=2 M=0 L=1 O=1 result=PASS  type=Direct Lookup  intent=explanation
+Q: How must major food allergens be declared on a food label?
+KEY: 21 CFR 101.4 and FD&C Act 403(w) | Contains statement or parenthetical in ingredient list, the nine major allergens including sesame.
+REV: key_sections=101.4; key_section_state=present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=yes; mechanical_root_cause=-; guidance_in_answer=yes; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Substantively correct: allergens are declared either by food source name in the ingredient list or in a 'Contains' statement immediately after or adjacent to it, and where a 'Contains' statement is used it must name the food source of every major allergen. Correctly cited to section 403(w)(1) of the FD&C Act, with the Supplement Facts and infant-formula points also right.
+EVAL: Verified against FD&C Act 403(w)(1) and 21 CFR 101.4; draft key (101.4 + 403(w)) verified correct. Completeness scored 1: the nine major allergens, including sesame, are not listed. One sentence is repeated verbatim - a style defect, not a scoring failure.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The FDA requires that major food allergens be declared either in the ingredient list or in a "Contains" statement printed immediately after, or adjacent to, the ingredient list (section 403(w)(1) of the FD&C Act). If the food source is declared in the ingredient list and a "Contains" statement is also used, then the food source of all of the major food allergens must be declared in the "Contains" statement, even if they are declared in the ingredient list (section 403(w)(1) of the FD&C Act). If the major food allergen is already declared within the Supplement Facts label, it does not need to be declared elsewhere on the dietary supplement’s label. The FDA guidance specifies how dietary supplements must be labeled, including the use of "Contains" statements and the declaration of allergens in both the ingredient list and the "Contains" statement. If the major food allergen is declared in the ingredient list and a "Contains" statement is used, then the food source of all of the major food allergens must be declared in the "Contains" statement, even if they are declared in the ingredient list. The FDA guidance also specifies that infant formulas must declare the name of the source of the major food allergen. [1]
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)
+   X FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)
+   X FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['major', 'allergen', 'declar', 'label'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

@@ -1,0 +1,38 @@
+{
+ "claim": "merged paraphrase (matrix case 5)",
+ "single_sentence_verdict": "undecidable",
+ "single_reason": "aligned to 21 CFR 211.192 (SOURCE 1), but it does not establish the claim: 2 operator(s) agree, 62% of its terms and 75% of its core terms are present: the pass",
+ "window_verdict": "paraphrase_equivalent",
+ "window_reason": "not verbatim, but strength, polarity agree with 21 CFR 211.192 (SOURCE 1) and 100% of its core terms are in that passage",
+ "window_overlap": 1.0,
+ "window_first_seq": 1,
+ "runs_into_each_half": [
+  3,
+  11
+ ],
+ "gates": {
+  "borne_out": true,
+  "overlap>=0.85": true,
+  "run>=5 each": false
+ },
+ "judge_window": null
+}
+{
+ "claim": "merged near-verbatim",
+ "single_sentence_verdict": "undecidable",
+ "single_reason": "aligned to 21 CFR 211.192 (SOURCE 1), but it does not establish the claim: 2 operator(s) agree, 57% of its terms and 70% of its core terms are present: the pass",
+ "window_verdict": "paraphrase_equivalent",
+ "window_reason": "not verbatim, but strength, polarity agree with 21 CFR 211.192 (SOURCE 1) and 100% of its core terms are in that passage",
+ "window_overlap": 1.0,
+ "window_first_seq": 1,
+ "runs_into_each_half": [
+  20,
+  16
+ ],
+ "gates": {
+  "borne_out": true,
+  "overlap>=0.85": true,
+  "run>=5 each": true
+ },
+ "judge_window": "paraphrase_equivalent"
+}

@@ -1,0 +1,688 @@
+[
+ {
+  "id": "T3c",
+  "source": "controls_real.json",
+  "citation": "21 CFR 701.13(d)",
+  "evidence": "(d) The declaration may contain common or decimal fractions. A common fraction shall be in terms of halves, quarters, eighths, sixteenths, or thirty-seconds; except that if there exists a firmly established, general consumer usage and trade custom of employing different common fractions in the net quantity declaration of a particular commodity they may be employed. A common fraction shall be reduced to its lowest terms; a decimal fraction shall not be carried out to more than two places. A statement that includes small fractions of an ounce shall be deemed to permit smaller variations than one which does not include such fractions.",
+  "claim": "A common fraction shall be reduced to its lowest terms.",
+  "expect": "no_conflict",
+  "claim_provenance": "CONSTRUCTED (single-qualifier/modal edit of the real text)",
+  "evidence_provenance": "REAL verbatim (2026-09-03)",
+  "sha": "ea48022d88ac5d36843983546e1d3658cb289408b3536300e9d5d39a4b8440fc",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [],
+   "dates": [],
+   "conditions": [
+    "except"
+   ],
+   "applicability": null
+  },
+  "conflicts": [
+   "polarity: the answer is affirm where the evidence is negate"
+  ],
+  "agreed": [
+   "strength"
+  ],
+  "omissions": [
+   "the evidence limits the requirement with 'except' and the answer does not"
+  ],
+  "support_blocked": null,
+  "evidence_main_clause": "(d) The declaration may contain common or decimal fractions. A common fraction shall be in terms of halves, quarters, eighths, sixteenths, or thirty-seconds; general consumer usage and trade custom of employing different common fractions in the net quantity declaration of a particular commodity they may be employed. A common fraction shall be reduced to its lowest terms; a decimal fraction shall not be carried out to more than two places. A statement that includes small fractions of an ounce shall be deemed to permit smaller variations than one which does not include such fractions.",
+  "claim_main_clause": "A common fraction shall be reduced to its lowest terms.",
+  "negators_in_evidence_main_clause": [
+   "shall not",
+   "does not"
+  ],
+  "strength_hits_evidence": [
+   [
+    "mandatory",
+    "shall"
+   ],
+   [
+    "mandatory",
+    "shall"
+   ],
+   [
+    "mandatory",
+    "shall not"
+   ],
+   [
+    "mandatory",
+    "shall"
+   ],
+   [
+    "permissive",
+    "may"
+   ],
+   [
+    "permissive",
+    "may"
+   ]
+  ],
+  "units": [
+   {
+    "text": "(d) The declaration may contain common or decimal fractions.",
+    "strength": null,
+    "polarity": null
+   },
+   {
+    "text": "A common fraction shall be in terms of halves, quarters, eighths, sixteenths, or thirty-seconds; except that if there exists a firmly established, general consumer usage and trade custom of employing different common fractions in the net quantity declaration of a particular commodity they may be employed.",
+    "strength": "mandatory",
+    "polarity": "affirm"
+   },
+   {
+    "text": "A common fraction shall be reduced to its lowest terms; a decimal fraction shall not be carried out to more than two places.",
+    "strength": "mandatory",
+    "polarity": "negate"
+   },
+   {
+    "text": "A statement that includes small fractions of an ounce shall be deemed to permit smaller variations than one which does not include such fractions.",
+    "strength": "mandatory",
+    "polarity": "affirm"
+   }
+  ],
+  "basis": "not_decisive",
+  "final": "unverifiable",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ },
+ {
+  "id": "DX4",
+  "source": "diagnostics.json",
+  "citation": "21 CFR 113.40(a)(6)",
+  "evidence": "(6) Crate supports. A bottom crate support shall be used in vertical still retorts. Baffle plates shall not be used in the bottom of still retorts.",
+  "claim": "A bottom crate support shall be used in vertical still retorts.",
+  "expect": "no_conflict",
+  "claim_provenance": "CONSTRUCTED for diagnosis (not regulatory text)",
+  "evidence_provenance": "REAL verbatim (2026-09-03)",
+  "sha": "a0af94b6a41737704599b9f3f1099e8baf4045ee319b467183436347fcefc290",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "conflicts": [
+   "polarity: the answer is affirm where the evidence is negate"
+  ],
+  "agreed": [
+   "strength"
+  ],
+  "omissions": [],
+  "support_blocked": null,
+  "evidence_main_clause": "(6) Crate supports. A bottom crate support shall be used in vertical still retorts. Baffle plates shall not be used in the bottom of still retorts.",
+  "claim_main_clause": "A bottom crate support shall be used in vertical still retorts.",
+  "negators_in_evidence_main_clause": [
+   "shall not"
+  ],
+  "strength_hits_evidence": [
+   [
+    "mandatory",
+    "shall"
+   ],
+   [
+    "mandatory",
+    "shall not"
+   ]
+  ],
+  "units": [
+   {
+    "text": "(6) Crate supports.",
+    "strength": null,
+    "polarity": null
+   },
+   {
+    "text": "A bottom crate support shall be used in vertical still retorts.",
+    "strength": "mandatory",
+    "polarity": "affirm"
+   },
+   {
+    "text": "Baffle plates shall not be used in the bottom of still retorts.",
+    "strength": "mandatory",
+    "polarity": "negate"
+   }
+  ],
+  "basis": "verbatim",
+  "final": "supported",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ },
+ {
+  "id": "DX2",
+  "source": "diagnostics.json",
+  "citation": "21 CFR 1141.1(b)",
+  "evidence": "(b) The requirements of this part do not apply to manufacturers or distributors of cigarettes that do not manufacture, package, or import cigarettes for sale or distribution within the United States.",
+  "claim": "The requirements of this part apply to manufacturers of cigarettes that do not manufacture cigarettes for sale within the United States.",
+  "expect": "conflict",
+  "claim_provenance": "CONSTRUCTED for diagnosis (not regulatory text)",
+  "evidence_provenance": "REAL verbatim (2026-09-03)",
+  "sha": "884ab0c6f0c33bfba0f26dd839c30899da6c758f84f36f7af323828d6ce3b8d1",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "actors": [
+    "manufacturer"
+   ],
+   "duty_holder": "manufacturer",
+   "open_actor": false,
+   "quantities": [],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": "negate",
+   "actors": [
+    "distributor",
+    "manufacturer"
+   ],
+   "duty_holder": "distributor",
+   "open_actor": false,
+   "quantities": [],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "conflicts": [],
+  "agreed": [],
+  "omissions": [],
+  "support_blocked": null,
+  "evidence_main_clause": "(b) The requirements of this part do not apply to manufacturers or distributors of cigarettes that do not manufacture, package, or import cigarettes for sale or distribution within the United States.",
+  "claim_main_clause": "The requirements of this part apply to manufacturers of cigarettes that do not manufacture cigarettes for sale within the United States.",
+  "negators_in_evidence_main_clause": [
+   "do not",
+   "do not"
+  ],
+  "strength_hits_evidence": [],
+  "units": [
+   {
+    "text": "(b) The requirements of this part do not apply to manufacturers or distributors of cigarettes that do not manufacture, package, or import cigarettes for sale or distribution within the United States.",
+    "strength": null,
+    "polarity": "negate"
+   }
+  ],
+  "basis": "not_decisive",
+  "final": "unverifiable",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ },
+ {
+  "id": "N9",
+  "source": "numeric_cases.json",
+  "citation": "21 CFR 178.3760",
+  "evidence": "Polyethylene glycol (400) monolaurate containing not more than 0.1 percent by weight of ethylene and/or diethylene glycol may be used at a level not to exceed 0.3 percent by weight of twine as a finish on twine to be used for tying meat provided the twine fibers are produced from nylon resins complying with § 177.1500 of this chapter.",
+  "claim": "Polyethylene glycol (400) monolaurate may be used at a level exceeding 0.1 percent by weight of twine as a finish on twine to be used for tying meat.",
+  "expect": "no_numeric",
+  "claim_provenance": "CONSTRUCTED",
+  "evidence_provenance": "REAL (verbatim eCFR sentence)",
+  "sha": "732a20b3e3d42f458113585a89c64b51c39ae9bfc89159ceb19509afff455d22",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": "permissive",
+   "polarity": "affirm",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [
+    "percent=0.1"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": "permissive",
+   "polarity": "affirm",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [
+    "percent=0.1",
+    "percent=0.3"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "conflicts": [],
+  "agreed": [
+   "strength",
+   "polarity",
+   "quantity:percent"
+  ],
+  "omissions": [],
+  "support_blocked": null,
+  "evidence_main_clause": "Polyethylene glycol (400) monolaurate containing not more than 0.1 percent by weight of ethylene and/or diethylene glycol may be used at a level not to exceed 0.3 percent by weight of twine as a finish on twine to be used for tying meat provided the twine fibers are produced from nylon resins complying with § 177.1500 of this chapter.",
+  "claim_main_clause": "Polyethylene glycol (400) monolaurate may be used at a level exceeding 0.1 percent by weight of twine as a finish on twine to be used for tying meat.",
+  "negators_in_evidence_main_clause": [],
+  "strength_hits_evidence": [
+   [
+    "permissive",
+    "may"
+   ]
+  ],
+  "units": [
+   {
+    "text": "Polyethylene glycol (400) monolaurate containing not more than 0.1 percent by weight of ethylene and/or diethylene glycol may be used at a level not to exceed 0.3 percent by weight of twine as a finish on twine to be used for tying meat provided the twine fibers are produced from nylon resins complying with § 177.1500 of this chapter.",
+    "strength": "permissive",
+    "polarity": "affirm"
+   }
+  ],
+  "basis": "paraphrase",
+  "final": "supported",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ },
+ {
+  "id": "N10",
+  "source": "numeric_cases.json",
+  "citation": "21 CFR 112.203(d)(2)",
+  "evidence": "(2) Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+  "claim": "(2) Appeal the order within 15 business days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+  "expect": "no_numeric",
+  "claim_provenance": "CONSTRUCTED",
+  "evidence_provenance": "REAL (verbatim eCFR sentence)",
+  "sha": "b8a0297e0db05c22d0b956fc66007881fa4f3ffc2b1126477f1a25e17803c74e",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": null,
+   "polarity": null,
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [
+    "day=15"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": null,
+   "polarity": null,
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [
+    "day=15"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "conflicts": [],
+  "agreed": [
+   "quantity:day"
+  ],
+  "omissions": [],
+  "support_blocked": null,
+  "evidence_main_clause": "(2) Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+  "claim_main_clause": "(2) Appeal the order within 15 business days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+  "negators_in_evidence_main_clause": [],
+  "strength_hits_evidence": [],
+  "units": [
+   {
+    "text": "(2) Appeal the order within 15 calendar days of the date of receipt of the order in accordance with the requirements of § 112.206.",
+    "strength": null,
+    "polarity": null
+   }
+  ],
+  "basis": "descriptive",
+  "final": "supported",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ },
+ {
+  "id": "N12",
+  "source": "numeric_cases.json",
+  "citation": "21 CFR 1.379(a)",
+  "evidence": "(a) FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "claim": "(a) FDA may detain an article of food for a reasonable period of no more than 20 calendar days after the detention order is issued.",
+  "expect": "equivalent",
+  "claim_provenance": "CONSTRUCTED",
+  "evidence_provenance": "REAL (verbatim eCFR sentence)",
+  "sha": "51cbb3aa287d204b6340f453685a0e5c2793e2a3edc3cf5ea0dbe73a0f96c24a",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": "permissive",
+   "polarity": "affirm",
+   "actors": [
+    "fda"
+   ],
+   "duty_holder": "fda",
+   "open_actor": false,
+   "quantities": [
+    "day=20"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "affirm",
+   "actors": [
+    "fda"
+   ],
+   "duty_holder": "fda",
+   "open_actor": false,
+   "quantities": [
+    "day=20"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "conflicts": [
+   "strength: the answer states a permissive requirement where the evidence is mandatory"
+  ],
+  "agreed": [
+   "polarity",
+   "actor",
+   "quantity:day"
+  ],
+  "omissions": [],
+  "support_blocked": null,
+  "evidence_main_clause": "(a) FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+  "claim_main_clause": "(a) FDA may detain an article of food for a reasonable period of no more than 20 calendar days after the detention order is issued.",
+  "negators_in_evidence_main_clause": [
+   "may not"
+  ],
+  "strength_hits_evidence": [
+   [
+    "mandatory",
+    "may not"
+   ],
+   [
+    "permissive",
+    "may"
+   ],
+   [
+    "permissive",
+    "may"
+   ]
+  ],
+  "units": [
+   {
+    "text": "(a) FDA may detain an article of food for a reasonable period that may not exceed 20 calendar days after the detention order is issued.",
+    "strength": "mandatory",
+    "polarity": "affirm"
+   }
+  ],
+  "basis": "operator_conflict",
+  "final": "contradicted",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ },
+ {
+  "id": "N15",
+  "source": "numeric_cases.json",
+  "citation": "21 CFR 211.180(a)",
+  "evidence": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+  "claim": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall not be retained for more than 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+  "expect": "conflict",
+  "claim_provenance": "CONSTRUCTED",
+  "evidence_provenance": "REAL (verbatim eCFR sentence)",
+  "sha": "f9881945c94aca8b2b41e64fba2269e24ceec47c22d453cbd58e732bc1c5af9c",
+  "variant": "JRN2",
+  "claim_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [
+    "year=1",
+    "year=3"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "evidence_ops": {
+   "strength": "mandatory",
+   "polarity": "negate",
+   "actors": [],
+   "duty_holder": null,
+   "open_actor": false,
+   "quantities": [
+    "year=1",
+    "year=3"
+   ],
+   "dates": [],
+   "conditions": [],
+   "applicability": null
+  },
+  "conflicts": [],
+  "agreed": [
+   "strength",
+   "polarity",
+   "quantity:year"
+  ],
+  "omissions": [],
+  "support_blocked": null,
+  "evidence_main_clause": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+  "claim_main_clause": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall not be retained for more than 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+  "negators_in_evidence_main_clause": [
+   "exemption"
+  ],
+  "strength_hits_evidence": [
+   [
+    "mandatory",
+    "is required"
+   ],
+   [
+    "mandatory",
+    "shall"
+   ]
+  ],
+  "units": [
+   {
+    "text": "(a) Any production, control, or distribution record that is required to be maintained in compliance with this part and is specifically associated with a batch of a drug product shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+    "strength": "mandatory",
+    "polarity": "negate"
+   }
+  ],
+  "basis": "paraphrase",
+  "final": "supported",
+  "claim_reason": null,
+  "gate": null,
+  "claim_keys": [
+   "candidate_evidence",
+   "citation",
+   "citation_detail",
+   "citation_trace",
+   "claim",
+   "claim_id",
+   "evidence",
+   "final",
+   "match_path",
+   "normalized_text",
+   "operator_trace",
+   "operators",
+   "relevance",
+   "resolved_from",
+   "selected_evidence",
+   "sentence_index",
+   "split_from",
+   "subclaim",
+   "support",
+   "support_basis",
+   "support_reason"
+  ]
+ }
+]

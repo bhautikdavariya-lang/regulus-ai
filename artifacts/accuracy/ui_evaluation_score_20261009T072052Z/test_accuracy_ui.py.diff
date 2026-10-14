@@ -1,0 +1,152 @@
+--- artifacts/accuracy/ui_evaluation_score_20261009T072052Z/snapshot_before/test_accuracy_ui.py	2026-10-09 12:50:52
++++ tests/test_accuracy_ui.py	2026-10-09 12:52:41
+@@ -64,6 +64,12 @@
+     return evaluated(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} [1]")
+ 
+ 
++def score_line(r) -> str | None:
++    """The score line of the evaluation block, as text (None when the block has none)."""
++    m = re.search(r'<div class="acc-points[^"]*">([^<]*)</div>', r["block"])
++    return m.group(1) if m else None
++
++
+ def assert_never_a_pass(r):
+     assert "PASS" not in r["block"] and "evaluation: PASS" not in r["header"]
+     assert not re.search(r"\d+\s*%", r["block"])
+@@ -81,9 +87,10 @@
+     # what it is and what it is not, every time
+     assert "No reference answer is used" in r["block"]
+     assert "not the 300-question acceptance-test result" in r["block"]
+-    # no accuracy percentage; the check score only as a labelled detail
++    # the evaluation score in the main block, labelled for what it is; no accuracy percentage
++    assert score_line(r) == "Evaluation score 100/100"
++    assert "it is not a percentage of factual accuracy" in r["block"]
+     assert not re.search(r"\d+\s*%", r["block"]) and "Answer Accuracy" not in r["final_out"]
+-    assert "Live check score 100/100" in r["block"] and "not an accuracy percentage" in r["block"]
+ 
+ 
+ def test_an_evaluated_failing_answer_shows_fail_and_says_why(tmp_path):
+@@ -126,7 +133,7 @@
+     assert "evaluation: NOT EVALUATED" in r["header"] and ">NOT EVALUATED<" in r["block"]
+     assert "Cannot be verified" in r["block"]
+     assert_never_a_pass(r)
+-    assert "Live check score" not in r["block"]
++    assert score_line(r) == "Score unavailable"
+ 
+ 
+ # ---------------------------------------------------- 5: missing or incomplete metadata
+@@ -206,3 +213,114 @@
+                                            "provisions that were retrieved."), question=q2)
+     assert ">PASS<" in first["block"] and ">FAIL<" in second["block"]
+     assert "820.99(z)" in second["block"] and "820.99(z)" not in first["block"]
++
++
++# ---------------------------------------------------- the evaluation score
++
++
++def test_the_score_is_the_evaluators_own_number_out_of_100_beside_the_status(tmp_path):
++    a = evaluated(TWO_MISSING, f"21 CFR 820.10(b)(2): {PURCHASING} [1]\nNot found in the available eCFR data: "
++                               "21 CFR 820.99(z). The answer above covers only the provisions that were retrieved.")
++    assert a["accuracy"] == 90 and a["question_review"]["live_check_score"] == 90     # the evaluator's field
++    r = shown(tmp_path, a, question=TWO_MISSING)
++    # an intermediate score next to FAIL: the score does not make it a pass
++    assert ">FAIL<" in r["block"] and score_line(r) == "Evaluation score 90/100"
++    status_at, score_at = r["block"].index(">FAIL<"), r["block"].index("Evaluation score 90/100")
++    assert status_at < score_at < r["block"].index("<details>")                       # main block, not details
++    assert r["block"].count("90/100") == 1                                             # not repeated in details
++    assert "Accuracy" not in r["block"] and "accuracy %" not in r["block"].lower() and "%" not in r["block"]
++    assert "Substantive correctness" in r["block"] and "Citation correctness" in r["block"]
++
++
++def test_a_score_of_zero_is_shown_as_zero_under_fail(tmp_path):
++    a = evaluated(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} Suppliers must be re-audited within 45 days of any "
++                       "nonconformance [1].")
++    assert a["accuracy"] == 0
++    r = shown(tmp_path, a)
++    assert ">FAIL<" in r["block"] and score_line(r) == "Evaluation score 0/100"
++    assert "Incorrect: figure(s) not found in any supplied source: 45" in r["block"]
++
++
++def test_a_partial_answer_keeps_its_explanations_and_its_own_score(tmp_path):
++    a = evaluated(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} [1] This duty is restated in 21 CFR 820.777.")
++    r = shown(tmp_path, a)
++    assert score_line(r) == f"Evaluation score {a['accuracy']}/100" and ">FAIL<" in r["block"]
++    assert "Partial —" in r["block"] and "Partially correct" in r["block"]
++
++
++def test_no_score_without_a_legitimate_result(tmp_path):
++    error = evaluate_safely(ONE, "x [1]", package=type("B", (), {"sources": property(lambda s: 1 / 0)})()).to_dict()
++    error["question_review"] = question_review(error, question=ONE)
++    cases = {
++        "abstained": evaluated(ONE, "21 CFR 820.10(b)(2) obliges a maker to check bought-in goods [1]."),
++        "evaluator_error": error,
++        "incomplete": {**correct(), "question_review": None},
++    }
++    for name, a in cases.items():
++        r = shown(tmp_path, a)
++        assert ">NOT EVALUATED<" in r["block"], name
++        assert score_line(r) == "Score unavailable", name
++
++
++def test_a_low_score_does_not_turn_not_evaluated_into_fail(tmp_path):
++    a = correct()
++    a["question_review"].update(status="not_evaluated", label="NOT FULLY EVALUATED", live_check_score=5)
++    r = shown(tmp_path, a)
++    assert ">NOT FULLY EVALUATED<" in r["block"] and ">FAIL<" not in r["block"]
++    assert score_line(r) == "Evaluation score 5/100"
++
++
++@pytest.mark.parametrize("bad", [None, "90", 150, -1, 90.5, True, [90], {"v": 90}])
++def test_an_invalid_score_shows_unavailable_and_leaves_the_status_alone(tmp_path, bad):
++    a = correct()
++    a["question_review"]["live_check_score"] = bad
++    r = shown(tmp_path, a)
++    assert ">PASS<" in r["block"]                       # the status is the server's, untouched by the score
++    assert score_line(r) == "Score unavailable"
++    assert "/100" not in r["block"]
++
++
++def test_a_missing_score_field_shows_unavailable(tmp_path):
++    a = correct()
++    del a["question_review"]["live_check_score"]
++    r = shown(tmp_path, a)
++    assert ">PASS<" in r["block"] and score_line(r) == "Score unavailable"
++
++
++def test_values_json_cannot_carry_are_never_shown_as_a_score(tmp_path):
++    """NaN and infinities cannot arrive over JSON; the page's own functions are called with them directly."""
++    values = ["__NaN__", "__Infinity__", "__-Infinity__", "__undefined__", None, -1, 101, 99.9, "58", 0, 100, 57]
++    path = tmp_path / "values.json"
++    path.write_text(json.dumps(values), encoding="utf-8")
++    out = subprocess.run([NODE, HARNESS, "scores", str(path)], capture_output=True, text=True, timeout=30, check=True)
++    got = {x["value"]: (x["score"], score_line({"block": x["html"]})) for x in json.loads(out.stdout)}
++    for key in ("NaN", "Infinity", "-Infinity", "undefined", "null", "-1", "101", "99.9", "58"):   # "58" is a string
++        assert got[key] == (None, "Score unavailable"), key
++    assert got["57"] == (57, "Evaluation score 57/100")
++    assert got["0"] == (0, "Evaluation score 0/100") and got["100"] == (100, "Evaluation score 100/100")
++
++
++def test_a_result_for_another_question_shows_no_score(tmp_path):
++    r = shown(tmp_path, correct(), question="What does 21 CFR 820.30(a) require?", result_question=ONE)
++    assert ">NOT EVALUATED<" in r["block"] and score_line(r) == "Score unavailable"
++    a = correct()
++    a["question_review"]["question"] = "What does 21 CFR 820.30(a) require?"
++    r = shown(tmp_path, a)
++    assert ">NOT EVALUATED<" in r["block"] and score_line(r) == "Score unavailable"
++
++
++def test_no_stale_score_after_a_later_answer_without_evaluation(tmp_path):
++    q2 = "What does 21 CFR 820.30(a) require?"
++    payload = {"sequence": [
++        {"page_question": ONE, "result": {"question": ONE, "accuracy": correct()}},
++        {"page_question": q2, "result": {"question": q2}},                          # evaluation off
++        {"page_question": ONE, "result": {"question": ONE, "accuracy": None}},      # evaluation failed to arrive
++    ]}
++    path = tmp_path / "sequence.json"
++    path.write_text(json.dumps(payload), encoding="utf-8")
++    out = subprocess.run([NODE, HARNESS, "file", str(path)], capture_output=True, text=True, timeout=30, check=True)
++    first, second, third = json.loads(out.stdout)["finals"]
++    assert "Evaluation score 100/100" in first and ">PASS<" in first
++    assert '<div class="acc">' not in second and "/100" not in second and "Score" not in second
++    assert ">NOT EVALUATED<" in third and "Score unavailable" in third and "100/100" not in third
++

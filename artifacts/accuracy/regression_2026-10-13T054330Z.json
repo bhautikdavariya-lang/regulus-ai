@@ -1,0 +1,228 @@
+{
+  "generated_at": "2026-10-13T054330Z",
+  "questions": 3,
+  "arms": "both",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": [],
+    "exact_evidence_for_every_answer": true
+  },
+  "latency_ms": {
+    "accuracy_min": 90.31,
+    "accuracy_max": 515.26,
+    "accuracy_mean": 235.89,
+    "answer_seconds_mean": 25.36
+  },
+  "rows": [
+    {
+      "question": "What does 21 CFR 312.32 require?",
+      "answer_seconds": 48.32,
+      "answer": "The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the requested provision(s) follows.\n21 CFR 312.32 (eCFR, binding, verbatim): (a) Definitions. The following definitions of terms apply to this section: [1]. Adverse event means any untoward medical occurrence associated with the use of a drug in humans, whether or not considered drug related [2]. Life-threatening adverse event or life-threatening suspected adverse reaction. An adverse event or suspected adverse reaction is considered “life-threatening” if, in the view of either the investigator or sponsor, its occurrence places the patient or subject at immediate risk of death. It does not include an adverse event or suspected adverse reaction that, had it occurred in a more severe form, might have caused death [3].",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(b)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(i)",
+        "21 CFR 312.32(c)(1)(i)(A)",
+        "21 CFR 312.32(c)(1)(i)(B)",
+        "21 CFR 312.32(c)(1)(i)(C)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(d)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 515.26,
+        "status": "evaluated",
+        "accuracy": 75,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "fail",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 3 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "0c35bbf9a27525d184aad225610153ae1d68d113955fedfb80a6a3c87e81771b",
+          "recomputed_from_text": "0c35bbf9a27525d184aad225610153ae1d68d113955fedfb80a6a3c87e81771b",
+          "evaluator_live": "0c35bbf9a27525d184aad225610153ae1d68d113955fedfb80a6a3c87e81771b",
+          "evaluator_replay": "0c35bbf9a27525d184aad225610153ae1d68d113955fedfb80a6a3c87e81771b"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "63c045e8249e65f81e4dfc1218b7813e847dcab89bc9fc2bb718eb38411c5282",
+        "model_called": true,
+        "items": 14,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 36.53,
+          "on": 36.62
+        },
+        "added_seconds": 0.09
+      }
+    },
+    {
+      "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+      "answer_seconds": 9.5,
+      "answer": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32 is no later than 7 calendar days after the sponsor's initial receipt of the information [9]. [1]",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(i)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(c)(1)(iii)",
+        "21 CFR 312.32(c)(1)(iv)",
+        "21 CFR 312.32(c)(1)(v)",
+        "21 CFR 312.32(c)(2)",
+        "21 CFR 312.32(c)(5)",
+        "21 CFR 312.32(d)",
+        "21 CFR 312.32(d)(3)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 90.31,
+        "status": "evaluated",
+        "accuracy": 100,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 1 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2",
+          "recomputed_from_text": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2",
+          "evaluator_live": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2",
+          "evaluator_replay": "24b673d04461bed355952a2af4357850e0fcb04d5dca2995e385b213fc07bab2"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "c7883b08a2b9c37218f435a96f3a76774b729e829df58459a95218e19fa24643",
+        "model_called": true,
+        "items": 12,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 12.01,
+          "on": 10.61
+        },
+        "added_seconds": -1.4
+      }
+    },
+    {
+      "question": "What does 21 CFR 211.25 require?",
+      "answer_seconds": 18.25,
+      "answer": "21 CFR 211.25(a) requires that each person engaged in the manufacture, processing, packing, or holding of a drug product must have education, training, and experience to enable them to perform the assigned functions. Training shall be in the particular operations they perform and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to their functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them.\n\n21 CFR 211.25(b) requires that each person responsible for supervising the manufacture, processing, packing, or holding of a drug product must have the education, training, and experience to perform assigned functions in a manner that provides assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess.\n\nThe available regulatory sources do not provide enough information to answer this.\n21 CFR 211.25 (eCFR, binding, verbatim): (a) Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them [1]. (b) Each person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions in such a manner as to provide assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess [2]. (c) There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product [3].",
+      "citations": [
+        "21 CFR 211.25(a)",
+        "21 CFR 211.25(b)",
+        "21 CFR 211.25(c)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 102.1,
+        "status": "evaluated",
+        "accuracy": 100,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 8 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "recomputed_from_text": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "evaluator_live": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "evaluator_replay": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "95fa88b44e3ef01f3b18e173117b514fffb1fc01e5386a5ce9a925e04633eb85",
+        "model_called": true,
+        "items": 3,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 16.3,
+          "on": 16.33
+        },
+        "added_seconds": 0.03
+      }
+    }
+  ]
+}

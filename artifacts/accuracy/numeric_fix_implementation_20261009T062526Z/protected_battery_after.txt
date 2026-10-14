@@ -1,0 +1,6 @@
+PROD           passed 9/15 | T1a:false polarity conflict T1b:false polarity conflict T1c:false polarity conflict T2a:ok T2b:FALSE PARTIAL (drops_a_condition) T2c:FALSE SUPPORT (paraphrase) T3b:ok T3c:false polarity conflict T4a:ok T4b:ok T4c:ok T4d:ok T4e:ok T5a:ok T5b:ok
+PROD         decisions 7/11 | extraction 5/5 | DX2:FALSE SUPPORT (descriptive) DX4:false contradiction (polarity; final supported) DX6:false contradiction (polarity,strength; final supported) DX9:FALSE SUPPORT (descriptive)
+PROD         numeric cases 15/16 | N12:false contradiction/block (['polarity', 'strength'], block=False, final contradicted)
+PROD           false-conflict fixed 10/88 | real-operator kept 44/44 | INV unchanged 18/18 | genuine kept 19/19 | readings 6/6 | replay new 0 removed 0
+PROD          m-cases 25/36 | FAIL: PR1(paraph/-) PR3(adjace/-) PR7(paraph/polarity,strength) MR1(verbat/-) MR5(not_de/-) MR7(operat/polarity,strength) NN2(operat/polarity) T3c(not_de/polarity) DX4(verbat/polarity) DX2(descri/-) N12(operat/polarity,strength)
+limit probes ok: 11

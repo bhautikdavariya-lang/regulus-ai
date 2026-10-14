@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulus test console</title>
+<style>
+  :root {
+    --bg: #fbfbfa; --panel: #fff; --ink: #1c1c1a; --muted: #6b6b66; --line: #e3e3de;
+    --accent: #7a5cff; --ok: #1f7a4d; --warn: #9a5b00; --stop: #b3261e;
+    --ecfr: #1f5fa8; --guid: #8a5a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#17171a; --panel:#1f1f23; --ink:#eceCEA; --muted:#9a9a95; --line:#32323a;
+            --accent:#a48cff; --ok:#5fd19a; --warn:#e0a33a; --stop:#ff8a80; --ecfr:#7fb0ef; --guid:#e0b25a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px; }
+  h1 { font-size:20px; margin:0; letter-spacing:-.01em; }
+  .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; margin-top:16px; }
+  label { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:6px; }
+  textarea, select, input[type=number] {
+    width:100%; font:inherit; color:inherit; background:var(--bg);
+    border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+  }
+  textarea { min-height:78px; resize:vertical; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+  .row > div { flex:1 1 170px; }
+  .controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:14px; }
+  button { font:inherit; font-weight:600; border:0; border-radius:8px; padding:10px 18px;
+           background:var(--accent); color:#fff; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  button.ghost { background:transparent; color:var(--muted); border:1px solid var(--line); font-weight:500; }
+  .check { display:flex; align-items:center; gap:7px; font-size:14px; }
+  .check input { width:16px; height:16px; accent-color:var(--accent); }
+  .examples { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .examples button { background:transparent; border:1px solid var(--line); color:var(--muted);
+                     font-size:12.5px; font-weight:500; padding:5px 10px; border-radius:99px; }
+  .answer { white-space:pre-wrap; font-size:15.5px; }
+  .pill { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em;
+          padding:2px 8px; border-radius:99px; border:1px solid currentColor; }
+  .pill.ok{color:var(--ok)} .pill.warn{color:var(--warn)} .pill.stop{color:var(--stop)} .pill.mut{color:var(--muted)}
+  .pill.ecfr{color:var(--ecfr)} .pill.guid{color:var(--guid)}
+  .meta { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+  .src { border-top:1px solid var(--line); padding:12px 0; }
+  .src:first-of-type { border-top:0; }
+  .src h4 { margin:0 0 4px; font-size:14px; font-weight:600; display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
+  .src p { margin:6px 0 0; font-size:13.5px; color:var(--muted); }
+  .num { display:inline-flex; width:22px; height:22px; align-items:center; justify-content:center;
+         border-radius:6px; background:var(--bg); border:1px solid var(--line); font-size:12px; font-weight:700; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td { padding:4px 0; vertical-align:top; }
+  td:first-child { color:var(--muted); width:42%; padding-right:10px; }
+  a { color:var(--accent); }
+  .err { color:var(--stop); }
+  .draft { border-style:dashed; }
+  .caret { display:inline-block; width:7px; height:1em; margin-left:2px; vertical-align:text-bottom;
+           background:var(--muted); animation:blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity:0; } }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; }
+  pre { overflow-x:auto; font-size:12px; background:var(--bg); padding:10px; border-radius:8px; border:1px solid var(--line); }
+  /* Answer accuracy: a compact, answer-level indicator. Uses the existing
+     tokens only; it is not a dashboard and must not grow into one. */
+  .acc { margin-top:14px; padding-top:12px; border-top:1px solid var(--line); }
+  .acc-top { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+  .acc-score { min-width:112px; }
+  .acc-label { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .acc-value { font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.2; }
+  .acc-value.unknown { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0; }
+  .acc-basis { flex:1 1 260px; margin:2px 0 0; font-size:12.5px; color:var(--muted); }
+  .acc details { margin-top:10px; }
+  table.acc-table td { padding:3px 0; }
+  table.acc-table td.dim { color:var(--ink); width:auto; padding-right:10px; }
+  table.acc-table td.state { width:26px; text-align:center; font-weight:700; }
+  table.acc-table td.why { color:var(--muted); font-size:12.5px; width:auto; }
+  .spin { display:inline-block; width:13px; height:13px; border:2px solid var(--line);
+          border-top-color:var(--accent); border-radius:50%; animation:s .8s linear infinite; vertical-align:-2px; }
+  @keyframes s { to { transform:rotate(360deg) } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Regulus test console</h1>
+    <span class="sub" id="env">loading…</span>
+  </header>
+  <p class="sub">Ask a regulatory question. Answers are generated locally on CPU and take roughly 30 to 90 seconds.</p>
+
+  <div class="card">
+    <label for="q">Question</label>
+    <textarea id="q" placeholder="What does 21 CFR Part 11 cover?"></textarea>
+    <div class="examples" id="examples"></div>
+    <div class="row">
+      <div>
+        <label for="adapter">Model</label>
+        <select id="adapter"></select>
+      </div>
+      <div>
+        <label for="topk">Retrieval top-k</label>
+        <input type="number" id="topk" value="8" min="1" max="20">
+      </div>
+      <div>
+        <label for="tokens" title="A safety ceiling against a model that never stops, not a target length. The pipeline sets each question's allowance from its evidence; leave this alone unless you are deliberately testing the ceiling.">Token ceiling (safety limit)</label>
+        <input type="number" id="tokens" value="2048" min="64" max="8192" step="64">
+      </div>
+    </div>
+    <div class="controls">
+      <button id="ask">Ask</button>
+      <button id="stop" class="ghost" hidden>Stop</button>
+      <span class="check"><input type="checkbox" id="grounding"><label for="grounding" style="margin:0;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink)">Grounding gate</label></span>
+      <span class="sub" id="status"></span>
+    </div>
+  </div>
+
+  <div id="out"></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const EXAMPLES = [
+  "What does 21 CFR Part 11 cover?",
+  "What are the specific requirements of 21 CFR 314.999?",
+  "What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?",
+  "What exact storage temperature range does 21 CFR Part 211 require for all finished tablets?",
+  "What does 21 CFR 820.10 require?",
+  "Summarize FDA guidance FDA-2023-D-99999.",
+];
+
+let busy = false;
+
+async function loadConfig() {
+  try {
+    const cfg = await (await fetch("/api/config")).json();
+    $("env").textContent = `${cfg.model_id} · ${cfg.device}${cfg.dtype ? " " + cfg.dtype : ""} · eCFR snapshot ${cfg.snapshot_date}`;
+    $("adapter").innerHTML = cfg.adapters.map(a => `<option value="${esc(a.id)}">${esc(a.label)}</option>`).join("");
+    // Take the ceiling from the server so the page cannot quietly impose a
+    // tighter limit than configs/model.yaml; it is a safety limit, not a target.
+    if (cfg.defaults && cfg.defaults.max_new_tokens) {
+      const box = $("tokens");
+      box.value = cfg.defaults.max_new_tokens;
+      box.max = Math.max(cfg.defaults.max_new_tokens, Number(box.max) || 0);
+      if (cfg.answer_length) box.title = `${cfg.answer_length.policy} answer length. ${cfg.answer_length.note}`;
+    }
+  } catch (e) {
+    $("env").textContent = "could not reach the server";
+  }
+  $("examples").innerHTML = EXAMPLES.map((e, i) => `<button data-i="${i}">${esc(e)}</button>`).join("");
+  $("examples").onclick = ev => { const b = ev.target.closest("button"); if (b) $("q").value = EXAMPLES[b.dataset.i]; };
+}
+
+function pill(text, cls) { return `<span class="pill ${cls}">${esc(text)}</span>`; }
+
+function renderGrounding(g) {
+  if (!g) return pill("gate off", "mut");
+  if (!g.checked) return pill("gate off", "mut");
+  if (g.action === "refuse") return pill("gate refused: " + (g.reason || ""), "stop");
+  const v = g.verification;
+  if (v && v.identifier) return pill(`gate passed ${v.identifier.label}`, "ok");
+  return pill("gate passed", "ok");
+}
+
+function shapeRows(r) {
+  const s = r.answer_shape;
+  if (!s) return "";
+  const gen = r.generation || {}, plan = gen.answer_plan || {}, v = (r.validation || {}).initial || {}, chk = v.shape || {};
+  const warn = (chk.codes || []);
+  return `
+        <tr><td>Answer shape</td><td>${esc(s.mode)} · ${esc(s.scope)} · ${s.exhaustive ? "exhaustive" : "not exhaustive"}</td></tr>
+        <tr><td>Why</td><td>${esc(s.rationale || "")}</td></tr>
+        <tr><td>Evidence groups</td><td>${(plan.groups || []).map(g => esc(g.label) + " " + (g.members || []).map(n => "[" + n + "]").join("")).join("; ") || "—"}</td></tr>
+        <tr><td>Shape checks</td><td>${warn.length ? esc(warn.join(", ")) : "none fired"}</td></tr>
+        ${r.question_analysis ? `<tr><td>Question type</td><td>${esc(r.question_analysis.question_type)}${r.question_analysis.is_yes_no ? " · yes/no" : ""} · ${esc(r.question_analysis.scope_status)}</td></tr>` : ""}
+        ${r.quality_flags ? `<tr><td>Review flags</td><td>${r.quality_flags.length ? r.quality_flags.map(f => `<span title="${esc(f.detail)}">${esc(f.flag)}</span>`).join(", ") : "none"}</td></tr>` : ""}
+        <tr><td>Generated / allowance</td><td>${gen.generated_tokens ?? "—"} / ${gen.max_new_tokens ?? "—"} tokens${v.truncated ? " (truncated)" : ""}</td></tr>`;
+}
+
+function gateRows(r) {
+  const a = r.answerability;
+  if (!a) return "";
+  return `
+        <tr><td>Answerability</td><td>${esc(a.state)} · ${esc(a.confidence)}${a.acted_on ? "" : " (gate off)"}</td></tr>
+        <tr><td>Generation</td><td>${r.generation_blocked ? "blocked: " + esc(r.block_reason || "") : "called"}</td></tr>
+        ${r.fallback_type ? `<tr><td>Fallback</td><td>${esc(r.fallback_type)}${r.fallback_reason ? " · " + esc(r.fallback_reason) : ""}</td></tr>` : ""}
+        ${r.scope_policy ? `<tr><td>Scope</td><td>${esc(r.scope_policy.status)} · ${esc(r.scope_policy.reason)}</td></tr>` : ""}
+        ${r.semantic_fallback ? `<tr><td>Semantic fallback</td><td>${r.semantic_fallback.invoked ? "used (" + esc(r.semantic_fallback.lexical_insufficient || "") + ")" : "not needed"}${r.reference_lookup ? " · reference lookup: " + esc(r.reference_lookup.join(", ")) : ""}</td></tr>` : ""}`;
+}
+
+function timingRows(r) {
+  const t = r.timings_ms || {}, s = r.server_timings_ms || {}, g = r.generation || {};
+  const f = v => v == null ? "—" : `${Math.round(v)} ms`;
+  if (t.model_first_token_ms == null && s.pipeline_answer_ms == null) return "";
+  return `
+        <tr><td>Stage timings</td><td>plan ${f(t.plan_ms)} · retrieval ${f(t.retrieval_ms)} · context ${f(t.context_ms)} · package ${f(t.package_ms)} · prompt ${f(t.prompt_ms)}</td></tr>
+        <tr><td>Model</td><td>tokenize ${f(t.model_prepare_ms)} · first token ${f(t.model_first_token_ms)} · decode ${f(t.model_decode_ms)} · ${g.decode_tokens_per_second ?? "—"} tok/s</td></tr>
+        <tr><td>After generation</td><td>validation ${f(t.validation_ms)} · citations ${f(t.citations_ms)} · diagnostics ${f(t.metadata_ms)} · response build ${f(s.response_build_ms)}${s.accuracy_ms == null ? "" : " · accuracy " + f(s.accuracy_ms)}</td></tr>`;
+}
+
+// Answer accuracy. The server decides everything shown here; the page adds no
+// judgement of its own and never invents a number when the server sent none.
+const ACC_STATE_CLASS = { pass: "ok", fail: "stop", partial: "warn", not_established: "mut", not_applicable: "mut" };
+
+function accPill(a) {
+  if (!a) return "";
+  if (a.status === "evaluated") return pill(`accuracy ${a.accuracy}%`, a.accuracy === 100 ? "ok" : a.accuracy === 0 ? "stop" : "warn");
+  if (a.status === "not_applicable") return pill("accuracy not scored", "mut");
+  return pill("accuracy unknown", "mut");
+}
+
+function renderAccuracy(a) {
+  if (!a) return "";
+  const scored = a.status === "evaluated";
+  const value = scored
+    ? `<div class="acc-value" style="color:var(--${a.accuracy === 100 ? "ok" : a.accuracy === 0 ? "stop" : "warn"})">${a.accuracy}%</div>`
+    : `<div class="acc-value unknown">${esc(a.status === "not_applicable" ? "Not scored" : "Unable to determine")}</div>`;
+  const rows = (a.dimensions || []).map(d => `
+        <tr>
+          <td class="dim">${esc(d.label)}</td>
+          <td class="state" style="color:var(--${ACC_STATE_CLASS[d.state] === "mut" ? "muted" : ACC_STATE_CLASS[d.state]})"
+              title="${esc(d.state)}: ${esc(d.claim)}">${esc(d.glyph)}</td>
+          <td class="why">${esc(d.detail)}</td>
+        </tr>`).join("");
+  const points = (a.deductions || []).map(d => `${esc(d.dimension)} ${esc(d.state)} −${d.points}`).join(" · ");
+  return `
+      <div class="acc">
+        <div class="acc-top">
+          <div class="acc-score"><div class="acc-label">Answer Accuracy</div>${value}</div>
+          <p class="acc-basis">${esc(a.basis || "")} ${esc(a.not_the_benchmark || "")}</p>
+        </div>
+        <p class="sub" style="margin:8px 0 0">${esc(a.reason || "")}</p>
+        <details>
+          <summary>Component assessment</summary>
+          <table class="acc-table">${rows}</table>
+          <p class="sub" style="margin:8px 0 0">
+            ${scored ? `Score 100 − deductions${points ? " (" + points + ")" : " (none)"} = ${a.accuracy}%. ` : ""}
+            Rubric <code>${esc(a.rubric_id || "")}</code>; decided from identifier comparison and verbatim
+            containment only. A dimension marked “?” was not decidable from this evidence and is not
+            counted as either a pass or a failure.
+          </p>
+        </details>
+      </div>`;
+}
+
+function render(r) {
+  const refused = !r.model_called;
+  const head = [
+    refused ? pill("model not called", "warn") : pill("generated", "ok"),
+    renderGrounding(r.grounding),
+    pill(`${r.sources.length} sources`, "mut"),
+    pill(`${r.wall_seconds}s`, "mut"),
+    r.output_tokens != null ? pill(`${r.output_tokens} tokens out`, "mut") : "",
+    accPill(r.accuracy),
+  ].join(" ");
+
+  const cites = r.citations.length
+    ? r.citations.map(c => `<li>${c.cited_in_answer ? "✓" : "·"} ${esc(c.label)}${c.url ? ` — <a href="${esc(c.url)}" target="_blank" rel="noopener">source</a>` : ""}</li>`).join("")
+    : "<li class='sub'>none</li>";
+
+  const sources = r.sources.length ? r.sources.map(s => `
+    <div class="src">
+      <h4><span class="num">${s.index}</span> ${esc(s.citation)}
+        ${pill(s.corpus === "ecfr" ? "eCFR" : "FDA guidance", s.corpus === "ecfr" ? "ecfr" : "guid")}
+        ${pill(s.method, "mut")} ${pill("score " + s.score, "mut")}</h4>
+      ${s.heading ? `<div class="sub">${esc(s.heading)}</div>` : ""}
+      <p>${esc(s.text)}${s.truncated ? " …" : ""}</p>
+      ${s.url ? `<p><a href="${esc(s.url)}" target="_blank" rel="noopener">open source</a></p>` : ""}
+    </div>`).join("") : "<p class='sub'>Nothing was retrieved for this question.</p>";
+
+  const t = r.timings_ms || {};
+  $("out").innerHTML = `
+    <div class="card">
+      <div class="meta">${head}</div>
+      <div class="answer">${esc(r.answer)}</div>
+      ${renderAccuracy(r.accuracy)}
+    </div>
+    <div class="card">
+      <label>Citations</label>
+      <ul style="margin:0;padding-left:18px">${cites}</ul>
+    </div>
+    <div class="card">
+      <label>Retrieved context (${r.sources.length}${r.dropped_sources ? `, ${r.dropped_sources} dropped for budget` : ""})</label>
+      ${sources}
+    </div>
+    <div class="card">
+      <label>Diagnostics</label>
+      <table>
+        <tr><td>Query type</td><td>${esc(r.query_type || "")}</td></tr>
+        <tr><td>Retrieval mode</td><td>${esc((r.retrieval || {}).retrieval_mode || "")}</td></tr>
+        <tr><td>OR fallback used</td><td>${(r.retrieval || {}).fallback_used ? "yes" : "no"}</td></tr>
+        <tr><td>Retrieval / generation</td><td>${t.retrieval_ms ?? "?"} ms / ${t.generation_ms ?? 0} ms</td></tr>
+        <tr><td>Input tokens</td><td>${r.input_tokens ?? "—"}</td></tr>
+        ${gateRows(r)}
+        ${shapeRows(r)}
+        ${timingRows(r)}
+        <tr><td>Model</td><td>${esc(r.adapter.id || "base Qwen3-0.6B")}</td></tr>
+      </table>
+      ${r.notes && r.notes.length ? `<p class="sub">Note: ${esc(r.notes.join(" "))}</p>` : ""}
+      <details style="margin-top:10px"><summary>Raw response</summary><pre>${esc(JSON.stringify(r, null, 2))}</pre></details>
+    </div>`;
+}
+
+let controller = null;
+
+// Stream the answer from /api/ask/stream (newline-delimited JSON events). Text
+// arrives as a DRAFT while the model generates; the "final" event carries the
+// validated (and, if needed, repaired) answer with its citations and sources,
+// which replaces the draft. The draft is never shown as the answer.
+async function ask() {
+  if (busy) return;
+  const question = $("q").value.trim();
+  if (!question) { $("q").focus(); return; }
+  busy = true;
+  $("ask").disabled = true;
+  $("stop").hidden = false;
+  controller = new AbortController();
+  $("out").innerHTML = "";
+  const started = performance.now();
+  let phase = "retrieving sources";
+  const status = () => {
+    $("status").innerHTML = `<span class="spin"></span> ${esc(phase)}… ${Math.round((performance.now() - started) / 1000)}s`;
+  };
+  status();
+  const tick = setInterval(status, 1000);
+  let draft = "", firstText = null, deltas = 0, finished = false, sources = [];
+  const showDraft = () => {
+    $("out").innerHTML = `
+      <div class="card draft">
+        <div class="meta">${pill("draft · generating", "warn")} ${pill(`${sources.length} sources`, "mut")}
+          <span class="sub">not yet validated; the checked answer replaces this when generation finishes</span></div>
+        <div class="answer">${esc(draft)}<span class="caret"></span></div>
+      </div>`;
+  };
+  try {
+    const tSend = performance.now();
+    const res = await fetch("/api/ask/stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        question,
+        adapter: $("adapter").value,
+        grounding: $("grounding").checked,
+        top_k: Number($("topk").value),
+        max_new_tokens: Number($("tokens").value),
+      }),
+    });
+    if (!res.ok || !res.body) {
+      let msg = `HTTP ${res.status}`;
+      try { msg = (await res.json()).error || msg; } catch (_) {}
+      throw new Error(msg);
+    }
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+    const handle = ev => {
+      if (ev.type === "context") { sources = ev.sources || []; phase = "generating"; showDraft(); }
+      else if (ev.type === "generation_started") { phase = "generating"; showDraft(); }
+      else if (ev.type === "delta") {
+        if (firstText === null) firstText = performance.now() - tSend;
+        deltas += 1; draft += ev.text; showDraft();
+      }
+      else if (ev.type === "generation_finished") { phase = "validating the answer against its sources"; }
+      else if (ev.type === "final") {
+        finished = true;
+        const tParsed = performance.now();
+        render(ev.result);
+        const tRendered = performance.now();
+        const ms = x => Math.round(x);
+        $("status").textContent = `first text ${firstText === null ? "— (no model text)" : ms(firstText) + " ms"} · `
+          + `${deltas} chunks · final ${ms(tParsed - tSend)} ms · render ${ms(tRendered - tParsed)} ms`;
+        window.__lastTimings = {first_text_ms: firstText, deltas, final_ms: tParsed - tSend, render_ms: tRendered - tParsed};
+      }
+      else if (ev.type === "error") { throw new Error(ev.error || "generation failed"); }
+    };
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (value) buf += decoder.decode(value, { stream: true });
+      let nl;
+      while ((nl = buf.indexOf("\n")) >= 0) {
+        const line = buf.slice(0, nl).trim();
+        buf = buf.slice(nl + 1);
+        if (line) handle(JSON.parse(line));
+      }
+      if (done) break;
+    }
+    if (buf.trim()) handle(JSON.parse(buf));
+    if (!finished) throw new Error("the connection closed before the answer was complete");
+  } catch (e) {
+    const stopped = e.name === "AbortError";
+    const kept = draft ? `<div class="sub" style="margin-top:8px">Unvalidated draft received before this happened:</div>
+      <div class="answer sub">${esc(draft)}</div>` : "";
+    $("out").innerHTML = `<div class="card err">${stopped ? "Stopped. Generation was cancelled." : "Request failed: " + esc(e.message)}${kept}</div>`;
+    $("status").textContent = "";
+  } finally {
+    clearInterval(tick);
+    busy = false;
+    controller = null;
+    $("ask").disabled = false;
+    $("stop").hidden = true;
+  }
+}
+
+$("stop").onclick = () => { if (controller) controller.abort(); };
+$("ask").onclick = ask;
+$("q").addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") ask(); });
+loadConfig();
+</script>
+</body>
+</html>

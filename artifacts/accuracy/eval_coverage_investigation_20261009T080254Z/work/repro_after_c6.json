@@ -1,0 +1,1224 @@
+{
+ "C6": {
+  "question": "What does FDA stand for?",
+  "answer": "The FDA stands for the Food and Drug Administration. [1]",
+  "model_called": true,
+  "no_context": false,
+  "citations": [
+   {
+    "index": 1,
+    "label": "21 CFR 10.3(a)",
+    "corpus": "ecfr",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-10/section-10.3",
+    "cited_in_answer": true,
+    "tier": "supporting",
+    "requirement_ids": [],
+    "role": "cited"
+   }
+  ],
+  "sources": [
+   {
+    "index": 1,
+    "citation": "21 CFR 10.3(a)",
+    "corpus": "ecfr",
+    "heading": "Definitions.",
+    "method": "definition",
+    "score": 80.0,
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-10/section-10.3",
+    "text": "FDA means the Food and Drug Administration.",
+    "truncated": false,
+    "tier": "supporting",
+    "requirement_ids": [],
+    "protected": false,
+    "selection_reason": "supporting"
+   },
+   {
+    "index": 2,
+    "citation": "21 CFR 117.3",
+    "corpus": "ecfr",
+    "heading": "Definitions.",
+    "method": "definition",
+    "score": 79.999,
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-117/section-117.3",
+    "text": "FDA means the Food and Drug Administration.",
+    "truncated": false,
+    "tier": "supporting",
+    "requirement_ids": [],
+    "protected": false,
+    "selection_reason": "supporting"
+   },
+   {
+    "index": 3,
+    "citation": "21 CFR 121.3",
+    "corpus": "ecfr",
+    "heading": "Definitions.",
+    "method": "definition",
+    "score": 79.998,
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-121/section-121.3",
+    "text": "FDA means the Food and Drug Administration.",
+    "truncated": false,
+    "tier": "supporting",
+    "requirement_ids": [],
+    "protected": false,
+    "selection_reason": "supporting"
+   }
+  ],
+  "dropped_sources": 0,
+  "notes": [
+   "The CFR's own definition of \"FDA\" was retrieved; the keyword search was not run."
+  ],
+  "grounding": null,
+  "retrieval": {
+   "primary_result_count": 3,
+   "fallback_used": false,
+   "fallback_terms": [],
+   "fallback_candidate_count": 0,
+   "final_result_count": 3,
+   "retrieval_mode": "primary",
+   "plan": {
+    "kind": "general",
+    "requirement_count": 0,
+    "requirement_ids": [],
+    "exact_attempts": 0,
+    "resolved": [],
+    "unresolved": [],
+    "tier_counts": {
+     "exact": 0,
+     "structural": 0,
+     "supporting": 3,
+     "discovery": 0
+    },
+    "method_counts": {
+     "definition": 3
+    },
+    "candidate_count": 3,
+    "evidence_count": 3,
+    "protected_count": 0,
+    "docket_requested": null,
+    "docket_hits": 0,
+    "question_fallback_used": false,
+    "requirements": {},
+    "semantic_fallback": {
+     "invoked": false,
+     "lexical_insufficient": null
+    }
+   },
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "primary",
+    "skipped": null
+   }
+  },
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "plan": {
+   "question": "What does FDA stand for?",
+   "normalized_question": "What does FDA stand for?",
+   "query_type": "GENERAL_REGULATORY_SEARCH",
+   "kind": "general",
+   "requirements": [],
+   "docket": null,
+   "guidance_requested": false,
+   "scan": {
+    "text": "What does FDA stand for?",
+    "mentions": [],
+    "ranges": [],
+    "references": [],
+    "notes": []
+   },
+   "notes": []
+  },
+  "evidence": {
+   "plan_kind": "general",
+   "requirements": [],
+   "evidence": [
+    {
+     "evidence_id": "e1",
+     "key": "ecfr:10.3:(a):11",
+     "corpus": "ecfr",
+     "citation": "21 CFR 10.3(a)",
+     "tier": "supporting",
+     "satisfies": [],
+     "structural_for": [],
+     "discovered_for": [],
+     "relations": {},
+     "retrieval_method": "definition",
+     "methods": [
+      "definition"
+     ],
+     "score": 80.0,
+     "chars": 43
+    },
+    {
+     "evidence_id": "e2",
+     "key": "ecfr:117.3::16",
+     "corpus": "ecfr",
+     "citation": "21 CFR 117.3",
+     "tier": "supporting",
+     "satisfies": [],
+     "structural_for": [],
+     "discovered_for": [],
+     "relations": {},
+     "retrieval_method": "definition",
+     "methods": [
+      "definition"
+     ],
+     "score": 79.999,
+     "chars": 43
+    },
+    {
+     "evidence_id": "e3",
+     "key": "ecfr:121.3::9",
+     "corpus": "ecfr",
+     "citation": "21 CFR 121.3",
+     "tier": "supporting",
+     "satisfies": [],
+     "structural_for": [],
+     "discovered_for": [],
+     "relations": {},
+     "retrieval_method": "definition",
+     "methods": [
+      "definition"
+     ],
+     "score": 79.998,
+     "chars": 43
+    }
+   ],
+   "requirement_state": {},
+   "resolved": [],
+   "unresolved": [],
+   "diagnostics": {
+    "kind": "general",
+    "requirement_count": 0,
+    "requirement_ids": [],
+    "exact_attempts": 0,
+    "resolved": [],
+    "unresolved": [],
+    "tier_counts": {
+     "exact": 0,
+     "structural": 0,
+     "supporting": 3,
+     "discovery": 0
+    },
+    "method_counts": {
+     "definition": 3
+    },
+    "candidate_count": 3,
+    "evidence_count": 3,
+    "protected_count": 0,
+    "docket_requested": null,
+    "docket_hits": 0,
+    "question_fallback_used": false,
+    "requirements": {},
+    "semantic_fallback": {
+     "invoked": false,
+     "lexical_insufficient": null
+    }
+   }
+  },
+  "coverage": {
+   "state": "NO_EXPLICIT_REQUIREMENTS",
+   "complete": true,
+   "missing": [],
+   "missing_labels": [],
+   "total_requirements": 0,
+   "exact_requirements": 0,
+   "structural_only_requirements": 0,
+   "supporting_only_requirements": 0,
+   "discovery_only_requirements": 0,
+   "unresolved_requirements": 0,
+   "requirements": []
+  },
+  "coverage_action": "answer",
+  "selection": {
+   "selected": [
+    {
+     "index": 1,
+     "evidence_id": "e1",
+     "key": "ecfr:10.3:(a):11",
+     "citation": "21 CFR 10.3(a)",
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "reason": "supporting",
+     "chars": 43,
+     "block_chars": 205,
+     "truncated": false
+    },
+    {
+     "index": 2,
+     "evidence_id": "e2",
+     "key": "ecfr:117.3::16",
+     "citation": "21 CFR 117.3",
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "reason": "supporting",
+     "chars": 43,
+     "block_chars": 205,
+     "truncated": false
+    },
+    {
+     "index": 3,
+     "evidence_id": "e3",
+     "key": "ecfr:121.3::9",
+     "citation": "21 CFR 121.3",
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "reason": "supporting",
+     "chars": 43,
+     "block_chars": 205,
+     "truncated": false
+    }
+   ],
+   "dropped": [],
+   "policy": {
+    "max_results": 8,
+    "max_chars_per_result": 1200,
+    "max_total_chars": 3600,
+    "hard_max_results": 24,
+    "hard_max_total_chars": 9000,
+    "required_max_chars_per_result": 4000
+   },
+   "total_chars": 619,
+   "overflow": false,
+   "required_count": 0,
+   "required_chars": 0,
+   "optional_count": 3,
+   "material_selected": [],
+   "required_dropped": [],
+   "required_truncated": [],
+   "optional_dropped": [],
+   "soft_budget_exceeded_by_required": false,
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 3,
+    "discovery": 0
+   }
+  },
+  "answer_shape": {
+   "mode": "synthesis",
+   "scope": "topic",
+   "exhaustive": false,
+   "requested_units": [],
+   "focus_terms": [],
+   "signals": [],
+   "rationale": "a general question: synthesize the relevant material"
+  },
+  "question_analysis": null,
+  "quality_flags": null,
+  "normalization": null,
+  "generation": {
+   "contract": "grounded_v1",
+   "shape": "general",
+   "max_new_tokens": 384,
+   "budget": {
+    "policy": "adaptive",
+    "base_tokens": 96,
+    "per_unit_tokens": 160,
+    "range_bonus_tokens": 64,
+    "general_tokens": 384,
+    "max_units": 10,
+    "min_tokens": 256,
+    "evidence_multiple": 1.4,
+    "evidence_cap_fraction": 0.75,
+    "hard_max_tokens": 2048
+   },
+   "coverage_state": "NO_EXPLICIT_REQUIREMENTS",
+   "requirements": [],
+   "satisfied_ids": [],
+   "missing_labels": [],
+   "sources": [
+    {
+     "index": 1,
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "corpus": "ecfr",
+     "citation": "21 CFR 10.3(a)",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-10/section-10.3",
+     "chars": 43,
+     "truncated": false,
+     "evidence_id": "e1",
+     "key": "ecfr:10.3:(a):11",
+     "is_docket": false
+    },
+    {
+     "index": 2,
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "corpus": "ecfr",
+     "citation": "21 CFR 117.3",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-117/section-117.3",
+     "chars": 43,
+     "truncated": false,
+     "evidence_id": "e2",
+     "key": "ecfr:117.3::16",
+     "is_docket": false
+    },
+    {
+     "index": 3,
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "corpus": "ecfr",
+     "citation": "21 CFR 121.3",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-121/section-121.3",
+     "chars": 43,
+     "truncated": false,
+     "evidence_id": "e3",
+     "key": "ecfr:121.3::9",
+     "is_docket": false
+    }
+   ],
+   "notes": [
+    "The CFR's own definition of \"FDA\" was retrieved; the keyword search was not run."
+   ],
+   "answer_shape": {
+    "mode": "synthesis",
+    "scope": "topic",
+    "exhaustive": false,
+    "requested_units": [],
+    "focus_terms": [],
+    "signals": [],
+    "rationale": "a general question: synthesize the relevant material"
+   },
+   "answer_plan": {
+    "shape": {
+     "mode": "synthesis",
+     "scope": "topic",
+     "exhaustive": false,
+     "requested_units": [],
+     "focus_terms": [],
+     "signals": [],
+     "rationale": "a general question: synthesize the relevant material"
+    },
+    "mode": "synthesis",
+    "lead_in": [],
+    "groups": [
+     {
+      "key": "doc:21 CFR 10.3(a)",
+      "label": "21 CFR 10.3(a)",
+      "heading": null,
+      "kind": "document",
+      "head": 1,
+      "members": [
+       1
+      ],
+      "items": [],
+      "requirement_ids": []
+     },
+     {
+      "key": "doc:21 CFR 117.3",
+      "label": "21 CFR 117.3",
+      "heading": null,
+      "kind": "document",
+      "head": 2,
+      "members": [
+       2
+      ],
+      "items": [],
+      "requirement_ids": []
+     },
+     {
+      "key": "doc:21 CFR 121.3",
+      "label": "21 CFR 121.3",
+      "heading": null,
+      "kind": "document",
+      "head": 3,
+      "members": [
+       3
+      ],
+      "items": [],
+      "requirement_ids": []
+     }
+    ],
+    "context": [],
+    "related": [],
+    "sources": [
+     {
+      "index": 1,
+      "citation": "21 CFR 10.3(a)",
+      "tier": "supporting",
+      "role": "related",
+      "section": "10.3",
+      "paragraph": "(a)",
+      "heading": null,
+      "qualifiers": [],
+      "applicability": null,
+      "cross_references": [],
+      "requirement_ids": []
+     },
+     {
+      "index": 2,
+      "citation": "21 CFR 117.3",
+      "tier": "supporting",
+      "role": "related",
+      "section": "117.3",
+      "paragraph": "",
+      "heading": null,
+      "qualifiers": [],
+      "applicability": null,
+      "cross_references": [],
+      "requirement_ids": []
+     },
+     {
+      "index": 3,
+      "citation": "21 CFR 121.3",
+      "tier": "supporting",
+      "role": "related",
+      "section": "121.3",
+      "paragraph": "",
+      "heading": null,
+      "qualifiers": [],
+      "applicability": null,
+      "cross_references": [],
+      "requirement_ids": []
+     }
+    ],
+    "notes": []
+   },
+   "generated_tokens": 14,
+   "finished": true,
+   "prompt_tokens": 765,
+   "stop_reason": null,
+   "tokens_per_second": 4.465,
+   "decode_tokens_per_second": 10.922,
+   "prompt_chars": 1468
+  },
+  "validation": {
+   "initial": {
+    "status": "valid",
+    "ok": true,
+    "codes": [],
+    "problems": [],
+    "addressed": [],
+    "unaddressed": [],
+    "cited": [
+     1
+    ],
+    "invalid_citations": [],
+    "truncated": false,
+    "finished": true,
+    "generated_tokens": 14,
+    "max_new_tokens": 384,
+    "answer_class": "answer",
+    "n_sources": 3,
+    "explicit": false,
+    "cited_tiers": {
+     "1": "supporting"
+    },
+    "warnings": 0,
+    "errors": 0,
+    "shape": {
+     "mode": "synthesis",
+     "shape": {
+      "mode": "synthesis",
+      "scope": "topic",
+      "exhaustive": false,
+      "requested_units": [],
+      "focus_terms": [],
+      "signals": [],
+      "rationale": "a general question: synthesize the relevant material"
+     },
+     "groups": 3,
+     "groups_covered": 3,
+     "uncovered_groups": [],
+     "material_items": 0,
+     "material_items_covered": 0,
+     "uncovered_items": [],
+     "provision_led_blocks": [],
+     "out_of_scope_named": [],
+     "citation_gaps": 0,
+     "repeated_pairs": 0,
+     "prompt_echo": false,
+     "codes": []
+    }
+   },
+   "final": {
+    "status": "valid",
+    "ok": true,
+    "codes": [],
+    "problems": [],
+    "addressed": [],
+    "unaddressed": [],
+    "cited": [
+     1
+    ],
+    "invalid_citations": [],
+    "truncated": false,
+    "finished": true,
+    "generated_tokens": 14,
+    "max_new_tokens": 384,
+    "answer_class": "answer",
+    "n_sources": 3,
+    "explicit": false,
+    "cited_tiers": {
+     "1": "supporting"
+    },
+    "warnings": 0,
+    "errors": 0,
+    "shape": {
+     "mode": "synthesis",
+     "shape": {
+      "mode": "synthesis",
+      "scope": "topic",
+      "exhaustive": false,
+      "requested_units": [],
+      "focus_terms": [],
+      "signals": [],
+      "rationale": "a general question: synthesize the relevant material"
+     },
+     "groups": 3,
+     "groups_covered": 3,
+     "uncovered_groups": [],
+     "material_items": 0,
+     "material_items_covered": 0,
+     "uncovered_items": [],
+     "provision_led_blocks": [],
+     "out_of_scope_named": [],
+     "citation_gaps": 0,
+     "repeated_pairs": 0,
+     "prompt_echo": false,
+     "codes": []
+    }
+   },
+   "repair": null
+  },
+  "citation_support": {
+   "markers": [
+    1
+   ],
+   "by_tier": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 1,
+    "discovery": 0,
+    "invalid": 0
+   },
+   "exact_source_cited_for": {}
+  },
+  "answerability": {
+   "state": "UNKNOWN",
+   "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule",
+   "signals": {
+    "question_type": "explanation",
+    "scope": "in_scope",
+    "requested_provisions": [],
+    "sources": 3,
+    "weak_evidence": false
+   },
+   "confidence": "UNDETERMINED",
+   "evidence_ids": [
+    "ecfr:10.3:(a):11",
+    "ecfr:117.3::16",
+    "ecfr:121.3::9"
+   ],
+   "blocking_conditions": [],
+   "blocked": false,
+   "limitation": null,
+   "acted_on": true
+  },
+  "generation_called": true,
+  "generation_blocked": false,
+  "block_reason": null,
+  "fallback_type": null,
+  "fallback_reason": null,
+  "scope_policy": {
+   "status": "in_scope",
+   "reason": "a regulatory passage matched every term of the question",
+   "domain_terms": [
+    "fda",
+    "stand"
+   ]
+  },
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "primary",
+   "skipped": null
+  },
+  "reference_lookup": null,
+  "timings_ms": {
+   "plan_ms": 0.42,
+   "retrieval_ms": 25.58,
+   "context_ms": 0.4,
+   "package_ms": 0.28,
+   "answerability_ms": 0.16,
+   "prompt_ms": 0.02,
+   "generation_ms": 3160.22,
+   "model_prepare_ms": 23.38,
+   "model_first_token_ms": 1945.55,
+   "model_detokenize_ms": 0.6,
+   "model_decode_ms": 1190.22,
+   "validation_ms": 0.74,
+   "citations_ms": 0.03,
+   "total_ms": 3188.48,
+   "metadata_ms": 2.12
+  },
+  "input_tokens": 765,
+  "output_tokens": 14,
+  "adapter": {
+   "id": "",
+   "name": null,
+   "r": null,
+   "dataset_hash": null
+  },
+  "snapshot_date": "2026-09-03",
+  "evidence_snapshot": {
+   "schema": "regulus_evidence_snapshot_v1",
+   "fingerprint": "907dcb85b66d915ea5ef86e88f5cd1df93708ed2f5f9aecde2f55274e27e2c39",
+   "capture_point": "generation_package",
+   "model_called": true,
+   "prompt_sha256": "7491eaf28a07fccc1543559ebf3eb740b8d7e1aa844d7baef132341db6f97a58",
+   "prompt_verified": true,
+   "question": "What does FDA stand for?",
+   "requirements": [],
+   "satisfied_ids": [],
+   "missing_labels": [],
+   "coverage_explicit": false,
+   "items": [
+    {
+     "order": 0,
+     "index": 1,
+     "evidence_id": "e1",
+     "source_type": "ecfr",
+     "corpus": "ecfr",
+     "citation": "21 CFR 10.3(a)",
+     "document": null,
+     "part": "10",
+     "section": "10.3",
+     "paragraph": "(a)",
+     "heading": "Definitions.",
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "key": "ecfr:10.3:(a):11",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-10/section-10.3",
+     "is_docket": false,
+     "truncated": false,
+     "chars": 43,
+     "text": "FDA means the Food and Drug Administration.",
+     "citation_fields": {
+      "corpus": "ecfr",
+      "label": "21 CFR 10.3(a)",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-10/section-10.3",
+      "title": "21",
+      "part": "10",
+      "section": "10.3",
+      "paragraph": "(a)",
+      "heading": "Definitions.",
+      "document_title": null,
+      "docket_number": null,
+      "status": null,
+      "issued_on": null,
+      "center": null
+     }
+    },
+    {
+     "order": 1,
+     "index": 2,
+     "evidence_id": "e2",
+     "source_type": "ecfr",
+     "corpus": "ecfr",
+     "citation": "21 CFR 117.3",
+     "document": null,
+     "part": "117",
+     "section": "117.3",
+     "paragraph": null,
+     "heading": "Definitions.",
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "key": "ecfr:117.3::16",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-117/section-117.3",
+     "is_docket": false,
+     "truncated": false,
+     "chars": 43,
+     "text": "FDA means the Food and Drug Administration.",
+     "citation_fields": {
+      "corpus": "ecfr",
+      "label": "21 CFR 117.3",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-117/section-117.3",
+      "title": "21",
+      "part": "117",
+      "section": "117.3",
+      "paragraph": null,
+      "heading": "Definitions.",
+      "document_title": null,
+      "docket_number": null,
+      "status": null,
+      "issued_on": null,
+      "center": null
+     }
+    },
+    {
+     "order": 2,
+     "index": 3,
+     "evidence_id": "e3",
+     "source_type": "ecfr",
+     "corpus": "ecfr",
+     "citation": "21 CFR 121.3",
+     "document": null,
+     "part": "121",
+     "section": "121.3",
+     "paragraph": null,
+     "heading": "Definitions.",
+     "tier": "supporting",
+     "requirement_ids": [],
+     "protected": false,
+     "key": "ecfr:121.3::9",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-121/section-121.3",
+     "is_docket": false,
+     "truncated": false,
+     "chars": 43,
+     "text": "FDA means the Food and Drug Administration.",
+     "citation_fields": {
+      "corpus": "ecfr",
+      "label": "21 CFR 121.3",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-121/section-121.3",
+      "title": "21",
+      "part": "121",
+      "section": "121.3",
+      "paragraph": null,
+      "heading": "Definitions.",
+      "document_title": null,
+      "docket_number": null,
+      "status": null,
+      "issued_on": null,
+      "center": null
+     }
+    }
+   ]
+  },
+  "server_timings_ms": {
+   "engine_setup_ms": 119.05,
+   "pipeline_answer_ms": 3190.63,
+   "response_build_ms": 0.04,
+   "accuracy_ms": 269.82
+  },
+  "accuracy": {
+   "status": "evaluated",
+   "accuracy": 0,
+   "reason": "Answers a different question: none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "rubric": {
+    "rubric_id": "regulus_live_evidence_assessment_v2",
+    "version": "2.0.0",
+    "frozen": "2026-10-08",
+    "dimensions": [
+     "question_relevance",
+     "substantive_correctness",
+     "evidence_support",
+     "citation_correctness",
+     "fabrication_free",
+     "completeness",
+     "scope_correct"
+    ],
+    "absolute": [
+     "fabrication_free",
+     "substantive_correctness",
+     "question_relevance"
+    ],
+    "deductions": {
+     "fabrication_free:fail": 100,
+     "substantive_correctness:fail": 100,
+     "question_relevance:fail": 100,
+     "substantive_correctness:partial": 45,
+     "citation_correctness:fail": 40,
+     "scope_correct:fail": 40,
+     "evidence_support:fail": 35,
+     "completeness:fail": 25,
+     "completeness:partial": 10,
+     "evidence_support:not_established": 15,
+     "fabrication_free:not_established": 10,
+     "citation_correctness:not_established": 10,
+     "completeness:not_established": 5,
+     "scope_correct:not_established": 5
+    },
+    "formula": "score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided",
+    "is_acceptance_rubric": false
+   },
+   "basis": "Based on the authoritative regulatory evidence retrieved for this answer.",
+   "not_the_benchmark": "An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.",
+   "answer_verdict": {
+    "verdict": "off_topic",
+    "reason": "none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+    "counts": {
+     "supported": 0,
+     "supported_with_citation_defect": 0,
+     "partially_supported": 0,
+     "contradicted": 0,
+     "irrelevant": 1,
+     "unverifiable": 0
+    },
+    "elements_covered": [],
+    "elements_missing": [
+     "the question's subject"
+    ],
+    "elements_unverified": []
+   },
+   "dimensions": [
+    {
+     "dimension": "question_relevance",
+     "label": "Answers the question",
+     "state": "fail",
+     "glyph": "✗",
+     "detail": "none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+     "evidence": [
+      "the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about"
+     ],
+     "claim": "the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part"
+    },
+    {
+     "dimension": "substantive_correctness",
+     "label": "Substantive correctness",
+     "state": "fail",
+     "glyph": "✗",
+     "detail": "none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+     "evidence": [],
+     "claim": "every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it"
+    },
+    {
+     "dimension": "evidence_support",
+     "label": "Evidence support",
+     "state": "not_applicable",
+     "glyph": "–",
+     "detail": "no statement that answers the question to support",
+     "evidence": [],
+     "claim": "every material claim is a verbatim passage of an authoritative source retrieved for this question"
+    },
+    {
+     "dimension": "citation_correctness",
+     "label": "Citation correctness",
+     "state": "not_applicable",
+     "glyph": "–",
+     "detail": "no statement that answers the question to cite",
+     "evidence": [],
+     "claim": "every citation resolves to a supplied source, and to the provision the sentence it is attached to is about"
+    },
+    {
+     "dimension": "fabrication_free",
+     "label": "Unsupported claims",
+     "state": "pass",
+     "glyph": "✓",
+     "detail": "every figure, condition and identifier in the answer appears in the supplied evidence",
+     "evidence": [],
+     "claim": "the answer names no section, clause, condition or figure that the authoritative evidence does not contain"
+    },
+    {
+     "dimension": "completeness",
+     "label": "Completeness",
+     "state": "not_established",
+     "glyph": "?",
+     "detail": "nothing in the answer could be related to what the question asks for",
+     "evidence": [],
+     "claim": "every provision the question requested has authoritative text and is addressed in the answer"
+    },
+    {
+     "dimension": "scope_correct",
+     "label": "Scope",
+     "state": "pass",
+     "glyph": "✓",
+     "detail": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome",
+     "evidence": [],
+     "claim": "the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome"
+    }
+   ],
+   "deductions": [
+    {
+     "dimension": "question_relevance",
+     "state": "fail",
+     "points": 100
+    },
+    {
+     "dimension": "substantive_correctness",
+     "state": "fail",
+     "points": 100
+    },
+    {
+     "dimension": "completeness",
+     "state": "not_established",
+     "points": 5
+    }
+   ],
+   "checked": {
+    "question": "What does FDA stand for?",
+    "intent": {
+     "kind": "direct_lookup",
+     "provisions": [],
+     "sections": [],
+     "parts": [],
+     "topic": [
+      "stand"
+     ],
+     "domains": [],
+     "domain_names": [],
+     "elements": [
+      {
+       "label": "the question's subject",
+       "terms": [
+        "stand"
+       ]
+      }
+     ],
+     "signals": [
+      "kind:direct_lookup"
+     ],
+     "planner_type": "explanation"
+    },
+    "answer_verdict": {
+     "verdict": "off_topic",
+     "reason": "none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+     "counts": {
+      "supported": 0,
+      "supported_with_citation_defect": 0,
+      "partially_supported": 0,
+      "contradicted": 0,
+      "irrelevant": 1,
+      "unverifiable": 0
+     },
+     "elements_covered": [],
+     "elements_missing": [
+      "the question's subject"
+     ],
+     "elements_unverified": []
+    },
+    "sources": 3,
+    "evidence_passages": 3,
+    "evidence_excluded_domain": [],
+    "citations": 1,
+    "sentences": 1,
+    "material_claims": 1,
+    "claims_answering_question": 0,
+    "sentence_origins": {
+     "model_claim": 1,
+     "inserted_quotation": 0,
+     "pipeline_sentence": 0,
+     "citation_label": 0,
+     "question_echo": 0,
+     "too_short": 0,
+     "heading_fragment": 0,
+     "pointer_sentence": 0,
+     "question_restatement": 0,
+     "meta_statement": 0,
+     "uncertain": 0
+    },
+    "claim_status": {
+     "supported": 0,
+     "supported_with_citation_defect": 0,
+     "partially_supported": 0,
+     "contradicted": 0,
+     "irrelevant": 1,
+     "unverifiable": 0
+    },
+    "aligner": "semantic",
+    "identifiers_named": 0,
+    "identifiers_verified_absent": 0,
+    "identifier_index_used": true,
+    "validation_status": "valid",
+    "validation_error_codes": [],
+    "abstention": {
+     "declined": false,
+     "outcome": null,
+     "reason": "the answer states regulatory requirements rather than declining",
+     "evidence": []
+    },
+    "fallback_type": null,
+    "claims": [
+     {
+      "claim": "The FDA stands for the Food and Drug Administration [1].",
+      "split_from": null,
+      "relevance": {
+       "verdict": "irrelevant",
+       "reason": "the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+       "content": "The FDA stands for the Food and Drug Administration  .",
+       "basis": "evidence",
+       "topic_hits": [],
+       "evidence": [
+        "21 CFR 10.3(a)"
+       ],
+       "checks": {
+        "lead_restating_question": null,
+        "content_found_in_evidence": 1.0,
+        "evidence_passages": 1,
+        "domain": "consistent",
+        "provision": "consistent",
+        "section": "consistent"
+       }
+      },
+      "evidence": [
+       {
+        "citation": "21 CFR 10.3(a)",
+        "source_index": 1,
+        "heading": "Definitions.",
+        "text": "FDA means the Food and Drug Administration."
+       }
+      ],
+      "support": "supported",
+      "support_basis": "definition",
+      "support_reason": "a definition: 21 CFR 10.3(a) defines FDA as \"food and drug administration\", word for word what the answer states",
+      "operators": {
+       "actor": "matched",
+       "strength": "undetermined",
+       "polarity": "undetermined",
+       "quantity": "undetermined",
+       "date": "undetermined"
+      },
+      "operator_trace": {
+       "evidence_citation": "21 CFR 10.3(a)",
+       "source_type": "binding_regulation",
+       "claim_operators": {
+        "strength": null,
+        "polarity": null,
+        "duty_holder": "fda",
+        "conditions": []
+       },
+       "evidence_operators": {
+        "strength": null,
+        "polarity": null,
+        "duty_holder": "fda",
+        "conditions": []
+       },
+       "conflicts": [],
+       "relations": [],
+       "support_blocked": null,
+       "verdict": "paraphrase_equivalent",
+       "content_gate": {
+        "content_gate_verdict": "established",
+        "content_support_reason": "a definition: 21 CFR 10.3(a) defines FDA as \"food and drug administration\", word for word what the answer states",
+        "support_block_reason": null,
+        "distinguishing_terms": [],
+        "distinguishing_term_sources": {},
+        "core_overlap": 0.75,
+        "term_overlap": 0.75,
+        "raw_term_overlap": 1.0,
+        "verbatim_coverage": 0.4,
+        "operators_agreed": [
+         "actor"
+        ],
+        "operator_silent_passage": true,
+        "core_object_match": true,
+        "core_subject_match": true,
+        "core_action_match": "undetermined",
+        "core_actor_match": "matched",
+        "condition_match": true,
+        "material_omissions": [],
+        "candidate_selection": {
+         "passage": "21 CFR 10.3(a)",
+         "method": "definition",
+         "similarity": null
+        }
+       }
+      },
+      "citation": "correct",
+      "citation_detail": "cites 21 CFR 10.3(a), which supports it",
+      "final": "irrelevant",
+      "claim_id": "s0",
+      "sentence_index": 0,
+      "normalized_text": "The FDA stands for the Food and Drug Administration  .",
+      "resolved_from": null,
+      "subclaim": null,
+      "candidate_evidence": [
+       "21 CFR 10.3(a)",
+       "21 CFR 117.3",
+       "21 CFR 121.3"
+      ],
+      "selected_evidence": "21 CFR 10.3(a)",
+      "match_path": "definition",
+      "citation_trace": {
+       "kind": "own",
+       "markers": [
+        {
+         "marker": 1,
+         "source": "21 CFR 10.3(a)",
+         "verdict": "paraphrase_equivalent",
+         "supports": true
+        }
+       ],
+       "rule": "a cited source supports the claim"
+      }
+     }
+    ],
+    "excluded_sentences": [],
+    "claim_candidates": [
+     {
+      "sentence_index": 0,
+      "text": "The FDA stands for the Food and Drug Administration [1].",
+      "origin": "model_claim",
+      "reason": "",
+      "claim_status": "claim",
+      "paragraph": 0
+     }
+    ],
+    "claim_status_counts": {
+     "claim": 1,
+     "non_claim": 0,
+     "uncertain": 0
+    },
+    "evidence_provenance": "exact"
+   },
+   "elapsed_ms": 170.786,
+   "evidence_provenance": "exact",
+   "evidence": {
+    "provenance": "exact",
+    "fingerprint": "907dcb85b66d915ea5ef86e88f5cd1df93708ed2f5f9aecde2f55274e27e2c39",
+    "items": 3,
+    "guidance_items": 0,
+    "capture_point": "generation_package",
+    "model_called": true,
+    "prompt_sha256": "7491eaf28a07fccc1543559ebf3eb740b8d7e1aa844d7baef132341db6f97a58",
+    "prompt_verified": true,
+    "schema": "regulus_evidence_snapshot_v1",
+    "package_matches_snapshot": true
+   },
+   "question_relevance": false,
+   "substantive_correctness": false,
+   "evidence_support": null,
+   "citation_correctness": null,
+   "fabrication_free": true,
+   "completeness": null,
+   "scope_correct": true,
+   "question_review": {
+    "question": "What does FDA stand for?",
+    "status": "fail",
+    "label": "FAIL",
+    "substantive_correctness": {
+     "state": "fail",
+     "label": "Fail",
+     "detail": "none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about"
+    },
+    "citation_correctness": {
+     "state": "not_applicable",
+     "label": "Not applicable",
+     "detail": "no statement that answers the question to cite"
+    },
+    "explanation": "Answers a different question: none of the 1 statement(s) answers the question; 1 answer a different one - e.g. the regulation it corresponds to (21 CFR 10.3(a)) says nothing about stand, which is what the question asks about",
+    "live_check_score": 0,
+    "rubric_id": "regulus_live_evidence_assessment_v2",
+    "basis": "Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result."
+   }
+  },
+  "_repro": {
+   "case": "C6",
+   "seconds": 5.5,
+   "answer_identical_when_off": true,
+   "citations_identical_when_off": true
+  }
+ }
+}

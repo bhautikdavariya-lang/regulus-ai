@@ -1,0 +1,158 @@
+[
+ {
+  "question": "focused",
+  "answer_case": "5 adjacent S2+S3 in one sentence",
+  "label": "NOT EVALUATED",
+  "score": null,
+  "status": "unable_to_determine",
+  "verdict": "unverifiable",
+  "explanation": "Cannot be verified: 1 statement(s) address the question but none could be verified against the retrieved evidence",
+  "reason": "Cannot be verified: 1 statement(s) address the question but none could be verified against the retrieved evidence",
+  "dim_detail": {
+   "question_relevance": "1 of 2 statement(s) answer a different question",
+   "substantive_correctness": "1 statement(s) address the question but none could be verified against the retrieved evidence",
+   "evidence_support": "1 of 1 statement(s) that answer the question could not be checked: 0 have no corresponding evidence, 1 correspond to evidence that does not decide them",
+   "citation_correctness": "1 of 1 statement(s) have a citation defect: the paragraph's marker (21 CFR 211.192) does not cite this statement",
+   "fabrication_free": "every figure, condition and identifier in the answer appears in the supplied evidence",
+   "completeness": "the answer addresses the question's subject, but none of the statements doing so could be verified, so whether it covers it correctly is not established",
+   "scope_correct": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome"
+  },
+  "answer": "Any unexplained discrepancy or batch failure to meet specifications must be thoroughly investigated, and that investigation must extend to other batches of the same drug product and other associated drug products. A written record of the investigation, including conclusions and followup, must be made. [1]",
+  "intent": {
+   "kind": "direct_lookup",
+   "provisions": [
+    "21 CFR 211.192"
+   ],
+   "sections": [
+    "211.192"
+   ],
+   "parts": [
+    "211"
+   ],
+   "topic": [
+    "batch",
+    "fail",
+    "meet",
+    "specific"
+   ],
+   "domains": [
+    "C"
+   ],
+   "domain_names": [
+    "drugs (general)"
+   ],
+   "elements": [
+    {
+     "label": "the question's subject",
+     "terms": [
+      "batch",
+      "fail",
+      "meet",
+      "specific"
+     ]
+    }
+   ],
+   "signals": [
+    "kind:direct_lookup"
+   ],
+   "planner_type": "requirement"
+  },
+  "delivered_as_given": true,
+  "fallback_type": null,
+  "shape": "focused",
+  "sources": [
+   "21 CFR 211.192"
+  ],
+  "dims": {
+   "question_relevance": "partial",
+   "substantive_correctness": "not_established",
+   "evidence_support": "not_established",
+   "citation_correctness": "fail",
+   "fabrication_free": "pass",
+   "completeness": "not_established",
+   "scope_correct": "pass"
+  },
+  "claims": [
+   {
+    "claim": "Any unexplained discrepancy or batch failure to meet specifications must be thoroughly investigated, and that ",
+    "support": "unverifiable",
+    "basis": "not_decisive",
+    "relevance": "relevant",
+    "rel_reason": "the regulation it corresponds to (21 CFR 211.192) is about batch/meet/specific",
+    "final": "unverifiable",
+    "support_reason": "aligned to 21 CFR 211.192 (SOURCE 1), but it does not establish the claim: 2 operator(s) agree, 62% of its terms and 75% of its core terms are present: the passage does not state the claim",
+    "evidence": [
+     {
+      "citation": "21 CFR 211.192",
+      "source_index": 1,
+      "heading": "Production record review.",
+      "text": "All drug product production and control records, including those for packaging and labeling, shall be reviewed and approved by the quality control unit to determine compliance with all established, approved written procedures before a batch"
+     },
+     {
+      "citation": "21 CFR 211.192",
+      "source_index": 1,
+      "heading": "Production record review.",
+      "text": "Any unexplained discrepancy (including a percentage of theoretical yield exceeding the maximum or minimum percentages established in master production and control records) or the failure of a batch or any of its components to meet any of it"
+     },
+     {
+      "citation": "21 CFR 211.192",
+      "source_index": 1,
+      "heading": "Production record review.",
+      "text": "The investigation shall extend to other batches of the same drug product and other drug products that may have been associated with the specific failure or discrepancy."
+     }
+    ],
+    "citation": "missing",
+    "citation_detail": "the paragraph's marker (21 CFR 211.192) does not cite this statement",
+    "operators": {
+     "strength": "matched",
+     "polarity": "matched",
+     "actor": "undetermined",
+     "quantity": "undetermined",
+     "date": "undetermined"
+    },
+    "rel_checks": {
+     "lead_restating_question": null,
+     "content_found_in_evidence": 1.0,
+     "evidence_passages": 2,
+     "domain": "consistent",
+     "provision": "consistent",
+     "section": "consistent"
+    }
+   },
+   {
+    "claim": "A written record of the investigation, including conclusions and followup, must be made [1].",
+    "support": "supported",
+    "basis": "paraphrase",
+    "relevance": "irrelevant",
+    "rel_reason": "the regulation it corresponds to (21 CFR 211.192) says nothing about batch/fail/meet/specific, which is what the questio",
+    "final": "irrelevant",
+    "support_reason": "not verbatim, but strength, polarity agree with 21 CFR 211.192 (SOURCE 1) and 100% of its core terms are in that passage",
+    "evidence": [
+     {
+      "citation": "21 CFR 211.192",
+      "source_index": 1,
+      "heading": "Production record review.",
+      "text": "A written record of the investigation shall be made and shall include the conclusions and followup."
+     }
+    ],
+    "citation": "correct",
+    "citation_detail": "cites 21 CFR 211.192, which supports it",
+    "operators": {
+     "strength": "matched",
+     "polarity": "matched",
+     "actor": "undetermined",
+     "quantity": "undetermined",
+     "date": "undetermined"
+    },
+    "rel_checks": {
+     "lead_restating_question": null,
+     "content_found_in_evidence": 1.0,
+     "evidence_passages": 1,
+     "domain": "consistent",
+     "provision": "consistent",
+     "section": "consistent"
+    }
+   }
+  ]
+ }
+]

@@ -1,0 +1,134 @@
+--- a/src/regulus/accuracy/evaluator.py
++++ b/src/regulus/accuracy/evaluator.py
+@@ -182,6 +182,7 @@
+     touched = {e.get("source_index") for c in claims if c.final == AN.UNVERIFIABLE for e in c.evidence}
+     touched |= {by_citation.get(c.candidate_evidence[0]) for c in claims
+                 if c.final == AN.UNVERIFIABLE and c.candidate_evidence}
++    distinguishing = _distinguishing_topic_terms(plan, intent, requested, by_index)
+     missing: list[str] = []
+     maybe: list[str] = []
+     for g in getattr(plan, "groups", ()) or ():
+@@ -194,9 +195,50 @@
+             continue                                  # states no obligation (definitions, permissions)
+         if not RV.on_topic(intent, members):
+             continue                                  # outside what the question asks about
++        if distinguishing and not set(IN.matched(intent.topic, IN.terms(_group_text(members)))) & distinguishing:
++            continue                                  # on topic only through words every group shares
+         label = g.label + (f" ({g.heading})" if getattr(g, "heading", None) else "")
+         (maybe if touched & set(g.members) else missing).append(label)
+     return missing, maybe
++
++
++def _group_text(members) -> str:
++    return " ".join(f"{p.heading or ''} {p.text}" for p in members)
++
++
++def _distinguishing_topic_terms(plan, intent, requested, by_index) -> set[str]:
++    """The question's topic words that tell the provision's ON-TOPIC obligation-bearing groups APART:
++    present in some of them and absent from others. Empty - and the focus gap then works exactly as
++    before - when there are fewer than two such groups or every topic word they carry is carried by all.
++
++    Only on-topic groups take part. A first version compared every obligation-bearing group, and then
++    an unrelated group decided the outcome: 21 CFR 312.32(b), "Review of safety information", lacks
++    suspected / adverse / reaction, so with it in the evidence those words stopped being shared and
++    (d) was demanded again. A group the question is not about says nothing about which words name it.
++
++    A focused question names its subject partly in words the whole provision shares. Asked for "the
++    reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction",
++    21 CFR 312.32(d) - follow-up - was demanded because its (d)(3) carries four of the question's eight
++    topic words (report, suspected, adverse, reaction), the on-topic threshold. All four also appear
++    in (c), the group the answer covered; the words that say which deadline is meant - unexpected,
++    fatal, life-threatening - appear in (c) alone. So a correct "7 calendar days" answer failed
++    completeness for not covering follow-up.
++
++    Every group's own section heading is read too, so words of the heading every member carries never
++    distinguish anything. Measured before adoption on the 122 focused recorded acceptance answers: the
++    focus gap demands a group on 12, the hand rubric scores 11 of those incomplete (O=0), and this
++    leaves all 12 unchanged - each group it demands there carries a distinguishing word.
++    """
++    carried: list[set[str]] = []
++    for g in getattr(plan, "groups", ()) or ():
++        if getattr(g, "kind", None) != "requirement" or not set(g.requirement_ids) & requested:
++            continue
++        members = [by_index[i] for i in g.members if i in by_index]
++        if members and any(OP.strength(p.text) == OP.MANDATORY for p in members) and RV.on_topic(intent, members):
++            carried.append(set(IN.matched(intent.topic, IN.terms(_group_text(members)))))
++    if len(carried) < 2:
++        return set()
++    return set().union(*carried) - set.intersection(*carried)
+ 
+ 
+ def _errors(validation) -> dict[str, list]:
+--- a/src/regulus/accuracy/operators.py
++++ b/src/regulus/accuracy/operators.py
+@@ -652,6 +652,7 @@
+ CONFLICT_DATE = "date"
+ CONFLICT_CONDITION = "invented_condition"
+ OMISSION_CONDITION = "dropped_condition"
++OMISSION_TIME_ANCHOR = "dropped_time_anchor"
+ 
+ # A claim may state a weaker form of a mandatory rule only by being wrong about
+ # it; it may not state a stronger form of a permission either. Both directions
+@@ -717,8 +718,51 @@
+         return False
+     act = stem(modal.group(1).lower())
+     return any(stem(word.lower()) == act for word in re.findall(r"[A-Za-z]+", mandated))
++
++
++# A time limit is two things: a period and the event it runs from. "No later than 7 calendar days after
++# the sponsor's initial receipt of the information" (21 CFR 312.32(c)(2)) and "no later than 7 calendar
++# days" agree on the period and nothing else - the second does not say when the clock starts. Nothing
++# compared the event: `numeric_limits` reads bounds, not anchors, so an answer that dropped it was
++# credited in full. Recorded acceptance row U-010 is one: "within 30 days" for 21 CFR 830.350(a)'s
++# "within 30 days of receipt of FDA's notification", scored correct (100) against a hand rubric of N=1.
++_ANCHOR_NUMBER = r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty|sixty|ninety)"
++_ANCHOR_PERIOD = rf"({_ANCHOR_NUMBER})[\s-]+(?:(?:calendar|working|business)[\s-]+)?(day|week|month|year|hour)s?\b"
++_ANCHOR_WORDS = r"(?:after|from|of|following|before|prior\s+to|upon|once|since|beginning|starting)"
++_LIMIT_LEAD = (r"(?:no\s+later\s+than|not\s+later\s+than|in\s+no\s+case\s+later\s+than|later\s+than|within|"
++               r"not\s+more\s+than|no\s+more\s+than|by)")
++_ANCHORED_PERIOD_RE = re.compile(rf"\b{_ANCHOR_PERIOD}\s+{_ANCHOR_WORDS}\b", re.I)
++_CLAIMED_LIMIT_RE = re.compile(rf"\b{_LIMIT_LEAD}\s+(?:\S+\s+){{0,2}}?{_ANCHOR_PERIOD}(?P<tail>[^.;]*)", re.I)
++_TAIL_ANCHOR_RE = re.compile(rf"^\s*(?:\[\d+\]\s*)?{_ANCHOR_WORDS}\b", re.I)
++_NUMBER_WORD_VALUES = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7",
++                       "eight": "8", "nine": "9", "ten": "10", "eleven": "11", "twelve": "12", "fifteen": "15",
++                       "twenty": "20", "thirty": "30", "sixty": "60", "ninety": "90"}
++
++
++def _period_key(number: str, unit: str) -> tuple[str, str]:
++    return _NUMBER_WORD_VALUES.get(number.lower(), number), unit.lower()
++
+ 
++def dropped_time_anchor(claim: str, evidence: str) -> str | None:
++    """The claim states a time LIMIT the evidence also states, the evidence runs it from an event, and
++    the claim gives no event at all: a description of what was left out, else None.
+ 
++    Deliberately narrow. Only a limit ("no later than", "within", "not more than", "by" ...) counts on the
++    claim side - a period used as a label ("the 7-calendar-day deadline") is not one. Only the SAME
++    period counts - a different one is the quantity operator's business. And any anchor the claim does
++    give is accepted unread, so a paraphrase ("within 7 days of receiving it") is never second-guessed:
++    the finding is only that the event is missing, never that it is worded differently."""
++    anchored = {_period_key(m.group(1), m.group(2)) for m in _ANCHORED_PERIOD_RE.finditer(evidence or "")}
++    if not anchored:
++        return None
++    for m in _CLAIMED_LIMIT_RE.finditer(claim or ""):
++        number, unit = _period_key(m.group(1), m.group(2))
++        if (number, unit) in anchored and not _TAIL_ANCHOR_RE.match(m.group("tail") or ""):
++            return (f"the evidence runs the {number}-{unit} period from a stated event, and the answer gives the "
++                    f"period without it")
++    return None
++
++
+ def compare(claim: str, evidence: str, *, authority: str = BINDING) -> OperatorComparison:
+     """Compare one claim with one aligned evidence passage, operator by operator.
+ 
+@@ -886,6 +930,10 @@
+                                   None, qualifier))
+     if e.conditions and not omissions and not (c.conditions - e.conditions):
+         agreed.append(CONFLICT_CONDITION)
++    # the event a time limit runs from, dropped -> omission, never a conflict (see dropped_time_anchor)
++    anchor = dropped_time_anchor(claim, evidence)
++    if anchor is not None:
++        omissions.append(note(OMISSION_TIME_ANCHOR, anchor, None, None))
+ 
+     return OperatorComparison(tuple(conflicts), tuple(omissions), tuple(undetermined), tuple(agreed),
+                               relations=tuple(relations), support_blocked=support_blocked, authority=authority,

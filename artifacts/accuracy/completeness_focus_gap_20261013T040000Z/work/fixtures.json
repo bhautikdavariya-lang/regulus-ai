@@ -1,0 +1,2567 @@
+[
+ {
+  "id": "seven-correct-live",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "pass",
+  "answer": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32 is no later than 7 calendar days after the sponsor's initial receipt of the information [9].",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about report/deadlin/unexpect/fatal/life-threaten/suspect/advers/react, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "12": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "verdict": "correct",
+   "score": 100,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "12": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "on topic only through words every group shares (['advers', 'react', 'report', 'suspect']); none of ['fatal', 'life-threaten', 'unexpect']"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "seven-correct-verbatim",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "pass",
+  "answer": "(2) Unexpected fatal or life-threatening suspected adverse reaction reports. The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information. [9]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about report/deadlin/unexpect/fatal/life-threaten/suspect/advers/react, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "12": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "verdict": "correct",
+   "score": 100,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "12": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "on topic only through words every group shares (['advers', 'react', 'report', 'suspect']); none of ['fatal', 'life-threaten', 'unexpect']"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "seven-wrong-deadline",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "not_pass_overall",
+  "answer": "The reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32 is no later than 15 calendar days after the sponsor's initial receipt of the information [9].",
+  "production": {
+   "completeness": "fail",
+   "detail": "the answer does not address: the question's subject",
+   "verdict": "incorrect",
+   "score": 0,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "on_topic_hits": {
+      "3": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "4": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "7": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "9": [
+       "report",
+       "unexpect",
+       "fatal",
+       "life-threaten",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "10": [
+       "report",
+       "unexpect",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "decision": "covered"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the answer does not address: the question's subject",
+   "verdict": "incorrect",
+   "score": 0,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "on_topic_hits": {
+      "3": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "4": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "7": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "9": [
+       "report",
+       "unexpect",
+       "fatal",
+       "life-threaten",
+       "suspect",
+       "advers",
+       "react"
+      ],
+      "10": [
+       "report",
+       "unexpect",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "decision": "covered"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "seven-drops-trigger",
+  "question": "What is the reporting deadline for an unexpected fatal or life-threatening suspected adverse reaction under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "record",
+  "answer": "An unexpected fatal or life-threatening suspected adverse reaction must be reported to FDA no later than 7 calendar days [9].",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about report/deadlin/unexpect/fatal/life-threaten/suspect/advers/react, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "12": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "verdict": "correct",
+   "score": 100,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "12": [
+       "report",
+       "suspect",
+       "advers",
+       "react"
+      ]
+     },
+     "decision": "on topic only through words every group shares (['advers', 'react', 'report', 'suspect']); none of ['fatal', 'life-threaten', 'unexpect']"
+    },
+    {
+     "shared": [
+      "advers",
+      "react",
+      "report",
+      "suspect"
+     ],
+     "distinguishing": [
+      "fatal",
+      "life-threaten",
+      "unexpect"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "quick-both-live",
+  "question": "How quickly must IND safety reports be submitted under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "record",
+  "answer": "- IND safety reports: in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section [2].\n- Unexpected fatal or life-threatening suspected adverse reaction reports: The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information [9].",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      12,
+      13,
+      14
+     ],
+     "on_topic_hits": {
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report",
+       "submitt"
+      ],
+      "14": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety",
+      "submitt"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      12,
+      13,
+      14
+     ],
+     "on_topic_hits": {
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report",
+       "submitt"
+      ],
+      "14": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety",
+      "submitt"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "quick-fifteen-only",
+  "question": "How quickly must IND safety reports be submitted under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "record",
+  "answer": "(c)(1) IND safety reports. The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [2]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      12,
+      13,
+      14
+     ],
+     "on_topic_hits": {
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report",
+       "submitt"
+      ],
+      "14": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety",
+      "submitt"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      12,
+      13,
+      14
+     ],
+     "on_topic_hits": {
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report",
+       "submitt"
+      ],
+      "14": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety",
+      "submitt"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "follow-d-only",
+  "question": "What follow-up does 21 CFR 312.32 require after an IND safety report?",
+  "mode": "focused",
+  "expect": "pass",
+  "answer": "(1) The sponsor must promptly investigate all safety information it receives. [11]\n\n(2) Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [12]\n\n(3) If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [13]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(c), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "on_topic_hits": {
+      "4": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "5": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "6": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "7": [
+       "after",
+       "ind",
+       "safety",
+       "report"
+      ],
+      "8": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "9": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [
+      "after"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(c), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "on topic only through words every group shares (['ind', 'report', 'safety']); none of ['after']"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "on_topic_hits": {
+      "4": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "5": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "6": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "7": [
+       "after",
+       "ind",
+       "safety",
+       "report"
+      ],
+      "8": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "9": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [
+      "after"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "follow-c-only",
+  "question": "What follow-up does 21 CFR 312.32 require after an IND safety report?",
+  "mode": "focused",
+  "expect": "fail",
+  "answer": "(c)(1) IND safety reports. The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [4]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "on_topic_hits": {
+      "10": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "11": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "after",
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [
+      "after"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "on topic only through words every group shares (['ind', 'report', 'safety']); none of ['after']"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "on_topic_hits": {
+      "10": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "11": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "after",
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [
+      "after"
+     ],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "follow2-d-only",
+  "question": "What are the follow-up requirements for IND safety reports under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "pass",
+  "answer": "(1) The sponsor must promptly investigate all safety information it receives. [11]\n\n(2) Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [12]\n\n(3) If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [13]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(c), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "on_topic_hits": {
+      "4": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "5": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "6": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "7": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "8": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "9": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(c), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "on_topic_hits": {
+      "4": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "5": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "6": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "7": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "8": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "9": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "follow2-c-only",
+  "question": "What are the follow-up requirements for IND safety reports under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "fail",
+  "answer": "(c)(1) IND safety reports. The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [4]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "on_topic_hits": {
+      "10": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "11": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1,
+      2
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12,
+      13
+     ],
+     "on_topic_hits": {
+      "10": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "11": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      14
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "broadF-c-only",
+  "question": "What are the IND safety reporting requirements under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "fail",
+  "answer": "(c)(1) IND safety reports. The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "10": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "11": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      13
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12
+     ],
+     "on_topic_hits": {
+      "10": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "11": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      13
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "broadF-c-and-d",
+  "question": "What are the IND safety reporting requirements under 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "pass",
+  "answer": "(c)(1) IND safety reports. The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [3]\n\n(2) Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., \u201cFollowup IND Safety Report.\u201d [11]\n\n(3) If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [12]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      13
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      10,
+      11,
+      12
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(e)",
+     "members": [
+      13
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(b)",
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "broadS-c-only",
+  "question": "Summarize 21 CFR 312.32.",
+  "mode": "synthesis",
+  "expect": "record",
+  "answer": "(c)(1) IND safety reports. The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. In each IND safety report, the sponsor must identify all IND safety reports previously submitted to FDA concerning a similar suspected adverse reaction, and must analyze the significance of the suspected adverse reaction in light of previous, similar reports or any other relevant information. [8]",
+  "production": {
+   "completeness": "pass",
+   "detail": "the statements that answer the question cover what it asks for",
+   "verdict": "partial",
+   "score": 40,
+   "label": null,
+   "focus_trace": []
+  },
+  "distinguishing": {
+   "completeness": "pass",
+   "detail": "the statements that answer the question cover what it asks for",
+   "verdict": "partial",
+   "score": 40,
+   "label": null,
+   "focus_trace": []
+  }
+ },
+ {
+  "id": "compare-both-live",
+  "question": "What is the difference between the 15-calendar-day and 7-calendar-day IND safety reporting deadlines in 21 CFR 312.32?",
+  "mode": "focused",
+  "expect": "record",
+  "answer": "- IND safety reports: in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section [2].\n- Unexpected fatal or life-threatening suspected adverse reaction reports: The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information [9].",
+  "production": {
+   "completeness": "partial",
+   "detail": "the answer does not address: the 15-calendar-day; addresses ind safety reporting deadlines",
+   "verdict": "partial",
+   "score": 45,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      12,
+      13,
+      14
+     ],
+     "on_topic_hits": {
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "14": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "partial",
+   "detail": "the answer does not address: the 15-calendar-day; addresses ind safety reporting deadlines",
+   "verdict": "partial",
+   "score": 45,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 312.32(a)",
+     "members": [
+      1
+     ],
+     "decision": "states no obligation"
+    },
+    {
+     "group": "21 CFR 312.32(c)",
+     "members": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 312.32(d)",
+     "members": [
+      12,
+      13,
+      14
+     ],
+     "on_topic_hits": {
+      "12": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "13": [
+       "ind",
+       "safety",
+       "report"
+      ],
+      "14": [
+       "ind",
+       "safety",
+       "report"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "ind",
+      "report",
+      "safety"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 312.32(c)",
+      "21 CFR 312.32(d)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "personnel-c-only",
+  "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+  "mode": "focused",
+  "expect": "fail",
+  "answer": "(c) There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(a), 21 CFR 211.25(b), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 211.25(a)",
+     "members": [
+      1
+     ],
+     "on_topic_hits": {
+      "1": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 211.25(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 211.25(c)",
+     "members": [
+      3
+     ],
+     "decision": "covered"
+    },
+    {
+     "shared": [
+      "personnel",
+      "qualific"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 211.25(a)",
+      "21 CFR 211.25(b)",
+      "21 CFR 211.25(c)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(a), 21 CFR 211.25(b), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 211.25(a)",
+     "members": [
+      1
+     ],
+     "on_topic_hits": {
+      "1": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 211.25(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 211.25(c)",
+     "members": [
+      3
+     ],
+     "decision": "covered"
+    },
+    {
+     "shared": [
+      "personnel",
+      "qualific"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 211.25(a)",
+      "21 CFR 211.25(b)",
+      "21 CFR 211.25(c)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "personnel-a-only",
+  "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+  "mode": "focused",
+  "expect": "fail",
+  "answer": "(a) Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them. [1]",
+  "production": {
+   "completeness": "fail",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(b), 21 CFR 211.25(c), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 211.25(a)",
+     "members": [
+      1
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 211.25(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 211.25(c)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "personnel",
+      "qualific"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 211.25(a)",
+      "21 CFR 211.25(b)",
+      "21 CFR 211.25(c)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "fail",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(b), 21 CFR 211.25(c), which states a requirement on it",
+   "verdict": "correct",
+   "score": 75,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 211.25(a)",
+     "members": [
+      1
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 211.25(b)",
+     "members": [
+      2
+     ],
+     "on_topic_hits": {
+      "2": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "group": "21 CFR 211.25(c)",
+     "members": [
+      3
+     ],
+     "on_topic_hits": {
+      "3": [
+       "personnel",
+       "qualific"
+      ]
+     },
+     "decision": "DEMANDED, not covered"
+    },
+    {
+     "shared": [
+      "personnel",
+      "qualific"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 211.25(a)",
+      "21 CFR 211.25(b)",
+      "21 CFR 211.25(c)"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "personnel-all",
+  "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+  "mode": "focused",
+  "expect": "pass",
+  "answer": "(a) Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them. [1]\n\n(b) Each person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions in such a manner as to provide assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess. [2]\n\n(c) There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]",
+  "production": {
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "verdict": "correct",
+   "score": 100,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 211.25(a)",
+     "members": [
+      1
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 211.25(b)",
+     "members": [
+      2
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 211.25(c)",
+     "members": [
+      3
+     ],
+     "decision": "covered"
+    },
+    {
+     "shared": [
+      "personnel",
+      "qualific"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 211.25(a)",
+      "21 CFR 211.25(b)",
+      "21 CFR 211.25(c)"
+     ]
+    }
+   ]
+  },
+  "distinguishing": {
+   "completeness": "pass",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "verdict": "correct",
+   "score": 100,
+   "label": null,
+   "focus_trace": [
+    {
+     "group": "21 CFR 211.25(a)",
+     "members": [
+      1
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 211.25(b)",
+     "members": [
+      2
+     ],
+     "decision": "covered"
+    },
+    {
+     "group": "21 CFR 211.25(c)",
+     "members": [
+      3
+     ],
+     "decision": "covered"
+    },
+    {
+     "shared": [
+      "personnel",
+      "qualific"
+     ],
+     "distinguishing": [],
+     "eligible_groups": [
+      "21 CFR 211.25(a)",
+      "21 CFR 211.25(b)",
+      "21 CFR 211.25(c)"
+     ]
+    }
+   ]
+  }
+ }
+]

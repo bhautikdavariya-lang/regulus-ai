@@ -1,0 +1,3087 @@
+[
+ {
+  "id": "C0",
+  "row": "B-005",
+  "claim": "with CGMP requirements requirements apply **except** for clinical investigations [1].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "garbled sentence ('with CGMP requirements requirements apply except...'); 606.100(a) exempts clinical investigations from SOP rule only",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C1",
+  "row": "B-005",
+  "claim": "Container labels for blood and blood components must be uniform and facilitate use [1].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "operator logic",
+  "note": "606.121(a) states the PURPOSE of the label rules (to facilitate a uniform label); the claim turns it into a mandate",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C2",
+  "row": "B-005",
+  "claim": "Distribution and receipt procedures include a system to determine the recall of units [1].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "606.165(a) states it ('shall include a system by which distribution or receipt of each unit can be readily determined to facilitate its recall'); modal-less claim gets 0 agreeing operators; descriptive path needs a 6-word run (has 4)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C3",
+  "row": "B-005",
+  "claim": "Reporting of deviations by licensed manufacturers, unlicensed registered blood establishments, and transfusion services is required [1].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "terminology normalization",
+  "note": "606.171(a) heading and its 2nd sentence state who must report; the candidate chosen is the question sentence 'Who must report under this section?' (3 operators agree, 100% core) so term overlap is 50% - offline variant V1 (stemmed overlap) credits it: the unstemmed overlap missed deviations/deviation",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C4",
+  "row": "C-002",
+  "claim": "The requirement applies to the label of a cosmetic in package form [1].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "claim extraction",
+  "note": "'The requirement' = the net-quantity declaration of the previous sentence; 701.13(a) 'The label of a cosmetic in package form shall bear a declaration of net quantity'; antecedent not carried, claim has no modal",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C5",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include vinyl chloride.",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "evidence limitation",
+  "note": "700.14(a) captured says vinyl chloride aerosol products are 'deemed to be adulterated'; 'prohibited or restricted' needs legal inference; the prohibition text (b) not captured",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C6",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include certain halogenated salicylanilides.",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.15(a) captured is background only (photosensitizers); the restriction is in (b), not captured. Guard flags 'prohibit' (an operator word) - latent misclassification, same verdict",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C7",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include zirconium.",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.16(a) captured: 'deleterious substance'; no prohibition/restriction stated",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C8",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include methylene chloride.",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.19(a) captured: cancer risk finding; no prohibition stated",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C9",
+  "row": "C-004",
+  "claim": "The use of zirconium-containing complexes in cosmetics is prohibited.",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.16(a): no prohibition stated",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C10",
+  "row": "C-004",
+  "claim": "The use of chloroform as an ingredient in cosmetics is prohibited [6].",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.18(a): 'deleterious substance'; no prohibition stated",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C11",
+  "row": "C-004",
+  "claim": "The use of methylene chloride as an ingredient in aerosol cosmetic products is prohibited [7].",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.19(a): no prohibition stated",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C12",
+  "row": "C-004",
+  "claim": "The use of vinyl chloride as an ingredient in aerosol products is prohibited [3].",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "evidence limitation",
+  "note": "700.14(a): aerosol product containing vinyl chloride 'deemed to be adulterated' - prohibited only by legal inference",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C13",
+  "row": "C-004",
+  "claim": "The use of certain halogenated salicylanilides as ingredients in cosmetics is prohibited [4].",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.15(a): no prohibition stated",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C14",
+  "row": "C-004",
+  "claim": "The use of mercury compounds in cosmetics is prohibited [2].",
+  "N": 2,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.13(a): background only",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C15",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include written procedures for production and process control.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership: 211.100 is not a personnel qualification/training requirement (row N=0)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C16",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include sampling and testing of in-process materials.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (personnel training)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C17",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include packaging and labeling operations.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (personnel training)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C18",
+  "row": "D-003",
+  "claim": "personnel qualification and training requirements requirements are established and followed by the appropriate organizational units and quality control units.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "no source says personnel training requirements are established by organizational/QC units",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C19",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include written procedures for production and process control.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership: 'consultant requirements' (211.34) do not include production procedures (row N=0)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C20",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include charge-in of components.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C21",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include calculation of yield.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C22",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include sampling and testing of in-process materials.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C23",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include time limitations on production.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C24",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include labeling issuance.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C25",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include packaging and labeling operations.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C26",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include tamper-evident packaging requirements.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C27",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include expiration dating.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C28",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include warehousing procedures.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C29",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include distribution procedures.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C30",
+  "row": "D-004",
+  "claim": "the consultant requirements requirements are established and followed by the appropriate organizational units and quality control units.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "no source states consultant requirements are established by organizational units",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C31",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include sampling and testing of in-process materials.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (ventilation requirements)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C32",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include packaging and labeling operations.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (ventilation requirements)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C33",
+  "row": "D-007",
+  "claim": "The procedures shall include written procedures for charge-in of components, calculation of yield, equipment identification, sampling and testing of in-process materials, time limitations on production, and control of microbiological contamination [5].",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "other: multi-source conjunction",
+  "note": "'The procedures' = 211.100(a) production/process control procedures, which 'shall include all requirements in this subpart'; each listed item is a separate Subpart F section (211.101, .103, .105, .110, .111, .113), all captured. No single passage states the conjunction",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C34",
+  "row": "D-007",
+  "claim": "The procedures shall include written procedures for materials examination and usage criteria [12].",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "211.122 heading is 'Materials examination and usage criteria' and (a) requires written procedures for examining materials, but 'The procedures' refers to production procedures (Subpart F), and 211.122 is Subpart G",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C35",
+  "row": "D-007",
+  "claim": "Tamper-evident packaging requirements for over-the-counter (OTC) human drug products shall be established [13].",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "211.132(a) states FDA's AUTHORITY to establish a requirement, not that requirements 'shall be established'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C36",
+  "row": "D-008",
+  "claim": "- **Calibration, inspection, and checking** of equipment used in the manufacture, processing, packing, and holding of a drug product, as required by 21 CFR 111.30.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "211.68(a) 2nd sentence requires routine calibration/inspection/checking of drug equipment, but the claim attributes it to 21 CFR 111.30 (dietary supplements); verbless fragment",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C37",
+  "row": "D-008",
+  "claim": "- **Calibration intervals** must be determined and established according to a written program, as required by 21 CFR 111.30.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "no source states that calibration intervals must be determined",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C38",
+  "row": "D-008",
+  "claim": "- **Records** must be documented and displayed or made available to personnel using the equipment, as required by 21 CFR 111.30.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "no source requires records to be displayed or made available to personnel",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C39",
+  "row": "D-009",
+  "claim": "Under Part 211, incoming components must be tested and approved to ensure they meet the required standards of identity, strength, quality, and purity.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "the component testing provision (211.84) was not retrieved; no captured source states it",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C40",
+  "row": "D-009",
+  "claim": "Written procedures for production and process control must be established and followed, including changes, to ensure the drug products have these characteristics.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "distinguishing-term guard",
+  "note": "211.100(a) states written production/process control procedures, 'including any changes', designed to assure identity/strength/quality/purity; 'these characteristics' is a mid-sentence anaphor (antecedent in the previous sentence) and 'characteristic' is flagged as distinguishing; raw overlap 58% also below 70%",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C41",
+  "row": "D-009",
+  "claim": "materials examination and usage criteria requirements shall be documented and followed.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "templated sentence 'X requirements shall be documented and followed'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C42",
+  "row": "D-009",
+  "claim": "The records shall include component, drug product container, closure, and labeling records [1].",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "circular: 'the records shall include ... records'; 211.184 heading names those record kinds",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C43",
+  "row": "D-010",
+  "claim": "- **Testing and approval or rejection of components, containers, and closures** (eCFR 21 CFR 213.84(c)): Each component shall be sampled, tested, and approved or rejected as appropriate prior to use.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "terminology normalization + claim extraction",
+  "note": "after the bold label the sentence is VERBATIM 213.84(c); the label ('Testing and approval or rejection of components, containers, and closures (eCFR 21 CFR 213.84(c))') is kept in the claim and dilutes verbatim coverage and overlap to 57%; offline variant V1 (stemmed overlap) credits it",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C44",
+  "row": "D-015",
+  "claim": "The requirements to implement a production and process control system are outlined in 21 CFR 111.55 [3].",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "claim extraction",
+  "note": "pointer sentence ('requirements ... are outlined in 21 CFR 111.55'); 111.55 does require implementing a production and process control system; modal-less claim, 0 operators",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C45",
+  "row": "D-019",
+  "claim": "Written procedures shall also include the calculation of yield, equipment identification, and sampling and testing of in-process materials.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "other: multi-source conjunction",
+  "note": "written procedures (211.100(a): 'shall include all requirements in this subpart') + 211.103 yield, 211.105 equipment identification, 211.110 sampling/testing; no single passage",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C46",
+  "row": "D-019",
+  "claim": "General requirements include standards.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "item of 'General requirements include establishing specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms'; 211.160 (heading 'General requirements') (a) covers the establishment of standards; modal-less 1-term item: 0 operators, item path needs >= 2 terms",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C47",
+  "row": "D-019",
+  "claim": "General requirements include sampling plans.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "as #46 (sampling plans)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C48",
+  "row": "D-019",
+  "claim": "General requirements include test procedures.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "as #46 (test procedures); semantic arm also selects 211.100(a) and the guard flags 'test'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C49",
+  "row": "D-019",
+  "claim": "General requirements include other laboratory control mechanisms.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "as #46 (other laboratory control mechanisms)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C50",
+  "row": "D-019",
+  "claim": "General requirements requirements shall be documented and followed.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "alignment + heading excluded from overlap",
+  "note": "211.160(a) first sentence: 'The requirements in this subpart shall be followed and shall be documented at the time of performance'; the gate examined the second sentence of the same source (gate established, raw overlap 67% < 70%); even on that sentence the raw overlap is 67%: 'general' is only in the heading 'General requirements.'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C51",
+  "row": "D-019",
+  "claim": "The records include component.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "list split of 'The records include component, drug product container, closure, and labeling records' -> 'The records include component'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C52",
+  "row": "D-019",
+  "claim": "The records include closure.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "as #51 ('closure')",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C53",
+  "row": "D-019",
+  "claim": "The records include labeling records [1].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "'The records include labeling records' - 211.184 heading names labeling records; circular",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C54",
+  "row": "E-001",
+  "claim": "The scope of 21 CFR Part 11 applies to electronic records, electronic signatures, and handwritten signatures executed on paper.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "11.1(a) covers handwritten signatures executed TO ELECTRONIC RECORDS; the claim says handwritten signatures executed on paper - a substantive error",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C55",
+  "row": "E-001",
+  "claim": "The records in question are those that are maintained and used in accordance with the requirements of this part.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "garbled anaphoric sentence; note the guard flags 'question' (from 'in question') as distinguishing - latent generic-word gap",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C56",
+  "row": "E-010",
+  "claim": "21 CFR 11.100(a) and 21 CFR 11.10 ensure the authenticity, integrity, and confidentiality of electronic records, and that electronic signatures cannot be repudiated.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "partial",
+  "root": "operator logic",
+  "note": "11.10 states the closed-system controls ensure authenticity, integrity and, WHEN APPROPRIATE, confidentiality, and that the signer cannot readily repudiate; correct verdict partial (drops 'when appropriate'); modal-less claim: 0 operators",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C57",
+  "row": "E-010",
+  "claim": "The FDA guidance on scope and application affects enforcement discretion by setting the criteria for when electronic records are considered trustworthy, reliable, and generally equivalent to paper records.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "claim about the FDA guidance; the guidance document is not in the captured evidence; 11.1(a) is the regulation",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C58",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include hazard analysis.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false membership: hazard analysis is Subpart C, not Subpart B",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C59",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.126(a) requires a food safety plan.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "evidence limitation",
+  "note": "captured 117.126(a) is only its caption '(a) Requirement for a food safety plan.'; (1) 'You must prepare ... a written food safety plan' not captured",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C60",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.130(a) mandates a hazard analysis.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "evidence limitation",
+  "note": "captured 117.130(a) is only its caption '(a) Requirement for a hazard analysis.'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C61",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.136(a) states that preventive controls are not required if a hazard is identified and certain circumstances apply.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "117.136(a): 'you are not required to implement a preventive control when you identify a hazard ... and any of the following circumstances apply' - same proposition; only polarity agrees (1 operator)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C62",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.139 mandates a recall plan for hazards requiring preventive controls.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "terminology normalization",
+  "note": "117.139: 'For food with a hazard requiring a preventive control: (a) You must establish a written recall plan'; strength+polarity agree, 100% core terms, but the unstemmed overlap misses hazards/hazard and controls/control (framed 67%, raw 57%)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C63",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.145 mandates monitoring activities.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "distinguishing-term guard",
+  "note": "117.145(b) 'You must monitor the preventive controls ...' is in the selected source; the guard blocks 'activ' ('monitoring activities') even on that sentence - 'activities' is a generic noun treated as distinguishing",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C64",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.150(a) requires corrective action procedures.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "captured 117.150(a) is caption + 'As appropriate ... except as provided by paragraph (c):' - the operative 'you must establish ... corrective action procedures' is not captured",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C65",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.165(a) mandates verification of implementation and effectiveness.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "alignment",
+  "note": "117.165(a) (captured, and named in the claim) 'You must verify that the preventive controls are consistently implemented and are effectively ... minimizing'; neither aligner ranked it first (117.145 selected), the claim's own named provision is not used",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C66",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.190(a) requires attestations.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other: named-provision attribution",
+  "note": "the substance (attestations must be submitted) is stated by 117.201(a) for QUALIFIED FACILITIES; the claim attributes it to 117.190(a). The evaluator scores attribution in the citation layer (Phase 2C labelled para21, a support from a source other than the one named, SAFE), so support vs. citation split makes this ambiguous",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C67",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.201(a) requires modified requirements for a qualified facility.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "garbled: '117.201(a) requires modified requirements for a qualified facility' (that is the section heading)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C68",
+  "row": "F-004",
+  "claim": "The requirements include ensuring the grounds are kept in a condition that protects against contamination of food.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "117.20(a): 'The grounds ... must be kept in a condition that will protect against the contamination of food' - modal-less list-lead claim, 0 operators",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C69",
+  "row": "F-004",
+  "claim": "The requirements include methods for adequate maintenance.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "117.20(a): 'The methods for adequate maintenance of grounds must include:' - modal-less claim, 0 operators, 100% terms",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C70",
+  "row": "F-007",
+  "claim": "The requirements for a hazard analysis include identifying and implementing preventive controls to provide assurances that any hazards requiring a preventive control will be significantly minimized or prevented [14].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "item content is 117.135(a)(1) (preventive controls) but the list head claims it is a hazard-analysis requirement (117.130); the guard's 'analysi' block is the right reason",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C71",
+  "row": "F-007",
+  "claim": "The requirements for plant and grounds include maintaining the grounds in a condition that will protect against contamination [22].",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "terminology normalization",
+  "note": "117.20(a): grounds 'must be KEPT in a condition that will protect against the contamination of food'; claim says 'maintaining the grounds'; list-item path counts 'maintain' as a missing term (80% < 85%) because it does not apply the generic-word exemption; modal-less claim gets 0 operators on the sentence path",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C72",
+  "row": "F-009",
+  "claim": "The preventive controls must be implemented and verified as appropriate to ensure their effectiveness.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other: multi-source conjunction",
+  "note": "implemented (117.135) + verified (117.165) + 'as appropriate to ensure the effectiveness' (117.140(a)); no single passage",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C73",
+  "row": "F-009",
+  "claim": "The requirements apply to the qualified individual and auditor as specified in § 117.160(a).",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "garbled/wrong attribution: 117.160(a) is validation",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C74",
+  "row": "F-009",
+  "claim": "The implementation records must be maintained as required in § 117.1(a).",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "terminology normalization",
+  "note": "117.190(a) 'You must establish and maintain the following records documenting implementation' supports the substance, but the claim attributes it to § 117.1(a); unstemmed maintained/maintain also costs the overlap (67%)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C75",
+  "row": "F-009",
+  "claim": "The requirements apply to the plant and grounds as specified in § 117.251(a).",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "garbled: 'The requirements apply to the plant and grounds as specified in § 117.251(a)'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C76",
+  "row": "F-022",
+  "claim": "It also mandates the provision of assurances and the requirement for recall plans.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other: multi-source conjunction",
+  "note": "anaphoric 'It also mandates' + assurances (117.135/117.137) + recall plans (117.139)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C77",
+  "row": "G-008",
+  "claim": "The linear bar code requirement does not apply to prescription drugs unless versions of that same drug are also sold to or used in hospitals.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "201.25(b)(1)(ii) exempts prescription drugs sold DIRECTLY TO PATIENTS; the claim drops that and restates the hospital clause as an 'unless' - arguably a different rule",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C78",
+  "row": "G-010",
+  "claim": "[2] A manufacturer, repacker, relabeler, or private label distributor may voluntarily reserve a proposed NDC for a drug before the drug is listed by submitting the following information: [1] [2] [3] [4] [5] [6]\n(Incomplete: generation stopped at the token limit before this answer finished, so wordin",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "claim extraction",
+  "note": "the pipeline's truncation notice '(Incomplete: generation stopped at the token limit ... finished ...' is merged into the claim; the proposition before it is verbatim 207.33 ('may voluntarily reserve a proposed NDC ... by submitting the following information'); the guard flags 'finish' from the notice",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C79",
+  "row": "H-003",
+  "claim": "Prior notice of imported food must be submitted to FDA, and it must be confirmed by FDA for review.",
+  "N": 1,
+  "source": "unlabelled-triaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "partial",
+  "root": "terminology normalization",
+  "note": "1.279(a): 'Except as provided in paragraph (c) ..., you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review' - correct verdict partial (drops the exception); strength+polarity agree but unstemmed overlap misses submitted/submit and heading terms (57%)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C80",
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including its design.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Device Master Record is not defined in the captured (QMSR) Part 820 evidence",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C81",
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including specifications.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "as #80",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C82",
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including manufacturing details.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "as #80",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C83",
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including it is required to be maintained by the manufacturer.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "as #80",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C84",
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including its design.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Device History Record not in the captured Part 820 evidence",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C85",
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including manufacturing.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "as #84",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C86",
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including it is required to be maintained by the manufacturer.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "as #84",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "C87",
+  "row": "M-034",
+  "claim": "- A Design History File is a record of the design of the device, including its specifications and development.",
+  "N": 0,
+  "source": "unlabelled-triaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Design History File definition not in captured evidence",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U0",
+  "row": "B-005",
+  "claim": "Under Part 606, blood and blood components must comply with CGMP requirements, including standard operating procedures, labeling, container labels, compatibility testing, records, and reporting of deviations.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other: multi-source conjunction",
+  "note": "summary of all of Part 606 (SOPs, labeling, container labels, testing, records, deviations)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U1",
+  "row": "B-005",
+  "claim": "Compatibility testing procedures include the required information for distribution [1].",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "garbled; no source says compatibility testing procedures include distribution information",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U2",
+  "row": "B-005",
+  "claim": "Equipment used in blood and blood component processing must be clean and orderly, and maintained according to the Standard Operating Procedures Manual [1].",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "606.60(a) states clean and orderly maintenance; 'according to the SOP manual' is not in the captured text",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U3",
+  "row": "C-002",
+  "claim": "The cosmetic labeling requirements in Part 701 are focused on the principal display panel, identity labeling, and declaration of net quantity.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other: multi-source conjunction",
+  "note": "summary of Part 701's focus across 701.11/.12/.13",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U4",
+  "row": "C-002",
+  "claim": "The declaration of net quantity shall be in terms of weight, measure, numerical count, or a combination of these, and the use of specific terms may be determined by the Commissioner.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "other: claim spans several sentences of one source",
+  "note": "701.13(a) states both halves in different sentences ('expressed in terms of weight, measure, numerical count, or a combination' ... 'Whenever the Commissioner determines ... he shall ... designate the appropriate term')",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U5",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include bithionol.",
+  "N": 2,
+  "source": "unlabelled-untriaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "alignment",
+  "note": "bithionol: 700.11(a) 'deemed to be adulterated' (prohibition by legal inference only); the candidate examined was 700.23",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U6",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include mercury compounds.",
+  "N": 2,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.13(a) captured is background only",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U7",
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include chloroform.",
+  "N": 2,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "700.18(a) does not state a prohibition",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U8",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include time limitations on production.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (personnel training)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U9",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include reprocessing of batches.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U10",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include materials examination and usage criteria.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U11",
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include tamper-evident packaging requirements.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U12",
+  "row": "D-003",
+  "claim": "The requirements also include the documentation of deviations and justification for any changes [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18].",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "deviation recording (211.100(b)) not captured",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U13",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include equipment identification.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (consultants)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U14",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include reprocessing.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U15",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include materials examination and usage criteria.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U16",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include written procedures for production and process control.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership (ventilation)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U17",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include yield calculations.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U18",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include time limitations on production.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U19",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include reprocessing of batches.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U20",
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include tamper-evident packaging requirements.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false list membership",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U21",
+  "row": "D-008",
+  "claim": "- **Inspections** must ensure cleanliness, sanitation, and adherence to maintenance schedules, as required by 21 CFR 111.30.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "no source states inspection of maintenance schedules",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U22",
+  "row": "D-009",
+  "claim": "Written procedures shall also include the calculation of yield, which shall be performed by one person and independently verified by another, or by automated equipment under § 211.68, if verified by one person.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "other: multi-source conjunction",
+  "note": "211.103 states yield calculation by one person independently verified by a second (or automated equipment under 211.68 verified by one person); 'written procedures shall include' needs 211.100(a) 'shall include all requirements in this subpart'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U23",
+  "row": "D-009",
+  "claim": "Written procedures shall also include time limitations on production to ensure the quality of the drug product.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "other: multi-source conjunction",
+  "note": "211.111 time limits to assure quality + 211.100(a) 'procedures shall include all requirements in this subpart'",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U24",
+  "row": "D-009",
+  "claim": "Written procedures shall include control of microbiological contamination to prevent objectionable microorganisms in drug products not required to be sterile.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "211.113(a) (ranked FIRST by both aligners) 'Appropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed'; negation-scope logic reads the evidence's 'not required to be sterile' as negating the rule (claim affirm, evidence negate) -> polarity conflict removes the stating candidate",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U25",
+  "row": "D-009",
+  "claim": "Written procedures shall include materials examination and usage criteria, labeling and packaging materials, and tamper-evident packaging requirements for OTC drug products.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other: multi-source conjunction",
+  "note": "211.122 + 211.130 + 211.132; 211.132 captured states only FDA authority",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U26",
+  "row": "D-019",
+  "claim": "Time limitations on production shall be established to ensure quality, and microbiological contamination control shall be established to prevent objectionable microorganisms.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "other: multi-source conjunction",
+  "note": "211.111 (time limits ... to assure quality) + 211.113(a) (procedures to prevent objectionable microorganisms); each half stated by one source",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U27",
+  "row": "D-019",
+  "claim": "General requirements include establishing specifications.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "operator logic",
+  "note": "as #46: 211.160 general requirements cover establishing specifications; modal-less item",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U28",
+  "row": "E-009",
+  "claim": "Specifically, such controls must include the use of unique identifiers and measurable actions, such as biometrics, to ensure they are only used by the individual.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "no captured source mentions biometrics/unique identifiers in this form",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U29",
+  "row": "E-009",
+  "claim": "These controls must also ensure that the signatures are trustworthy and generally equivalent to handwritten signatures under part 11.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "anaphoric 'These controls'; the equivalence criterion (11.1(a)) is not in this row's captured evidence",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U30",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include personnel management.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "personnel (117.10) is Subpart B in the regulation, but the captured text does not establish Subpart B membership and 'personnel management' is not 117.10's wording",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U31",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include monitoring.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false membership: monitoring is Subpart C",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U32",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include verification.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false membership: verification is Subpart C",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U33",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include reanalysis.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false membership: reanalysis is Subpart C",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U34",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include implementation records.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false membership: implementation records are Subpart F",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U35",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include attestations.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "false membership: attestations are Subpart E",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U36",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.10 requires personnel management to ensure precautions are taken to reduce defects.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "117.10 does not mention reducing defects",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U37",
+  "row": "F-007",
+  "claim": "The requirements for a food safety plan include identifying and implementing preventive controls to significantly minimize or prevent hazards, as appropriate [13].",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "117.126 captured is caption only; FSP contents (126(b)) not captured",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U38",
+  "row": "F-007",
+  "claim": "The requirements for applicability and status include determining whether a food is subject to the modified requirements [20].",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "117.1(a) does not mention modified requirements",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U39",
+  "row": "F-009",
+  "claim": "A sanitation preventive control is a measure to prevent hazards related to sanitation, such as bacterial contamination.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "definition with invented example ('bacterial contamination')",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U40",
+  "row": "F-009",
+  "claim": "An allergen preventive control is a measure to prevent allergens, such as allergens in food.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "circular invented definition",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U41",
+  "row": "F-012",
+  "claim": "Part 117 requires a qualified facility to maintain grounds in a condition that will protect against contamination, [21].",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "grounds rule applies to every operator, not to 'a qualified facility' - guard right ('qualif')",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U42",
+  "row": "F-015",
+  "claim": "A preventive controls qualified individual (PCQI) must develop or oversee the development of the Food Safety Plan (FSP) [1].",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "117.180(a) (PCQI duties) not captured; only 117.180(d) training records",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U43",
+  "row": "F-022",
+  "claim": "The FSVP requirements for importers focus more on compliance with the Federal Food, Drug, and Cosmetic Act (FDA) and the management of importers' operations.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "FSVP not in evidence",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U44",
+  "row": "G-010",
+  "claim": "[1] The National Drug Code (NDC) is a numeric code that identifies a drug and its products.",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "partial",
+  "root": "operator logic",
+  "note": "207.33(a) 2nd sentence 'The NDC for a drug is a numeric code' + unique NDC 'to identify its labeler, product, and package size'; modal-less descriptive claim gets 0 operators even on that sentence (correct verdict partial: 'identifies a drug and its products' is loose)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U45",
+  "row": "H-003",
+  "claim": "The prior notice submission must be confirmed by FDA before the food is sent (21 CFR 1.279).",
+  "N": 1,
+  "source": "unlabelled-untriaged",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "other",
+  "note": "1.279 requires confirmation 'for review'; 'before the food is sent' is not what the captured text says (timing is relative to arrival)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "U46",
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including use.",
+  "N": 0,
+  "source": "unlabelled-untriaged",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Device History Record not in captured Part 820",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "drop00",
+  "row": "B-003",
+  "claim": "Under Part 601, a biologics license application must be approved upon examination of the product and upon a determination that the product complies with the standards established in the regulations in this chapter, including but not limited to the good manufacturing practice requirements set forth i",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "para01",
+  "row": "B-003",
+  "claim": "The application must be submitted in electronic format, with the electronic submission in a form that FDA can process, review, and archive.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "para05",
+  "row": "B-003",
+  "claim": "The application must be submitted within 60 days of the anniversary date of approval of each product under the license.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "desc00",
+  "row": "B-005",
+  "claim": "The use of plateletpheresis and leukapheresis procedures may vary with additional standards in part 640 of this chapter [1].",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "partial",
+  "root": "content gate",
+  "note": "B-005: 2C correct verdict partial (drops 'for a specific recipient' and the proviso); Phase 2D returns unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": true,
+  "arm_specific": false
+ },
+ {
+  "id": "para11",
+  "row": "C-002",
+  "claim": "The label shall specify the identity of the commodity and the name and place of business of the manufacturer, packer, or distributor.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "content gate",
+  "note": "C-002: 2C correct verdict 'partial / unverifiable here' (identity is in 701.11)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": true,
+  "arm_specific": false
+ },
+ {
+  "id": "para13",
+  "row": "C-004",
+  "claim": "The use of bithionol in cosmetics is prohibited [1].",
+  "N": 2,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop01",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include microbiological contamination control.",
+  "N": 0,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop02",
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include drug product inspection.",
+  "N": 0,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "para18",
+  "row": "D-007",
+  "claim": "Written procedures shall be established and followed for packaging and labeling operations [11].",
+  "N": 0,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "para20",
+  "row": "D-008",
+  "claim": "- **Calibration procedures** and records must be maintained, as required by 21 CFR 111.30.",
+  "N": 0,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "partial",
+  "root": "content gate",
+  "note": "D-008: 2C correct verdict partial (211.68(a) states calibration records are maintained; 'procedures' is not); Phase 2D returns unverifiable; semantic arm only - the lexical arm credits 213.68(a) (Phase 2C para21 SAFE)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "paraphrase"
+  },
+  "caused_by_2D": true,
+  "arm_specific": true
+ },
+ {
+  "id": "para28",
+  "row": "D-009",
+  "claim": "If appropriate, written procedures shall include the charge-in of components, ensuring that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess.",
+  "N": 0,
+  "source": "phase2c-labelled:SAFE_SUPPORT",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "alignment",
+  "note": "semantic arm only: selects 211.100(a) (guard correctly blocks it); the lexical arm credits 211.101, heading 'Charge-in of components' (Phase 2C para28 SAFE)",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "paraphrase"
+  },
+  "caused_by_2D": false,
+  "arm_specific": true
+ },
+ {
+  "id": "drop03",
+  "row": "D-010",
+  "claim": "- **Quality control operations for components, packaging, and labels** (eCFR 21 CFR 111.120(d)): Approving or rejecting any treatment and in-process adjustments of components, packaging, or labels to make them suitable for use in the manufacture of a dietary supplement.",
+  "N": 0,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop04",
+  "row": "E-005",
+  "claim": "The FDA requires additional controls for open systems, including ensuring the authenticity.",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop05",
+  "row": "E-005",
+  "claim": "The FDA requires additional controls for open systems, including integrity.",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "list01",
+  "row": "E-005",
+  "claim": "The FDA requires additional controls for open systems, including confidentiality of electronic records.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C correct verdict, now returned",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop06",
+  "row": "E-005",
+  "claim": "The Replacement Reagent Policy applies only to open systems.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "list02",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include food safety plan.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop07",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include preventive controls.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop08",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include circumstances in which preventive controls are not required.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop09",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include assurances under preventive controls.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop10",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include recall plans.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop11",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include preventive control management components.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop12",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.135(a)(1) requires preventive controls to minimize or prevent hazards.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop13",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.140(a) requires preventive control management components.",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop14",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.155(a) mandates verification activities.",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop15",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.160(a) requires validation of preventive controls.",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "partial",
+  "root": "terminology normalization",
+  "note": "117.160(a) 'You must validate that the preventive controls ... are adequate ... as appropriate'; validation/validate stem differently (valid vs validat): 67% core < 70%. Documented in Phase 2C/2D",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": true,
+  "arm_specific": false
+ },
+ {
+  "id": "drop16",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.206(a) requires temperature control activities for unexposed packaged food.",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "para39",
+  "row": "F-007",
+  "claim": "Under Part 117, a food safety plan must contain requirements for hazard analysis and preventive controls, as appropriate to the nature of the preventive control and its role in the facility's food safety system [1].",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop18",
+  "row": "F-007",
+  "claim": "The requirements for a preventive control management components include ensuring the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system [19].",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop19",
+  "row": "F-007",
+  "claim": "The requirements for monitoring include conducting activities that include verification, reanalysis, and validation of the preventive controls [15].",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop20",
+  "row": "F-009",
+  "claim": "Under Part 117, a process preventive control is a measure implemented to prevent hazards that require a preventive control, such as contamination or microbial growth.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop21",
+  "row": "F-009",
+  "claim": "Under Part 117, a process preventive control is a measure implemented to prevent hazards that require a preventive control, such as is subject to the requirements of § 117.135.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop22",
+  "row": "F-009",
+  "claim": "A sanitation preventive control is a measure to prevent hazards related to sanitation, such as is also subject to the requirements of § 117.135.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop23",
+  "row": "F-009",
+  "claim": "An allergen preventive control is a measure to prevent allergens, such as is also subject to the requirements of § 117.135.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop24",
+  "row": "F-009",
+  "claim": "The modified requirements apply to a qualified facility solely engaged in the storage of unexposed packaged food as specified in § 117.20(a).",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "adja01",
+  "row": "F-012",
+  "claim": "Part 117 also requires validation that the preventive controls are effectively and significantly minimizing or preventing the hazards, as appropriate to the facility, the food, and the nature of the preventive control and its role in the facility's food safety system, [13].",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_SUPPORT",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_SUPPORT; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop25",
+  "row": "F-012",
+  "claim": "Part 117 requires activities to ensure the effectiveness of the temperature controls, [22].",
+  "N": 1,
+  "source": "phase2c-labelled:SAFE_PARTIAL",
+  "cls": "TRUE_PARTIAL",
+  "correct": "partial",
+  "root": "-",
+  "note": "Phase 2C SAFE_PARTIAL, preserved",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop26",
+  "row": "F-022",
+  "claim": "The Part 117 supply-chain program differs from the FSVP requirements for importers in that it focuses on food safety and quality control measures, including the implementation of preventive controls.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop27",
+  "row": "F-022",
+  "claim": "The Part 117 supply-chain program differs from the FSVP requirements for importers in that it focuses on food safety and quality control measures, including hazard analysis.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop28",
+  "row": "F-022",
+  "claim": "The Part 117 supply-chain program differs from the FSVP requirements for importers in that it focuses on food safety and quality control measures, including verification processes.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop29",
+  "row": "F-022",
+  "claim": "The program requires the establishment to ensure the lowest possible defect levels, implement a food safety plan, and conduct preventive control management components.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop30",
+  "row": "F-022",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as identifying hazards.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop31",
+  "row": "F-022",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as implementing preventive controls.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop33",
+  "row": "F-022",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as maintaining records.",
+  "N": 1,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "drop34",
+  "row": "M-034",
+  "claim": "- A Design History File is a record of the design of the device, including it is required to be maintained by the manufacturer.",
+  "N": 0,
+  "source": "phase2c-labelled:FALSE_PARTIAL",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "Phase 2C label FALSE_PARTIAL; correct verdict unverifiable",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  },
+  "caused_by_2D": false,
+  "arm_specific": false
+ },
+ {
+  "id": "K0",
+  "row": "D-019",
+  "claim": "These procedures shall include requirements for production and process control, such as where appropriate, \"except\" [12], and to assure batch uniformity and integrity of drug products.",
+  "N": 1,
+  "source": "CONTRADICTED_REVIEW",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "claim extraction",
+  "note": "garbled ('such as where appropriate, \"except\" [12]'); contradicted for invented conditions",
+  "bases": {
+   "semantic": "operator_conflict",
+   "lexical": "operator_conflict"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "K1",
+  "row": "D-019",
+  "claim": "Labels, packaging, and expiration dates shall be determined as appropriate.",
+  "N": 1,
+  "source": "CONTRADICTED_REVIEW",
+  "cls": "AMBIGUOUS",
+  "correct": "-",
+  "root": "operator logic",
+  "note": "garbled; 211.137(a) 'appropriate stability testing' is an adjective, the claim's 'as appropriate' a qualifier - contradiction rests on that",
+  "bases": {
+   "semantic": "operator_conflict",
+   "lexical": "operator_conflict"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "K2",
+  "row": "H-003",
+  "claim": "If you are an authorized user of CBP’s ABI/ACE/ITDS, you may submit prior notice through either the ABI/ACE/ITDS interface or FDA PNSI.",
+  "N": 1,
+  "source": "CONTRADICTED_REVIEW",
+  "cls": "FALSE_CONTRADICTION",
+  "correct": "unverifiable",
+  "root": "operator logic",
+  "note": "'may submit ... through either ABI/ACE/ITDS or FDA PNSI' is a choice of CHANNEL, not permission to skip the duty; compared with 1.279(a) 'you must submit' as permissive-vs-mandatory. The channel rule is not in the captured text, so the correct verdict is unverifiable, not contradicted",
+  "bases": {
+   "semantic": "operator_conflict",
+   "lexical": "operator_conflict"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "K3",
+  "row": "H-003",
+  "claim": "If you are not an authorized user, you may submit prior notice through FDA PNSI.",
+  "N": 1,
+  "source": "CONTRADICTED_REVIEW",
+  "cls": "FALSE_CONTRADICTION",
+  "correct": "unverifiable",
+  "root": "operator logic",
+  "note": "as K2",
+  "bases": {
+   "semantic": "operator_conflict",
+   "lexical": "operator_conflict"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "E0",
+  "row": "D-015",
+  "claim": "The requirements to review and investigate a product complaint are outlined in 21 CFR 111.560(a) [1].",
+  "N": 0,
+  "source": "NO_EVIDENCE_SCREEN",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "claim extraction",
+  "note": "pointer sentence; 111.560(a) 'A qualified person must: (1) review ... (2) investigate' - no candidate cleared the aligner floor",
+  "bases": {
+   "semantic": "no_evidence",
+   "lexical": "no_evidence"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "E1",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include defect action levels.",
+  "N": 1,
+  "source": "NO_EVIDENCE_SCREEN",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "TRUE in the regulation (117.110 is Subpart B) but the captured text does not establish Subpart B membership - the Phase 2D F-003 rule requires it",
+  "bases": {
+   "semantic": "no_evidence",
+   "lexical": "no_evidence"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "E2",
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include corrective actions and corrections.",
+  "N": 1,
+  "source": "NO_EVIDENCE_SCREEN",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "117.150 is Subpart C",
+  "bases": {
+   "semantic": "no_evidence",
+   "lexical": "no_evidence"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "E3",
+  "row": "F-003",
+  "claim": "- 21 CFR 117.254(a) requires approval for withdrawal.",
+  "N": 1,
+  "source": "NO_EVIDENCE_SCREEN",
+  "cls": "FALSE_NEGATIVE",
+  "correct": "supported",
+  "root": "terminology normalization",
+  "note": "117.254(a): Division Director 'must approve an order to withdraw the exemption'; the lexical alignment floor is unstemmed (approval/approve, withdrawal/withdraw) so no candidate reaches the judge",
+  "bases": {
+   "semantic": "no_evidence",
+   "lexical": "no_evidence"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "E4",
+  "row": "F-007",
+  "claim": "The requirements for corrective actions and corrections include implementing procedures to address the hazards and prevent recurrence [11].",
+  "N": 1,
+  "source": "NO_EVIDENCE_SCREEN",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "evidence limitation",
+  "note": "117.150(a) captured is the lead-in only",
+  "bases": {
+   "semantic": "no_evidence",
+   "lexical": "no_evidence"
+  },
+  "caused_by_2D": false
+ },
+ {
+  "id": "E5",
+  "row": "F-009",
+  "claim": "The applicability and status of the requirements are determined in § 117.201(a).",
+  "N": 1,
+  "source": "NO_EVIDENCE_SCREEN",
+  "cls": "CORRECT_UNVERIFIABLE",
+  "correct": "unverifiable",
+  "root": "-",
+  "note": "applicability is 117.1/117.5, not 117.201(a)",
+  "bases": {
+   "semantic": "no_evidence",
+   "lexical": "no_evidence"
+  },
+  "caused_by_2D": false
+ }
+]

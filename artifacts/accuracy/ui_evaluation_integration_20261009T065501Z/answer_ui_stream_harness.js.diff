@@ -1,0 +1,33 @@
+--- artifacts/accuracy/ui_evaluation_integration_20261009T065501Z/snapshot_before/answer_ui_stream_harness.js	2026-10-09 12:25:01
++++ tests/answer_ui_stream_harness.js	2026-10-09 12:27:17
+@@ -8,6 +8,12 @@
+ // with no final event), accuracy_scored / accuracy_unknown / accuracy_failed /
+ // accuracy_off (the answer-accuracy indicator in each of its states).
+ // Used by tests/test_streaming_ui.py and tests/test_accuracy_ui.py.
++//
++//   node tests/answer_ui_stream_harness.js file <payload.json>
++//
++// Scenario "file" merges payload.result into the final result and types
++// payload.page_question into the question box: real evaluator output, built in
++// Python, rendered by the page (tests/test_accuracy_ui.py).
+ "use strict";
+ const fs = require("fs");
+ const path = require("path");
+@@ -63,6 +69,8 @@
+   },
+ };
+ if (ACCURACY[scenario]) final.accuracy = ACCURACY[scenario];
++const fromFile = scenario === "file" ? JSON.parse(fs.readFileSync(process.argv[3], "utf8")) : null;
++if (fromFile) Object.assign(final, fromFile.result || {});
+ const lines = [
+   { type: "start" },
+   { type: "context", sources: [{ index: 1, citation: "21 CFR 820.10(b)(2)" }], no_context: false },
+@@ -100,7 +108,7 @@
+               console, window: {}, TextDecoder, TextEncoder, AbortController, JSON };
+ vm.createContext(ctx);
+ vm.runInContext(script, ctx);
+-el("q").value = "What does 21 CFR 820.10(b)(2) require?";
++el("q").value = (fromFile && fromFile.page_question) || "What does 21 CFR 820.10(b)(2) require?";
+ (async () => {
+   await ctx.ask();
+   const out = els.out.innerHTML;

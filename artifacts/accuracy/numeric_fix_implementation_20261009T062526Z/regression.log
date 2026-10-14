@@ -1,0 +1,28 @@
+Loading tokenizer and model ...
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:02<13:04,  2.53s/it]Loading weights:  68%|██████▊   | 213/311 [00:02<00:00, 111.81it/s]Loading weights:  99%|█████████▉| 309/311 [00:03<00:00, 112.25it/s]Loading weights: 100%|██████████| 311/311 [00:03<00:00, 88.48it/s] 
+Model ready in 4.2s on cpu (torch.float32)
+Database regulus read-only=on
+
+[1/3] What does 21 CFR 820.35 add to the record control requirements of the incorporated standard?
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6863.47it/s]
+Accuracy aligner: BAAI/bge-small-en-v1.5 in 0.1s
+    evidence: EXACT  fingerprint fa2451337503d884  items 18 (guidance 0, truncated 0)  prompt_verified=True
+    accuracy: evaluated 60 (+445.25 ms of 19.18 s)
+    live arm: identical  (off 14.9s, on 14.63s)
+
+[2/3] Which facilities must register with FDA, and how often must registration be renewed?
+    evidence: EXACT  fingerprint 678b0d62c082e609  items 3 (guidance 3, truncated 3)  prompt_verified=True
+    accuracy: evaluated 40 (+151.01 ms of 13.57 s)
+    live arm: identical  (off 13.34s, on 13.33s)
+
+[3/3] How long must production, control, and distribution records be retained under 21 CFR 211.180(a)?
+    evidence: EXACT  fingerprint 2d492c2086ee642a  items 1 (guidance 0, truncated 0)  prompt_verified=True
+    accuracy: evaluated 0 (+0.5 ms of 5.52 s)
+    live arm: identical  (off 4.72s, on 4.7s)
+
+exact evidence: PASS
+payload arm: PASS
+live arm:    PASS
+accuracy cost: 198.92 ms mean (max 445.25) against 12.76 s per answer
+written: artifacts/accuracy/regression_2026-10-09T063859Z.json
+exit 0

@@ -1,0 +1,34 @@
+--- src/regulus/accuracy/verdicts.py	2026-10-12 10:00:47
++++ /private/tmp/claude-501/-Users-sensussoftsoftware-Desktop-Prachi-Patel-Regulus-AI-nosync/ede04d7c-5867-4788-94a4-737c79d20172/scratchpad/v2_window_candidate/src/regulus/accuracy/verdicts.py	2026-10-13 11:46:26
+@@ -644,6 +644,21 @@
+                      "support_block_reason": None})
+         return ClaimVerdict(claim, PARAPHRASE, reason, alignment, comparison, gate)
+     return None
++
++
++WINDOW_MIN_OWN_TERMS = 3
++
++
++def _each_sentence_needed(claim: str, halves: Sequence[str]) -> bool:
++    """A paraphrased window is still NEEDED and USED when each sentence alone
++    carries >= 3 of the claim's core terms that the other sentence lacks."""
++    from regulus.accuracy.intent import same_term
++
++    core = core_terms(claim)
++    stems = [_stems(h) for h in halves]
++    has = lambda t, s: any(same_term(t, x) for x in s)
++    return all(sum(1 for t in core if has(t, stems[i]) and not has(t, stems[1 - i])) >= WINDOW_MIN_OWN_TERMS
++               for i in (0, 1))
+ 
+ 
+ def judge_window(claim: str, windows: Sequence[Passage], *,
+@@ -668,7 +683,8 @@
+     halves = split_sentences(verdict.alignment.passage.text)
+     if len(halves) < 2 or verdict.alignment.overlap < WINDOW_MIN_OVERLAP:
+         return None
+-    if any(longest_run(words, normalise(h))[0] < WINDOW_MIN_RUN_EACH for h in halves[:2]):
++    if (any(longest_run(words, normalise(h))[0] < WINDOW_MIN_RUN_EACH for h in halves[:2])
++            and not _each_sentence_needed(claim, halves[:2])):
+         return None
+     return ClaimVerdict(claim, verdict.verdict, "across two adjacent sentences of one source: " + verdict.reason,
+                         verdict.alignment, verdict.comparison, verdict.gate)

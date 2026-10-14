@@ -1,0 +1,19 @@
+########## M-038  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=direct_lookup
+Q: What does 21 CFR 820.75 require for process validation?
+KEY: TEMPORAL TRAP — 820.75 is [Reserved]; the requirement reaches the manufacturer through 21 CFR 820.10(a) | Must state that 820.75 is reserved and route process validation to 820.10(a) and the standard's validation clauses.
+REV: key_sections=820.75;820.10; key_section_state=absent;present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=false-premise / trap not detected; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Declines and infers nothing about 820.75. The reserved status and the routing of process validation to 820.10(a) and the standard's validation clauses are not stated.
+EVAL: Confirmed against the snapshot: 820.75 has no current text. Draft clauses 7.5.6 and 7.5.7 not named, so concordance scores 0.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.75, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Medical Device User Fee and Modernization Act of 2002, Validation Data in Premarket Notification Submissions (510(k)s) for Reprocessed S
+   X FDA Guidance: Technical Considerations for Additive Manufactured Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final,
+     21 CFR 800.75(a)
+SOURCES:
+   [21 CFR 800.75(a)] (Requests for supervisory review of certain decisions made by the Center for Devices and Radiological Health.) '(a) Definitions. The following definitions shall apply to this section:'
+REQS: [['r1', '21 CFR 820.75']] satisfied=[]
+INTENT: topic=['proces', 'valid'] elements=["the question's subject"] parts=['820'] sections=['820.75']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about proces/valid; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about proces/valid; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

@@ -1,0 +1,61 @@
+question_id,human_N,old_claim_count,new_claim_count,old_discarded_count,new_discarded_count,new_uncertain_count,old_verdict,new_verdict,old_score,new_score,reason_for_change
+A-001,1,4,4,2,2,0,unverifiable,unverifiable,,,
+A-002,0,0,0,3,2,0,unverifiable,unverifiable,,,
+A-003,1,0,0,2,2,0,unverifiable,unverifiable,,,
+A-004,1,0,0,3,1,0,unverifiable,unverifiable,,,
+B-001,1,22,24,9,7,0,partial,partial,45,45,
+B-002,1,3,3,1,1,0,correct,correct,100,100,
+B-003,1,10,11,2,1,0,partial,partial,15,15,
+B-004,1,0,0,3,1,0,unverifiable,unverifiable,,,
+B-005,1,12,13,1,0,0,partial,partial,0,0,
+C-001,0,0,0,3,3,0,abstention_incorrect,abstention_incorrect,0,0,
+C-002,1,5,5,0,0,0,partial,partial,40,40,
+C-003,0,0,0,1,1,0,unverifiable,unverifiable,,,
+C-004,2,9,16,1,0,0,partial,partial,35,0,recovered s1 ('These ingredients are deemed adulterated ... [1]') is verbatim in 700.14(a) but cites 700.11(a): the unchanged citation rule fails citation (-40); human L=1. Vinyl-chloride item correctly NOT supported by a recital
+C-005,1,0,0,1,0,1,unverifiable,unverifiable,,,
+D-001,0,18,19,4,3,0,off_topic,off_topic,0,0,
+D-002,2,4,4,1,1,0,correct,correct,100,100,
+D-003,0,2,15,1,0,0,off_topic,off_topic,0,0,
+D-004,0,3,18,0,0,0,off_topic,off_topic,0,0,
+D-005,0,0,0,1,1,0,unverifiable,unverifiable,,,
+D-006,0,1,13,0,0,0,unverifiable,off_topic,,0,list of production-control items now judged item by item: each corresponds to a section about something else -> off-topic (human N=0)
+D-007,0,10,10,0,0,0,off_topic,off_topic,0,0,
+D-008,0,6,6,3,3,0,off_topic,off_topic,0,0,
+D-009,0,16,16,0,0,0,partial,partial,40,40,
+D-010,0,6,6,1,1,0,partial,partial,40,40,
+D-013,2,2,2,1,1,0,correct,correct,100,100,
+D-015,0,2,2,2,2,0,incorrect,incorrect,0,0,
+D-019,1,6,15,2,0,0,incorrect,incorrect,0,0,
+E-001,1,3,3,1,1,0,unverifiable,partial,,40,framing lead 'which states that' normalised: the 11.1(a) quotation is now verbatim-supported; garbled sentences still unverifiable
+E-005,1,8,10,0,0,0,partial,partial,0,0,
+E-007,2,2,2,1,1,0,unverifiable,unverifiable,,,
+E-009,1,3,3,1,1,0,partial,partial,40,40,
+E-010,1,1,3,2,0,0,unverifiable,unverifiable,,,"2 dropped sentences ('These provisions ensure ...', 'The FDA guidance ... affects enforcement discretion ...') now judged; neither supportable from the evidence"
+F-003,1,23,38,2,2,0,off_topic,off_topic,0,0,
+F-004,1,1,3,3,2,0,unverifiable,partial,,0,dropped 'The requirements include ensuring the grounds ...' now judged; the grounds claim supported across two adjacent sentences of 117.20(a)
+F-007,1,3,12,9,0,0,unverifiable,partial,,0,"9 dropped 'The requirements for X include ...' sentences now judged; 4 items supported (reanalysis every 3 years, verification, implementation records, withdrawal order); the rest unverifiable or off-question"
+F-009,1,11,14,0,0,0,partial,partial,35,35,
+F-012,1,9,9,1,1,0,partial,partial,0,0,
+F-015,1,3,3,0,0,0,partial,partial,0,0,
+F-022,1,5,10,2,1,0,off_topic,off_topic,0,0,
+G-004,2,3,7,2,0,0,correct,correct,100,100,2 dropped sentences now judged and supported (list items of (c)(1)/(d)(1); descriptive restatement of (d)(1)); score unchanged at 100
+G-005,1,0,0,1,0,0,unverifiable,unverifiable,,,
+G-008,1,2,2,2,2,0,unverifiable,partial,,0,'... but versions ... sold to or used in hospitals are subject to the bar code requirements' supported as a descriptive restatement of 201.25(b)(1)(ii); other content unverified
+G-010,1,2,3,1,0,0,partial,partial,40,40,
+H-001,2,0,0,2,1,0,unverifiable,unverifiable,,,
+H-003,1,5,5,0,0,0,incorrect,incorrect,0,0,
+H-006,1,0,0,1,0,1,unverifiable,unverifiable,,,
+K-003,0,3,6,3,0,0,unverifiable,unverifiable,,,
+L-010,2,0,0,0,0,0,unverifiable,unverifiable,,,
+M-020,2,1,12,0,0,0,unverifiable,correct,,100,one 12-item enumeration split at its citation markers; every item verbatim in 820.35 -> correct (human N=2)
+M-031,1,0,0,2,2,0,unverifiable,unverifiable,,,
+M-032,1,0,0,2,2,0,unverifiable,unverifiable,,,
+M-033,1,0,0,2,2,0,unverifiable,unverifiable,,,
+M-034,0,3,10,2,2,0,unverifiable,partial,,0,recovered claims include one that drops a condition and others unverifiable -> partial 0 (human N=0)
+M-035,1,0,0,2,2,0,unverifiable,unverifiable,,,
+M-036,1,0,0,2,2,0,unverifiable,unverifiable,,,
+M-037,1,0,0,2,2,0,unverifiable,unverifiable,,,
+M-038,1,0,0,2,2,0,unverifiable,unverifiable,,,
+NC-003,0,0,0,3,3,0,abstention_incorrect,abstention_incorrect,0,0,
+P-010,2,1,1,2,2,0,correct,correct,100,100,
+PB-008,0,1,2,3,2,0,unverifiable,unverifiable,,,

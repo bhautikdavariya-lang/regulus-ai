@@ -1,0 +1,19 @@
+########## M-037  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=list
+Q: What are the purchasing control and supplier evaluation requirements of 21 CFR 820.50?
+KEY: TEMPORAL TRAP — 820.50 is [Reserved]; the requirement reaches the manufacturer through 21 CFR 820.10(a) | Must state that 820.50 is reserved and route purchasing controls to 820.10(a) and the standard's purchasing clauses.
+REV: key_sections=820.50;820.10; key_section_state=absent;present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=false-premise / trap not detected; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Declines and infers nothing about 820.50. The reserved status and the routing of purchasing controls and supplier evaluation to 820.10(a) and the standard's purchasing clauses are not stated.
+EVAL: Confirmed against the snapshot: 820.50 has no current text. Draft clauses 7.4, 7.4.1, 7.4.2 and 7.4.3 not named, so concordance scores 0.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.50, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Current Good Manufacturing Practice Requirements for Combination Products: Guidance for Industry and FDA Staff (final, 2017-01-11, Docke
+   X FDA Guidance: Use of International Standard ISO 10993-1, "Biological evaluation of medical devices - Part 1: Evaluation and testing within a risk mana
+     21 CFR 522.820(a)
+SOURCES:
+   [21 CFR 522.820(a)] (Erythromycin.) '(a) Specifications—'
+REQS: [['r1', '21 CFR 820.50']] satisfied=[]
+INTENT: topic=['purchas', 'control', 'suppli', 'evalu'] elements=["the question's subject"] parts=['820'] sections=['820.50']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about purchas/control/suppli/evalu; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about purchas/control/suppli/evalu; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

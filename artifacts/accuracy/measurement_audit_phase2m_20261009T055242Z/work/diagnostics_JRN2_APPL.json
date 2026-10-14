@@ -1,0 +1,167 @@
+[
+ {
+  "id": "DX1",
+  "kind": "decision",
+  "expect": "no_conflict",
+  "conflicts": [],
+  "basis": "descriptive",
+  "final": "supported",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX2",
+  "kind": "decision",
+  "expect": "conflict",
+  "conflicts": [
+   "applicability"
+  ],
+  "basis": "operator_conflict",
+  "final": "contradicted",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX3",
+  "kind": "decision",
+  "expect": "conflict",
+  "conflicts": [
+   "polarity"
+  ],
+  "basis": "not_decisive",
+  "final": "unverifiable",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX4",
+  "kind": "decision",
+  "expect": "no_conflict",
+  "conflicts": [
+   "polarity"
+  ],
+  "basis": "verbatim",
+  "final": "supported",
+  "ok": false,
+  "issue": "false contradiction (polarity; final supported)"
+ },
+ {
+  "id": "DX5",
+  "kind": "decision",
+  "expect": "conflict",
+  "conflicts": [
+   "polarity",
+   "strength"
+  ],
+  "basis": "operator_conflict",
+  "final": "contradicted",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX6",
+  "kind": "decision",
+  "expect": "no_conflict",
+  "conflicts": [
+   "strength"
+  ],
+  "basis": "verbatim",
+  "final": "supported",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX7",
+  "kind": "decision",
+  "expect": "conflict",
+  "conflicts": [
+   "limit_direction"
+  ],
+  "basis": "operator_conflict",
+  "final": "contradicted",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX8",
+  "kind": "decision",
+  "expect": "conflict",
+  "conflicts": [
+   "limit_direction",
+   "strength"
+  ],
+  "basis": "operator_conflict",
+  "final": "contradicted",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX9",
+  "kind": "decision",
+  "expect": "conflict",
+  "conflicts": [
+   "qualifier_polarity"
+  ],
+  "basis": "operator_conflict",
+  "final": "contradicted",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX10",
+  "kind": "decision",
+  "expect": "no_conflict",
+  "conflicts": [],
+  "basis": "verbatim",
+  "final": "supported",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "DX11",
+  "kind": "decision",
+  "expect": "no_conflict",
+  "conflicts": [],
+  "basis": "not_decisive",
+  "final": "unverifiable",
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "EX1",
+  "kind": "extraction",
+  "keys": [],
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "EX2",
+  "kind": "extraction",
+  "keys": [],
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "EX3",
+  "kind": "extraction",
+  "keys": [],
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "EX4",
+  "kind": "extraction",
+  "keys": [],
+  "ok": true,
+  "issue": ""
+ },
+ {
+  "id": "EX5",
+  "kind": "extraction",
+  "keys": [
+   "subject"
+  ],
+  "ok": true,
+  "issue": ""
+ }
+]

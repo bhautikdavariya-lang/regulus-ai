@@ -1,0 +1,56 @@
+########## M-020  N=2 M=0 L=0 O=2 result=FAIL  type=Direct Lookup  intent=cross_reference
+Q: What does 21 CFR 820.35 add to the record control requirements of the incorporated standard?
+KEY: 21 CFR 820.35 (introductory text) | FDA supplement specifying additional required record content beyond the standard's record control clause.
+REV: key_sections=820.35; key_section_state=present; key_retrieved=yes; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=yes; mechanical_root_cause=citation attachment only; guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Enumerates the added record content correctly and completely - complaint records (device name, date received, complainant, nature and details, corrective action, reply) and servicing records (device name, identifier, date, individual, service performed, test and inspection data) - but the paragraph pointers are shifted: the nature and details of the complaint is cited to 820.35(a)(3), which is the device identifier, and the corrective action and reply are likewise off by one.
+EVAL: Verified element by element against 820.35 in the snapshot; draft key verified correct. Draft clause 4.2.5 is not named, so concordance scores 0. Substance and completeness are full marks; the citation misalignment and the missing ISO clause carry the failure.
+PIPE: model_called=True fallback=None answerability=ANSWERABLE validation=valid
+ANSWER: 21 CFR 820.35 adds the name of the device [3], the date the complaint was received [4], the name, address, and phone number of the complainant [6], the nature and details of the complaint [5], any correction or corrective action taken [7], any reply to the complainant [8], the name of the device serviced [11], any UDI or UPC, and any other device identification(s) [12], the date of service [13], the individual(s) who serviced the device [14], the service performed [15], and any test and inspection data [16]. [1]
+EVIDENCE LABELS (18, lost=0):
+     21 CFR 820.35
+     21 CFR 820.35(a)
+     21 CFR 820.35(a)(1)
+     21 CFR 820.35(a)(2)
+     21 CFR 820.35(a)(3)
+     21 CFR 820.35(a)(4)
+     21 CFR 820.35(a)(5)
+     21 CFR 820.35(a)(6)
+     21 CFR 820.35(a)(7)
+     21 CFR 820.35(b)
+     21 CFR 820.35(b)(1)
+     21 CFR 820.35(b)(2)
+     21 CFR 820.35(b)(3)
+     21 CFR 820.35(b)(4)
+     21 CFR 820.35(b)(5)
+     21 CFR 820.35(b)(6)
+     21 CFR 820.35(c)
+     21 CFR 820.35(d)
+SOURCES:
+   [21 CFR 820.35] (Control of records.) 'In addition to the requirements of Clause 4.2.5 in ISO 13485 (incorporated by reference, see § 820.7), Control of Records, the manufacturer must include the following information in certain records:\n(a) Records of complaints. In addition to Clause 8.2.2 in ISO'
+   [21 CFR 820.35(a)] (Control of records.) '(a) Records of complaints. In addition to Clause 8.2.2 in ISO 13485, Complaint Handling, the manufacturer shall maintain records of the review, evaluation, and investigation for any complaints involving the possible failure of a device, labeling, or packaging '
+   [21 CFR 820.35(a)(1)] (Control of records.) '(1) The name of the device;'
+   [21 CFR 820.35(a)(2)] (Control of records.) '(2) The date the complaint was received;'
+   [21 CFR 820.35(a)(3)] (Control of records.) '(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s);'
+   [21 CFR 820.35(a)(4)] (Control of records.) '(4) The name, address, and phone number of the complainant;'
+   [21 CFR 820.35(a)(5)] (Control of records.) '(5) The nature and details of the complaint;'
+   [21 CFR 820.35(a)(6)] (Control of records.) '(6) Any correction or corrective action taken; and'
+   [21 CFR 820.35(a)(7)] (Control of records.) '(7) Any reply to the complainant.'
+   [21 CFR 820.35(b)] (Control of records.) '(b) Records of servicing activities. In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:'
+   [21 CFR 820.35(b)(1)] (Control of records.) '(1) The name of the device serviced;'
+   [21 CFR 820.35(b)(2)] (Control of records.) '(2) Any UDI or UPC, and any other device identification(s);'
+   [21 CFR 820.35(b)(3)] (Control of records.) '(3) The date of service;'
+   [21 CFR 820.35(b)(4)] (Control of records.) '(4) The individual(s) who serviced the device;'
+   [21 CFR 820.35(b)(5)] (Control of records.) '(5) The service performed; and'
+   [21 CFR 820.35(b)(6)] (Control of records.) '(6) Any test and inspection data.'
+   [21 CFR 820.35(c)] (Control of records.) '(c) Unique Device Identification. In addition to the requirements of Clauses 7.5.1, 7.5.8, and 7.5.9 in ISO 13485, the UDI must be recorded for each medical device or batch of medical devices.'
+   [21 CFR 820.35(d)] (Control of records.) '(d) Confidentiality. Records deemed confidential by the manufacturer may be marked to aid FDA in determining whether information may be disclosed under the public information regulation in part 20 of this chapter.'
+REQS: [['r1', '21 CFR 820.35']] satisfied=['r1']
+INTENT: topic=['record', 'control', 'incorporat', 'standard'] elements=["the question's subject"] parts=['820'] sections=['820.35']
+VERDICT: 1 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=["the question's subject"]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 1
+  C1: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=correct
+      text: 21 CFR 820.35 adds the name of the device [3], the date the complaint was received [4], the name, address, and phone number of the complainant [6], the nature and details of the complaint [5], any correction or corrective action taken [7], any reply to the complainant [8], the name of the device ser
+      support_reason: aligned to 21 CFR 820.35 (SOURCE 1), but only 0 regulatory operator(s) could be decided (none) and 68% of its terms appear there; unmatched: adds, data, individual, inspection, performed, service
+      rel_reason: the regulation it corresponds to (21 CFR 820.35, 21 CFR 820.35(a)(4)) is about record/control | found=1.0
+      evidence: [{'citation': '21 CFR 820.35', 'source_index': 1, 'heading': 'Control of records.', 'text': 'In addition to the requirements of Clause 4.2.5 in ISO 13485 (incorporated by reference, see § 820.7), Cont ops={'strength': 'undetermined', 'polarity': 'undetermined', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}

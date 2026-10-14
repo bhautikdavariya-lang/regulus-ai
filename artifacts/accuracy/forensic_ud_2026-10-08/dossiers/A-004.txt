@@ -1,0 +1,18 @@
+########## A-004  N=1 M=0 L=0 O=1 result=FAIL  type=Cross-Reference  intent=direct_lookup
+Q: What requirements apply to medicated feed manufacturing and to veterinary feed directive drugs?
+KEY: 21 CFR Part 225; 21 CFR 558.6 | CGMP for medicated feeds; VFD issuance, content, distribution and recordkeeping.
+REV: key_sections=558.6; key_section_state=present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: The medicated feed mill licence distinction between Category I and Category II articles and the 2-year retention of the veterinary feed directive are right, but Part 225 current good manufacturing practice for medicated feeds is never addressed and the directive's issuance by a licensed veterinarian, required content and distribution conditions are only partly covered. Cited to a questions-and-answers guidance.
+EVAL: Draft key Part 225 and 558.6 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The requirements for medicated feed manufacturing include a medicated feed mill license if the VFD drug used to manufacture a Type B or Type C medicated feed is a Category II, Type A medicated article (21 CFR 558.4(a)). A list of Category II drugs is provided in 21 CFR 558.4(d). A license is not required if the VFD drug used to manufacture a Type B or Type C medicated feed is a Category I, Type A medicated article, with the exception of certain liquid and free-choice medicated feeds. If you are a university researcher and want to perform research on a drug in medicated feed, you do not need a VFD to obtain the medicated feed. The VFD regulations apply to the use of VFD drugs and VFD feed for approved, conditionally approved, and indexed indications. When investigating a new indication during the approval process or performing tests in vitro or in animals used only for laboratory research purposes, the VFD regulations do not apply. Instead, the requirements in 21 CFR part 511 “New Animal Drugs for Investigational Use” apply. If you are shipping/distributing the VFD feed directly to the client, an acknowledgment letter alone from the dealer would not be sufficient. Instead, the dealer would also need to provide you with a copy of the VFD, and both you and your dealer are required to maintain a copy of the VFD for 2 years. The dealer must ensure that any medicated feed you distribute containing a VFD drug or combination VFD drug complies with the terms of the VFD and is manufactured and labeled in conformity with the approved, conditionally approved, or indexed conditions of use for such drug. [1]
+EVIDENCE LABELS (3, lost=1):
+   X FDA Guidance: CVM GFI #120 Veterinary Feed Directive Regulation Questions and Answers (final, 2024-04-29, Docket FDA-2010-N-0155)
+   X FDA Guidance: CVM GFI #120 Veterinary Feed Directive Regulation Questions and Answers (final, 2024-04-29, Docket FDA-2010-N-0155)
+   X FDA Guidance: CVM GFI #120 Veterinary Feed Directive Regulation Questions and Answers (final, 2024-04-29, Docket FDA-2010-N-0155)
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['medicat', 'veterinary', 'directiv'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

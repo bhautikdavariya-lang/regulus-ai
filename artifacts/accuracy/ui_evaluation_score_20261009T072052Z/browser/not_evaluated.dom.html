@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulus test console</title>
+<style>
+  :root {
+    --bg: #fbfbfa; --panel: #fff; --ink: #1c1c1a; --muted: #6b6b66; --line: #e3e3de;
+    --accent: #7a5cff; --ok: #1f7a4d; --warn: #9a5b00; --stop: #b3261e;
+    --ecfr: #1f5fa8; --guid: #8a5a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#17171a; --panel:#1f1f23; --ink:#eceCEA; --muted:#9a9a95; --line:#32323a;
+            --accent:#a48cff; --ok:#5fd19a; --warn:#e0a33a; --stop:#ff8a80; --ecfr:#7fb0ef; --guid:#e0b25a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px; }
+  h1 { font-size:20px; margin:0; letter-spacing:-.01em; }
+  .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; margin-top:16px; }
+  label { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:6px; }
+  textarea, select, input[type=number] {
+    width:100%; font:inherit; color:inherit; background:var(--bg);
+    border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+  }
+  textarea { min-height:78px; resize:vertical; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+  .row > div { flex:1 1 170px; }
+  .controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:14px; }
+  button { font:inherit; font-weight:600; border:0; border-radius:8px; padding:10px 18px;
+           background:var(--accent); color:#fff; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  button.ghost { background:transparent; color:var(--muted); border:1px solid var(--line); font-weight:500; }
+  .check { display:flex; align-items:center; gap:7px; font-size:14px; }
+  .check input { width:16px; height:16px; accent-color:var(--accent); }
+  .examples { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .examples button { background:transparent; border:1px solid var(--line); color:var(--muted);
+                     font-size:12.5px; font-weight:500; padding:5px 10px; border-radius:99px; }
+  .answer { white-space:pre-wrap; font-size:15.5px; }
+  .pill { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em;
+          padding:2px 8px; border-radius:99px; border:1px solid currentColor; }
+  .pill.ok{color:var(--ok)} .pill.warn{color:var(--warn)} .pill.stop{color:var(--stop)} .pill.mut{color:var(--muted)}
+  .pill.ecfr{color:var(--ecfr)} .pill.guid{color:var(--guid)}
+  .meta { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+  .src { border-top:1px solid var(--line); padding:12px 0; }
+  .src:first-of-type { border-top:0; }
+  .src h4 { margin:0 0 4px; font-size:14px; font-weight:600; display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
+  .src p { margin:6px 0 0; font-size:13.5px; color:var(--muted); }
+  .num { display:inline-flex; width:22px; height:22px; align-items:center; justify-content:center;
+         border-radius:6px; background:var(--bg); border:1px solid var(--line); font-size:12px; font-weight:700; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td { padding:4px 0; vertical-align:top; }
+  td:first-child { color:var(--muted); width:42%; padding-right:10px; }
+  a { color:var(--accent); }
+  .err { color:var(--stop); }
+  .draft { border-style:dashed; }
+  .caret { display:inline-block; width:7px; height:1em; margin-left:2px; vertical-align:text-bottom;
+           background:var(--muted); animation:blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity:0; } }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; }
+  pre { overflow-x:auto; font-size:12px; background:var(--bg); padding:10px; border-radius:8px; border:1px solid var(--line); }
+  /* Answer accuracy: a compact, answer-level indicator. Uses the existing
+     tokens only; it is not a dashboard and must not grow into one. */
+  .acc { margin-top:14px; padding-top:12px; border-top:1px solid var(--line); }
+  .acc-top { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+  .acc-score { min-width:112px; }
+  .acc-label { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .acc-value { font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.2; }
+  .acc-value.unknown { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0; }
+  .acc-basis { flex:1 1 260px; margin:2px 0 0; font-size:12.5px; color:var(--muted); }
+  .acc-points { margin-top:4px; font-size:15px; font-weight:600; }
+  .acc-points.unknown { color:var(--muted); font-weight:500; }
+  .acc-note { margin:2px 0 0; max-width:240px; font-size:12px; color:var(--muted); }
+  .acc details { margin-top:10px; }
+  table.acc-table td { padding:3px 0; }
+  table.acc-table td.dim { color:var(--ink); width:auto; padding-right:10px; }
+  table.acc-table td.state { width:26px; text-align:center; font-weight:700; }
+  table.acc-table td.why { color:var(--muted); font-size:12.5px; width:auto; }
+  .spin { display:inline-block; width:13px; height:13px; border:2px solid var(--line);
+          border-top-color:var(--accent); border-radius:50%; animation:s .8s linear infinite; vertical-align:-2px; }
+  @keyframes s { to { transform:rotate(360deg) } }
+</style>
+</head>
+<body data-done="1">
+<div class="wrap">
+  <header>
+    <h1>Regulus test console</h1>
+    <span class="sub" id="env">stub · cpu · eCFR snapshot d</span>
+  </header>
+  <p class="sub">Ask a regulatory question. Answers are generated locally on CPU and take roughly 30 to 90 seconds.</p>
+
+  <div class="card">
+    <label for="q">Question</label>
+    <textarea id="q" placeholder="What does 21 CFR Part 11 cover?"></textarea>
+    <div class="examples" id="examples"><button data-i="0">What does 21 CFR Part 11 cover?</button><button data-i="1">What are the specific requirements of 21 CFR 314.999?</button><button data-i="2">What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?</button><button data-i="3">What exact storage temperature range does 21 CFR Part 211 require for all finished tablets?</button><button data-i="4">What does 21 CFR 820.10 require?</button><button data-i="5">Summarize FDA guidance FDA-2023-D-99999.</button></div>
+    <div class="row">
+      <div>
+        <label for="adapter">Model</label>
+        <select id="adapter"></select>
+      </div>
+      <div>
+        <label for="topk">Retrieval top-k</label>
+        <input type="number" id="topk" value="8" min="1" max="20">
+      </div>
+      <div>
+        <label for="tokens" title="A safety ceiling against a model that never stops, not a target length. The pipeline sets each question's allowance from its evidence; leave this alone unless you are deliberately testing the ceiling.">Token ceiling (safety limit)</label>
+        <input type="number" id="tokens" value="2048" min="64" max="8192" step="64">
+      </div>
+    </div>
+    <div class="controls">
+      <button id="ask">Ask</button>
+      <button id="stop" class="ghost" hidden="">Stop</button>
+      <span class="check"><input type="checkbox" id="grounding"><label for="grounding" style="margin:0;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink)">Grounding gate</label></span>
+      <span class="sub" id="status">first text — (no model text) · 0 chunks · final 0 ms · render 1 ms</span>
+    </div>
+  </div>
+
+  <div id="out">
+    <div class="card">
+      <div class="meta"><span class="pill ok">generated</span> <span class="pill mut">gate off</span> <span class="pill mut">1 sources</span> <span class="pill mut">1s</span>  <span class="pill mut">evaluation: NOT EVALUATED</span></div>
+      <div class="answer">Validated answer [1].</div>
+      
+      <div class="acc">
+        <div class="acc-top">
+          <div class="acc-score"><div class="acc-label">Evaluation of this answer</div>
+            <div class="acc-value unknown" style="color:var(--muted)">NOT EVALUATED</div>
+            <div class="acc-points unknown">Score unavailable</div>
+            <p class="acc-note">Evaluation score based on the system's checks; it is not a percentage of factual accuracy.</p></div>
+          <p class="acc-basis">Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result.</p>
+        </div>
+        <table class="acc-table">
+          <tbody><tr><td class="dim">Substantive correctness</td>
+            <td class="why">not available</td></tr>
+          <tr><td class="dim">Citation correctness</td>
+            <td class="why">not available</td></tr>
+        </tbody></table>
+        <p class="sub" style="margin:8px 0 0">Cannot be verified: no statement could be related to the question or checked against evidence</p>
+        
+      </div>
+    </div>
+    <div class="card">
+      <label>Citations</label>
+      <ul style="margin:0;padding-left:18px"><li>✓ 21 CFR 820.10(b)(2)</li></ul>
+    </div>
+    <div class="card">
+      <label>Retrieved context (1)</label>
+      
+    <div class="src">
+      <h4><span class="num">1</span> 21 CFR 820.10(b)(2)
+        <span class="pill ecfr">eCFR</span>
+        <span class="pill mut">exact_cfr</span> <span class="pill mut">score 1</span></h4>
+      <div class="sub">h</div>
+      <p>body</p>
+      
+    </div>
+    </div>
+    <div class="card">
+      <label>Diagnostics</label>
+      <table>
+        <tbody><tr><td>Query type</td><td>EXACT_CFR</td></tr>
+        <tr><td>Retrieval mode</td><td></td></tr>
+        <tr><td>OR fallback used</td><td>no</td></tr>
+        <tr><td>Retrieval / generation</td><td>? ms / 0 ms</td></tr>
+        <tr><td>Input tokens</td><td>—</td></tr>
+        
+        
+        
+        <tr><td>Model</td><td>base Qwen3-0.6B</td></tr>
+      </tbody></table>
+      
+      <details style="margin-top:10px"><summary>Raw response</summary><pre>{
+  "question": "What does 21 CFR 820.10(b)(2) require?",
+  "answer": "Validated answer [1].",
+  "model_called": true,
+  "no_context": false,
+  "citations": [
+    {
+      "index": 1,
+      "label": "21 CFR 820.10(b)(2)",
+      "url": "",
+      "cited_in_answer": true
+    }
+  ],
+  "sources": [
+    {
+      "index": 1,
+      "citation": "21 CFR 820.10(b)(2)",
+      "corpus": "ecfr",
+      "heading": "h",
+      "method": "exact_cfr",
+      "score": 1,
+      "url": "",
+      "text": "body",
+      "truncated": false
+    }
+  ],
+  "dropped_sources": 0,
+  "notes": [],
+  "grounding": null,
+  "retrieval": {},
+  "query_type": "EXACT_CFR",
+  "timings_ms": {},
+  "adapter": {
+    "id": ""
+  },
+  "wall_seconds": 1,
+  "server_timings_ms": {},
+  "accuracy": {
+    "status": "unable_to_determine",
+    "accuracy": null,
+    "reason": "Cannot be verified: no statement could be related to the question or checked against evidence",
+    "rubric_id": "regulus_live_evidence_assessment_v2",
+    "rubric": {
+      "rubric_id": "regulus_live_evidence_assessment_v2",
+      "version": "2.0.0",
+      "frozen": "2026-10-08",
+      "dimensions": [
+        "question_relevance",
+        "substantive_correctness",
+        "evidence_support",
+        "citation_correctness",
+        "fabrication_free",
+        "completeness",
+        "scope_correct"
+      ],
+      "absolute": [
+        "fabrication_free",
+        "substantive_correctness",
+        "question_relevance"
+      ],
+      "deductions": {
+        "fabrication_free:fail": 100,
+        "substantive_correctness:fail": 100,
+        "question_relevance:fail": 100,
+        "substantive_correctness:partial": 45,
+        "citation_correctness:fail": 40,
+        "scope_correct:fail": 40,
+        "evidence_support:fail": 35,
+        "completeness:fail": 25,
+        "completeness:partial": 10,
+        "evidence_support:not_established": 15,
+        "fabrication_free:not_established": 10,
+        "citation_correctness:not_established": 10,
+        "completeness:not_established": 5,
+        "scope_correct:not_established": 5
+      },
+      "formula": "score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided",
+      "is_acceptance_rubric": false
+    },
+    "basis": "Based on the authoritative regulatory evidence retrieved for this answer.",
+    "not_the_benchmark": "An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.",
+    "answer_verdict": {
+      "verdict": "unverifiable",
+      "reason": "no statement could be related to the question or checked against evidence",
+      "counts": {
+        "supported": 0,
+        "supported_with_citation_defect": 0,
+        "partially_supported": 0,
+        "contradicted": 0,
+        "irrelevant": 0,
+        "unverifiable": 1
+      },
+      "elements_covered": [],
+      "elements_missing": [],
+      "elements_unverified": []
+    },
+    "dimensions": [
+      {
+        "dimension": "question_relevance",
+        "label": "Answers the question",
+        "state": "not_established",
+        "glyph": "?",
+        "detail": "no statement could be related to the question: none corresponds to retrieved evidence or names its subject",
+        "evidence": [],
+        "claim": "the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part"
+      },
+      {
+        "dimension": "substantive_correctness",
+        "label": "Substantive correctness",
+        "state": "not_established",
+        "glyph": "?",
+        "detail": "no statement could be related to the question or checked against evidence",
+        "evidence": [],
+        "claim": "every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it"
+      },
+      {
+        "dimension": "evidence_support",
+        "label": "Evidence support",
+        "state": "not_applicable",
+        "glyph": "–",
+        "detail": "no statement that answers the question to support",
+        "evidence": [],
+        "claim": "every material claim is a verbatim passage of an authoritative source retrieved for this question"
+      },
+      {
+        "dimension": "citation_correctness",
+        "label": "Citation correctness",
+        "state": "not_applicable",
+        "glyph": "–",
+        "detail": "no statement that answers the question to cite",
+        "evidence": [],
+        "claim": "every citation resolves to a supplied source, and to the provision the sentence it is attached to is about"
+      },
+      {
+        "dimension": "fabrication_free",
+        "label": "Unsupported claims",
+        "state": "pass",
+        "glyph": "✓",
+        "detail": "every figure, condition and identifier in the answer appears in the supplied evidence (21 CFR 820.10(b)(2))",
+        "evidence": [],
+        "claim": "the answer names no section, clause, condition or figure that the authoritative evidence does not contain"
+      },
+      {
+        "dimension": "completeness",
+        "label": "Completeness",
+        "state": "not_established",
+        "glyph": "?",
+        "detail": "nothing in the answer could be related to what the question asks for",
+        "evidence": [],
+        "claim": "every provision the question requested has authoritative text and is addressed in the answer"
+      },
+      {
+        "dimension": "scope_correct",
+        "label": "Scope",
+        "state": "pass",
+        "glyph": "✓",
+        "detail": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome",
+        "evidence": [],
+        "claim": "the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome"
+      }
+    ],
+    "deductions": [
+      {
+        "dimension": "completeness",
+        "state": "not_established",
+        "points": 5
+      }
+    ],
+    "checked": {
+      "question": "What does 21 CFR 820.10(b)(2) require?",
+      "intent": {
+        "kind": "direct_lookup",
+        "provisions": [
+          "21 CFR 820.10(b)(2)"
+        ],
+        "sections": [
+          "820.10"
+        ],
+        "parts": [
+          "820"
+        ],
+        "topic": [],
+        "domains": [
+          "H"
+        ],
+        "domain_names": [
+          "medical devices"
+        ],
+        "elements": [],
+        "signals": [
+          "kind:direct_lookup"
+        ],
+        "planner_type": "requirement"
+      },
+      "answer_verdict": {
+        "verdict": "unverifiable",
+        "reason": "no statement could be related to the question or checked against evidence",
+        "counts": {
+          "supported": 0,
+          "supported_with_citation_defect": 0,
+          "partially_supported": 0,
+          "contradicted": 0,
+          "irrelevant": 0,
+          "unverifiable": 1
+        },
+        "elements_covered": [],
+        "elements_missing": [],
+        "elements_unverified": []
+      },
+      "sources": 2,
+      "evidence_passages": 2,
+      "evidence_excluded_domain": [],
+      "citations": 0,
+      "sentences": 1,
+      "material_claims": 1,
+      "claims_answering_question": 0,
+      "sentence_origins": {
+        "model_claim": 1,
+        "inserted_quotation": 0,
+        "pipeline_sentence": 0,
+        "citation_label": 0,
+        "question_echo": 0,
+        "too_short": 0,
+        "heading_fragment": 0,
+        "pointer_sentence": 0,
+        "question_restatement": 0,
+        "meta_statement": 0,
+        "uncertain": 0
+      },
+      "claim_status": {
+        "supported": 0,
+        "supported_with_citation_defect": 0,
+        "partially_supported": 0,
+        "contradicted": 0,
+        "irrelevant": 0,
+        "unverifiable": 1
+      },
+      "aligner": "lexical",
+      "identifiers_named": 1,
+      "identifiers_verified_absent": 0,
+      "identifier_index_used": false,
+      "validation_status": "valid",
+      "validation_error_codes": [],
+      "abstention": {
+        "declined": false,
+        "outcome": null,
+        "reason": "the answer states regulatory requirements rather than declining",
+        "evidence": []
+      },
+      "fallback_type": null,
+      "claims": [
+        {
+          "claim": "21 CFR 820.10(b)(2) obliges a maker to check bought-in goods [1].",
+          "split_from": null,
+          "relevance": {
+            "verdict": "undetermined",
+            "reason": "no corresponding evidence, and the question names no subject to check against",
+            "content": "21 CFR 820.10(b)(2) obliges a maker to check bought-in goods  .",
+            "basis": "none",
+            "topic_hits": [],
+            "evidence": [],
+            "checks": {
+              "lead_restating_question": null,
+              "content_found_in_evidence": 0,
+              "evidence_passages": 0,
+              "domain": "consistent",
+              "provision": "consistent"
+            }
+          },
+          "evidence": [],
+          "support": "unverifiable",
+          "support_basis": "no_evidence",
+          "support_reason": "no passage of the authoritative evidence is about this statement",
+          "operators": {},
+          "operator_trace": null,
+          "citation": "unverified",
+          "citation_detail": "cites 21 CFR 820.10(b)(2); the captured evidence does not establish the claim",
+          "final": "unverifiable",
+          "claim_id": "s0",
+          "sentence_index": 0,
+          "normalized_text": "obliges a maker to check bought-in goods  .",
+          "resolved_from": null,
+          "subclaim": null,
+          "candidate_evidence": [],
+          "selected_evidence": null,
+          "match_path": "sentence",
+          "citation_trace": {
+            "kind": "own",
+            "markers": [
+              {
+                "marker": 1,
+                "source": "21 CFR 820.10(b)(2)",
+                "verdict": "unsupported",
+                "supports": false
+              }
+            ],
+            "rule": "no captured source establishes the claim, so neither can the citation"
+          }
+        }
+      ],
+      "excluded_sentences": [],
+      "claim_candidates": [
+        {
+          "sentence_index": 0,
+          "text": "21 CFR 820.10(b)(2) obliges a maker to check bought-in goods [1].",
+          "origin": "model_claim",
+          "reason": "",
+          "claim_status": "claim",
+          "paragraph": 0
+        }
+      ],
+      "claim_status_counts": {
+        "claim": 1,
+        "non_claim": 0,
+        "uncertain": 0
+      },
+      "evidence_provenance": "legacy_reconstructed"
+    },
+    "elapsed_ms": 0.552,
+    "evidence_provenance": "legacy_reconstructed",
+    "evidence": {
+      "provenance": "legacy_reconstructed",
+      "fingerprint": null,
+      "items": 2,
+      "guidance_items": 0
+    },
+    "question_relevance": null,
+    "substantive_correctness": null,
+    "evidence_support": null,
+    "citation_correctness": null,
+    "fabrication_free": true,
+    "completeness": null,
+    "scope_correct": true,
+    "question_review": {
+      "question": "What does 21 CFR 820.10(b)(2) require?",
+      "status": "not_evaluated",
+      "label": "NOT EVALUATED",
+      "substantive_correctness": null,
+      "citation_correctness": null,
+      "explanation": "Cannot be verified: no statement could be related to the question or checked against evidence",
+      "live_check_score": null,
+      "rubric_id": "regulus_live_evidence_assessment_v2",
+      "basis": "Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result."
+    }
+  }
+}</pre></details>
+    </div></div>
+</div>
+
+<script>window.fetch = async (url) => url === '/api/config'
+  ? new Response(JSON.stringify({adapters: [], model_id: 'stub', device: 'cpu', snapshot_date: 'd', defaults: {}}))
+  : new Response("{\"type\": \"start\"}\n{\"type\": \"final\", \"result\": {\"question\": \"What does 21 CFR 820.10(b)(2) require?\", \"answer\": \"Validated answer [1].\", \"model_called\": true, \"no_context\": false, \"citations\": [{\"index\": 1, \"label\": \"21 CFR 820.10(b)(2)\", \"url\": \"\", \"cited_in_answer\": true}], \"sources\": [{\"index\": 1, \"citation\": \"21 CFR 820.10(b)(2)\", \"corpus\": \"ecfr\", \"heading\": \"h\", \"method\": \"exact_cfr\", \"score\": 1, \"url\": \"\", \"text\": \"body\", \"truncated\": false}], \"dropped_sources\": 0, \"notes\": [], \"grounding\": null, \"retrieval\": {}, \"query_type\": \"EXACT_CFR\", \"timings_ms\": {}, \"adapter\": {\"id\": \"\"}, \"wall_seconds\": 1.0, \"server_timings_ms\": {}, \"accuracy\": {\"status\": \"unable_to_determine\", \"accuracy\": null, \"reason\": \"Cannot be verified: no statement could be related to the question or checked against evidence\", \"rubric_id\": \"regulus_live_evidence_assessment_v2\", \"rubric\": {\"rubric_id\": \"regulus_live_evidence_assessment_v2\", \"version\": \"2.0.0\", \"frozen\": \"2026-10-08\", \"dimensions\": [\"question_relevance\", \"substantive_correctness\", \"evidence_support\", \"citation_correctness\", \"fabrication_free\", \"completeness\", \"scope_correct\"], \"absolute\": [\"fabrication_free\", \"substantive_correctness\", \"question_relevance\"], \"deductions\": {\"fabrication_free:fail\": 100, \"substantive_correctness:fail\": 100, \"question_relevance:fail\": 100, \"substantive_correctness:partial\": 45, \"citation_correctness:fail\": 40, \"scope_correct:fail\": 40, \"evidence_support:fail\": 35, \"completeness:fail\": 25, \"completeness:partial\": 10, \"evidence_support:not_established\": 15, \"fabrication_free:not_established\": 10, \"citation_correctness:not_established\": 10, \"completeness:not_established\": 5, \"scope_correct:not_established\": 5}, \"formula\": \"score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided\", \"is_acceptance_rubric\": false}, \"basis\": \"Based on the authoritative regulatory evidence retrieved for this answer.\", \"not_the_benchmark\": \"An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.\", \"answer_verdict\": {\"verdict\": \"unverifiable\", \"reason\": \"no statement could be related to the question or checked against evidence\", \"counts\": {\"supported\": 0, \"supported_with_citation_defect\": 0, \"partially_supported\": 0, \"contradicted\": 0, \"irrelevant\": 0, \"unverifiable\": 1}, \"elements_covered\": [], \"elements_missing\": [], \"elements_unverified\": []}, \"dimensions\": [{\"dimension\": \"question_relevance\", \"label\": \"Answers the question\", \"state\": \"not_established\", \"glyph\": \"?\", \"detail\": \"no statement could be related to the question: none corresponds to retrieved evidence or names its subject\", \"evidence\": [], \"claim\": \"the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part\"}, {\"dimension\": \"substantive_correctness\", \"label\": \"Substantive correctness\", \"state\": \"not_established\", \"glyph\": \"?\", \"detail\": \"no statement could be related to the question or checked against evidence\", \"evidence\": [], \"claim\": \"every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it\"}, {\"dimension\": \"evidence_support\", \"label\": \"Evidence support\", \"state\": \"not_applicable\", \"glyph\": \"\\u2013\", \"detail\": \"no statement that answers the question to support\", \"evidence\": [], \"claim\": \"every material claim is a verbatim passage of an authoritative source retrieved for this question\"}, {\"dimension\": \"citation_correctness\", \"label\": \"Citation correctness\", \"state\": \"not_applicable\", \"glyph\": \"\\u2013\", \"detail\": \"no statement that answers the question to cite\", \"evidence\": [], \"claim\": \"every citation resolves to a supplied source, and to the provision the sentence it is attached to is about\"}, {\"dimension\": \"fabrication_free\", \"label\": \"Unsupported claims\", \"state\": \"pass\", \"glyph\": \"\\u2713\", \"detail\": \"every figure, condition and identifier in the answer appears in the supplied evidence (21 CFR 820.10(b)(2))\", \"evidence\": [], \"claim\": \"the answer names no section, clause, condition or figure that the authoritative evidence does not contain\"}, {\"dimension\": \"completeness\", \"label\": \"Completeness\", \"state\": \"not_established\", \"glyph\": \"?\", \"detail\": \"nothing in the answer could be related to what the question asks for\", \"evidence\": [], \"claim\": \"every provision the question requested has authoritative text and is addressed in the answer\"}, {\"dimension\": \"scope_correct\", \"label\": \"Scope\", \"state\": \"pass\", \"glyph\": \"\\u2713\", \"detail\": \"the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome\", \"evidence\": [], \"claim\": \"the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome\"}], \"deductions\": [{\"dimension\": \"completeness\", \"state\": \"not_established\", \"points\": 5}], \"checked\": {\"question\": \"What does 21 CFR 820.10(b)(2) require?\", \"intent\": {\"kind\": \"direct_lookup\", \"provisions\": [\"21 CFR 820.10(b)(2)\"], \"sections\": [\"820.10\"], \"parts\": [\"820\"], \"topic\": [], \"domains\": [\"H\"], \"domain_names\": [\"medical devices\"], \"elements\": [], \"signals\": [\"kind:direct_lookup\"], \"planner_type\": \"requirement\"}, \"answer_verdict\": {\"verdict\": \"unverifiable\", \"reason\": \"no statement could be related to the question or checked against evidence\", \"counts\": {\"supported\": 0, \"supported_with_citation_defect\": 0, \"partially_supported\": 0, \"contradicted\": 0, \"irrelevant\": 0, \"unverifiable\": 1}, \"elements_covered\": [], \"elements_missing\": [], \"elements_unverified\": []}, \"sources\": 2, \"evidence_passages\": 2, \"evidence_excluded_domain\": [], \"citations\": 0, \"sentences\": 1, \"material_claims\": 1, \"claims_answering_question\": 0, \"sentence_origins\": {\"model_claim\": 1, \"inserted_quotation\": 0, \"pipeline_sentence\": 0, \"citation_label\": 0, \"question_echo\": 0, \"too_short\": 0, \"heading_fragment\": 0, \"pointer_sentence\": 0, \"question_restatement\": 0, \"meta_statement\": 0, \"uncertain\": 0}, \"claim_status\": {\"supported\": 0, \"supported_with_citation_defect\": 0, \"partially_supported\": 0, \"contradicted\": 0, \"irrelevant\": 0, \"unverifiable\": 1}, \"aligner\": \"lexical\", \"identifiers_named\": 1, \"identifiers_verified_absent\": 0, \"identifier_index_used\": false, \"validation_status\": \"valid\", \"validation_error_codes\": [], \"abstention\": {\"declined\": false, \"outcome\": null, \"reason\": \"the answer states regulatory requirements rather than declining\", \"evidence\": []}, \"fallback_type\": null, \"claims\": [{\"claim\": \"21 CFR 820.10(b)(2) obliges a maker to check bought-in goods [1].\", \"split_from\": null, \"relevance\": {\"verdict\": \"undetermined\", \"reason\": \"no corresponding evidence, and the question names no subject to check against\", \"content\": \"21 CFR 820.10(b)(2) obliges a maker to check bought-in goods  .\", \"basis\": \"none\", \"topic_hits\": [], \"evidence\": [], \"checks\": {\"lead_restating_question\": null, \"content_found_in_evidence\": 0.0, \"evidence_passages\": 0, \"domain\": \"consistent\", \"provision\": \"consistent\"}}, \"evidence\": [], \"support\": \"unverifiable\", \"support_basis\": \"no_evidence\", \"support_reason\": \"no passage of the authoritative evidence is about this statement\", \"operators\": {}, \"operator_trace\": null, \"citation\": \"unverified\", \"citation_detail\": \"cites 21 CFR 820.10(b)(2); the captured evidence does not establish the claim\", \"final\": \"unverifiable\", \"claim_id\": \"s0\", \"sentence_index\": 0, \"normalized_text\": \"obliges a maker to check bought-in goods  .\", \"resolved_from\": null, \"subclaim\": null, \"candidate_evidence\": [], \"selected_evidence\": null, \"match_path\": \"sentence\", \"citation_trace\": {\"kind\": \"own\", \"markers\": [{\"marker\": 1, \"source\": \"21 CFR 820.10(b)(2)\", \"verdict\": \"unsupported\", \"supports\": false}], \"rule\": \"no captured source establishes the claim, so neither can the citation\"}}], \"excluded_sentences\": [], \"claim_candidates\": [{\"sentence_index\": 0, \"text\": \"21 CFR 820.10(b)(2) obliges a maker to check bought-in goods [1].\", \"origin\": \"model_claim\", \"reason\": \"\", \"claim_status\": \"claim\", \"paragraph\": 0}], \"claim_status_counts\": {\"claim\": 1, \"non_claim\": 0, \"uncertain\": 0}, \"evidence_provenance\": \"legacy_reconstructed\"}, \"elapsed_ms\": 0.552, \"evidence_provenance\": \"legacy_reconstructed\", \"evidence\": {\"provenance\": \"legacy_reconstructed\", \"fingerprint\": null, \"items\": 2, \"guidance_items\": 0}, \"question_relevance\": null, \"substantive_correctness\": null, \"evidence_support\": null, \"citation_correctness\": null, \"fabrication_free\": true, \"completeness\": null, \"scope_correct\": true, \"question_review\": {\"question\": \"What does 21 CFR 820.10(b)(2) require?\", \"status\": \"not_evaluated\", \"label\": \"NOT EVALUATED\", \"substantive_correctness\": null, \"citation_correctness\": null, \"explanation\": \"Cannot be verified: no statement could be related to the question or checked against evidence\", \"live_check_score\": null, \"rubric_id\": \"regulus_live_evidence_assessment_v2\", \"basis\": \"Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result.\"}}}}\n");</script>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const EXAMPLES = [
+  "What does 21 CFR Part 11 cover?",
+  "What are the specific requirements of 21 CFR 314.999?",
+  "What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?",
+  "What exact storage temperature range does 21 CFR Part 211 require for all finished tablets?",
+  "What does 21 CFR 820.10 require?",
+  "Summarize FDA guidance FDA-2023-D-99999.",
+];
+
+let busy = false;
+
+async function loadConfig() {
+  try {
+    const cfg = await (await fetch("/api/config")).json();
+    $("env").textContent = `${cfg.model_id} · ${cfg.device}${cfg.dtype ? " " + cfg.dtype : ""} · eCFR snapshot ${cfg.snapshot_date}`;
+    $("adapter").innerHTML = cfg.adapters.map(a => `<option value="${esc(a.id)}">${esc(a.label)}</option>`).join("");
+    // Take the ceiling from the server so the page cannot quietly impose a
+    // tighter limit than configs/model.yaml; it is a safety limit, not a target.
+    if (cfg.defaults && cfg.defaults.max_new_tokens) {
+      const box = $("tokens");
+      box.value = cfg.defaults.max_new_tokens;
+      box.max = Math.max(cfg.defaults.max_new_tokens, Number(box.max) || 0);
+      if (cfg.answer_length) box.title = `${cfg.answer_length.policy} answer length. ${cfg.answer_length.note}`;
+    }
+  } catch (e) {
+    $("env").textContent = "could not reach the server";
+  }
+  $("examples").innerHTML = EXAMPLES.map((e, i) => `<button data-i="${i}">${esc(e)}</button>`).join("");
+  $("examples").onclick = ev => { const b = ev.target.closest("button"); if (b) $("q").value = EXAMPLES[b.dataset.i]; };
+}
+
+function pill(text, cls) { return `<span class="pill ${cls}">${esc(text)}</span>`; }
+
+function renderGrounding(g) {
+  if (!g) return pill("gate off", "mut");
+  if (!g.checked) return pill("gate off", "mut");
+  if (g.action === "refuse") return pill("gate refused: " + (g.reason || ""), "stop");
+  const v = g.verification;
+  if (v && v.identifier) return pill(`gate passed ${v.identifier.label}`, "ok");
+  return pill("gate passed", "ok");
+}
+
+function shapeRows(r) {
+  const s = r.answer_shape;
+  if (!s) return "";
+  const gen = r.generation || {}, plan = gen.answer_plan || {}, v = (r.validation || {}).initial || {}, chk = v.shape || {};
+  const warn = (chk.codes || []);
+  return `
+        <tr><td>Answer shape</td><td>${esc(s.mode)} · ${esc(s.scope)} · ${s.exhaustive ? "exhaustive" : "not exhaustive"}</td></tr>
+        <tr><td>Why</td><td>${esc(s.rationale || "")}</td></tr>
+        <tr><td>Evidence groups</td><td>${(plan.groups || []).map(g => esc(g.label) + " " + (g.members || []).map(n => "[" + n + "]").join("")).join("; ") || "—"}</td></tr>
+        <tr><td>Shape checks</td><td>${warn.length ? esc(warn.join(", ")) : "none fired"}</td></tr>
+        ${r.question_analysis ? `<tr><td>Question type</td><td>${esc(r.question_analysis.question_type)}${r.question_analysis.is_yes_no ? " · yes/no" : ""} · ${esc(r.question_analysis.scope_status)}</td></tr>` : ""}
+        ${r.quality_flags ? `<tr><td>Review flags</td><td>${r.quality_flags.length ? r.quality_flags.map(f => `<span title="${esc(f.detail)}">${esc(f.flag)}</span>`).join(", ") : "none"}</td></tr>` : ""}
+        <tr><td>Generated / allowance</td><td>${gen.generated_tokens ?? "—"} / ${gen.max_new_tokens ?? "—"} tokens${v.truncated ? " (truncated)" : ""}</td></tr>`;
+}
+
+function gateRows(r) {
+  const a = r.answerability;
+  if (!a) return "";
+  return `
+        <tr><td>Answerability</td><td>${esc(a.state)} · ${esc(a.confidence)}${a.acted_on ? "" : " (gate off)"}</td></tr>
+        <tr><td>Generation</td><td>${r.generation_blocked ? "blocked: " + esc(r.block_reason || "") : "called"}</td></tr>
+        ${r.fallback_type ? `<tr><td>Fallback</td><td>${esc(r.fallback_type)}${r.fallback_reason ? " · " + esc(r.fallback_reason) : ""}</td></tr>` : ""}
+        ${r.scope_policy ? `<tr><td>Scope</td><td>${esc(r.scope_policy.status)} · ${esc(r.scope_policy.reason)}</td></tr>` : ""}
+        ${r.semantic_fallback ? `<tr><td>Semantic fallback</td><td>${r.semantic_fallback.invoked ? "used (" + esc(r.semantic_fallback.lexical_insufficient || "") + ")" : "not needed"}${r.reference_lookup ? " · reference lookup: " + esc(r.reference_lookup.join(", ")) : ""}</td></tr>` : ""}`;
+}
+
+function timingRows(r) {
+  const t = r.timings_ms || {}, s = r.server_timings_ms || {}, g = r.generation || {};
+  const f = v => v == null ? "—" : `${Math.round(v)} ms`;
+  if (t.model_first_token_ms == null && s.pipeline_answer_ms == null) return "";
+  return `
+        <tr><td>Stage timings</td><td>plan ${f(t.plan_ms)} · retrieval ${f(t.retrieval_ms)} · context ${f(t.context_ms)} · package ${f(t.package_ms)} · prompt ${f(t.prompt_ms)}</td></tr>
+        <tr><td>Model</td><td>tokenize ${f(t.model_prepare_ms)} · first token ${f(t.model_first_token_ms)} · decode ${f(t.model_decode_ms)} · ${g.decode_tokens_per_second ?? "—"} tok/s</td></tr>
+        <tr><td>After generation</td><td>validation ${f(t.validation_ms)} · citations ${f(t.citations_ms)} · diagnostics ${f(t.metadata_ms)} · response build ${f(s.response_build_ms)}${s.accuracy_ms == null ? "" : " · accuracy " + f(s.accuracy_ms)}</td></tr>`;
+}
+
+// Per-question evaluation. The server decides every status shown here
+// (regulus.accuracy.review reads the live assessment of THIS answer); the page
+// adds no judgement of its own, except that it never shows PASS for a result
+// that is missing, incomplete, inconsistent or not this question's. No
+// percentage is shown as "accuracy": the evaluator's 0-100 check score appears
+// only in the details, labelled for what it is.
+const ACC_STATE_CLASS = { pass: "ok", fail: "stop", partial: "warn", not_established: "muted", not_applicable: "muted" };
+const EVAL_CLASS = { pass: "ok", fail: "stop", not_evaluated: "mut" };
+const EVAL_LABELS = { pass: ["PASS"], fail: ["FAIL"], not_evaluated: ["NOT EVALUATED", "NOT FULLY EVALUATED"] };
+
+function evaluationOf(r, asked) {
+  if (!r || !("accuracy" in r)) return null;          // evaluation is off: the page is the page it was
+  const a = r.accuracy;
+  const v = a && typeof a === "object" ? a.question_review : null;
+  const none = why => ({ status: "not_evaluated", label: "NOT EVALUATED", explanation: why,
+                         substantive_correctness: null, citation_correctness: null, live_check_score: null,
+                         basis: (v && typeof v === "object" && v.basis) || "" });
+  if (!v || typeof v !== "object" || !EVAL_LABELS[v.status]) return none("No usable evaluation result was returned for this answer.");
+  if (v.question !== r.question || (asked != null && r.question !== asked)) {
+    return none("The evaluation result is not for this question, so it is not shown.");
+  }
+  const sub = v.substantive_correctness, cite = v.citation_correctness;
+  if (v.status === "pass" && !(a.status === "evaluated" && sub && sub.state === "pass"
+                               && cite && (cite.state === "pass" || cite.state === "not_applicable"))) {
+    return none("The evaluation result is inconsistent, so it is not shown.");
+  }
+  return EVAL_LABELS[v.status].includes(v.label) ? v : { ...v, label: EVAL_LABELS[v.status][0] };
+}
+
+// The evaluator's own score: regulus.accuracy.rubric.score() = max(0, 100 - deductions),
+// an integer from 0 to 100, issued only for an evaluated answer and forwarded by
+// regulus.accuracy.review as live_check_score. Shown only when it is exactly that;
+// never inferred from the status, never defaulted to 0 or 100. It never decides
+// the status either: a 90 can sit under FAIL.
+const SCORE_NOTE = "Evaluation score based on the system's checks; it is not a percentage of factual accuracy.";
+
+function evaluationScore(e) {
+  const s = e && typeof e === "object" ? e.live_check_score : undefined;
+  return typeof s === "number" && Number.isInteger(s) && s >= 0 && s <= 100 ? s : null;
+}
+
+function evalPill(e) {
+  return e ? pill(`evaluation: ${e.label}`, EVAL_CLASS[e.status]) : "";
+}
+
+function renderEvaluation(e, a) {
+  if (!e) return "";
+  const line = (name, d) => `
+          <tr><td class="dim">${name}</td>
+            <td class="why">${d && typeof d === "object" ? esc(d.label) + (d.detail ? " — " + esc(d.detail) : "") : "not available"}</td></tr>`;
+  // the individual checks belong with a decided (or partly decided) result only
+  const decided = e.status !== "not_evaluated" || e.label === "NOT FULLY EVALUATED";
+  const dims = decided && a && Array.isArray(a.dimensions) ? a.dimensions.filter(d => d && typeof d === "object") : [];
+  const rows = dims.map(d => `
+        <tr>
+          <td class="dim">${esc(d.label)}</td>
+          <td class="state" style="color:var(--${ACC_STATE_CLASS[d.state] || "muted"})"
+              title="${esc(d.state)}: ${esc(d.claim)}">${esc(d.glyph)}</td>
+          <td class="why">${esc(d.detail)}</td>
+        </tr>`).join("");
+  const points = (a && Array.isArray(a.deductions) ? a.deductions : []).map(d => `${esc(d.dimension)} ${esc(d.state)} −${esc(d.points)}`).join(" · ");
+  const score = evaluationScore(e);
+  return `
+      <div class="acc">
+        <div class="acc-top">
+          <div class="acc-score"><div class="acc-label">Evaluation of this answer</div>
+            <div class="acc-value${e.status === "not_evaluated" ? " unknown" : ""}" style="color:var(--${e.status === "pass" ? "ok" : e.status === "fail" ? "stop" : "muted"})">${esc(e.label)}</div>
+            <div class="acc-points${score === null ? " unknown" : ""}">${score === null ? "Score unavailable" : `Evaluation score ${score}/100`}</div>
+            <p class="acc-note">${esc(SCORE_NOTE)}</p></div>
+          <p class="acc-basis">${esc(e.basis || "")}</p>
+        </div>
+        <table class="acc-table">${line("Substantive correctness", e.substantive_correctness)}${line("Citation correctness", e.citation_correctness)}
+        </table>
+        <p class="sub" style="margin:8px 0 0">${esc(e.explanation || "")}</p>
+        ${rows ? `<details>
+          <summary>All checks</summary>
+          <table class="acc-table">${rows}</table>
+          <p class="sub" style="margin:8px 0 0">
+            ${score !== null ? `How the evaluation score is calculated: 100 minus the deductions for these checks (${points || "none"}), never below 0. ` : ""}
+            Rubric <code>${esc(e.rubric_id || (a && a.rubric_id) || "")}</code>; decided from identifier comparison,
+            verbatim containment and regulatory-operator agreement with the retrieved evidence. A check marked “?”
+            was not decidable from this evidence and is counted as neither a pass nor a failure.
+          </p>
+        </details>` : ""}
+      </div>`;
+}
+
+function render(r, asked) {
+  const refused = !r.model_called;
+  const evaluation = evaluationOf(r, asked);
+  const head = [
+    refused ? pill("model not called", "warn") : pill("generated", "ok"),
+    renderGrounding(r.grounding),
+    pill(`${r.sources.length} sources`, "mut"),
+    pill(`${r.wall_seconds}s`, "mut"),
+    r.output_tokens != null ? pill(`${r.output_tokens} tokens out`, "mut") : "",
+    evalPill(evaluation),
+  ].join(" ");
+
+  const cites = r.citations.length
+    ? r.citations.map(c => `<li>${c.cited_in_answer ? "✓" : "·"} ${esc(c.label)}${c.url ? ` — <a href="${esc(c.url)}" target="_blank" rel="noopener">source</a>` : ""}</li>`).join("")
+    : "<li class='sub'>none</li>";
+
+  const sources = r.sources.length ? r.sources.map(s => `
+    <div class="src">
+      <h4><span class="num">${s.index}</span> ${esc(s.citation)}
+        ${pill(s.corpus === "ecfr" ? "eCFR" : "FDA guidance", s.corpus === "ecfr" ? "ecfr" : "guid")}
+        ${pill(s.method, "mut")} ${pill("score " + s.score, "mut")}</h4>
+      ${s.heading ? `<div class="sub">${esc(s.heading)}</div>` : ""}
+      <p>${esc(s.text)}${s.truncated ? " …" : ""}</p>
+      ${s.url ? `<p><a href="${esc(s.url)}" target="_blank" rel="noopener">open source</a></p>` : ""}
+    </div>`).join("") : "<p class='sub'>Nothing was retrieved for this question.</p>";
+
+  const t = r.timings_ms || {};
+  $("out").innerHTML = `
+    <div class="card">
+      <div class="meta">${head}</div>
+      <div class="answer">${esc(r.answer)}</div>
+      ${renderEvaluation(evaluation, r.accuracy)}
+    </div>
+    <div class="card">
+      <label>Citations</label>
+      <ul style="margin:0;padding-left:18px">${cites}</ul>
+    </div>
+    <div class="card">
+      <label>Retrieved context (${r.sources.length}${r.dropped_sources ? `, ${r.dropped_sources} dropped for budget` : ""})</label>
+      ${sources}
+    </div>
+    <div class="card">
+      <label>Diagnostics</label>
+      <table>
+        <tr><td>Query type</td><td>${esc(r.query_type || "")}</td></tr>
+        <tr><td>Retrieval mode</td><td>${esc((r.retrieval || {}).retrieval_mode || "")}</td></tr>
+        <tr><td>OR fallback used</td><td>${(r.retrieval || {}).fallback_used ? "yes" : "no"}</td></tr>
+        <tr><td>Retrieval / generation</td><td>${t.retrieval_ms ?? "?"} ms / ${t.generation_ms ?? 0} ms</td></tr>
+        <tr><td>Input tokens</td><td>${r.input_tokens ?? "—"}</td></tr>
+        ${gateRows(r)}
+        ${shapeRows(r)}
+        ${timingRows(r)}
+        <tr><td>Model</td><td>${esc(r.adapter.id || "base Qwen3-0.6B")}</td></tr>
+      </table>
+      ${r.notes && r.notes.length ? `<p class="sub">Note: ${esc(r.notes.join(" "))}</p>` : ""}
+      <details style="margin-top:10px"><summary>Raw response</summary><pre>${esc(JSON.stringify(r, null, 2))}</pre></details>
+    </div>`;
+}
+
+let controller = null;
+
+// Stream the answer from /api/ask/stream (newline-delimited JSON events). Text
+// arrives as a DRAFT while the model generates; the "final" event carries the
+// validated (and, if needed, repaired) answer with its citations and sources,
+// which replaces the draft. The draft is never shown as the answer.
+async function ask() {
+  if (busy) return;
+  const question = $("q").value.trim();
+  if (!question) { $("q").focus(); return; }
+  busy = true;
+  $("ask").disabled = true;
+  $("stop").hidden = false;
+  controller = new AbortController();
+  $("out").innerHTML = "";
+  const started = performance.now();
+  let phase = "retrieving sources";
+  const status = () => {
+    $("status").innerHTML = `<span class="spin"></span> ${esc(phase)}… ${Math.round((performance.now() - started) / 1000)}s`;
+  };
+  status();
+  const tick = setInterval(status, 1000);
+  let draft = "", firstText = null, deltas = 0, finished = false, sources = [];
+  const showDraft = () => {
+    $("out").innerHTML = `
+      <div class="card draft">
+        <div class="meta">${pill("draft · generating", "warn")} ${pill(`${sources.length} sources`, "mut")}
+          <span class="sub">not yet validated; the checked answer replaces this when generation finishes</span></div>
+        <div class="answer">${esc(draft)}<span class="caret"></span></div>
+      </div>`;
+  };
+  try {
+    const tSend = performance.now();
+    const res = await fetch("/api/ask/stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        question,
+        adapter: $("adapter").value,
+        grounding: $("grounding").checked,
+        top_k: Number($("topk").value),
+        max_new_tokens: Number($("tokens").value),
+      }),
+    });
+    if (!res.ok || !res.body) {
+      let msg = `HTTP ${res.status}`;
+      try { msg = (await res.json()).error || msg; } catch (_) {}
+      throw new Error(msg);
+    }
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+    const handle = ev => {
+      if (ev.type === "context") { sources = ev.sources || []; phase = "generating"; showDraft(); }
+      else if (ev.type === "generation_started") { phase = "generating"; showDraft(); }
+      else if (ev.type === "delta") {
+        if (firstText === null) firstText = performance.now() - tSend;
+        deltas += 1; draft += ev.text; showDraft();
+      }
+      else if (ev.type === "generation_finished") { phase = "validating the answer against its sources"; }
+      else if (ev.type === "final") {
+        finished = true;
+        const tParsed = performance.now();
+        render(ev.result, question);
+        const tRendered = performance.now();
+        const ms = x => Math.round(x);
+        $("status").textContent = `first text ${firstText === null ? "— (no model text)" : ms(firstText) + " ms"} · `
+          + `${deltas} chunks · final ${ms(tParsed - tSend)} ms · render ${ms(tRendered - tParsed)} ms`;
+        window.__lastTimings = {first_text_ms: firstText, deltas, final_ms: tParsed - tSend, render_ms: tRendered - tParsed};
+      }
+      else if (ev.type === "error") { throw new Error(ev.error || "generation failed"); }
+    };
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (value) buf += decoder.decode(value, { stream: true });
+      let nl;
+      while ((nl = buf.indexOf("\n")) >= 0) {
+        const line = buf.slice(0, nl).trim();
+        buf = buf.slice(nl + 1);
+        if (line) handle(JSON.parse(line));
+      }
+      if (done) break;
+    }
+    if (buf.trim()) handle(JSON.parse(buf));
+    if (!finished) throw new Error("the connection closed before the answer was complete");
+  } catch (e) {
+    const stopped = e.name === "AbortError";
+    const kept = draft ? `<div class="sub" style="margin-top:8px">Unvalidated draft received before this happened:</div>
+      <div class="answer sub">${esc(draft)}</div>` : "";
+    $("out").innerHTML = `<div class="card err">${stopped ? "Stopped. Generation was cancelled." : "Request failed: " + esc(e.message)}${kept}</div>`;
+    $("status").textContent = "";
+  } finally {
+    clearInterval(tick);
+    busy = false;
+    controller = null;
+    $("ask").disabled = false;
+    $("stop").hidden = true;
+  }
+}
+
+$("stop").onclick = () => { if (controller) controller.abort(); };
+$("ask").onclick = ask;
+$("q").addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") ask(); });
+loadConfig();
+</script>
+<script>document.getElementById('q').value = "What does 21 CFR 820.10(b)(2) require?"; ask().then(() => document.body.setAttribute('data-done', '1'));</script>
+
+
+</body></html>

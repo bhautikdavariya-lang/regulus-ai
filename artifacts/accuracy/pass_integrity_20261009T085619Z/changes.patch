@@ -1,0 +1,328 @@
+--- a/src/regulus/accuracy/evaluator.py
++++ b/src/regulus/accuracy/evaluator.py
+@@ -35,6 +35,7 @@
+ from regulus.accuracy import answer as AN
+ from regulus.accuracy import claims as CL
+ from regulus.accuracy import intent as IN
++from regulus.accuracy import operators as OP
+ from regulus.accuracy import relevance as RV
+ from regulus.accuracy import rubric as R
+ from regulus.accuracy.alignment import Aligner, LexicalAligner, passages
+@@ -154,6 +155,48 @@
+ 
+ 
+ # ------------------------------------------------------------ helpers
++
++
++def _focus_gap(package, intent, answering, claims, passages) -> tuple[list[str], list[str]] | None:
++    """For a FOCUSED question (a topic inside the requested provision), the requirement
++    groups of that provision that are on the question's topic, state an obligation,
++    and that no answering statement covers: (missing, addressed_but_unverified).
++
++    The pipeline checks group coverage only for a synthesis (shape validation's
++    material_group_uncovered, repaired by appending the group). A focused answer was
++    never checked: "What are the personnel qualification requirements in 21 CFR
++    211.25?" answered with 211.25(c) alone was PASS, though (a) and (b) state the
++    section's other personnel-qualification requirements - rubric O=0, "a material
++    governing requirement is omitted". Read from what the RagAnswer carries (the
++    package's answer plan); None when there is no focused plan to read."""
++    plan = getattr(package, "answer_plan", None)
++    if plan is None or getattr(getattr(plan, "shape", None), "mode", None) != "focused" or not intent.topic:
++        return None
++    requested = {rid for rid, _ in (getattr(package, "requirements", None) or ())}
++    by_index = {p.source_index: p for p in passages}
++    decided = (AN.SUPPORTED, AN.SUPPORTED_WITH_CITATION_DEFECT, AN.PARTIALLY_SUPPORTED, AN.CONTRADICTED)
++    covered = {e.get("source_index") for c in answering if c.final in decided for e in c.evidence[:1]}
++    # a statement that could not be verified may still be ABOUT a group (a paraphrase): its evidence or the
++    # passage the aligner matched it to first; such a group is unverified, not omitted
++    by_citation = {p.citation: p.source_index for p in passages}
++    touched = {e.get("source_index") for c in claims if c.final == AN.UNVERIFIABLE for e in c.evidence}
++    touched |= {by_citation.get(c.candidate_evidence[0]) for c in claims
++                if c.final == AN.UNVERIFIABLE and c.candidate_evidence}
++    missing: list[str] = []
++    maybe: list[str] = []
++    for g in getattr(plan, "groups", ()) or ():
++        if getattr(g, "kind", None) != "requirement" or not set(g.requirement_ids) & requested:
++            continue
++        members = [by_index[i] for i in g.members if i in by_index]
++        if not members or covered & set(g.members):
++            continue
++        if not any(OP.strength(p.text) == OP.MANDATORY for p in members):
++            continue                                  # states no obligation (definitions, permissions)
++        if not RV.on_topic(intent, members):
++            continue                                  # outside what the question asks about
++        label = g.label + (f" ({g.heading})" if getattr(g, "heading", None) else "")
++        (maybe if touched & set(g.members) else missing).append(label)
++    return missing, maybe
+ 
+ 
+ def _errors(validation) -> dict[str, list]:
+@@ -489,6 +532,22 @@
+     else:
+         add(R.COMPLETENESS, R.NOT_ESTABLISHED, "nothing in the answer could be related to what the question asks for")
+ 
++    # ---- completeness of a focused answer: every on-topic requirement of the requested
++    # provision (see _focus_gap). Only a PASS is re-examined; it can only be withdrawn.
++    gap = _focus_gap(package, intent, answering, claims, candidates) if not abstained.declined else None
++    if gap is not None and results and results[-1].dimension == R.COMPLETENESS and results[-1].state == R.PASS:
++        missing, maybe = gap
++        if missing:
++            results[-1] = DimensionResult(
++                R.COMPLETENESS, R.FAIL,
++                f"the question asks about {'/'.join(intent.topic)}, and the answer does not address "
++                f"{', '.join(missing)}, which states a requirement on it", tuple(missing))
++        elif maybe:
++            results[-1] = DimensionResult(
++                R.COMPLETENESS, R.NOT_ESTABLISHED,
++                f"{', '.join(maybe)} states a requirement on what the question asks, and only statements that could not "
++                f"be verified address it", tuple(maybe))
++
+     # ---- scope
+     scope_codes = [c for c in _SCOPE_FAIL if c in errors]
+     # only in the answer's own voice: a verbatim passage is the regulation speaking
+--- a/src/regulus/rag/citation_repair.py
++++ b/src/regulus/rag/citation_repair.py
+@@ -17,9 +17,11 @@
+ 
+ Then, and only then, the marker group is replaced by that source's number. A
+ marker whose cited source contains the text, a paraphrase, a run found in two
+-sources, or a marker naming a source that does not exist is left exactly as it
+-is for validation and the evaluator to judge. Nothing is added or removed but
+-the number.
++sources, a marker naming a source that does not exist, or a marker whose cited
++source states the REST of the text (a sentence drawing on two sources: moving
++the marker would drop the source of the other part) is left exactly as it is
++for validation and the evaluator to judge. Nothing is added or removed but the
++number.
+ """
+ 
+ from __future__ import annotations
+@@ -76,6 +78,11 @@
+     return "".join(out), changes
+ 
+ 
++def _states_a_run(words: list[str], text: str) -> bool:
++    """Does `text` contain any MIN_WORDS-word run of `words`?"""
++    return any(" " + " ".join(words[i:i + MIN_WORDS]) + " " in text for i in range(len(words) - MIN_WORDS + 1))
++
++
+ def _target(piece: str, cited: tuple[int, ...], texts: dict[int, str]) -> int | None:
+     if not cited or any(n not in texts for n in cited):
+         return None                                   # a nonexistent source is validation's finding, not ours
+@@ -89,5 +96,8 @@
+             continue
+         if k < MIN_SHARE * len(words) or any(n in holders for n in cited) or len(holders) != 1:
+             return None
++        rest = words[:-k]                             # the text outside the run: does a cited source state it?
++        if any(_states_a_run(rest, texts[n]) for n in cited):
++            return None
+         return holders[0]
+     return None
+--- a/tests/test_citation_repair.py
++++ b/tests/test_citation_repair.py
+@@ -123,3 +123,39 @@
+ 
+     same = answer_one(question, f"21 CFR 820.10(b)(2): {PURCHASING} [{right}]")
+     assert "citations_repointed" not in same.metadata["generation"]
++
++
++# ---------------------------------------------------- ambiguity is left alone; corrections never hide a defect
++
++
++def test_a_sentence_drawing_on_two_sources_keeps_the_marker_of_the_part_it_cites():
++    # the first clause is 211.25(a)'s, the rest is 211.25(c)'s; [1] supports the first part, so it is not moved
++    answer = ("Training shall be in the particular operations that the employee performs, and there shall be an adequate "
++              "number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of "
++              "each drug product [1].")
++    assert repoint_citations(answer, S211) == (answer, [])
++
++
++def test_a_marker_group_that_already_names_the_stating_source_is_unchanged():
++    answer = "21 CFR 820.35 adds the nature and details of the complaint [5][7]."
++    assert repoint_citations(answer, S820) == (answer, [])
++
++
++def test_a_partial_quotation_unique_to_one_source_is_corrected():
++    answer = "Records must hold the nature and details of the complaint [5]."      # "the nature ... complaint": 7 of 10 words
++    new, changes = repoint_citations(answer, S820)
++    assert [(c.old, c.new) for c in changes] == [((5,), 7)]
++
++
++def test_a_corrected_marker_does_not_hide_a_contradiction():
++    from tests.test_accuracy_evaluation import PURCHASING
++    from tests.test_accuracy_observer import answer_one, payload
++
++    question = "What do 21 CFR 820.10(b)(2) and 21 CFR 820.10(b)(4) require?"
++    negated = PURCHASING.replace("shall establish", "shall not establish")
++    out = answer_one(question, f"21 CFR 820.10(b)(2): {negated} [2]")
++    review = payload(out, accuracy=True)["accuracy"]
++    from regulus.accuracy.review import question_review
++
++    v = question_review(review, question=out.question)
++    assert v["status"] != "pass"
+--- /dev/null
++++ b/tests/test_accuracy_pass_integrity.py
+@@ -0,0 +1,163 @@
++"""PASS means every applicable check passed, not that some part of the answer is right.
++
++Probed 2026-10-09 (artifacts/accuracy/pass_integrity_*): every mixed, fabricated,
++mis-cited or cross-subsection answer below already failed to PASS, and is pinned
++here. One confirmed false-PASS path was fixed: a FOCUSED question ("What are the
++personnel qualification requirements in 21 CFR 211.25?") answered with one of the
++section's on-topic requirements was PASS 100, because the pipeline checks group
++coverage only for a synthesis and the evaluator's completeness took any supported
++answering statement as covering the question. Rubric O=0: "a material governing
++requirement is omitted such that a user acting on the answer would be out of
++compliance".
++
++Evidence: VERBATIM snapshot paragraphs (tests/fixtures/accuracy_definition_citation_rows.json),
++served through the real plan, retrieval, package, validator and - for the focused
++cases - the PRODUCTION configuration (configured_rag_config, as serve_ui). Answers:
++CONSTRUCTED, scripted in place of the model.
++"""
++
++from __future__ import annotations
++
++import json
++from pathlib import Path
++
++import pytest
++
++from regulus.accuracy import evaluate, evaluate_safely
++from regulus.accuracy.alignment import LexicalAligner
++from regulus.accuracy.review import FAIL, PASS, question_review
++from regulus.config import load_settings
++from regulus.inference.generate import GenerationResult
++from regulus.planning import plan_query
++from regulus.rag import RagPipeline
++from regulus.rag.coverage import check_coverage
++from regulus.rag.validation import validate_answer
++from regulus.retrieval import LexicalRetriever
++from regulus.system_identity import configured_rag_config
++from tests.test_accuracy_observer import Scripted
++from tests.test_generation_contract import package_for
++from tests.test_retrieval_plan import TableDatabase, row
++
++TEXT = {p["citation"]: p["text"] for p in json.loads(
++    (Path(__file__).parent / "fixtures" / "accuracy_definition_citation_rows.json").read_text(encoding="utf-8"))["paragraphs"]}
++
++
++def _row(citation, ordinal, heading):
++    section = citation.replace("21 CFR ", "").split("(", 1)[0]
++    para = "(" + citation.split("(", 1)[1] if "(" in citation else ""
++    return row(section, para, ordinal, text=TEXT[citation], section_heading=heading)
++
++
++def body(citation):
++    t = TEXT[citation]
++    return t.split(") ", 1)[1] if t.startswith("(") else t
++
++
++S211 = [_row(c, i, "Personnel qualifications.") for i, c in enumerate(("21 CFR 211.25(a)", "21 CFR 211.25(b)", "21 CFR 211.25(c)"), 1)]
++S820 = [_row(c, i, "Control of records.") for i, c in enumerate((
++    "21 CFR 820.35(a)", "21 CFR 820.35(a)(1)", "21 CFR 820.35(a)(2)", "21 CFR 820.35(a)(3)", "21 CFR 820.35(a)(4)",
++    "21 CFR 820.35(a)(5)", "21 CFR 820.35(a)(6)", "21 CFR 820.35(a)(7)", "21 CFR 820.35(b)", "21 CFR 820.35(b)(1)",
++    "21 CFR 820.35(b)(3)"), 1)]
++A, B, C = body("21 CFR 211.25(a)"), body("21 CFR 211.25(b)"), body("21 CFR 211.25(c)")
++FOCUSED = "What are the personnel qualification requirements in 21 CFR 211.25?"
++
++
++def production(question, response, table):
++    """As serve_ui: the configured pipeline (validation, repair) delivers; the evaluator assesses what it delivered."""
++    out = RagPipeline(LexicalRetriever(TableDatabase(table)), Scripted(response), configured_rag_config(load_settings())).answer(question)
++    d = evaluate_safely(out.question, out.answer, package=out.package, evidence=out.evidence_snapshot, citations=out.citations,
++                        validation=out.validation, coverage=out.coverage, model_called=out.model_called,
++                        fallback_type=out.metadata.get("fallback_type"),
++                        scope_status=(out.metadata.get("question_analysis") or {}).get("scope_status"),
++                        answerability=out.metadata.get("answerability"), aligner=LexicalAligner()).to_dict()
++    return question_review(d, question=out.question), d, out
++
++
++def completeness(d):
++    return next(x for x in d["dimensions"] if x["dimension"] == "completeness")
++
++
++# ---------------------------------------------------- the fixed path: a focused answer that omits on-topic requirements
++
++
++def test_a_focused_answer_covering_every_on_topic_requirement_passes():
++    v, d, out = production(FOCUSED, f"{A} [1] {B} [2] {C} [3]", S211)
++    assert (out.metadata.get("answer_shape") or {}).get("mode") == "focused"
++    assert (v["status"], v["live_check_score"]) == (PASS, 100)
++
++
++@pytest.mark.parametrize("response,omitted", [
++    (f"{C} [3]", ("21 CFR 211.25(a)", "21 CFR 211.25(b)")),
++    (f"{A} [1]", ("21 CFR 211.25(b)", "21 CFR 211.25(c)")),
++])
++def test_a_focused_answer_omitting_an_on_topic_requirement_fails_completeness(response, omitted):
++    v, d, out = production(FOCUSED, response, S211)
++    assert out.answer.startswith(response.split(" [")[0][:40])     # delivered as generated: nothing repaired it
++    assert v["status"] == FAIL and completeness(d)["state"] == "fail"
++    for label in omitted:
++        assert label in completeness(d)["detail"]
++    assert v["substantive_correctness"]["state"] == "pass"         # what it says is right; it is still not a PASS
++
++
++def test_an_unverified_paraphrase_of_a_requirement_is_not_called_an_omission():
++    v, d, _ = production(FOCUSED, f"Each person making drugs needs suitable schooling and experience for the job [1]. {C} [3]", S211)
++    assert v["status"] != PASS
++    # (a) is addressed - by a paraphrase the evaluator cannot verify - so it is not called omitted;
++    # (b), which nothing addresses, is
++    assert completeness(d)["state"] == "fail"
++    assert "211.25(b)" in completeness(d)["detail"] and "211.25(a)" not in completeness(d)["detail"]
++
++
++def test_a_group_addressed_only_by_an_unverifiable_paraphrase_is_not_established():
++    v, d, _ = production(FOCUSED, f"Each person making drugs needs suitable schooling and experience for the job [1]. {B} [2] {C} [3]", S211)
++    assert v["status"] != PASS
++    assert completeness(d)["state"] == "not_established" and "211.25(a)" in completeness(d)["detail"]
++
++
++def test_a_requirement_off_the_questions_topic_is_not_demanded():
++    # complaint records: 820.35(b) servicing records are in the same section but not what was asked
++    items = " ".join(f"{body(c)} [{i}]" for i, c in enumerate(
++        ("21 CFR 820.35(a)", "21 CFR 820.35(a)(1)", "21 CFR 820.35(a)(2)", "21 CFR 820.35(a)(3)", "21 CFR 820.35(a)(4)",
++         "21 CFR 820.35(a)(5)", "21 CFR 820.35(a)(6)", "21 CFR 820.35(a)(7)"), 1))
++    v, d, _ = production("What must complaint records include under 21 CFR 820.35?", items, S820)
++    assert completeness(d)["state"] == "pass"
++
++
++def test_an_unrestricted_section_question_is_repaired_by_the_pipeline_before_it_is_assessed():
++    v, d, out = production("What does 21 CFR 211.25 require?", f"{C} [3]", S211)
++    assert (out.metadata.get("answer_shape") or {}).get("mode") == "synthesis"
++    assert body("21 CFR 211.25(a)")[:40] in out.answer                # the missing groups were appended verbatim
++    assert v["status"] == PASS
++
++
++# ---------------------------------------------------- mixtures that must never PASS (pinned)
++
++
++def validated(question, answer, table):
++    pkg = package_for(question, db=TableDatabase(table))
++    report = validate_answer(answer, pkg, GenerationResult("p", answer, 500, 60, 1.0, finished=True))
++    cov = check_coverage(LexicalRetriever(TableDatabase(table)).run_plan(plan_query(question), top_k=8).registry)
++    d = evaluate(question, answer, package=pkg, validation=report, coverage=cov).to_dict()
++    return question_review(d, question=question), d
++
++
++Q211 = "What do 21 CFR 211.25(a), (b), and (c) require?"
++
++
++@pytest.mark.parametrize("answer", [
++    f"{A} [1] {B} [2] {C} [3] Each person shall also complete an annual CGMP proficiency test [1].",   # fabricated requirement
++    f"Each person shall pass an annual written CGMP examination.\n\n{A} [1] {B} [2] {C} [3]",         # uncited fabrication
++    f"{A} [1] {B} [2] {C} Personnel records shall be retained for ten years [3].",                     # marker supports neighbour only
++    f"{A} [1] {B} [2] There shall be an adequate number of qualified personnel to supervise the holding of each drug product, "
++    f"and at least three supervisors per shift [3].",                                                   # a number with no source
++    f"{C} [3]",                                                                                         # one of three requested
++])
++def test_an_answer_with_a_material_defect_beside_correct_statements_never_passes(answer):
++    v, _ = validated(Q211, answer, S211)
++    assert v["status"] != PASS
++
++
++def test_servicing_items_stated_as_complaint_record_contents_never_pass():
++    v, _ = validated("What must complaint records include under 21 CFR 820.35?",
++                     "Complaint records must include the date of service and the service performed [10].", S820)
++    assert v["status"] != PASS

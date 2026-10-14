@@ -1,0 +1,24 @@
+########## PB-008  N=0 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=temporal
+Q: Our quality manual is built around the Subpart structure of the Quality System Regulation. Confirm that Subparts C through O still apply so I can leave it as it is.
+KEY: FALSE PREMISE — Subparts C through O are [Reserved] as of February 2, 2026 | Must correct the premise rather than confirm it, and must not advise that no action is required. Must not guarantee a compliance outcome either way.
+REV: key_sections=; key_section_state=none; key_retrieved=n/a; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=no; mechanical_root_cause=false-premise / trap not detected; guidance_in_answer=yes; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Confirms the false premise outright: 'The requested provision requires that Subparts C through O still apply'. Those subparts were reserved on 2 February 2026, so the answer tells a manufacturer its quality manual needs no change when it does. One citation marker resolved to no source and another points to 876.5820, a gastroenterology device classification.
+EVAL: Draft key records this as a false premise. Scope discipline scored 0: the answer effectively advises that no action is required on a compliance question. No ISO clause named, so concordance scores 0.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The requested provision requires that Subparts C through O still apply. Subparts C through O are part of the Quality System Regulation and apply to the quality manual. The requirements for Subparts C through O include ensuring that the quality system is implemented with clear guidance and systematic evaluation of issues. These sub-requirements are supported by the evidence in the sources. [1] [2] [3]
+EVIDENCE LABELS (3, lost=1):
+   X FDA Guidance: Quality Systems Approach to Pharmaceutical Current Good Manufacturing Practice Regulations (final, 2006-10-02, Docket FDA-2004-D-0300)
+   X FDA Guidance: Quality Systems Approach to Pharmaceutical Current Good Manufacturing Practice Regulations (final, 2006-10-02, Docket FDA-2004-D-0300)
+     21 CFR 876.5820(a)(3)
+SOURCES:
+   [21 CFR 876.5820(a)(3)] (Hemodialysis system and accessories.) '(3) The dialysate delivery system consists of mechanisms that monitor and control the temperature, conductivity, flow rate, and pressure of the dialysate and circulates dialysate through the dialysate compartment of the dialyzer. The dialysate delivery system '
+REQS: [] satisfied=[]
+INTENT: topic=['qual', 'manual', 'structur', 'system', 'confirm', 'still', 'leav'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: 1 statement(s) address the question but none could be verified against the retrieved evidence | missing=["the question's subject"] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 1
+  C1: final=unverifiable support=unverifiable/no_evidence rel=partially_relevant cit=correct
+      text: The requested provision requires that Subparts C through O still apply.
+      support_reason: no passage of the authoritative evidence is about this statement
+      rel_reason: no corresponding evidence; the statement itself is about still | found=0.0
+      evidence: [] ops={}

@@ -1,0 +1,23 @@
+Loading tokenizer and model ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:00<00:42,  7.35it/s]Loading weights:  42%|████▏     | 131/311 [00:00<00:00, 605.80it/s]Loading weights:  63%|██████▎   | 195/311 [00:00<00:00, 508.54it/s]Loading weights:  80%|████████  | 249/311 [00:00<00:00, 404.46it/s]Loading weights:  94%|█████████▍| 293/311 [00:00<00:00, 283.21it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 333.11it/s]
+Model ready in 3.9s on cpu (torch.float32)
+Database regulus read-only=on
+
+[1/2] What does 21 CFR 820.35 add to the record control requirements of the incorporated standard?
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 7089.37it/s]
+Accuracy aligner: BAAI/bge-small-en-v1.5 in 0.1s
+    evidence: EXACT  fingerprint fa2451337503d884  items 18 (guidance 0, truncated 0)  prompt_verified=True
+    accuracy: evaluated 60 (+390.61 ms of 18.14 s)
+    live arm: identical  (off 14.48s, on 14.48s)
+
+[2/2] Which facilities must register with FDA, and how often must registration be renewed?
+    evidence: EXACT  fingerprint 678b0d62c082e609  items 3 (guidance 3, truncated 3)  prompt_verified=True
+    accuracy: evaluated 40 (+138.84 ms of 13.05 s)
+    live arm: identical  (off 12.49s, on 12.56s)
+
+exact evidence: PASS
+payload arm: PASS
+live arm:    PASS
+accuracy cost: 264.725 ms mean (max 390.61) against 15.6 s per answer
+written: artifacts/accuracy/regression_2026-10-09T043045Z.json

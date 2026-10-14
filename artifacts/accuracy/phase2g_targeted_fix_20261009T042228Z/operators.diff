@@ -1,0 +1,63 @@
+--- artifacts/accuracy/phase2g_targeted_fix_20261009T042228Z/snapshot_before/accuracy/operators.py	2026-10-09 09:52:28
++++ src/regulus/accuracy/operators.py	2026-10-09 09:54:01
+@@ -103,8 +103,14 @@
+ # results cannot be fully verified by inspection" is an affirmative obligation
+ # whose condition contains "cannot" - and reading those as the obligation's
+ # polarity inverts the rule.
++#
++# "not required" counts only with its copula or modal ("is/are not required",
++# "shall not be required", "need not"), which the alternatives below match. A
++# bare "not required" qualifies a noun - "drug products not required to be
++# sterile" in 21 CFR 211.113(a) - and was measured to negate that section's duty
++# "shall be established and followed" and discard it as evidence (row D-009).
+ _NEGATE_RE = re.compile(
+-    r"\b(?:shall|must|may|can|will|does|do|is|are|were|was)\s+not\b|\bcannot\b|\bcan't\b|\bnot\s+required\b"
++    r"\b(?:shall|must|may|can|will|does|do|is|are|were|was)\s+not\b|\bcannot\b|\bcan't\b"
+     r"|\bis\s+prohibited\b|\bare\s+prohibited\b|\bprohibit(?:s|ed)\b|\bexempt(?:s|ed|ion|ions)?\b"
+     r"|\bno\s+(?:person|manufacturer|device|product)\b|\bneed\s+not\b|\bnot\s+subject\s+to\b"
+     r"|\bdo(?:es)?\s+not\s+apply\b|\bnot\s+applicable\b", re.I)
+@@ -487,8 +493,34 @@
+ 
+ 
+ _STRENGTH_RANK = {PERMISSIVE: 0, RECOMMENDED: 1, MANDATORY: 2}
++
++# A means or channel of performing an act: "through", "via", "using", "by means
++# of", "either ... or".
++_MEANS_RE = re.compile(r"\b(?:through|via|using|by\s+means\s+of|by\s+way\s+of|either)\b", re.I)
+ 
+ 
++def _permission_over_means(claim: str, evidence: str, c_strength: str | None, e_strength: str | None) -> bool:
++    """One side PERMITS a channel or means for the act the other side MANDATES,
++    and the mandate names no means of its own: the permission is about how, not
++    whether, so it is no modal conflict. "you may submit prior notice through
++    either ABI/ACE/ITDS or FDA PNSI" against 21 CFR 1.279(a) "you must submit
++    the prior notice to FDA" was measured as a contradiction (row H-003). A
++    mandate that names its own channel still conflicts with a permission to use
++    another, and a permission without a means, or over a different act, is
++    still a modal conflict."""
++    from regulus.accuracy.intent import stem
++
++    if {c_strength, e_strength} != {PERMISSIVE, MANDATORY}:
++        return False
++    permitted, mandated = (claim, evidence) if c_strength == PERMISSIVE else (evidence, claim)
++    permitted, mandated = main_clause(permitted), main_clause(mandated)
++    modal = re.search(r"\b(?:may|can)\s+(?:be\s+)?([a-z]+)\b", permitted, re.I)
++    if not modal or not _MEANS_RE.search(permitted[modal.end():]) or _MEANS_RE.search(mandated):
++        return False
++    act = stem(modal.group(1).lower())
++    return any(stem(word.lower()) == act for word in re.findall(r"[A-Za-z]+", mandated))
++
++
+ def compare(claim: str, evidence: str, *, authority: str = BINDING) -> OperatorComparison:
+     """Compare one claim with one aligned evidence passage, operator by operator.
+ 
+@@ -532,6 +564,9 @@
+         else:
+             relate(CONFLICT_STRENGTH, "guidance_stronger", c.strength, e.strength,
+                    "the guidance restates as a requirement what the answer states more weakly")
++    elif _permission_over_means(claim, evidence, c.strength, e.strength):
++        relate(CONFLICT_STRENGTH, "permission_over_means", c.strength, e.strength,
++               "one side permits a channel or means for the act the other mandates, and the mandate names no means")
+     elif (c.strength, e.strength) in _STRENGTH_CONFLICTS:
+         conflicts.append(note(CONFLICT_STRENGTH,
+                               f"the answer states a {c.strength} requirement where the evidence is {e.strength}",

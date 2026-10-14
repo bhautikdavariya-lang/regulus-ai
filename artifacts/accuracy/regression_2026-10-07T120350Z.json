@@ -1,0 +1,285 @@
+{
+  "generated_at": "2026-10-07T120350Z",
+  "questions": 8,
+  "arms": "both",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": []
+  },
+  "latency_ms": {
+    "accuracy_min": 0.4,
+    "accuracy_max": 13.24,
+    "accuracy_mean": 3.501,
+    "answer_seconds_mean": 16.32
+  },
+  "rows": [
+    {
+      "question": "What does 21 CFR 820.10 require?",
+      "answer_seconds": 43.65,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 13.24,
+        "status": "evaluated",
+        "accuracy": 0,
+        "dimensions": {
+          "substantive_correctness": "not_established",
+          "evidence_support": "fail",
+          "citation_correctness": "fail",
+          "fabrication_free": "fail",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Evidence support: 5 material statement(s) cite no source and appear verbatim in none; Citation correctness: 7 statement(s) assert a requirement with no citation at all; Unsupported claims: the answer names 21 CFR part 830, 21 CFR part 821, 21 CFR part 803, 21 CFR part 806, which is not in the verified eCFR snapshot"
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 37.35,
+          "on": 39.27
+        },
+        "added_seconds": 1.92
+      }
+    },
+    {
+      "question": "What does 21 CFR Part 11 cover?",
+      "answer_seconds": 49.94,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 4.79,
+        "status": "unable_to_determine",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_established",
+          "evidence_support": "fail",
+          "citation_correctness": "fail",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Not enough can be established from the authoritative evidence to score this answer. 4 of 8 material statement(s) are verbatim passages of the provision they name; the rest are paraphrase, and whether a paraphrase states the requirement correctly cannot be decided from the evidence by identity"
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 57.3,
+          "on": 64.61
+        },
+        "added_seconds": 7.31
+      }
+    },
+    {
+      "question": "What are the specific requirements of 21 CFR 314.999?",
+      "answer_seconds": 0.12,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 0.4,
+        "status": "not_applicable",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_applicable",
+          "evidence_support": "not_applicable",
+          "citation_correctness": "not_applicable",
+          "fabrication_free": "pass",
+          "completeness": "partial",
+          "scope_correct": "pass"
+        },
+        "reason": "The answer states no regulatory requirement — it declines, or withholds what could not be validated — so there is no regulatory claim to score."
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 2.96,
+          "on": 0.4
+        },
+        "added_seconds": -2.56
+      }
+    },
+    {
+      "question": "Summarize FDA guidance FDA-2016-D-2565.",
+      "answer_seconds": 16.59,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 1.61,
+        "status": "unable_to_determine",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_established",
+          "evidence_support": "fail",
+          "citation_correctness": "fail",
+          "fabrication_free": "pass",
+          "completeness": "not_established",
+          "scope_correct": "pass"
+        },
+        "reason": "Not enough can be established from the authoritative evidence to score this answer. 0 of 3 material statement(s) are verbatim passages of the provision they name; the rest are paraphrase, and whether a paraphrase states the requirement correctly cannot be decided from the evidence by identity"
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 14.44,
+          "on": 25.43
+        },
+        "added_seconds": 10.99
+      }
+    },
+    {
+      "question": "What exact storage temperature range does 21 CFR Part 211 require for all finished tablets?",
+      "answer_seconds": 1.24,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 3.71,
+        "status": "not_applicable",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_applicable",
+          "evidence_support": "not_applicable",
+          "citation_correctness": "not_applicable",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "The answer states no regulatory requirement — it declines, or withholds what could not be validated — so there is no regulatory claim to score."
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 0.22,
+          "on": 0.2
+        },
+        "added_seconds": -0.02
+      }
+    },
+    {
+      "question": "What records must a device manufacturer keep for complaints?",
+      "answer_seconds": 17.58,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 1.97,
+        "status": "unable_to_determine",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_established",
+          "evidence_support": "fail",
+          "citation_correctness": "fail",
+          "fabrication_free": "pass",
+          "completeness": "not_established",
+          "scope_correct": "pass"
+        },
+        "reason": "Not enough can be established from the authoritative evidence to score this answer. 0 of 6 material statement(s) are verbatim passages of the provision they name; the rest are paraphrase, and whether a paraphrase states the requirement correctly cannot be decided from the evidence by identity"
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 17.97,
+          "on": 17.18
+        },
+        "added_seconds": -0.79
+      }
+    },
+    {
+      "question": "What does the EU Medical Device Regulation require for clinical evaluation?",
+      "answer_seconds": 0.96,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 1.09,
+        "status": "not_applicable",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_applicable",
+          "evidence_support": "not_applicable",
+          "citation_correctness": "not_applicable",
+          "fabrication_free": "pass",
+          "completeness": "not_established",
+          "scope_correct": "pass"
+        },
+        "reason": "The answer states no regulatory requirement — it declines, or withholds what could not be validated — so there is no regulatory claim to score."
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 0.65,
+          "on": 0.64
+        },
+        "added_seconds": -0.01
+      }
+    },
+    {
+      "question": "What do 21 CFR 820.30(a) and 21 CFR 820.30(g) require?",
+      "answer_seconds": 0.51,
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 1.2,
+        "status": "not_applicable",
+        "accuracy": null,
+        "dimensions": {
+          "substantive_correctness": "not_applicable",
+          "evidence_support": "not_applicable",
+          "citation_correctness": "not_applicable",
+          "fabrication_free": "pass",
+          "completeness": "partial",
+          "scope_correct": "pass"
+        },
+        "reason": "The answer states no regulatory requirement — it declines, or withholds what could not be validated — so there is no regulatory claim to score."
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 0.54,
+          "on": 0.6
+        },
+        "added_seconds": 0.06
+      }
+    }
+  ]
+}

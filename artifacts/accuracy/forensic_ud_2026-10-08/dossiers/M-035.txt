@@ -1,0 +1,19 @@
+########## M-035  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=list
+Q: What are the management responsibility requirements of 21 CFR 820.20?
+KEY: TEMPORAL TRAP — 820.20 is [Reserved]; the requirement reaches the manufacturer through 21 CFR 820.10(a) | Must state that 820.20 is reserved and route management responsibility to 820.10(a) and the standard's management responsibility clause.
+REV: key_sections=820.20;820.10; key_section_state=inside_reserved_span;present; key_retrieved=no; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=reserved / temporal routing; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Declines and infers nothing about 820.20, which avoids answering from the old management responsibility text, but does not state that the section is reserved or route the requirement to 820.10(a) and the standard's management responsibility clause.
+EVAL: Confirmed against the snapshot: 820.20 falls inside the reserved span 820.20-820.30. Draft clause 5 not named, so concordance scores 0.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.20, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (3, lost=1):
+   X FDA Guidance: Current Good Manufacturing Practice Requirements for Combination Products: Guidance for Industry and FDA Staff (final, 2017-01-11, Docke
+   X FDA Guidance: Current Good Manufacturing Practice Requirements for Combination Products: Guidance for Industry and FDA Staff (final, 2017-01-11, Docke
+     21 CFR 20.82(a)
+SOURCES:
+   [21 CFR 20.82(a)] (Discretionary disclosure by the Commissioner.) '(a) Except as provided in paragraph (b) of this section, the Commissioner may, in his or her discretion, disclose part or all of any Food and Drug Administration (FDA) record that is otherwise exempt from disclosure pursuant to subpart D of this part. As set f'
+REQS: [['r1', '21 CFR 820.20']] satisfied=[]
+INTENT: topic=['manag', 'responsibil'] elements=["the question's subject"] parts=['820'] sections=['820.20']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about manag/responsibil; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about manag/responsibil; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

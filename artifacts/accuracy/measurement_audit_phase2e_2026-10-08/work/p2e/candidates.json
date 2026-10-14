@@ -1,0 +1,1639 @@
+[
+ {
+  "row": "B-003",
+  "claim": "Under Part 601, a biologics license application must be approved upon examination of the product and upon a determination that the product complies with the standards established in the regulations in this chapter, including but not limited to the good manufacturing practice requirements set forth i",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "B-003",
+  "claim": "The application must be submitted in electronic format, with the electronic submission in a form that FDA can process, review, and archive.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(applic)",
+   "semantic:blocked_single_term(applic)"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "B-003",
+  "claim": "The application must be submitted within 60 days of the anniversary date of approval of each product under the license.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(applic)",
+   "semantic:blocked_single_term(applic)"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "B-005",
+  "claim": "with CGMP requirements requirements apply **except** for clinical investigations [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.6,0.75,ops=1)",
+   "semantic:near(0.6,0.75,ops=1)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "B-005",
+  "claim": "The use of plateletpheresis and leukapheresis procedures may vary with additional standards in part 640 of this chapter [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.83,0.8,ops=0)",
+   "semantic:near(0.83,0.8,ops=0)"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "B-005",
+  "claim": "Container labels for blood and blood components must be uniform and facilitate use [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.86,1.0,ops=0)",
+   "semantic:near(0.86,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "B-005",
+  "claim": "Distribution and receipt procedures include a system to determine the recall of units [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.71,1.0,ops=0)",
+   "semantic:near(0.71,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "B-005",
+  "claim": "Reporting of deviations by licensed manufacturers, unlicensed registered blood establishments, and transfusion services is required [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.5,1.0,ops=3)",
+   "semantic:near(0.5,1.0,ops=3)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-002",
+  "claim": "The requirement applies to the label of a cosmetic in package form [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.8,1.0,ops=0)",
+   "semantic:near(0.8,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include vinyl chloride.",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include certain halogenated salicylanilides.",
+  "N": 2,
+  "signals": [
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include zirconium.",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "Under Part 700, prohibited or restricted ingredients in cosmetics include methylene chloride.",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of zirconium-containing complexes in cosmetics is prohibited.",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of chloroform as an ingredient in cosmetics is prohibited [6].",
+  "N": 2,
+  "signals": [
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of methylene chloride as an ingredient in aerosol cosmetic products is prohibited [7].",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of vinyl chloride as an ingredient in aerosol products is prohibited [3].",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of certain halogenated salicylanilides as ingredients in cosmetics is prohibited [4].",
+  "N": 2,
+  "signals": [
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of bithionol in cosmetics is prohibited [1].",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(bithionol)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "C-004",
+  "claim": "The use of mercury compounds in cosmetics is prohibited [2].",
+  "N": 2,
+  "signals": [
+   "lexical:blocked_single_term(prohibit)",
+   "semantic:blocked_single_term(prohibit)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include written procedures for production and process control.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.62,0.62,ops=0)",
+   "semantic:near(0.62,0.62,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include sampling and testing of in-process materials.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_morph(proces~procedur)",
+   "lexical:blocked_single_term(proces)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-003",
+  "claim": "Under Part 211, personnel qualification and training requirements include packaging and labeling operations.",
+  "N": 0,
+  "signals": [
+   "semantic:blocked_single_term(oper)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-003",
+  "claim": "personnel qualification and training requirements requirements are established and followed by the appropriate organizational units and quality control units.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.5,0.62,ops=0)",
+   "semantic:near(0.4,0.62,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include written procedures for production and process control.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.83,0.83,ops=0)",
+   "semantic:near(0.83,0.83,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include charge-in of components.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(charg)",
+   "semantic:blocked_single_term(charg)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include calculation of yield.",
+  "N": 0,
+  "signals": [
+   "semantic:near(0.33,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include sampling and testing of in-process materials.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_morph(proces~procedur)",
+   "lexical:blocked_single_term(proces)",
+   "semantic:blocked_morph(proces~procedur)",
+   "semantic:blocked_single_term(proces)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include time limitations on production.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.5,0.75,ops=0)",
+   "semantic:near(0.5,0.75,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include labeling issuance.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(issuanc)",
+   "semantic:blocked_single_term(issuanc)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include packaging and labeling operations.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.75,0.75,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include tamper-evident packaging requirements.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.75,0.75,ops=0)",
+   "semantic:near(0.75,0.75,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include drug product inspection.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(inspect)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include expiration dating.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.33,0.67,ops=0)",
+   "semantic:near(0.33,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include warehousing procedures.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.67,0.67,ops=0)",
+   "semantic:blocked_single_term(warehous)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "Under Part 211, the consultant requirements include distribution procedures.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.67,0.67,ops=0)",
+   "semantic:blocked_single_term(distribut)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-004",
+  "claim": "the consultant requirements requirements are established and followed by the appropriate organizational units and quality control units.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.62,0.83,ops=0)",
+   "semantic:near(0.5,0.83,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include sampling and testing of in-process materials.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_morph(proces~procedur)",
+   "lexical:blocked_single_term(proces)",
+   "semantic:blocked_morph(proces~procedur)",
+   "semantic:blocked_single_term(proces)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-006",
+  "claim": "Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include packaging and labeling operations.",
+  "N": 0,
+  "signals": [
+   "semantic:blocked_single_term(oper)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-007",
+  "claim": "The procedures shall include written procedures for charge-in of components, calculation of yield, equipment identification, sampling and testing of in-process materials, time limitations on production, and control of microbiological contamination [5].",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_morph(proces~procedur)",
+   "semantic:blocked_morph(proces~procedur)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-007",
+  "claim": "The procedures shall include written procedures for materials examination and usage criteria [12].",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.67,0.67,ops=2)",
+   "semantic:near(0.67,0.67,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-007",
+  "claim": "Written procedures shall be established and followed for packaging and labeling operations [11].",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(oper)",
+   "semantic:blocked_single_term(oper)"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-007",
+  "claim": "Tamper-evident packaging requirements for over-the-counter (OTC) human drug products shall be established [13].",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.6,0.67,ops=0)",
+   "semantic:near(0.6,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-008",
+  "claim": "- **Calibration, inspection, and checking** of equipment used in the manufacture, processing, packing, and holding of a drug product, as required by 21 CFR 111.30.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.73,0.7,ops=0)",
+   "semantic:near(0.73,0.7,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-008",
+  "claim": "- **Calibration intervals** must be determined and established according to a written program, as required by 21 CFR 111.30.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(determin)",
+   "semantic:blocked_single_term(determin)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-008",
+  "claim": "- **Calibration procedures** and records must be maintained, as required by 21 CFR 111.30.",
+  "N": 0,
+  "signals": [
+   "aligner_disagreement",
+   "semantic:blocked_single_term(procedur)"
+  ],
+  "label2C": "SAFE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "paraphrase"
+  }
+ },
+ {
+  "row": "D-008",
+  "claim": "- **Records** must be documented and displayed or made available to personnel using the equipment, as required by 21 CFR 111.30.",
+  "N": 0,
+  "signals": [
+   "semantic:blocked_single_term(personnel)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-009",
+  "claim": "Under Part 211, incoming components must be tested and approved to ensure they meet the required standards of identity, strength, quality, and purity.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_morph(approv~appropriat)",
+   "semantic:blocked_morph(approv~appropriat)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-009",
+  "claim": "Written procedures for production and process control must be established and followed, including changes, to ensure the drug products have these characteristics.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(characteristic)",
+   "semantic:blocked_single_term(characteristic)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-009",
+  "claim": "If appropriate, written procedures shall include the charge-in of components, ensuring that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess.",
+  "N": 0,
+  "signals": [
+   "aligner_disagreement"
+  ],
+  "label2C": "SAFE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "paraphrase"
+  }
+ },
+ {
+  "row": "D-009",
+  "claim": "materials examination and usage criteria requirements shall be documented and followed.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(document)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-009",
+  "claim": "The records shall include component, drug product container, closure, and labeling records [1].",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.71,0.8,ops=0)",
+   "semantic:near(0.57,1.0,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-010",
+  "claim": "- **Testing and approval or rejection of components, containers, and closures** (eCFR 21 CFR 213.84(c)): Each component shall be sampled, tested, and approved or rejected as appropriate prior to use.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.57,0.89,ops=3)",
+   "semantic:near(0.57,0.89,ops=3)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-010",
+  "claim": "- **Quality control operations for components, packaging, and labels** (eCFR 21 CFR 111.120(d)): Approving or rejecting any treatment and in-process adjustments of components, packaging, or labels to make them suitable for use in the manufacture of a dietary supplement.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.82,0.8,ops=0)",
+   "semantic:blocked_single_term(suitabl)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-015",
+  "claim": "The requirements to implement a production and process control system are outlined in 21 CFR 111.55 [3].",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.67,0.8,ops=0)",
+   "semantic:near(0.67,0.8,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "Written procedures shall also include the calculation of yield, equipment identification, and sampling and testing of in-process materials.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_morph(proces~procedur)",
+   "semantic:blocked_morph(proces~procedur)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "General requirements include standards.",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=0)",
+   "semantic:near(1.0,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "General requirements include sampling plans.",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=0)",
+   "semantic:near(1.0,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "General requirements include test procedures.",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=0)",
+   "semantic:blocked_single_term(test)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "General requirements include other laboratory control mechanisms.",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=1)",
+   "semantic:near(1.0,1.0,ops=1)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "General requirements requirements shall be documented and followed.",
+  "N": 1,
+  "signals": [
+   "lexical:gate_established_no_credit",
+   "semantic:gate_established_no_credit"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "The records include component.",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=0)",
+   "semantic:near(0.5,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "The records include closure.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(closur)",
+   "semantic:near(0.5,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "D-019",
+  "claim": "The records include labeling records [1].",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=0)",
+   "semantic:near(1.0,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "E-001",
+  "claim": "The scope of 21 CFR Part 11 applies to electronic records, electronic signatures, and handwritten signatures executed on paper.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.75,0.83,ops=0)",
+   "semantic:near(0.75,0.83,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "E-001",
+  "claim": "The records in question are those that are maintained and used in accordance with the requirements of this part.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(quest)",
+   "semantic:blocked_single_term(quest)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "E-005",
+  "claim": "The FDA requires additional controls for open systems, including ensuring the authenticity.",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "E-005",
+  "claim": "The FDA requires additional controls for open systems, including integrity.",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "E-005",
+  "claim": "The FDA requires additional controls for open systems, including confidentiality of electronic records.",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "E-010",
+  "claim": "21 CFR 11.100(a) and 21 CFR 11.10 ensure the authenticity, integrity, and confidentiality of electronic records, and that electronic signatures cannot be repudiated.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.78,0.86,ops=0)",
+   "semantic:near(0.78,0.86,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "E-010",
+  "claim": "The FDA guidance on scope and application affects enforcement discretion by setting the criteria for when electronic records are considered trustworthy, reliable, and generally equivalent to paper records.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(enforc)",
+   "semantic:blocked_single_term(enforc)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include food safety plan.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.6,0.75,ops=0)",
+   "semantic:near(0.6,0.75,ops=0)"
+  ],
+  "label2C": "FALSE_SUPPORT",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include hazard analysis.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.5,0.67,ops=0)",
+   "semantic:near(0.5,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include preventive controls.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.5,0.67,ops=0)",
+   "semantic:near(0.5,0.67,ops=0)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include circumstances in which preventive controls are not required.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.4,0.75,ops=1)",
+   "semantic:blocked_single_term(circumstanc)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include assurances under preventive controls.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.6,0.75,ops=0)",
+   "semantic:blocked_single_term(assuranc)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include recall plans.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.25,0.67,ops=0)",
+   "semantic:near(0.25,0.67,ops=0)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "The CGMP requirements under Part 117 Subpart B include preventive control management components.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.67,0.8,ops=0)",
+   "semantic:near(0.67,0.8,ops=0)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.126(a) requires a food safety plan.",
+  "N": 1,
+  "signals": [
+   "lexical:gate_established_terms_only_no_credit",
+   "semantic:gate_established_terms_only_no_credit"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.130(a) mandates a hazard analysis.",
+  "N": 1,
+  "signals": [
+   "lexical:gate_established_terms_only_no_credit",
+   "semantic:gate_established_terms_only_no_credit"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.135(a)(1) requires preventive controls to minimize or prevent hazards.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(hazard)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.136(a) states that preventive controls are not required if a hazard is identified and certain circumstances apply.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.83,1.0,ops=1)",
+   "semantic:near(0.83,1.0,ops=1)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.139 mandates a recall plan for hazards requiring preventive controls.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.67,1.0,ops=2)",
+   "semantic:near(0.67,1.0,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.140(a) requires preventive control management components.",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.145 mandates monitoring activities.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(activ)",
+   "semantic:blocked_single_term(activ)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.150(a) requires corrective action procedures.",
+  "N": 1,
+  "signals": [
+   "lexical:gate_established_terms_only_no_credit",
+   "semantic:gate_established_terms_only_no_credit"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.155(a) mandates verification activities.",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.160(a) requires validation of preventive controls.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(valid)",
+   "semantic:near(0.67,0.67,ops=2)"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.165(a) mandates verification of implementation and effectiveness.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(effectivenes)",
+   "semantic:blocked_single_term(effectivenes)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.190(a) requires attestations.",
+  "N": 1,
+  "signals": [
+   "lexical:gate_established_terms_only_no_credit",
+   "semantic:gate_established_terms_only_no_credit"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.201(a) requires modified requirements for a qualified facility.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.67,0.67,ops=2)",
+   "semantic:near(0.67,0.67,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-003",
+  "claim": "- 21 CFR 117.206(a) requires temperature control activities for unexposed packaged food.",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "F-004",
+  "claim": "The requirements include ensuring the grounds are kept in a condition that protects against contamination of food.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.75,1.0,ops=0)",
+   "semantic:near(0.75,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-004",
+  "claim": "The requirements include methods for adequate maintenance.",
+  "N": 1,
+  "signals": [
+   "lexical:near(1.0,1.0,ops=0)",
+   "semantic:near(1.0,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-007",
+  "claim": "The requirements for a hazard analysis include identifying and implementing preventive controls to provide assurances that any hazards requiring a preventive control will be significantly minimized or prevented [14].",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(analysi)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-007",
+  "claim": "The requirements for a preventive control management components include ensuring the effectiveness of the preventive controls, taking into account the nature of the preventive control and its role in the facility's food safety system [19].",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "F-007",
+  "claim": "The requirements for plant and grounds include maintaining the grounds in a condition that will protect against contamination [22].",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.86,1.0,ops=0)",
+   "semantic:near(0.86,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-009",
+  "claim": "The preventive controls must be implemented and verified as appropriate to ensure their effectiveness.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(verif)",
+   "semantic:blocked_morph(verif~verific)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-009",
+  "claim": "The requirements apply to the qualified individual and auditor as specified in § 117.160(a).",
+  "N": 1,
+  "signals": [
+   "semantic:near(0.25,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-009",
+  "claim": "The implementation records must be maintained as required in § 117.1(a).",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.67,0.0,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-009",
+  "claim": "The modified requirements apply to a qualified facility solely engaged in the storage of unexposed packaged food as specified in § 117.20(a).",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(qualif)",
+   "semantic:blocked_single_term(qualif)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-009",
+  "claim": "The requirements apply to the plant and grounds as specified in § 117.251(a).",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.67,1.0,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-012",
+  "claim": "Part 117 requires activities to ensure the effectiveness of the temperature controls, [22].",
+  "N": 1,
+  "signals": [
+   "lexical:partial",
+   "semantic:partial"
+  ],
+  "label2C": "SAFE_PARTIAL",
+  "bases": {
+   "semantic": "drops_a_condition",
+   "lexical": "drops_a_condition"
+  }
+ },
+ {
+  "row": "F-022",
+  "claim": "It also mandates the provision of assurances and the requirement for recall plans.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(assuranc)",
+   "semantic:blocked_single_term(assuranc)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-022",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as implementing preventive controls.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(measur)",
+   "semantic:blocked_single_term(measur)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "F-022",
+  "claim": "Each provision in Part 117 requires specific sub-requirements to ensure the effectiveness of food safety measures, such as maintaining records.",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(measur)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "G-008",
+  "claim": "The linear bar code requirement does not apply to prescription drugs unless versions of that same drug are also sold to or used in hospitals.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.85,0.78,ops=0)",
+   "semantic:near(0.85,0.78,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "G-010",
+  "claim": "[2] A manufacturer, repacker, relabeler, or private label distributor may voluntarily reserve a proposed NDC for a drug before the drug is listed by submitting the following information: [1] [2] [3] [4] [5] [6]\n(Incomplete: generation stopped at the token limit before this answer finished, so wordin",
+  "N": 1,
+  "signals": [
+   "lexical:blocked_single_term(finish)",
+   "semantic:blocked_single_term(finish)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "H-003",
+  "claim": "Prior notice of imported food must be submitted to FDA, and it must be confirmed by FDA for review.",
+  "N": 1,
+  "signals": [
+   "lexical:near(0.57,0.67,ops=2)",
+   "semantic:near(0.57,0.67,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including its design.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(design)",
+   "semantic:blocked_single_term(design)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including specifications.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.6,0.67,ops=0)",
+   "semantic:near(0.6,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including manufacturing details.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.67,0.8,ops=0)",
+   "semantic:near(0.5,0.6,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device Master Record is a record of the device's information, including it is required to be maintained by the manufacturer.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.67,0.75,ops=2)",
+   "semantic:near(0.67,0.75,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including its design.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(design)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including manufacturing.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.5,0.67,ops=0)",
+   "semantic:near(0.5,0.67,ops=0)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Device History Record is a record of the device's history, including it is required to be maintained by the manufacturer.",
+  "N": 0,
+  "signals": [
+   "lexical:near(0.6,0.67,ops=2)",
+   "semantic:near(0.6,0.67,ops=2)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Design History File is a record of the design of the device, including its specifications and development.",
+  "N": 0,
+  "signals": [
+   "semantic:blocked_single_term(file)"
+  ],
+  "label2C": null,
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ },
+ {
+  "row": "M-034",
+  "claim": "- A Design History File is a record of the design of the device, including it is required to be maintained by the manufacturer.",
+  "N": 0,
+  "signals": [
+   "lexical:blocked_single_term(design)",
+   "semantic:blocked_single_term(design)"
+  ],
+  "label2C": "FALSE_PARTIAL",
+  "bases": {
+   "semantic": "not_decisive",
+   "lexical": "not_decisive"
+  }
+ }
+]

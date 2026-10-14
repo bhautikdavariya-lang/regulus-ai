@@ -1,0 +1,985 @@
+[
+ {
+  "id": "seven-correct-live",
+  "expect": "pass",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "paraphrase"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "paraphrase"
+    ]
+   ]
+  },
+  "both": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "paraphrase"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "seven-correct-verbatim",
+  "expect": "pass",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "seven-wrong-deadline",
+  "expect": "not_pass_overall",
+  "production": {
+   "label": "FAIL",
+   "score": 0,
+   "completeness": "fail",
+   "verdict": "incorrect",
+   "detail": "the answer does not address: the question's subject",
+   "claims": [
+    [
+     "contradicted",
+     "operator_conflict"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 0,
+   "completeness": "fail",
+   "verdict": "incorrect",
+   "detail": "the answer does not address: the question's subject",
+   "claims": [
+    [
+     "contradicted",
+     "operator_conflict"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 0,
+   "completeness": "fail",
+   "verdict": "incorrect",
+   "detail": "the answer does not address: the question's subject",
+   "claims": [
+    [
+     "contradicted",
+     "operator_conflict"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "seven-drops-trigger",
+  "expect": "record",
+  "production": {
+   "label": "FAIL",
+   "score": 55,
+   "completeness": "pass",
+   "verdict": "partial",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "partially_supported",
+     "drops_a_condition"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 55,
+   "completeness": "pass",
+   "verdict": "partial",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "partially_supported",
+     "drops_a_condition"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 55,
+   "completeness": "pass",
+   "verdict": "partial",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "partially_supported",
+     "drops_a_condition"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "quick-both-live",
+  "expect": "record",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "quick-fifteen-only",
+  "expect": "record",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about quickly/ind/safety/report/submitt, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "follow-d-only",
+  "expect": "pass",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "follow-c-only",
+  "expect": "fail",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/after/ind/safety/report, and the answer does not address 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "follow2-d-only",
+  "expect": "pass",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "follow2-c-only",
+  "expect": "fail",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about follow-up/ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "broadF-c-only",
+  "expect": "fail",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), 21 CFR 312.32(d), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "broadF-c-and-d",
+  "expect": "pass",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about ind/safety/report, and the answer does not address 21 CFR 312.32(b) (Review of safety information), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "broadS-c-only",
+  "expect": "record",
+  "production": {
+   "label": "FAIL",
+   "score": 40,
+   "completeness": "pass",
+   "verdict": "partial",
+   "detail": "the statements that answer the question cover what it asks for",
+   "claims": [
+    [
+     "unverifiable",
+     "not_decisive"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 40,
+   "completeness": "pass",
+   "verdict": "partial",
+   "detail": "the statements that answer the question cover what it asks for",
+   "claims": [
+    [
+     "unverifiable",
+     "not_decisive"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 40,
+   "completeness": "pass",
+   "verdict": "partial",
+   "detail": "the statements that answer the question cover what it asks for",
+   "claims": [
+    [
+     "unverifiable",
+     "not_decisive"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "compare-both-live",
+  "expect": "record",
+  "production": {
+   "label": "FAIL",
+   "score": 45,
+   "completeness": "partial",
+   "verdict": "partial",
+   "detail": "the answer does not address: the 15-calendar-day; addresses ind safety reporting deadlines",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 45,
+   "completeness": "partial",
+   "verdict": "partial",
+   "detail": "the answer does not address: the 15-calendar-day; addresses ind safety reporting deadlines",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 45,
+   "completeness": "partial",
+   "verdict": "partial",
+   "detail": "the answer does not address: the 15-calendar-day; addresses ind safety reporting deadlines",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "personnel-c-only",
+  "expect": "fail",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(a), 21 CFR 211.25(b), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(a), 21 CFR 211.25(b), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(a), 21 CFR 211.25(b), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "personnel-a-only",
+  "expect": "fail",
+  "production": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(b), 21 CFR 211.25(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(b), 21 CFR 211.25(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "FAIL",
+   "score": 75,
+   "completeness": "fail",
+   "verdict": "correct",
+   "detail": "the question asks about personnel/qualific, and the answer does not address 21 CFR 211.25(b), 21 CFR 211.25(c), which states a requirement on it",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "personnel-all",
+  "expect": "pass",
+  "production": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "focus_only": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  },
+  "both": {
+   "label": "PASS",
+   "score": 100,
+   "completeness": "pass",
+   "verdict": "correct",
+   "detail": "covers every element the question asks for (the question's subject)",
+   "claims": [
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ],
+    [
+     "supported",
+     "verbatim"
+    ]
+   ]
+  }
+ }
+]

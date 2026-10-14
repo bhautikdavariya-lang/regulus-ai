@@ -1,0 +1,12 @@
+Loading tokenizer and model ...
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:01<08:48,  1.71s/it]Loading weights:  70%|███████   | 219/311 [00:01<00:00, 168.92it/s]Loading weights: 100%|██████████| 311/311 [00:02<00:00, 119.55it/s]
+Model ready in 3.3s on cpu (torch.float32)
+Database regulus read-only=on
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6668.90it/s]
+Accuracy aligner: BAAI/bge-small-en-v1.5 in 0.5s
+C2v1 PASS score=100 identical_off=True | fallback=None codes=None
+C2v2 FAIL score=75 identical_off=True | fallback=verbatim_requested_provision codes=None
+C2v3 FAIL score=40 identical_off=True | fallback=None codes=None
+C4v1 FAIL score=30 identical_off=True | fallback=None codes=None
+C4v2 FAIL score=0 identical_off=True | fallback=unvalidated_answer_withheld codes=None
+exit 0

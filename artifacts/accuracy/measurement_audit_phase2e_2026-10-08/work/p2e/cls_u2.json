@@ -1,0 +1,146 @@
+{
+ "46": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "item of 'General requirements include establishing specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms'; 211.160 (heading 'General requirements') (a) covers the establishment of standards; modal-less 1-term item: 0 operators, item path needs >= 2 terms"
+ ],
+ "47": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "as #46 (sampling plans)"
+ ],
+ "48": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "as #46 (test procedures); semantic arm also selects 211.100(a) and the guard flags 'test'"
+ ],
+ "49": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "as #46 (other laboratory control mechanisms)"
+ ],
+ "50": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "alignment + heading excluded from overlap",
+  "211.160(a) first sentence: 'The requirements in this subpart shall be followed and shall be documented at the time of performance'; the gate examined the second sentence of the same source (gate established, raw overlap 67% < 70%); even on that sentence the raw overlap is 67%: 'general' is only in the heading 'General requirements.'"
+ ],
+ "51": [
+  "AMBIGUOUS",
+  "-",
+  "claim extraction",
+  "list split of 'The records include component, drug product container, closure, and labeling records' -> 'The records include component'"
+ ],
+ "52": [
+  "AMBIGUOUS",
+  "-",
+  "claim extraction",
+  "as #51 ('closure')"
+ ],
+ "53": [
+  "AMBIGUOUS",
+  "-",
+  "other",
+  "'The records include labeling records' - 211.184 heading names labeling records; circular"
+ ],
+ "54": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "11.1(a) covers handwritten signatures executed TO ELECTRONIC RECORDS; the claim says handwritten signatures executed on paper - a substantive error"
+ ],
+ "55": [
+  "AMBIGUOUS",
+  "-",
+  "claim extraction",
+  "garbled anaphoric sentence; note the guard flags 'question' (from 'in question') as distinguishing - latent generic-word gap"
+ ],
+ "56": [
+  "FALSE_NEGATIVE",
+  "partial",
+  "operator logic",
+  "11.10 states the closed-system controls ensure authenticity, integrity and, WHEN APPROPRIATE, confidentiality, and that the signer cannot readily repudiate; correct verdict partial (drops 'when appropriate'); modal-less claim: 0 operators"
+ ],
+ "57": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "claim about the FDA guidance; the guidance document is not in the captured evidence; 11.1(a) is the regulation"
+ ],
+ "58": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "-",
+  "false membership: hazard analysis is Subpart C, not Subpart B"
+ ],
+ "59": [
+  "AMBIGUOUS",
+  "-",
+  "evidence limitation",
+  "captured 117.126(a) is only its caption '(a) Requirement for a food safety plan.'; (1) 'You must prepare ... a written food safety plan' not captured"
+ ],
+ "60": [
+  "AMBIGUOUS",
+  "-",
+  "evidence limitation",
+  "captured 117.130(a) is only its caption '(a) Requirement for a hazard analysis.'"
+ ],
+ "61": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "117.136(a): 'you are not required to implement a preventive control when you identify a hazard ... and any of the following circumstances apply' - same proposition; only polarity agrees (1 operator)"
+ ],
+ "62": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "terminology normalization",
+  "117.139: 'For food with a hazard requiring a preventive control: (a) You must establish a written recall plan'; strength+polarity agree, 100% core terms, but the unstemmed overlap misses hazards/hazard and controls/control (framed 67%, raw 57%)"
+ ],
+ "63": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "distinguishing-term guard",
+  "117.145(b) 'You must monitor the preventive controls ...' is in the selected source; the guard blocks 'activ' ('monitoring activities') even on that sentence - 'activities' is a generic noun treated as distinguishing"
+ ],
+ "64": [
+  "CORRECT_UNVERIFIABLE",
+  "unverifiable",
+  "evidence limitation",
+  "captured 117.150(a) is caption + 'As appropriate ... except as provided by paragraph (c):' - the operative 'you must establish ... corrective action procedures' is not captured"
+ ],
+ "65": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "alignment",
+  "117.165(a) (captured, and named in the claim) 'You must verify that the preventive controls are consistently implemented and are effectively ... minimizing'; neither aligner ranked it first (117.145 selected), the claim's own named provision is not used"
+ ],
+ "66": [
+  "AMBIGUOUS",
+  "-",
+  "other: named-provision attribution",
+  "the substance (attestations must be submitted) is stated by 117.201(a) for QUALIFIED FACILITIES; the claim attributes it to 117.190(a). The evaluator scores attribution in the citation layer (Phase 2C labelled para21, a support from a source other than the one named, SAFE), so support vs. citation split makes this ambiguous"
+ ],
+ "67": [
+  "AMBIGUOUS",
+  "-",
+  "claim extraction",
+  "garbled: '117.201(a) requires modified requirements for a qualified facility' (that is the section heading)"
+ ],
+ "68": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "117.20(a): 'The grounds ... must be kept in a condition that will protect against the contamination of food' - modal-less list-lead claim, 0 operators"
+ ],
+ "69": [
+  "FALSE_NEGATIVE",
+  "supported",
+  "operator logic",
+  "117.20(a): 'The methods for adequate maintenance of grounds must include:' - modal-less claim, 0 operators, 100% terms"
+ ]
+}

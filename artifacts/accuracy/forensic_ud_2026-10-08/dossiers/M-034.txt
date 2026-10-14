@@ -1,0 +1,50 @@
+########## M-034  N=0 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=temporal
+Q: What is the difference between a Device Master Record, a Device History Record, and a Design History File under the current Part 820?
+KEY: TEMPORAL TRAP — 820.181, 820.184 and 820.30(j) are [Reserved]; those constructs are not in the current Part 820 | Must state that the DMR/DHR/DHF terms are not used in the current Part 820 and identify the medical device file, record control and design and development file clauses that carry the equivalent obligations.
+REV: key_sections=820.181;820.184;820.30; key_section_state=absent;absent;inside_reserved_span; key_retrieved=n/a; evidence_kind=cfr; corpus_sufficient=uncertain; substantively_correct=no; mechanical_root_cause=false-premise / trap not detected; guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Falls into the trap: describes the Device Master Record, Device History Record and Design History File as records 'required to be maintained by the manufacturer' under the current Part 820, then adds that the sources are insufficient. Those constructs were reserved by the QMSR; the current obligations sit in the medical device file, record control and design and development file clauses.
+EVAL: Confirmed against the snapshot: 820.181, 820.184 and 820.30(j) have no current text. Draft clauses 4.2.3, 4.2.5 and 7.3.10 not named, so concordance scores 0.
+PIPE: model_called=True fallback=None answerability=ANSWERABLE validation=valid
+ANSWER: The difference between a Device Master Record, a Device History Record, and a Design History File under the current Part 820 is that:
+
+- A Device Master Record is a record of the device's information, including its design, specifications, and manufacturing details, and it is required to be maintained by the manufacturer.
+
+- A Device History Record is a record of the device's history, including its design, manufacturing, and use, and it is required to be maintained by the manufacturer.
+
+- A Design History File is a record of the design of the device, including its specifications and development, and it is required to be maintained by the manufacturer.
+
+The available regulatory sources do not provide enough information to answer this question.
+EVIDENCE LABELS (6, lost=0):
+     21 CFR 820.10
+     21 CFR 820.1(a)
+     21 CFR 820.35
+     21 CFR 820.3
+     21 CFR 820.45
+     21 CFR 820.7
+SOURCES:
+   [21 CFR 820.10] (Requirements for a quality management system.) 'A manufacturer subject to this part as described by § 820.1(a) must:\n(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of th'
+   [21 CFR 820.1(a)] (Scope.) '(a) Applicability. Current good manufacturing practice (CGMP) requirements are set forth in this quality management system regulation (QMSR). The requirements in this part govern the methods used in, and the facilities and controls used for, the design, manufa'
+   [21 CFR 820.35] (Control of records.) 'In addition to the requirements of Clause 4.2.5 in ISO 13485 (incorporated by reference, see § 820.7), Control of Records, the manufacturer must include the following information in certain records:\n(a) Records of complaints. In addition to Clause 8.2.2 in ISO'
+   [21 CFR 820.3] (Definitions.) 'The definitions in ISO 13485 and in Clause 3 of ISO 9000 (incorporated by reference, see § 820.7) apply to this part, except as specified in paragraph (b) of this section, and do not affect the meaning of similar terms defined in this title.\n(a) The following '
+   [21 CFR 820.45] (Device labeling and packaging controls.) 'In addition to the requirements of Clause 7.5.1 of ISO 13485 (incorporated by reference, see § 820.7), Control of production and service provision, each manufacturer must document and maintain procedures that provide a detailed description of the activities to'
+   [21 CFR 820.7] (Incorporation by reference.) 'Certain material is incorporated by reference into this part with the approval of the Director of the Federal Register under 5 U.S.C. 552(a) and 1 CFR part 51. All approved incorporation by reference (IBR) material is available for inspection at the Food and D'
+REQS: [['r1', '21 CFR part 820']] satisfied=[]
+INTENT: topic=['mast', 'record', 'history', 'design', 'file'] elements=['master record', 'history record', 'design history file'] parts=['820'] sections=[]
+VERDICT: 3 statement(s) address the question but none could be verified against the retrieved evidence | missing=[] unverified=['master record', 'history record', 'design history file']
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 3
+  C1: final=unverifiable support=unverifiable/not_decisive rel=partially_relevant cit=missing
+      text: - A Device Master Record is a record of the device's information, including its design, specifications, and manufacturing details, and it is required to be maintained by the manufacturer.
+      support_reason: aligned to 21 CFR 820.35 (SOURCE 3), but only 2 regulatory operator(s) could be decided (strength, polarity) and 40% of its terms appear there; unmatched: design, details, maintained, manufacturing, master, specifications
+      rel_reason: the regulation it corresponds to (21 CFR 820.1(a), 21 CFR 820.35, 21 CFR 820.3 ...) is about record/design | found=0.88
+      evidence: [{'citation': '21 CFR 820.1(a)', 'source_index': 2, 'heading': 'Scope.', 'text': 'Current good manufacturing practice (CGMP) requirements are set forth in this quality management system regulation (QM ops={'strength': 'matched', 'polarity': 'matched', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}
+  C2: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=missing
+      text: - A Device History Record is a record of the device's history, including its design, manufacturing, and use, and it is required to be maintained by the manufacturer.
+      support_reason: aligned to 21 CFR 820.35 (SOURCE 3), but only 2 regulatory operator(s) could be decided (strength, polarity) and 38% of its terms appear there; unmatched: design, history, maintained, manufacturing, use
+      rel_reason: the regulation it corresponds to (21 CFR 820.10, 21 CFR 820.1(a), 21 CFR 820.35 ...) is about record/design/file | found=0.8
+      evidence: [{'citation': '21 CFR 820.10', 'source_index': 1, 'heading': 'Requirements for a quality management system.', 'text': 'A manufacturer subject to this part as described by § 820.1(a) must:\n(a) Documen ops={'strength': 'matched', 'polarity': 'matched', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}
+  C3: final=unverifiable support=unverifiable/not_decisive rel=relevant cit=missing
+      text: - A Design History File is a record of the design of the device, including its specifications and development, and it is required to be maintained by the manufacturer.
+      support_reason: aligned to 21 CFR 820.35 (SOURCE 3), but only 2 regulatory operator(s) could be decided (strength, polarity) and 33% of its terms appear there; unmatched: design, development, file, history, maintained, specifications
+      rel_reason: the regulation it corresponds to (21 CFR 820.10, 21 CFR 820.1(a), 21 CFR 820.35 ...) is about record/design/file | found=1.0
+      evidence: [{'citation': '21 CFR 820.10', 'source_index': 1, 'heading': 'Requirements for a quality management system.', 'text': 'A manufacturer subject to this part as described by § 820.1(a) must:\n(a) Documen ops={'strength': 'matched', 'polarity': 'matched', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}

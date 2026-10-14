@@ -1,0 +1,310 @@
+{
+  "generated_at": "2026-10-12T052617Z",
+  "questions": 4,
+  "arms": "both",
+  "pipeline": "Qwen/Qwen3-0.6B",
+  "adapter": "configured",
+  "verdict": {
+    "payload_arm_passes": true,
+    "live_arm_passes": true,
+    "questions_changed_by_the_feature": [],
+    "questions_with_nondeterministic_generation": [],
+    "exact_evidence_for_every_answer": true
+  },
+  "latency_ms": {
+    "accuracy_min": 39.34,
+    "accuracy_max": 665.36,
+    "accuracy_mean": 230.883,
+    "answer_seconds_mean": 36.12
+  },
+  "rows": [
+    {
+      "question": "What are the IND safety reporting timeframes under 21 CFR 312.32?",
+      "answer_seconds": 77.28,
+      "answer": "Under 21 CFR 312.32, the IND safety reporting timeframes are as follows:  \n- The sponsor must notify FDA and all participating investigators (i.e., all investigators to whom the sponsor is providing drug under its INDs or under any investigator's IND) in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section.  \n\n[1]  \n\nThe sponsor must report any suspected adverse reaction that is both serious and unexpected. The sponsor must report an adverse event as a suspected adverse reaction only if there is evidence to suggest a causal relationship between the drug and the adverse event, such as: [3]  \n\nThe sponsor must report any findings from epidemiological studies, pooled analysis of multiple studies, or clinical studies (other than those reported under paragraph (c)(1)(i) of this section), whether or not conducted under an IND, and whether or not conducted by the sponsor, that suggest a significant risk in humans exposed to the drug.  \n\n[5]  \n\nThe sponsor must report any findings from animal or in vitro testing, whether or not conducted by the sponsor, that suggest a significant risk in humans exposed to the drug, such as reports of mutagenicity, teratogenicity, or carcinogenicity, or reports of significant organ toxicity at or near the expected human exposure.  \n\n[6]  \n\nThe sponsor must report any clinically important increase in the rate of a serious suspected adverse reaction over that listed in the protocol or investigator brochure.  \n\n[7]  \n\nThe sponsor must submit each IND safety report in a narrative format or on FDA Form 3500A or in an electronic format that FDA can process, review, and archive.  \n\n[8]  \n\nThe sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information.  \n\n[9]  \n\nThe sponsor must also submit safety information from the clinical study as prescribed by the postmarketing safety reporting requirements (e.g., §§ 310.305, 314.80, and 600.80 of this chapter).  \n\n[11]  \n\nThe sponsor must submit safety information from the clinical study as prescribed by the postmarketing safety reporting requirements (e.g., §§ 310.305, 314.80, and 600.80 of this chapter).  \n\n[14]  \n\nThe sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made.  \n\n[14]",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(i)",
+        "21 CFR 312.32(c)(1)(i)(C)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(c)(1)(iii)",
+        "21 CFR 312.32(c)(1)(iv)",
+        "21 CFR 312.32(c)(1)(v)",
+        "21 CFR 312.32(c)(2)",
+        "21 CFR 312.32(c)(3)",
+        "21 CFR 312.32(c)(4)",
+        "21 CFR 312.32(d)",
+        "21 CFR 312.32(d)(2)",
+        "21 CFR 312.32(d)(3)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 665.36,
+        "status": "evaluated",
+        "accuracy": 55,
+        "dimensions": {
+          "question_relevance": "partial",
+          "substantive_correctness": "partial",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Partially correct: 2 statement(s) answer a different question"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976",
+          "recomputed_from_text": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976",
+          "evaluator_live": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976",
+          "evaluator_replay": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "980c479b87eb2de725ae79a429888f38fe4256bde35c822319ce83c2e8fcb1b2",
+        "model_called": true,
+        "items": 14,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 55,
+          "verdict": "partial"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 65.84,
+          "on": 66.75
+        },
+        "added_seconds": 0.91
+      }
+    },
+    {
+      "question": "How quickly must IND safety reports be submitted under 21 CFR 312.32?",
+      "answer_seconds": 12.86,
+      "answer": "The sponsor must notify FDA and all participating investigators in an IND safety report of potential serious risks, from clinical trials or other sources, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. [2]",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(i)",
+        "21 CFR 312.32(c)(1)(i)(C)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(c)(1)(iii)",
+        "21 CFR 312.32(c)(1)(iv)",
+        "21 CFR 312.32(c)(1)(v)",
+        "21 CFR 312.32(c)(2)",
+        "21 CFR 312.32(c)(3)",
+        "21 CFR 312.32(c)(4)",
+        "21 CFR 312.32(d)",
+        "21 CFR 312.32(d)(2)",
+        "21 CFR 312.32(d)(3)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 39.34,
+        "status": "evaluated",
+        "accuracy": 75,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "fail",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 1 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976",
+          "recomputed_from_text": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976",
+          "evaluator_live": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976",
+          "evaluator_replay": "4f5d22b59892d8857c1ce028b25078c29c9848f6d43ca85a1b05ce249070c976"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "980c479b87eb2de725ae79a429888f38fe4256bde35c822319ce83c2e8fcb1b2",
+        "model_called": true,
+        "items": 14,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 12.78,
+          "on": 12.87
+        },
+        "added_seconds": 0.09
+      }
+    },
+    {
+      "question": "What follow-up does 21 CFR 312.32 require after an IND safety report?",
+      "answer_seconds": 36.6,
+      "answer": "[1] The sponsor must report any findings from epidemiological studies, pooled analysis of multiple studies, or clinical studies (other than those reported under paragraph (c)(1)(i) of this section), whether or not conducted under an IND, and whether or not conducted by the sponsor, that suggest a significant risk in humans exposed to the drug. [5]  \n[2] The sponsor must notify FDA and all participating investigators in an IND safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section. [4]  \n[7] The sponsor must submit each IND safety report in a narrative format or on FDA Form 3500A or in an electronic format that FDA can process, review, and archive. [7]  \n[12] Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as such, i.e., “Followup IND Safety Report.” [12]  \n[13] If the results of a sponsor's investigation show that an adverse event not initially determined to be reportable under paragraph (c) of this section is so reportable, the sponsor must report such suspected adverse reaction in an IND safety report as soon as possible, but in no case later than 15 calendar days after the determination is made. [13]",
+      "citations": [
+        "21 CFR 312.32(a)",
+        "21 CFR 312.32(b)",
+        "21 CFR 312.32(c)(1)",
+        "21 CFR 312.32(c)(1)(ii)",
+        "21 CFR 312.32(c)(1)(iii)",
+        "21 CFR 312.32(c)(1)(v)",
+        "21 CFR 312.32(c)(3)",
+        "21 CFR 312.32(c)(4)",
+        "21 CFR 312.32(d)",
+        "21 CFR 312.32(d)(1)",
+        "21 CFR 312.32(d)(2)",
+        "21 CFR 312.32(d)(3)",
+        "21 CFR 312.32(e)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 151.68,
+        "status": "evaluated",
+        "accuracy": 75,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "fail",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 5 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb",
+          "recomputed_from_text": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb",
+          "evaluator_live": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb",
+          "evaluator_replay": "924c33b1ffa51f8f34cec81ce0949127ef2d0aff2acc82a579d03841e76bc7bb"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "db80a9298ac711f64aea6cf1b82cfc6929fb754d1f11943c5905d1f772133e62",
+        "model_called": true,
+        "items": 14,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 42.29,
+          "on": 36.42
+        },
+        "added_seconds": -5.87
+      }
+    },
+    {
+      "question": "What are the personnel qualification requirements in 21 CFR 211.25?",
+      "answer_seconds": 17.75,
+      "answer": "Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions. Training shall be in the particular operations that the employee performs and in current good manufacturing practice (including the current good manufacturing practice regulations in this chapter and written procedures required by these regulations) as they relate to the employee's functions. Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them.\n\nEach person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions in such a manner as to provide assurance that the drug product has the safety, identity, strength, quality, and purity that it purports or is represented to possess.\n\nThere shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. [3]",
+      "citations": [
+        "21 CFR 211.25(a)",
+        "21 CFR 211.25(b)",
+        "21 CFR 211.25(c)"
+      ],
+      "payload": {
+        "only_difference_is_the_assessment": true,
+        "answer_sha_equal": true,
+        "accuracy_ms": 67.15,
+        "status": "evaluated",
+        "accuracy": 100,
+        "dimensions": {
+          "question_relevance": "pass",
+          "substantive_correctness": "pass",
+          "evidence_support": "pass",
+          "citation_correctness": "pass",
+          "fabrication_free": "pass",
+          "completeness": "pass",
+          "scope_correct": "pass"
+        },
+        "reason": "Correct: all 5 statement(s) answer the question and are supported by the evidence"
+      },
+      "evidence": {
+        "captured": true,
+        "fingerprints": {
+          "stored": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "recomputed_from_text": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "evaluator_live": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b",
+          "evaluator_replay": "aff4aaaacc5ba5bb2a4dec387d926d73364aa5380c0ffbad6b3a3b3b8b9b8e3b"
+        },
+        "fingerprints_match": true,
+        "provenance_live": "exact",
+        "provenance_replay": "exact",
+        "prompt_verified": true,
+        "prompt_sha256": "95fa88b44e3ef01f3b18e173117b514fffb1fc01e5386a5ce9a925e04633eb85",
+        "model_called": true,
+        "items": 3,
+        "guidance_items": 0,
+        "truncated_items": 0,
+        "replay": {
+          "status": "evaluated",
+          "accuracy": 100,
+          "verdict": "correct"
+        },
+        "ok": true
+      },
+      "live": {
+        "identical": true,
+        "fields_that_differ": [],
+        "off_vs_off_fields_that_differ": [],
+        "attributable_to_the_feature": [],
+        "answer_bytes_equal": true,
+        "run_a_has_no_assessment": true,
+        "seconds": {
+          "off": 16.48,
+          "on": 16.52
+        },
+        "added_seconds": 0.04
+      }
+    }
+  ]
+}

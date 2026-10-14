@@ -1,0 +1,56 @@
+########## D-006  N=0 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=list
+Q: What are the ventilation, air filtration, and air heating/cooling requirements under Part 211?
+KEY: 21 CFR 211.46 | Adequate ventilation, control of air pressure, microorganisms, dust, humidity and temperature, filtration for penicillin and other sensitive areas.
+REV: key_sections=211.46; key_section_state=present; key_retrieved=part_only; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=no; mechanical_root_cause=model reasoning (right evidence, wrong answer); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Returns the production and process-control list with no citations. None of 211.46's requirements - adequate ventilation, control of air pressure, micro-organisms, dust, humidity and temperature, air filtration, and completely separate air handling for penicillin - is stated.
+EVAL: Draft key 211.46 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=ANSWERABLE validation=incomplete
+ANSWER: Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include written procedures for production and process control, charge-in of components, yield calculations, equipment identification, sampling and testing of in-process materials, time limitations on production, microbiological contamination control, reprocessing of batches, materials examination and usage criteria, labeling issuance, packaging and labeling operations, tamper-evident packaging requirements, and expiration dating.
+EVIDENCE LABELS (18, lost=0):
+     21 CFR 211.100(a)
+     21 CFR 211.101
+     21 CFR 211.103
+     21 CFR 211.105(a)
+     21 CFR 211.110(a)
+     21 CFR 211.111
+     21 CFR 211.113(a)
+     21 CFR 211.115(a)
+     21 CFR 211.122(a)
+     21 CFR 211.125(a)
+     21 CFR 211.130
+     21 CFR 211.132(a)
+     21 CFR 211.134(a)
+     21 CFR 211.137(a)
+     21 CFR 211.142
+     21 CFR 211.150
+     21 CFR 211.160(a)
+     21 CFR 211.184
+SOURCES:
+   [21 CFR 211.100(a)] (Written procedures; deviations.) '(a) There shall be written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess. Such procedures shall include all requirements in th'
+   [21 CFR 211.101] (Charge-in of components.) 'Written production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess:\n(a) The batch shall be formulated w'
+   [21 CFR 211.103] (Calculation of yield.) 'Actual yields and percentages of theoretical yield shall be determined at the conclusion of each appropriate phase of manufacturing, processing, packaging, or holding of the drug product. Such calculations shall either be performed by one person and independen'
+   [21 CFR 211.105(a)] (Equipment identification.) '(a) All compounding and storage containers, processing lines, and major equipment used during the production of a batch of a drug product shall be properly identified at all times to indicate their contents and, when necessary, the phase of processing of the b'
+   [21 CFR 211.110(a)] (Sampling and testing of in-process materials and drug products.) '(a) To assure batch uniformity and integrity of drug products, written procedures shall be established and followed that describe the in-process controls, and tests, or examinations to be conducted on appropriate samples of in-process materials of each batch. '
+   [21 CFR 211.111] (Time limitations on production.) 'When appropriate, time limits for the completion of each phase of production shall be established to assure the quality of the drug product. Deviation from established time limits may be acceptable if such deviation does not compromise the quality of the drug '
+   [21 CFR 211.113(a)] (Control of microbiological contamination.) '(a) Appropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed.'
+   [21 CFR 211.115(a)] (Reprocessing.) '(a) Written procedures shall be established and followed prescribing a system for reprocessing batches that do not conform to standards or specifications and the steps to be taken to insure that the reprocessed batches will conform with all established standar'
+   [21 CFR 211.122(a)] (Materials examination and usage criteria.) '(a) There shall be written procedures describing in sufficient detail the receipt, identification, storage, handling, sampling, examination, and/or testing of labeling and packaging materials; such written procedures shall be followed. Labeling and packaging m'
+   [21 CFR 211.125(a)] (Labeling issuance.) '(a) Strict control shall be exercised over labeling issued for use in drug product labeling operations.'
+   [21 CFR 211.130] (Packaging and labeling operations.) 'There shall be written procedures designed to assure that correct labels, labeling, and packaging materials are used for drug products; such written procedures shall be followed. These procedures shall incorporate the following features:\n(a) Prevention of mixu'
+   [21 CFR 211.132(a)] (Tamper-evident packaging requirements for over-the-counter (OTC) human drug products.) '(a) General. The Food and Drug Administration has the authority under the Federal Food, Drug, and Cosmetic Act (the act) to establish a uniform national requirement for tamper-evident packaging of OTC drug products that will improve the security of OTC drug pa'
+   [21 CFR 211.134(a)] (Drug product inspection.) '(a) Packaged and labeled products shall be examined during finishing operations to provide assurance that containers and packages in the lot have the correct label.'
+   [21 CFR 211.137(a)] (Expiration dating.) '(a) To assure that a drug product meets applicable standards of identity, strength, quality, and purity at the time of use, it shall bear an expiration date determined by appropriate stability testing described in § 211.166.'
+   [21 CFR 211.142] (Warehousing procedures.) 'Written procedures describing the warehousing of drug products shall be established and followed. They shall include:\n(a) Quarantine of drug products before release by the quality control unit.\n(b) Storage of drug products under appropriate conditions of tempe'
+   [21 CFR 211.150] (Distribution procedures.) 'Written procedures shall be established, and followed, describing the distribution of drug products. They shall include:\n(a) A procedure whereby the oldest approved stock of a drug product is distributed first. Deviation from this requirement is permitted if s'
+   [21 CFR 211.160(a)] (General requirements.) '(a) The establishment of any specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms required by this subpart, including any change in such specifications, standards, sampling plans, test procedures, or other laborato'
+   [21 CFR 211.184] (Component, drug product container, closure, and labeling records.) "These records shall include the following:\n(a) The identity and quantity of each shipment of each lot of components, drug product containers, closures, and labeling; the name of the supplier; the supplier's lot number(s) if known; the receiving code as specifi"
+REQS: [['r1', '21 CFR part 211']] satisfied=[]
+INTENT: topic=['ventil', 'air', 'filtr', 'heat', 'cool'] elements=["the question's subject"] parts=['211'] sections=[]
+VERDICT: no statement could be related to the question or checked against evidence | missing=["the question's subject"] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: 1
+  C1: final=unverifiable support=unverifiable/not_decisive rel=undetermined cit=missing
+      text: Under Part 211, the ventilation, air filtration, and air heating/cooling requirements include written procedures for production and process control, charge-in of components, yield calculations, equipment identification, sampling and testing of in-process materials, time limitations on production, mi
+      support_reason: aligned to 21 CFR 211.122(a) (SOURCE 9), but only 0 regulatory operator(s) could be decided (none) and 25% of its terms appear there; unmatched: air, batches, calculations, charge, components, contamination
+      rel_reason: no corresponding evidence, and the statement names nothing the question asks about | found=0.45
+      evidence: [{'citation': '21 CFR 211.110(a)', 'source_index': 5, 'heading': 'Sampling and testing of in-process materials and drug products.', 'text': '(a) To assure batch uniformity and integrity of drug produc ops={'strength': 'undetermined', 'polarity': 'undetermined', 'actor': 'undetermined', 'quantity': 'undetermined', 'date': 'undetermined'}

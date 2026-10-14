@@ -1,0 +1,18 @@
+########## G-005  N=1 M=0 L=0 O=0 result=FAIL  type=Direct Lookup  intent=explanation
+Q: How must the net quantity of contents be declared on a drug label?
+KEY: 21 CFR 201.62 | Placement, units, and prominence of the net quantity statement.
+REV: key_sections=201.62; key_section_state=present; key_retrieved=no; evidence_kind=guidance_only; corpus_sufficient=uncertain; substantively_correct=partly; mechanical_root_cause=retrieval miss (key section never retrieved); guidance_in_answer=no; withheld=no; declined_before_model=no; key_possibly_wrong=no; key_better_candidate=; trap_row=no
+NOTES: Circular - the net quantity 'must be declared in accordance with § 201.62, which requires the statement of the net quantity of contents' - then drifts into the statement of identity. The units rules (numerical count for tablets and capsules, weight for solids, fluid measure for liquids), the strength augmentation and the prominence requirements are missing, and only a guidance is cited.
+EVAL: Draft key 201.62 verified correct against the snapshot.
+PIPE: model_called=True fallback=None answerability=UNKNOWN validation=valid
+ANSWER: The net quantity of contents on a drug label must be declared in accordance with the requirements in § 201.62, which requires the statement of the net quantity of contents. This is a general requirement for all OTC drug products. Additionally, the label must include the statement of identity, general pharmacological category(ies), or the principal intended actions, and the bold type, size related to the most prominent printed matter. The requirement applies to all OTC drug products [1].
+EVIDENCE LABELS (3, lost=3):
+   X FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)
+   X FDA Guidance: Labeling OTC Human Drug Products; Small Entity Compliance Guide: Guidance for Industry (final, 2009-05-13, Docket FDA-2004-D-0122)
+   X FDA Guidance: Allowable Excess Volume and Labeled Vial Fill Size in Injectable Drug and Biological Products (final, 2015-06-25, Docket FDA-2014-D-0248
+SOURCES:
+REQS: [] satisfied=[]
+INTENT: topic=['net', 'quant', 'content', 'declar', 'label'] elements=["the question's subject"] parts=[] sections=[]
+VERDICT: no evidence was retrieved | missing=[] unverified=[]
+ABST: {"declined": false, "outcome": null, "reason": "the answer states regulatory requirements rather than declining", "evidence": []}
+SENTENCES: None

@@ -1,0 +1,19 @@
+########## M-031  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=direct_lookup
+Q: What does 21 CFR 820.30 require for design controls?
+KEY: TEMPORAL TRAP — 820.30 is [Reserved] as of February 2, 2026; design and development requirements now reach the manufacturer through 21 CFR 820.10(c) | Must state that 820.30 is reserved and route the requirement to 820.10(c) and the standard's design and development clause. Answering as though 820.30 were current is a citation failure.
+REV: key_sections=820.30;820.10; key_section_state=inside_reserved_span;present; key_retrieved=part_only; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=reserved / temporal routing; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Borderline, and the right instinct: it refuses to describe 820.30 and explicitly declines to infer its contents, so it does not answer from the superseded Quality System Regulation text - the failure this temporal trap targets. But it frames the gap as missing data ('the available eCFR data does not contain 21 CFR 820.30') rather than stating that 820.30 is reserved as of 2 February 2026, and it does not route the design and development requirement to 820.10(c) and the standard's Clause 7.3.
+EVAL: Confirmed against the snapshot: Part 820 now carries a reserved span 820.20-820.30, so 820.30 has no current text. Scored consistently with the worked example on the benchmark's own Instructions tab, which scores a comparable answer as a citation failure with partial substance. Draft clause 7.3 not named, so concordance scores 0.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.30, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Bridging for Drug-Device and Biologic-Device Combination Products: Draft Guidance for Industry (draft, 2019-12-19, Docket FDA-2019-D-558
+   X FDA Guidance: Purpose and Content of Use-Related Risk Analyses for Drugs, Biological Products, and Combination Products (draft, 2024-07-08, Docket FDA
+     21 CFR 820.3
+SOURCES:
+   [21 CFR 820.3] (Definitions.) 'The definitions in ISO 13485 and in Clause 3 of ISO 9000 (incorporated by reference, see § 820.7) apply to this part, except as specified in paragraph (b) of this section, and do not affect the meaning of similar terms defined in this title.\n(a) The following '
+REQS: [['r1', '21 CFR 820.30']] satisfied=[]
+INTENT: topic=['design', 'control'] elements=["the question's subject"] parts=['820'] sections=['820.30']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about design/control; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about design/control; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

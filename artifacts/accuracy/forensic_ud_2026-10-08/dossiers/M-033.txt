@@ -1,0 +1,19 @@
+########## M-033  N=1 M=0 L=0 O=0 result=FAIL  type=Temporal/Version  intent=direct_lookup
+Q: What must a complaint file contain under 21 CFR 820.198?
+KEY: TEMPORAL TRAP — 820.198 is [Reserved]; complaint record content is now specified at 21 CFR 820.35(a) | Must state that 820.198 is reserved and route complaint handling to 820.35(a) and the standard's complaint handling clause.
+REV: key_sections=820.198;820.35; key_section_state=absent;present; key_retrieved=part_only; evidence_kind=cfr; corpus_sufficient=yes; substantively_correct=partly; mechanical_root_cause=false-premise / trap not detected; guidance_in_answer=no; withheld=no; declined_before_model=yes; key_possibly_wrong=no; key_better_candidate=; trap_row=yes
+NOTES: Same pattern: declines to state what 820.198 requires and infers nothing, which avoids the citation failure the trap targets, but never says that 820.198 is reserved or that complaint record content now sits in 820.35(a).
+EVAL: Confirmed against the snapshot: 820.198 has no current text. Draft clause 8.2.2 not named, so concordance scores 0. The benchmark's own worked example for this row treats a comparable answer as a citation failure.
+PIPE: model_called=False fallback=provision_not_found answerability=INSUFFICIENT_EVIDENCE validation=None
+ANSWER: The available eCFR data does not contain 21 CFR 820.198, so I cannot state what it requires. No exact text for the requested provision was retrieved and I will not infer its contents.
+EVIDENCE LABELS (3, lost=2):
+   X FDA Guidance: Container Closure Systems for Human Drugs and Biological Products (draft, 2026-08-13, Docket FDA-2026-D-7957)
+   X FDA Guidance: Voluntary Malfunction Summary Reporting (VMSR) Program for Manufacturers: Guidance for Industry and Food and Drug Administration Staff (
+     21 CFR 820.1(a)
+SOURCES:
+   [21 CFR 820.1(a)] (Scope.) '(a) Applicability. Current good manufacturing practice (CGMP) requirements are set forth in this quality management system regulation (QMSR). The requirements in this part govern the methods used in, and the facilities and controls used for, the design, manufa'
+REQS: [['r1', '21 CFR 820.198']] satisfied=[]
+INTENT: topic=['complaint', 'file'] elements=["the question's subject"] parts=['820'] sections=['820.198']
+VERDICT: declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about complaint/file; whether that requirement now lives in another provision cannot be determined from the retrieved evidence | missing=[] unverified=[]
+ABST: {"declined": true, "outcome": "undecided_abstention", "reason": "declining to state the requested provision is right (the requested provision has no authoritative text in the snapshot), but the question also asks about complaint/file; whether that requirement now lives in another provision cannot be determined from the retrieved evidence", "evidence": ["fallback_type=provision_not_found", "redirect_owed_undetermined"]}
+SENTENCES: 0

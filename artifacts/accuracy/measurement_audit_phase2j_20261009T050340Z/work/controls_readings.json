@@ -1,0 +1,38 @@
+[
+ {
+  "control_id": "R01",
+  "test": "test_accuracy_guidance_logic.py::test_6",
+  "text": "Records must not be altered, so that the audit trail is complete.",
+  "expect": "negate"
+ },
+ {
+  "control_id": "R02",
+  "test": "test_accuracy_guidance_logic.py::test_6",
+  "text": "The process shall be validated where the results cannot be fully verified.",
+  "expect": "affirm"
+ },
+ {
+  "control_id": "R03",
+  "test": "test_accuracy_guidance_logic.py::test_6",
+  "text": "Electronic signatures must be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred.",
+  "expect": "affirm"
+ },
+ {
+  "control_id": "R04",
+  "test": "test_accuracy_guidance_logic.py::test_6b",
+  "text": "The manufacturer shall ensure that devices are not adulterated.",
+  "expect": "affirm"
+ },
+ {
+  "control_id": "R05",
+  "test": "test_accuracy_guidance_logic.py::test_6b",
+  "text": "The manufacturer must not ship devices that are adulterated.",
+  "expect": "negate"
+ },
+ {
+  "control_id": "R06",
+  "test": "test_accuracy_guidance_logic.py::test_6",
+  "text": "The procedure is designed to ensure that the signature cannot be excised.",
+  "expect": "not negate"
+ }
+]

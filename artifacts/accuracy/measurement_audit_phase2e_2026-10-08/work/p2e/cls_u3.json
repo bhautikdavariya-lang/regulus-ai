@@ -1,0 +1,20 @@
+{
+"70":["CORRECT_UNVERIFIABLE","unverifiable","-","item content is 117.135(a)(1) (preventive controls) but the list head claims it is a hazard-analysis requirement (117.130); the guard's 'analysi' block is the right reason"],
+"71":["FALSE_NEGATIVE","supported","terminology normalization","117.20(a): grounds 'must be KEPT in a condition that will protect against the contamination of food'; claim says 'maintaining the grounds'; list-item path counts 'maintain' as a missing term (80% < 85%) because it does not apply the generic-word exemption; modal-less claim gets 0 operators on the sentence path"],
+"72":["AMBIGUOUS","-","other: multi-source conjunction","implemented (117.135) + verified (117.165) + 'as appropriate to ensure the effectiveness' (117.140(a)); no single passage"],
+"73":["CORRECT_UNVERIFIABLE","unverifiable","-","garbled/wrong attribution: 117.160(a) is validation"],
+"74":["AMBIGUOUS","-","terminology normalization","117.190(a) 'You must establish and maintain the following records documenting implementation' supports the substance, but the claim attributes it to § 117.1(a); unstemmed maintained/maintain also costs the overlap (67%)"],
+"75":["AMBIGUOUS","-","claim extraction","garbled: 'The requirements apply to the plant and grounds as specified in § 117.251(a)'"],
+"76":["AMBIGUOUS","-","other: multi-source conjunction","anaphoric 'It also mandates' + assurances (117.135/117.137) + recall plans (117.139)"],
+"77":["AMBIGUOUS","-","other","201.25(b)(1)(ii) exempts prescription drugs sold DIRECTLY TO PATIENTS; the claim drops that and restates the hospital clause as an 'unless' - arguably a different rule"],
+"78":["FALSE_NEGATIVE","supported","claim extraction","the pipeline's truncation notice '(Incomplete: generation stopped at the token limit ... finished ...' is merged into the claim; the proposition before it is verbatim 207.33 ('may voluntarily reserve a proposed NDC ... by submitting the following information'); the guard flags 'finish' from the notice"],
+"79":["FALSE_NEGATIVE","partial","terminology normalization","1.279(a): 'Except as provided in paragraph (c) ..., you must submit the prior notice to FDA and the prior notice submission must be confirmed by FDA for review' - correct verdict partial (drops the exception); strength+polarity agree but unstemmed overlap misses submitted/submit and heading terms (57%)"],
+"80":["CORRECT_UNVERIFIABLE","unverifiable","-","Device Master Record is not defined in the captured (QMSR) Part 820 evidence"],
+"81":["CORRECT_UNVERIFIABLE","unverifiable","-","as #80"],
+"82":["CORRECT_UNVERIFIABLE","unverifiable","-","as #80"],
+"83":["CORRECT_UNVERIFIABLE","unverifiable","-","as #80"],
+"84":["CORRECT_UNVERIFIABLE","unverifiable","-","Device History Record not in the captured Part 820 evidence"],
+"85":["CORRECT_UNVERIFIABLE","unverifiable","-","as #84"],
+"86":["CORRECT_UNVERIFIABLE","unverifiable","-","as #84"],
+"87":["CORRECT_UNVERIFIABLE","unverifiable","-","Design History File definition not in captured evidence"]
+}
