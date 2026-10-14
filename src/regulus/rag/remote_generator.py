@@ -96,3 +96,95 @@ def load_generator(settings, *, local_files_only: bool = False):
     from regulus.rag.generator import load_qwen_generator
 
     return load_qwen_generator(settings, local_files_only=local_files_only)
+
+
+# ------------------------------------------------------------------ the UI's guarded remote generator
+#
+# The answering UI (scripts/serve_ui.py) reaches the GPU server through OpenAICompatibleGenerator, wrapped
+# here so that (a) a failure becomes an InferenceError whose message names only a category - never the
+# endpoint URL, a header or the server's text, which the UI returns to the page, logs and records - and
+# (b) a response that carries neither text nor a finish reason (an empty or malformed body) is a failure,
+# not an empty draft for the pipeline to "repair" into an answer. The acceptance runner keeps using
+# load_generator unchanged.
+
+INFERENCE_FAILURES = ("timeout", "connection", "http_status", "invalid_response", "other")
+
+
+class InferenceError(RuntimeError):
+    """Remote inference failed. `category` is one of INFERENCE_FAILURES; the message carries nothing else."""
+
+    def __init__(self, category: str, detail: str = "") -> None:
+        self.category = category
+        super().__init__(f"remote inference failed ({category}{': ' + detail if detail else ''})")
+
+
+def _category(exc: BaseException) -> tuple[str, str]:
+    import socket
+    import urllib.error
+
+    if isinstance(exc, urllib.error.HTTPError):
+        return "http_status", f"HTTP {exc.code}"
+    if isinstance(exc, (socket.timeout, TimeoutError)):
+        return "timeout", ""
+    if isinstance(exc, urllib.error.URLError):
+        return ("timeout", "") if isinstance(exc.reason, (socket.timeout, TimeoutError)) else ("connection", "")
+    if isinstance(exc, (ConnectionError, OSError)):
+        return "connection", ""
+    if isinstance(exc, (ValueError, KeyError, TypeError, AttributeError, IndexError, UnicodeDecodeError)):
+        return "invalid_response", ""
+    return "other", type(exc).__name__
+
+
+class GuardedRemoteGenerator:
+    """OpenAICompatibleGenerator for the UI: categorised, redacted failures; malformed responses rejected.
+
+    `passthrough` exceptions (the UI's client-disconnect signal, raised from inside `on_text`) propagate
+    unchanged, so a cancelled stream is still a cancellation and not an inference failure."""
+
+    def __init__(self, inner: OpenAICompatibleGenerator, *, passthrough: tuple[type[BaseException], ...] = ()) -> None:
+        self.inner = inner
+        self.passthrough = passthrough
+        self.model_id = inner.model_id
+        self.tokenizer = None
+
+    def generate(self, messages, max_new_tokens: int | None = None, on_text=None) -> GenerationResult:
+        try:
+            result = self.inner.generate(messages, max_new_tokens=max_new_tokens, on_text=on_text)
+        except self.passthrough:
+            raise
+        except Exception as exc:  # noqa: BLE001 - re-raised as a category, without the original text
+            category, detail = _category(exc)
+            raise InferenceError(category, detail) from None
+        if not result.response and result.finished is None:
+            raise InferenceError("invalid_response", "no text and no finish reason")
+        return result
+
+    def describe(self) -> dict[str, Any]:
+        """Identity safe to record: the endpoint is hashed, never written out (it may be a private address)."""
+        import hashlib
+
+        parsed = urlparse(self.inner.endpoint)
+        return {"backend": "openai_compatible", "model_id": self.inner.model_id, "model_revision": None,
+                "model_revision_source": "unknown: an OpenAI-compatible server does not report a weights revision",
+                "endpoint_scheme": parsed.scheme or None,
+                "endpoint_sha256": hashlib.sha256(self.inner.endpoint.encode("utf-8")).hexdigest(),
+                "endpoint_is_loopback": (parsed.hostname or "") in ("127.0.0.1", "::1", "localhost"),
+                "timeout_seconds": self.inner.timeout, "api_key_configured": bool(os.environ.get(self.inner._api_key_env)),
+                "generation": {"do_sample": False, "temperature": 0, "enable_thinking": False}}
+
+    def served_models(self, timeout: float = 10.0) -> dict[str, Any]:
+        """GET {endpoint}/models: which model ids the server says it serves. Best effort, never raises."""
+        headers = {}
+        key = os.environ.get(self.inner._api_key_env)
+        if key:
+            headers["Authorization"] = f"Bearer {key}"
+        try:
+            req = urllib.request.Request(f"{self.inner.endpoint}/models", headers=headers)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+            ids = [m.get("id") for m in data.get("data") or [] if isinstance(m, dict)]
+            roots = sorted({m.get("root") for m in data.get("data") or [] if isinstance(m, dict) and m.get("root")})
+            return {"checked": True, "served_ids": ids, "roots": roots,
+                    "configured_id_served": self.inner.model_id in ids}
+        except Exception as exc:  # noqa: BLE001
+            return {"checked": False, "category": _category(exc)[0]}

@@ -10,7 +10,8 @@ than from evidence rebuilt out of today's database. It is an observer: it is bui
 Schema `regulus_measurement_record_v1` (see docs/measurement_record.md for the field table)
 ------------------------------------------------------------------------------------------
     schema, hash_algorithm, canonicalization     how to read and verify the record
-    status            captured | pipeline_error | capture_error
+    status            captured | pipeline_error | capture_error | cancelled (the request ended before its answer
+                      was delivered: a client disconnect)
     complete          True only when every REQUIRED rescoring input is captured (see REQUIRED)
     gaps              [{field, state, reason}] for every field that is not captured and not merely
                       not applicable - required or not
@@ -29,6 +30,8 @@ Schema `regulus_measurement_record_v1` (see docs/measurement_record.md for the f
                       what the evaluator reads, for offline evaluation (absent from records built before it)
     inferred         text comparisons, labelled as inferred: NOT a pipeline record
     evaluation        {state: not_run, reason} or {state: captured, assessment, review}
+    origin            (optional; present only when the caller gives one) where the answer was produced: for a UI
+                      turn {source: "ui", endpoint, conversation_id, turn_id, request, delivery}
     record_sha256     see below
 
 Field states
@@ -82,6 +85,7 @@ CAPTURE_FAILED = "capture_failed"
 STATUS_CAPTURED = "captured"
 STATUS_PIPELINE_ERROR = "pipeline_error"
 STATUS_CAPTURE_ERROR = "capture_error"
+STATUS_CANCELLED = "cancelled"
 
 # The rescoring inputs a record must hold to be complete (when the stage applies to the answer).
 REQUIRED = ("text.delivered_answer", "text.raw_model_output", "evidence", "validation")
@@ -142,7 +146,8 @@ def _gaps(record: dict[str, Any]) -> list[dict[str, Any]]:
 
 def build_record(*, question_id: str, ordinal: int, question: str, out: Any, run: dict[str, Any],
                  captured_utc: str, evaluation: dict[str, Any] | None = None,
-                 review: dict[str, Any] | None = None) -> dict[str, Any]:
+                 review: dict[str, Any] | None = None, origin: dict[str, Any] | None = None,
+                 not_run_reason: str | None = None) -> dict[str, Any]:
     """The measurement record of one finished `RagAnswer`. Raises on a capture defect; the runner calls
     `capture_safely`, which turns that into a visible capture_error record."""
     m = _copy(out.metadata)
@@ -226,8 +231,10 @@ def build_record(*, question_id: str, ordinal: int, question: str, out: Any, run
                                                  if m.get("repair_input") is not None else None,
         },
         "evaluation": ({"state": CAPTURED, "assessment": _copy(evaluation), "review": _copy(review)}
-                       if evaluation is not None else {"state": "not_run", "reason": NOT_RUN_BY_RUNNER}),
+                       if evaluation is not None else {"state": "not_run", "reason": not_run_reason or NOT_RUN_BY_RUNNER}),
     }
+    if origin is not None:                       # absent from acceptance-run records, which keep their shape
+        record["origin"] = _copy(origin)
     record["validation"].update({k: m.get(k) for k in ("fallback_type", "fallback_reason", "answerability",
                                                        "generation_blocked", "block_reason", "citation_support")})
     record["gaps"] = _gaps(record)
@@ -237,16 +244,19 @@ def build_record(*, question_id: str, ordinal: int, question: str, out: Any, run
 
 
 def failure_record(*, question_id: str, ordinal: int, question: str, run: dict[str, Any], captured_utc: str,
-                   status: str, error: str) -> dict[str, Any]:
+                   status: str, error: str, origin: dict[str, Any] | None = None) -> dict[str, Any]:
     """A record that says, in place of the measurement, why there is none. Never complete."""
-    return _seal({
+    record = {
         "schema": MEASUREMENT_SCHEMA, "hash_algorithm": HASH_ALGORITHM, "canonicalization": CANONICALIZATION,
         "status": status, "complete": False,
         "gaps": [{"field": "*", "state": CAPTURE_FAILED if status == STATUS_CAPTURE_ERROR else NOT_APPLICABLE,
                   "reason": error}],
         "question_id": question_id, "ordinal": ordinal, "captured_utc": captured_utc, "run": _copy(run),
         "question": {"text": question, "sha256": sha256_text(question)}, "error": error,
-    })
+    }
+    if origin is not None:
+        record["origin"] = _copy(origin)
+    return _seal(record)
 
 
 def capture_safely(**kwargs) -> dict[str, Any]:
@@ -260,7 +270,7 @@ def capture_safely(**kwargs) -> dict[str, Any]:
         return failure_record(question_id=kwargs.get("question_id"), ordinal=kwargs.get("ordinal"),
                               question=kwargs.get("question"), run=kwargs.get("run") or {},
                               captured_utc=kwargs.get("captured_utc"), status=STATUS_CAPTURE_ERROR,
-                              error=f"{type(exc).__name__}: {exc}"[:2000])
+                              error=f"{type(exc).__name__}: {exc}"[:2000], origin=kwargs.get("origin"))
 
 
 # ------------------------------------------------------------------ verification

@@ -24,15 +24,21 @@ the answer. `src/regulus/rag/` is untouched by the feature, so with
 citations and its evidence are the same objects they would be without it.
 Verify with `python scripts/accuracy_regression.py`.
 
-The database is opened read-only through the Stage 5 layer; nothing here
-writes anything.
+The database is opened read-only through the Stage 5 layer. The server writes
+only local, git-ignored files: chat history (data/chat/) and, unless
+--no-measure, one measurement record per answered question
+(data/ui_measurements/<session>/, regulus.traceability.ui_session; see
+docs/measurement_record.md). Measurement, like the assessment, is an observer:
+it is written after the answer has been sent and cannot change it.
 """
 
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import re
+import signal
 import sys
 import threading
 import time
@@ -45,6 +51,7 @@ from regulus.accuracy import RUBRIC_ID as ACCURACY_RUBRIC_ID
 from regulus.config import PROJECT_ROOT, load_settings
 from regulus.conversations import (CANCELLED, ERROR, OK, ConversationNotFound, ConversationStore, InvalidInput)
 from regulus.evaluation.runner import sanitize_error
+from regulus.traceability.ui_session import DELIVERED, NOT_DELIVERED, UISession, code_revision, default_root
 
 WEB_DIR = PROJECT_ROOT / "web"
 ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
@@ -58,31 +65,19 @@ _CONVERSATION_PATH = re.compile(r"/api/conversations/([A-Za-z0-9-]{1,64})")
 class Engine:
     """Holds the loaded model and database, and answers one question at a time."""
 
-    def __init__(self, settings, offline: bool) -> None:
-        from regulus.model import load_model, load_tokenizer
+    def __init__(self, settings, offline: bool, *, inference_timeout: float | None = None) -> None:
         from regulus.retrieval import Database
 
         self.settings = settings
-        print("Loading tokenizer and model ...", flush=True)
-        t0 = time.perf_counter()
-        self.tokenizer = load_tokenizer(settings.model, local_files_only=offline)
-        self.base_model = load_model(settings.model, local_files_only=offline)
-        # The default selection ("") is the configured model: the base model,
-        # or the adapter configured in configs/model.yaml / REGULUS_ADAPTER.
-        self.default_info: dict = {}
-        if settings.model.adapter is not None:
-            from regulus.finetune import attach_saved_adapter
-
-            print(f"Merging configured adapter {settings.model.adapter} ...", flush=True)
-            self.base_model, self.default_info = attach_saved_adapter(self.base_model, settings.model.adapter, merge=True)
-        print(f"Model ready in {time.perf_counter() - t0:.1f}s on {self.base_model.device} ({self.base_model.dtype})", flush=True)
+        self._init_inference(offline, inference_timeout=inference_timeout)
         self.db = Database.from_env()
         self.db.connect()
         status = self.db.status()
         print(f"Database {status['database']} read-only={status['default_transaction_read_only']}", flush=True)
         self.snapshot = self.db.query("SELECT max(snapshot_date)::text AS d FROM cfr_records WHERE removed_on IS NULL")[0]["d"]
-        self._models: dict[str, object] = {"": self.base_model}
+        self._models: dict[str, object] = {"": self.base_model} if self.remote is None else {}
         self._adapter_info: dict[str, dict] = {"": self.default_info}
+        self._adapter_records: dict[str, dict] = {}
         # The accuracy evaluator's optional existence check reuses the Stage 13
         # identifier index (read-only, one indexed lookup per unaccounted-for
         # section). Default on; --no-accuracy turns the whole feature off.
@@ -93,6 +88,91 @@ class Engine:
         self.accuracy_alignment = "semantic"
         self._identifier_index = None
         self._aligner = None
+
+    def _init_inference(self, offline: bool, *, inference_timeout: float | None = None) -> None:
+        """Where generation runs, from model.backend (configs/model.yaml / REGULUS_MODEL_BACKEND), as for the
+        acceptance runner (regulus.rag.remote_generator.load_generator):
+
+          transformers       in-process: the tokenizer and weights are loaded here (and the configured adapter
+                             merged), exactly as before.
+          openai_compatible  the GPU server at model.endpoint / REGULUS_MODEL_ENDPOINT (API key, if any, from
+                             REGULUS_MODEL_API_KEY only). NOTHING is loaded on this host: no tokenizer, no
+                             weights. Local adapters cannot apply to a remote model, so one configured here
+                             is refused rather than silently ignored."""
+        settings = self.settings
+        self.remote = None
+        self.default_info: dict = {}
+        if settings.model.backend == "openai_compatible":
+            from regulus.rag.remote_generator import GuardedRemoteGenerator, load_generator
+
+            if settings.model.adapter is not None:
+                raise SystemExit("model.adapter is set, but adapters are merged locally and cannot apply to a "
+                                 "remote model: unset it (REGULUS_ADAPTER=none) or serve the adapted model remotely")
+            inner = load_generator(settings)
+            if inference_timeout:
+                inner.timeout = float(inference_timeout)
+            self.remote = GuardedRemoteGenerator(inner, passthrough=(ClientDisconnected,))
+            self.tokenizer = self.base_model = None
+            served = self.remote.served_models()
+            self.remote_models = served
+            print(f"Inference: remote OpenAI-compatible server ({self.remote.describe()['endpoint_scheme']}), model "
+                  f"{settings.model.id}; served list "
+                  f"{'checked' if served['checked'] else 'unavailable (' + served['category'] + ')'}"
+                  f"{'' if not served['checked'] else ', configured model ' + ('served' if served['configured_id_served'] else 'NOT listed')}",
+                  flush=True)
+            if self.remote.describe()["endpoint_scheme"] == "http" and not self.remote.describe()["endpoint_is_loopback"]:
+                print("  WARNING: inference traffic is plain HTTP; use a private network (or HTTPS) between this "
+                      "host and the GPU server", flush=True)
+            return
+        from regulus.model import load_model, load_tokenizer
+
+        print("Loading tokenizer and model ...", flush=True)
+        t0 = time.perf_counter()
+        self.tokenizer = load_tokenizer(settings.model, local_files_only=offline)
+        self.base_model = load_model(settings.model, local_files_only=offline)
+        # The default selection ("") is the configured model: the base model,
+        # or the adapter configured in configs/model.yaml / REGULUS_ADAPTER.
+        if settings.model.adapter is not None:
+            from regulus.finetune import attach_saved_adapter
+
+            print(f"Merging configured adapter {settings.model.adapter} ...", flush=True)
+            self.base_model, self.default_info = attach_saved_adapter(self.base_model, settings.model.adapter, merge=True)
+        print(f"Model ready in {time.perf_counter() - t0:.1f}s on {self.base_model.device} ({self.base_model.dtype})", flush=True)
+
+    def adapter_record(self, adapter_id: str) -> dict | None:
+        """What a measurement record keeps about the adapter a request used: its name and training metadata,
+        and the SHA-256 of its weights file, computed once. None for the base model and for remote inference
+        (no adapter is applied on this host). Never the local path."""
+        if getattr(self, "remote", None) is not None:
+            return None
+        cache = self.__dict__.setdefault("_adapter_records", {})
+        if adapter_id in cache:
+            return cache[adapter_id]
+        directory = (ADAPTER_ROOT / adapter_id / "adapter") if adapter_id else self.settings.model.adapter
+        if not directory:
+            cache[adapter_id] = None
+            return None
+        try:
+            from regulus.system_identity import adapter_identity
+
+            ident = adapter_identity(Path(directory))
+            weights = sorted(Path(directory).glob("adapter_model.*"))
+            digest = None
+            if weights:
+                import hashlib
+
+                h = hashlib.sha256()
+                with weights[0].open("rb") as f:
+                    for chunk in iter(lambda: f.read(1 << 20), b""):
+                        h.update(chunk)
+                digest = h.hexdigest()
+            record = {"id": adapter_id, **{k: ident.get(k) for k in ("adapter_name", "base_model_name_or_path", "peft_type",
+                                                                       "r", "lora_alpha", "stage", "dataset_hash")},
+                      "weights_file": weights[0].name if weights else None, "weights_sha256": digest}
+        except Exception as exc:  # noqa: BLE001
+            record = {"id": adapter_id, "unavailable": type(exc).__name__}
+        cache[adapter_id] = record
+        return record
 
     def aligner(self):
         """The claim-to-evidence aligner, built once per process.
@@ -132,6 +212,11 @@ class Engine:
     # -- adapters ---------------------------------------------------------
 
     def available_adapters(self) -> list[dict]:
+        if getattr(self, "remote", None) is not None:
+            return [{"id": "", "label": f"Remote: {self.settings.model.id}"}]
+        return self._local_adapters()
+
+    def _local_adapters(self) -> list[dict]:
         default = (f"Configured: {self.default_info.get('adapter_name')} adapter" if self.default_info
                    else "Base Qwen3-0.6B (no adapter)")
         out = [{"id": "", "label": default}]
@@ -148,6 +233,10 @@ class Engine:
     def model_for(self, adapter_id: str):
         """Load and cache a merged adapter model. Each costs ~2.4 GB, so only
         the ones actually asked for are kept."""
+        if getattr(self, "remote", None) is not None:
+            if adapter_id:
+                raise ValueError("adapters are not available with remote inference")
+            return None, {}
         if adapter_id in self._models:
             return self._models[adapter_id], self._adapter_info[adapter_id]
         from regulus.finetune import load_adapter_model
@@ -161,9 +250,21 @@ class Engine:
 
     # -- answering --------------------------------------------------------
 
-    def ask(self, question: str, *, adapter: str = "", grounding: bool = False,
-            top_k: int = 8, max_new_tokens: int | None = None, on_event=None,
-            accuracy: bool | None = None) -> dict:
+    def ask(self, question: str, *, turn=None, **kwargs) -> dict:
+        """Answer one question (see _ask). `turn` (regulus.traceability.ui_session.Turn), when the server
+        measures, is handed the finished answer and its assessment, or told that the request failed or was
+        cancelled; it never changes the result, and it writes nothing itself until the Handler knows whether
+        the answer was delivered."""
+        try:
+            return self._ask(question, turn=turn, **kwargs)
+        except Exception as exc:
+            if turn is not None:
+                turn.failed(exc, cancelled=isinstance(exc, ClientDisconnected), error=safe_error(exc))
+            raise
+
+    def _ask(self, question: str, *, adapter: str = "", grounding: bool = False,
+             top_k: int = 8, max_new_tokens: int | None = None, on_event=None,
+             accuracy: bool | None = None, turn=None) -> dict:
         """Answer one question. `on_event` (streaming) is passed to the pipeline
         unchanged; the returned dict is the same with or without it."""
         from dataclasses import replace
@@ -195,9 +296,11 @@ class Engine:
 
             self._retrieval = build_retriever(self.db, config, lexical=LexicalRetriever(self.db))
         retriever, scope = self._retrieval
+        generator = (self.remote if getattr(self, "remote", None) is not None
+                     else QwenGenerator(model, self.tokenizer, gen, self.settings.model.id))
         pipeline = RagPipeline(
             retriever,
-            QwenGenerator(model, self.tokenizer, gen, self.settings.model.id),
+            generator,
             replace(config, top_k=top_k, generation_budget=budget),
             grounding=gate,
             scope_policy=scope,
@@ -279,22 +382,55 @@ class Engine:
         # never raises.
         if self.accuracy if accuracy is None else accuracy:
             t_acc = time.perf_counter()
-            result["accuracy"] = self.accuracy_payload(out)
+            lookups: list = []
+            result["accuracy"] = self.accuracy_payload(out, lookups=lookups)
             result["server_timings_ms"]["accuracy_ms"] = round((time.perf_counter() - t_acc) * 1000, 2)
+        else:
+            lookups = None
+        if turn is not None:   # staged only: the record is written once delivery is known (Handler)
+            acc = result.get("accuracy")
+            turn.answered(out, evaluation={k: v for k, v in acc.items() if k != "question_review"} if acc else None,
+                          review=acc.get("question_review") if acc else None,
+                          live=self.live_context(out, acc, lookups, adapter))
         return result
 
-    def accuracy_payload(self, out) -> dict:
+    def live_context(self, out, accuracy, lookups, adapter: str) -> dict:
+        """What the live answer path knew that a measurement record should keep. Values the path did not
+        produce are recorded as None, never guessed. Never raises: the answer is already final here."""
+        try:
+            return self._live_context(out, accuracy, lookups, adapter)
+        except Exception as exc:  # noqa: BLE001
+            return {"unavailable": type(exc).__name__}
+
+    def _live_context(self, out, accuracy, lookups, adapter: str) -> dict:
+        checked = (accuracy or {}).get("checked") or {}
+        embedder = getattr(getattr(self, "_aligner", None), "_embedder", None) if accuracy else None
+        try:
+            embedder_identity = embedder.describe() if embedder is not None and hasattr(embedder, "describe") else None
+        except Exception as exc:  # noqa: BLE001
+            embedder_identity = {"unavailable": type(exc).__name__}
+        return {
+            "aligner_used": checked.get("aligner"),          # actual method, after any semantic->lexical fallback
+            "embedder": embedder_identity,
+            # every identifier-index lookup the live evaluator made, with its answer (None: accuracy was off)
+            "identifier_lookups": lookups,
+            "grounding": out.metadata.get("grounding"),       # the grounding gate's decision; None when off
+            "adapter": self.adapter_record(adapter),
+            "inference_backend": "openai_compatible" if getattr(self, "remote", None) is not None else "transformers",
+        }
+
+    def accuracy_payload(self, out, *, lookups: list | None = None) -> dict:
         """The assessment as the page receives it: the evaluator's own dict, plus
         the per-question status read from it (regulus.accuracy.review). Kept inside
         the one `accuracy` object, so the response with the feature on still
         differs from the response with it off by that key alone."""
         from regulus.accuracy.review import question_review
 
-        payload = self.assess(out).to_dict()
+        payload = self.assess(out, lookups=lookups).to_dict()
         payload["question_review"] = question_review(payload, question=out.question)
         return payload
 
-    def assess(self, out):
+    def assess(self, out, *, lookups: list | None = None):
         """The live accuracy assessment of a finished RagAnswer.
 
         Every argument comes off the RagAnswer; nothing is retrieved, generated
@@ -316,7 +452,8 @@ class Engine:
             scope_status=analysis.get("scope_status"),
             answerability=out.metadata.get("answerability"),
             repair=out.metadata.get("validation"),   # what post-processing removed, for completeness
-            identifier_index=self.identifier_index(),
+            identifier_index=(self.identifier_index() if lookups is None
+                              else _RecordingIndex(self.identifier_index(), lookups)),
             aligner=self.aligner(),
         )
 
@@ -326,6 +463,21 @@ class Handler(BaseHTTPRequestHandler):
     # Chat history (regulus.conversations): None when the store could not be opened, in which case
     # answering works exactly as before and only the history endpoints report it unavailable.
     store: ConversationStore | None = None
+    # Measurement records (regulus.traceability.ui_session): None when --no-measure or when the session could
+    # not be opened, in which case answering, streaming and chat history work exactly as before.
+    measure: UISession | None = None
+
+    def _turn(self, question: str, endpoint: str, kwargs: dict, conversation: tuple[str, str] | None = None):
+        """A measurement turn for this request, or None. Never raises."""
+        if self.measure is None:
+            return None
+        try:
+            return self.measure.turn(question, endpoint=endpoint, request=kwargs,
+                                     conversation_id=conversation[0] if conversation else None,
+                                     turn_id=conversation[1] if conversation else None)
+        except Exception as exc:  # noqa: BLE001 - measurement never touches the answer
+            print(f"  measurement: turn not opened ({type(exc).__name__})", flush=True)
+            return None
 
     def log_message(self, fmt, *args):  # quieter console
         if "api/ask" in (args[0] if args else ""):
@@ -355,8 +507,11 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, {
                 "adapters": self.engine.available_adapters(),
                 "model_id": self.engine.settings.model.id,
-                "device": str(self.engine.base_model.device),
-                "dtype": str(self.engine.base_model.dtype).replace("torch.", ""),
+                "device": "remote" if self.engine.base_model is None else str(self.engine.base_model.device),
+                "dtype": None if self.engine.base_model is None else str(self.engine.base_model.dtype).replace("torch.", ""),
+                "inference_backend": self.engine.settings.model.backend,
+                # ids and counters only: whether records are being written, and the last failure category
+                "measurement": self.measure.status() if self.measure is not None else {"enabled": False},
                 "snapshot_date": self.engine.snapshot,
                 "defaults": {"top_k": 8, "max_new_tokens": self.engine.settings.answer_length.max_new_tokens},
                 "accuracy": {"enabled": self.engine.accuracy, "rubric_id": ACCURACY_RUBRIC_ID,
@@ -444,6 +599,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(404, {"error": "not found"})
             return
         t_request = time.perf_counter()
+        turn = None
         try:
             length = int(self.headers.get("Content-Length") or 0)
             body = json.loads(self.rfile.read(length) or b"{}")
@@ -451,21 +607,27 @@ class Handler(BaseHTTPRequestHandler):
             if not question:
                 self._json(400, {"error": "question must not be empty"})
                 return
+            kwargs = self._ask_kwargs(body)
+            turn = self._turn(question, "/api/ask", kwargs)
             t0 = time.perf_counter()
             parse_ms = round((t0 - t_request) * 1000, 2)
             with _LOCK:
                 lock_wait_ms = round((time.perf_counter() - t0) * 1000, 2)
-                result = self.engine.ask(question, **self._ask_kwargs(body))
+                result = self.engine.ask(question, **kwargs, **({"turn": turn} if turn is not None else {}))
             result["wall_seconds"] = round(time.perf_counter() - t0, 1)
             result["server_timings_ms"].update({"request_parse_ms": parse_ms, "lock_wait_ms": lock_wait_ms})
             t_send = time.perf_counter()
             self._json(200, result)
+            if turn is not None:
+                turn.finish(DELIVERED)
             # serialisation + socket write cannot be reported inside the body it produces: logged instead
             print(f"  timing: serialize+send {round((time.perf_counter() - t_send) * 1000, 2)} ms, "
                   f"request total {round((time.perf_counter() - t_request) * 1000, 2)} ms", flush=True)
         except Exception as exc:  # never leak a path or a stack trace to the page
             traceback.print_exc()
-            self._json(500, {"error": sanitize_error(exc)})
+            if turn is not None:
+                turn.finish(NOT_DELIVERED)      # a no-op when ask() already recorded the failure
+            self._json(500, {"error": safe_error(exc)})
 
     # -- streaming ----------------------------------------------------------
 
@@ -524,6 +686,7 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()  # HTTP/1.0 response without Content-Length: the body ends when the connection closes
 
         stats = {"deltas": 0, "first_delta_ms": None, "delta_chars": 0}
+        turn = None
 
         def send(event: dict) -> None:
             try:
@@ -549,30 +712,171 @@ class Handler(BaseHTTPRequestHandler):
                 send({"type": "final", "result": replay})
                 print(f"  chat: turn {conversation[1][:8]} already answered; replayed the stored answer", flush=True)
                 return
+            turn = self._turn(question, "/api/ask/stream", kwargs, conversation)   # never for a replayed turn
             t0 = time.perf_counter()
             with _LOCK:
                 lock_wait_ms = round((time.perf_counter() - t0) * 1000, 2)
-                result = self.engine.ask(question, on_event=on_event, **kwargs)
+                result = self.engine.ask(question, on_event=on_event, **kwargs,
+                                         **({"turn": turn} if turn is not None else {}))
             result["wall_seconds"] = round(time.perf_counter() - t0, 1)
             result.setdefault("server_timings_ms", {}).update({"lock_wait_ms": lock_wait_ms})
             result["stream"] = {**stats, "final_ms": round((time.perf_counter() - t_request) * 1000, 2)}
             if conversation is not None:
                 result["conversation"] = self._record_turn(conversation, OK, result.get("answer") or "", result)
             send({"type": "final", "result": result})
+            if turn is not None:
+                turn.finish(DELIVERED)
             print(f"  stream: {stats['deltas']} deltas, first at {stats['first_delta_ms']} ms, "
                   f"final at {result['stream']['final_ms']} ms", flush=True)
         except ClientDisconnected:
             print(f"  stream: client disconnected after {stats['deltas']} deltas; generation stopped", flush=True)
+            if turn is not None:
+                turn.finish(NOT_DELIVERED)
             if conversation is not None:
                 self._record_turn(conversation, CANCELLED, "Stopped before the answer was complete.", None)
         except Exception as exc:  # never leak a path or a stack trace to the page
             traceback.print_exc()
+            if turn is not None:
+                turn.finish(NOT_DELIVERED)
             if conversation is not None:
-                self._record_turn(conversation, ERROR, "Request failed: " + sanitize_error(exc), None)
+                self._record_turn(conversation, ERROR, "Request failed: " + safe_error(exc), None)
             try:
-                send({"type": "error", "error": sanitize_error(exc)})
+                send({"type": "error", "error": safe_error(exc)})
             except ClientDisconnected:
                 pass
+
+
+class _RecordingIndex:
+    """The live identifier index, unchanged, recording every lookup and its answer for the measurement record."""
+
+    def __init__(self, inner, lookups: list) -> None:
+        self._inner, self._lookups = inner, lookups
+
+    def _call(self, kind: str, ident, fn):
+        try:
+            exists, live = fn(ident)
+        except Exception as exc:
+            self._lookups.append({"kind": kind, "id": str(ident), "error": type(exc).__name__})
+            raise
+        self._lookups.append({"kind": kind, "id": str(ident), "exists": bool(exists), "live": bool(live)})
+        return exists, live
+
+    def section_status(self, section):
+        return self._call("section", section, self._inner.section_status)
+
+    def part_status(self, part):
+        return self._call("part", part, self._inner.part_status)
+
+    def __getattr__(self, name):
+        return getattr(self._inner, name)
+
+
+def safe_error(exc: BaseException) -> str:
+    """Error text for the page, the chat history and measurement records: sanitize_error (paths removed),
+    then the configured inference endpoint and API key removed wherever they appear."""
+    import os
+
+    text = sanitize_error(exc)
+    endpoint = getattr(getattr(Handler.engine, "settings", None), "model", None)
+    for secret in ((getattr(endpoint, "endpoint", None) or ""), os.environ.get("REGULUS_MODEL_API_KEY") or ""):
+        if secret:
+            text = text.replace(secret, "<redacted>")
+    return text
+
+
+_LOOPBACK = {"localhost"}
+
+
+def is_loopback(host: str) -> bool:
+    if host in _LOOPBACK:
+        return True
+    try:
+        return ipaddress.ip_address(host).is_loopback
+    except ValueError:
+        return False
+
+
+def check_bind(host: str, allow_remote_clients: bool) -> None:
+    """Fail closed: this server has no authentication, and its chat-history endpoints return every stored
+    conversation. It binds beyond loopback only when the operator says it is behind a private network and an
+    authenticated HTTPS reverse proxy (--allow-remote-clients)."""
+    if is_loopback(host):
+        return
+    if not allow_remote_clients:
+        raise SystemExit(f"refusing to listen on a non-loopback address: this server has no authentication and "
+                         f"exposes chat history. Put it behind a private network and an authenticated HTTPS "
+                         f"reverse proxy, then pass --allow-remote-clients.")
+    print("WARNING: listening beyond loopback with NO built-in authentication: only safe behind a private network "
+          "and an authenticated HTTPS reverse proxy", flush=True)
+
+
+def serve_until_stopped(server, cleanup, *, signals=(signal.SIGTERM,)) -> None:
+    """Serve until Ctrl-C or SIGTERM, then run `cleanup` (close the measurement session, the database).
+
+    The SIGTERM handler does no work itself: it asks serve_forever to return, from another thread (calling
+    shutdown() from the serving thread would deadlock), and the cleanup runs in the normal `finally`. Requests
+    still in flight when the process exits are not recorded: they were never delivered. SIGKILL, host failure
+    and power loss run no cleanup at all; the session is then left "open" (see ui_session)."""
+    def stop(signum, frame):
+        threading.Thread(target=server.shutdown, daemon=True).start()
+
+    previous = {}
+    for sig in signals:
+        try:
+            previous[sig] = signal.signal(sig, stop)
+        except (ValueError, OSError):        # not the main thread, or unsupported on this platform
+            pass
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nstopping ...")
+    finally:
+        for sig, handler in previous.items():
+            signal.signal(sig, handler)
+        cleanup()
+
+
+def measurement_run(settings, engine) -> dict:
+    """What every measurement record of this server session carries about the session (no secrets: the
+    model id and revision, decoding, a hash of the pipeline configuration, the code revision, the rubric).
+    Per-request choices (adapter, top_k, token ceiling, grounding) are in each record's origin.request."""
+    import hashlib
+    from dataclasses import replace
+
+    from regulus.accuracy.rubric import RUBRIC_VERSION
+    from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT
+    from regulus.system_identity import (cached_revision, configured_generation_config, configured_rag_config,
+                                         decoding_config, pipeline_config)
+    from regulus.traceability.measurement import sha256_json
+
+    config = configured_rag_config(settings)
+    if getattr(engine, "answer_shape", None):
+        config = replace(config, answer_shape=engine.answer_shape)
+    if getattr(engine, "remote", None) is not None:
+        # the remote server's own description, endpoint hashed; no revision is claimed that was not reported
+        model = {**engine.remote.describe(), "served_models": getattr(engine, "remote_models", None)}
+    else:
+        try:
+            revision, why = cached_revision(settings.model.id, Path(settings.model.cache_dir))
+        except Exception as exc:  # noqa: BLE001
+            revision, why = None, type(exc).__name__
+        model = {"backend": "transformers", "model_id": settings.model.id, "model_revision": revision,
+                 "model_revision_source": "local HF cache refs/main (what the loader loads)" if revision else why,
+                 "device": settings.model.device, "dtype": settings.model.dtype,
+                 "adapter": engine.adapter_record("") if hasattr(engine, "adapter_record") else None}
+    return {
+        "source": "ui",
+        "model": model,
+        # the regulatory database as this server saw it at start (max snapshot_date of live eCFR rows)
+        "database": {"snapshot_date": getattr(engine, "snapshot", None), "observed": "at server start"},
+        "generation_config": json.loads(json.dumps(decoding_config(configured_generation_config(settings)), default=str)),
+        "system_prompt_sha256": hashlib.sha256(GROUNDED_SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
+        "pipeline_config_sha256": sha256_json(json.loads(json.dumps(pipeline_config(config), default=str))),
+        "code_revision": code_revision(PROJECT_ROOT),
+        "evaluator": {"rubric_id": ACCURACY_RUBRIC_ID, "rubric_version": RUBRIC_VERSION, "evaluator_version": None,
+                      "accuracy_enabled": bool(engine.accuracy), "aligner_configured": engine.accuracy_alignment,
+                      "identifier_index": "database"},
+    }
 
 
 class ClientDisconnected(Exception):
@@ -583,6 +887,14 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--port", type=int, default=8000)
     p.add_argument("--host", default="127.0.0.1", help="loopback by default; this UI has no authentication")
+    p.add_argument("--allow-remote-clients", action="store_true",
+                   help="allow a non-loopback --host. Only behind a private network AND an authenticated HTTPS "
+                        "reverse proxy: this server has no authentication and serves chat history")
+    p.add_argument("--backend", choices=("transformers", "openai_compatible"), default=None,
+                   help="override model.backend: transformers = in-process (default); openai_compatible = the GPU "
+                        "server at REGULUS_MODEL_ENDPOINT (API key in REGULUS_MODEL_API_KEY), nothing loaded here")
+    p.add_argument("--inference-timeout", type=float, default=None,
+                   help="seconds to wait for the remote inference server (default 600)")
     p.add_argument("--offline", action="store_true", help="fail instead of downloading the model")
     p.add_argument("--device", choices=("auto", "cpu", "mps"), default=None,
                    help="override model.device (configs/model.yaml / REGULUS_DEVICE); mps = Apple GPU, opt-in")
@@ -593,20 +905,30 @@ def main() -> int:
     p.add_argument("--accuracy-alignment", choices=("semantic", "lexical"), default="semantic",
                    help="how the accuracy evaluator picks which evidence passage a claim is compared against "
                         "(semantic reuses the pinned bge-small encoder; it never decides correctness)")
+    p.add_argument("--no-measure", action="store_true",
+                   help="do not write measurement records (default: one per answered question, under "
+                        "data/ui_measurements/ or $REGULUS_UI_MEASUREMENTS; local files, git-ignored)")
+    p.add_argument("--measure-dir", default=None, help="where measurement sessions are written (default as above)")
     p.add_argument("--answer-shape", choices=("off", "adaptive", "structured"), default=None,
                    help="override RagConfig.answer_shape; 'structured' = answer-quality Stage 3 (default: as configured)")
     args = p.parse_args()
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 
+    check_bind(args.host, args.allow_remote_clients)
     settings = load_settings()
+    if args.backend:
+        from dataclasses import replace as _replace
+
+        settings.model = _replace(settings.model, backend=args.backend)
+        settings.model.validate()
     if args.device or args.dtype:
         from dataclasses import replace as _replace
 
         settings.model = _replace(settings.model, device=args.device or settings.model.device,
                                   dtype=args.dtype or settings.model.dtype)
         settings.model.validate()
-    Handler.engine = Engine(settings, offline=args.offline)
+    Handler.engine = Engine(settings, offline=args.offline, inference_timeout=args.inference_timeout)
     try:
         Handler.store = ConversationStore()
         print(f"Conversation history: {Handler.store.path}", flush=True)
@@ -615,17 +937,26 @@ def main() -> int:
     Handler.engine.answer_shape = args.answer_shape
     Handler.engine.accuracy = not args.no_accuracy
     Handler.engine.accuracy_alignment = args.accuracy_alignment
+    if args.no_measure:
+        print("Measurement records: OFF (--no-measure)", flush=True)
+    else:
+        try:
+            Handler.measure = UISession(Path(args.measure_dir) if args.measure_dir else default_root(PROJECT_ROOT),
+                                        measurement_run(settings, Handler.engine))
+            print(f"Measurement records: ON -> {Handler.measure.dir} (local only; --no-measure to turn off)", flush=True)
+        except Exception as exc:  # answering must not depend on measurement
+            print(f"Measurement records unavailable ({type(exc).__name__}: {exc}); answering is unaffected", flush=True)
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print()
     print(f"  Regulus test UI:  http://{args.host}:{args.port}")
     print("  Ctrl+C to stop. Answers take 30-90 s on this CPU.")
     print()
-    try:
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print("\nstopping ...")
-    finally:
+    def cleanup():
+        if Handler.measure is not None:
+            Handler.measure.close()
         Handler.engine.db.close()
+
+    serve_until_stopped(server, cleanup)
     return 0
 
 

@@ -30,6 +30,8 @@ data/raw/*
 data/processed/*
 # chat conversations (local SQLite, scripts/serve_ui.py): user content, never committed
 data/chat/
+# UI measurement sessions (regulus.traceability.ui_session): user questions and answers, never committed
+data/ui_measurements/
 !data/**/.gitkeep
 
 # Evaluation: benchmark datasets ARE tracked; run results are not (commit

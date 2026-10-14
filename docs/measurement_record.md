@@ -285,3 +285,168 @@ already not evaluable.
 
 Offline evaluation measures a saved answer against saved evidence. It does not show that the original
 model generation can be reproduced.
+
+## UI sessions
+
+`scripts/serve_ui.py` writes a measurement record for every question answered through the UI, through
+either `/api/ask` or `/api/ask/stream`. This is **on by default**. Implementation:
+`src/regulus/traceability/ui_session.py`. Tests: `tests/test_ui_measurement.py`.
+
+**Turning it off.** Pass `--no-measure`. Nothing is written, and answers, streaming, chat history and the
+accuracy assessment are unchanged (tested). `--measure-dir DIR`, or `REGULUS_UI_MEASUREMENTS`, moves the
+files. The startup log says which applies:
+
+```
+Measurement records: ON -> data/ui_measurements/ui_20261014T101500Z_1a2b3c4d (local only; --no-measure to turn off)
+Measurement records: OFF (--no-measure)
+```
+
+If the session directory cannot be created, the server says so and answers without measurement.
+
+**Layout.** One server process is one session, laid out like an acceptance run:
+
+| File | Content |
+|---|---|
+| `session.json` | `regulus_ui_session_v1`: `session_id`, `state` (`open`, then `closed` on a clean stop), `started_utc`, `finished_utc`, `pid`, `host` (a hash of the hostname, not the name), `counters` (final, written at close; `null` while open), and the session's run identity (see Traceability) |
+| `answers.jsonl` | one row per request: `question_id`, `ordinal`, `question`, `answer` (null unless delivered), `execution_status` (`OK`, `CAPTURE_ERROR`, `ERROR` or `CANCELLED`), `conversation_id`, `turn_id`, `endpoint` |
+| `measurement.jsonl` | one `regulus_measurement_record_v1` per request, with the same `question_id` and `ordinal` as its row; written BEFORE the row |
+| `evaluations/` | offline evaluation results (below) |
+
+**One record per request, written once its outcome is known:**
+
+| Outcome | Record |
+|---|---|
+| answer delivered (answered, refused, fell back, repaired; with or without a model call) | `status: captured`. This is the full record: raw output, validated draft and repair output where they exist, the delivered answer, the evidence, both validation reports and the repair, the answer plan, withheld rows, and the live assessment and review the user saw (`evaluation.state: captured`; `not_run` when accuracy is off). |
+| record could not be built | `status: capture_error`, carrying the error. The answer was still delivered. |
+| request raised before an answer existed | `status: pipeline_error` |
+| client went away during generation, or before the final answer was delivered | `status: cancelled`. A complete answer that was not delivered is **not** recorded as answered. |
+| a conversation turn replayed from chat history | nothing: it was recorded when it was answered |
+
+Every UI record has `origin: {source: "ui", endpoint, conversation_id, turn_id, request: {adapter,
+grounding, top_k, max_new_tokens, ...}, delivery}`. `question_id` is `ui-<uuid>` per request, so a retried
+conversation turn is a new attempt with the same `turn_id`. `ordinal` is the session order, and the record
+hash covers it.
+
+Schema additions, all optional and absent from acceptance-run records, whose shape and hashes are
+unchanged:
+- the `origin` object;
+- the status value `cancelled`;
+- a `not_run` reason that names the UI.
+
+Existing readers treat a `cancelled` record like any other non-`captured` one: it is `not_evaluable`.
+
+**Failure isolation.** A record is written only after the answer has been sent: for `/api/ask` after the
+response body, for the stream after the `final` event. Every write is wrapped. A failure is counted and
+logged; it never reaches the answer, the stream protocol, the assessment or the chat history (tested with
+an unwritable file, a read-only directory, a full disk and a record that cannot be built). Nothing is added
+to the answer response.
+
+**Durability and recovery** (`src/regulus/traceability/ui_session.py`).
+- **One record:** each line is written whole and then `fsync`ed. A record reported as `recorded` has
+  reached the disk, as far as the disk honours `fsync`.
+- **Two files:** the measurement record is written first, then its row. Only both together count as
+  recorded. JSONL in two files cannot be one transaction, so every partial outcome is made detectable
+  instead:
+  - The record fails: there is no record and no row. The failure is counted (`measurement:<errno>`), and
+    the ordinal it consumed is a gap.
+  - The row fails: the record has no row. The offline evaluator reports it under
+    `integrity.records_without_row` and never scores it.
+- **Cut-short writes:** a write cut short (a full disk, SIGKILL, host failure or power loss mid-write)
+  leaves an unterminated fragment. Before every append, the file's last byte is checked. An unterminated
+  tail is **terminated in place**: never truncated, rewritten or discarded. The fragment stays as its own
+  malformed line, so readers report it with its line number and the next record starts on a clean line.
+  Each recovery is logged (`event=partial_line_terminated`) and counted.
+- **`session.json`** is replaced atomically: a temporary file in the same directory, `fsync`,
+  `os.replace`, then a directory `fsync`. An interrupted update leaves the previous version whole.
+- **Shutdown:** SIGTERM (systemd, Docker) and Ctrl-C both stop the server and close the session (state
+  `closed`, final counters). The signal handler does no work itself: it asks the serving loop to return,
+  and cleanup runs in the normal `finally`. Requests still in flight at exit are not recorded, because they
+  were never delivered.
+- **What cannot be guaranteed:** SIGKILL, host failure and power loss run no cleanup. The session is then
+  left `open`, and the offline evaluator reports it as `ended_uncleanly` when its process no longer exists
+  on that host. Its records are still evaluated: a missing `finished_utc` is never a reason to refuse them.
+  A disk that ignores `fsync`, or a volume that is not persistent, can still lose recent records.
+
+**Privacy and retention.**
+- **What is kept:** the user's question, the delivered answer, the raw model output, and the regulatory
+  evidence text shown to the model, plus conversation and turn ids. No credentials, inference endpoint
+  URLs, database URLs or environment values are recorded: the endpoint is stored only as a SHA-256 hash,
+  and the API key never leaves the process environment (tested).
+- **Permissions:** directories this code creates are `0700`, and session files, result files and the
+  temporary evaluation copy are `0600`. They are set at creation, with no window in which they are wider.
+  An existing root directory keeps its permissions: existing data is never re-permissioned.
+- **Where:** in `data/ui_measurements/` on the application host. The path is git-ignored (`.gitignore`),
+  like the chat history in `data/chat/`.
+- **Nothing is uploaded or sent anywhere.** The GPU server never receives these files.
+- **Retention:** files are kept until deleted; nothing expires them. Deciding a retention period, and
+  deleting accordingly, is the operator's responsibility.
+- **Deletion:** delete a session directory to remove that session and its evaluations, or the whole
+  `data/ui_measurements/` directory to remove all of them. Records reference conversations by id only, so
+  deleting chat history does not delete measurements, and the reverse is also true.
+- **Backups:** back up `data/` (sessions and chat history) as you would any store of user content: to
+  private storage, never to a public bucket, a log pipeline or git.
+- **Integrity, not authenticity:** hashes detect a change to a record after capture. They are checksums,
+  not digital signatures, and say nothing about who wrote a record.
+
+**Monitoring.**
+- **Logs:** every event is one structured line, `measurement event=<...> session=<id> question_id=<id> ...`,
+  carrying ids, statuses and a failure category (an errno name such as `ENOSPC`, `EROFS` or `EACCES`, or
+  an exception type). Never a question, an answer, evidence or a raw exception message. The events are
+  `session_opened`, `recorded`, `write_failed`, `partial_line_terminated`, `session_closed` and
+  `session_close_failed`.
+- **`GET /api/config`:** returns `measurement`: session id, state, records written, failures by
+  stage:category, recovered partial lines, records without a row, and the last failure's category and time.
+- **What an operator should watch:**
+  - **full disk:** `write_failed ... category=ENOSPC`;
+  - **read-only mount or permissions:** `EROFS` or `EACCES`;
+  - **a record that failed:** `write_failed`, or `write_failures` above 0;
+  - **a damaged file:** `partial_line_terminated`, or `integrity.unreadable_lines` from the evaluator;
+  - **unclean shutdown:** a session left `open`, or `session_state: ended_uncleanly`.
+- **Disk space:** watch free space on the volume holding `data/`. Nothing in this repository alerts on
+  it; a host or platform monitor must.
+
+**Offline evaluation of a session.**
+
+```
+python scripts/evaluate_ui_session.py data/ui_measurements/<session> [--evaluation-out FILE] [--offline-aligner lexical|semantic]
+```
+
+- It uses the acceptance-run evaluator (`evaluate_run`) unchanged, with the same integrity checks,
+  lossless rebuilding, `not_evaluable` refusals and parity record.
+- `answers.jsonl` and `measurement.jsonl` are copied first and the copy is evaluated. A session still
+  being written can therefore be evaluated: rows appended meanwhile wait for the next evaluation, and a
+  half-written line is reported rather than evaluated. The copy is deleted, and the session's own files
+  are checked to have only been appended to.
+- Results go to a new file, `<session>/evaluations/<utc>_<execution id>.jsonl`, which is never
+  overwritten and stays in git-ignored local storage, because it quotes the user's text.
+- The summary compares each answer's offline review status with the live status recorded at the time,
+  next to that row's parity record.
+- An acceptance run is not a session: the tool refuses it, and writes nothing.
+
+**Traceability** (in `session.json`'s `run`, and per record in `origin.live`):
+
+| Fact | Where | Notes |
+|---|---|---|
+| inference backend | `run.model.backend`, `origin.live.inference_backend` | `transformers` (in-process) or `openai_compatible` (GPU server) |
+| model id and revision | `run.model.model_id`, `.model_revision`, `.model_revision_source` | local: the HF cache's `refs/main`, which is what the loader loads. Remote: `null`, because the server reports no weights revision; `served_models` records which ids the server listed at start |
+| endpoint | `run.model.endpoint_sha256`, `.endpoint_scheme` | hashed, never written out |
+| code revision | `run.code_revision` | `git_commit`, `git_dirty`, SHA-256 of the tracked diff |
+| evaluator and rubric | `run.evaluator` | rubric id and version; `evaluator_version` is `null` because none exists |
+| database snapshot | `run.database.snapshot_date` | the newest live eCFR snapshot date, read at server start |
+| aligner actually used | `origin.live.aligner_used` | after any semantic-to-lexical fallback |
+| embedder | `origin.live.embedder` | the semantic aligner's model description; `null` for lexical |
+| identifier-index lookups | `origin.live.identifier_lookups` | each lookup the live evaluator made, with its answer (`exists`, `live`) or error; `[]` when none, `null` when accuracy was off |
+| grounding gate | `origin.live.grounding` | the gate's decision, or `null` when the gate was off |
+| adapter | `origin.live.adapter`, `run.model.adapter` | name, training metadata and the SHA-256 of the weights file; `null` for the base model and for remote inference |
+| session lifecycle | `session.json` | `state`, start and finish times, `pid`, host hash, final counters |
+
+Values the answer path did not produce are recorded as `null`, never guessed. Records written before these
+fields existed simply lack them; nothing is retrofitted.
+
+**Live and offline differences for UI records.** These are the same limits as for acceptance runs:
+- **Aligner:** the live UI defaults to semantic, while offline defaults to lexical.
+- **Identifier index:** the live UI looks up today's database, which offline never does.
+
+The live assessment is stored in the record, so the comparison is direct. The aligner the live
+evaluation actually used is in `evaluation.assessment.checked.aligner`. It can differ from the configured
+one, because the UI falls back to lexical when the embedder cannot load.
