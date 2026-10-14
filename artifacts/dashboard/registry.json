@@ -4,15 +4,55 @@
   "names": {},
   "pinned": [],
   "thresholds": {},
-  "updated_at": "2026-09-30T04:30:29+00:00",
+  "updated_at": "2026-10-13T08:31:26+00:00",
   "last_scan": {
-    "at": "2026-09-30T04:30:29+00:00",
-    "seconds": 0.41,
-    "experiments": 48,
-    "unsupported": 11,
+    "at": "2026-10-13T08:31:26+00:00",
+    "seconds": 0.308,
+    "experiments": 54,
+    "unsupported": 53,
     "errors": 0
   },
   "experiments": [
+    {
+      "experiment_id": "f2057b066cc45f41",
+      "name": "acceptance_c123_20261007T062913Z",
+      "kind": "evaluation",
+      "path": "artifacts/acceptance_test/acceptance_c123_20261007T062913Z",
+      "status": "STALE",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "regulus_acceptance_rev02@c009d5f9c649",
+      "completed_at": "2026-10-07T08:30:38+00:00"
+    },
+    {
+      "experiment_id": "8319280a3b95868e",
+      "name": "acceptance_sft2_v1_20261006T095516Z",
+      "kind": "evaluation",
+      "path": "artifacts/acceptance_test/acceptance_sft2_v1_20261006T095516Z",
+      "status": "INCOMPLETE",
+      "model_key": "unrecorded:Qwen/Qwen3-0.6B+sft2_v1@c1899de289a04d12100db370d81485cdf75e47ca+sft2_v1@checkpoint-unresolved",
+      "benchmark_key": "regulus_acceptance_rev02@c009d5f9c649",
+      "completed_at": "2026-10-06T13:39:19+00:00"
+    },
+    {
+      "experiment_id": "ae030c5575b26af7",
+      "name": "acceptance_rev02_20261001T083958Z",
+      "kind": "evaluation",
+      "path": "artifacts/acceptance_test/acceptance_rev02_20261001T083958Z",
+      "status": "STALE",
+      "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
+      "benchmark_key": "regulus_acceptance_rev02@c009d5f9c649",
+      "completed_at": "2026-10-01T11:41:13+00:00"
+    },
+    {
+      "experiment_id": "a38906a89e4fd9a8",
+      "name": "retrieval-v2-lexical-stage7",
+      "kind": "evaluation",
+      "path": "data/evaluation/results/retrieval-v2-lexical-stage7_20260930_163927_43c8f0c6.json",
+      "status": "HISTORICAL",
+      "model_key": "not_applicable",
+      "benchmark_key": "retrieval_v2@db73c6fa7bb9",
+      "completed_at": "2026-09-30T11:09:27+00:00"
+    },
     {
       "experiment_id": "3447b14f7628763d",
       "name": "stage3_B_structured",
@@ -452,6 +492,26 @@
       "model_key": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca+base",
       "benchmark_key": "baseline_v1@28363d860c50",
       "completed_at": "2026-09-15T10:31:24+00:00"
+    },
+    {
+      "experiment_id": "41cf121c34524c0c",
+      "name": "sft2_v1",
+      "kind": "training",
+      "path": "models/qwen3-0.6b-lora/sft2_v1",
+      "status": "COMPLETE",
+      "model_key": "Qwen/Qwen3-0.6B@default+sft2_v1@checkpoint-48",
+      "benchmark_key": null,
+      "completed_at": "2026-10-06T08:57:32+00:00"
+    },
+    {
+      "experiment_id": "83903bbee04a9f7d",
+      "name": "sft2_smoke_tmp",
+      "kind": "training",
+      "path": "models/qwen3-0.6b-lora/sft2_smoke_tmp",
+      "status": "COMPLETE",
+      "model_key": "Qwen/Qwen3-0.6B@default+sft2_smoke_tmp@checkpoint-1",
+      "benchmark_key": null,
+      "completed_at": "2026-10-06T06:43:56+00:00"
     },
     {
       "experiment_id": "6ac89de4eb6e4036",

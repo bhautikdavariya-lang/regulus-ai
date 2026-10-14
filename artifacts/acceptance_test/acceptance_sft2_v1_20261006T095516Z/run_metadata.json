@@ -12,7 +12,9 @@
    "key_is_locked": false,
    "status": "WARNING \u2014 key not fully verified",
    "requirement": "Columns G, H and I are a DRAFT key. The workbook requires them to be verified against the current eCFR text, the FDA source documents and the controlled copy of ISO 13485:2016, then marked Y in column K, before the vendor is given the test. An unverified key invalidates the entire result."
-  }
+  },
+  "sha256_after": "c009d5f9c649822097b02a6c6aba415715fb0929914ef452acb03c8c3ac4a110",
+  "unchanged": true
  },
  "active_model": {
   "model_id": "Qwen/Qwen3-0.6B",
@@ -102,5 +104,6 @@
   "python": "3.11.9"
  },
  "command": "python scripts/run_acceptance_test.py --label acceptance_sft2_v1",
- "protocol": "column F verbatim; one stateless pipeline call per question; no follow-up; no retries"
+ "protocol": "column F verbatim; one stateless pipeline call per question; no follow-up; no retries",
+ "finished_utc": "2026-10-06T13:39:19+00:00"
 }
