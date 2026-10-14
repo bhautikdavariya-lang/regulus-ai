@@ -98,7 +98,10 @@ def test_an_additive_not_only_claim_is_not_withheld():
 
 
 def test_the_faithful_211_192_answer_still_passes():
-    faithful = "Any unexplained discrepancy or failure of a batch to meet its specifications must be thoroughly investigated."
+    # keeps "whether or not the batch has already been distributed": the version without it drops a condition
+    # the question turns on and no longer passes (test_accuracy_scope_extension.py)
+    faithful = ("Any unexplained discrepancy or failure of a batch to meet its specifications must be thoroughly "
+                "investigated, whether or not the batch has already been distributed.")
     assert claim_final(FOCUSED, faithful) == AN.SUPPORTED
     v, _, _ = production(FOCUSED, faithful + " [1]", T211)
     assert v["status"] == PASS and v["live_check_score"] == 100

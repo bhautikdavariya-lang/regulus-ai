@@ -69,6 +69,9 @@ def test_a_stated_period_restated_verbatim_is_supported():
 
 
 def test_the_faithful_211_192_answer_still_passes():
-    faithful = "Any unexplained discrepancy or failure of a batch to meet its specifications must be thoroughly investigated."
+    # keeps "whether or not the batch has already been distributed": the version without it drops a condition
+    # the question turns on and no longer passes (test_accuracy_scope_extension.py)
+    faithful = ("Any unexplained discrepancy or failure of a batch to meet its specifications must be thoroughly "
+                "investigated, whether or not the batch has already been distributed.")
     v, _, _ = production(FOCUSED, faithful + " [1]", T211)
     assert v["status"] == PASS and v["live_check_score"] == 100

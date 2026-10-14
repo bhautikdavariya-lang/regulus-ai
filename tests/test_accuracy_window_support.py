@@ -58,8 +58,8 @@ def claim_final(question, claim):
 
 def test_a_near_verbatim_merge_of_two_adjacent_sentences_is_supported():
     claim = ("The failure of a batch or any of its components to meet any of its specifications shall be thoroughly "
-             "investigated, and the investigation shall extend to other batches of the same drug product and other "
-             "drug products.")
+             "investigated, whether or not the batch has already been distributed, and the investigation shall extend "
+             "to other batches of the same drug product and other drug products.")
     assert window(claim) is not None
     assert claim_final(BROAD, claim) == AN.SUPPORTED
 

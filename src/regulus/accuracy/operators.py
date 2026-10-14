@@ -657,14 +657,57 @@ _PROVIDED_EQUIVALENTS = re.compile(r"\bprovided\s+that\b|\bon\s+condition\s+that
                                    r"\bsubject\s+to\b|\bif\b", re.I)
 
 
+# A scope-EXTENDING clause: the requirement holds in either case. 21 CFR 211.192: a failure "shall be
+# thoroughly investigated, whether or not the batch has already been distributed". An answer that keeps the
+# rule and drops the clause reads as narrower than the rule (a reader may take distributed batches to be
+# outside it), so dropping it is a material omission - the same finding as a dropped "unless". answer_plan's
+# CONDITIONAL_QUALIFIERS has no entry for it and also shapes the generation prompt, so it is recognised here.
+SCOPE_EXTENSION = "whether or not (applies in either case)"
+_SCOPE_EXTENSION_RE = re.compile(r"\bwhether\s+or\s+not\b|\bregardless\s+of\b|\birrespective\s+of\b", re.I)
+_SCOPE_EXTENSION_EQUIVALENTS = re.compile(r"\bwhether\s+or\s+not\b|\bregardless\s+of\b|\birrespective\s+of\b"
+                                          r"|\beven\s+(?:if|when|though)\b|\bwhether\b[^.;]{0,80}?\bor\b", re.I)
+
+
+_ANCHOR_STOP = frozenset("""a an the of to for in on at by with from and or that which who whom is are was were be been
+being has have had shall must may should will can its their his her this these those such any all each other""".split())
+
+
+def _anchor_words(text: str, start: int, n: int = 5) -> list[str]:
+    """The content words just before position `start`, within the same clause: what a clause starting
+    there attaches to."""
+    head = re.split(r"[.;:()]", text[:start])[-1]
+    words = [w for w in re.findall(r"[a-z][a-z'-]*", head.lower()) if w not in _ANCHOR_STOP]
+    return words[-n:]
+
+
+def scope_extension_dropped(claim: str, evidence: str) -> bool:
+    """Whether `claim` states the very predicate a scope extension in `evidence` modifies, and drops the
+    extension. "shall be thoroughly investigated, whether or not the batch has already been distributed"
+    attaches to "thoroughly investigated": a claim saying failures must be thoroughly investigated, with no
+    "whether or not" (or equivalent), drops it. An extension attached to something the claim does not state -
+    "complaints that the manufacturer investigated regardless of those requirements" in a lead-in, against a
+    claim naming one listed record item (acceptance row M-020) - is not the claim's to repeat."""
+    if condition_preserved(SCOPE_EXTENSION, claim):
+        return False
+    claim_words = set(re.findall(r"[a-z][a-z'-]*", (claim or "").lower()))
+    for m in _SCOPE_EXTENSION_RE.finditer(evidence or ""):
+        anchor = _anchor_words(evidence, m.start())
+        hits = sum(1 for w in anchor if any(c.startswith(w[:6]) or w.startswith(c[:6]) for c in claim_words if len(c) > 2))
+        if anchor and hits >= min(2, len(anchor)):
+            return True
+    return False
+
+
 def conditions(text: str) -> frozenset[str]:
     """The conditional qualifiers this text carries: those of
-    regulus.rag.answer_plan, plus a restrictive "only" and "provided that"."""
+    regulus.rag.answer_plan, plus a restrictive "only", "provided that", and a scope extension."""
     out = {q for q in extract_qualifiers(text or "") if q in CONDITIONAL_QUALIFIERS}
     if _RESTRICTIVE_ONLY_RE.search(text or ""):
         out.add(RESTRICTIVE_ONLY)
     if _PROVIDED_THAT_RE.search(text or ""):
         out.add(PROVIDED_THAT)
+    if _SCOPE_EXTENSION_RE.search(text or ""):
+        out.add(SCOPE_EXTENSION)
     return frozenset(out)
 
 
@@ -673,6 +716,8 @@ def condition_preserved(qualifier: str, text: str) -> bool:
     prompt itself treats as equivalent (QUALIFIER_EQUIVALENTS)."""
     if qualifier == PROVIDED_THAT:
         return bool(_PROVIDED_EQUIVALENTS.search(text or ""))
+    if qualifier == SCOPE_EXTENSION:
+        return bool(_SCOPE_EXTENSION_EQUIVALENTS.search(text or ""))
     if qualifier == RESTRICTIVE_ONLY:
         return bool(_RESTRICTIVE_ONLY_RE.search(text or "")) or bool(
             re.search(r"\b(?:solely|exclusively|unless|not\s+\w+\s+(?:until|unless|before))\b", text or "", re.I))
@@ -977,6 +1022,10 @@ def compare(claim: str, evidence: str, *, authority: str = BINDING) -> OperatorC
             # a proviso the evidence does not state is not shown wrong by it: recorded, never a conflict
             relate(CONFLICT_CONDITION, "proviso_not_in_evidence", qualifier, None,
                    "the passage does not carry this proviso; that does not show the rule has none")
+        elif qualifier == SCOPE_EXTENSION:
+            # "regardless of ..." that the passage does not state widens the claim; that is not shown wrong by it
+            relate(CONFLICT_CONDITION, "scope_extension_not_in_evidence", qualifier, None,
+                   "the passage does not say the rule applies in either case; that does not show it does not")
         elif e.strength is None:
             relate(CONFLICT_CONDITION, "evidence_states_no_rule", qualifier, None,
                    "the passage states no obligation, so it cannot show the rule is unconditional")
@@ -989,11 +1038,20 @@ def compare(claim: str, evidence: str, *, authority: str = BINDING) -> OperatorC
                                   qualifier, None))
     # a condition the evidence carries and the claim drops -> omission, not a conflict
     for qualifier in sorted(e.conditions):
-        if not condition_preserved(qualifier, claim):
+        if qualifier == SCOPE_EXTENSION:
+            # only when the claim states the predicate the extension modifies (scope_extension_dropped)
+            if scope_extension_dropped(claim, evidence):
+                omissions.append(note(OMISSION_CONDITION, "the evidence applies the requirement in either case "
+                                      "('whether or not ...') and the answer drops that, so it reads as narrower than "
+                                      "the rule", None, qualifier))
+        elif not condition_preserved(qualifier, claim):
             omissions.append(note(OMISSION_CONDITION,
                                   f"the evidence limits the requirement with '{qualifier}' and the answer does not",
                                   None, qualifier))
-    if e.conditions and not omissions and not (c.conditions - e.conditions):
+    # agreement on conditions: an extension the claim does not keep is not an agreement (it may simply belong to
+    # another part of the passage), so it never adds an agreeing operator
+    compared = e.conditions - ({SCOPE_EXTENSION} if not condition_preserved(SCOPE_EXTENSION, claim) else set())
+    if compared and not omissions and not (c.conditions - e.conditions):
         agreed.append(CONFLICT_CONDITION)
     # the event a time limit runs from, dropped -> omission, never a conflict (see dropped_time_anchor)
     anchor = dropped_time_anchor(claim, evidence)
