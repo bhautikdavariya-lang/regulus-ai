@@ -315,6 +315,7 @@ class Engine:
             fallback_type=out.metadata.get("fallback_type"),
             scope_status=analysis.get("scope_status"),
             answerability=out.metadata.get("answerability"),
+            repair=out.metadata.get("validation"),   # what post-processing removed, for completeness
             identifier_index=self.identifier_index(),
             aligner=self.aligner(),
         )

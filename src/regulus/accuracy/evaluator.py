@@ -273,6 +273,53 @@ def _synthesis_gap(package, answer, answering, claims, passages) -> tuple[list[s
     return missing, maybe, withheld
 
 
+def _removed_source_content(repair, answer, answering, passages_, package) -> list[str]:
+    """Requested provision text that post-processing took out of the answer and nothing put back.
+
+    `repair` is the pipeline's validation record (RagAnswer.metadata["validation"]: initial report, final
+    report, repair). Repair removes a statement validation flagged - one carrying a condition no source
+    contains, or one cited to the wrong source - and the evaluator only ever sees what is left. A removed
+    statement that reproduced a sentence of a requested provision's exact text (a run of at least
+    SYNTHESIS_VERBATIM_RUN words of it) took that sentence's content with it. When the delivered answer
+    neither reproduces that sentence nor has a decided statement verified against it, the content is gone,
+    and the per-paragraph completeness units cannot see it: one paragraph of four obligations is still
+    "covered" by the three that remain.
+
+    Returns the citations of such sentences (empty when nothing was removed, when a removed statement was
+    wholly fabricated, or when what it carried is still in the answer). A repair is not by itself an
+    omission: this only says completeness can no longer be established from the delivered text.
+    """
+    initial = (repair or {}).get("initial") if isinstance(repair, dict) else None
+    problems = (initial or {}).get("problems") or ()
+    requested = {rid for rid, _ in (getattr(package, "requirements", None) or ())}
+    if not problems or not requested:
+        return []
+    exact = {s.index for s in getattr(package, "sources", ()) or ()
+             if getattr(s, "tier", None) == TIER_EXACT and set(getattr(s, "requirement_ids", ()) or ()) & requested}
+    own = [p for p in passages_ if p.source_index in exact]
+    delivered = normalise(MARK_RE.sub(" ", answer or ""))
+    answer_words = delivered.split()
+    decided = (AN.SUPPORTED, AN.SUPPORTED_WITH_CITATION_DEFECT, AN.PARTIALLY_SUPPORTED, AN.CONTRADICTED)
+    verified = {(e.get("source_index"), e.get("text")) for c in answering if c.final in decided for e in c.evidence[:1]}
+    out: list[str] = []
+    for prob in problems:
+        removed = normalise(MARK_RE.sub(" ", (prob or {}).get("sentence") or ""))
+        if not removed or removed in delivered:
+            continue                                   # not removed (or only its citation marker was)
+        words = removed.split()
+        best = max(own, key=lambda p: longest_run(words, normalise(p.text))[0], default=None)
+        if best is None or longest_run(words, normalise(best.text))[0] < SYNTHESIS_VERBATIM_RUN:
+            continue                                   # it carried no provision text: nothing was lost
+        n = len(normalise(best.text).split())
+        if longest_run(answer_words, normalise(best.text))[0] >= max(min(SYNTHESIS_VERBATIM_RUN, n), SYNTHESIS_VERBATIM_SHARE * n):
+            continue                                   # the answer still reproduces it
+        if (best.source_index, best.to_dict()["text"]) in verified:
+            continue                                   # a statement verified against it is still there
+        if best.citation not in out:
+            out.append(best.citation)
+    return out
+
+
 def _group_text(members) -> str:
     return " ".join(f"{p.heading or ''} {p.text}" for p in members)
 
@@ -423,6 +470,7 @@ def _evaluate(
     answerability: dict[str, Any] | None = None,
     identifier_index=None,
     aligner: Aligner | None = None,
+    repair: dict[str, Any] | None = None,
 ) -> AccuracyAssessment:
     """Assess one delivered answer against the question and the evidence retrieved for it.
 
@@ -440,7 +488,8 @@ def _evaluate(
     Every argument is already produced by the pipeline; nothing is retrieved or
     generated. `aligner` only chooses which passage each claim is compared with
     and never decides a verdict. `identifier_index`, when given, lets a section
-    the answer names be checked against the verified snapshot.
+    the answer names be checked against the verified snapshot. `repair`, the pipeline's validation record
+    (initial report, final report, repair), lets completeness see what post-processing removed.
     """
     t0 = time.perf_counter()
     text = (answer or "").strip()
@@ -683,6 +732,15 @@ def _evaluate(
                 R.COMPLETENESS, R.NOT_ESTABLISHED,
                 f"{len(withheld)} paragraph(s) of {asked} that state a requirement ({shown}) were not in the evidence, "
                 f"so whether the answer covers what {asked} requires cannot be established", tuple(withheld))
+
+    # ---- completeness after repair: provision text a removed statement carried and nothing restored (see
+    # _removed_source_content). As above, only a PASS is re-examined; it becomes undecided, never a failure.
+    lost = _removed_source_content(repair, text, answering, candidates, package) if not abstained.declined else []
+    if lost and results and results[-1].dimension == R.COMPLETENESS and results[-1].state == R.PASS:
+        results[-1] = DimensionResult(
+            R.COMPLETENESS, R.NOT_ESTABLISHED,
+            f"a statement removed before delivery carried text of {', '.join(lost)} that the delivered answer no "
+            f"longer states, so whether it covers what the question asks cannot be established", tuple(lost))
 
     # ---- scope
     scope_codes = [c for c in _SCOPE_FAIL if c in errors]

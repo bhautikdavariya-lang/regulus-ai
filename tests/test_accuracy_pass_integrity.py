@@ -69,7 +69,8 @@ def production(question, response, table):
                         validation=out.validation, coverage=out.coverage, model_called=out.model_called,
                         fallback_type=out.metadata.get("fallback_type"),
                         scope_status=(out.metadata.get("question_analysis") or {}).get("scope_status"),
-                        answerability=out.metadata.get("answerability"), aligner=LexicalAligner()).to_dict()
+                        answerability=out.metadata.get("answerability"), repair=out.metadata.get("validation"),
+                        aligner=LexicalAligner()).to_dict()
     return question_review(d, question=out.question), d, out
 
 
