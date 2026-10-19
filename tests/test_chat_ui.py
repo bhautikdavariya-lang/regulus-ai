@@ -86,43 +86,42 @@ def test_a_second_send_while_one_is_in_flight_is_ignored():
 SETTINGS_FIELDS = ("adapter", "top_k", "max_new_tokens", "grounding")
 
 
-def test_draft_text_streams_into_the_bubble_before_the_final_answer():
+def test_the_bubble_shows_progress_and_never_the_draft_text():
     r = page("stream")
-    drafts = [s["draft"] for s in r["snaps"] if s["pending_in_thread"]]
-    grown = [d for d in drafts if d]
-    assert grown == ["Any unexplained ", "Any unexplained discrepancy must be ",
-                     "Any unexplained discrepancy must be thoroughly investigated.",
-                     "Any unexplained discrepancy must be thoroughly investigated."]   # in order, one read at a time
+    pending = [s for s in r["snaps"] if s["pending_in_thread"]]
+    assert len(pending) >= 3                                                    # one read at a time, while generating
     phases = [s["phase"] for s in r["snaps"] if s["phase"]]
-    assert "Draft · not yet checked against the sources" in phases           # labelled provisional while it grows
-    assert phases[-1] == "Checking the draft against the sources…"
-    assert not r["snaps"][-1]["pending_in_thread"]                             # the draft bubble is gone at the end
+    assert "Generating the answer…" in phases
+    assert phases[-1] == "Checking the answer against the sources…"
+    assert all("unexplained" not in s["visible"] and "investigated" not in s["visible"] for s in r["snaps"])  # no draft text, ever
+    assert not r["snaps"][-1]["pending_in_thread"]                             # the progress bubble is gone at the end
 
 
-def test_the_final_answer_replaces_the_draft_without_duplicating_it():
+def test_the_final_answer_is_the_only_answer_text_in_the_thread():
     after = page("stream")["after"]
     assert "Validated answer 1 [1]." in after["thread"]                        # the authoritative answer
-    assert "thoroughly investigated." not in after["thread"]                   # the draft is not kept beside it
+    assert "thoroughly investigated." not in after["thread"] and "thoroughly investigated." not in after["out"]
     assert 'id="drafttext"' not in after["thread"]
     assert "21 CFR 820.10(b)(2)" in after["thread"] and "data-show=" in after["thread"]   # citations, evidence intact
     assert "Validated answer 1 [1]." in after["out"]                           # the evidence panel holds the final render
 
 
-def test_a_failed_stream_leaves_no_draft_and_its_retry_never_shows_the_old_text():
+def test_a_failed_stream_shows_no_draft_and_its_retry_shows_none_either():
     r = page("stream_retry")
     assert "Request failed: model crashed mid-generation" in r["after_error"]["thread"]
-    assert "OLD-DRAFT" not in r["after_error"]["thread"]                       # a failed draft is not presented as an answer
-    assert all("OLD-DRAFT" not in s["draft"] for s in r["retry_snaps"])         # nothing leaks into the retry's bubble
-    assert [s["draft"] for s in r["retry_snaps"] if s["draft"]][-1] == "NEW-DRAFT second attempt"
+    assert "OLD-DRAFT" not in r["after_error"]["thread"] and "OLD-DRAFT" not in r["after_error"]["out"]
+    assert all("OLD-DRAFT" not in s["visible"] for s in r["first_snaps"] + r["retry_snaps"])
+    assert all("NEW-DRAFT" not in s["visible"] for s in r["retry_snaps"])     # the retry's draft is not shown either
     first, second = r["after_retry"]["streams"]
     assert first["turn_id"] == second["turn_id"]                               # same turn: idempotent on the server
     assert "Validated answer 2 [1]." in r["after_retry"]["thread"]
     assert "DRAFT" not in r["after_retry"]["thread"]
 
 
-def test_stop_mid_stream_shows_a_stopped_turn_not_a_partial_answer():
+def test_stop_mid_stream_shows_a_stopped_turn_and_no_partial_text():
     r = page("stream_stop")
-    assert [s["draft"] for s in r["snaps"] if s["draft"]][-1] == "Partial draft words"   # it was streaming when stopped
+    assert "Generating the answer…" in [s["phase"] for s in r["snaps"]]        # it was generating when stopped
+    assert all("Partial" not in s["visible"] for s in r["snaps"])
     t = r["after"]["thread"]
     assert "Stopped before the answer was complete." in t and "data-retry=" in t
     assert "Partial draft words" not in t

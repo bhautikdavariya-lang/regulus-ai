@@ -1,5 +1,6 @@
-"""Streaming (performance Stage 1): draft text streamed during the single
-generation, the validated answer delivered as the final event.
+"""Streaming (performance Stage 1): the pipeline streams draft text to its listener during the
+single generation; the HTTP server forwards only content-free progress, and the validated answer
+is delivered as the final event (the delivery boundary: tests/test_safe_delivery.py).
 
 Three levels, no model weights:
 * the streamer on the real Qwen tokenizer (skipped if it is not cached);
@@ -244,16 +245,18 @@ def stream_events(base, question=QUESTION):
         return [json.loads(line) for line in res.read().decode("utf-8").splitlines() if line.strip()]
 
 
-def test_http_stream_delivers_start_context_deltas_and_one_final_event(server):
+def test_http_stream_delivers_start_context_progress_and_one_final_event_but_no_text(server):
     base = server(StandInEngine(StreamingGenerator(GOOD)))
     events = stream_events(base)
     types = [e["type"] for e in events]
     assert types[0] == "start" and types[-1] == "final" and types.count("final") == 1 and "error" not in types
-    assert types.count("delta") > 3 and types.index("context") < types.index("delta")
+    assert "delta" not in types and types.count("progress") >= 1 and types.index("context") < types.index("progress")
+    assert all(set(e) <= {"type", "elapsed_ms"} for e in events if e["type"] == "progress")   # no text in progress
     final = events[-1]["result"]
     assert final["answer"] == GOOD and final["citations"][0]["label"] == "21 CFR 820.10(b)(2)"
+    assert not any(GOOD in json.dumps(e) for e in events[:-1])            # the answer text arrives only in "final"
     stats = final["stream"]
-    assert stats["deltas"] == types.count("delta") and stats["first_delta_ms"] <= stats["final_ms"]
+    assert stats["progress_events"] == types.count("progress") and stats["first_progress_ms"] <= stats["final_ms"]
 
 
 def test_http_final_event_equals_the_non_streaming_response(server):
@@ -269,7 +272,9 @@ def test_http_generation_error_ends_the_stream_with_an_error_event(server):
     base = server(StandInEngine(StreamingGenerator(GOOD, fail_after=2)))
     events = stream_events(base)
     assert events[-1]["type"] == "error" and "final" not in [e["type"] for e in events]
-    assert "crashed" in events[-1]["error"] and [e["type"] for e in events].count("delta") == 2
+    # after generation started, only the exception's type: its message could quote the draft
+    assert events[-1]["error"].startswith("RuntimeError") and "crashed" not in events[-1]["error"]
+    assert "delta" not in [e["type"] for e in events] and "requires" not in json.dumps(events)
 
 
 def test_http_empty_question_is_rejected_before_streaming(server):
@@ -288,7 +293,7 @@ def test_http_client_disconnect_stops_generation_and_frees_the_server(server):
     s.sendall(b"POST /api/ask/stream HTTP/1.1\r\nHost: x\r\nContent-Type: application/json\r\n"
               + f"Content-Length: {len(body)}\r\n\r\n".encode() + body)
     received = b""
-    while b'"delta"' not in received:
+    while b'"progress"' not in received:
         received += s.recv(4096)
     s.close()                                                    # the reader goes away mid-answer
     deadline = time.time() + 5

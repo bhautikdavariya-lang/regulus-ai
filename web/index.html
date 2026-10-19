@@ -466,8 +466,7 @@ function turnsOf(messages) {
 
 function replyHtml(t, pending) {
   if (pending && pending.turn_id === t.turn_id) return `
-    <div class="draft-head"><span class="spin"></span><span id="draftphase">Retrieving sources…</span></div>
-    <div class="bubble live-draft" id="drafttext" hidden></div>`;
+    <div class="draft-head"><span class="spin"></span><span id="draftphase">Retrieving sources…</span></div>`;
   const m = t.reply, retry = `<button type="button" class="ghost small" data-retry="${esc(t.turn_id)}">Retry</button>`;
   if (!m) return `<div class="bubble err">No answer was recorded for this question.</div><div class="tools">${retry}</div>`;
   if (m.status !== "ok" || !m.result) return `<div class="bubble err">${esc(m.content || "The answer could not be produced.")}</div><div class="tools">${retry}</div>`;
@@ -774,10 +773,11 @@ function render(r, asked) {
 
 let controller = null;
 
-// Stream the answer from /api/ask/stream (newline-delimited JSON events). Text
-// arrives as a DRAFT while the model generates; the "final" event carries the
-// validated (and, if needed, repaired) answer with its citations and sources,
-// which replaces the draft. The draft is never shown as the answer.
+// Ask through /api/ask/stream (newline-delimited JSON events). While the model
+// generates, the server sends progress only - never the model's text; the "final"
+// event carries the validated (and, if needed, repaired) answer with its citations
+// and sources, and that is the first answer text the page receives. A "delta" from
+// an older server is ignored, never shown.
 async function ask(retry) {
   if (busy) return;
   const question = retry ? retry.question : $("q").value.trim();
@@ -795,27 +795,23 @@ async function ask(retry) {
   status();
   syncEmpty();
   const tick = setInterval(status, 1000);
-  let draft = "", firstText = null, deltas = 0, finished = false, sources = [];
+  let firstProgress = null, progress = 0, finished = false, sources = [];
   let turn = null;                       // this ask's conversation turn (chat mode only)
-  // Chat: the same draft streams into this turn's bubble. It is PROVISIONAL - the raw model text before
-  // validation, repair and evaluation - so it is labelled as such and replaced, never appended to, by
-  // the final answer. textContent only: a draft is never parsed as markup.
-  const PHASES = { "retrieving sources": "Retrieving sources…", "generating": "Draft · not yet checked against the sources",
-                   "validating the answer against its sources": "Checking the draft against the sources…" };
-  const liveDraft = () => {
+  // Chat: this turn's bubble shows where the answer is (retrieving, generating, checking), never its text.
+  const PHASES = { "retrieving sources": "Retrieving sources…", "generating": "Generating the answer…",
+                   "validating the answer against its sources": "Checking the answer against the sources…" };
+  const livePhase = () => {
     if (!turn) return;
     const sc = $("scroll");
     const follow = !sc || typeof sc.scrollHeight !== "number" || sc.scrollHeight - sc.scrollTop - sc.clientHeight < 120;
     $("draftphase").textContent = PHASES[phase] || phase;
-    if (draft) { $("drafttext").hidden = false; $("drafttext").textContent = draft; }
-    if (follow) toBottom();               // follow the text only when the reader is already at the end
+    if (follow) toBottom();               // follow only when the reader is already at the end
   };
-  const showDraft = () => {
+  const showProgress = () => {
     $("out").innerHTML = `
       <div class="card draft">
-        <div class="meta">${pill("draft · generating", "warn")} ${pill(`${sources.length} sources`, "mut")}
-          <span class="sub">not yet validated; the checked answer replaces this when generation finishes</span></div>
-        <div class="answer">${esc(draft)}<span class="caret"></span></div>
+        <div class="meta">${pill("generating", "warn")} ${pill(`${sources.length} sources`, "mut")}
+          <span class="sub">the answer is shown once it has been checked against the sources</span></div>
       </div>`;
   };
   try {
@@ -849,13 +845,13 @@ async function ask(retry) {
     const decoder = new TextDecoder();
     let buf = "";
     const handle = ev => {
-      if (ev.type === "context") { sources = ev.sources || []; phase = "generating"; showDraft(); liveDraft(); }
-      else if (ev.type === "generation_started") { phase = "generating"; showDraft(); liveDraft(); }
-      else if (ev.type === "delta") {
-        if (firstText === null) firstText = performance.now() - tSend;
-        deltas += 1; draft += ev.text; showDraft(); liveDraft();
+      if (ev.type === "context") { sources = ev.sources || []; phase = "generating"; showProgress(); livePhase(); }
+      else if (ev.type === "generation_started") { phase = "generating"; showProgress(); livePhase(); }
+      else if (ev.type === "progress") {
+        if (firstProgress === null) firstProgress = performance.now() - tSend;
+        progress += 1;
       }
-      else if (ev.type === "generation_finished") { phase = "validating the answer against its sources"; liveDraft(); }
+      else if (ev.type === "generation_finished") { phase = "validating the answer against its sources"; livePhase(); }
       else if (ev.type === "final") {
         finished = true;
         const tParsed = performance.now();
@@ -868,9 +864,9 @@ async function ask(retry) {
         }
         const tRendered = performance.now();
         const ms = x => Math.round(x);
-        $("status").textContent = `first text ${firstText === null ? "— (no model text)" : ms(firstText) + " ms"} · `
-          + `${deltas} chunks · final ${ms(tParsed - tSend)} ms · render ${ms(tRendered - tParsed)} ms`;
-        window.__lastTimings = {first_text_ms: firstText, deltas, final_ms: tParsed - tSend, render_ms: tRendered - tParsed};
+        $("status").textContent = `first progress ${firstProgress === null ? "— (no model text)" : ms(firstProgress) + " ms"} · `
+          + `${progress} progress events · final ${ms(tParsed - tSend)} ms · render ${ms(tRendered - tParsed)} ms`;
+        window.__lastTimings = {first_progress_ms: firstProgress, progress, final_ms: tParsed - tSend, render_ms: tRendered - tParsed};
       }
       else if (ev.type === "error") { throw new Error(ev.error || "generation failed"); }
     };
@@ -889,9 +885,7 @@ async function ask(retry) {
     if (!finished) throw new Error("the connection closed before the answer was complete");
   } catch (e) {
     const stopped = e.name === "AbortError";
-    const kept = draft ? `<div class="sub" style="margin-top:8px">Unvalidated draft received before this happened:</div>
-      <div class="answer sub">${esc(draft)}</div>` : "";
-    $("out").innerHTML = `<div class="card err">${stopped ? "Stopped. Generation was cancelled." : "Request failed: " + esc(e.message)}${kept}</div>`;
+    $("out").innerHTML = `<div class="card err">${stopped ? "Stopped. Generation was cancelled." : "Request failed: " + esc(e.message)}</div>`;
     $("status").textContent = "";
     if (turn) {
       chat.messages.push({ turn_id: turn.turn_id, role: "assistant", status: stopped ? "cancelled" : "error",

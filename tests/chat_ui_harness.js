@@ -6,10 +6,11 @@
 // Scenarios: fresh (first question starts a conversation), restore (a refresh reopens the
 // remembered conversation), switch (two conversations never mix), retry (a failed turn is retried
 // with the SAME turn id), nohistory (history unavailable: the plain console, no conversation
-// fields sent), double (a second send while one is in flight is ignored), stream (draft text
-// streams into the bubble one network read at a time, then the final answer replaces it),
-// stream_retry (a failed streamed attempt, then Retry: nothing of the first draft leaks), stream_stop
-// (Stop pressed mid-stream).
+// fields sent), double (a second send while one is in flight is ignored), stream (the bubble shows
+// progress one network read at a time, then the final answer), stream_retry (a failed streamed
+// attempt, then Retry: nothing of either draft is shown), stream_stop (Stop pressed mid-stream).
+// A streamed attempt sends content-free "progress" events, as the server does, and also text
+// "delta" events, as an older server did: the page must never show their text.
 // Used by tests/test_chat_ui.py. tests/answer_ui_stream_harness.js covers the answer rendering.
 "use strict";
 const fs = require("fs");
@@ -67,9 +68,9 @@ function ndjson(events) {
 const snaps = [];
 function stepwise(events, signal, stopAfterDeltas) {
   let i = 0, deltas = 0;
-  const snap = () => snaps.push({ phase: (els.draftphase || {}).textContent || null, draft: (els.drafttext || {}).textContent || "",
-                                  draft_hidden: els.drafttext ? !!els.drafttext.hidden : null,
-                                  pending_in_thread: el("thread").innerHTML.includes('id="drafttext"') });
+  const snap = () => snaps.push({ phase: (els.draftphase || {}).textContent || null,
+                                  visible: el("thread").innerHTML + "\n" + el("out").innerHTML + "\n" + el("status").textContent,
+                                  pending_in_thread: el("thread").innerHTML.includes('id="draftphase"') });
   return { ok: true, status: 200, body: { getReader: () => ({ read: async () => {
     snap();
     if (signal && signal.aborted) { const e = new Error("aborted"); e.name = "AbortError"; throw e; }
@@ -105,7 +106,8 @@ async function fetchStub(url, opts = {}) {
     if (step === "error") return ndjson([{ type: "start" }, { type: "error", error: "model crashed mid-generation" }]);
     if (typeof step === "object") {                 // a streamed attempt: drafts first, then its outcome
       const lead = [{ type: "start" }, { type: "context", sources: [], no_context: false },
-                    { type: "generation_started", max_new_tokens: 2048 }, ...step.deltas.map(text => ({ type: "delta", text }))];
+                    { type: "generation_started", max_new_tokens: 2048 },
+                    ...step.deltas.flatMap((text, i) => [{ type: "progress", elapsed_ms: 500 * i }, { type: "delta", text }])];
       if (step.kind === "error") return stepwise([...lead, { type: "error", error: "model crashed mid-generation" }], opts.signal);
       if (step.kind === "stop") return stepwise(lead, opts.signal, step.deltas.length);
       const n = server.requests.filter(r => r.url === "/api/ask/stream").length;

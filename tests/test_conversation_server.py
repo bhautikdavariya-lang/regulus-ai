@@ -97,7 +97,7 @@ def final_of(events):
 def test_a_request_without_a_conversation_is_answered_as_before_and_stores_nothing(server):
     base, engine, H = server
     status, events = stream(base, {"question": "What does 21 CFR 820.10(b)(2) require?"})
-    assert status == 200 and [e["type"] for e in events] == ["start", "context", "delta", "final"]
+    assert status == 200 and [e["type"] for e in events] == ["start", "context", "progress", "final"]   # progress: never draft text
     assert "conversation" not in final_of(events)
     assert engine.calls == 1 and H.store.list_conversations() == []
 

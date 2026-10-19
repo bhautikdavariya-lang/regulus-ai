@@ -189,7 +189,10 @@ def test_a_repaired_answer_is_recorded_with_its_repair(ui):
     result = ui.stream(REPAIR_Q)["result"]
     [rec] = ui.records
     assert rec["validation"]["repair"] == result["validation"]["repair"] == "appended_missing_provisions"
-    assert rec["validation"]["initial"] == result["validation"]["initial"]
+    # the local record keeps the initial (draft) report whole; the page gets it through the delivery
+    # boundary, which keeps its codes and statuses but not the draft's sentences
+    assert UI.browser_safe({"validation": rec["validation"]})["validation"]["initial"] == result["validation"]["initial"]
+    assert rec["validation"]["initial"]["problems"] and all("sentence" in p for p in rec["validation"]["initial"]["problems"])
     assert rec["text"]["validation_input"]["state"] == rec["text"]["repair_output"]["state"] == M.CAPTURED
     assert rec["evaluator_inputs"]["answer_plan"] is not None or rec["evaluator_inputs"]["package_present"]
 

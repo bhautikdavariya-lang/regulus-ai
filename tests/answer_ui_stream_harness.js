@@ -4,10 +4,13 @@
 //   node tests/answer_ui_stream_harness.js <scenario>
 //
 // Scenarios: normal (events split across odd network chunk boundaries),
-// error (an "error" event after some drafts), truncated (the connection closes
+// error (an "error" event mid-generation), truncated (the connection closes
 // with no final event), accuracy_scored / accuracy_unknown / accuracy_failed /
 // accuracy_off (the answer-accuracy indicator in each of its states).
 // Used by tests/test_streaming_ui.py and tests/test_accuracy_ui.py.
+//
+// The server sends content-free "progress" events while the model generates. The script also
+// sends text "delta" events, as an older server did, to show the page never renders them.
 //
 //   node tests/answer_ui_stream_harness.js file <payload.json>
 //
@@ -42,7 +45,7 @@ const final = {
   sources: [{ index: 1, citation: "21 CFR 820.10(b)(2)", corpus: "ecfr", heading: "h", method: "exact_cfr", score: 1,
               url: "https://example/1", text: "body", truncated: false }],
   dropped_sources: 0, notes: [], grounding: null, retrieval: {}, query_type: "EXACT_CFR", timings_ms: {},
-  adapter: { id: "" }, wall_seconds: 1.0, stream: { deltas: 3 },
+  adapter: { id: "" }, wall_seconds: 1.0, stream: { progress_events: 2 },
   server_timings_ms: { accuracy_ms: 1.4 },
 };
 
@@ -86,7 +89,8 @@ const lines = [
   { type: "start" },
   { type: "context", sources: [{ index: 1, citation: "21 CFR 820.10(b)(2)" }], no_context: false },
   { type: "generation_started", max_new_tokens: 256 },
-  { type: "delta", text: "Draft " }, { type: "delta", text: "answer " }, { type: "delta", text: "[9]." },
+  { type: "progress", elapsed_ms: 10 }, { type: "delta", text: "Draft " }, { type: "delta", text: "answer " },
+  { type: "progress", elapsed_ms: 510 }, { type: "delta", text: "[9]." },
   { type: "generation_finished", generated_tokens: 3, finished: true },
 ];
 function chunksFor(finalResult) {
@@ -144,7 +148,8 @@ el("q").value = (fromFile && fromFile.page_question) || "What does 21 CFR 820.10
   if (!steps) await ctx.ask();
   const out = els.out.innerHTML;
   console.log(JSON.stringify({
-    draft_seen: snapshots.some(s => s.includes("draft · generating") && s.includes("Draft answer")),
+    draft_seen: snapshots.some(s => s.includes("Draft answer")) || out.includes("Draft answer"),
+    progress_seen: snapshots.some(s => s.includes("the answer is shown once it has been checked against the sources")),
     final_out: out, status: els.status.textContent, stop_hidden: els.stop.hidden, ask_disabled: els.ask.disabled,
     answer_shown: out.includes("Validated answer [1]."), finals,
   }));

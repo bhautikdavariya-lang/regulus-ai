@@ -539,7 +539,10 @@ class Handler(BaseHTTPRequestHandler):
         if match:
             if self._history_available():
                 try:
-                    self._json(200, {"conversation": self.store.get_conversation(match.group(1))})
+                    conv = self.store.get_conversation(match.group(1))
+                    # records stored before the delivery boundary existed may still carry draft text
+                    conv["messages"] = [{**m, "result": browser_safe(m.get("result"))} for m in conv.get("messages") or ()]
+                    self._json(200, {"conversation": conv})
                 except ConversationNotFound:
                     self._json(404, {"error": "conversation not found"})
                 except InvalidInput as exc:
@@ -600,6 +603,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         t_request = time.perf_counter()
         turn = None
+        answering = False
         try:
             length = int(self.headers.get("Content-Length") or 0)
             body = json.loads(self.rfile.read(length) or b"{}")
@@ -611,9 +615,10 @@ class Handler(BaseHTTPRequestHandler):
             turn = self._turn(question, "/api/ask", kwargs)
             t0 = time.perf_counter()
             parse_ms = round((t0 - t_request) * 1000, 2)
+            answering = True
             with _LOCK:
                 lock_wait_ms = round((time.perf_counter() - t0) * 1000, 2)
-                result = self.engine.ask(question, **kwargs, **({"turn": turn} if turn is not None else {}))
+                result = browser_safe(self.engine.ask(question, **kwargs, **({"turn": turn} if turn is not None else {})))
             result["wall_seconds"] = round(time.perf_counter() - t0, 1)
             result["server_timings_ms"].update({"request_parse_ms": parse_ms, "lock_wait_ms": lock_wait_ms})
             t_send = time.perf_counter()
@@ -627,7 +632,7 @@ class Handler(BaseHTTPRequestHandler):
             traceback.print_exc()
             if turn is not None:
                 turn.finish(NOT_DELIVERED)      # a no-op when ask() already recorded the failure
-            self._json(500, {"error": safe_error(exc)})
+            self._json(500, {"error": page_error(exc, draft_possible=answering)})
 
     # -- streaming ----------------------------------------------------------
 
@@ -638,14 +643,16 @@ class Handler(BaseHTTPRequestHandler):
             {"type": "start"}
             {"type": "context", "sources": [...], "no_context": bool}   sources selected for the model
             {"type": "generation_started", "max_new_tokens": n}
-            {"type": "delta", "text": "..."}                            DRAFT text of the one generation
+            {"type": "progress", "elapsed_ms": n}                       the model is generating; no text, at
+                                                                        most one per PROGRESS_INTERVAL_S
             {"type": "generation_finished", "generated_tokens": n, "finished": bool}
             {"type": "final", "result": {...}}                          the validated answer: exactly what
                                                                         /api/ask returns, plus "stream" stats
             {"type": "error", "error": "..."}                           instead of "final" when it fails
-        The stream always ends with exactly one "final" or "error" event. Drafts are
-        never final: validation and repair run after generation, as they always did,
-        and may change the text. A client that disconnects stops the generation.
+        The stream always ends with exactly one "final" or "error" event. No draft text is
+        sent: the model's text reaches only the pipeline, whose validation and repair decide
+        what is delivered (STREAM_EVENTS, browser_safe). A client that disconnects is noticed
+        at the next progress write, which stops the generation.
         """
         t_request = time.perf_counter()
         try:
@@ -685,7 +692,9 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Connection", "close")
         self.end_headers()  # HTTP/1.0 response without Content-Length: the body ends when the connection closes
 
-        stats = {"deltas": 0, "first_delta_ms": None, "delta_chars": 0}
+        stats = {"progress_events": 0, "first_progress_ms": None}
+        deltas = {"n": 0, "last_progress": None}      # server-side only: never sent to the page
+        began = {"generation": False}
         turn = None
 
         def send(event: dict) -> None:
@@ -696,17 +705,27 @@ class Handler(BaseHTTPRequestHandler):
                 raise ClientDisconnected() from exc
 
         def on_event(kind: str, data: dict) -> None:
-            if kind == "delta":
-                stats["deltas"] += 1
-                stats["delta_chars"] += len(data.get("text", ""))
-                if stats["first_delta_ms"] is None:
-                    stats["first_delta_ms"] = round((time.perf_counter() - t_request) * 1000, 2)
-            send({"type": kind, **data})
+            if kind == "delta":                       # draft text: counted, never forwarded
+                deltas["n"] += 1
+                now = time.perf_counter()
+                if deltas["last_progress"] is not None and now - deltas["last_progress"] < PROGRESS_INTERVAL_S:
+                    return
+                deltas["last_progress"] = now
+                elapsed_ms = round((now - t_request) * 1000, 2)
+                stats["progress_events"] += 1
+                if stats["first_progress_ms"] is None:
+                    stats["first_progress_ms"] = elapsed_ms
+                send({"type": "progress", "elapsed_ms": elapsed_ms})
+                return
+            if kind == "generation_started":
+                began["generation"] = True
+            if kind in STREAM_EVENTS:                 # any other pipeline event is not the page's to see
+                send({"type": kind, **data})
 
         try:
             send({"type": "start"})
             if conversation is not None and stored is not None and stored["status"] == OK:
-                replay = dict(stored["result"] or {"answer": stored["content"]})
+                replay = browser_safe(dict(stored["result"] or {"answer": stored["content"]}))
                 replay["conversation"] = {"id": conversation[0], "turn_id": conversation[1], "saved": True,
                                           "replayed": True}
                 send({"type": "final", "result": replay})
@@ -716,8 +735,8 @@ class Handler(BaseHTTPRequestHandler):
             t0 = time.perf_counter()
             with _LOCK:
                 lock_wait_ms = round((time.perf_counter() - t0) * 1000, 2)
-                result = self.engine.ask(question, on_event=on_event, **kwargs,
-                                         **({"turn": turn} if turn is not None else {}))
+                result = browser_safe(self.engine.ask(question, on_event=on_event, **kwargs,
+                                                      **({"turn": turn} if turn is not None else {})))
             result["wall_seconds"] = round(time.perf_counter() - t0, 1)
             result.setdefault("server_timings_ms", {}).update({"lock_wait_ms": lock_wait_ms})
             result["stream"] = {**stats, "final_ms": round((time.perf_counter() - t_request) * 1000, 2)}
@@ -726,22 +745,23 @@ class Handler(BaseHTTPRequestHandler):
             send({"type": "final", "result": result})
             if turn is not None:
                 turn.finish(DELIVERED)
-            print(f"  stream: {stats['deltas']} deltas, first at {stats['first_delta_ms']} ms, "
-                  f"final at {result['stream']['final_ms']} ms", flush=True)
+            print(f"  stream: {deltas['n']} deltas, {stats['progress_events']} progress events, first at "
+                  f"{stats['first_progress_ms']} ms, final at {result['stream']['final_ms']} ms", flush=True)
         except ClientDisconnected:
-            print(f"  stream: client disconnected after {stats['deltas']} deltas; generation stopped", flush=True)
+            print(f"  stream: client disconnected after {deltas['n']} deltas; generation stopped", flush=True)
             if turn is not None:
                 turn.finish(NOT_DELIVERED)
             if conversation is not None:
                 self._record_turn(conversation, CANCELLED, "Stopped before the answer was complete.", None)
-        except Exception as exc:  # never leak a path or a stack trace to the page
+        except Exception as exc:  # never leak a path, a stack trace or draft text to the page
             traceback.print_exc()
+            message = page_error(exc, draft_possible=began["generation"])
             if turn is not None:
                 turn.finish(NOT_DELIVERED)
             if conversation is not None:
-                self._record_turn(conversation, ERROR, "Request failed: " + safe_error(exc), None)
+                self._record_turn(conversation, ERROR, "Request failed: " + message, None)
             try:
-                send({"type": "error", "error": safe_error(exc)})
+                send({"type": "error", "error": message})
             except ClientDisconnected:
                 pass
 
@@ -782,6 +802,49 @@ def safe_error(exc: BaseException) -> str:
         if secret:
             text = text.replace(secret, "<redacted>")
     return text
+
+
+# ---- the delivery boundary: the page receives the finished answer and nothing of a draft.
+# The model's text streams only inside the server (to the pipeline's listener, which is how a client
+# disconnect stops generation); a page sees content-free progress events, then the validated result.
+# Every route that sends or stores an answer goes through browser_safe().
+STREAM_EVENTS = frozenset({"start", "context", "generation_started", "generation_finished", "final", "error"})
+PROGRESS_INTERVAL_S = 0.5   # at most one progress event per interval: their count does not track the draft's length
+_DRAFT_KEYS = ("raw_model_output", "repair_input", "repair_output")
+_PROBLEM_KEYS = ("code", "severity", "requirement_id", "citation")
+
+
+def browser_safe(result):
+    """A copy of an answer result without draft text. The INITIAL validation report describes the draft,
+    so its problems keep their codes but not the sentences and details that quote it; a re-pointed
+    citation keeps its numbers but not its words; the raw draft and repair texts are dropped. The final
+    report describes the delivered answer and is kept. `result` itself is not changed."""
+    if not isinstance(result, dict):
+        return result
+    out = {k: v for k, v in result.items() if k not in _DRAFT_KEYS}
+    validation = out.get("validation")
+    if isinstance(validation, dict) and isinstance(validation.get("initial"), dict):
+        initial = dict(validation["initial"])
+        initial["problems"] = [{k: p.get(k) for k in _PROBLEM_KEYS}
+                               for p in initial.get("problems") or () if isinstance(p, dict)]
+        out["validation"] = {**validation, "initial": initial}
+    generation = out.get("generation")
+    if isinstance(generation, dict) and generation.get("citations_repointed"):
+        out["generation"] = {**generation, "citations_repointed": [
+            {k: c.get(k) for k in ("from", "to")} for c in generation["citations_repointed"] if isinstance(c, dict)]}
+    return out
+
+
+def page_error(exc: BaseException, *, draft_possible: bool) -> str:
+    """Error text for the page and the chat history. Once the model may have produced text, an
+    exception's message could quote it, so only the exception's type is given; the full message stays
+    in the server log (and the local measurement record). A remote InferenceError's message is a
+    category by construction (regulus.rag.remote_generator), never model text, so it is kept."""
+    from regulus.rag.remote_generator import InferenceError
+
+    if draft_possible and not isinstance(exc, InferenceError):
+        return f"{type(exc).__name__} while answering (details are in the server log)"
+    return safe_error(exc)
 
 
 _LOOPBACK = {"localhost"}

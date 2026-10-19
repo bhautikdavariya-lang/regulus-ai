@@ -1,5 +1,6 @@
 """The answering page's stream reader (web/index.html), run under Node with a
-scripted /api/ask/stream response split at awkward network boundaries."""
+scripted /api/ask/stream response split at awkward network boundaries. The page shows progress while
+the model generates and no answer text before the validated final result."""
 
 from __future__ import annotations
 
@@ -21,19 +22,20 @@ def page(scenario: str) -> dict:
     return json.loads(out.stdout)
 
 
-def test_draft_appears_while_generating_then_the_validated_answer_replaces_it():
+def test_progress_shows_while_generating_and_the_validated_answer_is_the_first_text_shown():
     r = page("normal")
-    assert r["draft_seen"]                                        # progressive text, labelled as a draft
+    assert r["progress_seen"]                                     # the page says it is generating ...
+    assert not r["draft_seen"]                                    # ... and never shows model text, even sent as "delta"
     assert "Validated answer [1]." in r["final_out"]               # the final event is what is shown
-    assert "Draft answer" not in r["final_out"] and "draft · generating" not in r["final_out"]
+    assert "generating" not in r["final_out"]
     assert "21 CFR 820.10(b)(2)" in r["final_out"] and "https://example/1" in r["final_out"]  # citations and sources
-    assert "3 chunks" in r["status"] and r["stop_hidden"] and not r["ask_disabled"]
+    assert "2 progress events" in r["status"] and r["stop_hidden"] and not r["ask_disabled"]
 
 
-def test_a_generation_error_is_shown_with_the_unvalidated_draft():
+def test_a_generation_error_is_shown_without_any_draft_text():
     r = page("error")
     assert "Request failed: model crashed mid-generation" in r["final_out"]
-    assert "Unvalidated draft" in r["final_out"] and "Draft answer [9]." in r["final_out"]
+    assert not r["draft_seen"] and "Unvalidated draft" not in r["final_out"] and "Draft answer" not in r["final_out"]
 
 
 def test_a_connection_that_closes_without_a_final_event_is_an_error_not_an_answer():
