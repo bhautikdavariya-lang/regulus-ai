@@ -18,7 +18,7 @@ Pipeline fingerprint
                       scope_policy, evidence_consolidation
     context           max_results, max_chars_per_result, max_total_chars,
                       hard_max_results, hard_max_total_chars,
-                      required_max_chars_per_result
+                      required_max_chars_per_result, binding_reserve_chars
     generation_budget policy, base_tokens, per_unit_tokens, range_bonus_tokens,
                       general_tokens, max_units, min_tokens, evidence_multiple,
                       evidence_cap_fraction, hard_max_tokens
@@ -81,7 +81,9 @@ ALGORITHM = "sha256"
 # 5: retrieval gained semantic_fallback, coverage gained scope_policy (Stage 7;
 #    docs/retrieval_validation_stage7.md).
 # 6: coverage gained evidence_consolidation (Stage 8; docs/generation_control_stage8.md).
-FINGERPRINT_VERSION = 6
+# 7: context gained binding_reserve_chars (RC2: part of the optional budget offered to eCFR first
+#    for a question that names no provision; regulus.rag.context.ContextPolicy).
+FINGERPRINT_VERSION = 7
 QUESTION_SET_VERSION = 1
 
 FINGERPRINT_FIELDS: dict[str, tuple[str, ...]] = {
@@ -89,7 +91,7 @@ FINGERPRINT_FIELDS: dict[str, tuple[str, ...]] = {
     "coverage": ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation"),
     "context": (
         "max_results", "max_chars_per_result", "max_total_chars",
-        "hard_max_results", "hard_max_total_chars", "required_max_chars_per_result",
+        "hard_max_results", "hard_max_total_chars", "required_max_chars_per_result", "binding_reserve_chars",
     ),
     "generation_budget": (
         "policy", "base_tokens", "per_unit_tokens", "range_bonus_tokens", "general_tokens",

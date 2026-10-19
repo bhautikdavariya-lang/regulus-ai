@@ -200,7 +200,7 @@ def test_methods_argument_can_disable_fallback_and_describe_reports_config():
     d = LexicalRetriever(fake, primary_min_results=2).describe()
     assert d == {"retriever": "LexicalRetriever", "enable_or_fallback": True, "primary_min_results": 2,
                  "fallback_max_terms": 8, "chunks_per_document": 3,
-                 "part_expand_sections": 3, "part_expand_rows": 2}
+                 "part_expand_sections": 3, "part_expand_rows": 2, "section_coverage": True}
     with pytest.raises(ValueError):
         LexicalRetriever(fake, primary_min_results=-1)
     with pytest.raises(ValueError):

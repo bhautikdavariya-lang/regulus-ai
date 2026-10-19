@@ -69,10 +69,12 @@ TABLE = [
 class TableDatabase:
     """Answers the exact statements from TABLE and the text statements from canned rows."""
 
-    def __init__(self, table=TABLE, *, full_text=(), guidance=(), trigram=(), or_ecfr=(), or_guidance=(), docket=()):
+    def __init__(self, table=TABLE, *, full_text=(), guidance=(), trigram=(), or_ecfr=(), or_guidance=(), docket=(),
+                 coverage=()):
         self.table = [dict(r) for r in table]
         self.canned = {"full_text": list(full_text), "guidance": list(guidance), "trigram": list(trigram),
-                       "or_ecfr": list(or_ecfr), "or_guidance": list(or_guidance), "docket": list(docket)}
+                       "or_ecfr": list(or_ecfr), "or_guidance": list(or_guidance), "docket": list(docket),
+                       "coverage": list(coverage)}
         self.calls: list[tuple[str, dict]] = []
 
     def query(self, statement, params=None):
@@ -115,6 +117,8 @@ class TableDatabase:
             return [dict(r) for r in self.canned["trigram"]]
         if name == "GUIDANCE_EXACT_DOCKET":
             return [dict(r) for r in self.canned["docket"]]
+        if name == "ECFR_SECTION_COVERAGE":
+            return [dict(r) for r in self.canned["coverage"]][: params["limit"]]
         raise AssertionError(name)
 
     def names(self):

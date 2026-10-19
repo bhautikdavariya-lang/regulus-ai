@@ -7,6 +7,7 @@ Index usage (see docs/database_architecture.md):
   cfr_records_part_idx             btree(part_number, section, ord)  -> ECFR_EXACT_PART, part filter
   cfr_sections_number_trgm_idx     GIN  (number gin_trgm_ops)        -> ECFR_TRIGRAM
   cfr_sections_heading_trgm_idx    GIN  (heading gin_trgm_ops)       -> ECFR_TRIGRAM
+  cfr_records_search_idx           GIN  (search_vector), one lexeme  -> ECFR_SECTION_COVERAGE
   fda_guidance_chunks_search_idx   GIN  (search_vector)              -> GUIDANCE_FULL_TEXT
   fda_guidance_docket_idx          btree(docket_number)              -> GUIDANCE_EXACT_DOCKET
   fda_guidance_sector_idx / _retrieval_idx                            -> guidance filters
@@ -137,6 +138,67 @@ ORDER BY sim DESC, s.number
 LIMIT %(limit)s
 """
 
+# Section-coverage search for a question that names no provision (RC1). Neither text
+# statement above suits it: AND (ECFR_FULL_TEXT) requires every question word in ONE short
+# paragraph, so eCFR rarely matches at all, and OR over a few long words ranks thousands of
+# one-word matches by density. Here every content lexeme of the question counts, weighted by
+# its section-level inverse document frequency (computed from the same matches, so common
+# words such as "record" weigh little but are not dropped). A section scores the weight it
+# covers across ALL its live paragraphs plus the weight its single best paragraph covers, both
+# as fractions of the question's total weight: a requirement spread over (a)-(e) is credited
+# as a whole, and a paragraph that concentrates the question still separates sections that
+# tie on the union. The best `sections` sections are kept, each with at most
+# `rows_per_section` of its paragraphs (most question weight first, then document order).
+# `quote_literal(l)::tsquery` matches the stemmed lexeme as-is (no second stemming pass).
+ECFR_SECTION_COVERAGE = f"""
+SELECT {_ECFR_COLUMNS}, k.section_score, k.row_score
+FROM (
+WITH lex AS (
+    SELECT DISTINCT unnest(tsvector_to_array(to_tsvector('english', %(query)s))) AS l
+),
+hits AS (
+    SELECT r.section_number, r.ordinal, lex.l
+    FROM lex
+    JOIN cfr_records r ON r.search_vector @@ quote_literal(lex.l)::tsquery
+    WHERE NOT r.is_reserved
+      {_ECFR_FILTERS}
+),
+df AS (SELECT l, count(DISTINCT section_number) AS n FROM hits GROUP BY l),
+total AS (SELECT count(*)::float8 AS n FROM cfr_sections WHERE NOT is_reserved),
+w AS (SELECT df.l, ln(GREATEST(total.n / df.n, 1.0)) AS idf FROM df, total),
+mass AS (SELECT sum(idf) AS m FROM w),
+row_cov AS (
+    SELECT h.section_number, h.ordinal, sum(w.idf) AS cov
+    FROM hits h JOIN w USING (l)
+    GROUP BY h.section_number, h.ordinal
+),
+sec AS (
+    SELECT s.section_number,
+           (s.cov + b.best) / NULLIF((SELECT m FROM mass), 0) AS section_score
+    FROM (SELECT u.section_number, sum(w.idf) AS cov
+          FROM (SELECT DISTINCT section_number, l FROM hits) u JOIN w USING (l)
+          GROUP BY u.section_number) s
+    JOIN (SELECT section_number, max(cov) AS best FROM row_cov GROUP BY section_number) b USING (section_number)
+    ORDER BY section_score DESC NULLS LAST, s.section_number
+    LIMIT %(sections)s
+),
+ranked AS (
+    SELECT rc.section_number, rc.ordinal, sec.section_score,
+           rc.cov / NULLIF((SELECT m FROM mass), 0) AS row_score,
+           ROW_NUMBER() OVER (PARTITION BY rc.section_number ORDER BY rc.cov DESC, rc.ordinal) AS rn
+    FROM row_cov rc JOIN sec USING (section_number)
+)
+SELECT * FROM ranked
+) k
+JOIN cfr_records r ON r.section_number = k.section_number AND r.ordinal = k.ordinal
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE k.rn <= %(rows_per_section)s
+  AND r.removed_on IS NULL
+  AND k.section_score IS NOT NULL
+ORDER BY k.section_score + k.row_score DESC, r.section_number, r.ordinal
+LIMIT %(limit)s
+"""
+
 _GUIDANCE_COLUMNS = """
     c.body_text, c.title_text, c.ordinal, c.start_offset,
     g.title, g.docket_number, g.status, g.center, g.sector, g.issued_on,
@@ -213,6 +275,7 @@ ALL_STATEMENTS = {
     "ECFR_PART_SECTIONS": ECFR_PART_SECTIONS,
     "ECFR_FULL_TEXT": ECFR_FULL_TEXT,
     "ECFR_TRIGRAM": ECFR_TRIGRAM,
+    "ECFR_SECTION_COVERAGE": ECFR_SECTION_COVERAGE,
     "GUIDANCE_FULL_TEXT": GUIDANCE_FULL_TEXT,
     "GUIDANCE_EXACT_DOCKET": GUIDANCE_EXACT_DOCKET,
 }

@@ -52,7 +52,7 @@ from regulus.retrieval.evidence import (
     classify_result,
     order_evidence,
 )
-from regulus.retrieval.query import QueryType, classify, definition_term, fallback_terms, looks_like_identifier
+from regulus.retrieval.query import QueryType, classify, content_terms, definition_term, fallback_terms, looks_like_identifier
 from regulus.retrieval.ranking import (
     definition_score,
     exact_score,
@@ -60,6 +60,7 @@ from regulus.retrieval.ranking import (
     full_text_score,
     merge,
     part_stem_score,
+    section_coverage_score,
     structural_score,
     trigram_score,
 )
@@ -107,6 +108,18 @@ DEFAULT_EXACT_ROW_LIMIT = 100
 DEFAULT_PART_EXPAND_SECTIONS = 3
 DEFAULT_PART_EXPAND_ROWS = 2
 DISCOVERY_METHODS = (METHOD_FULL_TEXT_OR, METHOD_TRIGRAM)
+# RC1, section coverage (sql.ECFR_SECTION_COVERAGE), for a question that names no provision and
+# no docket. Run when the question's AND full-text search found fewer than primary_min_results
+# eCFR paragraphs: AND needs every word of the question in one paragraph, which long guidance
+# chunks satisfy far more often than short eCFR paragraphs, so the existing all-corpus trigger
+# (primary_count) can be met by guidance alone while no binding text was found. Its rows are
+# OR-method (discovery) evidence and a secondary source: rows only this leg found are ordered after
+# all other evidence (the existing ranking is unchanged), and up to half of the top_k candidate
+# slots are kept for them, so a long list of weak matches cannot push them out of the candidate
+# list; at most two rows per section, so one section cannot take every slot.
+DEFAULT_SECTION_COVERAGE = True
+SECTION_COVERAGE_ROWS_PER_SECTION = 2
+SECTION_COVERAGE_LEG = f"{METHOD_FULL_TEXT_OR}:section_coverage"
 
 
 @dataclass
@@ -175,6 +188,7 @@ class LexicalRetriever:
         exact_row_limit: int = DEFAULT_EXACT_ROW_LIMIT,
         part_expand_sections: int = DEFAULT_PART_EXPAND_SECTIONS,
         part_expand_rows: int = DEFAULT_PART_EXPAND_ROWS,
+        section_coverage: bool = DEFAULT_SECTION_COVERAGE,
     ) -> None:
         """enable_or_fallback=False reproduces the Stage 5 retriever exactly.
 
@@ -199,6 +213,7 @@ class LexicalRetriever:
         self.exact_row_limit = exact_row_limit
         self.part_expand_sections = part_expand_sections
         self.part_expand_rows = part_expand_rows
+        self.section_coverage = section_coverage
 
     def describe(self) -> dict[str, Any]:
         return {
@@ -209,6 +224,7 @@ class LexicalRetriever:
             "chunks_per_document": self.chunks_per_document,
             "part_expand_sections": self.part_expand_sections,
             "part_expand_rows": self.part_expand_rows,
+            "section_coverage": self.section_coverage,
         }
 
     # -- public API --------------------------------------------------------
@@ -475,16 +491,30 @@ class LexicalRetriever:
         # 5. general search (no requirements): the legacy trigram and question-level fallback
         question_fallback_terms: list[str] = []
         question_fallback_used = False
+        coverage_keys: list[str] = []
         if not plan.requirements and not definitions:
             if trigram_on and self._should_run_trigram(question, counts, top_k):
                 timed(METHOD_TRIGRAM, self.trigram_ecfr, question, filters, text_limit)
+            # 5b. RC1: section coverage, when the question found (almost) no binding text by AND
+            coverage_slots = top_k // 2
+            if (self.section_coverage and plan.docket is None and ecfr_on and or_on and coverage_slots > 0
+                    and counts.get(f"{METHOD_FULL_TEXT}:ecfr", 0) < self.primary_min_results):
+                terms = content_terms(question)
+                if terms:
+                    earlier = {c.key for c in candidates}
+                    found = timed(SECTION_COVERAGE_LEG, self.section_coverage_ecfr, " ".join(terms), filters, coverage_slots)
+                    coverage_keys = [r.key for r in found if r.key not in earlier]
             primary_count = len({c.key for c in candidates if c.retrieval_method in PRIMARY_METHODS})
             if or_on and primary_count < self.primary_min_results:
                 question_fallback_terms = fallback_terms(question, self.fallback_max_terms)
                 if question_fallback_terms:
+                    # set whether or not section coverage stood in for the eCFR OR query: the scope
+                    # policy reads fallback_used as "no passage matched every term", which it does not change
                     question_fallback_used = True
                     or_query = " or ".join(question_fallback_terms)
-                    if ecfr_on:
+                    # RC1: when section coverage found eCFR candidates it replaces the eCFR OR query,
+                    # whose terms are the longest words of the question, not the informative ones
+                    if ecfr_on and not coverage_keys:
                         timed(f"{METHOD_FULL_TEXT_OR}:ecfr", self.full_text_or_ecfr, or_query, filters, top_k)
                     if guidance_on:
                         timed(f"{METHOD_FULL_TEXT_OR}:fda_guidance", self.full_text_or_guidance, or_query, filters, top_k)
@@ -498,6 +528,13 @@ class LexicalRetriever:
             )
             evidence.append(Evidence("", r, tier, satisfies, structural_for, tuple(sorted(discovered.get(r.key, ()))), relations))
         ordered = order_evidence(evidence, plan.requirements)
+        if coverage_keys:
+            # RC1: rows only the section-coverage leg found are a secondary source. They follow every
+            # other piece of evidence instead of competing on score with the OR/trigram hits (their
+            # 0-5 coverage scores are not on the same scale), so the existing ranking is unchanged and
+            # they add to it; their candidate slots are kept below.
+            secondary = set(coverage_keys)
+            ordered = [e for e in ordered if e.key not in secondary] + [e for e in ordered if e.key in secondary]
         ordered = [
             Evidence(f"e{i}", e.result, e.tier, e.satisfies, e.structural_for, e.discovered_for, e.relations)
             for i, e in enumerate(ordered, start=1)
@@ -518,7 +555,16 @@ class LexicalRetriever:
 
         protected = [e for e in ordered if e.tier in (TIER_EXACT, TIER_STRUCTURAL)]
         remainder = [e for e in ordered if e.tier not in (TIER_EXACT, TIER_STRUCTURAL)]
-        kept = protected + remainder[: max(0, top_k - len(protected))]
+        room = max(0, top_k - len(protected))
+        if coverage_keys:
+            # RC1: the section-coverage rows keep their slots (at most top_k // 2 of them); the other
+            # candidates fill the rest; the registry's order is kept
+            reserved = {e.key for e in [e for e in remainder if e.key in set(coverage_keys)][:room]}
+            others = [e for e in remainder if e.key not in reserved][: room - len(reserved)]
+            keep_keys = reserved | {e.key for e in others}
+            kept = protected + [e for e in remainder if e.key in keep_keys]
+        else:
+            kept = protected + remainder[:room]
         results = [e.result for e in kept]
 
         primary_count = len({c.key for c in candidates if c.retrieval_method in PRIMARY_METHODS})
@@ -559,6 +605,8 @@ class LexicalRetriever:
             "fallback_used": fallback_used,
             "fallback_terms": all_terms,
             "fallback_candidate_count": sum(n for name, n in counts.items() if name.startswith(METHOD_FULL_TEXT_OR)),
+            "section_coverage": {"run": SECTION_COVERAGE_LEG in counts, "candidates": len(coverage_keys),
+                                 "kept": sum(1 for e in kept if e.key in coverage_keys)},
             "final_result_count": len(results),
             "retrieval_mode": mode,
             "plan": plan_diag,
@@ -753,6 +801,21 @@ class LexicalRetriever:
         )
         n_terms = or_query.count(" or ") + 1
         return [self._guidance_result(row, METHOD_FULL_TEXT_OR, full_text_or_score(row["rank"], n_terms), {"ts_rank_cd": float(row["rank"]), "or_query": or_query}) for row in rows]
+
+    def section_coverage_ecfr(self, terms: str, filters: Filters, limit: int) -> list[RetrievalResult]:
+        """RC1: the paragraphs of the eCFR sections that cover most of the question's weight
+        (sql.ECFR_SECTION_COVERAGE). OR-method evidence: scored in the fallback band, discovery tier."""
+        rows = self.db.query(
+            sql.ECFR_SECTION_COVERAGE,
+            {**self._ecfr_filter_params(filters), "query": terms, "sections": limit,
+             "rows_per_section": SECTION_COVERAGE_ROWS_PER_SECTION, "limit": limit},
+        )
+        return [
+            self._ecfr_result(row, METHOD_FULL_TEXT_OR, section_coverage_score(row["section_score"], row["row_score"]),
+                              {"section_coverage": round(float(row["section_score"]), 4),
+                               "paragraph_coverage": round(float(row["row_score"]), 4), "coverage_terms": terms})
+            for row in rows
+        ]
 
     def trigram_ecfr(self, query: str, filters: Filters, limit: int) -> list[RetrievalResult]:
         rows = self.db.query(sql.ECFR_TRIGRAM, {**self._ecfr_filter_params(filters), "query": query, "limit": limit})

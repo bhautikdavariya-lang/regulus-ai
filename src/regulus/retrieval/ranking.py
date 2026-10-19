@@ -17,6 +17,9 @@ Score components (documented in docs/lexical_retrieval.md):
                   of matching terms (values above 3 were measured), so the rank is
                   averaged per term and placed in the trigram band (0-5): fallback
                   evidence ranks with trigram evidence, below any primary hit
+    section cover. 5.0 * (section_score + paragraph_score) / 3 for the RC1 section-coverage
+                  rows of a question that names no provision (sql.ECFR_SECTION_COVERAGE);
+                  OR-method evidence, in the same fallback band
     trigram        5.0 * greatest(similarity(section_number), similarity(heading))
 
 No component is learned and none uses vectors. Exact identifier matches
@@ -103,6 +106,13 @@ def full_text_score(rank: float) -> float:
 
 def full_text_or_score(rank: float, n_terms: int = 1) -> float:
     return FULL_TEXT_OR_SCALE * float(rank) / max(1, int(n_terms))
+
+
+def section_coverage_score(section_score: float, row_score: float) -> float:
+    """A section-coverage row (sql.ECFR_SECTION_COVERAGE): its section's score (0-2) plus its own
+    share of the question's weight (0-1), scaled into the fallback band (0-5) shared with
+    full_text_or and trigram, so it never outranks a primary hit."""
+    return FULL_TEXT_OR_SCALE * (float(section_score) + float(row_score)) / 3.0
 
 
 def trigram_score(similarity: float) -> float:

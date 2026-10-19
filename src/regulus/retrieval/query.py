@@ -137,6 +137,25 @@ def fallback_terms(query: str, max_terms: int = 8) -> list[str]:
     return phrases + chosen[:budget]
 
 
+def content_terms(query: str) -> list[str]:
+    """Every content word of the query, in query order: the input of the section-coverage search.
+
+    Same stop lists as fallback_terms, but no length ranking and no cap: which words matter is
+    decided by the corpus (each word's weight is its section-level inverse document frequency,
+    see sql.ECFR_SECTION_COVERAGE), so a short, common head noun such as "records" is down-weighted
+    instead of dropped. Identifiers are left out: a question that names one takes the exact path.
+    """
+    seen: set[str] = set()
+    out: list[str] = []
+    for raw in _TOKEN_RE.findall(query or ""):
+        tok = raw.strip(".-()").lower()
+        if len(tok) < 3 or tok in _STOP_TERMS or tok in seen or any(c.isdigit() for c in tok):
+            continue
+        seen.add(tok)
+        out.append(tok)
+    return out
+
+
 # A definitional question about ONE short term. Narrow on purpose: "What does
 # FDA stand for?", "What does adulterated mean?", "What is the meaning/definition
 # of X?", "Define X", "What is meant by X?". A question that names a provision,

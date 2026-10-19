@@ -61,12 +61,21 @@ class ContextPolicy:
     hard_max_results: int = 24
     hard_max_total_chars: int = 9000
     required_max_chars_per_result: int = 4000
+    # RC2: for a question that names no provision, no docket and no guidance, this much of the soft
+    # budget is offered to binding eCFR evidence first (selection.select_evidence). Without it two
+    # 1,200-character guidance chunks, ranked ahead by tier, filled the budget and the eCFR paragraphs
+    # behind them never reached the prompt. One source's worth (max_chars_per_result) of the three the
+    # budget is sized for; the total budget is unchanged and unused reserve goes back to everything else.
+    # 0 disables it.
+    binding_reserve_chars: int = 1200
 
     def __post_init__(self) -> None:
         if self.max_results <= 0 or self.max_chars_per_result <= 0 or self.max_total_chars <= 0:
             raise ValueError("context limits must be positive")
         if self.required_max_chars_per_result <= 0:
             raise ValueError("required_max_chars_per_result must be positive")
+        if self.binding_reserve_chars < 0:
+            raise ValueError("binding_reserve_chars must be >= 0")
         # a hard ceiling can never sit below the soft budget it bounds
         object.__setattr__(self, "hard_max_results", max(self.hard_max_results, self.max_results))
         object.__setattr__(self, "hard_max_total_chars", max(self.hard_max_total_chars, self.max_total_chars))
@@ -79,6 +88,7 @@ class ContextPolicy:
             "hard_max_results": self.hard_max_results,
             "hard_max_total_chars": self.hard_max_total_chars,
             "required_max_chars_per_result": self.required_max_chars_per_result,
+            "binding_reserve_chars": self.binding_reserve_chars,
         }
 
 

@@ -32,14 +32,14 @@ inside its tier, which the registry already did.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any, Callable
 
 from regulus.rag.context import ContextPolicy, ContextSource, TRUNCATION_MARK, render_source
 from regulus.rag.evidence_values import evidence_has_value, selection_value_kind
 from regulus.retrieval.evidence import TIER_DISCOVERY, TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, Evidence, EvidenceRegistry
 from regulus.retrieval.models import METHOD_EXACT_DOCKET, RetrievalResult
-from regulus.retrieval.query import fallback_terms
+from regulus.retrieval.query import QueryType, fallback_terms
 
 REASON_REQUIRED_EXACT = "required_exact"          # tier exact, satisfies a requirement
 REASON_REQUIRED_DOCKET = "required_docket"        # the requested guidance document
@@ -389,6 +389,34 @@ def select_evidence(
             material_ids.append(e.evidence_id)
     handled = set(material_ids)
 
+    # Phase 1c (RC2): binding text first claim on part of the soft budget, for a question that names
+    # nothing (see ContextPolicy.binding_reserve_chars). Same per-source cap, filter and limits as
+    # below; the sources are put back in registry order afterwards, so only membership changes.
+    first_optional = len(selected)
+    reserved_ids: list[str] = []
+    reserve = min(policy.binding_reserve_chars, policy.max_total_chars)
+    if reserve > 0 and _binding_reserve_applies(registry):
+        limit = min(policy.max_total_chars, policy.hard_max_total_chars)
+        spent = 0
+        for tier in (TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY):
+            for e in registry.evidence:
+                if e.tier != tier or is_required(e) or e.evidence_id in handled or e.result.corpus != "ecfr":
+                    continue
+                if tier != TIER_STRUCTURAL and optional_filter is not None and not optional_filter(e.result):
+                    continue  # recorded as filtered by the loop below
+                if len(selected) >= policy.max_results or len(selected) >= policy.hard_max_results:
+                    continue
+                text, truncated = _truncate(_clean(e.text), policy.max_chars_per_result)
+                index = len(selected) + 1
+                chars = _block_chars(e, text, index, truncated)
+                if spent + chars > reserve or used + gap() + chars > limit:
+                    continue
+                spent += chars
+                used += gap() + chars
+                selected.append(SelectedEvidence(index, e, text, truncated, False, _reason(e), chars))
+                reserved_ids.append(e.evidence_id)
+                handled.add(e.evidence_id)
+
     # Phases 2-4: optional evidence within the soft budget, never displacing the above
     for tier in (TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY):
         for e in registry.evidence:
@@ -419,6 +447,16 @@ def select_evidence(
             used += gap() + chars
             selected.append(SelectedEvidence(index, e, text, truncated, False, _reason(e), chars))
 
+    if reserved_ids:
+        # registry order, as without the reserve; a block's length depends on its index only through
+        # its "SOURCE n" line and the indices stay 1..n, so the total charged is unchanged
+        position = {e.evidence_id: i for i, e in enumerate(registry.evidence)}
+        optional = sorted(selected[first_optional:], key=lambda s: position[s.evidence.evidence_id])
+        selected = selected[:first_optional] + [
+            replace(s, index=first_optional + i + 1, chars=_block_chars(s.evidence, s.text, first_optional + i + 1, s.truncated))
+            for i, s in enumerate(optional)
+        ]
+
     # exact evidence that is not required (docket handled above) cannot exist; any other tier is optional
     diagnostics = {
         "required_count": required_count,
@@ -430,12 +468,22 @@ def select_evidence(
         "optional_dropped": [d.evidence.evidence_id for d in dropped if not d.required],
         "soft_budget_exceeded_by_required": required_chars > policy.max_total_chars or required_count > policy.max_results,
         **({"required_order": "relevance"} if required_by_relevance else {}),
+        **({"binding_reserved": reserved_ids} if reserved_ids else {}),
         "tier_counts": {t: sum(1 for s in selected if s.evidence.tier == t) for t in (TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY)},
     }
     return Selection(tuple(selected), tuple(dropped), policy, used, diagnostics)
 
 
 _SENTENCE_END = (".", '."', ".)", "?", "!")
+
+
+def _binding_reserve_applies(registry: EvidenceRegistry) -> bool:
+    """RC2 applies to a question that names no provision and no docket and is not about guidance:
+    every source it gets is optional, and the eCFR is the binding text. A question that names a
+    provision keeps exactly the selection it had; a guidance question keeps guidance first."""
+    plan = getattr(registry, "plan", None)
+    return (plan is not None and not plan.requirements and plan.docket is None
+            and plan.query_type is not QueryType.GUIDANCE_SEARCH)
 
 
 def is_complete_sentence(text: str) -> bool:
