@@ -32,10 +32,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from openpyxl import Workbook, load_workbook  # noqa: E402
-from openpyxl.styles import Alignment, Font, PatternFill  # noqa: E402
-from openpyxl.utils import get_column_letter  # noqa: E402
+try:
+    from openpyxl import Workbook, load_workbook  # noqa: E402
+    from openpyxl.styles import Alignment, Font, PatternFill  # noqa: E402
+    from openpyxl.utils import get_column_letter  # noqa: E402
+except ImportError:          # the scoring functions below import (and are tested) without openpyxl
+    Workbook = load_workbook = Alignment = Font = PatternFill = get_column_letter = None
 
+from regulus.evaluation import acceptance_scoring as S  # noqa: E402
 from regulus.evaluation.acceptance_benchmark import DEFAULT_WORKBOOK, load_acceptance_benchmark  # noqa: E402
 from regulus.retrieval import Database  # noqa: E402
 from regulus.retrieval.references import parse_cfr_references  # noqa: E402
@@ -228,7 +232,65 @@ def table(ws, headers: list[str], rows: list[list], widths: list[int], start: in
     ws.freeze_panes = ws.cell(row=start + 1, column=1)
 
 
+GATE_SCOPE = {
+    "G1": "every decided row, rubric L",
+    "G2": "every decided row, rubric M",
+    "G3": "the Negative Control rows, rubric L (PROVISIONAL definition, pending contractual confirmation)",
+    "G4": "points out of maximum, rubric N",
+    "G5": "points out of maximum, rubric O",
+    "G6": "every decided row, rubric P",
+    "G7": "rows whose column H is not '—', rubric Q",
+}
+GATE_STATUS = {S.GATE_PASS: "PASS", S.GATE_FAIL: "FAIL", S.GATE_INCOMPLETE: "BLOCKED / INCOMPLETE",
+               S.GATE_PROVISIONAL: "PROVISIONAL - pending contractual confirmation", S.GATE_NOT_MEASURED: "NOT MEASURED"}
+ACCEPTANCE_LABEL = {S.ACCEPTED: "PASS", S.NOT_ACCEPTED: "FAIL", S.NOT_DETERMINABLE: "NOT DETERMINABLE"}
+
+
+def score_for_workbook(verdict_dir: str | Path, bench) -> S.AcceptanceScore:
+    """The run's acceptance score, from the canonical scorer. Raises S.VerdictValidationError on any
+    invalid record and refuses a verdict set that leaves benchmark rows unscored."""
+    verdicts = S.read_verdicts(verdict_dir)
+    score = S.score_run(verdicts, bench)
+    if score.counts["unscored"]:
+        missing = sorted({q.question_id for q in bench} - set(verdicts.records))
+        raise SystemExit(f"verdicts missing for {len(missing)} questions: {missing[:10]}")
+    return score
+
+
+def _threshold_label(gate) -> str:
+    if gate.comparison == "==" and gate.threshold == 0:
+        return "= 0"
+    if gate.threshold == 1:
+        return "100%"
+    return f"{gate.threshold:.0%}" if gate.comparison == ">=" else str(gate.threshold)
+
+
+def gate_rows(score: S.AcceptanceScore) -> list[tuple[str, object, str, str, str, str]]:
+    """The Summary sheet's gate table: (name, value, threshold, status, scored on, number format).
+    Every value is the canonical scorer's; nothing is recomputed in the sheet."""
+    out = []
+    for g in score.gates:
+        gate = g.gate
+        if gate.unit == "count":
+            value, fmt = (int(g.value) if g.value is not None else None), "0"
+        else:
+            value, fmt = g.value, "0.0%"
+        scope = GATE_SCOPE.get(gate.gate_id, gate.scored_on)
+        if g.numerator is not None and g.denominator is not None:
+            scope += f"; {g.numerator:g} / {g.denominator}"
+        rule = g.readings.get("rubric_v1_row_rule")
+        if rule:
+            scope += f"; for comparison, full row rule: {rule['numerator']} / {rule['denominator']}"
+        excluded = {k: v for k, v in g.excluded.items() if v}
+        if excluded:
+            scope += " (excluded: " + ", ".join(f"{k} {v}" for k, v in excluded.items()) + ")"
+        out.append((f"{gate.gate_id} {gate.metric}", value, _threshold_label(gate), GATE_STATUS[g.status], scope, fmt))
+    return out
+
+
 def main() -> int:
+    if Workbook is None:
+        raise SystemExit("openpyxl is required to write the workbook: PYTHONPATH=<dir with openpyxl>")
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", required=True)
     ap.add_argument("--out", default=str(ROOT / OUT_NAME))
@@ -251,17 +313,14 @@ def main() -> int:
                 duplicates.append(r["question_id"])
             answers.setdefault(r["question_id"], r)
     verdicts: dict[str, dict] = {}
+    score = None
     if args.verdicts:
-        for f in sorted(Path(args.verdicts).glob("verdicts_*.jsonl")):
-            for line in f.read_text(encoding="utf-8").splitlines():
-                if line.strip():
-                    v = json.loads(line)
-                    if v["id"] in verdicts:
-                        raise SystemExit(f"duplicate verdict for {v['id']}")
-                    verdicts[v["id"]] = v
-        missing = [q.question_id for q in bench if q.question_id not in verdicts]
-        if missing:
-            raise SystemExit(f"verdicts missing for {len(missing)} questions: {missing[:10]}")
+        # validated by the canonical scorer: an invalid, duplicate or contradictory record stops the build
+        try:
+            score = score_for_workbook(args.verdicts, bench)
+        except S.VerdictValidationError as exc:
+            raise SystemExit(str(exc)) from None
+        verdicts = S.read_verdicts(args.verdicts).rows()
 
     db = Database.from_env()
     db.connect()
@@ -409,9 +468,11 @@ def main() -> int:
         ("Questions passed", f'=COUNTIF({rng("M")},"PASS")'),
         ("Questions failed", f'=COUNTIF({rng("M")},"FAIL")'),
         ("Questions requiring SME review", f'=COUNTIF({rng("M")},"{SME}")'),
-        # B8 = passed, B9 = failed (rows 4.. in the order of this list)
-        ("Pass rate % (PASS / (PASS+FAIL))", '=IF(B8+B9=0,"Not determinable (no rows scored)",B8/(B8+B9))'),
-        ("Fail rate % (FAIL / (PASS+FAIL))", '=IF(B8+B9=0,"Not determinable (no rows scored)",B9/(B8+B9))'),
+        # the rates are the canonical scorer's (regulus.evaluation.acceptance_scoring), not sheet formulas
+        ("Pass rate % (PASS / (PASS+FAIL))",
+         score.pass_rate.value if score and score.pass_rate.value is not None else "Not determinable (no rows scored)"),
+        ("Fail rate % (FAIL / (PASS+FAIL))",
+         (1 - score.pass_rate.value) if score and score.pass_rate.value is not None else "Not determinable (no rows scored)"),
         ("Execution error rate % (ERROR / total)", "=B6/B4"),
         ("Execution success rate % (tested / total)", "=B5/B4"),
         ("SME review rate % (REQUIRES SME REVIEW / total)", "=B10/B4"),
@@ -452,34 +513,26 @@ def main() -> int:
     # ------------------------------------------------- acceptance gates, computed from the rubric columns
     gstart = 4 + len(lines) + 1
     if args.verdicts:
-        ws.cell(row=gstart, column=1, value="ACCEPTANCE GATES (computed from rubric columns R-W of Detailed Results)").font = Font(name=FONT, bold=True)
+        ws.cell(row=gstart, column=1, value="ACCEPTANCE GATES (computed by regulus.evaluation.acceptance_scoring from the verdict records)").font = Font(name=FONT, bold=True)
         ws.cell(row=gstart, column=2, value="Scored by an independent reviewer against the regulation text; the answer key itself "
                                             "remains unverified, so an SME must countersign before these are treated as final.").font = Font(name=FONT, italic=True)
         ghdr = ["Gate / metric", "Result", "Threshold", "Status", "Scored on"]
         for i, h in enumerate(ghdr, start=1):
             ws.cell(row=gstart + 1, column=i, value=h)
         style_header(ws, gstart + 1, len(ghdr))
-        nc = f'{DR}!$C$2:$C${n},"Negative Control"'
-        gates = [
-            ("G1 Citation accuracy", f'=SUM({rng("R")})/COUNT({rng("R")})', 0.99, ">=", "0.0%", "every scored row, rubric L"),
-            ("G2 Fabricated citations (count)", f'=SUM({rng("S")})', 0, "==", "0", "every scored row, rubric M"),
-            ("G3 Negative control pass rate", f'=SUMIFS({rng("R")},{nc})/COUNTIFS({nc})', 1.0, "==", "0.0%", "the 22 Negative Control rows, rubric L"),
-            ("G4 Substantive correctness", f'=SUM({rng("T")})/(2*COUNT({rng("T")}))', 0.95, ">=", "0.0%", "points out of maximum, rubric N"),
-            ("G5 Completeness", f'=SUM({rng("U")})/(2*COUNT({rng("U")}))', 0.90, ">=", "0.0%", "points out of maximum, rubric O"),
-            ("G6 Scope discipline", f'=SUM({rng("V")})/COUNT({rng("V")})', 0.98, ">=", "0.0%", "every scored row, rubric P"),
-            ("G7 ISO 13485 clause concordance", f'=SUM({rng("W")})/COUNT({rng("W")})', 0.95, ">=", "0.0%", "rows carrying an ISO clause key, rubric Q"),
-        ]
-        for j, (name, formula, thr, cmp_, fmt, scoped) in enumerate(gates, start=gstart + 2):
+        gates = gate_rows(score)
+        for j, (name, value, threshold, status, scoped, fmt) in enumerate(gates, start=gstart + 2):
             ws.cell(row=j, column=1, value=name)
-            ws.cell(row=j, column=2, value=formula).number_format = fmt
-            ws.cell(row=j, column=3, value=("= 0" if cmp_ == "==" and thr == 0 else ("100%" if thr == 1 else (f"{thr:.0%}" if cmp_ == ">=" else thr))))
-            ws.cell(row=j, column=4, value=(f'=IF(B{j}{"<=" if cmp_ == "==" and thr == 0 else ("=" if cmp_ == "==" else ">=")}{thr},"PASS","FAIL")'))
+            ws.cell(row=j, column=2, value=value).number_format = fmt
+            ws.cell(row=j, column=3, value=threshold)
+            ws.cell(row=j, column=4, value=status)
             ws.cell(row=j, column=5, value=scoped)
             for c in range(1, 6):
                 ws.cell(row=j, column=c).font = Font(name=FONT)
         oa = gstart + 2 + len(gates)
         ws.cell(row=oa, column=1, value="OVERALL ACCEPTANCE (all seven gates must read PASS)").font = Font(name=FONT, bold=True)
-        ws.cell(row=oa, column=2, value=f'=IF(COUNTIF(D{gstart + 2}:D{oa - 1},"FAIL")=0,"PASS","FAIL")').font = Font(name=FONT, bold=True, color="C00000")
+        ws.cell(row=oa, column=2, value=ACCEPTANCE_LABEL[score.acceptance] + (
+            " - " + "; ".join(score.acceptance_reasons) if score.acceptance_reasons else "")).font = Font(name=FONT, bold=True, color="C00000")
         ws.cell(row=oa + 1, column=1, value="Answer key verification (benchmark column K)").font = Font(name=FONT, bold=True)
         ws.cell(row=oa + 1, column=2, value="0 of 300 rows marked Y - WARNING, key not SME-verified").font = Font(name=FONT, color="C00000")
         gstart = oa + 3

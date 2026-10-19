@@ -46,10 +46,11 @@ acceptance harness records the configuration but no fingerprint of its own;
 
 from __future__ import annotations
 
-import glob
 import json
 from pathlib import Path
 from typing import Any
+
+from regulus.evaluation import acceptance_scoring as S
 
 from ..fingerprint import pipeline_fingerprint, question_set_identity
 from ..schemas import (
@@ -72,7 +73,7 @@ from ..schemas import (
 )
 
 SCHEMA = "acceptance/v1"
-RUBRIC_ID = "regulus_substantive_rubric_v1"
+RUBRIC_ID = S.RUBRIC_ID
 
 # Basis values the scoring files use, and whether the row was read by hand for
 # THIS run. Anything unrecognised is counted as "other" and named in problems.
@@ -170,24 +171,12 @@ def _fingerprint(metadata: dict[str, Any], problems: list[str]) -> dict[str, Any
 def _verdicts(run_dir: Path) -> tuple[dict[str, dict[str, Any]], tuple[str, ...]]:
     """Every recorded verdict by question id, and the files they came from.
 
-    Later files win on a repeated id, which is how a re-scoring pass is applied;
-    the file order is sorted, so the result does not depend on the filesystem.
+    Read by the canonical reader (regulus.evaluation.acceptance_scoring): a
+    malformed line or a repeated id is a validation issue, never skipped and
+    never resolved by file order. This view holds the first record per id.
     """
-    rows: dict[str, dict[str, Any]] = {}
-    files: list[str] = []
-    for name in sorted(glob.glob(str(run_dir / "scoring" / "verdicts_*.jsonl"))):
-        files.append(Path(name).name)
-        with open(name, encoding="utf-8") as handle:
-            for line in handle:
-                if not line.strip():
-                    continue
-                try:
-                    record = json.loads(line)
-                except ValueError:
-                    continue
-                if isinstance(record, dict) and record.get("id"):
-                    rows[str(record["id"])] = record
-    return rows, tuple(files)
+    verdicts = S.read_verdicts(run_dir / "scoring")
+    return verdicts.rows(), verdicts.files
 
 
 def _answers(run_dir: Path) -> dict[str, dict[str, Any]]:
@@ -225,62 +214,69 @@ def _benchmark_rows(path: Any) -> Any | None:
 # ------------------------------------------------------------------ metrics
 
 
-def _full_pass(r: dict[str, Any]) -> bool:
-    """The rubric's verdict rule: L=1 and M=0 and N=2 and O>=1 and P=1 and Q in {1, blank}."""
-    return (r.get("L") == 1 and r.get("M") == 0 and r.get("N") == 2
-            and (r.get("O") or 0) >= 1 and r.get("P") == 1 and r.get("Q") in (1, None))
+# The verdict rule is the canonical one; the name is kept for existing callers.
+_full_pass = S.full_pass
+
+_SOURCE = "scoring/verdicts_*.jsonl"
+_EXCLUDED_NOTE = "denominator: rows with a decided verdict (PASS or FAIL); ERROR, UNDETERMINED and unscored rows excluded"
 
 
-def _ratio(key: str, name: str, numerator: int, denominator: int, *,
-           direction: str = HIGHER_IS_BETTER, source: str = "scoring/verdicts_*.jsonl",
-           note: str | None = None) -> MetricResult:
+def _ratio(key: str, name: str, ratio: S.Ratio | None, *, direction: str = HIGHER_IS_BETTER,
+           note: str | None = None, refused: str | None = None) -> MetricResult:
+    """A rate taken from the canonical score, or - when the records are invalid - no value at all."""
+    if ratio is None:
+        return MetricResult(key=key, display_name=name, value=None, unit=RATIO, direction=direction,
+                            source=_SOURCE, status=INCONSISTENT, note=refused)
     return MetricResult(
-        key=key, display_name=name, value=(numerator / denominator) if denominator else None,
-        unit=RATIO, direction=direction, numerator=numerator, denominator=denominator,
-        source=source, note=note, recomputed_from="per-question verdict records",
+        key=key, display_name=name, value=ratio.value,
+        unit=RATIO, direction=direction, numerator=ratio.numerator, denominator=ratio.denominator,
+        source=_SOURCE, note=note, recomputed_from="per-question verdict records",
     )
 
 
-def _metrics(rows: dict[str, dict[str, Any]], benchmark) -> list[MetricResult]:
-    """Rubric aggregates, every one recomputed from the verdict records.
+def _metrics(score: S.AcceptanceScore | None, rows: dict[str, dict[str, Any]], benchmark,
+             issues: tuple[S.VerdictIssue, ...] = ()) -> list[MetricResult]:
+    """Rubric aggregates, every one taken from the canonical acceptance score.
 
-    The denominator is the SCORED rows: a row recorded as ERROR produced no
-    answer to judge, and the rubric says ERROR is a technical failure and never
-    a bad answer, so counting it as a failure would misstate the measurement.
-    It is reported as its own count instead.
+    The denominator is the DECIDED rows (PASS or FAIL). A row recorded as ERROR
+    produced no answer to judge, and the rubric says ERROR is a technical failure
+    and never a bad answer, so counting it as a failure would misstate the
+    measurement; it is reported as its own count instead. When the verdict
+    records fail validation, no rate is published (`score` is None).
     """
-    scored = {i: r for i, r in rows.items() if r.get("result") != "ERROR"}
-    n = len(scored)
-    errors = len(rows) - n
+    refused = (f"not published: {len(issues)} verdict record issue(s) failed validation (see the run's problems)"
+               if score is None else None)
+    dim = (lambda k: score.dimensions.get(k)) if score is not None else (lambda k: None)
+    errors = sum(1 for r in rows.values() if r.get("result") == S.ERROR)
     out: list[MetricResult] = [
-        _ratio("acceptance_full_pass", "Acceptance Pass Rate",
-               sum(1 for r in scored.values() if _full_pass(r)), n,
-               note="the rubric's whole verdict rule, not any single dimension"),
-        _ratio("acceptance_citation_accuracy", "Citation Accuracy (L)",
-               sum(1 for r in scored.values() if r.get("L") == 1), n),
-        _ratio("acceptance_fabrication_rate", "Fabricated Citations (M)",
-               sum(1 for r in scored.values() if r.get("M") == 1), n, direction=LOWER_IS_BETTER,
-               note="gate G2 is zero, absolute: one fabricated identifier fails the run"),
-        _ratio("acceptance_substantive_correct", "Substantive Correctness, fully correct (N=2)",
-               sum(1 for r in scored.values() if r.get("N") == 2), n),
-        _ratio("acceptance_substantive_partial", "Substantive Correctness, directionally right (N>=1)",
-               sum(1 for r in scored.values() if (r.get("N") or 0) >= 1), n,
-               note="N=1 is 'directionally right but could mislead'; it is not a pass"),
-        _ratio("acceptance_completeness", "Completeness (O>=1)",
-               sum(1 for r in scored.values() if (r.get("O") or 0) >= 1), n),
-        _ratio("acceptance_scope_discipline", "Scope Discipline (P)",
-               sum(1 for r in scored.values() if r.get("P") == 1), n),
+        _ratio("acceptance_full_pass", "Acceptance Pass Rate", score.pass_rate if score else None,
+               note=f"the rubric's whole verdict rule, not any single dimension; {_EXCLUDED_NOTE}", refused=refused),
+        _ratio("acceptance_citation_accuracy", "Citation Accuracy (L)", dim("L=1"), refused=refused),
+        _ratio("acceptance_fabrication_rate", "Fabricated Citations (M)", dim("M=1"), direction=LOWER_IS_BETTER,
+               note="gate G2 is zero, absolute: one fabricated identifier fails the run", refused=refused),
+        _ratio("acceptance_substantive_correct", "Substantive Correctness, fully correct (N=2)", dim("N=2"),
+               refused=refused),
+        _ratio("acceptance_substantive_partial", "Substantive Correctness, directionally right (N>=1)", dim("N>=1"),
+               note="N=1 is 'directionally right but could mislead'; it is not a pass", refused=refused),
+        _ratio("acceptance_completeness", "Completeness (O>=1)", dim("O>=1"), refused=refused),
+        _ratio("acceptance_scope_discipline", "Scope Discipline (P)", dim("P=1"), refused=refused),
+        _ratio("acceptance_iso_concordance", "ISO 13485 Concordance (Q)", dim("Q=1"),
+               note="scored only on rows the workbook puts in ISO scope (column H is not '—')",
+               refused=refused or (None if benchmark is not None else
+                                   "not published: ISO scope cannot be established without the benchmark workbook")),
     ]
-    iso = {i: r for i, r in scored.items() if r.get("Q") is not None}
-    out.append(_ratio("acceptance_iso_concordance", "ISO 13485 Concordance (Q)",
-               sum(1 for r in iso.values() if r.get("Q") == 1), len(iso),
-                      note="scored only on rows the workbook puts in ISO scope"))
     if benchmark is not None:
-        controls = [q.question_id for q in benchmark.negative_controls]
-        present = {i: r for i, r in scored.items() if i in set(controls)}
-        out.append(_ratio("acceptance_negative_control_pass", "Negative-control Pass Rate",
-               sum(1 for r in present.values() if _full_pass(r)), len(present),
-                          note="gate G3 is 100%, absolute: the system must refuse what does not exist"))
+        # G3 is scored PROVISIONALLY on rubric L alone (acceptance_scoring.G3_PROVISIONAL_NOTE); the
+        # full row rule is named in the note for comparison.
+        readings = score.negative_control_readings if score is not None else None
+        rule = readings["rubric_v1_row_rule"] if readings else None
+        out.append(_ratio(
+            "acceptance_negative_control_pass", "Negative-control Pass Rate",
+            readings[S.G3_DEFINITION] if readings else None,
+            note=(f"PROVISIONAL (gate G3, rubric L alone, pending contractual confirmation); for comparison, "
+                  f"the full row rule gives {rule.numerator}/{rule.denominator}; {_EXCLUDED_NOTE}" if rule else None),
+            refused=refused,
+        ))
     hand = sum(1 for r in rows.values() if r.get("scoring_basis") in _HAND_READ)
     inherited = sum(1 for r in rows.values() if r.get("scoring_basis") in _NOT_HAND_READ)
     unrecorded = sum(1 for r in rows.values() if r.get("scoring_basis") is None)
@@ -315,14 +311,17 @@ def _metrics(rows: dict[str, dict[str, Any]], benchmark) -> list[MetricResult]:
     return out
 
 
-def _questions(rows: dict[str, dict[str, Any]], answers: dict[str, dict[str, Any]], benchmark) -> tuple[QuestionResult, ...]:
+def _questions(rows: dict[str, dict[str, Any]], answers: dict[str, dict[str, Any]], benchmark,
+               score: S.AcceptanceScore | None = None) -> tuple[QuestionResult, ...]:
     by_id = {q.question_id: q for q in benchmark.questions} if benchmark is not None else {}
     out: list[QuestionResult] = []
     for qid in sorted(set(rows) | set(answers)):
         verdict = rows.get(qid) or {}
         answer = answers.get(qid) or {}
         meta = by_id.get(qid)
-        passed = _full_pass(verdict) if verdict else None
+        # the validated verdict: True PASS, False FAIL, None for ERROR / UNDETERMINED /
+        # unscored, and None for every row while the run's records are invalid
+        passed = score.row_verdicts.get(qid) if score is not None else None
         out.append(QuestionResult(
             id=qid,
             question=str(answer.get("question") or (meta.question if meta else "")),
@@ -375,7 +374,8 @@ def load(path: str | Path, root: Path | None = None) -> EvaluationRun:
     model = _model(metadata)
     benchmark = _benchmark(metadata)
     fingerprint = _fingerprint(metadata, problems)
-    rows, verdict_files = _verdicts(run_dir)
+    verdicts = S.read_verdicts(run_dir / "scoring")
+    rows, verdict_files = verdicts.rows(), verdicts.files
     answers = _answers(run_dir)
     workbook = _benchmark_rows(benchmark.path)
 
@@ -384,6 +384,14 @@ def load(path: str | Path, root: Path | None = None) -> EvaluationRun:
         problems.append("the acceptance workbook on disk is not the one this run was scored against "
                         "(its sha256 differs), so the question set and the ISO/negative-control rows "
                         "could not be verified from it")
+
+    # Validate before any number is computed; invalid records publish no metric.
+    issues = S.validate(verdicts, workbook)
+    score = S.score_run(verdicts, workbook) if rows and not issues else None
+    if issues:
+        shown = "; ".join(str(i) for i in issues[:5])
+        problems.append(f"{len(issues)} verdict record issue(s) failed validation, so no acceptance rate or gate "
+                        f"is published for this run: {shown}" + (" ..." if len(issues) > 5 else ""))
 
     evaluated = question_set_identity(rows)
     full: bool | None = None
@@ -463,8 +471,8 @@ def load(path: str | Path, root: Path | None = None) -> EvaluationRun:
             "retriever": repro.get("retriever"),
             "hardware": metadata.get("hardware"),
         },
-        metrics=tuple(_metrics(rows, workbook)),
-        questions=_questions(rows, answers, workbook),
+        metrics=tuple(_metrics(score, rows, workbook, issues)),
+        questions=_questions(rows, answers, workbook, score),
         failure_summary={
             "failed_ids": sorted(i for i, r in rows.items() if r.get("result") == "ERROR"),
             "misses": sorted(i for i, r in rows.items() if r.get("result") == "FAIL")[:50],
@@ -477,7 +485,9 @@ def load(path: str | Path, root: Path | None = None) -> EvaluationRun:
             "score_distribution": {column: _counts(r.get(column) for r in rows.values())
                                    for column in ("L", "M", "N", "O", "P", "Q")},
             "key_verification": verification,
-            "gates": _gates(rows, workbook),
+            "gates": _gates(score, workbook),
+            "acceptance": (score.to_dict() if score is not None else None),
+            "validation_issues": [i.to_dict() for i in issues],
         },
         source_artifacts=("run_metadata.json", "answers.jsonl", *verdict_files),
         problems=tuple(problems),
@@ -495,44 +505,16 @@ def _counts(values) -> dict[str, int]:
     return dict(sorted(out.items()))
 
 
-def _gates(rows: dict[str, dict[str, Any]], benchmark) -> list[dict[str, Any]]:
-    """The workbook's own seven gates, evaluated against these verdicts.
+def _gates(score: S.AcceptanceScore | None, benchmark) -> list[dict[str, Any]]:
+    """The workbook's own seven gates, as the canonical scorer computed them.
 
-    The thresholds are the workbook's, read from it; none is defined here. A
-    gate whose scope cannot be established without the workbook is reported as
-    undetermined rather than assumed to pass.
+    The thresholds are the workbook's; none is defined here. Without the workbook
+    the gates' scopes cannot be established, and with invalid verdict records no
+    gate is computed: both report no gates rather than assume a value.
     """
-    if benchmark is None:
+    if benchmark is None or score is None:
         return []
-    scored = {i: r for i, r in rows.items() if r.get("result") != "ERROR"}
-    n = len(scored)
-    iso = [r for r in scored.values() if r.get("Q") is not None]
-    controls = {q.question_id for q in benchmark.negative_controls}
-    control_rows = [r for i, r in scored.items() if i in controls]
-    # N and O are 0-2 scales; the workbook scores those gates on points earned
-    # out of the maximum, which is not the same as the share of perfect rows.
-    measured: dict[str, float | None] = {
-        "G1": (sum(1 for r in scored.values() if r.get("L") == 1) / n) if n else None,
-        "G2": float(sum(1 for r in scored.values() if r.get("M") == 1)),
-        "G3": (sum(1 for r in control_rows if _full_pass(r)) / len(control_rows)) if control_rows else None,
-        "G4": (sum(r.get("N") or 0 for r in scored.values()) / (2 * n)) if n else None,
-        "G5": (sum(r.get("O") or 0 for r in scored.values()) / (2 * n)) if n else None,
-        "G6": (sum(1 for r in scored.values() if r.get("P") == 1) / n) if n else None,
-        "G7": (sum(1 for r in iso if r.get("Q") == 1) / len(iso)) if iso else None,
-    }
-    out: list[dict[str, Any]] = []
-    for gate in benchmark.gates:
-        value = measured.get(gate.gate_id)
-        passed = None
-        if value is not None:
-            passed = value >= gate.threshold if gate.comparison == ">=" else value == gate.threshold
-        out.append({
-            "gate_id": gate.gate_id, "metric": gate.metric, "threshold": gate.threshold,
-            "comparison": gate.comparison, "unit": gate.unit, "absolute": gate.absolute,
-            "scored_on": gate.scored_on, "why_it_matters": gate.why_it_matters,
-            "measured": value, "passed": passed,
-        })
-    return out
+    return [g.to_dict() for g in score.gates]
 
 
 def _under(path: Path, root: Path) -> bool:

@@ -693,7 +693,7 @@ _DEFINITIONS: tuple[MetricDefinition, ...] = (
     _d(
         key="acceptance_full_pass", name="Acceptance Pass Rate", family=CORRECTNESS,
         definition="Share of scored benchmark rows that pass the acceptance rubric's whole verdict rule.",
-        calculation="rows with L=1 and M=0 and N=2 and O>=1 and P=1 and Q in {1, blank} / rows scored (ERROR rows excluded)",
+        calculation="rows with L=1 and M=0 and N=2 and O>=1 and P=1 and Q in {1, blank} / rows with a decided verdict (PASS or FAIL); ERROR, UNDETERMINED and unscored rows are excluded and counted separately, and no rate is published while any verdict record fails validation (regulus.evaluation.acceptance_scoring)",
         direction=HIGHER_IS_BETTER, unit=RATIO,
         caveats="Hand-scored against a DRAFT answer key: the workbook requires SME verification before the test is administered and states that an unverified key invalidates the result, so this is indicative, not contractual. It is also not the live per-answer accuracy indicator, which measures one answer against its own evidence under a different rubric.",
         source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
@@ -756,10 +756,10 @@ _DEFINITIONS: tuple[MetricDefinition, ...] = (
     ),
     _d(
         key="acceptance_negative_control_pass", name="Negative-control Pass Rate", family=CORRECTNESS,
-        definition="Share of the benchmark's negative-control rows that pass: the answer states that the section, clause, rule or guidance does not exist, or correctly declines.",
-        calculation="negative-control rows passing the verdict rule / negative-control rows scored",
+        definition="Share of the benchmark's negative-control rows that pass gate G3: the answer states that the section, clause, rule or guidance does not exist, or correctly declines. PROVISIONAL definition, pending contractual confirmation.",
+        calculation="negative-control rows with L=1 ('correctly declined', the contract's L legend) / negative-control rows with a decided verdict; the full verdict rule's value is given in the note for comparison",
         direction=HIGHER_IS_BETTER, unit=RATIO,
-        caveats="Gate G3 requires 100% and is absolute. Hedging without stating that the premise is false does not pass.",
+        caveats="Gate G3 requires 100% and is absolute. Hedging without stating that the premise is false does not pass. The contract defines no per-row pass for this gate, so the rubric-L reading is provisional: G3 is never reported as passed, and no run accepted, until the definition is approved.",
         source_hint="artifacts/acceptance_test/<run>/scoring/verdicts_*.jsonl",
     ),
     _d(
