@@ -30,7 +30,7 @@ from typing import Any
 from regulus.evaluation.grounding_eval import REFUSAL, classify_answer, split_sentences
 from regulus.inference.types import GenerationResult
 from regulus.rag.generation import GenerationPackage, SHAPE_DOCKET, SHAPE_GENERAL
-from regulus.rag.shape_validation import ENUMERATION_INCOMPLETE, MATERIAL_GROUP_UNCOVERED, PROMPT_ECHO, check_shape
+from regulus.rag.shape_validation import APPLICABILITY_DROPPED, ENUMERATION_INCOMPLETE, MATERIAL_GROUP_UNCOVERED, PROMPT_ECHO, check_shape
 from regulus.retrieval.evidence import TIER_DISCOVERY, TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING
 from regulus.retrieval.references import parse_cfr_references
 
@@ -62,6 +62,7 @@ LOW_OVERLAP = "low_overlap_with_cited_source"             # warning only: few co
 
 from regulus.inference.repetition_text import normalise_sentence  # noqa: E402
 from regulus.rag.claim_validation import (  # noqa: E402
+    CONDITION_NOT_IN_CITED,
     INVENTED_CONDITION,
     PARAGRAPH_MISATTRIBUTION,
     UNSUPPORTED_CLAIM,
@@ -89,6 +90,8 @@ _CODE_STATUS = {
     INVENTED_CONDITION: STATUS_EVIDENCE_MISMATCHED,   # a removable statement, repaired like a mis-cited one
     UNSUPPORTED_PREMISE: STATUS_UNSUPPORTED,
     UNSUPPORTED_CLAIM: STATUS_UNSUPPORTED,
+    CONDITION_NOT_IN_CITED: STATUS_UNSUPPORTED,
+    APPLICABILITY_DROPPED: STATUS_UNSUPPORTED,  # Stage 12 shape check, an error since the 16 Oct 2026 severity experiment
 }
 
 MARK_RE = re.compile(r"(?<![A-Za-z0-9])\[(\d{1,2})\]")

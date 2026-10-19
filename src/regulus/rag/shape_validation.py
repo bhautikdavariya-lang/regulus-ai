@@ -13,7 +13,9 @@ explicitly asked for every item and one is missing, and
 `material_group_uncovered`, raised when a synthesis leaves out a whole
 requirement group. Both map to the existing `incomplete` status and repair
 appends the missing text verbatim. `prompt_echo` (the answer copies the
-prompt's instructions) maps to `degenerate`.
+prompt's instructions) maps to `degenerate`. `applicability_dropped` is an
+error mapped to `unsupported` (16 Oct 2026 severity experiment: as a warning
+it fired only on delivered answers scored FAIL).
 """
 
 from __future__ import annotations
@@ -291,7 +293,7 @@ def check_shape(answer: str, package, plan: AnswerPlan) -> tuple[list[ShapeFindi
                     limit = _words(s.applicability) - {"class", "those", "listed", "table", "paragraph"}
                     if limit and not (limit & (_words(sentence) | _words(block))):
                         flagged.add((i, "applicability"))
-                        findings.append(ShapeFinding(APPLICABILITY_DROPPED, "warning",
+                        findings.append(ShapeFinding(APPLICABILITY_DROPPED, "error",
                                                      f"SOURCE {i} applies only to {s.applicability[:120]}, which the statement citing it does not say",
                                                      citation=i, sentence=sentence))
     # a qualifier-bearing item the answer represents without citing it, whose qualifier appears nowhere

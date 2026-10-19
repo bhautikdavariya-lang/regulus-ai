@@ -205,13 +205,15 @@ def test_dropped_condition_is_detected():
     assert "qualifier_dropped" in codes(rep)
 
 
-def test_invented_condition_is_an_error_and_a_misplaced_real_one_only_a_warning():
+def test_invented_condition_and_a_misplaced_real_one_are_both_errors():
     rep, _ = validate("21 CFR 820.10(b)(1) requires a UDI system, unless the device is exempt [1]. "
                       "21 CFR 820.10(b)(4) requires advisory notices under part 806 [2].")
     assert INVENTED_CONDITION in codes(rep, "error")
     rep2, _ = validate("21 CFR 820.10(b)(2) requires traceability procedures, if applicable [2].",
                        "What do 21 CFR 820.10(b)(2) and 21 CFR 820.10(b)(4) require?")
-    assert CONDITION_NOT_IN_CITED in codes(rep2, "warning") and INVENTED_CONDITION not in codes(rep2)
+    # an error since the 16 Oct 2026 severity experiment (was a warning)
+    assert CONDITION_NOT_IN_CITED in codes(rep2, "error") and INVENTED_CONDITION not in codes(rep2)
+    assert not rep2.ok
 
 
 def test_an_invented_sentence_is_removed_when_the_rest_of_the_answer_is_sound():
@@ -244,9 +246,11 @@ def test_a_correct_no_answer_is_not_flagged_as_a_premise():
     assert UNSUPPORTED_PREMISE not in out.metadata["validation"]["initial"]["codes"]
 
 
-def test_unsupported_claims_are_reported_not_enforced_and_refusals_are_not_claims():
+def test_unsupported_claims_are_enforced_and_refusals_are_not_claims():
     rep, _ = validate("21 CFR 820.10(b)(1) requires a UDI system [1]. Quarterly biometric turbine calibration logbooks stay mandatory [2].")
-    assert UNSUPPORTED_CLAIM in codes(rep, "warning") and UNSUPPORTED_CLAIM not in codes(rep, "error")
+    # an error since the 16 Oct 2026 severity experiment (was a warning, reported but not enforced)
+    assert UNSUPPORTED_CLAIM in codes(rep, "error") and UNSUPPORTED_CLAIM not in codes(rep, "warning")
+    assert rep.status == "unsupported"
     rep2, _ = validate("The available regulatory sources do not provide enough information to answer this.")
     assert UNSUPPORTED_CLAIM not in codes(rep2)
 

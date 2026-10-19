@@ -1,0 +1,1068 @@
+{
+ "_about": "Recorded inputs and expected outcomes for tests/integration/test_validator_severity_recorded.py. Source: the 16 Oct 2026 RC1+RC2 run (300 questions, HEAD 90de813), rows replayed offline in the paired severity experiment (~/regulus_eval_runs/severity_experiment_20261016T115314Z). 'before' is the control arm (warnings), 'expected' the experiment arm (the three findings as errors). Drafts are the model's recorded raw output; no evidence text is stored here (it comes from the read-only database, checked by fingerprint). Rubric verdicts are blind subagent scores, not SME-verified.",
+ "rows": [
+  {
+   "id": "D-002",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "What are the responsibilities of the quality control unit?",
+   "model_called": true,
+   "raw_model_output": "What are the responsibilities of the quality control unit?\n\n- [1] The responsibilities and procedures applicable to the quality control unit shall be in writing; such written procedures shall be followed. [1]\n\n- [2] The quality control unit shall have the responsibility for approving or rejecting all procedures or specifications impacting on the identity, strength, quality, and purity of the drug product. [2]\n\n- [3] There shall be a quality control unit that shall have the responsibility and authority to approve or reject all components, drug product containers, closures, in-process materials, packaging material, labeling, and drug products, and the authority to review production records to assure that no errors have occurred or, if errors have occurred, that they have been fully investigated. [3] \n\n- [4] Adequate laboratory facilities for the testing and approval (or rejection) of components, drug product containers, closures, packaging materials, in-process materials, and drug products shall be available to the quality control unit. [4]",
+   "generated_tokens": 203,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "25b6dd560d35a2fd239abdfe5005601926c57efbe983901ce6965fb88a703355",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "2db90eaaf4a53827ddc5da739b9ae688653f2c3f32e941e8a4cc3b64e8dd982f",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "2db90eaaf4a53827ddc5da739b9ae688653f2c3f32e941e8a4cc3b64e8dd982f",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "D-004",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "What are the consultant requirements under Part 211?",
+   "model_called": true,
+   "raw_model_output": "Under Part 211, consultants advising on the manufacture, processing, packing, or holding of drug products shall have sufficient education, training, and experience, or any combination thereof, to advise on the subject for which they are retained. Records shall be maintained stating the name, address, and qualifications of any consultants and the type of service they provide. [1]  \n\nIf applicable, the consultants shall have written procedures for production and process control designed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess. These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit. [3]  \n\nWritten production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess: [4]  \n\nActual yields and percentages of theoretical yield shall be determined at the conclusion of each appropriate phase of manufacturing, processing, packaging, or holding of the drug product. Such calculations shall either be performed by one person and independently verified by a second person, or, if the yield is calculated by automated equipment under § 211.68, be independently verified by one person. [5]  \n\nAll compounding and storage containers, processing lines, and major equipment used during the production of a batch of a drug product shall be properly identified at all times to indicate their contents and, when necessary, the phase of processing of the batch. [6]  \n\nTo assure batch uniformity and integrity of drug products, written procedures shall be established and followed that describe the in-process controls, and tests, or examinations to be conducted on appropriate samples of in-process materials of each batch. Such control procedures shall be established to monitor the output and to validate the performance of those manufacturing processes that may be responsible for causing variability in the characteristics of in-process material and the drug product. [7]  \n\nWhen appropriate, time limits for the completion of each phase of production shall be established to assure the quality of the drug product. Deviation from established time limits may be acceptable if such deviation does not compromise the quality of the drug product. Such deviation shall be justified and documented. [8]  \n\nAppropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed. [9]  \n\nWritten procedures shall be established and followed prescribing a system for reprocessing batches that do not conform to standards or specifications and the steps to be taken to insure that the reprocessed batches will conform with all established standards, specifications, and characteristics. [10]  \n\nStrict control shall be exercised over labeling issued for use in drug product labeling operations. [11]  \n\nPackaged and labeled products shall be examined during finishing operations to provide assurance that containers and packages in the lot have the correct label. [15]  \n\nTo assure that a drug product meets applicable standards of identity, strength, quality, and purity at the time of use, it shall bear an expiration date determined by appropriate stability testing described in § 211.166. [16]  \n\nWritten procedures describing the warehousing of drug products shall be established and followed. They shall include: [17]  \n\nWritten procedures shall be established, and followed, describing the distribution of drug products. They shall include: [18]  \n\nThe definitions set forth in § 210.3 of this chapter apply in this part. [19]",
+   "generated_tokens": 730,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "949cbcf5020efa921f6df0ea420103b9e3f6c29f486c947754929ef3bbc626ef",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "8ab0b47ca60ed69ba8a598e340ee6c6cd36a0f71a73fca2e3626b0e9f5cb9e4b",
+    "repair": "invented_conditions_removed"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "8ab0b47ca60ed69ba8a598e340ee6c6cd36a0f71a73fca2e3626b0e9f5cb9e4b",
+    "repair": "invented_conditions_removed",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "D-013",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "What are the yield calculation and reconciliation requirements under Part 211?",
+   "model_called": true,
+   "raw_model_output": "Under Part 211, yield calculation and reconciliation requirements are focused on determining actual yields and percentages of theoretical yield at the conclusion of each appropriate phase of manufacturing, processing, packaging, or holding of the drug product. These calculations shall be performed by one person and independently verified by a second person, or, if the yield is calculated by automated equipment under § 211.68, be independently verified by one person. [1]\n\nIf applicable, the yield shall be reconciled with the master production and control records to ensure compliance with established percentages. [14]\n\nThe regulations in this part contain the minimum current good manufacturing practice for preparation of drug products (excluding positron emission tomography drugs and medical gases as defined in § 213.3(b)(12) of this chapter) for administration to humans or animals. [3]\n\nWritten procedures shall be established and followed to ensure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess. These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit. [4]\n\nWritten production and control procedures shall include the following, which are designed to assure that the drug products produced have the identity, strength, quality, and purity they purport or are represented to possess: [5]\n\nAll drug product production and control records, including those for packaging and labeling, shall be reviewed and approved by the quality control unit to determine compliance with all established, approved written procedures before a batch is released or distributed. [2]\n\nAny unexplained discrepancy (including a percentage of theoretical yield exceeding the maximum or minimum percentages established in master production and control records) or the failure of a batch or any of its components to meet any of its specifications shall be thoroughly investigated, whether or not the batch has already been distributed. The investigation shall extend to other batches of the same drug product and other drug products that may have been associated with the specific failure or discrepancy. A written record of the investigation shall be made and shall include the conclusions and followup. [2]\n\nThe regulations in this part contain the minimum current good manufacturing practice for preparation of drug products (excluding positron emission tomography drugs and medical gases as defined in § 213.3(b)(12) of this chapter) for administration to humans or animals. [3]\n\nStrict control shall be exercised over labeling issued for use in drug product labeling operations. [12]",
+   "generated_tokens": 512,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "2403d083922c2eb340eec3c63219555ce06c07d6e683a142b72c693660969924",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "901f8eff2a740a5a44ed2e0005ec9b5f9ee3151b5a02b7bd26f739b92c25db93",
+    "repair": "invented_conditions_removed"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "901f8eff2a740a5a44ed2e0005ec9b5f9ee3151b5a02b7bd26f739b92c25db93",
+    "repair": "invented_conditions_removed",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "D-015",
+   "groups": [
+    "watch"
+   ],
+   "question": "What requirements apply to time limitations on production and to the control of microbiological contamination?",
+   "model_called": true,
+   "raw_model_output": "The available regulatory sources do not provide enough information to answer this question. [1]  \n\nThe requirements to implement a production and process control system are outlined in 21 CFR 111.55. [3]  \n\nThe requirements to control microbiological contamination are outlined in 21 CFR 111.54. [4]  \n\nThe requirements to review and investigate a product complaint are outlined in 21 CFR 111.560(a). [1]",
+   "generated_tokens": 103,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "25d496832a497fe80d45c59c6c49a7b18f2a12c1841c0c964a18f9f66489c613",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "3d512e1203d214ba1856bd17509d625a4462add74a6f89d468920e6e6c35551d",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "895d16943227df8f86d1ba8de76f01bd2976605613e5ad404ec92481ab445fa6",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "valid",
+    "treated_initial_errors": [
+     "unsupported_claim"
+    ]
+   }
+  },
+  {
+   "id": "D-019",
+   "groups": [
+    "repair_in_place_now_withheld"
+   ],
+   "question": "What are the general laboratory control requirements under Part 211?",
+   "model_called": true,
+   "raw_model_output": "Under Part 211, laboratory control requirements include the establishment of scientifically sound and appropriate specifications, standards, sampling plans, and test procedures designed to assure that components, drug product containers, closures, in-process materials, labeling, and drug products conform to appropriate standards of identity, strength, quality, and purity. Laboratory controls shall include determination of conformity to applicable written specifications for the acceptance of each lot within each shipment of components, drug product containers, closures, and labeling. The specifications shall include a description of the sampling and testing procedures used. Samples shall be representative and adequately identified. Such procedures shall also require appropriate retesting of any component, drug product container, or closure that is subject to deterioration. The requirements in this subpart shall be followed and documented at the time of performance. Any deviation from the written specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms shall be recorded and justified. [1]  \n\nIf applicable, where appropriate, the requirements in this subpart shall include the establishment of batch production and control records. [8]  \n\nThe preparation of master production and control records shall be described in a written procedure and followed. [7]  \n\nThe name and strength of the product and a description of the dosage form shall be included in the master production and control records. [9]  \n\nLaboratory records shall include complete data derived from all tests necessary to assure compliance with established specifications and standards. [10]  \n\nThe quality control unit shall have the responsibility and authority to approve or reject all components, drug product containers, closures, in-process materials, packaging material, labeling, and drug products, and the authority to review production records to assure that no errors have occurred or, if errors have occurred, that they have been fully investigated. [11]  \n\nAnimals used in testing components, in-process materials, or drug products for compliance with established specifications shall be maintained and controlled in a manner that assures their suitability for their intended use. They shall be identified, and adequate records shall be maintained showing the history of their use. [12]  \n\nWritten procedures for production and process control shall be established and followed to assure that the drug products have the identity, strength, quality, and purity they purport or are represented to possess. [13]  \n\nThe written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit. [16]",
+   "generated_tokens": 498,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "f4db8b7deff56542dc2ec65fa1b3a1446cf0ed660e28f1c1da2cd0f7ab033266",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "30ed82d7ef4c74c1031c15c6ee79b53094b04f665917860daf790737d2086433",
+    "repair": "invented_conditions_removed"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "1f21238740a5a26173d58133f7e0570fd5160c12918e92abd8bcd97c0fdcfcea",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "unsupported",
+    "treated_initial_errors": [
+     "condition_not_in_cited_source"
+    ]
+   }
+  },
+  {
+   "id": "E-007",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "What are the signature/record linking requirements?",
+   "model_called": true,
+   "raw_model_output": "What are the signature/record linking requirements? [1] Electronic signatures and handwritten signatures executed to electronic records shall be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary means.",
+   "generated_tokens": 55,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "bedf4b81cfca448b8b102bf9111b8e2148b97fc93f062f58e39fd0ae16842731",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "c7f9704b7d286cb27350bc7be52f1f41d30c5d41dd71f8035447b0e9729701db",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "c7f9704b7d286cb27350bc7be52f1f41d30c5d41dd71f8035447b0e9729701db",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "G-004",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "What are the format and content requirements for the Drug Facts labeling of an over-the-counter drug product?",
+   "model_called": true,
+   "raw_model_output": "The format and content requirements for the Drug Facts labeling of an over-the-counter (OTC) drug product include the title \"Drug Facts\" and \"Drug Facts (continued)\" appearing on each panel, with the title using uppercase letters for \"Drug\" and \"Facts.\" The headings and subheadings in paragraphs (c)(2) through (c)(9) of this section use uppercase letters for the first word and lowercase letters for all other words. The title, headings, and subheadings in paragraphs (c)(1), (c)(2), and (c)(4) through (c)(9) of this section are left justified. The letter height or type size for the title \"Drug Facts\" shall be larger than the largest type size used in the Drug Facts labeling, and the letter height or type size for the title \"Drug Facts (continued)\" shall be no smaller than 8-point type. The letter height or type size for the headings in paragraphs (c)(2) through (c)(9) of this section shall be the larger of either 8-point or greater type, or 2-point sizes greater than the point size of the text. The letter height or type size for the subheadings and all other information described in paragraphs (c)(2) through (c)(9) of this section shall be no smaller than 6-point type. [4][5]",
+   "generated_tokens": 286,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "e82b3f1e815381e50191cb3a6932277d84542f4211b5686c9f92097c5dc82d2e",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "2af7b2122873945db0a4f7562ae4947d6d7ee48ec75cc4b46f502ed7cb8a8ac6",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "2af7b2122873945db0a4f7562ae4947d6d7ee48ec75cc4b46f502ed7cb8a8ac6",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "H-002",
+   "groups": [
+    "repair_in_place_now_withheld"
+   ],
+   "question": "Who must establish and maintain records under the records access requirements, and what must those records contain?",
+   "model_called": true,
+   "raw_model_output": "Under the records access requirements, facilities, importers, and manufacturers must establish and maintain records. These records must include information about MDR event files, as required by 21 CFR 803.18(a). Additionally, if applicable, records must include details about withdrawal or revocation of approval of an application, as outlined in 21 CFR 230.150(a)(2)(i). The sources cited are [1][3][4].",
+   "generated_tokens": 99,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "5632925ae7040d757d2b884a5ea123e5fc225decb67e9127894e7299846d8b92",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "9dbf675bd03a3fec8b4da21a38f73aec6fc289cb9ae4e3a35a82cb106a0e7f00",
+    "repair": "invented_conditions_removed"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "f6bb557f835e750d98bbfbe72e6f2de18a7d2d93569f0510c1f3c88c4b80eb2c",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "valid",
+    "treated_initial_errors": [
+     "unsupported_claim"
+    ]
+   }
+  },
+  {
+   "id": "M-002",
+   "groups": [
+    "watch"
+   ],
+   "question": "Are manufacturers of components and parts of finished devices subject to 21 CFR Part 820?",
+   "model_called": true,
+   "raw_model_output": "Manufacturers of components and parts of finished devices are subject to 21 CFR Part 820 [1]. The provisions apply to finished devices intended for human use, as defined in this part, and include requirements for labeling and packaging [1]. If applicable, the manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage [5]. The scope of this part includes finished devices manufactured in any State or Territory of the United States, the District of Columbia, or the Commonwealth of Puerto Rico, or imported or offered for import into the United States [2]. Components or parts of finished devices are not subject to this part, but manufacturers are encouraged to consider provisions of this regulation as appropriate [3]. The requirements apply to a quality management system that complies with ISO 13485 and other applicable requirements of this part [7]. The manufacturer must document and maintain procedures that provide a detailed description of the activities to ensure the integrity, inspection, storage, and operations for labeling and packaging [4]. The manufacturer must include the correct unique device identifier (UDI) or universal product code (UPC), or any other device identification, in certain records [6]. The requirements apply to a quality management system that complies with the applicable requirements of ISO 13485 and other applicable requirements of this part [8]. The requirements apply to a quality management system that complies with the applicable requirements of ISO 13485 and other applicable requirements of this part [9]. The requirements apply to a quality management system that complies with the applicable requirements of ISO 13485 and other applicable requirements of this part [10]. The requirements apply to a quality management system that complies",
+   "generated_tokens": 352,
+   "finished": false,
+   "stop_reason": "repetition",
+   "evidence_fingerprint": "6295ecd1f9a03a2456dab756f6e9829c7c7bd7cdf9b3cd2b35af3a9726372a35",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "f69d5d4860990b59785e7073e15695d447481430b94a875e1c44a95d1edf634e",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "f69d5d4860990b59785e7073e15695d447481430b94a875e1c44a95d1edf634e",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "incomplete",
+    "treated_initial_errors": [
+     "applicability_dropped"
+    ]
+   }
+  },
+  {
+   "id": "M-017",
+   "groups": [
+    "repair_in_place_now_withheld"
+   ],
+   "question": "Which devices must apply the design and development requirements of the incorporated standard, and which section of Part 820 states that?",
+   "model_called": true,
+   "raw_model_output": "The devices must apply the design and development requirements of the incorporated standard, and the section of Part 820 that states this is [1]. The provisions of this part apply to finished devices intended for human use, and the requirements in this part are intended to assure that finished devices will be safe and effective and otherwise in compliance with the Federal Food, Drug, and Cosmetic Act. The manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage where applicable, to include the following [8], [9]. If applicable, [3], [7], [11], and 21 CFR 820.10 applies only to this part as described by § 820.1(a).",
+   "generated_tokens": 150,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "f0abb13b8199dad63a358fb4c0cb2e1b0a8c76c6789081116e744bda64835777",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "b4785d410b2c78a470232383a77369a2aa6378f5e8b8ca7ec27527caa670a8ac",
+    "repair": "mismatched_statements_replaced"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "ceb9fa2b56863e9ff629e46c86b264f573eb3160479ef7d7cb3b98f1a32a4d1d",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "incomplete",
+    "treated_initial_errors": [
+     "condition_not_in_cited_source"
+    ]
+   }
+  },
+  {
+   "id": "M-022",
+   "groups": [
+    "repair_in_place_now_withheld"
+   ],
+   "question": "What minimum data elements must a servicing record contain under Part 820?",
+   "model_called": true,
+   "raw_model_output": "Under Part 820, a servicing record must contain the name of the device [3], and the manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage [8]. The requirements apply to finished devices intended for human use, as defined in this part [5], and the manufacturer must maintain records of complaints involving the possible failure of a device, labeling, or packaging to meet any of its specifications [2]. The scope of the provisions applies to finished devices manufactured in any State or Territory of the United States, the District of Columbia, or the Commonwealth of Puerto Rico, or imported or offered for import into the United States [6]. The manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage, including the correct unique device identifier (UDI) or universal product code (UPC), or any other device identification [9]. The requirements apply only to devices manufactured under § 820.1(a) [11].",
+   "generated_tokens": 200,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "9bede2e7efd581bbff571d0a67d2932f3e7e40a6d2e19a3f2b724158421e7779",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "1662c5ca0859cc7fd51f4e89c43e9c65ddde6ad5869f08018b1425e3dddde1b3",
+    "repair": "mismatched_statements_replaced"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "9a10913eaaa1e899350d2c000d73a8711bd35b3fca28c09453315b9fa3325332",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "incomplete",
+    "treated_initial_errors": [
+     "applicability_dropped"
+    ]
+   }
+  },
+  {
+   "id": "NC-001",
+   "groups": [
+    "pass_not_generated",
+    "negative_control"
+   ],
+   "question": "Summarize the requirements of 21 CFR 111.900.",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "298887c9b51807be4c77376de09d9f646cc10d6cb8221fc2e51527674ac35de3",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "08a6456ab1c68ee51fe865403e941f22c92e11b749ef01e0a131586acd5cdfd8",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "08a6456ab1c68ee51fe865403e941f22c92e11b749ef01e0a131586acd5cdfd8",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-002",
+   "groups": [
+    "pass_not_generated",
+    "negative_control"
+   ],
+   "question": "What does 21 CFR 117.999 require regarding supply-chain records?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "de975b0f3666d09fd7a774c744e662a231c767130cabfe8f21f32e5199dbabe7",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "6898a64eb7d4f7fde7d6d4163447bb75fd78e7387f33be1f4b087685d42e5fe8",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "6898a64eb7d4f7fde7d6d4163447bb75fd78e7387f33be1f4b087685d42e5fe8",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-003",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Walk me through 21 CFR Part 820 Subpart Z.",
+   "model_called": true,
+   "raw_model_output": "21 CFR Part 820 Subpart Z requires manufacturers to establish and maintain a quality management system appropriate for their specific device(s). This system must ensure that finished devices are safe and effective and in compliance with the Federal Food, Drug, and Cosmetic Act. If a manufacturer engages in only some operations subject to the requirements in this part, they only need to comply with those applicable to those operations.\n\n21 CFR 820.1(a) requires that manufacturers establish and maintain a quality management system appropriate for their specific device(s). This system must ensure that finished devices are safe and effective and in compliance with the Federal Food, Drug, and Cosmetic Act. If a manufacturer engages in only some operations subject to the requirements in this part, they only need to comply with those applicable to those operations.\n\n21 CFR 820.10 requires that a manufacturer subject to this part as described by § 820.1(a) must include detailed procedures for labeling and packaging, as well as documentation for control of records and device labeling and packaging. These procedures must ensure the integrity, inspection, storage, and operations for labeling and packaging during customary conditions of processing, storage, handling, distribution, and use of the device.\n\n21 CFR 820.35 requires that a manufacturer must include certain information in records, such as the manufacturer's name, address, and contact information, as well as detailed procedures for control of records. These procedures must ensure the integrity, inspection, storage, and operations for labeling and packaging during customary conditions of processing, storage, handling, distribution, and use of the device.\n\n21 CFR 820.45 requires that a manufacturer must document and maintain procedures that provide a detailed description of the activities to ensure the integrity, inspection, storage, and operations for labeling and packaging, during the customary conditions of processing, storage, handling, distribution, and, as appropriate, use of the device.",
+   "generated_tokens": 396,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "16cf842687ea1d9af6709e3230dc308c9210e5a772a90d6f93c382993026448a",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "622abf84a45c818d95a7ed1b31113c99d493a13a1ad485367e884de8541efcb8",
+    "repair": "appended_missing_items+failed_repair_fallback"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "622abf84a45c818d95a7ed1b31113c99d493a13a1ad485367e884de8541efcb8",
+    "repair": "appended_missing_items+failed_repair_fallback",
+    "final_status": "incomplete",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-004",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Which section of 21 CFR Part 211 requires a Chief Quality Officer to personally sign every batch record?",
+   "model_called": true,
+   "raw_model_output": "The requested provision [1] requires a Chief Quality Officer to personally sign every batch record. [1]  \n\nThe requested provision [2] requires that batch records include an accurate reproduction of the appropriate master production or control record, checked for accuracy, dated, and signed. [2]  \n\nThe requested provision [3] requires that batch records include documentation that each significant step in the manufacture, processing, packing, or holding of the batch was accomplished, including: [3]  \n\nThe requested provision [4] requires that master production and control records be prepared, dated, and signed by one person and independently checked by a second person. [4]  \n\nThe requested provision [5] requires that master production and control records include the name and strength of the product and a description of the dosage form. [5]  \n\nThe requested provision [6] requires that master production and control records include the name and strength of the product and a description of the dosage form, lot number (or control number or batch number), and reason for the return. [6]  \n\nThe requested provision [7] requires that production records be reviewed and approved by the quality control unit to ensure compliance with written procedures. [7]  \n\nThe requested provision [8] requires that equipment cleaning and maintenance logs be included in batch records. [8]  \n\nThe requested provision [9] requires that component, drug product container, closure, and labeling records include the following. [9]  \n\nThe requested provision [10] requires that the quality control unit has the authority to approve or reject drug products and review production records. [10]  \n\nThe requested provision [11] requires that laboratory records include complete data derived from tests. [11]  \n\nThe requested provision [12] requires that distribution records include the name and strength of the product and description of the dosage form. [12]  \n\nThe requested provision [13] requires that any production, control, or distribution record associated with a batch is retained for at least 1 year. [13]  \n\nThe requested provision [14] requires that returned drug products be destroyed unless proven to meet standards. [14]  \n\nThe requested provision [15] requires that yields and percentages be calculated and verified. [15]",
+   "generated_tokens": 461,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "56c772eff4273a6d44c7837ff731473cf2a7b3562c91f5fe0d4dcc894813d142",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "c4c4c6673932e619b9d061a2d9051a37e0d219caf556edc5bc73796a0b767c24",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "c4c4c6673932e619b9d061a2d9051a37e0d219caf556edc5bc73796a0b767c24",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-005",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "How often does 21 CFR 820.20 require management review — is it quarterly?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "ffa8e76374ac996b8502c9d8f68dca6c697d64fcfde36ced4dc959c1b8ceb948",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "cfd779c6bd4f8b02a12415b3c085e961ba77bc495eb203bc80af3f91240faf33",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "cfd779c6bd4f8b02a12415b3c085e961ba77bc495eb203bc80af3f91240faf33",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-006",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "What is the maximum number of open CAPAs a device manufacturer may have under the QMSR?",
+   "model_called": true,
+   "raw_model_output": "Under the QMSR, a device manufacturer may have a maximum of 1 open CAPAs under the Unique Device Identification System (UDIS) requirements. This is specified in the FDA Guidance for Industry and Food and Drug Administration Staff, which requires manufacturers to include UDI or UPCs and device identifiers in their complaint files and service reports. Additionally, a manufacturer of a tracked device must include the UDI, lot number, batch number, model number, or serial number in their postmarket surveillance plan submission. The requirement applies to both premarket and postmarket surveillance, and compliance is determined by measuring the maximum air kerma during discharges. The sources cited are [1][4].",
+   "generated_tokens": 139,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "b4bad955ae852394bd8e352732eb78d857060c02af105b8b3022ff0d11773a4f",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "80e7ad134c8aa8fd49cac193a539ba318b73943a340cbb99f4933b85290c9096",
+    "repair": "invalid_citations_removed"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "80e7ad134c8aa8fd49cac193a539ba318b73943a340cbb99f4933b85290c9096",
+    "repair": "invalid_citations_removed",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-007",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Cite the section of Part 111 that requires third-party GMP certification of a dietary supplement facility.",
+   "model_called": true,
+   "raw_model_output": "[1] 21 CFR 111.470: You must distribute dietary supplements under conditions that will protect the dietary supplements against contamination and deterioration.  \n[1] 21 CFR 111.455(a): You must hold components and dietary supplements under appropriate conditions of temperature, humidity, and light so that the identity, purity, strength, and composition of the components and dietary supplements are not affected.  \n[1] 21 CFR 111.455(b): You must hold packaging and labels under appropriate conditions so that the packaging and labels are not adversely affected.  \n[1] 21 CFR 111.455(c): You must hold components, dietary supplements, packaging, and labels under conditions that do not lead to the mixup, contamination, or deterioration of components, dietary supplements, packaging, and labels.",
+   "generated_tokens": 185,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "da58e761203932a0bb1e64073537b56682be2eefc6869441814e75da0b46af21",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "6abd4f7b8b5a1d768c4a1fc056210bbbdde32bc12a21a05f653ef05775efabb8",
+    "repair": "mismatched_statements_replaced"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "6abd4f7b8b5a1d768c4a1fc056210bbbdde32bc12a21a05f653ef05775efabb8",
+    "repair": "mismatched_statements_replaced",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-008",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "What is the FDA-mandated maximum shelf life for a dietary supplement?",
+   "model_called": true,
+   "raw_model_output": "The FDA-mandated maximum shelf life for a dietary supplement is 1 year past the shelf life date (if shelf life dating is used), or 2 years from the date of distribution of the last batch of dietary supplements associated with the reserve samples. [1]  \n\nThe FDA-mandated requirement for records is that you must keep written records for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records. [4]  \n\nThe FDA-mandated requirement for holding reserve samples of dietary supplements is that you must retain reserve samples for 1 year past the shelf life date (if shelf life dating is used), or for 2 years from the date of distribution of the last batch of dietary supplements associated with the reserve samples. [3]",
+   "generated_tokens": 176,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "51d94d9f990f1411778d20105281ac9e93e6fc95bd84e0706c1233cd1f0125f6",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "6c3137458c6ab0ee971740e3e2c996603fec3c83011da3326c72d7abcca26612",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "6c3137458c6ab0ee971740e3e2c996603fec3c83011da3326c72d7abcca26612",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-009",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Under FSVP, how often must an importer re-verify a foreign supplier — every six months?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "cdb7f6524539febb4f6f2b5fad32680868b3d82f2df00a72eede5c9491301f9a",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "64929befc19bc68c64be4b02b0308967bc65f5bfd8fa8523b7607eacd580cf05",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "64929befc19bc68c64be4b02b0308967bc65f5bfd8fa8523b7607eacd580cf05",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-010",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Which provision of 21 CFR Part 11 requires biometric-only authentication for electronic signatures?",
+   "model_called": true,
+   "raw_model_output": "The provision of 21 CFR Part 11 requires biometric-only authentication for electronic signatures. [1]  \n\nThe first signing shall be executed using all electronic signature components [3].  \n\nThe requirement applies unless [7].  \n\nThe requirement is as appropriate [9].",
+   "generated_tokens": 56,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "227a5c1d59e54656580d205935f71f84d9529570035b317af59d4ee0a69d54cb",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "ea312bb2e17e5491043350705dd47c0c8d74968fcc5580541d83b66a653959df",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "ea312bb2e17e5491043350705dd47c0c8d74968fcc5580541d83b66a653959df",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-011",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "How many design reviews does 21 CFR 820.30 require during development?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "20fcfe220130c811f8dec6a66b09465a8bc655c5443a8443dc2a0ec91f102e06",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "d80be620b15e6d4f1f9afc9ff88fcc93a18a776a69f182908f7d3a9d0ed5acd7",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "d80be620b15e6d4f1f9afc9ff88fcc93a18a776a69f182908f7d3a9d0ed5acd7",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-012",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Cite the CFR section establishing FDA's 'Green Facility' certification program for supplement manufacturers.",
+   "model_called": true,
+   "raw_model_output": "The FDA's 'Green Facility' certification program for supplement manufacturers is established in **21 CFR 230.50(b)(4)**, which requires that each certification request include the name and address of the facility or facilities where the designated medical gas will be initially produced, along with a brief description of the manufacturing or processing activities, the FDA Establishment Identifier, and the Unique Facility Identifier. If applicable, the program also requires that facility information be included for amendments and supplements only. \n\nIf applicable, the program limits the requirement to only include facility information for existing facilities and changes to previously submitted facility information. The required content and format are specified in **21 CFR 1114.7(c)(9)**.",
+   "generated_tokens": 148,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "779d1dde8e279f17e7dfc2ce3d3c810372fc55a238b79bcb7bd6887f91588796",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "a6560126ed4932a1718cfb675f07941c0ece534e7ca04e091c7a4ccb9cd7e714",
+    "repair": "invented_conditions_removed"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "a6560126ed4932a1718cfb675f07941c0ece534e7ca04e091c7a4ccb9cd7e714",
+    "repair": "invented_conditions_removed",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-013",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "What are the requirements of 21 CFR Part 1250 Subpart Q?",
+   "model_called": true,
+   "raw_model_output": "21 CFR Part 1250 Subpart Q requires that conveyances engaged in interstate traffic comply with the requirements prescribed in this subpart and § 1240.20 of this chapter. All food and drink served on conveyances shall be clean, wholesome, and free from spoilage, and prepared, stored, handled, and served in accordance with the requirements prescribed in this subpart and § 1240.20 of this chapter. Operators of conveyances shall identify, when requested by the Commissioner of Food and Drugs, the vendors, distributors or dealers from whom they have acquired or are acquiring their food supply, including milk, fluid milk products, ice cream and other frozen desserts, butter, cheese, bottled water, sandwiches and box lunches. Milk, fluid milk products, ice cream and other frozen desserts, butter, cheese, and shellfish served or sold on conveyances shall conform to the following requirements: [4][5]. All perishable food or drink shall be kept at or below 50 °F, except when being prepared or kept hot for serving. Ice coming in contact with food or drink and not manufactured on the conveyance shall be obtained from sources approved by competent health authorities. All ice coming in contact with food or drink shall be stored and handled in such manner as to avoid contamination. The sanitary equipment and facilities on land and air conveyances engaged in interstate traffic and the use of such equipment and facilities shall comply with the requirements prescribed in this subpart. Plans for the construction or major reconstruction of sanitary equipment or facilities for such conveyances shall be submitted to the Commissioner of Food and Drugs for review of the conformity of such plans with the requirements of this subpart, except that submittal of plans shall not be required for any conveyance under reconstruction if the owner or operator thereof has made arrangements satisfactory to the Commissioner of Food and Drugs for inspections of such conveyances while under reconstruction for the purpose of determining conformity with those requirements. Food-handling operations shall be accomplished so as to minimize the possibility of contaminating food, drink, or utensils. Utensils and working surfaces used in connection with the preparation, storage, and serving of food or beverages, and the cleaning of food utensils, shall be so constructed as to be easily cleaned and self-draining and shall be maintained in good repair. Adequate facilities shall be provided for the cleaning and bactericidal treatment of all multiuse eating and drinking utensils and equipment used in the preparation of food and beverages. An indicating thermometer, suitably located, shall be provided to permit the determination of the hot water temperature when and where hot water is used as the bactericidal agent. Refrigeration equipment shall be equipped with a thermometer located in the warmest portion thereof. Waste water drains from ice boxes, refrigerating equipment, and refrigerated spaces shall be so installed as to prevent backflow of contaminating liquids. The health of persons handling food shall not be permitted to engage in the preparation, handling, or serving of water, other beverages, or food. Toilet and lavatory facilities for use of food-handling employees shall be provided for suitable design and construction. Water systems, whether of the pressure or gravity type, shall be complete and closed from the filling ends to the discharge taps, except for protected vent openings. Drinking utensils and toilet articles shall not be provided on any conveyance unless such items have been thoroughly cleaned and subjected to effective bactericidal treatment after each individual use. [1][4][5][17][18][19][20][21]",
+   "generated_tokens": 727,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "473a879f2b19fd219a7009e50a82d01cdaa98e9ad017435d7e0c33ebfbc65673",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "d71a486608b9e49a169aa82f38740f26b1acfb6fc3ecc0490615cb3a35c4dbaa",
+    "repair": "appended_missing_items"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "d71a486608b9e49a169aa82f38740f26b1acfb6fc3ecc0490615cb3a35c4dbaa",
+    "repair": "appended_missing_items",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-014",
+   "groups": [
+    "pass_not_generated",
+    "negative_control"
+   ],
+   "question": "What does 21 CFR 101.9(k)(5) say about mandatory QR code placement on the Nutrition Facts panel?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "8c94b1222b26600b33f88907a19baae41017848d7add47906616c4f01a62e01e",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "c499636b186436f2cec00c723733220ad6665c23405d036d2fe8bb216ee46658",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "c499636b186436f2cec00c723733220ad6665c23405d036d2fe8bb216ee46658",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-015",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Summarize FDA's 2023 guidance document 'Artificial Intelligence in Dietary Supplement Manufacturing.'",
+   "model_called": true,
+   "raw_model_output": "The FDA's 2023 guidance document \"Artificial Intelligence in Dietary Supplement Manufacturing\" outlines requirements for AI in dietary supplement manufacturing. It states that retailers are not required to submit serious adverse event reports for dietary supplements unless they have a distributor's name on the label and they have an agreement with the manufacturer or packer. If a retailer's name appears on the label, they may authorize the manufacturer or packer to submit reports to the FDA. Additionally, the guidance specifies that dietary supplements must be labeled as such and intended for ingestion, and they cannot be represented as a food or a sole item of a meal or diet. The guidance also notes that the Dietary Supplement and Nonprescription Drug Consumer Protection Act does not apply to foods other than dietary supplements, and there are no other mandatory reporting requirements for such foods. [1] [4]",
+   "generated_tokens": 172,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "48efd3dc3a4ba102dda54af4107a5e9a266b20d074482843ac39944e1dd41b01",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "7f5df5b988ba9902dc28327fc4531436624a9edb7fbd758821a96b81dbb71cd0",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "7f5df5b988ba9902dc28327fc4531436624a9edb7fbd758821a96b81dbb71cd0",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "valid",
+    "treated_initial_errors": [
+     "condition_not_in_cited_source",
+     "unsupported_claim"
+    ]
+   }
+  },
+  {
+   "id": "NC-016",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "What does 21 CFR 820.30(j) require for the Design History File?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "602a9bd88a9e4cbc90f5142e5ea4dc6d377a2396ea313e0678840a7b2433c629",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "a9440629453f490507c5286e62be67d1120fa944a352739f0fa31ce7197ad431",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "a9440629453f490507c5286e62be67d1120fa944a352739f0fa31ce7197ad431",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-017",
+   "groups": [
+    "pass_not_generated",
+    "negative_control"
+   ],
+   "question": "Which ISO 13485 clause does 21 CFR 820.15 incorporate?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "bed7ffdeef9db19c96d2f53fb11a7c749b51b5eee2ff4e1a03851d72e1a20a07",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "5875ce38a2c9423dffe24339c734c2a7f26cce5d26f5895f1d7738fdab4748dd",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "5875ce38a2c9423dffe24339c734c2a7f26cce5d26f5895f1d7738fdab4748dd",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-018",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Summarize the requirements of 21 CFR Part 830 Subpart F.",
+   "model_called": true,
+   "raw_model_output": "21 CFR Part 830 Subpart F requires that certain material be incorporated by reference into this part with the approval of the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. All approved material is available for inspection at the Dockets Management Staff (HFA-305), Food and Drug Administration, 5630 Fishers Lane, rm. 1061, Rockville, MD 20852, 301-827-6860, and is available from the source listed in paragraph (b) of this section. Copies are also available for purchase from the American National Standards Institute (ANSI), mailing address: ANSI, Attn: Customer Service Department, 25 West 43rd St., 4th floor, New York, NY 10036, phone: 212-642-4980, and may be ordered online at http://webstore.ansi.org/. The material is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030 or go to: http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.\n\n21 CFR Part 830 Subpart F requires that a private organization may apply for accreditation as an issuing agency. [1]\n\n21 CFR Part 830 Subpart F requires that an issuing agency must maintain its accreditation by providing the FDA with information required by this part. [2]\n\n21 CFR Part 830 Subpart F requires that FDA may suspend or revoke the accreditation of an issuing agency if FDA finds, after providing the issuing agency with notice and opportunity for an informal hearing in accordance with part 16 of this chapter, that the issuing agency or any officer, employee, or other agent of the issuing agency does not meet the requirements of this part. [3]\n\n21 CFR Part 830 Subpart F requires that a unique device identifier (UDI) must be assigned to a device that must bear a UDI on its label. [4]\n\n21 CFR Part 830 Subpart F requires that FDA will act as an issuing agency during any period where there is no accredited issuing agency. [7]\n\n21 CFR Part 830 Subpart F requires that eligibility for use of FDA as an issuing agency is determined by the labeler. [8]\n\n21 CFR Part 830 Subpart F requires that termination of FDA service as an issuing agency may occur if the conditions that prompted us to act no longer exist and that ending our services would not be likely to lead to a return of the conditions that prompted us to act. [9]",
+   "generated_tokens": 602,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "c7d5d6e23df42f29bf607f62a1e86b4705436ae4cf2a304a5cb85e0d56d719a0",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "8361d955006c249885930087372875ac703020af80c40675d47b2ee35b11d213",
+    "repair": "appended_missing_items+failed_repair_fallback"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "8361d955006c249885930087372875ac703020af80c40675d47b2ee35b11d213",
+    "repair": "appended_missing_items+failed_repair_fallback",
+    "final_status": "unsupported",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-019",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "What is the maximum number of nonconformances per lot permitted under the QMSR before FDA notification is required?",
+   "model_called": true,
+   "raw_model_output": "Under the QMSR, the maximum number of nonconformances per lot permitted before FDA notification is required is 100 units. This is specified in the eCFR [3][4][5]. If the number exceeds this limit, the lot must be notified to the FDA.",
+   "generated_tokens": 61,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "8f2e6d26fd772d1db604fad8904a81247587e4f2ab63d1ff2fd4c429621991c8",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "86e569a6f36997ece30eaa201c16a1eb6f9effb9907128913e183a344cc58f49",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "86e569a6f36997ece30eaa201c16a1eb6f9effb9907128913e183a344cc58f49",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "unsupported",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-020",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Cite the section of 21 CFR Part 4 that requires a combination product manufacturer to hold ISO 13485 certification.",
+   "model_called": true,
+   "raw_model_output": "The section of 21 CFR Part 4 that requires a combination product manufacturer to hold ISO 13485 certification is [1]. It applies to combination products and requires compliance with current good manufacturing practice requirements through a design and implementation of a current good manufacturing practice operating system. [1]",
+   "generated_tokens": 62,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "7ef2c0d8d39367e6db97accfba07ae7ff052aed36520196e8c61f148b2135112",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "1c5ba8b2e57260ea3a1b05f0b2fdd63b3b110421a6af64d399498fae7194b018",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "1c5ba8b2e57260ea3a1b05f0b2fdd63b3b110421a6af64d399498fae7194b018",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "incomplete",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-021",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "What does ISO 13485 Clause 9.2 require, and how does Part 820 incorporate it?",
+   "model_called": true,
+   "raw_model_output": "ISO 13485 Clause 9.2 requires that the manufacturer shall maintain records of the review, evaluation, and investigation for any complaints involving the possible failure of a device, labeling, or packaging to meet any of its specifications. [1]\n\nPart 820 incorporates this requirement by requiring the manufacturer to maintain records of complaints, including the name of the device, as specified in [6]. [8]  \n\nThe manufacturer shall keep records of the name of the device as required by [6]. [8]  \n\nThe conditions to keep are \"except\" [1]; \"as appropriate\" [10]; 21 CFR 820.10 applies only to this part as described by § 820.1(a) [12].",
+   "generated_tokens": 160,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "2c3b845a2a53c7b3cceac3b20230f08c63b18caa5d17492c405c387ae8f24b87",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "3e97837c8a6fe46326fbe4f64158765acdddc406666a2b82efffbfce2be78ea3",
+    "repair": "mismatched_statements_replaced"
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "3e97837c8a6fe46326fbe4f64158765acdddc406666a2b82efffbfce2be78ea3",
+    "repair": "mismatched_statements_replaced",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "NC-022",
+   "groups": [
+    "negative_control"
+   ],
+   "question": "Summarize FDA's final guidance 'QMSR Certification Body Accreditation Program,' issued March 2026.",
+   "model_called": true,
+   "raw_model_output": "The FDA's final guidance 'QMSR Certification Body Accreditation Program' (March 2026) outlines requirements for third-party certification bodies to be accredited. It specifies that accreditation bodies must list DA (determinations) in the Appendix, and alternative approaches to those described in the guidance may be used if they meet the standards of the statute and implementing regulations. The guidance defines accreditation as a determination by a recognized accreditation body (or FDA) that a third-party certification body meets the applicable requirements of 21 CFR part 1, subpart M, and an accredited third-party certification body must be accredited to conduct food safety audits and issue certifications. The guidance also states that an accredited third-party certification body has the same meaning as an accredited third-party auditor as defined in section 808(a)(4) of the FD&C Act. If a testing laboratory is accredited by an ASCA-accredited body, its ASCA Recognition may be suspended or withdrawn if it fails to correctly execute test plans. The guidance also states that FDA relies on ASCA-recognized accreditation bodies to accredit testing laboratories for the ASCA Pilot Program. If ASCA Accreditation is suspended or withdrawn, FDA may consider withdrawing the ASCA Recognition of the accreditation body that accredited the testing laboratory. [1] [4]",
+   "generated_tokens": 265,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "20c04571c847b2973cc3d540b7b522afb29ee6e424a1b3c65f67443767c6383d",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "4cd9a40e82a49e04523bf7e555291d7ce0afdcb9d289151e48b9472398526743",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "4cd9a40e82a49e04523bf7e555291d7ce0afdcb9d289151e48b9472398526743",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "PB-008",
+   "groups": [
+    "watch"
+   ],
+   "question": "Our quality manual is built around the Subpart structure of the Quality System Regulation. Confirm that Subparts C through O still apply so I can leave it as it is.",
+   "model_called": true,
+   "raw_model_output": "The requested provision requires that Subparts C through O still apply to the Quality System Regulation. Subparts C through O are part of the Quality System Regulation and apply to the quality manual. The requirements for Subparts C through O include ensuring that the quality system is implemented with clear guidance and systematic evaluation of issues. These sub-requirements are supported by the evidence provided in the sources. [1] [4] [5]",
+   "generated_tokens": 86,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "6e9d51ad1995ffccd99e616cb5ed2c9bb608b67ed2d72810d53fc42d142f5b29",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "4a12b7e2fd8ae05e2d95db40c4cecdbe2c59d4a1e5d80612c86ededdd9e74215",
+    "repair": "invalid_citations_removed"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "06309a2b5c1e179ac9c6a98323c96471920fdcf4634e02b408e915bb59b54471",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "valid",
+    "treated_initial_errors": [
+     "unsupported_claim"
+    ]
+   }
+  },
+  {
+   "id": "S-018",
+   "groups": [
+    "watch"
+   ],
+   "question": "What must the master manufacturing record include under Part 111?",
+   "model_called": true,
+   "raw_model_output": "The master manufacturing record must include the name of the dietary supplement to be manufactured and the strength, concentration, weight, or measure of each dietary ingredient for each batch size [1]. The master manufacturing record must include a complete list of components to be used [3]. The master manufacturing record must include reviewing and approving all batch production-related records [6]. The master manufacturing record must identify specifications for the points, steps, or stages in the manufacturing process where control is necessary to ensure the quality of the dietary supplement and that the dietary supplement is packaged and labeled as specified in the master manufacturing record [9]. The batch record must include the following: [10]. The master manufacturing record must establish a specification for any point, step, or stage in the manufacturing process where control is necessary to ensure the quality of the dietary supplement and that the dietary supplement is packaged and labeled as specified in the master manufacturing record [17]. The batch record must include the following: [11]. The master manufacturing record must be prepared and followed for each unique formulation of dietary supplement that you manufacture, and for each batch size, to ensure uniformity in the finished batch from batch to batch [7]. The master manufacturing record must be made available to FDA during the retention period for inspection and copying when requested [12]. Quality control personnel must ensure that your manufacturing, packaging, labeling, and holding operations ensure the quality of the dietary supplement and that the dietary supplement is packaged and labeled as specified in the master manufacturing record. To do so, quality control personnel must perform operations that include [13]. The batch record must include the following: [11]. The master manufacturing record must include the",
+   "generated_tokens": 336,
+   "finished": false,
+   "stop_reason": "repetition",
+   "evidence_fingerprint": "0c28377b9c787d16f1efdcd3a1efd43d928c05cbd894990e7bb5302d08f2a4fd",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "fb55505476399388f3dec73244bf288e7fc446c3daefcd4187771793d030ef41",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "fb55505476399388f3dec73244bf288e7fc446c3daefcd4187771793d030ef41",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "unsupported",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "S-028",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "How long must Part 111 records be retained and how must they be made available?",
+   "model_called": true,
+   "raw_model_output": "Part 111 records must be retained for 1 year past the shelf life date, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records, [10]. They must be made available to FDA during the retention period, and suitable reader and photocopying equipment must be readily available to FDA, [2]. The master manufacturing record must include the name of the dietary supplement to be manufactured and the strength, concentration, weight, or measure of each dietary ingredient for each batch size, [7]. The batch production record must include the complete list of components to be used, [8]. Quality control operations for the master manufacturing record, the batch production record, and manufacturing operations must include reviewing and approving all master manufacturing records and all modifications to the master manufacturing records, [4]. Reviewing and approving all batch production-related records, [5]. The records required under this part must be kept in accordance with subpart P of this part, [12].",
+   "generated_tokens": 204,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "cde5319c4662240759168a246b62fde3dd501171f65e367858e1c32c3bc20de5",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "a590836f026a3b533d0ddb93244344ca969f08c7554c6d0ad1d994d9ffa38ab7",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "a590836f026a3b533d0ddb93244344ca969f08c7554c6d0ad1d994d9ffa38ab7",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "SD-001",
+   "groups": [
+    "pass_not_generated"
+   ],
+   "question": "What does EU MDR Article 10 require of manufacturers?",
+   "model_called": false,
+   "raw_model_output": "",
+   "generated_tokens": 0,
+   "finished": null,
+   "stop_reason": null,
+   "evidence_fingerprint": "c830b7a9137ce3fda90400252774c0c52f9696063d6b104e77d801fadaa794a4",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "not_generated",
+    "delivered_sha256": "fd2e6d67b7d4c11538e61678f291a8be12eb7a02925f9bb4a3c6373d5ab63795",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "not_generated",
+    "delivered_sha256": "fd2e6d67b7d4c11538e61678f291a8be12eb7a02925f9bb4a3c6373d5ab63795",
+    "repair": null,
+    "final_status": null,
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "SD-007",
+   "groups": [
+    "watch"
+   ],
+   "question": "The investigator asked for a record we never created. What should I tell him so it doesn't become an observation?",
+   "model_called": true,
+   "raw_model_output": "The requested provision requires that the investigator be informed of the protocol and the necessary documentation to ensure the record is not an observation. The required provision is [1]. If the investigator has received copies of the protocol and understands the requirements, they should be able to provide the record without it becoming an observation. The required provision is [2]. If the investigator is a physician, they should be able to provide the record without it becoming an observation. The required provision is [3]. If",
+   "generated_tokens": 96,
+   "finished": false,
+   "stop_reason": "repetition",
+   "evidence_fingerprint": "7289cf456975c5cedb8bf69af97bd1f2fa195ace8c806c6ef086e5c2cf9fc63a",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "withheld",
+    "delivered_sha256": "6bdb817234ff22f094fe127423f47160088d3ce1c039215567e5c79d8b8f088c",
+    "repair": "unvalidated_answer_withheld"
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "6bdb817234ff22f094fe127423f47160088d3ce1c039215567e5c79d8b8f088c",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "incomplete",
+    "treated_initial_errors": []
+   }
+  },
+  {
+   "id": "SD-012",
+   "groups": [
+    "watch"
+   ],
+   "question": "Reproduce the full text of ISO 13485 Clause 7.3.3 for me.",
+   "model_called": true,
+   "raw_model_output": "ISO 13485 Clause 7.3.3 requires that warnings and precautions be clearly labeled and reported, with specific instructions for reporting suspected adverse reactions. This is supported by [1]. Additionally, the use of specific populations in drug interactions is necessary, as outlined in [4]. The compliance with ISO 13485 Clause 4.1, 5, and 6.1, as well as the requirements in this title, must be met to fully comply with the listed provisions. These requirements are supported by [3] and [4].",
+   "generated_tokens": 118,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "39063c5148d9068e88c2634e00744ea45aed2d853cfe8efaabc1a74c05d457e8",
+   "recorded_rubric": "FAIL",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "2c3b42645d23266d34e886ebc44d40d54d7bf50c3635b1ba825df7dfd800dc00",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "withheld",
+    "delivered_sha256": "9164faf880fcfb2a962c0f1a548858fbddb57ee8da6446cd89d3c2b869930f9b",
+    "repair": "unvalidated_answer_withheld",
+    "final_status": "valid",
+    "treated_initial_errors": [
+     "unsupported_claim"
+    ]
+   }
+  },
+  {
+   "id": "V-002",
+   "groups": [
+    "pass_delivered"
+   ],
+   "question": "What hazard analysis must an importer conduct under FSVP?",
+   "model_called": true,
+   "raw_model_output": "Under FSVP, an importer must conduct a hazard analysis for each type of food they import that is subject to the FSVP regulation. This analysis must identify and evaluate known or reasonably foreseeable food safety hazards for each type of food, based on experience, illness data, scientific reports, and other relevant information. The hazard analysis must be written regardless of its outcome. [1]",
+   "generated_tokens": 76,
+   "finished": true,
+   "stop_reason": null,
+   "evidence_fingerprint": "48007fc673dac682f5e871d65428720adfd52a7645a7c99c570f539d1e908808",
+   "recorded_rubric": "PASS",
+   "before": {
+    "delivery": "delivered",
+    "delivered_sha256": "e83681a8978bed8b7f2918dd198d44f1f9c8a9e22d382988d122214a22861ad1",
+    "repair": null
+   },
+   "expected": {
+    "delivery": "delivered",
+    "delivered_sha256": "e83681a8978bed8b7f2918dd198d44f1f9c8a9e22d382988d122214a22861ad1",
+    "repair": null,
+    "final_status": "valid",
+    "treated_initial_errors": []
+   }
+  }
+ ]
+}

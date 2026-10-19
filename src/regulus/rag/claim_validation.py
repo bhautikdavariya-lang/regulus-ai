@@ -41,12 +41,15 @@ CLAIM_CODES = (PARAGRAPH_MISATTRIBUTION, INVENTED_CONDITION, CONDITION_NOT_IN_CI
 #   unsupported_premise: one hit, a false premise affirmed                              -> error
 #   condition_not_in_cited_source (the condition is real but cited to another source)  -> warning
 #   unsupported_claim: few true positives, lexical overlap cannot judge paraphrase      -> warning (metric)
+# Raised to error after the 16 Oct 2026 validator audit and paired offline severity experiment (300 recorded
+# answers): as warnings, both fired only on delivered answers the rubric scored FAIL (D-015's fabricated
+# citation among them) and on no PASS answer. As errors they withhold those answers; see validation._CODE_STATUS.
 SEVERITY = {
     PARAGRAPH_MISATTRIBUTION: "error",
     INVENTED_CONDITION: "error",
-    CONDITION_NOT_IN_CITED: "warning",
+    CONDITION_NOT_IN_CITED: "error",
     UNSUPPORTED_PREMISE: "error",
-    UNSUPPORTED_CLAIM: "warning",
+    UNSUPPORTED_CLAIM: "error",
 }
 
 MISATTRIBUTION_OWN_MAX = 0.25     # at most this share of the statement's word 3-grams in the named provision

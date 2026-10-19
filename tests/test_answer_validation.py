@@ -255,7 +255,10 @@ def test_named_provision_must_be_cited_to_its_own_source():
 def test_low_overlap_with_the_cited_exact_source_is_a_warning_only():
     pkg = package_for(TWO)
     r = validate_answer("21 CFR 820.10(b)(2): 820.10(b)(2) body text [1]. 21 CFR 820.10(b)(4): the submitter must assign a unique device identifier to every medical device before distribution [2].", pkg, gen("x"))
-    assert r.ok and LOW_OVERLAP in r.codes() and all(p.severity == "warning" for p in r.problems)
+    assert LOW_OVERLAP in r.codes() and all(p.severity == "warning" for p in r.problems if p.code == LOW_OVERLAP)
+    # the same sentence is also an unsupported claim (no supplied source has its words), an error since the
+    # 16 Oct 2026 severity experiment: that, not the low overlap, is what makes the report fail
+    assert {p.code for p in r.errors} == {"unsupported_claim"} and r.status == STATUS_UNSUPPORTED
     r = validate_answer("21 CFR 820.10(b)(4): 820.10(b)(4) body text [2].", pkg, gen("x"))
     assert LOW_OVERLAP not in r.codes()
 
