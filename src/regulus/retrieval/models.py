@@ -19,8 +19,9 @@ METHOD_FULL_TEXT_OR = "full_text_or"  # Stage 7 controlled OR fallback
 METHOD_TRIGRAM = "trigram"
 METHOD_DEFINITION = "definition"  # the CFR's own definition of a term a definitional question asks about
 METHOD_SEMANTIC = "semantic"  # Stage 8 experiment; never used by LexicalRetriever
+METHOD_CROSS_REFERENCE = "cross_reference"  # a provision a retrieved provision explicitly cites (cfr_cross_references)
 METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_SEMANTIC,
-           METHOD_DEFINITION)
+           METHOD_DEFINITION, METHOD_CROSS_REFERENCE)
 
 
 @dataclass(frozen=True)

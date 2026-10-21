@@ -14,6 +14,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from enum import Enum
+from typing import Any
 
 from regulus.retrieval.references import (  # noqa: F401  (re-exported)
     DEFAULT_TITLE,
@@ -156,6 +157,18 @@ def content_terms(query: str) -> list[str]:
     return out
 
 
+# websearch_to_tsquery reads a standalone "or" (any case, beside spaces, commas or brackets) as its OR operator;
+# "and/or" and "either-or" stay ordinary tokens. "or" is an English stop word, so removing the operator loses no
+# searchable term. The limit: a question that offers real alternatives ("a lipstick or a lip balm") then needs
+# every word in one row, as if it had said "and".
+_OR_OPERATOR_RE = re.compile(r"(?<![\w/-])or(?![\w/-])", re.IGNORECASE)
+
+
+def literal_or(text: str) -> str:
+    """`text` with each standalone "or" replaced by a space, for an all-words full-text search."""
+    return _OR_OPERATOR_RE.sub(" ", text or "")
+
+
 # A definitional question about ONE short term. Narrow on purpose: "What does
 # FDA stand for?", "What does adulterated mean?", "What is the meaning/definition
 # of X?", "Define X", "What is meant by X?". A question that names a provision,
@@ -180,6 +193,182 @@ def definition_term(question: str) -> str | None:
             if _DEFINITION_TERM_RE.match(term) and term.lower() not in _DEFINITION_TERM_STOP:
                 return term
     return None
+
+
+# A general question that asks how the regulations DEFINE or classify the things it names ("Are these 'color
+# additives' in FDA's sense?", "How do FDA's definitions classify the lake?", "How do the color additive
+# definitions treat 'area of the eye'?"). Measured on a client question (2026-10-19): the keyword legs found
+# orthopedic-coating guidance and colour listings, never 21 CFR 70.3, the Definitions section that answers it;
+# 70.3(f) opens "A color additive is ...", which the "<term> means" lookup above cannot see. The lookup below
+# finds the CFR paragraphs that define terms OF THE QUESTION and keeps the best defining section. It only adds
+# evidence: no other leg, term list or fallback decision changes.
+_INVOKES_DEFINITION_RE = re.compile(
+    r"\b(?:defin(?:e|ed|es|ition|itions)|in\s+(?:the\s+)?FDA['’]?s?\s+sense|what\s+counts\s+as)\b", re.IGNORECASE)
+# a quote mark attached to a letter is an apostrophe, never a quote: "FDA's definitions treat a 'medical food'"
+# quotes "medical food" only, not "s definitions treat a "
+_QUOTED_TERM_RE = re.compile(r"(?<![A-Za-z])[\"'‘“]([^\"'’”]{3,60})[\"'’”](?![A-Za-z])")
+_TERM_WORD_RE = re.compile(r"[A-Za-z][A-Za-z\-]*")
+# term boundaries: function and question words only. Generic regulatory words stay usable inside a term
+# ("combination product", "food additive"), unlike in the OR fallback.
+_TERM_BOUNDARY_WORDS = _QUESTION_WORDS | _FUNCTION_WORDS
+QUOTED_TERM_WEIGHT = 3         # a multi-word term inside a quoted phrase: the term the question asks about
+DEFINED_TERM_WEIGHT = 2        # a multi-word term of the question
+QUOTED_WORD_WEIGHT = 1         # a single word, counted only inside a quoted phrase ('D&C Red lake blend')
+
+
+def definitional_terms(question: str) -> dict[str, int]:
+    """{term: weight} for a general question that invokes definitions; {} for any other question.
+
+    Multi-word n-grams (2-4 words, not starting or ending on a function/question word) weigh 2, or 3 inside a
+    quoted phrase (the term the question asks about: 'food contact surface' over the unquoted "human food");
+    single words count (weight 1) only inside a quoted phrase, because single words are defined all over the
+    CFR ("color", "process", "red"). Hyphens separate words ("food-contact" = "food contact"); the singular and
+    plural of the last word are both tried ("color additives", "food-contact surfaces")."""
+    if not question or not _INVOKES_DEFINITION_RE.search(question):
+        return {}
+    out: dict[str, int] = {}
+
+    def add(term: str, weight: int) -> None:
+        stem = term[:-1] if term.endswith("s") and not term.endswith("ss") else term
+        for t in (term, stem, stem + "s" if " " in stem else None):
+            if t:
+                out[t] = max(out.get(t, 0), weight)
+
+    def grams(text: str, weight: int) -> None:
+        words = [w for w in (x.lower() for x in _TERM_WORD_RE.findall(text.replace("-", " ")))]
+        for n in (2, 3, 4):
+            for i in range(len(words) - n + 1):
+                gram = words[i:i + n]
+                if gram[0] in _TERM_BOUNDARY_WORDS or gram[-1] in _TERM_BOUNDARY_WORDS or len(gram[0]) < 3 or len(gram[-1]) < 3:
+                    continue
+                add(" ".join(gram), weight)
+
+    for phrase in _QUOTED_TERM_RE.findall(question):
+        for w in _TERM_WORD_RE.findall(phrase.replace("-", " ")):
+            w = w.lower()
+            if len(w) >= 3 and w not in _STOP_TERMS:
+                add(w, QUOTED_WORD_WEIGHT)
+        grams(phrase, QUOTED_TERM_WEIGHT)
+    grams(question, DEFINED_TERM_WEIGHT)
+    return out
+
+
+def defined_term_pattern(term: str) -> str:
+    """PostgreSQL regex for a paragraph that DEFINES `term` (case-insensitive, matched from the start):
+    "(l) The term lake means", "(f) A color additive is", "(s) The term area of the eye means"; and, after a
+    leading "The" only, a scoping sentence with a few intervening words: "(v) The terms externally applied drugs
+    and externally applied cosmetics mean", "(u) The hair dye exemption in section 601(a) of the act applies to".
+    After "A"/"An" or no article the verb must follow the term directly, so "A medical device data system ... is"
+    does not define "medical device"."""
+    t = r"[\s\-]+".join(re.escape(w) for w in term.split())
+    verb = r"\s+(means|mean|is|are|includes|refers\s+to|applies\s+to)\M"
+    label = r"^\s*(\([0-9A-Za-z]{1,6}\)\s*)*"
+    return label + r"((the\s+terms?\s+|an?\s+)?" + t + verb + r"|the\s+(terms?\s+)?" + t + r"(\s+\S+){1,6}?" + verb + ")"
+
+
+# words that say nothing about a regulated domain: kept out of the domain check below
+_NOT_DOMAIN_WORDS = frozenset({"fda", "cfr", "definition", "definitions", "define", "defined", "defines", "term", "terms",
+                               "sense", "counts", "count", "treat", "treats", "classify", "classifies", "regulation",
+                               "regulations", "section", "part", "rule"})
+SINGLE_WORD_MIN_OVERLAP = 2    # a single quoted word is accepted only with this much other question context
+
+
+def question_words(question: str) -> set[str]:
+    """The question's content words (singular forms, hyphens split), for the domain check of
+    choose_defining_section: function/question words and words that name no domain are left out."""
+    out = set()
+    for w in _TERM_WORD_RE.findall((question or "").replace("-", " ")):
+        w = w.lower()
+        s = w[:-1] if w.endswith("s") and not w.endswith("ss") else w
+        if len(w) >= 3 and w not in _TERM_BOUNDARY_WORDS and w not in _NOT_DOMAIN_WORDS:
+            out.add(s)
+    return out
+
+
+def _title_words(title: str) -> set[str]:
+    return {w[:-1] if w.endswith("s") and not w.endswith("ss") else w for w in _TERM_WORD_RE.findall((title or "").lower())}
+
+
+def choose_defining_section(hits: dict[str, dict[str, Any]], weights: dict[str, int], headings: dict[str, str],
+                            overlap, *, part_titles: dict[str, str] | None = None,
+                            question_words: set[str] | None = None) -> tuple[str, list[str]] | None:
+    """The section whose paragraphs define the question's terms best, and the terms it defines; None when none
+    qualifies.
+
+    hits: section -> {term: row}. Order: a section headed "Definitions" first (a definitional question is
+    answered from the regulation's Definitions section); then the summed weight of the terms it defines (a
+    defined term subsumes the shorter terms inside it: "color additive" over "color"); then how many words of
+    the question, its terms included, the section's PART title shares ("Color Additives" for a color additive
+    question, not "Patent Term Restoration"); then `overlap(section)`, the question's words found in the
+    section; then section number.
+
+    Accepted when the weight is >= 2 (a multi-word term), or when a single quoted word is defined in a
+    Definitions section that shares at least SINGLE_WORD_MIN_OVERLAP other words with the question. Domain gate:
+    the question's words that are not the chosen section's own terms say what the question is about; when some
+    candidate's part title carries one of them ("dietary supplements" -> part 111) but the chosen section's part
+    title carries none, nothing is chosen: a medical-gas definition does not answer a dietary-supplement
+    question (measured 2026-10-20)."""
+    titles = part_titles or {}
+    qwords = set(question_words or ())
+    all_words = qwords | {w for t in weights for w in t.split()} | {w[:-1] for t in weights for w in t.split() if w.endswith("s")}
+    ranked = []
+    for section, by_term in hits.items():
+        kept = sorted(t for t in by_term if not any(t != u and f" {t} " in f" {u} " for u in by_term))
+        is_definitions = headings.get(section, "").strip().rstrip(".").lower() in ("definitions", "definition")
+        title_match = len(_title_words(titles.get(section, "")) & all_words)
+        ranked.append((is_definitions, sum(weights.get(t, 0) for t in kept), title_match, section, kept))
+    if not ranked:
+        return None
+    ranked.sort(key=lambda x: (not x[0], -x[1], -x[2], x[3]))
+    best = ranked[0][:3]
+    tied = [r for r in ranked if r[:3] == best]
+    scores: dict[str, int] = {}
+    if len(tied) > 1:
+        scores = {r[3]: overlap(r[3]) for r in tied}
+        tied.sort(key=lambda r: (-scores[r[3]], r[3]))
+    is_definitions, weight, _, section, kept = tied[0]
+    if weight < 2:
+        if not is_definitions:
+            return None
+        if (scores[section] if section in scores else overlap(section)) < SINGLE_WORD_MIN_OVERLAP:
+            return None
+    own = {w for t in kept for w in t.split()} | {w[:-1] for t in kept for w in t.split() if w.endswith("s")}
+    domain = qwords - own
+    if domain:
+        named = {s for s in hits if _title_words(titles.get(s, "")) & domain}
+        if named and section not in named:
+            return None
+    return section, kept
+
+
+# A section heading that occurs verbatim in a general question ("What must the production record review include?"
+# -> 211.192 "Production record review.") names the provision the question is about. Measured 2026-10-20 on the 300
+# benchmark questions: such sections were often already among the retriever's candidates but lost before the prompt
+# (trigram cut-off, guidance ahead in the soft budget). Only SPECIFIC headings count: at least two words, shared by
+# few sections, with at least one word that is rare among all headings ("Tobacco products.", "Performance
+# standard.", "Requirements." say nothing on their own).
+HEADING_MIN_WORDS = 2
+HEADING_MAX_SECTIONS = 4       # a heading carried by more sections than this names no one provision
+HEADING_MAX_WORD_DF = 20       # its rarest word appears in at most this many section headings
+
+
+def heading_words(heading: str) -> list[str]:
+    return re.sub(r"[^a-z0-9 ]+", " ", (heading or "").lower()).split()
+
+
+def _singular_words(words: list[str]) -> list[str]:
+    return [w[:-1] if w.endswith("s") and not w.endswith("ss") else w for w in words]
+
+
+def heading_in_question(heading: str, question: str) -> bool:
+    """The heading, as a whole phrase of at least HEADING_MIN_WORDS words, occurs in the question (case, punctuation
+    and a plural "s" ignored)."""
+    h = heading_words(heading)
+    if len(h) < HEADING_MIN_WORDS:
+        return False
+    q = heading_words(question)
+    return f" {' '.join(h)} " in f" {' '.join(q)} " or \
+        f" {' '.join(_singular_words(h))} " in f" {' '.join(_singular_words(q))} "
 
 
 def looks_like_identifier(query: str) -> bool:

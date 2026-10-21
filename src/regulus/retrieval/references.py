@@ -35,8 +35,9 @@ Public surface:
 
 from __future__ import annotations
 
+import os
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any
 
 DEFAULT_TITLE = "21"
@@ -489,6 +490,71 @@ def section_range_endpoints(start: CfrReference, end: CfrReference) -> tuple[tup
     return lo, hi
 
 
+# Agency resolution (2026-10-20, experimental, OFF unless REGULUS_AGENCY_TITLES=1): a reference written without a
+# title ("Part 107") is a Title 21 reference by default. When the question names another agency right next to it
+# ("FAA Part 107", "EPA rules in part 152", "Part 1910 of the OSHA standards"), it is that agency's title instead,
+# so a question about another agency's rules is never answered from an unrelated FDA part. Only agencies whose rules
+# sit in one CFR title are listed; DEA is left out because its rules are in Title 21. The nearest agency named wins,
+# so "FDA's Part 11" stays Title 21.
+AGENCY_TITLES_ENABLED = os.environ.get("REGULUS_AGENCY_TITLES", "") == "1"
+AGENCY_TITLES = {
+    "faa": "14", "federal aviation administration": "14",
+    "osha": "29", "occupational safety and health administration": "29",
+    "epa": "40", "environmental protection agency": "40",
+    "sec": "17", "securities and exchange commission": "17",
+    "fcc": "47", "federal communications commission": "47",
+    "dot": "49", "phmsa": "49", "nhtsa": "49", "fmcsa": "49", "department of transportation": "49",
+    "cpsc": "16", "consumer product safety commission": "16", "ftc": "16", "federal trade commission": "16",
+    "cms": "42", "centers for medicare": "42",
+    "usda": "7", "department of agriculture": "7", "fsis": "9", "aphis": "9",
+    "irs": "26", "internal revenue service": "26",
+    "fda": "21", "food and drug administration": "21",
+}
+_AGENCY_ALTERNATION = "|".join(sorted((re.escape(a) for a in AGENCY_TITLES), key=len, reverse=True))
+_AGENCY_RE = re.compile(rf"\b({_AGENCY_ALTERNATION})\b(?:'s)?", re.I)
+_AGENCY_BEFORE = 40   # characters before the reference, same sentence
+_AGENCY_AFTER_RE = re.compile(rf"^\s+of\s+(?:the\s+)?(?:[A-Za-z]+\s+){{0,2}}?({_AGENCY_ALTERNATION})\b", re.I)
+_EXPLICIT_TITLE_RE = re.compile(r"\b\d+\s*C\.?\s*F\.?\s*R\b", re.I)
+
+
+def agency_title(text: str, start: int, end: int) -> str | None:
+    """The CFR title of the agency the text names next to the reference at text[start:end], or None."""
+    before = text[max(0, start - _AGENCY_BEFORE):start]
+    before = re.split(r"[.?!;]\s", before)[-1]
+    hits = list(_AGENCY_RE.finditer(before))
+    if hits:
+        return AGENCY_TITLES[hits[-1].group(1).lower()]
+    m = _AGENCY_AFTER_RE.match(text[end:end + 60])
+    return AGENCY_TITLES[m.group(1).lower()] if m else None
+
+
+def agencies_named(text: str) -> list[tuple[str, str]]:
+    """Every agency the text names, as (name as written, its CFR title), in order. Used by the question planner,
+    whatever AGENCY_TITLES_ENABLED says (the planner records the agency; the switch decides reference parsing)."""
+    return [(m.group(1), AGENCY_TITLES[m.group(1).lower()]) for m in _AGENCY_RE.finditer(text or "")]
+
+
+def resolved_titles(text: str) -> list[tuple["CfrReference", str]]:
+    """Each reference the text names with the title it would have under agency resolution, whatever the switch says."""
+    norm = normalise_text(text)
+    out = []
+    for m in scan_references(norm).mentions:
+        explicit = bool(_EXPLICIT_TITLE_RE.search(m.text))
+        out.append((m.reference, m.reference.title if explicit else (agency_title(norm, m.start, m.end) or m.reference.title)))
+    return out
+
+
+def _resolve_agency_titles(text: str, mentions: list[tuple[int, int, str, "CfrReference"]]) -> list[tuple[int, int, str, "CfrReference"]]:
+    out = []
+    for s, e, form, ref in mentions:
+        if not _EXPLICIT_TITLE_RE.search(text[s:e]):
+            title = agency_title(text, s, e)
+            if title and title != ref.title:
+                ref = replace(ref, title=title)
+        out.append((s, e, form, ref))
+    return out
+
+
 def scan_references(text: str) -> ReferenceScan:
     """Find every CFR reference in `text`, in order, with ranges expanded."""
     norm = normalise_text(text)
@@ -498,6 +564,8 @@ def scan_references(text: str) -> ReferenceScan:
     explicit = _explicit_mentions(norm)
     bare = _bare_mentions(norm, [(s, e) for s, e, _, _ in explicit])
     base = sorted(explicit + bare, key=lambda t: t[0])
+    if AGENCY_TITLES_ENABLED:
+        base = _resolve_agency_titles(norm, base)
     continuation = _continuation_mentions(norm, base)
     ordered = sorted(base + continuation, key=lambda t: t[0])
     mentions = tuple(Mention(i, form, s, e, norm[s:e], ref) for i, (s, e, form, ref) in enumerate(ordered))

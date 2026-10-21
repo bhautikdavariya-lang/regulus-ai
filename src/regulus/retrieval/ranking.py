@@ -35,6 +35,7 @@ Final order: score desc, then key asc, so output is stable across runs.
 from __future__ import annotations
 
 from regulus.retrieval.models import (
+    METHOD_CROSS_REFERENCE,
     METHOD_EXACT_CFR,
     METHOD_DEFINITION,
     METHOD_EXACT_DOCKET,
@@ -66,6 +67,7 @@ METHOD_PRIORITY = {
     METHOD_FULL_TEXT_OR: 1,
     METHOD_TRIGRAM: 1,
     METHOD_SEMANTIC: 0,  # experimental; scores are cosine similarities, not merged with lexical scores
+    METHOD_CROSS_REFERENCE: 1,  # found through another candidate's citation, not by the question's words
 }
 
 

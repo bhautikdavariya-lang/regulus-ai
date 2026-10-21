@@ -346,6 +346,7 @@ class IndexMeta:
     embedded_at_utc: str
     code_version: str
     build_seconds: float | None = None
+    reused_items: int | None = None  # vectors taken from a previous index of the same configuration (None: full build)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

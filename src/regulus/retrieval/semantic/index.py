@@ -69,10 +69,22 @@ class SemanticIndex:
     # -- build / persist -----------------------------------------------------
 
     @classmethod
-    def build(cls, items: list[CorpusItem], embedder: Embedder, *, code_version: str = regulus.__version__) -> "SemanticIndex":
+    def build(cls, items: list[CorpusItem], embedder: Embedder, *, code_version: str = regulus.__version__,
+              reuse: "SemanticIndex | None" = None) -> "SemanticIndex":
+        """Embed `items`. With `reuse` (a previous index of the SAME embedding configuration), an item whose id and
+        text hash are unchanged takes its vector from it and only new or edited items are embedded; the result is
+        the same index a full build gives (same rows, same order), so a backfill can be re-run safely."""
         t0 = time.perf_counter()
-        vectors = embedder.embed_batch([i.text for i in items])
         cfg = embedder.config
+        previous = cls._reusable(reuse, cfg)
+        todo = [n for n, i in enumerate(items) if (i.id, i.content_sha256) not in previous]
+        embedded = embedder.embed_batch([items[n].text for n in todo]) if todo else np.zeros((0, cfg.dimension), np.float32)
+        vectors = np.zeros((len(items), cfg.dimension), dtype=np.float32)
+        for row, n in enumerate(todo):
+            vectors[n] = embedded[row]
+        for n, i in enumerate(items):
+            if (i.id, i.content_sha256) in previous:
+                vectors[n] = previous[(i.id, i.content_sha256)]
         meta = IndexMeta(
             model_id=cfg.model_id,
             revision=cfg.revision,
@@ -87,8 +99,17 @@ class SemanticIndex:
             embedded_at_utc=datetime.now(timezone.utc).isoformat(timespec="seconds"),
             code_version=code_version,
             build_seconds=round(time.perf_counter() - t0, 2),
+            reused_items=(len(items) - len(todo)) if reuse is not None else None,
         )
         return cls(items, vectors, meta)
+
+    @staticmethod
+    def _reusable(reuse: "SemanticIndex | None", config: EmbeddingConfig) -> dict[tuple[str, str], np.ndarray]:
+        if reuse is None:
+            return {}
+        if reuse.meta.embedding_fingerprint != config.fingerprint():
+            raise IndexMismatchError("the index to reuse was built with a different embedding configuration; build without it")
+        return {(i.id, i.content_sha256): reuse.vectors[n] for n, i in enumerate(reuse.items)}
 
     def save(self, vectors_path: Path = VECTORS_PATH, meta_path: Path = INDEX_META_PATH) -> None:
         """Write vectors.npy and index_meta.json (Stage 8 layout by default)."""

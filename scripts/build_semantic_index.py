@@ -4,6 +4,8 @@ the NumPy index. Vectors never go to PostgreSQL.
     python scripts/build_semantic_index.py                                    # Stage 8 corpus
     python scripts/build_semantic_index.py --semantic-corpus semantic_expanded_v1
     python scripts/build_semantic_index.py --semantic-corpus semantic_expanded_v1 --check   # verify only
+    python scripts/build_semantic_index.py --semantic-corpus semantic_expanded_v1 --reuse-from <copy of the previous generated/>
+        # backfill: embed only items that are new or whose text changed; unchanged items keep their vectors
 """
 
 from __future__ import annotations
@@ -12,6 +14,7 @@ import argparse
 import json
 import sys
 import time
+from pathlib import Path
 
 import numpy as np
 
@@ -25,6 +28,9 @@ def main() -> int:
     p.add_argument("--check", action="store_true")
     p.add_argument("--offline", action="store_true", help="fail instead of downloading the model")
     p.add_argument("--max-items", type=int, default=40000, help="safety limit for this machine (8 GB RAM, CPU)")
+    p.add_argument("--reuse-from", type=Path, default=None,
+                   help="a previous generated/ folder (corpus.jsonl, vectors.npy, index_meta.json) of the same embedding "
+                        "configuration; its vectors are reused for unchanged items")
     args = p.parse_args()
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -58,6 +64,17 @@ def main() -> int:
     embedder = TransformersEmbedder(cfg, cache_dir=cache_dir, local_files_only=args.offline)
     print(f"loaded in {embedder.load_seconds}s: {embedder.describe()}")
 
+    reuse = None
+    if args.reuse_from is not None:
+        src = args.reuse_from
+        try:
+            reuse = SemanticIndex.load(cfg, corpus_path=src / "corpus.jsonl", vectors_path=src / "vectors.npy", meta_path=src / "index_meta.json")
+        except IndexMismatchError as exc:
+            print(f"REFUSED: cannot reuse {src}: {exc}", file=sys.stderr)
+            return 1
+        unchanged = {(i.id, i.content_sha256) for i in reuse.items}
+        print(f"reusing {src}: {sum((i.id, i.content_sha256) in unchanged for i in items)} of {len(items)} items unchanged", flush=True)
+
     sample = [i.text for i in items[:16]]
     t0 = time.perf_counter()
     embedder.embed_batch(sample)
@@ -65,7 +82,7 @@ def main() -> int:
     print(f"batch of {len(sample)} texts: {warm*1000:.0f} ms ({warm*1000/max(1,len(sample)):.1f} ms/text)", flush=True)
 
     t0 = time.perf_counter()
-    index = SemanticIndex.build(items, embedder)
+    index = SemanticIndex.build(items, embedder, reuse=reuse)
     build = time.perf_counter() - t0
     index.save(paths.vectors, paths.index_meta)
     norms = np.linalg.norm(index.vectors, axis=1)

@@ -43,6 +43,7 @@ from regulus.config import GenerationConfig, Settings, load_settings
 from regulus.dashboard.fingerprint import normalize_evaluation_config, pipeline_fingerprint
 from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT, GenerationBudget
 from regulus.rag.pipeline import RagConfig
+from regulus.retrieval import lexical as retrieval_lexical
 
 CHECKPOINT_RE = re.compile(r"checkpoint-\d+")
 EVALUATION_VALIDATION_BEHAVIOR = "annotate"
@@ -75,8 +76,13 @@ def evaluation_rag_config(settings: Settings) -> RagConfig:
 def pipeline_config(config: RagConfig) -> dict[str, Any]:
     """The model-independent sections of the evaluation configuration."""
     rag = config.to_dict()
+    retrieval = {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")}
+    if retrieval_lexical.ECFR_LITERAL_OR_ENABLED:
+        # REGULUS_ECFR_LITERAL_OR=1 changes general questions' eCFR all-words search; recorded only when on, so the
+        # fingerprint of every run without it is unchanged
+        retrieval["ecfr_literal_or"] = True
     return {
-        "retrieval": {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")},
+        "retrieval": retrieval,
         "coverage": {k: rag.get(k) for k in ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation")},
         "context": dict(rag.get("context") or {}),
         "generation_budget": dict(rag.get("generation_budget") or {}),

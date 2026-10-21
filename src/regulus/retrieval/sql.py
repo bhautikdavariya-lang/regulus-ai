@@ -267,7 +267,61 @@ ORDER BY length(r.body_text), r.section_number, r.ordinal
 LIMIT %(limit)s
 """
 
+# The paragraphs that define one term of a definitional general question (regulus.retrieval.query.
+# defined_term_pattern): the phrase prefilter uses the GIN search index, the regex keeps only paragraphs that
+# OPEN by defining the term. All defining paragraphs are returned; the retriever picks the best section.
+ECFR_DEFINED_TERM = f"""
+SELECT {_ECFR_COLUMNS}
+FROM cfr_records r
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE r.search_vector @@ phraseto_tsquery('english', %(query)s)
+  AND r.body_text ~* %(pattern)s
+  AND NOT r.is_reserved
+  {_ECFR_FILTERS}
+ORDER BY r.section_number, r.ordinal
+LIMIT %(limit)s
+"""
+
+# All text of one section, for the tie-break between sections that define the same terms.
+ECFR_SECTION_TEXT = """
+SELECT string_agg(r.body_text, ' ' ORDER BY r.ordinal) AS body_text
+FROM cfr_records r
+WHERE r.section_number = %(section_number)s
+  AND r.removed_on IS NULL
+"""
+
+# How many live section headings match a regular expression: how specific a heading (or one of its words) is.
+ECFR_HEADING_COUNT = """
+SELECT count(*) AS n
+FROM cfr_sections s
+WHERE NOT s.is_reserved
+  AND lower(s.heading) ~ %(query)s
+"""
+
+# P3 cross-reference expansion: the provisions that the seed rows (section, paragraph) explicitly cite, through the
+# resolved links in cfr_cross_references, in seed order. A reference to another paragraph of the seed's own section
+# is structure, not a cross-reference, and is not followed. One hop only.
+ECFR_CROSS_REFERENCED = f"""
+SELECT {_ECFR_COLUMNS}, x.raw_text AS xref_text, s.n AS seed_rank,
+       f.section_number AS xref_from_section, COALESCE(f.paragraph_path, '') AS xref_from_paragraph
+FROM unnest(%(section_number)s::text[], %(paragraph)s::text[]) WITH ORDINALITY AS s(section_number, paragraph_path, n)
+JOIN cfr_records f ON f.section_number = s.section_number AND COALESCE(f.paragraph_path, '') = s.paragraph_path
+                  AND f.removed_on IS NULL
+JOIN cfr_cross_references x ON x.from_record_id = f.id AND x.resolvable
+JOIN cfr_records r ON r.id = x.to_record_id
+LEFT JOIN cfr_parts p ON p.number = r.part_number
+WHERE r.section_number <> f.section_number
+  AND NOT r.is_reserved
+  {_ECFR_FILTERS}
+ORDER BY s.n, r.section_number, r.ordinal
+LIMIT %(limit)s
+"""
+
 ALL_STATEMENTS = {
+    "ECFR_CROSS_REFERENCED": ECFR_CROSS_REFERENCED,
+    "ECFR_HEADING_COUNT": ECFR_HEADING_COUNT,
+    "ECFR_DEFINED_TERM": ECFR_DEFINED_TERM,
+    "ECFR_SECTION_TEXT": ECFR_SECTION_TEXT,
     "ECFR_DEFINITION": ECFR_DEFINITION,
     "ECFR_EXACT_SECTION": ECFR_EXACT_SECTION,
     "ECFR_EXACT_ROW": ECFR_EXACT_ROW,

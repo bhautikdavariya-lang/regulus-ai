@@ -23,7 +23,9 @@ run(query)      Stage 5-7 query-level path, kept unchanged for the hybrid
 
 from __future__ import annotations
 
+import dataclasses
 import logging
+import os
 import re
 import time
 from dataclasses import dataclass, field
@@ -33,6 +35,7 @@ from regulus.retrieval.base import Filters, normalise_corpus
 from regulus.retrieval.citations import build_ecfr_citation, build_guidance_citation
 from regulus.retrieval.db import Database
 from regulus.retrieval.models import (
+    METHOD_CROSS_REFERENCE,
     METHOD_DEFINITION,
     METHOD_EXACT_CFR,
     METHOD_EXACT_DOCKET,
@@ -52,7 +55,23 @@ from regulus.retrieval.evidence import (
     classify_result,
     order_evidence,
 )
-from regulus.retrieval.query import QueryType, classify, content_terms, definition_term, fallback_terms, looks_like_identifier
+from regulus.retrieval.query import (
+    QueryType,
+    choose_defining_section,
+    classify,
+    content_terms,
+    defined_term_pattern,
+    definition_term,
+    question_words,
+    definitional_terms,
+    fallback_terms,
+    literal_or,
+    HEADING_MAX_SECTIONS,
+    HEADING_MAX_WORD_DF,
+    heading_in_question,
+    heading_words,
+    looks_like_identifier,
+)
 from regulus.retrieval.ranking import (
     definition_score,
     exact_score,
@@ -71,6 +90,13 @@ if TYPE_CHECKING:
     from regulus.planning.plan import QueryPlan
 
 log = logging.getLogger("regulus.retrieval")
+
+# Off unless REGULUS_ECFR_LITERAL_OR=1. A general question's own eCFR all-words search reads a standalone "or" as
+# websearch_to_tsquery's OR operator: "...certification or labeling apply?" then matches any row holding "labeling"
+# and "apply", the search fills, and section coverage (RC1) never runs. With the switch on, that one search gets the
+# question without the operator (query.literal_or). Questions that name a provision or a docket, exact citation, the
+# guidance search, every other leg and the question the model sees are unchanged.
+ECFR_LITERAL_OR_ENABLED = os.environ.get("REGULUS_ECFR_LITERAL_OR", "") == "1"
 
 DEFAULT_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_DEFINITION)
 PRIMARY_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_DEFINITION)
@@ -107,7 +133,7 @@ DEFAULT_EXACT_ROW_LIMIT = 100
 # separate question and is deliberately not touched here.
 DEFAULT_PART_EXPAND_SECTIONS = 3
 DEFAULT_PART_EXPAND_ROWS = 2
-DISCOVERY_METHODS = (METHOD_FULL_TEXT_OR, METHOD_TRIGRAM)
+DISCOVERY_METHODS = (METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_CROSS_REFERENCE)
 # RC1, section coverage (sql.ECFR_SECTION_COVERAGE), for a question that names no provision and
 # no docket. Run when the question's AND full-text search found fewer than primary_min_results
 # eCFR paragraphs: AND needs every word of the question in one paragraph, which long guidance
@@ -120,6 +146,34 @@ DISCOVERY_METHODS = (METHOD_FULL_TEXT_OR, METHOD_TRIGRAM)
 DEFAULT_SECTION_COVERAGE = True
 SECTION_COVERAGE_ROWS_PER_SECTION = 2
 SECTION_COVERAGE_LEG = f"{METHOD_FULL_TEXT_OR}:section_coverage"
+
+# Defined terms of a definitional general question (query.definitional_terms): the paragraphs of the one
+# section that best defines the question's terms, as definition evidence. Runs after every other general
+# leg, so their decisions (OR fallback, section coverage) are computed exactly as before; it only adds.
+DEFAULT_DEFINED_TERMS = True
+DEFINED_TERMS_LEG = f"{METHOD_DEFINITION}:defined_terms"
+DEFINED_TERM_ROW_LIMIT = 40     # defining paragraphs per term, across the corpus, before the section is chosen
+DEFINED_TERMS_MAX_ROWS = 4      # defining paragraphs kept from the chosen section
+DEFINED_TERM_CHILD_LIMIT = 8    # sub-paragraphs kept under a definition that is a list lead-in ("includes:")
+
+# Heading corroboration (general questions only): an eCFR candidate the retriever ALREADY found whose specific section
+# heading occurs verbatim in the question (query.heading_in_question) is kept for the prompt: it is moved to the
+# front of the optional evidence and is not removed by the trigram cut-off. Nothing new is retrieved.
+DEFAULT_HEADING_CORROBORATION = True
+HEADING_PROMOTED_MAX_ROWS = 3
+
+# P3 cross-reference expansion (general questions only, OFF by default until measured): the provisions that the first
+# XREF_SEEDS eCFR candidates explicitly cite (sql.ECFR_CROSS_REFERENCED, one hop, never recursive) are added after
+# every other candidate as DISCOVERY evidence, at most XREF_MAX_ROWS of them, each recording the provision that cites
+# it and the reference text (`xref_from`, `xref_text`). Measured offline 2026-10-20: the provisions the prompt's own
+# sources cite held 11 missing draft-key provisions and added a median of 0 sections per question (p90 2, max 6);
+# following references the other way (provisions that cite a source) reached 8 and added up to 26, so it is not used.
+DEFAULT_CROSS_REFERENCES = False
+
+XREF_LEG = f"{METHOD_CROSS_REFERENCE}:cites"
+XREF_SEEDS = 4
+XREF_MAX_ROWS = 3
+XREF_ROW_LIMIT = 40
 
 
 @dataclass
@@ -189,6 +243,9 @@ class LexicalRetriever:
         part_expand_sections: int = DEFAULT_PART_EXPAND_SECTIONS,
         part_expand_rows: int = DEFAULT_PART_EXPAND_ROWS,
         section_coverage: bool = DEFAULT_SECTION_COVERAGE,
+        defined_terms: bool = DEFAULT_DEFINED_TERMS,
+        heading_corroboration: bool = DEFAULT_HEADING_CORROBORATION,
+        cross_references: bool = DEFAULT_CROSS_REFERENCES,
     ) -> None:
         """enable_or_fallback=False reproduces the Stage 5 retriever exactly.
 
@@ -214,6 +271,10 @@ class LexicalRetriever:
         self.part_expand_sections = part_expand_sections
         self.part_expand_rows = part_expand_rows
         self.section_coverage = section_coverage
+        self.defined_terms = defined_terms
+        self.heading_corroboration = heading_corroboration
+        self.cross_references = cross_references
+        self._heading_counts: dict[str, int] = {}
 
     def describe(self) -> dict[str, Any]:
         return {
@@ -225,6 +286,9 @@ class LexicalRetriever:
             "part_expand_sections": self.part_expand_sections,
             "part_expand_rows": self.part_expand_rows,
             "section_coverage": self.section_coverage,
+            "defined_terms": self.defined_terms,
+            "heading_corroboration": self.heading_corroboration,
+            "cross_references": self.cross_references,
         }
 
     # -- public API --------------------------------------------------------
@@ -454,7 +518,9 @@ class LexicalRetriever:
         # 3. supporting: the question's own full-text search on each corpus
         if METHOD_FULL_TEXT in enabled and not definitions:
             if ecfr_on:
-                timed(f"{METHOD_FULL_TEXT}:ecfr", self.full_text_ecfr, question, filters, text_limit)
+                general = not plan.requirements and plan.docket is None
+                ecfr_query = literal_or(question) if ECFR_LITERAL_OR_ENABLED and general else question
+                timed(f"{METHOD_FULL_TEXT}:ecfr", self.full_text_ecfr, ecfr_query, filters, text_limit)
             if guidance_on:
                 timed(f"{METHOD_FULL_TEXT}:fda_guidance", self.full_text_guidance, question, filters, text_limit)
 
@@ -519,6 +585,14 @@ class LexicalRetriever:
                     if guidance_on:
                         timed(f"{METHOD_FULL_TEXT_OR}:fda_guidance", self.full_text_or_guidance, or_query, filters, top_k)
 
+        # 5c. a general question that asks how the regulations define the things it names: the CFR paragraphs
+        # that define its terms. After every other leg, so nothing above changes; it only adds evidence.
+        if (self.defined_terms and not plan.requirements and not definitions and plan.docket is None and ecfr_on
+                and METHOD_DEFINITION in enabled):
+            weights = definitional_terms(question)
+            if weights and timed(DEFINED_TERMS_LEG, self.defined_terms_ecfr, weights, question, filters):
+                notes.append("The CFR paragraphs that define terms of the question were retrieved.")
+
         # 6. classify by identity and build the registry
         merged = merge(candidates)
         evidence: list[Evidence] = []
@@ -535,6 +609,14 @@ class LexicalRetriever:
             # they add to it; their candidate slots are kept below.
             secondary = set(coverage_keys)
             ordered = [e for e in ordered if e.key not in secondary] + [e for e in ordered if e.key in secondary]
+        if self.heading_corroboration and not plan.requirements and ecfr_on:
+            ordered = self._promote_heading_matches(ordered, question)
+        if self.cross_references and not plan.requirements and plan.docket is None and ecfr_on:
+            t_xref = time.perf_counter()
+            linked = self._cross_referenced(ordered, plan, filters)
+            timings[XREF_LEG] = round((time.perf_counter() - t_xref) * 1000, 2)
+            counts[XREF_LEG] = len(linked)
+            ordered = ordered + linked
         ordered = [
             Evidence(f"e{i}", e.result, e.tier, e.satisfies, e.structural_for, e.discovered_for, e.relations)
             for i, e in enumerate(ordered, start=1)
@@ -762,6 +844,121 @@ class LexicalRetriever:
         rows = self.db.query(sql.ECFR_DEFINITION, {**self._ecfr_filter_params(filters), "query": term, "pattern": pattern,
                                                    "limit": limit})
         return [self._ecfr_result(row, METHOD_DEFINITION, definition_score(i), {"defines": term}) for i, row in enumerate(rows)]
+
+    def _heading_count(self, pattern: str) -> int:
+        if pattern not in self._heading_counts:
+            rows = self.db.query(sql.ECFR_HEADING_COUNT, {"query": pattern})
+            self._heading_counts[pattern] = int(rows[0]["n"]) if rows else 0
+        return self._heading_counts[pattern]
+
+    def heading_is_specific(self, heading: str) -> bool:
+        """Few sections carry this heading, and at least one of its words is rare among all section headings."""
+        words = heading_words(heading)
+        whole = r"^\s*" + r"[^a-z0-9]+".join(re.escape(w) for w in words) + r"[^a-z0-9]*$"
+        if self._heading_count(whole) > HEADING_MAX_SECTIONS:
+            return False
+        return min(self._heading_count(r"\m" + re.escape(w) + r"\M") for w in words) <= HEADING_MAX_WORD_DF
+
+    def _cross_referenced(self, ordered: list[Evidence], plan: "QueryPlan", filters: Filters) -> list[Evidence]:
+        """The provisions the first XREF_SEEDS eCFR candidates cite, not already candidates, as DISCOVERY evidence
+        (see DEFAULT_CROSS_REFERENCES). Each keeps the citing provision and the reference text in its metadata."""
+        seeds = [e.result for e in ordered if e.result.corpus == "ecfr" and e.result.citation and e.result.citation.section][:XREF_SEEDS]
+        if not seeds:
+            return []
+        rows = self.db.query(sql.ECFR_CROSS_REFERENCED, {
+            **self._ecfr_filter_params(filters), "limit": XREF_ROW_LIMIT,
+            "section_number": [r.metadata.get("section") or r.citation.section for r in seeds],
+            "paragraph": [r.metadata.get("paragraph_path") or "" for r in seeds]})
+        have = {e.key for e in ordered}
+        out: list[Evidence] = []
+        for row in rows:
+            seed = seeds[int(row["seed_rank"]) - 1]
+            result = self._ecfr_result(row, METHOD_CROSS_REFERENCE, 0.5, {
+                "leg": "cross_references", "xref_from": seed.citation.label, "xref_text": row.get("xref_text")})
+            if result.key in have:
+                continue
+            have.add(result.key)
+            tier, satisfies, structural_for, relations = classify_result(
+                result, plan.requirements, discovered_for=(), discovery_methods=DISCOVERY_METHODS)
+            out.append(Evidence("", result, tier, satisfies, structural_for, (), relations))
+            if len(out) >= XREF_MAX_ROWS:
+                break
+        return out
+
+    def _promote_heading_matches(self, ordered: list[Evidence], question: str) -> list[Evidence]:
+        """General questions: eCFR candidates whose specific section heading is in the question go to the front of
+        the optional evidence as SUPPORTING evidence, marked `heading_match` (exempt from the trigram cut-off).
+
+        Part corroboration: the section's CFR part must also be the part of some OTHER candidate that is not itself a
+        heading match. Measured on the 300 benchmark questions (2026-10-20): every wrong-domain promotion (a food
+        "statement of identity" question promoting the drug and device sections of that name; "recordkeeping
+        requirements" promoting a tobacco part) came from a part nothing else retrieved - or only another section of
+        the same heading - while the right ones had neighbours from their own part."""
+        def part(r: RetrievalResult) -> str | None:
+            section = r.citation.section if r.citation else None
+            return section.split(".")[0] if section else None
+
+        promoted: list[Evidence] = []
+        for e in ordered:
+            r = e.result
+            own = r.citation.section if r.citation else None
+            if (len(promoted) < HEADING_PROMOTED_MAX_ROWS and r.corpus == "ecfr" and e.tier in (TIER_SUPPORTING, TIER_DISCOVERY)
+                    and r.heading and heading_in_question(r.heading, question)
+                    and any(o.result.corpus == "ecfr" and part(o.result) == part(r) and o.result.citation.section != own
+                            and not (o.result.heading and heading_in_question(o.result.heading, question))
+                            for o in ordered)
+                    and self.heading_is_specific(r.heading)):
+                marked = dataclasses.replace(r, metadata={**(r.metadata or {}), "heading_match": True})
+                promoted.append(Evidence(e.evidence_id, marked, TIER_SUPPORTING, e.satisfies, e.structural_for,
+                                         e.discovered_for, e.relations))
+        if not promoted:
+            return ordered
+        keys = {p.result.key for p in promoted}
+        head = [e for e in ordered if e.tier in (TIER_EXACT, TIER_STRUCTURAL) and e.result.key not in keys]
+        rest = [e for e in ordered if e.tier not in (TIER_EXACT, TIER_STRUCTURAL) and e.result.key not in keys]
+        return head + promoted + rest
+
+    def defined_terms_ecfr(self, weights: dict[str, int], question: str, filters: Filters) -> list[RetrievalResult]:
+        """The defining paragraphs of the one section that best defines the question's terms (see
+        query.choose_defining_section), in document order; [] when no section qualifies."""
+        params = self._ecfr_filter_params(filters)
+        hits: dict[str, dict[str, dict[str, Any]]] = {}
+        headings: dict[str, str] = {}
+        part_titles: dict[str, str] = {}
+        for term in sorted(weights):
+            rows = self.db.query(sql.ECFR_DEFINED_TERM, {**params, "query": term, "pattern": defined_term_pattern(term),
+                                                         "limit": DEFINED_TERM_ROW_LIMIT})
+            for row in rows:
+                hits.setdefault(row["section_number"], {}).setdefault(term, row)
+                headings[row["section_number"]] = row.get("section_heading") or ""
+                part_titles[row["section_number"]] = row.get("part_title") or ""
+        words = content_terms(question)
+
+        def overlap(section: str) -> int:
+            rows = self.db.query(sql.ECFR_SECTION_TEXT, {"section_number": section})
+            text = ((rows[0].get("body_text") if rows else "") or "").lower()
+            return sum(1 for w in words if re.search(r"\b" + re.escape(w) + r"\b", text))
+
+        chosen = choose_defining_section(hits, weights, headings, overlap, part_titles=part_titles,
+                                         question_words=question_words(question))
+        if chosen is None:
+            return []
+        section, terms = chosen
+        rows = {(r["paragraph_path"], r.get("path_ordinal", 0)): (r, t) for t in terms for r in [hits[section][t]]}
+        ordered = sorted(rows.values(), key=lambda rt: rt[0]["ordinal"])[:DEFINED_TERMS_MAX_ROWS]
+        # A definition that is a list lead-in ("(e) Combination product includes:") is defined by its
+        # sub-paragraphs; the lead-in alone says nothing. Its descendants follow it, in document order.
+        out: list[tuple[dict[str, Any], str]] = []
+        for r, t in ordered:
+            out.append((r, t))
+            path = r.get("paragraph_path") or ""
+            if path and (r.get("body_text") or "").rstrip().endswith(":"):
+                children = self.db.query(sql.ECFR_EXACT_SECTION, {**params, "section_number": section, "paragraph": path,
+                                                                  "paragraph_prefix": path + "(%",
+                                                                  "limit": DEFINED_TERM_CHILD_LIMIT + 1})
+                out += [(c, t) for c in children if c.get("match_kind") == "descendant"][:DEFINED_TERM_CHILD_LIMIT]
+        return [self._ecfr_result(r, METHOD_DEFINITION, definition_score(i), {"defines": t, "leg": "defined_terms"})
+                for i, (r, t) in enumerate(out)]
 
     def full_text_ecfr(self, query: str, filters: Filters, limit: int) -> list[RetrievalResult]:
         rows = self.db.query(sql.ECFR_FULL_TEXT, {**self._ecfr_filter_params(filters), "query": query, "limit": limit})
