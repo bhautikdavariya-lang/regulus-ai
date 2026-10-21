@@ -361,13 +361,14 @@ def test_sentences_the_pipeline_appended_are_not_scored_as_the_model_s_claims():
     as if the model had written them."""
     from regulus.accuracy.claims import MODEL, classify
     from regulus.rag.answer_quality import mixed_scope_note
-    from regulus.rag.prompt import NO_CONTEXT_ANSWER, incomplete_coverage_answer, unresolved_provisions_statement
+    from regulus.rag.prompt import NO_CONTEXT_ANSWER, incomplete_coverage_answer, unresolved_provisions_statement, withheld_evidence_statement
 
     appended = [
         "The retrieved evidence does not establish the temperature range asked for.",
         'The available regulatory sources do not cover "the EU MDR".',
         mixed_scope_note("the EU MDR"),
         unresolved_provisions_statement(("21 CFR 820.99(z)",)),
+        withheld_evidence_statement({"21 CFR part 117": 46, "21 CFR 803.3": 2}),
         incomplete_coverage_answer(("21 CFR 820.99(z)",)),
         NO_CONTEXT_ANSWER,
         "The generated answer could not be validated against the retrieved regulatory evidence, so it is not shown.",

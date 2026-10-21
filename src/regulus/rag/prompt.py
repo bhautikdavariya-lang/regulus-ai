@@ -5,6 +5,7 @@ labelled as material to read, not instructions to follow."""
 
 from __future__ import annotations
 
+
 from regulus.inference.types import Message
 
 RAG_SYSTEM_PROMPT = """You answer questions about U.S. FDA regulations using the SOURCES given in the user message.
@@ -59,6 +60,17 @@ def unresolved_provisions_statement(missing_labels) -> str:
         f"Not found in the available eCFR data: {_join_labels(missing_labels)}. "
         "The answer above covers only the provisions that were retrieved."
     )
+
+
+def withheld_evidence_statement(left_out: dict[str, int]) -> str:
+    """Appended to a delivered answer when the hard ceiling (ContextPolicy.hard_max_*) kept retrieved paragraphs of a
+    requested provision out of the evidence. `left_out` maps each requested provision's label ("21 CFR part 117",
+    "21 CFR 803.3") to how many of its paragraphs were left out. It names what was left out and says the answer does
+    not cover it; it states nothing about what that text requires."""
+    n = sum(left_out.values())
+    return (f"Evidence limit: not all of the retrieved text of {_join_labels(list(left_out))} fit in the evidence supplied "
+            f"for this answer ({n} paragraph{'' if n == 1 else 's'} left out). "
+            "The answer above does not cover that text; consult the full provisions.")
 
 
 def build_messages(question: str, context_text: str) -> list[Message]:

@@ -11,6 +11,7 @@ from __future__ import annotations
 import inspect
 import re
 import time
+from collections import Counter
 from dataclasses import dataclass, field, replace
 from typing import TYPE_CHECKING, Any
 
@@ -34,11 +35,14 @@ from regulus.rag.generation import (
     GenerationPackage,
     build_grounded_messages,
     build_package,
+    definitions_not_applied,
     extractive_answer,
     extractive_items,
     verbatim_requested,
 )
 from regulus.rag.fallback import (
+    FB_DEFINITIONS_QUOTED,
+    FB_PREMISE_NOT_ESTABLISHED,
     FB_UNVALIDATED,
     blocked_answer,
     premise_not_established,
@@ -74,7 +78,8 @@ from regulus.rag.validation import (
 )
 if TYPE_CHECKING:  # annotation only; importing it would load torch
     from regulus.rag.generator import Generator
-from regulus.rag.prompt import NO_CONTEXT_ANSWER, build_messages, coverage_note, incomplete_coverage_answer, unresolved_provisions_statement
+from regulus.rag.prompt import (NO_CONTEXT_ANSWER, build_messages, coverage_note, incomplete_coverage_answer,
+                                unresolved_provisions_statement, withheld_evidence_statement)
 from regulus.retrieval.base import Filters
 from regulus.retrieval.evidence import REL_CHILD, TIER_EXACT, TIER_STRUCTURAL, Evidence, EvidenceRegistry
 from regulus.retrieval.lexical import LexicalRetriever, SearchResponse
@@ -253,9 +258,14 @@ class RagGenerationResult(GenerationResult):
     citations: list[dict[str, Any]] = field(default_factory=list)
 
 
+# the model's whole answer is the system prompt's decline sentence (rule 9), once or repeated
+_BARE_REFUSAL_RE = re.compile(r"^(?:\s*The available regulatory sources do not provide enough information to answer "
+                              r"this(?: question)?\.\s*)+$")
+
+
 class RagPipeline:
     def __init__(self, retriever: LexicalRetriever, generator: Generator, config: RagConfig | None = None, grounding=None,
-                 scope_policy=None) -> None:
+                 scope_policy=None, premise_check=None, advanced=None) -> None:
         """`grounding` is an optional Stage 13 GroundingGate. It is None by
         default, so the Stage 6/7 pipeline is unchanged. When supplied it runs
         after retrieval and context construction and can replace the generated
@@ -267,6 +277,10 @@ class RagPipeline:
         self.grounding = grounding
         # Stage 7: regulus.retrieval.domain.ScopePolicy (None = no general-knowledge policy)
         self.scope_policy = scope_policy
+        # experimental (2026-10-20): regulus.grounding.premise.PremiseCheck; None = off, the pipeline unchanged
+        self.premise_check = premise_check
+        # experimental (2026-10-21): regulus.retrieval.advanced.AdvancedRetrieval; None = off, the pipeline unchanged
+        self.advanced = advanced
 
     # -- steps ---------------------------------------------------------------
 
@@ -290,7 +304,11 @@ class RagPipeline:
 
     def is_useful(self, r: RetrievalResult) -> bool:
         """Usefulness rule for optional evidence: drop trigram-only hits below the
-        cut-off and (by default) contextual-only passages."""
+        cut-off and (by default) contextual-only passages. A section whose specific heading is in the question
+        (lexical heading corroboration) is kept: its heading, not its trigram score, names it as the provision asked
+        about."""
+        if (r.metadata or {}).get("heading_match"):
+            return True
         if r.retrieval_method == METHOD_TRIGRAM and float(r.metadata.get("similarity", 0.0)) < self.config.min_trigram_similarity:
             return False
         if self.config.exclude_contextual_only and r.metadata.get("contextual_only"):
@@ -363,8 +381,13 @@ class RagPipeline:
         `question` only decides which required evidence survives the hard ceilings when a
         requested provision has more paragraphs than fit; see `selection._required_order`."""
         material = self.is_subordinate if shape is not None else None
-        return select_evidence(registry, self.config.context, optional_filter=self.is_useful, material=material,
-                               question=question)
+        selection = select_evidence(registry, self.config.context, optional_filter=self.is_useful, material=material,
+                                    question=question)
+        if self.advanced is not None:
+            from regulus.rag.selection import _block_chars, _clean, _truncate
+            selection, _ = self.advanced.extend(selection, registry, question or registry.plan.question, self.config.context,
+                                                block_chars=_block_chars, clean=_clean, truncate=_truncate)
+        return selection
 
     def build_bundle(self, response: SearchResponse, registry: EvidenceRegistry | None, shape: AnswerShape | None = None,
                      question: str | None = None) -> tuple[ContextBundle, CoverageReport | None, Selection | None]:
@@ -640,6 +663,7 @@ class RagPipeline:
                 post = self.grounding.check_context(verification, [s.result for s in bundle.sources])
                 if post.checked:
                     grounding_decision = post
+        premise = self.premise_check.decide(question) if self.premise_check is not None else None
         # Stage 3: explicit requirements without exact evidence. With nothing
         # supported the answer is deterministic (the model is not asked to
         # describe a provision it was not given); with some supported the model
@@ -681,6 +705,12 @@ class RagPipeline:
         timings["answerability_ms"] = round((time.perf_counter() - t_gate) * 1000, 2)
         if grounding_decision is not None and grounding_decision.refused:
             answer_text = grounding_decision.answer
+            timings["generation_ms"] = 0.0
+        elif premise is not None and premise.unsupported:
+            # the question assumes a subpart, or a named thing in a part, that the database does not contain
+            answer_text, fallback_type = premise.answer, FB_PREMISE_NOT_ESTABLISHED
+            fallback_reason = f"{premise.kind}: {', '.join(premise.missing)}"
+            coverage_action = "refuse_unsupported_premise"
             timings["generation_ms"] = 0.0
         elif block:
             # the model is not called: nothing it could say would be supported by this evidence
@@ -763,6 +793,20 @@ class RagPipeline:
                     answer_text, repair, repair_output, validation_final = r["text"], r["repair"], r["repair_output"], r["final"]
                     fallback_type, fallback_reason = r["fallback_type"], r["fallback_reason"]
                 timings["validation_ms"] = round((time.perf_counter() - t3) * 1000, 2)
+                if gate_on and fallback_type is None and _BARE_REFUSAL_RE.match(answer_text or ""):
+                    # A general question the model declined although the CFR definitions of its terms were
+                    # retrieved (lexical step 5c): quote them, cited, and say they are not applied. Kept only if
+                    # it validates; otherwise the model's own decline stands.
+                    keys = {c.result.key for c in bundle.sources if (c.result.metadata or {}).get("leg") == "defined_terms"}
+                    indices = tuple(src.index for src in package.sources if src.key in keys)
+                    if indices:
+                        quoted = definitions_not_applied(package, indices)
+                        report = validate_answer(quoted, package, gen)
+                        if report.ok:
+                            answer_text, validation_final = quoted, report
+                            fallback_type = FB_DEFINITIONS_QUOTED
+                            fallback_reason = ("the model declined; the CFR definitions of the question's terms are "
+                                               "quoted verbatim and not applied")
             if gate_on and decision.limitation and not (analysis is not None and analysis.scope_status == SCOPE_MIXED):
                 # Stage 5 PARTIALLY_ANSWERABLE: say what the evidence does not establish (mixed scope in
                 # "structured" mode already gets its own note below)
@@ -777,6 +821,19 @@ class RagPipeline:
                 coverage_action = "answer"
             if analysis is not None and analysis.scope_status == SCOPE_MIXED and analysis.out_of_scope_part:
                 answer_text = answer_text.rstrip() + "\n" + mixed_scope_note(analysis.out_of_scope_part)
+        # P1 (2026-10-20): paragraphs of a requested provision that the hard ceiling kept out of the prompt are named
+        # in the delivered answer and recorded; the prompt and the model's text are unchanged.
+        evidence_gap = None
+        cut = [d for d in selection.dropped if d.required and d.evidence.corpus == "ecfr"] if (package is not None and selection is not None) else []
+        if premise is not None and premise.unsupported:
+            cut = []   # that answer comes from the whole part in the database, not from the evidence the ceiling cut
+        if cut:
+            requested = dict(package.requirements)
+            left_out = Counter(next((requested[r] for r in d.evidence.satisfies if r in requested), d.evidence.citation) for d in cut)
+            evidence_gap = {"reason": "hard_ceiling", "left_out": dict(left_out), "withheld": [d.evidence.citation for d in cut],
+                            "notice_appended": bool(answer_text)}
+            if answer_text:
+                answer_text = answer_text.rstrip() + "\n" + withheld_evidence_statement(dict(left_out))
         t_post = time.perf_counter()
         if package is not None and model_called:
             addressed = validation_final.addressed if validation_final is not None else ()
@@ -809,6 +866,8 @@ class RagPipeline:
             output_tokens=output_tokens,
             metadata={
                 "grounding": grounding_decision.to_dict() if grounding_decision is not None else None,
+                "premise_check": premise.to_dict() if premise is not None else None,
+                "advanced": (selection.diagnostics.get("advanced") if selection is not None else None),
                 "query_type": response.query_type.value,
                 # Stage 1 plan and Stage 2 evidence registry (None for retrievers
                 # without run_plan). The registry is the per-requirement record
@@ -842,7 +901,9 @@ class RagPipeline:
                                   if analysis is not None else None),
                 "evidence": registry.to_dict() if registry is not None else None,
                 # Stage 3 coverage and selection (None on the legacy path)
-                "coverage": coverage.to_dict() if coverage is not None else None,
+                "coverage": ({**coverage.to_dict(), "evidence_complete": evidence_gap is None}
+                             if coverage is not None else None),
+                "evidence_gap": evidence_gap,
                 "selection": selection.to_dict() if selection is not None else None,
                 "coverage_action": coverage_action,
                 # Stage 4 generation contract and validation (None on the legacy path)

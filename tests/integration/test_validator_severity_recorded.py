@@ -86,7 +86,14 @@ def test_recorded_row_reaches_the_experiment_outcome(replay, qid):
     out = replay(row)
     expected = row["expected"]
     assert delivery(out) == expected["delivery"]
-    assert hashlib.sha256((out.answer or "").encode()).hexdigest() == expected["delivered_sha256"]
+    # P1 (2026-10-20, regulus.rag.prompt.withheld_evidence_statement): when the hard ceiling cut retrieved text of a
+    # requested provision, one evidence-gap line is appended after everything else. The recording predates it, so
+    # the answer before that line must still be the recorded one, byte for byte, and the line is there exactly when
+    # the run recorded an evidence gap.
+    body, notice, _ = (out.answer or "").partition("\nEvidence limit:")
+    gap = out.metadata.get("evidence_gap")
+    assert bool(notice) == bool(gap and gap["notice_appended"])
+    assert hashlib.sha256(body.encode()).hexdigest() == expected["delivered_sha256"]
     assert str((out.metadata.get("validation") or {}).get("repair")) == str(expected["repair"])
 
 

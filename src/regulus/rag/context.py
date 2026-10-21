@@ -34,6 +34,9 @@ from regulus.retrieval.models import RetrievalResult
 
 CORPUS_LABEL = {"ecfr": "eCFR", "fda_guidance": "FDA Guidance"}
 TRUNCATION_MARK = " [... truncated]"
+ORDER_TIER = "tier"
+ORDER_BINDING_FIRST = "binding_first"
+GENERAL_EVIDENCE_ORDERS = (ORDER_TIER, ORDER_BINDING_FIRST)
 
 
 @dataclass(frozen=True)
@@ -68,6 +71,14 @@ class ContextPolicy:
     # budget is sized for; the total budget is unchanged and unused reserve goes back to everything else.
     # 0 disables it.
     binding_reserve_chars: int = 1200
+    # Phase 2 experiment (2026-10-20), OFF by default: the order in which the optional evidence of a question
+    # that names no provision, no docket and no guidance competes for the soft budget (selection.select_evidence).
+    # "tier" is the existing order (every structural, then supporting, then discovery passage, registry order
+    # within a tier; RC2 above reserves part of the budget for eCFR). "binding_first" puts every eCFR passage
+    # ahead of every guidance passage, and orders the eCFR discovery passages by their own score instead of by
+    # retrieval leg, so a section-coverage row is no longer behind every OR/trigram hit; the RC2 reserve is then
+    # redundant and is not applied. Limits, filters and the presented order (registry order) are unchanged.
+    general_evidence_order: str = "tier"
 
     def __post_init__(self) -> None:
         if self.max_results <= 0 or self.max_chars_per_result <= 0 or self.max_total_chars <= 0:
@@ -76,6 +87,8 @@ class ContextPolicy:
             raise ValueError("required_max_chars_per_result must be positive")
         if self.binding_reserve_chars < 0:
             raise ValueError("binding_reserve_chars must be >= 0")
+        if self.general_evidence_order not in GENERAL_EVIDENCE_ORDERS:
+            raise ValueError(f"general_evidence_order must be one of {GENERAL_EVIDENCE_ORDERS}")
         # a hard ceiling can never sit below the soft budget it bounds
         object.__setattr__(self, "hard_max_results", max(self.hard_max_results, self.max_results))
         object.__setattr__(self, "hard_max_total_chars", max(self.hard_max_total_chars, self.max_total_chars))
@@ -89,6 +102,9 @@ class ContextPolicy:
             "hard_max_total_chars": self.hard_max_total_chars,
             "required_max_chars_per_result": self.required_max_chars_per_result,
             "binding_reserve_chars": self.binding_reserve_chars,
+            # only when switched on, so the default configuration's dictionary and fingerprint are unchanged
+            **({"general_evidence_order": self.general_evidence_order}
+               if self.general_evidence_order != ORDER_TIER else {}),
         }
 
 

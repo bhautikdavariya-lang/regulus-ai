@@ -23,6 +23,7 @@ generated answer fails validation.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field, replace
 from typing import Any
 
@@ -496,6 +497,38 @@ def extractive_answer(package: GenerationPackage, requirement_ids: tuple[str, ..
         quoted = " ".join(_verbatim(s.text, s.index) for s in exact)
         blocks.append(f"{labels.get(rid, rid)} (eCFR, binding, verbatim): {quoted}")
     return "\n".join(blocks)
+
+
+DEFINITIONS_LEAD = ("The available regulatory sources do not provide enough information to answer this directly. They "
+                    "define terms it asks about (eCFR, binding, verbatim):")
+DEFINITIONS_TAIL = "The sources do not establish how these definitions apply to the specific products or facts in the question."
+
+
+def whole_sentences(text: str) -> str:
+    """A source text shown truncated, cut back to its last complete sentence (quoted text never ends mid-sentence);
+    an untruncated text unchanged."""
+    from regulus.rag.context import TRUNCATION_MARK
+
+    body = text.strip()
+    if not body.endswith(TRUNCATION_MARK.strip()):
+        return body
+    body = body[: -len(TRUNCATION_MARK.strip())].rstrip()
+    ends = [m.end() for m in re.finditer(r"[.;:](?=\s|$)", body)]
+    return body[: ends[-1]].strip() if ends else ""
+
+
+def definitions_not_applied(package: GenerationPackage, indices: tuple[int, ...]) -> str:
+    """The CFR definitions of the question's terms, verbatim and cited, for a general question the model declined:
+    what the sources establish (the definitions) and, explicitly, what they do not (their application to the
+    question's facts). Grounded by construction, like extractive_answer."""
+    lines = [DEFINITIONS_LEAD]
+    for src in package.sources:
+        if src.index in indices:
+            body = whole_sentences(src.text)
+            if body:
+                lines.append(f"{src.citation}: {_verbatim(body, src.index)}")
+    lines.append(DEFINITIONS_TAIL)
+    return "\n".join(lines)
 
 
 def verbatim_requested(package: GenerationPackage) -> str:

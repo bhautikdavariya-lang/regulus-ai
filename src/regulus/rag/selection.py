@@ -35,7 +35,7 @@ import re
 from dataclasses import dataclass, field, replace
 from typing import Any, Callable
 
-from regulus.rag.context import ContextPolicy, ContextSource, TRUNCATION_MARK, render_source
+from regulus.rag.context import ORDER_BINDING_FIRST, ContextPolicy, ContextSource, TRUNCATION_MARK, render_source
 from regulus.rag.evidence_values import evidence_has_value, selection_value_kind
 from regulus.retrieval.evidence import TIER_DISCOVERY, TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, Evidence, EvidenceRegistry
 from regulus.retrieval.models import METHOD_EXACT_DOCKET, RetrievalResult
@@ -392,10 +392,13 @@ def select_evidence(
     # Phase 1c (RC2): binding text first claim on part of the soft budget, for a question that names
     # nothing (see ContextPolicy.binding_reserve_chars). Same per-source cap, filter and limits as
     # below; the sources are put back in registry order afterwards, so only membership changes.
+    # With general_evidence_order="binding_first" every eCFR passage already competes first, so the
+    # reserve would only pre-empt that order and is not applied.
     first_optional = len(selected)
     reserved_ids: list[str] = []
     reserve = min(policy.binding_reserve_chars, policy.max_total_chars)
-    if reserve > 0 and _binding_reserve_applies(registry):
+    binding_first = policy.general_evidence_order == ORDER_BINDING_FIRST and _binding_reserve_applies(registry)
+    if reserve > 0 and _binding_reserve_applies(registry) and not binding_first:
         limit = min(policy.max_total_chars, policy.hard_max_total_chars)
         spent = 0
         for tier in (TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY):
@@ -418,36 +421,35 @@ def select_evidence(
                 handled.add(e.evidence_id)
 
     # Phases 2-4: optional evidence within the soft budget, never displacing the above
-    for tier in (TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY):
-        for e in registry.evidence:
-            if e.tier != tier or is_required(e) or e.evidence_id in handled:
+    for e in _optional_order(registry, binding_first):
+        if is_required(e) or e.evidence_id in handled:
+            continue
+        # structural evidence is identity-based (a parent or child of a requested
+        # provision); the usefulness rule targets method-based hits only
+        if e.tier != TIER_STRUCTURAL and optional_filter is not None and not optional_filter(e.result):
+            dropped.append(DroppedEvidence(e, DROP_FILTERED, required=False))
+            continue
+        if len(selected) >= policy.max_results or len(selected) >= policy.hard_max_results:
+            dropped.append(DroppedEvidence(e, DROP_MAX_RESULTS, required=False))
+            continue
+        text, truncated = _truncate(_clean(e.text), policy.max_chars_per_result)
+        index = len(selected) + 1
+        chars = _block_chars(e, text, index, truncated)
+        limit = min(policy.max_total_chars, policy.hard_max_total_chars)
+        if used + gap() + chars > limit:
+            remaining = limit - used - gap()
+            header = chars - len(text)
+            if remaining - header >= MIN_SQUEEZED_CHARS:
+                text, truncated = _truncate(text, remaining - header)
+                chars = _block_chars(e, text, index, True)
+                truncated = True
+            else:
+                dropped.append(DroppedEvidence(e, DROP_SOFT_BUDGET, required=False))
                 continue
-            # structural evidence is identity-based (a parent or child of a requested
-            # provision); the usefulness rule targets method-based hits only
-            if tier != TIER_STRUCTURAL and optional_filter is not None and not optional_filter(e.result):
-                dropped.append(DroppedEvidence(e, DROP_FILTERED, required=False))
-                continue
-            if len(selected) >= policy.max_results or len(selected) >= policy.hard_max_results:
-                dropped.append(DroppedEvidence(e, DROP_MAX_RESULTS, required=False))
-                continue
-            text, truncated = _truncate(_clean(e.text), policy.max_chars_per_result)
-            index = len(selected) + 1
-            chars = _block_chars(e, text, index, truncated)
-            limit = min(policy.max_total_chars, policy.hard_max_total_chars)
-            if used + gap() + chars > limit:
-                remaining = limit - used - gap()
-                header = chars - len(text)
-                if remaining - header >= MIN_SQUEEZED_CHARS:
-                    text, truncated = _truncate(text, remaining - header)
-                    chars = _block_chars(e, text, index, True)
-                    truncated = True
-                else:
-                    dropped.append(DroppedEvidence(e, DROP_SOFT_BUDGET, required=False))
-                    continue
-            used += gap() + chars
-            selected.append(SelectedEvidence(index, e, text, truncated, False, _reason(e), chars))
+        used += gap() + chars
+        selected.append(SelectedEvidence(index, e, text, truncated, False, _reason(e), chars))
 
-    if reserved_ids:
+    if reserved_ids or binding_first:
         # registry order, as without the reserve; a block's length depends on its index only through
         # its "SOURCE n" line and the indices stay 1..n, so the total charged is unchanged
         position = {e.evidence_id: i for i, e in enumerate(registry.evidence)}
@@ -469,12 +471,36 @@ def select_evidence(
         "soft_budget_exceeded_by_required": required_chars > policy.max_total_chars or required_count > policy.max_results,
         **({"required_order": "relevance"} if required_by_relevance else {}),
         **({"binding_reserved": reserved_ids} if reserved_ids else {}),
+        **({"general_evidence_order": ORDER_BINDING_FIRST} if binding_first else {}),
         "tier_counts": {t: sum(1 for s in selected if s.evidence.tier == t) for t in (TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY)},
     }
     return Selection(tuple(selected), tuple(dropped), policy, used, diagnostics)
 
 
 _SENTENCE_END = (".", '."', ".)", "?", "!")
+
+
+def _optional_order(registry: EvidenceRegistry, binding_first: bool) -> list[Evidence]:
+    """The order in which optional evidence competes for the soft budget.
+
+    Default: tier by tier (structural, supporting, discovery), registry order within a tier - so every
+    passage that matched all the question's words, a 0.03-scored guidance chunk included, precedes every
+    OR / trigram / section-coverage passage, and the section-coverage rows the registry puts last stay last.
+
+    binding_first (ContextPolicy.general_evidence_order, a question that names nothing): every eCFR passage
+    before every guidance passage; within the eCFR, structural and supporting in registry order, then the
+    discovery passages by their own score, highest first (ties keep registry order). Discovery scores share
+    one 0-5 band (full_text_or, trigram, section coverage), so this ranks a section that covers the question's
+    weight (D-016's 211.125 at 5.0) ahead of a heading that merely resembles it. Guidance keeps its own order
+    after the eCFR. Nothing is added or removed here: the same candidates, filter and limits."""
+    tiers = (TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY)
+    if not binding_first:
+        return [e for tier in tiers for e in registry.evidence if e.tier == tier]
+    ecfr = [e for e in registry.evidence if e.result.corpus == "ecfr"]
+    other = [e for e in registry.evidence if e.result.corpus != "ecfr"]
+    return ([e for e in ecfr if e.tier == TIER_STRUCTURAL] + [e for e in ecfr if e.tier == TIER_SUPPORTING]
+            + sorted((e for e in ecfr if e.tier == TIER_DISCOVERY), key=lambda e: -e.score)
+            + [e for tier in tiers for e in other if e.tier == tier])
 
 
 def _binding_reserve_applies(registry: EvidenceRegistry) -> bool:
