@@ -1,0 +1,188 @@
+{
+ "id": "COS-82.1205-Q1",
+ "question": "We're a 10-person cosmetics maker. Does 82.1205 restrict where D&C Green No. 5 can go, or set a limit for our shampoo?",
+ "key_citation": "21 CFR 82.1205; 21 CFR 82.1050",
+ "required": {
+  "82.1205": [],
+  "82.1050": []
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR 82.1205"
+  ],
+  "docket": null,
+  "normalized_question": "We're a 10-person cosmetics maker. Does 82.1205 restrict where D&C Green No. 5 can go, or set a limit for our shampoo?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "10-person",
+   "cosmetics",
+   "restrict",
+   "82.1205",
+   "shampoo",
+   "maker",
+   "green",
+   "limit"
+  ],
+  "primary_result_count": 1,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "We're a 10-person cosmetics maker. Does 82.1205 restrict where D&C Green No. 5 can go, or set a limit for our shampoo?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 82.1205",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 146,
+     "metadata": {
+      "ordinal": 0
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're a 10-person cosmetics maker. Does 82.1205 restrict where D&C Green No. 5 can go, or set a limit for our shampoo?",
+   "tsquery": "'re' & '10' <-> 'person' & 'cosmet' & 'maker' & '82.1205' & 'restrict' & 'd' & 'c' & 'green' & '5' & 'go' | 'set' & 'limit' & 'shampoo'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're a 10-person cosmetics maker. Does 82.1205 restrict where D&C Green No. 5 can go, or set a limit for our shampoo?",
+   "tsquery": "'re' & '10' <-> 'person' & 'cosmet' & 'maker' & '82.1205' & 'restrict' & 'd' & 'c' & 'green' & '5' & 'go' | 'set' & 'limit' & 'shampoo'",
+   "limit": 16,
+   "rows": []
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 82.1205",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": true
+  }
+ ],
+ "topk": [
+  "21 CFR 82.1205"
+ ],
+ "selection": {
+  "total_chars": 315,
+  "dropped": [],
+  "diagnostics": {
+   "required_count": 1,
+   "required_chars": 315,
+   "required_dropped": [],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 82.1205",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 146,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "82.1050": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 274,
+     "tail": "requirements of § 82.5 and to the specifications set forth in this subpart for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "General."
+  },
+  "82.1205": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 146,
+     "tail": "tity and specifications to the requirements of § 74.1205(a)(1) and (b)(2) of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "D&C Green No. 5."
+  }
+ },
+ "required_status": {
+  "21 CFR 82.1205": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 82.1050": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

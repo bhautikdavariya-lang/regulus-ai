@@ -1,0 +1,373 @@
+{
+ "id": "COS-710.4-Q1",
+ "question": "What information does Form FD-2511 ask for under § 710.4?",
+ "key_citation": "21 CFR 710.4; 21 CFR 700.3(j), (m)",
+ "required": {
+  "710.4": [],
+  "700.3": [
+   "j",
+   "m"
+  ]
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR 710.4"
+  ],
+  "docket": null,
+  "normalized_question": "What information does Form FD-2511 ask for under § 710.4?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "information",
+   "fd-2511",
+   "710.4",
+   "form",
+   "ask"
+  ],
+  "primary_result_count": 1,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "What information does Form FD-2511 ask for under § 710.4?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 710.4",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 355,
+     "metadata": {
+      "ordinal": 0
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "What information does Form FD-2511 ask for under § 710.4?",
+   "tsquery": "'inform' & 'form' & 'fd' <-> '-2511' & 'ask' & '710.4'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "What information does Form FD-2511 ask for under § 710.4?",
+   "tsquery": "'inform' & 'form' & 'fd' <-> '-2511' & 'ask' & '710.4'",
+   "limit": 16,
+   "rows": []
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 710.4",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": true
+  }
+ ],
+ "topk": [
+  "21 CFR 710.4"
+ ],
+ "selection": {
+  "total_chars": 527,
+  "dropped": [],
+  "diagnostics": {
+   "required_count": 1,
+   "required_chars": 527,
+   "required_dropped": [],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 710.4",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 355,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "700.3": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 27,
+     "tail": "As used in this subchapter:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": null
+    },
+    {
+     "path": "(a)",
+     "ordinal": 1,
+     "chars": 64,
+     "tail": "(a) The term act means the Federal Food, Drug, and Cosmetic Act.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 2,
+     "chars": 234,
+     "tail": "r device or component thereof is also subject to the requirements of Chapter V of the act.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 3,
+     "chars": 127,
+     "tail": " or synthetic substance or substances used solely to impart a taste to a cosmetic product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 4,
+     "chars": 130,
+     "tail": " or synthetic substance or substances used solely to impart an odor to a cosmetic product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 5,
+     "chars": 129,
+     "tail": "e chemical entity or mixture used as a component in the manufacture of a cosmetic product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 6,
+     "chars": 187,
+     "tail": ", or manufacturing process is protected from competition by secrecy, patent, or copyright.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 7,
+     "chars": 371,
+     "tail": "cribed chemically, the substance shall be described in terms of its source and processing.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 8,
+     "chars": 310,
+     "tail": " manufacturer, packer, or distributor by a cosmetic raw material manufacturer or supplier.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 9,
+     "chars": 121,
+     "tail": "ution of a cosmetic product means annual gross sales in excess of $1,000 for that product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 10,
+     "chars": 97,
+     "tail": "ablishment means a place of business where cosmetic products are manufactured or packaged.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 11,
+     "chars": 232,
+     "tail": ", including manipulation, sampling, testing, or control procedures applied to the product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 12,
+     "chars": 354,
+     "tail": "ce of manufacture to the person who makes final delivery or sale to the ultimate consumer.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 13,
+     "chars": 292,
+     "tail": " the principal name under which the cosmetic product manufacturer or packer is registered.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 14,
+     "chars": 173,
+     "tail": "the act shall be applicable to such terms when used in the regulations in this subchapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 15,
+     "chars": 311,
+     "tail": " to gage consumer acceptance through market testing, in excess of $1,000 in cost of goods.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 16,
+     "chars": 56,
+     "tail": "(p) Filed screening procedure means a procedure that is:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(p)(1)",
+     "ordinal": 17,
+     "chars": 83,
+     "tail": "(1) On file with the Food and Drug Administration and subject to public inspection;",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)(2)",
+     "ordinal": 18,
+     "chars": 167,
+     "tail": "t an alleged injury did not occur in conjunction with the use of the cosmetic product; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)(3)",
+     "ordinal": 19,
+     "chars": 316,
+     "tail": "sistently being applied and that the procedure is not disregarding reportable information.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 20,
+     "chars": 651,
+     "tail": "been determined to be unfounded or spurious when evaluated by a filed screening procedure.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Definitions."
+  },
+  "710.4": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 355,
+     "tail": "hould be given separately for each establishment as defined in § 700.3(j) of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Information requested."
+  }
+ },
+ "required_status": {
+  "21 CFR 710.4": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 700.3(j)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 700.3(m)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,103 @@
+{
+ "started_utc": "2026-10-21T07:37:11Z",
+ "memory_before": [
+  2084.703125,
+  1
+ ],
+ "tokenizer_cache": "/Users/sensussoftsoftware/regulus_eval_runs/q17_feasibility/hf_cache",
+ "decoding": {
+  "max_new_tokens": "2048",
+  "temperature": "0.7",
+  "top_p": "0.8",
+  "top_k": "20",
+  "do_sample": "False",
+  "enable_thinking": "False",
+  "repetition_penalty": "1.0",
+  "no_repeat_ngram_size": "0"
+ },
+ "model_load_seconds": 5.46,
+ "generator": {
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "21457c6f51ed54a7c16e988c0844db973815c137",
+  "backend": "mlx",
+  "device": "mlx-gpu",
+  "dtype": "mlx-4bit-g128",
+  "quantization": {
+   "group_size": 128,
+   "bits": 4
+  },
+  "mlx_model_path": "/Users/sensussoftsoftware/regulus_eval_runs/q17_feasibility/hf_cache_mlx/models--Qwen--Qwen3-1.7B-MLX-4bit/snapshots/21457c6f51ed54a7c16e988c0844db973815c137",
+  "runtime_versions": {
+   "mlx": "0.32.3",
+   "mlx-metal": "0.32.3",
+   "mlx-lm": "0.32.0"
+  },
+  "generation": {
+   "max_new_tokens": 2048,
+   "do_sample": false,
+   "temperature": null,
+   "top_p": null,
+   "top_k": null,
+   "enable_thinking": false
+  }
+ },
+ "db_session": {
+  "server_version": "18.6 (Homebrew)",
+  "transaction_read_only": "on",
+  "default_transaction_read_only": "on",
+  "role": "postgres",
+  "database": "regulus"
+ },
+ "write_counters_before": {
+  "cfr_parts": [
+   0,
+   0,
+   0
+  ],
+  "cfr_records": [
+   0,
+   0,
+   0
+  ],
+  "cfr_sections": [
+   0,
+   0,
+   0
+  ]
+ },
+ "context_override": {
+  "production": {
+   "max_results": 8,
+   "max_chars_per_result": 1200,
+   "max_total_chars": 3600
+  },
+  "oracle_run": {
+   "max_results": 24,
+   "max_chars_per_result": 4000,
+   "max_total_chars": 9000
+  }
+ },
+ "write_counters_after": {
+  "cfr_parts": [
+   0,
+   0,
+   0
+  ],
+  "cfr_records": [
+   0,
+   0,
+   0
+  ],
+  "cfr_sections": [
+   0,
+   0,
+   0
+  ]
+ },
+ "write_counters_unchanged": true,
+ "memory_after": [
+  1869.0,
+  2
+ ],
+ "finished_utc": "2026-10-21T07:37:54Z"
+}

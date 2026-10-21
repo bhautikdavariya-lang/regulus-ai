@@ -1,0 +1,1232 @@
+{
+ "question": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+ "answer": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter. [1]",
+ "model_called": true,
+ "no_context": false,
+ "citations": [
+  {
+   "index": 1,
+   "label": "21 CFR 82.1327",
+   "corpus": "ecfr",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1327",
+   "cited_in_answer": true,
+   "tier": "exact",
+   "requirement_ids": [
+    "r1"
+   ],
+   "role": "cited"
+  }
+ ],
+ "sources": [
+  {
+   "index": 1,
+   "citation": "21 CFR 82.1327",
+   "corpus": "ecfr",
+   "heading": "D&C Red No. 27.",
+   "method": "exact_cfr",
+   "score": 100.0,
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1327",
+   "text": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter.",
+   "truncated": false,
+   "tier": "exact",
+   "requirement_ids": [
+    "r1"
+   ],
+   "protected": true,
+   "selection_reason": "required_exact"
+  }
+ ],
+ "dropped_sources": 0,
+ "notes": [],
+ "grounding": null,
+ "retrieval": {
+  "primary_result_count": 1,
+  "fallback_used": false,
+  "fallback_terms": [],
+  "fallback_candidate_count": 0,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "final_result_count": 1,
+  "retrieval_mode": "exact",
+  "plan": {
+   "kind": "single_provision",
+   "requirement_count": 1,
+   "requirement_ids": [
+    "r1"
+   ],
+   "exact_attempts": 1,
+   "resolved": [
+    "r1"
+   ],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   },
+   "method_counts": {
+    "exact_cfr": 1
+   },
+   "candidate_count": 1,
+   "evidence_count": 1,
+   "protected_count": 1,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": false,
+   "requirements": {
+    "r1": {
+     "requirement_id": "r1",
+     "canonical": "21 CFR 82.1327",
+     "exact_attempted": true,
+     "exact_hits": 1,
+     "structural_hits": 0,
+     "discovery_hits": 0,
+     "resolved": true,
+     "fallback_run": false,
+     "fallback_terms": [],
+     "note": null
+    }
+   },
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  },
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  }
+ },
+ "query_type": "EXACT_CFR",
+ "plan": {
+  "question": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+  "normalized_question": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+  "query_type": "EXACT_CFR",
+  "kind": "single_provision",
+  "requirements": [
+   {
+    "id": "r1",
+    "order": 1,
+    "canonical": "21 CFR 82.1327",
+    "title": "21",
+    "part": "82",
+    "section": "82.1327",
+    "paragraph_path": "",
+    "level": "section",
+    "raw": "82.1327",
+    "origin": "explicit",
+    "mention": 0
+   }
+  ],
+  "docket": null,
+  "guidance_requested": false,
+  "scan": {
+   "text": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+   "mentions": [
+    {
+     "index": 0,
+     "form": "bare",
+     "start": 66,
+     "end": 73,
+     "text": "82.1327",
+     "canonical": "21 CFR 82.1327"
+    }
+   ],
+   "ranges": [],
+   "references": [
+    {
+     "canonical": "21 CFR 82.1327",
+     "origin": "explicit",
+     "mention": 0,
+     "reference": {
+      "title": "21",
+      "part": "82",
+      "section": "82.1327",
+      "paragraph_path": "",
+      "level": "section",
+      "canonical": "21 CFR 82.1327",
+      "raw": "82.1327"
+     }
+    }
+   ],
+   "notes": []
+  },
+  "notes": []
+ },
+ "evidence": {
+  "plan_kind": "single_provision",
+  "requirements": [
+   {
+    "id": "r1",
+    "order": 1,
+    "canonical": "21 CFR 82.1327",
+    "title": "21",
+    "part": "82",
+    "section": "82.1327",
+    "paragraph_path": "",
+    "level": "section",
+    "raw": "82.1327",
+    "origin": "explicit",
+    "mention": 0
+   }
+  ],
+  "evidence": [
+   {
+    "evidence_id": "e1",
+    "key": "ecfr:82.1327::1",
+    "corpus": "ecfr",
+    "citation": "21 CFR 82.1327",
+    "tier": "exact",
+    "satisfies": [
+     "r1"
+    ],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {
+     "r1": "exact"
+    },
+    "retrieval_method": "exact_cfr",
+    "methods": [
+     "exact_cfr"
+    ],
+    "score": 100.0,
+    "chars": 143
+   }
+  ],
+  "requirement_state": {
+   "r1": {
+    "requirement_id": "r1",
+    "canonical": "21 CFR 82.1327",
+    "exact_attempted": true,
+    "exact_hits": 1,
+    "structural_hits": 0,
+    "discovery_hits": 0,
+    "resolved": true,
+    "fallback_run": false,
+    "fallback_terms": [],
+    "note": null
+   }
+  },
+  "resolved": [
+   "r1"
+  ],
+  "unresolved": [],
+  "diagnostics": {
+   "kind": "single_provision",
+   "requirement_count": 1,
+   "requirement_ids": [
+    "r1"
+   ],
+   "exact_attempts": 1,
+   "resolved": [
+    "r1"
+   ],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   },
+   "method_counts": {
+    "exact_cfr": 1
+   },
+   "candidate_count": 1,
+   "evidence_count": 1,
+   "protected_count": 1,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": false,
+   "requirements": {
+    "r1": {
+     "requirement_id": "r1",
+     "canonical": "21 CFR 82.1327",
+     "exact_attempted": true,
+     "exact_hits": 1,
+     "structural_hits": 0,
+     "discovery_hits": 0,
+     "resolved": true,
+     "fallback_run": false,
+     "fallback_terms": [],
+     "note": null
+    }
+   },
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  }
+ },
+ "coverage": {
+  "state": "COMPLETE",
+  "complete": true,
+  "missing": [],
+  "missing_labels": [],
+  "total_requirements": 1,
+  "exact_requirements": 1,
+  "structural_only_requirements": 0,
+  "supporting_only_requirements": 0,
+  "discovery_only_requirements": 0,
+  "unresolved_requirements": 0,
+  "requirements": [
+   {
+    "requirement_id": "r1",
+    "canonical": "21 CFR 82.1327",
+    "status": "exact",
+    "satisfied": true,
+    "exact_evidence_ids": [
+     "e1"
+    ],
+    "structural_evidence_ids": [],
+    "supporting_evidence_ids": [],
+    "discovery_evidence_ids": [],
+    "note": null
+   }
+  ],
+  "evidence_complete": true
+ },
+ "coverage_action": "answer",
+ "selection": {
+  "selected": [
+   {
+    "index": 1,
+    "evidence_id": "e1",
+    "key": "ecfr:82.1327::1",
+    "citation": "21 CFR 82.1327",
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "protected": true,
+    "reason": "required_exact",
+    "chars": 143,
+    "block_chars": 311,
+    "truncated": false
+   }
+  ],
+  "dropped": [],
+  "policy": {
+   "max_results": 8,
+   "max_chars_per_result": 1200,
+   "max_total_chars": 3600,
+   "hard_max_results": 24,
+   "hard_max_total_chars": 9000,
+   "required_max_chars_per_result": 4000,
+   "binding_reserve_chars": 1200
+  },
+  "total_chars": 311,
+  "overflow": false,
+  "required_count": 1,
+  "required_chars": 311,
+  "optional_count": 0,
+  "material_selected": [],
+  "required_dropped": [],
+  "required_truncated": [],
+  "optional_dropped": [],
+  "soft_budget_exceeded_by_required": false,
+  "tier_counts": {
+   "exact": 1,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 0
+  },
+  "required_only": true
+ },
+ "answer_shape": {
+  "mode": "focused",
+  "scope": "section",
+  "exhaustive": false,
+  "requested_units": [
+   "21 CFR 82.1327"
+  ],
+  "focus_terms": [
+   "we're",
+   "startup",
+   "making",
+   "nail",
+   "polish",
+   "red",
+   "limit"
+  ],
+  "signals": [
+   "topic_inside_provision"
+  ],
+  "rationale": "21 CFR 82.1327, restricted to: we're, startup, making, nail, polish, red, limit"
+ },
+ "question_analysis": null,
+ "quality_flags": null,
+ "normalization": null,
+ "generation": {
+  "contract": "grounded_v1",
+  "shape": "single",
+  "max_new_tokens": 256,
+  "budget": {
+   "policy": "adaptive",
+   "base_tokens": 96,
+   "per_unit_tokens": 160,
+   "range_bonus_tokens": 64,
+   "general_tokens": 384,
+   "max_units": 10,
+   "min_tokens": 256,
+   "evidence_multiple": 1.4,
+   "evidence_cap_fraction": 0.75,
+   "hard_max_tokens": 2048
+  },
+  "coverage_state": "COMPLETE",
+  "requirements": [
+   {
+    "id": "r1",
+    "canonical": "21 CFR 82.1327"
+   }
+  ],
+  "satisfied_ids": [
+   "r1"
+  ],
+  "missing_labels": [],
+  "sources": [
+   {
+    "index": 1,
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "protected": true,
+    "corpus": "ecfr",
+    "citation": "21 CFR 82.1327",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1327",
+    "chars": 143,
+    "truncated": false,
+    "evidence_id": "e1",
+    "key": "ecfr:82.1327::1",
+    "is_docket": false
+   }
+  ],
+  "notes": [],
+  "answer_shape": {
+   "mode": "focused",
+   "scope": "section",
+   "exhaustive": false,
+   "requested_units": [
+    "21 CFR 82.1327"
+   ],
+   "focus_terms": [
+    "we're",
+    "startup",
+    "making",
+    "nail",
+    "polish",
+    "red",
+    "limit"
+   ],
+   "signals": [
+    "topic_inside_provision"
+   ],
+   "rationale": "21 CFR 82.1327, restricted to: we're, startup, making, nail, polish, red, limit"
+  },
+  "answer_plan": {
+   "shape": {
+    "mode": "focused",
+    "scope": "section",
+    "exhaustive": false,
+    "requested_units": [
+     "21 CFR 82.1327"
+    ],
+    "focus_terms": [
+     "we're",
+     "startup",
+     "making",
+     "nail",
+     "polish",
+     "red",
+     "limit"
+    ],
+    "signals": [
+     "topic_inside_provision"
+    ],
+    "rationale": "21 CFR 82.1327, restricted to: we're, startup, making, nail, polish, red, limit"
+   },
+   "mode": "focused",
+   "lead_in": [],
+   "groups": [
+    {
+     "key": "82.1327",
+     "label": "21 CFR 82.1327",
+     "heading": null,
+     "kind": "requirement",
+     "head": 1,
+     "members": [
+      1
+     ],
+     "items": [],
+     "requirement_ids": [
+      "r1"
+     ]
+    }
+   ],
+   "context": [],
+   "related": [],
+   "sources": [
+    {
+     "index": 1,
+     "citation": "21 CFR 82.1327",
+     "tier": "exact",
+     "role": "requirement",
+     "section": "82.1327",
+     "paragraph": "",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [
+      "§ 74.1327"
+     ],
+     "requirement_ids": [
+      "r1"
+     ]
+    }
+   ],
+   "notes": []
+  },
+  "generated_tokens": 47,
+  "finished": true,
+  "prompt_tokens": 696,
+  "stop_reason": null,
+  "tokens_per_second": 28.0,
+  "decode_tokens_per_second": 75.832,
+  "prompt_chars": 1013
+ },
+ "validation": {
+  "initial": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [
+    "r1"
+   ],
+   "unaddressed": [],
+   "cited": [
+    1
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 47,
+   "max_new_tokens": 256,
+   "answer_class": "answer",
+   "n_sources": 1,
+   "explicit": true,
+   "cited_tiers": {
+    "1": "exact"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "focused",
+    "shape": {
+     "mode": "focused",
+     "scope": "section",
+     "exhaustive": false,
+     "requested_units": [
+      "21 CFR 82.1327"
+     ],
+     "focus_terms": [
+      "we're",
+      "startup",
+      "making",
+      "nail",
+      "polish",
+      "red",
+      "limit"
+     ],
+     "signals": [
+      "topic_inside_provision"
+     ],
+     "rationale": "21 CFR 82.1327, restricted to: we're, startup, making, nail, polish, red, limit"
+    },
+    "groups": 1,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 1,
+    "material_items_covered": 1,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "final": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [
+    "r1"
+   ],
+   "unaddressed": [],
+   "cited": [
+    1
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 47,
+   "max_new_tokens": 256,
+   "answer_class": "answer",
+   "n_sources": 1,
+   "explicit": true,
+   "cited_tiers": {
+    "1": "exact"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "focused",
+    "shape": {
+     "mode": "focused",
+     "scope": "section",
+     "exhaustive": false,
+     "requested_units": [
+      "21 CFR 82.1327"
+     ],
+     "focus_terms": [
+      "we're",
+      "startup",
+      "making",
+      "nail",
+      "polish",
+      "red",
+      "limit"
+     ],
+     "signals": [
+      "topic_inside_provision"
+     ],
+     "rationale": "21 CFR 82.1327, restricted to: we're, startup, making, nail, polish, red, limit"
+    },
+    "groups": 1,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 1,
+    "material_items_covered": 1,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "repair": null
+ },
+ "citation_support": {
+  "markers": [
+   1
+  ],
+  "by_tier": {
+   "exact": 1,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 0,
+   "invalid": 0
+  },
+  "exact_source_cited_for": {
+   "r1": true
+  }
+ },
+ "answerability": {
+  "state": "ANSWERABLE",
+  "reason": "every requested provision has exact evidence and nothing checkable is missing (claim-level support is checked after generation by validation)",
+  "signals": {
+   "question_type": "requirement",
+   "scope": "in_scope",
+   "requested_provisions": [
+    "21 CFR 82.1327"
+   ],
+   "sources": 1
+  },
+  "confidence": "PROVEN",
+  "evidence_ids": [
+   "ecfr:82.1327::1"
+  ],
+  "blocking_conditions": [],
+  "blocked": false,
+  "limitation": null,
+  "acted_on": true
+ },
+ "generation_called": true,
+ "generation_blocked": false,
+ "block_reason": null,
+ "fallback_type": null,
+ "fallback_reason": null,
+ "scope_policy": {
+  "status": "in_scope",
+  "reason": "names a CFR provision or guidance docket",
+  "domain_terms": [
+   "limit",
+   "making",
+   "red",
+   "require",
+   "use"
+  ]
+ },
+ "semantic_fallback": {
+  "invoked": false,
+  "lexical_insufficient": null,
+  "config": {
+   "semantic_top_n": 8,
+   "similarity_floor": 0.75,
+   "merge_policy": "interleave",
+   "general_questions": false
+  },
+  "lexical_mode": "exact",
+  "skipped": null
+ },
+ "reference_lookup": null,
+ "timings_ms": {
+  "plan_ms": 0.26,
+  "retrieval_ms": 206.17,
+  "context_ms": 0.12,
+  "package_ms": 0.14,
+  "answerability_ms": 0.08,
+  "prompt_ms": 0.01,
+  "generation_ms": 1680.1,
+  "model_prepare_ms": 1.35,
+  "model_first_token_ms": 1072.0,
+  "model_detokenize_ms": 0.08,
+  "model_decode_ms": 606.6,
+  "validation_ms": 1.46,
+  "citations_ms": 0.03,
+  "total_ms": 1888.31,
+  "metadata_ms": 0.23
+ },
+ "input_tokens": 696,
+ "output_tokens": 47,
+ "adapter": {
+  "id": "",
+  "name": null,
+  "r": null,
+  "dataset_hash": null
+ },
+ "model": {
+  "id": "qwen3-1.7b",
+  "label": "Qwen3-1.7B (MLX 4-bit)",
+  "backend": "mlx",
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "21457c6f51ed54a7c16e988c0844db973815c137",
+  "dtype": "mlx-4bit-g128"
+ },
+ "snapshot_date": "2026-09-03",
+ "evidence_snapshot": {
+  "schema": "regulus_evidence_snapshot_v1",
+  "fingerprint": "99a82297f8a7b2c04b163a2a8de6945bff78907ad1a84e9d1a13f069d6836050",
+  "capture_point": "generation_package",
+  "model_called": true,
+  "prompt_sha256": "b0e2855d83375234a4f73fc21f21b5764bd92826d752d90378185280b84cd37c",
+  "prompt_verified": true,
+  "question": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+  "requirements": [
+   {
+    "id": "r1",
+    "canonical": "21 CFR 82.1327"
+   }
+  ],
+  "satisfied_ids": [
+   "r1"
+  ],
+  "missing_labels": [],
+  "coverage_explicit": true,
+  "items": [
+   {
+    "order": 0,
+    "index": 1,
+    "evidence_id": "e1",
+    "source_type": "ecfr",
+    "corpus": "ecfr",
+    "citation": "21 CFR 82.1327",
+    "document": null,
+    "part": "82",
+    "section": "82.1327",
+    "paragraph": null,
+    "heading": "D&C Red No. 27.",
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "protected": true,
+    "key": "ecfr:82.1327::1",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1327",
+    "is_docket": false,
+    "truncated": false,
+    "chars": 143,
+    "text": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter.",
+    "citation_fields": {
+     "corpus": "ecfr",
+     "label": "21 CFR 82.1327",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1327",
+     "title": "21",
+     "part": "82",
+     "section": "82.1327",
+     "paragraph": null,
+     "heading": "D&C Red No. 27.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    }
+   }
+  ]
+ },
+ "server_timings_ms": {
+  "engine_setup_ms": 0.04,
+  "pipeline_answer_ms": 1888.55,
+  "response_build_ms": 0.03,
+  "accuracy_ms": 6.13,
+  "request_parse_ms": 0.06,
+  "lock_wait_ms": 0.0
+ },
+ "accuracy": {
+  "status": "evaluated",
+  "accuracy": 30,
+  "reason": "Partially correct: 1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1327) is about red; the answer does not cover: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit",
+  "rubric_id": "regulus_live_evidence_assessment_v2",
+  "rubric": {
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "version": "2.0.0",
+   "frozen": "2026-10-08",
+   "dimensions": [
+    "question_relevance",
+    "substantive_correctness",
+    "evidence_support",
+    "citation_correctness",
+    "fabrication_free",
+    "completeness",
+    "scope_correct"
+   ],
+   "absolute": [
+    "fabrication_free",
+    "substantive_correctness",
+    "question_relevance"
+   ],
+   "deductions": {
+    "fabrication_free:fail": 100,
+    "substantive_correctness:fail": 100,
+    "question_relevance:fail": 100,
+    "substantive_correctness:partial": 45,
+    "citation_correctness:fail": 40,
+    "scope_correct:fail": 40,
+    "evidence_support:fail": 35,
+    "completeness:fail": 25,
+    "completeness:partial": 10,
+    "evidence_support:not_established": 15,
+    "fabrication_free:not_established": 10,
+    "citation_correctness:not_established": 10,
+    "completeness:not_established": 5,
+    "scope_correct:not_established": 5
+   },
+   "formula": "score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided",
+   "is_acceptance_rubric": false
+  },
+  "basis": "Based on the authoritative regulatory evidence retrieved for this answer.",
+  "not_the_benchmark": "An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.",
+  "answer_verdict": {
+   "verdict": "partial",
+   "reason": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1327) is about red; the answer does not cover: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit",
+   "counts": {
+    "supported": 1,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "elements_covered": [],
+   "elements_missing": [
+    "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require",
+    "is there a use limit"
+   ],
+   "elements_unverified": []
+  },
+  "dimensions": [
+   {
+    "dimension": "question_relevance",
+    "label": "Answers the question",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "1 statement(s) correspond to regulation about what the question asks (we'r/startup/making/nail/polish/red/limit)",
+    "evidence": [],
+    "claim": "the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part"
+   },
+   {
+    "dimension": "substantive_correctness",
+    "label": "Substantive correctness",
+    "state": "partial",
+    "glyph": "⚠",
+    "detail": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1327) is about red; the answer does not cover: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit",
+    "evidence": [],
+    "claim": "every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it"
+   },
+   {
+    "dimension": "evidence_support",
+    "label": "Evidence support",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "every one of the 1 statement(s) that answer the question corresponds to authoritative evidence and was compared with it operator by operator",
+    "evidence": [],
+    "claim": "every material claim is a verbatim passage of an authoritative source retrieved for this question"
+   },
+   {
+    "dimension": "citation_correctness",
+    "label": "Citation correctness",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "1 of 1 statement(s) cite a source that supports them and none cites a wrong one",
+    "evidence": [],
+    "claim": "every citation resolves to a supplied source, and to the provision the sentence it is attached to is about"
+   },
+   {
+    "dimension": "fabrication_free",
+    "label": "Unsupported claims",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "every figure, condition and identifier in the answer appears in the supplied evidence (21 CFR 74.1327(a)(1), 21 CFR 74.1327(b))",
+    "evidence": [],
+    "claim": "the answer names no section, clause, condition or figure that the authoritative evidence does not contain"
+   },
+   {
+    "dimension": "completeness",
+    "label": "Completeness",
+    "state": "fail",
+    "glyph": "✗",
+    "detail": "the answer does not address: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit",
+    "evidence": [
+     "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require",
+     "is there a use limit"
+    ],
+    "claim": "every provision the question requested has authoritative text and is addressed in the answer"
+   },
+   {
+    "dimension": "scope_correct",
+    "label": "Scope",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome",
+    "evidence": [],
+    "claim": "the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome"
+   }
+  ],
+  "deductions": [
+   {
+    "dimension": "substantive_correctness",
+    "state": "partial",
+    "points": 45
+   },
+   {
+    "dimension": "completeness",
+    "state": "fail",
+    "points": 25
+   }
+  ],
+  "checked": {
+   "question": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+   "intent": {
+    "kind": "application",
+    "provisions": [
+     "21 CFR 82.1327"
+    ],
+    "sections": [
+     "82.1327"
+    ],
+    "parts": [
+     "82"
+    ],
+    "topic": [
+     "we'r",
+     "startup",
+     "making",
+     "nail",
+     "polish",
+     "red",
+     "limit"
+    ],
+    "domains": [
+     "A"
+    ],
+    "domain_names": [
+     "general"
+    ],
+    "elements": [
+     {
+      "label": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require",
+      "terms": [
+       "we'r",
+       "startup",
+       "making",
+       "nail",
+       "polish",
+       "red"
+      ]
+     },
+     {
+      "label": "is there a use limit",
+      "terms": [
+       "limit"
+      ]
+     }
+    ],
+    "signals": [
+     "kind:application"
+    ],
+    "planner_type": "requirement"
+   },
+   "answer_verdict": {
+    "verdict": "partial",
+    "reason": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1327) is about red; the answer does not cover: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit",
+    "counts": {
+     "supported": 1,
+     "supported_with_citation_defect": 0,
+     "partially_supported": 0,
+     "contradicted": 0,
+     "irrelevant": 0,
+     "unverifiable": 0
+    },
+    "elements_covered": [],
+    "elements_missing": [
+     "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require",
+     "is there a use limit"
+    ],
+    "elements_unverified": []
+   },
+   "sources": 1,
+   "evidence_passages": 1,
+   "evidence_excluded_domain": [],
+   "citations": 1,
+   "sentences": 1,
+   "material_claims": 1,
+   "claims_answering_question": 1,
+   "sentence_origins": {
+    "model_claim": 1,
+    "inserted_quotation": 0,
+    "pipeline_sentence": 0,
+    "citation_label": 0,
+    "question_echo": 0,
+    "too_short": 0,
+    "heading_fragment": 0,
+    "pointer_sentence": 0,
+    "question_restatement": 0,
+    "meta_statement": 0,
+    "uncertain": 0
+   },
+   "claim_status": {
+    "supported": 1,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "aligner": "lexical",
+   "identifiers_named": 2,
+   "identifiers_verified_absent": 0,
+   "identifier_index_used": true,
+   "validation_status": "valid",
+   "validation_error_codes": [],
+   "abstention": {
+    "declined": false,
+    "outcome": null,
+    "reason": "the answer states regulatory requirements rather than declining",
+    "evidence": []
+   },
+   "fallback_type": null,
+   "claims": [
+    {
+     "claim": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter [1].",
+     "split_from": null,
+     "relevance": {
+      "verdict": "partially_relevant",
+      "reason": "the regulation it corresponds to (21 CFR 82.1327) is about red",
+      "content": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter  .",
+      "basis": "evidence",
+      "topic_hits": [
+       "red"
+      ],
+      "evidence": [
+       "21 CFR 82.1327"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 1.0,
+       "evidence_passages": 1,
+       "domain": "consistent",
+       "provision": "consistent",
+       "section": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "21 CFR 82.1327",
+       "source_index": 1,
+       "heading": "D&C Red No. 27.",
+       "text": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter."
+      }
+     ],
+     "support": "supported",
+     "support_basis": "verbatim",
+     "support_reason": "100% of it is verbatim in 21 CFR 82.1327 (SOURCE 1) and no regulatory operator disagrees",
+     "operators": {
+      "strength": "matched",
+      "polarity": "matched",
+      "actor": "undetermined",
+      "quantity": "undetermined",
+      "date": "undetermined"
+     },
+     "operator_trace": {
+      "evidence_citation": "21 CFR 82.1327",
+      "source_type": "binding_regulation",
+      "claim_operators": {
+       "strength": "mandatory",
+       "polarity": "affirm",
+       "duty_holder": null,
+       "conditions": []
+      },
+      "evidence_operators": {
+       "strength": "mandatory",
+       "polarity": "affirm",
+       "duty_holder": null,
+       "conditions": []
+      },
+      "conflicts": [],
+      "relations": [],
+      "support_blocked": null,
+      "verdict": "supported",
+      "content_gate": {
+       "content_gate_verdict": "established",
+       "content_support_reason": "100% verbatim",
+       "support_block_reason": null,
+       "distinguishing_terms": [],
+       "distinguishing_term_sources": {},
+       "core_overlap": 1.0,
+       "term_overlap": 1.0,
+       "raw_term_overlap": 1.0,
+       "verbatim_coverage": 1.0,
+       "operators_agreed": [
+        "strength",
+        "polarity"
+       ],
+       "operator_silent_passage": false,
+       "core_object_match": true,
+       "core_subject_match": true,
+       "core_action_match": "matched",
+       "core_actor_match": "undetermined",
+       "condition_match": true,
+       "material_omissions": [],
+       "candidate_selection": {
+        "passage": "21 CFR 82.1327",
+        "method": "lexical",
+        "similarity": null
+       }
+      }
+     },
+     "citation": "correct",
+     "citation_detail": "cites 21 CFR 82.1327, which supports it",
+     "final": "supported",
+     "claim_id": "s0",
+     "sentence_index": 0,
+     "normalized_text": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter  .",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [
+      "21 CFR 82.1327"
+     ],
+     "selected_evidence": "21 CFR 82.1327",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "own",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "21 CFR 82.1327",
+        "verdict": "supported",
+        "supports": true
+       }
+      ],
+      "rule": "a cited source supports the claim"
+     }
+    }
+   ],
+   "excluded_sentences": [],
+   "claim_candidates": [
+    {
+     "sentence_index": 0,
+     "text": "The color additive D&C Red No. 27 shall conform in identity and specifications to the requirements of § 74.1327 (a)(1) and (b) of this chapter [1].",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    }
+   ],
+   "claim_status_counts": {
+    "claim": 1,
+    "non_claim": 0,
+    "uncertain": 0
+   },
+   "evidence_provenance": "exact"
+  },
+  "elapsed_ms": 5.98,
+  "evidence_provenance": "exact",
+  "evidence": {
+   "provenance": "exact",
+   "fingerprint": "99a82297f8a7b2c04b163a2a8de6945bff78907ad1a84e9d1a13f069d6836050",
+   "items": 1,
+   "guidance_items": 0,
+   "capture_point": "generation_package",
+   "model_called": true,
+   "prompt_sha256": "b0e2855d83375234a4f73fc21f21b5764bd92826d752d90378185280b84cd37c",
+   "prompt_verified": true,
+   "schema": "regulus_evidence_snapshot_v1",
+   "package_matches_snapshot": true
+  },
+  "question_relevance": true,
+  "substantive_correctness": "partial",
+  "evidence_support": true,
+  "citation_correctness": true,
+  "fabrication_free": true,
+  "completeness": false,
+  "scope_correct": true,
+  "question_review": {
+   "question": "We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, and is there a use limit?",
+   "status": "fail",
+   "label": "FAIL",
+   "substantive_correctness": {
+    "state": "partial",
+    "label": "Partial",
+    "detail": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1327) is about red; the answer does not cover: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit"
+   },
+   "citation_correctness": {
+    "state": "pass",
+    "label": "Pass",
+    "detail": "1 of 1 statement(s) cite a source that supports them and none cites a wrong one"
+   },
+   "explanation": "Partially correct: 1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1327) is about red; the answer does not cover: We're a startup making nail polish with D&C Red No. 27. What does 82.1327 require, is there a use limit",
+   "live_check_score": 30,
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "basis": "Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result."
+  }
+ },
+ "wall_seconds": 1.9
+}

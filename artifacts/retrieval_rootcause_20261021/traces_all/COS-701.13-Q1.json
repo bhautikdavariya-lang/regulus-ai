@@ -1,0 +1,980 @@
+{
+ "id": "COS-701.13-Q1",
+ "question": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+ "key_citation": "21 CFR 701.13(a), (f), (i)(2), (j)",
+ "required": {
+  "701.13": [
+   "a",
+   "f",
+   "i",
+   "j"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "shampoo bottle has principal display panel declare net contents type size position",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "12-square-inch",
+   "principal",
+   "contents",
+   "position",
+   "shampoo",
+   "display",
+   "declare",
+   "bottle"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+   "tsquery": "'8' & 'fl' & 'oz' & 'shampoo' & 'bottl' & '12' <-> 'square-inch' <-> 'squar' <-> 'inch' & 'princip' & 'display' & 'panel' & 'must' & 'declar' & 'net' & 'content' & 'type' & 'size' & 'posit'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+   "tsquery": "'8' & 'fl' & 'oz' & 'shampoo' & 'bottl' & '12' <-> 'square-inch' <-> 'squar' <-> 'inch' & 'princip' & 'display' & 'panel' & 'must' & 'declar' & 'net' & 'content' & 'type' & 'size' & 'posit'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "shampoo bottle has principal display panel declare net contents type size position",
+   "tsquery": "'shampoo' & 'bottl' & 'princip' & 'display' & 'panel' & 'declar' & 'net' & 'content' & 'type' & 'size' & 'posit'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 101.7(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.3962,
+     "chars": 275,
+     "metadata": {
+      "ordinal": 16,
+      "section_coverage": 1.3965,
+      "paragraph_coverage": 0.6412
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 501.105(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.3962,
+     "chars": 275,
+     "metadata": {
+      "ordinal": 16,
+      "section_coverage": 1.3965,
+      "paragraph_coverage": 0.6412
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 101.9(b)(7)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.3601,
+     "chars": 583,
+     "metadata": {
+      "ordinal": 33,
+      "section_coverage": 1.4262,
+      "paragraph_coverage": 0.5899
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 1.24(a)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.3189,
+     "chars": 932,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 1.4138,
+      "paragraph_coverage": 0.5776
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "12-square-inch or principal or contents or position or shampoo or display or declare or bottle",
+   "tsquery": "'12' <-> 'square-inch' <-> 'squar' <-> 'inch' | 'princip' | 'content' | 'posit' | 'shampoo' | 'display' | 'declar' | 'bottl'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8354,
+     "chars": 1420,
+     "metadata": {
+      "ts_rank_cd": 1.3365841
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding the Final Rule, Prevention of Salmonella Enteritidis in Shell Eggs During Production, Storage, and Transportation (final, 2015-07-01, Docket FDA-2011-D-0398)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7353,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 1.1765014
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.731,
+     "chars": 1419,
+     "metadata": {
+      "ts_rank_cd": 1.1696137
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Assay Migration Studies for In Vitro Diagnostic Devices: Guidance for Industry and FDA Staff (final, 2013-04-25, Docket FDA-2008-D-0642)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6941,
+     "chars": 1482,
+     "metadata": {
+      "ts_rank_cd": 1.1105605
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6365,
+     "chars": 1411,
+     "metadata": {
+      "ts_rank_cd": 1.0184206
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Alpha-Linolenic Acid, Eicosapentaenoic Acid, and Docosahexaenoic Acid Omega-3 Fatty Acids Nutrient Content Claims (final, 2016-02-23, Docket FDA-2016-N-0585)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6196,
+     "chars": 1427,
+     "metadata": {
+      "ts_rank_cd": 0.99138975
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Media Fills for Validation of Aseptic Preparations for Positron Emission Tomography (final, 2012-04-11, Docket FDA-2011-D-0691)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5979,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 0.9566937
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5971,
+     "chars": 1409,
+     "metadata": {
+      "ts_rank_cd": 0.95543677
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8354,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding the Final Rule, Prevention of Salmonella Enteritidis in Shell Eggs During Production, Storage, and Transportation (final, 2015-07-01, Docket FDA-2011-D-0398)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7353,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.731,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Assay Migration Studies for In Vitro Diagnostic Devices: Guidance for Industry and FDA Staff (final, 2013-04-25, Docket FDA-2008-D-0642)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6941,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6365,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Alpha-Linolenic Acid, Eicosapentaenoic Acid, and Docosahexaenoic Acid Omega-3 Fatty Acids Nutrient Content Claims (final, 2016-02-23, Docket FDA-2016-N-0585)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6196,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Media Fills for Validation of Aseptic Preparations for Positron Emission Tomography (final, 2012-04-11, Docket FDA-2011-D-0691)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5979,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5971,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 101.7(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.3962,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 501.105(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.3962,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 101.9(b)(7)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.3601,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 1.24(a)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.3189,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding the Final Rule, Prevention of Salmonella Enteritidis in Shell Eggs During Production, Storage, and Transportation (final, 2015-07-01, Docket FDA-2011-D-0398)",
+  "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+  "FDA Guidance: Assay Migration Studies for In Vitro Diagnostic Devices: Guidance for Industry and FDA Staff (final, 2013-04-25, Docket FDA-2008-D-0642)",
+  "21 CFR 101.7(i)",
+  "21 CFR 501.105(i)",
+  "21 CFR 101.9(b)(7)(i)",
+  "21 CFR 1.24(a)(2)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Assay Migration Studies for In Vitro Diagnostic Devices: Guidance for Industry and FDA Staff (final, 2013-04-25, Docket FDA-2008-D-0642)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Small Entity Compliance Guide: Alpha-Linolenic Acid, Eicosapentaenoic Acid, and Docosahexaenoic Acid Omega-3 Fatty Acids Nutrient Content Claims (final, 2016-02-23, Docket FDA-2016-N-0585)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Media Fills for Validation of Aseptic Preparations for Positron Emission Tomography (final, 2012-04-11, Docket FDA-2011-D-0691)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 101.9(b)(7)(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.24(a)(2)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.7(i)",
+    "tier": "discovery",
+    "block_chars": 468,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 501.105(i)",
+    "tier": "discovery",
+    "block_chars": 484,
+    "used_before": 468,
+    "reserve_spent_before": 468,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.9(b)(7)(i)",
+    "tier": "discovery",
+    "block_chars": 769,
+    "used_before": 954,
+    "reserve_spent_before": 952,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.24(a)(2)",
+    "tier": "discovery",
+    "block_chars": 1126,
+    "used_before": 954,
+    "reserve_spent_before": 952,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+    "tier": "discovery",
+    "used_before": 954,
+    "block_chars": 1605,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding the Final Rule, Prevention of Salmonella Enteritidis in Shell Eggs During Production, Storage, and Transportation (final, 2015-07-01, Docket FDA-2011-D-0398)",
+    "tier": "discovery",
+    "used_before": 2561,
+    "block_chars": 1037,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1591,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Assay Migration Studies for In Vitro Diagnostic Devices: Guidance for Industry and FDA Staff (final, 2013-04-25, Docket FDA-2008-D-0642)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1527,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1695,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Alpha-Linolenic Acid, Eicosapentaenoic Acid, and Docosahexaenoic Acid Omega-3 Fatty Acids Nutrient Content Claims (final, 2016-02-23, Docket FDA-2016-N-0585)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1625,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Media Fills for Validation of Aseptic Preparations for Positron Emission Tomography (final, 2012-04-11, Docket FDA-2011-D-0691)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1539,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1605,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 101.9(b)(7)(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 769,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.24(a)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1126,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding the Final Rule, Prevention of Salmonella Enteritidis in Shell Eggs During Production, Storage, and Transportation (final, 2015-07-01, Docket FDA-2011-D-0398)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 585,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 101.7(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 275,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 501.105(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 275,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "701.13": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 1169,
+     "tail": " shall by regulation designate the appropriate term or terms to be used for such cosmetic.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 262,
+     "tail": "int, and fluid-ounce subdivisions thereof and shall express the volume at 68 °F. (20 °C.).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 355,
+     "tail": "vidual units or the total weight or measure of the cosmetic as will give such information.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 639,
+     "tail": "all be deemed to permit smaller variations than one which does not include such fractions.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 222,
+     "tail": "al display panels, it shall be duplicated on each principal display panel: Provided, That:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(e)(1)",
+     "ordinal": 5,
+     "chars": 527,
+     "tail": "of contents statement shall be governed by the dimensions of the decorative container; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)(2)",
+     "ordinal": 6,
+     "chars": 281,
+     "tail": "f the net quantity of content statement is governed by the dimensions of the display card.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 7,
+     "chars": 898,
+     "tail": " to the base on which the package rests as it is designed to be displayed: Provided, That:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(f)(1)",
+     "ordinal": 8,
+     "chars": 278,
+     "tail": "the declaration of net quantity of contents meets the other requirements of this part; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)(2)",
+     "ordinal": 9,
+     "chars": 330,
+     "tail": "tents placement requirement of this section applicable to such inner containers is waived.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 10,
+     "chars": 158,
+     "tail": " in the package exclusive of wrappers and other material packed therewith: Provided, That:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(g)(1)",
+     "ordinal": 11,
+     "chars": 315,
+     "tail": "he container are followed. The propellant is included in the net quantity declaration; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)(2)",
+     "ordinal": 12,
+     "chars": 417,
+     "tail": "available in the kit when the instructions for use as shown on the container are followed.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 13,
+     "chars": 452,
+     "tail": "ace. Requirements of conspicuousness and legibility shall include the specifications that:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(h)(1)",
+     "ordinal": 14,
+     "chars": 147,
+     "tail": "t exceed a differential of 3 units to 1 unit (no more than 3 times as high as it is wide).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)(2)",
+     "ordinal": 15,
+     "chars": 211,
+     "tail": ", it is the lower case letter “o” or its equivalent that shall meet the minimum standards.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)(3)",
+     "ordinal": 16,
+     "chars": 101,
+     "tail": "actions are used, each component numeral shall meet one-half the minimum height standards.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 17,
+     "chars": 275,
+     "tail": "ckages of substantially the same size by complying with the following type specifications:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(i)(1)",
+     "ordinal": 18,
+     "chars": 135,
+     "tail": "t on packages the principal display panel of which has an area of 5 square inches or less.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(2)",
+     "ordinal": 19,
+     "chars": 155,
+     "tail": "ipal display panel of which has an area of more than 5 but not more than 25 square inches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(3)",
+     "ordinal": 20,
+     "chars": 163,
+     "tail": "al display panel of which has an area of more than 25 but not more than 100 square inches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(4)",
+     "ordinal": 21,
+     "chars": 225,
+     "tail": ", except not less than one-half inch in height if the area is more than 400 square inches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 22,
+     "chars": 106,
+     "tail": "containing less than 4 pounds or 1 gallon and labeled in terms of weight or fluid measure:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(j)(1)",
+     "ordinal": 23,
+     "chars": 777,
+     "tail": "hall be expressed in common or decimal fractions of the respective ounce and not in drams.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(2)",
+     "ordinal": 24,
+     "chars": 439,
+     "tail": "or example, “Net wt. 6 oz.” or “6 oz. net wt.” and “Net contents 6 fl. oz.” or “6 fl. oz.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 25,
+     "chars": 610,
+     "tail": "decimal fractions of the pint or quart (as set forth in paragraph (m)(5) of this section).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 26,
+     "chars": 14,
+     "tail": "(l) [Reserved]",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 27,
+     "chars": 13,
+     "tail": "(m) Examples:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(m)(1)",
+     "ordinal": 28,
+     "chars": 155,
+     "tail": "et wt. 24 oz. (1 lb. 8 oz.)”, “Net wt. 24 oz. (1 1/2 lb.)”, or “Net wt. 24 oz. (1.5 lb.)”.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(2)",
+     "ordinal": 29,
+     "chars": 98,
+     "tail": "claration of three-fourths pound avoirdupois weight shall be expressed as “Net wt. 12 oz.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(3)",
+     "ordinal": 30,
+     "chars": 100,
+     "tail": "aration of 1 quart liquid measure shall be expressed as “Net contents 32 fl. oz. (1 qt.)”.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(4)",
+     "ordinal": 31,
+     "chars": 248,
+     "tail": "oz.)” but not in terms of quart and ounce such as “Net content 56 fl. oz. (1 qt. 24 oz.)”.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(5)",
+     "ordinal": 32,
+     "chars": 144,
+     "tail": "l be expressed in the alternative as “Net contents 2 gal. 2 qt.” and not as “2 gal. 4 pt.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 33,
+     "chars": 119,
+     "tail": "wing abbreviations and none other may be employed (periods and plural forms are optional):",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 34,
+     "chars": 523,
+     "tail": "e “86 inches (2 yd. 1 ft. 2 inches)”, “90 inches (2 1/2 yd.)”, “30 inches (2.5 ft.)”, etc.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 35,
+     "chars": 552,
+     "tail": " square foot or square yard; for example, “158 sq. inches (1 sq. ft. 14 sq. inches)”, etc.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 36,
+     "chars": 750,
+     "tail": " supplemental net quantity statements and shall be located on the principal display panel.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 37,
+     "chars": 306,
+     "tail": "em of weight or measure may also appear on the principal display panel or on other panels.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)",
+     "ordinal": 38,
+     "chars": 389,
+     "tail": "e recognized. Variations from stated quantity of contents shall not be unreasonably large.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Declaration of net quantity of contents."
+  }
+ },
+ "required_status": {
+  "21 CFR 701.13(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 701.13(f)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 701.13(i)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 701.13(j)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

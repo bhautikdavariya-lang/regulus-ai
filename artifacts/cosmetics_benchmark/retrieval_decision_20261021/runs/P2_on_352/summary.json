@@ -1,0 +1,3130 @@
+{
+ "dataset_rows": 352,
+ "errors": [],
+ "rows_by_kind": {
+  "section_scored": 276,
+  "negative_control": 37,
+  "part_only_key": 12,
+  "no_cfr_key": 19,
+  "docket_targets": 14
+ },
+ "sme_verified_rows": 0,
+ "metrics": {
+  "all": {
+   "section_level": {
+    "n": 276,
+    "key_status": {
+     "developer_keyed_not_sme": 29,
+     "draft_unverified": 247
+    },
+    "any_expected_exists_in_db": {
+     "count": 275,
+     "rate": 0.9964
+    },
+    "any_in_candidates": {
+     "count": 236,
+     "rate": 0.8551
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 106,
+      "rate": 0.3841
+     },
+     "3": {
+      "count": 121,
+      "rate": 0.4384
+     },
+     "5": {
+      "count": 140,
+      "rate": 0.5072
+     },
+     "8": {
+      "count": 156,
+      "rate": 0.5652
+     },
+     "10": {
+      "count": 175,
+      "rate": 0.6341
+     },
+     "20": {
+      "count": 218,
+      "rate": 0.7899
+     }
+    },
+    "mrr_candidates": 0.4532,
+    "any_in_topk": {
+     "count": 213,
+     "rate": 0.7717
+    },
+    "any_in_context": {
+     "count": 201,
+     "rate": 0.7283
+    },
+    "all_in_context": {
+     "count": 152,
+     "rate": 0.5507
+    },
+    "any_reaches_prompt": {
+     "count": 200,
+     "rate": 0.7246
+    },
+    "retrieved_but_not_in_context": {
+     "count": 35,
+     "rate": 0.1268
+    },
+    "model_would_be_called": {
+     "count": 267,
+     "rate": 0.9674
+    },
+    "gate_states": {
+     "ANSWERABLE": 109,
+     "UNKNOWN": 157,
+     "PARTIALLY_ANSWERABLE": 1,
+     "INSUFFICIENT_EVIDENCE": 9
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600.0,
+     "total_chars_mean": 5254.5,
+     "near_full_soft_budget": {
+      "count": 263,
+      "rate": 0.9529
+     },
+     "over_soft_budget": {
+      "count": 107,
+      "rate": 0.3877
+     },
+     "guidance_share_of_context_chars": 0.2657,
+     "sources_median": 5.0
+    }
+   },
+   "provision_level": {
+    "n": 276,
+    "key_status": {
+     "developer_keyed_not_sme": 29,
+     "draft_unverified": 247
+    },
+    "any_expected_exists_in_db": {
+     "count": 275,
+     "rate": 0.9964
+    },
+    "any_in_candidates": {
+     "count": 211,
+     "rate": 0.7645
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 91,
+      "rate": 0.3297
+     },
+     "3": {
+      "count": 110,
+      "rate": 0.3986
+     },
+     "5": {
+      "count": 128,
+      "rate": 0.4638
+     },
+     "8": {
+      "count": 138,
+      "rate": 0.5
+     },
+     "10": {
+      "count": 155,
+      "rate": 0.5616
+     },
+     "20": {
+      "count": 192,
+      "rate": 0.6957
+     }
+    },
+    "mrr_candidates": 0.3997,
+    "any_in_topk": {
+     "count": 190,
+     "rate": 0.6884
+    },
+    "any_in_context": {
+     "count": 177,
+     "rate": 0.6413
+    },
+    "all_in_context": {
+     "count": 127,
+     "rate": 0.4601
+    },
+    "any_reaches_prompt": {
+     "count": 177,
+     "rate": 0.6413
+    },
+    "retrieved_but_not_in_context": {
+     "count": 34,
+     "rate": 0.1232
+    },
+    "model_would_be_called": {
+     "count": 267,
+     "rate": 0.9674
+    },
+    "gate_states": {
+     "ANSWERABLE": 109,
+     "UNKNOWN": 157,
+     "PARTIALLY_ANSWERABLE": 1,
+     "INSUFFICIENT_EVIDENCE": 9
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600.0,
+     "total_chars_mean": 5254.5,
+     "near_full_soft_budget": {
+      "count": 263,
+      "rate": 0.9529
+     },
+     "over_soft_budget": {
+      "count": 107,
+      "rate": 0.3877
+     },
+     "guidance_share_of_context_chars": 0.2657,
+     "sources_median": 5.0
+    }
+   },
+   "targets_section_level": {
+    "targets": 430,
+    "stages": {
+     "corpus_gap": 13,
+     "not_retrieved": 99,
+     "candidate_unattributed": 0,
+     "dropped": 71,
+     "in_context_model_not_called": 1,
+     "in_prompt": 246
+    },
+    "drop_reasons": {
+     "soft_budget": 32,
+     "filtered": 26,
+     "hard_ceiling_chars": 14,
+     "hard_ceiling_count": 1,
+     "consolidated_reserved": 2,
+     "max_results": 1
+    }
+   },
+   "targets_provision_level": {
+    "targets": 430,
+    "stages": {
+     "corpus_gap": 13,
+     "not_retrieved": 135,
+     "candidate_unattributed": 0,
+     "dropped": 69,
+     "in_context_model_not_called": 0,
+     "in_prompt": 213
+    },
+    "drop_reasons": {
+     "soft_budget": 31,
+     "filtered": 25,
+     "hard_ceiling_chars": 14,
+     "hard_ceiling_count": 1,
+     "consolidated_reserved": 2,
+     "max_results": 1
+    }
+   }
+  },
+  "identifier": {
+   "section_level": {
+    "n": 119,
+    "key_status": {
+     "developer_keyed_not_sme": 7,
+     "draft_unverified": 112
+    },
+    "any_expected_exists_in_db": {
+     "count": 118,
+     "rate": 0.9916
+    },
+    "any_in_candidates": {
+     "count": 113,
+     "rate": 0.9496
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 65,
+      "rate": 0.5462
+     },
+     "3": {
+      "count": 72,
+      "rate": 0.605
+     },
+     "5": {
+      "count": 82,
+      "rate": 0.6891
+     },
+     "8": {
+      "count": 91,
+      "rate": 0.7647
+     },
+     "10": {
+      "count": 96,
+      "rate": 0.8067
+     },
+     "20": {
+      "count": 109,
+      "rate": 0.916
+     }
+    },
+    "mrr_candidates": 0.6186,
+    "any_in_topk": {
+     "count": 111,
+     "rate": 0.9328
+    },
+    "any_in_context": {
+     "count": 108,
+     "rate": 0.9076
+    },
+    "all_in_context": {
+     "count": 94,
+     "rate": 0.7899
+    },
+    "any_reaches_prompt": {
+     "count": 107,
+     "rate": 0.8992
+    },
+    "retrieved_but_not_in_context": {
+     "count": 5,
+     "rate": 0.042
+    },
+    "model_would_be_called": {
+     "count": 110,
+     "rate": 0.9244
+    },
+    "gate_states": {
+     "ANSWERABLE": 109,
+     "PARTIALLY_ANSWERABLE": 1,
+     "INSUFFICIENT_EVIDENCE": 9
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 8797,
+     "total_chars_mean": 7491.8,
+     "near_full_soft_budget": {
+      "count": 115,
+      "rate": 0.9664
+     },
+     "over_soft_budget": {
+      "count": 107,
+      "rate": 0.8992
+     },
+     "guidance_share_of_context_chars": 0.0283,
+     "sources_median": 16
+    }
+   },
+   "provision_level": {
+    "n": 119,
+    "key_status": {
+     "developer_keyed_not_sme": 7,
+     "draft_unverified": 112
+    },
+    "any_expected_exists_in_db": {
+     "count": 118,
+     "rate": 0.9916
+    },
+    "any_in_candidates": {
+     "count": 89,
+     "rate": 0.7479
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 51,
+      "rate": 0.4286
+     },
+     "3": {
+      "count": 62,
+      "rate": 0.521
+     },
+     "5": {
+      "count": 71,
+      "rate": 0.5966
+     },
+     "8": {
+      "count": 75,
+      "rate": 0.6303
+     },
+     "10": {
+      "count": 78,
+      "rate": 0.6555
+     },
+     "20": {
+      "count": 85,
+      "rate": 0.7143
+     }
+    },
+    "mrr_candidates": 0.5036,
+    "any_in_topk": {
+     "count": 89,
+     "rate": 0.7479
+    },
+    "any_in_context": {
+     "count": 87,
+     "rate": 0.7311
+    },
+    "all_in_context": {
+     "count": 72,
+     "rate": 0.605
+    },
+    "any_reaches_prompt": {
+     "count": 87,
+     "rate": 0.7311
+    },
+    "retrieved_but_not_in_context": {
+     "count": 2,
+     "rate": 0.0168
+    },
+    "model_would_be_called": {
+     "count": 110,
+     "rate": 0.9244
+    },
+    "gate_states": {
+     "ANSWERABLE": 109,
+     "PARTIALLY_ANSWERABLE": 1,
+     "INSUFFICIENT_EVIDENCE": 9
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 8797,
+     "total_chars_mean": 7491.8,
+     "near_full_soft_budget": {
+      "count": 115,
+      "rate": 0.9664
+     },
+     "over_soft_budget": {
+      "count": 107,
+      "rate": 0.8992
+     },
+     "guidance_share_of_context_chars": 0.0283,
+     "sources_median": 16
+    }
+   },
+   "targets_section_level": {
+    "targets": 185,
+    "stages": {
+     "corpus_gap": 12,
+     "not_retrieved": 7,
+     "candidate_unattributed": 0,
+     "dropped": 20,
+     "in_context_model_not_called": 1,
+     "in_prompt": 145
+    },
+    "drop_reasons": {
+     "hard_ceiling_chars": 14,
+     "hard_ceiling_count": 1,
+     "filtered": 1,
+     "soft_budget": 2,
+     "consolidated_reserved": 2
+    }
+   },
+   "targets_provision_level": {
+    "targets": 185,
+    "stages": {
+     "corpus_gap": 12,
+     "not_retrieved": 39,
+     "candidate_unattributed": 0,
+     "dropped": 17,
+     "in_context_model_not_called": 0,
+     "in_prompt": 117
+    },
+    "drop_reasons": {
+     "hard_ceiling_chars": 14,
+     "hard_ceiling_count": 1,
+     "consolidated_reserved": 2
+    }
+   }
+  },
+  "identifier/retrieval_v2": {
+   "section_level": {
+    "n": 7,
+    "key_status": {
+     "developer_keyed_not_sme": 7
+    },
+    "any_expected_exists_in_db": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "3": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "5": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "8": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "10": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "20": {
+      "count": 7,
+      "rate": 1.0
+     }
+    },
+    "mrr_candidates": 1.0,
+    "any_in_topk": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "any_in_context": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "all_in_context": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "any_reaches_prompt": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "retrieved_but_not_in_context": {
+     "count": 0,
+     "rate": 0.0
+    },
+    "model_would_be_called": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "ANSWERABLE": 7
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 4806,
+     "total_chars_mean": 4939.9,
+     "near_full_soft_budget": {
+      "count": 5,
+      "rate": 0.7143
+     },
+     "over_soft_budget": {
+      "count": 5,
+      "rate": 0.7143
+     },
+     "guidance_share_of_context_chars": 0.0434,
+     "sources_median": 12
+    }
+   },
+   "provision_level": {
+    "n": 7,
+    "key_status": {
+     "developer_keyed_not_sme": 7
+    },
+    "any_expected_exists_in_db": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "3": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "5": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "8": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "10": {
+      "count": 7,
+      "rate": 1.0
+     },
+     "20": {
+      "count": 7,
+      "rate": 1.0
+     }
+    },
+    "mrr_candidates": 1.0,
+    "any_in_topk": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "any_in_context": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "all_in_context": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "any_reaches_prompt": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "retrieved_but_not_in_context": {
+     "count": 0,
+     "rate": 0.0
+    },
+    "model_would_be_called": {
+     "count": 7,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "ANSWERABLE": 7
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 4806,
+     "total_chars_mean": 4939.9,
+     "near_full_soft_budget": {
+      "count": 5,
+      "rate": 0.7143
+     },
+     "over_soft_budget": {
+      "count": 5,
+      "rate": 0.7143
+     },
+     "guidance_share_of_context_chars": 0.0434,
+     "sources_median": 12
+    }
+   },
+   "targets_section_level": {
+    "targets": 7,
+    "stages": {
+     "corpus_gap": 0,
+     "not_retrieved": 0,
+     "candidate_unattributed": 0,
+     "dropped": 0,
+     "in_context_model_not_called": 0,
+     "in_prompt": 7
+    },
+    "drop_reasons": {}
+   },
+   "targets_provision_level": {
+    "targets": 7,
+    "stages": {
+     "corpus_gap": 0,
+     "not_retrieved": 0,
+     "candidate_unattributed": 0,
+     "dropped": 0,
+     "in_context_model_not_called": 0,
+     "in_prompt": 7
+    },
+    "drop_reasons": {}
+   }
+  },
+  "identifier/benchmark_rev02": {
+   "section_level": {
+    "n": 112,
+    "key_status": {
+     "draft_unverified": 112
+    },
+    "any_expected_exists_in_db": {
+     "count": 111,
+     "rate": 0.9911
+    },
+    "any_in_candidates": {
+     "count": 106,
+     "rate": 0.9464
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 58,
+      "rate": 0.5179
+     },
+     "3": {
+      "count": 65,
+      "rate": 0.5804
+     },
+     "5": {
+      "count": 75,
+      "rate": 0.6696
+     },
+     "8": {
+      "count": 84,
+      "rate": 0.75
+     },
+     "10": {
+      "count": 89,
+      "rate": 0.7946
+     },
+     "20": {
+      "count": 102,
+      "rate": 0.9107
+     }
+    },
+    "mrr_candidates": 0.5947,
+    "any_in_topk": {
+     "count": 104,
+     "rate": 0.9286
+    },
+    "any_in_context": {
+     "count": 101,
+     "rate": 0.9018
+    },
+    "all_in_context": {
+     "count": 87,
+     "rate": 0.7768
+    },
+    "any_reaches_prompt": {
+     "count": 100,
+     "rate": 0.8929
+    },
+    "retrieved_but_not_in_context": {
+     "count": 5,
+     "rate": 0.0446
+    },
+    "model_would_be_called": {
+     "count": 103,
+     "rate": 0.9196
+    },
+    "gate_states": {
+     "ANSWERABLE": 102,
+     "PARTIALLY_ANSWERABLE": 1,
+     "INSUFFICIENT_EVIDENCE": 9
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 8819.5,
+     "total_chars_mean": 7651.3,
+     "near_full_soft_budget": {
+      "count": 110,
+      "rate": 0.9821
+     },
+     "over_soft_budget": {
+      "count": 102,
+      "rate": 0.9107
+     },
+     "guidance_share_of_context_chars": 0.0277,
+     "sources_median": 16.0
+    }
+   },
+   "provision_level": {
+    "n": 112,
+    "key_status": {
+     "draft_unverified": 112
+    },
+    "any_expected_exists_in_db": {
+     "count": 111,
+     "rate": 0.9911
+    },
+    "any_in_candidates": {
+     "count": 82,
+     "rate": 0.7321
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 44,
+      "rate": 0.3929
+     },
+     "3": {
+      "count": 55,
+      "rate": 0.4911
+     },
+     "5": {
+      "count": 64,
+      "rate": 0.5714
+     },
+     "8": {
+      "count": 68,
+      "rate": 0.6071
+     },
+     "10": {
+      "count": 71,
+      "rate": 0.6339
+     },
+     "20": {
+      "count": 78,
+      "rate": 0.6964
+     }
+    },
+    "mrr_candidates": 0.4726,
+    "any_in_topk": {
+     "count": 82,
+     "rate": 0.7321
+    },
+    "any_in_context": {
+     "count": 80,
+     "rate": 0.7143
+    },
+    "all_in_context": {
+     "count": 65,
+     "rate": 0.5804
+    },
+    "any_reaches_prompt": {
+     "count": 80,
+     "rate": 0.7143
+    },
+    "retrieved_but_not_in_context": {
+     "count": 2,
+     "rate": 0.0179
+    },
+    "model_would_be_called": {
+     "count": 103,
+     "rate": 0.9196
+    },
+    "gate_states": {
+     "ANSWERABLE": 102,
+     "PARTIALLY_ANSWERABLE": 1,
+     "INSUFFICIENT_EVIDENCE": 9
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 8819.5,
+     "total_chars_mean": 7651.3,
+     "near_full_soft_budget": {
+      "count": 110,
+      "rate": 0.9821
+     },
+     "over_soft_budget": {
+      "count": 102,
+      "rate": 0.9107
+     },
+     "guidance_share_of_context_chars": 0.0277,
+     "sources_median": 16.0
+    }
+   },
+   "targets_section_level": {
+    "targets": 178,
+    "stages": {
+     "corpus_gap": 12,
+     "not_retrieved": 7,
+     "candidate_unattributed": 0,
+     "dropped": 20,
+     "in_context_model_not_called": 1,
+     "in_prompt": 138
+    },
+    "drop_reasons": {
+     "hard_ceiling_chars": 14,
+     "hard_ceiling_count": 1,
+     "filtered": 1,
+     "soft_budget": 2,
+     "consolidated_reserved": 2
+    }
+   },
+   "targets_provision_level": {
+    "targets": 178,
+    "stages": {
+     "corpus_gap": 12,
+     "not_retrieved": 39,
+     "candidate_unattributed": 0,
+     "dropped": 17,
+     "in_context_model_not_called": 0,
+     "in_prompt": 110
+    },
+    "drop_reasons": {
+     "hard_ceiling_chars": 14,
+     "hard_ceiling_count": 1,
+     "consolidated_reserved": 2
+    }
+   }
+  },
+  "plain_language": {
+   "section_level": {
+    "n": 157,
+    "key_status": {
+     "developer_keyed_not_sme": 22,
+     "draft_unverified": 135
+    },
+    "any_expected_exists_in_db": {
+     "count": 157,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 123,
+     "rate": 0.7834
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 41,
+      "rate": 0.2611
+     },
+     "3": {
+      "count": 49,
+      "rate": 0.3121
+     },
+     "5": {
+      "count": 58,
+      "rate": 0.3694
+     },
+     "8": {
+      "count": 65,
+      "rate": 0.414
+     },
+     "10": {
+      "count": 79,
+      "rate": 0.5032
+     },
+     "20": {
+      "count": 109,
+      "rate": 0.6943
+     }
+    },
+    "mrr_candidates": 0.3279,
+    "any_in_topk": {
+     "count": 102,
+     "rate": 0.6497
+    },
+    "any_in_context": {
+     "count": 93,
+     "rate": 0.5924
+    },
+    "all_in_context": {
+     "count": 58,
+     "rate": 0.3694
+    },
+    "any_reaches_prompt": {
+     "count": 93,
+     "rate": 0.5924
+    },
+    "retrieved_but_not_in_context": {
+     "count": 30,
+     "rate": 0.1911
+    },
+    "model_would_be_called": {
+     "count": 157,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "UNKNOWN": 157
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600,
+     "total_chars_mean": 3558.7,
+     "near_full_soft_budget": {
+      "count": 148,
+      "rate": 0.9427
+     },
+     "over_soft_budget": {
+      "count": 0,
+      "rate": 0.0
+     },
+     "guidance_share_of_context_chars": 0.6445,
+     "sources_median": 4
+    }
+   },
+   "provision_level": {
+    "n": 157,
+    "key_status": {
+     "developer_keyed_not_sme": 22,
+     "draft_unverified": 135
+    },
+    "any_expected_exists_in_db": {
+     "count": 157,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 122,
+     "rate": 0.7771
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 40,
+      "rate": 0.2548
+     },
+     "3": {
+      "count": 48,
+      "rate": 0.3057
+     },
+     "5": {
+      "count": 57,
+      "rate": 0.3631
+     },
+     "8": {
+      "count": 63,
+      "rate": 0.4013
+     },
+     "10": {
+      "count": 77,
+      "rate": 0.4904
+     },
+     "20": {
+      "count": 107,
+      "rate": 0.6815
+     }
+    },
+    "mrr_candidates": 0.3209,
+    "any_in_topk": {
+     "count": 101,
+     "rate": 0.6433
+    },
+    "any_in_context": {
+     "count": 90,
+     "rate": 0.5732
+    },
+    "all_in_context": {
+     "count": 55,
+     "rate": 0.3503
+    },
+    "any_reaches_prompt": {
+     "count": 90,
+     "rate": 0.5732
+    },
+    "retrieved_but_not_in_context": {
+     "count": 32,
+     "rate": 0.2038
+    },
+    "model_would_be_called": {
+     "count": 157,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "UNKNOWN": 157
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600,
+     "total_chars_mean": 3558.7,
+     "near_full_soft_budget": {
+      "count": 148,
+      "rate": 0.9427
+     },
+     "over_soft_budget": {
+      "count": 0,
+      "rate": 0.0
+     },
+     "guidance_share_of_context_chars": 0.6445,
+     "sources_median": 4
+    }
+   },
+   "targets_section_level": {
+    "targets": 245,
+    "stages": {
+     "corpus_gap": 1,
+     "not_retrieved": 92,
+     "candidate_unattributed": 0,
+     "dropped": 51,
+     "in_context_model_not_called": 0,
+     "in_prompt": 101
+    },
+    "drop_reasons": {
+     "soft_budget": 30,
+     "filtered": 25,
+     "max_results": 1
+    }
+   },
+   "targets_provision_level": {
+    "targets": 245,
+    "stages": {
+     "corpus_gap": 1,
+     "not_retrieved": 96,
+     "candidate_unattributed": 0,
+     "dropped": 52,
+     "in_context_model_not_called": 0,
+     "in_prompt": 96
+    },
+    "drop_reasons": {
+     "soft_budget": 31,
+     "filtered": 25,
+     "max_results": 1
+    }
+   }
+  },
+  "plain_language/retrieval_v2": {
+   "section_level": {
+    "n": 22,
+    "key_status": {
+     "developer_keyed_not_sme": 22
+    },
+    "any_expected_exists_in_db": {
+     "count": 22,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 16,
+     "rate": 0.7273
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 10,
+      "rate": 0.4545
+     },
+     "3": {
+      "count": 10,
+      "rate": 0.4545
+     },
+     "5": {
+      "count": 12,
+      "rate": 0.5455
+     },
+     "8": {
+      "count": 12,
+      "rate": 0.5455
+     },
+     "10": {
+      "count": 13,
+      "rate": 0.5909
+     },
+     "20": {
+      "count": 14,
+      "rate": 0.6364
+     }
+    },
+    "mrr_candidates": 0.4872,
+    "any_in_topk": {
+     "count": 14,
+     "rate": 0.6364
+    },
+    "any_in_context": {
+     "count": 12,
+     "rate": 0.5455
+    },
+    "all_in_context": {
+     "count": 10,
+     "rate": 0.4545
+    },
+    "any_reaches_prompt": {
+     "count": 12,
+     "rate": 0.5455
+    },
+    "retrieved_but_not_in_context": {
+     "count": 4,
+     "rate": 0.1818
+    },
+    "model_would_be_called": {
+     "count": 22,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "UNKNOWN": 22
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600.0,
+     "total_chars_mean": 3362.1,
+     "near_full_soft_budget": {
+      "count": 16,
+      "rate": 0.7273
+     },
+     "over_soft_budget": {
+      "count": 0,
+      "rate": 0.0
+     },
+     "guidance_share_of_context_chars": 0.5155,
+     "sources_median": 4.5
+    }
+   },
+   "provision_level": {
+    "n": 22,
+    "key_status": {
+     "developer_keyed_not_sme": 22
+    },
+    "any_expected_exists_in_db": {
+     "count": 22,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 16,
+     "rate": 0.7273
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 10,
+      "rate": 0.4545
+     },
+     "3": {
+      "count": 10,
+      "rate": 0.4545
+     },
+     "5": {
+      "count": 12,
+      "rate": 0.5455
+     },
+     "8": {
+      "count": 12,
+      "rate": 0.5455
+     },
+     "10": {
+      "count": 13,
+      "rate": 0.5909
+     },
+     "20": {
+      "count": 14,
+      "rate": 0.6364
+     }
+    },
+    "mrr_candidates": 0.4872,
+    "any_in_topk": {
+     "count": 14,
+     "rate": 0.6364
+    },
+    "any_in_context": {
+     "count": 12,
+     "rate": 0.5455
+    },
+    "all_in_context": {
+     "count": 10,
+     "rate": 0.4545
+    },
+    "any_reaches_prompt": {
+     "count": 12,
+     "rate": 0.5455
+    },
+    "retrieved_but_not_in_context": {
+     "count": 4,
+     "rate": 0.1818
+    },
+    "model_would_be_called": {
+     "count": 22,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "UNKNOWN": 22
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600.0,
+     "total_chars_mean": 3362.1,
+     "near_full_soft_budget": {
+      "count": 16,
+      "rate": 0.7273
+     },
+     "over_soft_budget": {
+      "count": 0,
+      "rate": 0.0
+     },
+     "guidance_share_of_context_chars": 0.5155,
+     "sources_median": 4.5
+    }
+   },
+   "targets_section_level": {
+    "targets": 28,
+    "stages": {
+     "corpus_gap": 0,
+     "not_retrieved": 9,
+     "candidate_unattributed": 0,
+     "dropped": 6,
+     "in_context_model_not_called": 0,
+     "in_prompt": 13
+    },
+    "drop_reasons": {
+     "soft_budget": 4,
+     "filtered": 2
+    }
+   },
+   "targets_provision_level": {
+    "targets": 28,
+    "stages": {
+     "corpus_gap": 0,
+     "not_retrieved": 9,
+     "candidate_unattributed": 0,
+     "dropped": 6,
+     "in_context_model_not_called": 0,
+     "in_prompt": 13
+    },
+    "drop_reasons": {
+     "soft_budget": 4,
+     "filtered": 2
+    }
+   }
+  },
+  "plain_language/benchmark_rev02": {
+   "section_level": {
+    "n": 135,
+    "key_status": {
+     "draft_unverified": 135
+    },
+    "any_expected_exists_in_db": {
+     "count": 135,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 107,
+     "rate": 0.7926
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 31,
+      "rate": 0.2296
+     },
+     "3": {
+      "count": 39,
+      "rate": 0.2889
+     },
+     "5": {
+      "count": 46,
+      "rate": 0.3407
+     },
+     "8": {
+      "count": 53,
+      "rate": 0.3926
+     },
+     "10": {
+      "count": 66,
+      "rate": 0.4889
+     },
+     "20": {
+      "count": 95,
+      "rate": 0.7037
+     }
+    },
+    "mrr_candidates": 0.302,
+    "any_in_topk": {
+     "count": 88,
+     "rate": 0.6519
+    },
+    "any_in_context": {
+     "count": 81,
+     "rate": 0.6
+    },
+    "all_in_context": {
+     "count": 48,
+     "rate": 0.3556
+    },
+    "any_reaches_prompt": {
+     "count": 81,
+     "rate": 0.6
+    },
+    "retrieved_but_not_in_context": {
+     "count": 26,
+     "rate": 0.1926
+    },
+    "model_would_be_called": {
+     "count": 135,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "UNKNOWN": 135
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600,
+     "total_chars_mean": 3590.8,
+     "near_full_soft_budget": {
+      "count": 132,
+      "rate": 0.9778
+     },
+     "over_soft_budget": {
+      "count": 0,
+      "rate": 0.0
+     },
+     "guidance_share_of_context_chars": 0.6642,
+     "sources_median": 4
+    }
+   },
+   "provision_level": {
+    "n": 135,
+    "key_status": {
+     "draft_unverified": 135
+    },
+    "any_expected_exists_in_db": {
+     "count": 135,
+     "rate": 1.0
+    },
+    "any_in_candidates": {
+     "count": 106,
+     "rate": 0.7852
+    },
+    "recall_at_candidate_rank": {
+     "1": {
+      "count": 30,
+      "rate": 0.2222
+     },
+     "3": {
+      "count": 38,
+      "rate": 0.2815
+     },
+     "5": {
+      "count": 45,
+      "rate": 0.3333
+     },
+     "8": {
+      "count": 51,
+      "rate": 0.3778
+     },
+     "10": {
+      "count": 64,
+      "rate": 0.4741
+     },
+     "20": {
+      "count": 93,
+      "rate": 0.6889
+     }
+    },
+    "mrr_candidates": 0.2938,
+    "any_in_topk": {
+     "count": 87,
+     "rate": 0.6444
+    },
+    "any_in_context": {
+     "count": 78,
+     "rate": 0.5778
+    },
+    "all_in_context": {
+     "count": 45,
+     "rate": 0.3333
+    },
+    "any_reaches_prompt": {
+     "count": 78,
+     "rate": 0.5778
+    },
+    "retrieved_but_not_in_context": {
+     "count": 28,
+     "rate": 0.2074
+    },
+    "model_would_be_called": {
+     "count": 135,
+     "rate": 1.0
+    },
+    "gate_states": {
+     "UNKNOWN": 135
+    },
+    "context_budget": {
+     "soft_budget_chars": 3600,
+     "total_chars_median": 3600,
+     "total_chars_mean": 3590.8,
+     "near_full_soft_budget": {
+      "count": 132,
+      "rate": 0.9778
+     },
+     "over_soft_budget": {
+      "count": 0,
+      "rate": 0.0
+     },
+     "guidance_share_of_context_chars": 0.6642,
+     "sources_median": 4
+    }
+   },
+   "targets_section_level": {
+    "targets": 217,
+    "stages": {
+     "corpus_gap": 1,
+     "not_retrieved": 83,
+     "candidate_unattributed": 0,
+     "dropped": 45,
+     "in_context_model_not_called": 0,
+     "in_prompt": 88
+    },
+    "drop_reasons": {
+     "soft_budget": 26,
+     "filtered": 23,
+     "max_results": 1
+    }
+   },
+   "targets_provision_level": {
+    "targets": 217,
+    "stages": {
+     "corpus_gap": 1,
+     "not_retrieved": 87,
+     "candidate_unattributed": 0,
+     "dropped": 46,
+     "in_context_model_not_called": 0,
+     "in_prompt": 83
+    },
+    "drop_reasons": {
+     "soft_budget": 27,
+     "filtered": 23,
+     "max_results": 1
+    }
+   }
+  }
+ },
+ "negative_controls": {
+  "rows": [
+   {
+    "id": "retrieval-008",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.30(b)(1)",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-035",
+    "source": "retrieval_v2",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "retrieval-040",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 314.999",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-041",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.999",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-042",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 11.75",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-043",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 1400",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-044",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 999",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-045",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "no_evidence"
+   },
+   {
+    "id": "retrieval-046",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "retrieval-047",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "retrieval-048",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.50",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-049",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 201.327(z)",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 1,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "retrieval-050",
+    "source": "retrieval_v2",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "potentially_related",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "value_not_established"
+   },
+   {
+    "id": "retrieval-051",
+    "source": "retrieval_v2",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 820",
+      "exists": true,
+      "live_rows": 66
+     }
+    ],
+    "exact_cfr_in_topk": 9,
+    "exact_cfr_in_topk_excluding_parent_rows": 9,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "retrieval-052",
+    "source": "retrieval_v2",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-001",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 111.900",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-002",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 117.999",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-003",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 820",
+      "exists": true,
+      "live_rows": 66
+     }
+    ],
+    "exact_cfr_in_topk": 9,
+    "exact_cfr_in_topk_excluding_parent_rows": 9,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-004",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 211",
+      "exists": true,
+      "live_rows": 290
+     }
+    ],
+    "exact_cfr_in_topk": 64,
+    "exact_cfr_in_topk_excluding_parent_rows": 64,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-005",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.20",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-006",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-007",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 111",
+      "exists": true,
+      "live_rows": 594
+     }
+    ],
+    "exact_cfr_in_topk": 88,
+    "exact_cfr_in_topk_excluding_parent_rows": 88,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-008",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-009",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "potentially_related",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "value_not_established"
+   },
+   {
+    "id": "NC-010",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 11",
+      "exists": true,
+      "live_rows": 70
+     }
+    ],
+    "exact_cfr_in_topk": 14,
+    "exact_cfr_in_topk_excluding_parent_rows": 14,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-011",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.30",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-012",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-013",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 1250",
+      "exists": true,
+      "live_rows": 141
+     }
+    ],
+    "exact_cfr_in_topk": 48,
+    "exact_cfr_in_topk_excluding_parent_rows": 48,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-014",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 101.9(k)(5)",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 1,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-015",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-016",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.30(j)",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-017",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR 820.15",
+      "exists": false,
+      "live_rows": 0
+     }
+    ],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "INSUFFICIENT_EVIDENCE",
+    "gate_blocked": true,
+    "scope": "in_scope",
+    "model_would_be_called": false,
+    "pre_generation_fallback": "provision_not_found"
+   },
+   {
+    "id": "NC-018",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 830",
+      "exists": true,
+      "live_rows": 156
+     }
+    ],
+    "exact_cfr_in_topk": 20,
+    "exact_cfr_in_topk_excluding_parent_rows": 20,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-019",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-020",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 4",
+      "exists": true,
+      "live_rows": 120
+     }
+    ],
+    "exact_cfr_in_topk": 14,
+    "exact_cfr_in_topk_excluding_parent_rows": 14,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-021",
+    "source": "benchmark_rev02",
+    "question_class": "identifier",
+    "named_identifiers": [
+     {
+      "target": "21 CFR part 820",
+      "exists": true,
+      "live_rows": 66
+     }
+    ],
+    "exact_cfr_in_topk": 15,
+    "exact_cfr_in_topk_excluding_parent_rows": 15,
+    "retrieval_eval_rule_passed": false,
+    "rule_passed_excluding_parent_rows": false,
+    "gate_state": "ANSWERABLE",
+    "gate_blocked": false,
+    "scope": "in_scope",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   },
+   {
+    "id": "NC-022",
+    "source": "benchmark_rev02",
+    "question_class": "plain_language",
+    "named_identifiers": [],
+    "exact_cfr_in_topk": 0,
+    "exact_cfr_in_topk_excluding_parent_rows": 0,
+    "retrieval_eval_rule_passed": true,
+    "rule_passed_excluding_parent_rows": true,
+    "gate_state": "UNKNOWN",
+    "gate_blocked": false,
+    "scope": "potentially_related",
+    "model_would_be_called": true,
+    "pre_generation_fallback": null
+   }
+  ],
+  "retrieval_v2_rule_passed": 13,
+  "retrieval_v2_rule_passed_excluding_parent_rows": 14,
+  "retrieval_v2_total": 15,
+  "benchmark_gate_blocked": 8,
+  "benchmark_model_would_be_called": 14,
+  "benchmark_total": 22
+ },
+ "part_only_rows": [
+  {
+   "id": "F-022",
+   "expected": [
+    "21 CFR part 117",
+    "21 CFR part 1"
+   ],
+   "any_in_context": true
+  },
+  {
+   "id": "L-015",
+   "expected": [
+    "21 CFR part 102",
+    "21 CFR part 101"
+   ],
+   "any_in_context": false
+  },
+  {
+   "id": "M-030",
+   "expected": [
+    "21 CFR part 820"
+   ],
+   "any_in_context": true
+  },
+  {
+   "id": "P-007",
+   "expected": [
+    "21 CFR part 860"
+   ],
+   "any_in_context": false
+  },
+  {
+   "id": "T-005",
+   "expected": [
+    "21 CFR part 1107"
+   ],
+   "any_in_context": true
+  },
+  {
+   "id": "T-006",
+   "expected": [
+    "21 CFR part 1114"
+   ],
+   "any_in_context": true
+  },
+  {
+   "id": "T-007",
+   "expected": [
+    "21 CFR part 1140"
+   ],
+   "any_in_context": false
+  },
+  {
+   "id": "T-008",
+   "expected": [
+    "21 CFR part 1100"
+   ],
+   "any_in_context": true
+  },
+  {
+   "id": "Z-004",
+   "expected": [
+    "21 CFR part 1003",
+    "21 CFR part 1004"
+   ],
+   "any_in_context": true
+  },
+  {
+   "id": "SD-010",
+   "expected": [
+    "21 CFR part 4"
+   ],
+   "any_in_context": false
+  },
+  {
+   "id": "SD-011",
+   "expected": [
+    "21 CFR part 820"
+   ],
+   "any_in_context": false
+  },
+  {
+   "id": "SD-013",
+   "expected": [
+    "21 CFR part 820"
+   ],
+   "any_in_context": false
+  }
+ ],
+ "docket_targets": [
+  {
+   "id": "retrieval-017",
+   "target": "docket:FDA-2003-D-0143",
+   "exists_in_db": true,
+   "candidate_rank": 15,
+   "stage": "dropped"
+  },
+  {
+   "id": "retrieval-018",
+   "target": "docket:FDA-2008-D-0559",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-019",
+   "target": "docket:FDA-2011-D-0469",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-019",
+   "target": "docket:FDA-2015-D-4599",
+   "exists_in_db": true,
+   "candidate_rank": null,
+   "stage": "not_retrieved"
+  },
+  {
+   "id": "retrieval-020",
+   "target": "docket:FDA-2021-D-1158",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-021",
+   "target": "docket:FDA-2016-D-2565",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-022",
+   "target": "docket:FDA-2018-D-2074",
+   "exists_in_db": true,
+   "candidate_rank": 9,
+   "stage": "dropped"
+  },
+  {
+   "id": "retrieval-023",
+   "target": "docket:FDA-2018-D-3984",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-030",
+   "target": "docket:FDA-2022-D-0795",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-031",
+   "target": "docket:FDA-2007-D-0372",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-034",
+   "target": "docket:FDA-2004-D-0300",
+   "exists_in_db": true,
+   "candidate_rank": null,
+   "stage": "not_retrieved"
+  },
+  {
+   "id": "retrieval-034",
+   "target": "docket:FDA-2017-D-6821",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-038",
+   "target": "docket:FDA-2007-D-0372",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  },
+  {
+   "id": "retrieval-039",
+   "target": "docket:FDA-2013-D-0114",
+   "exists_in_db": true,
+   "candidate_rank": 1,
+   "stage": "in_prompt"
+  }
+ ],
+ "audit_failure_cases": [
+  {
+   "id": "retrieval-015",
+   "question_class": "plain_language",
+   "key_status": "developer_keyed_not_sme",
+   "targets": [
+    {
+     "target": "21 CFR 803.50",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": 22,
+     "topk_rank": null,
+     "stage": "dropped",
+     "drop_reasons": [
+      "soft_budget"
+     ],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2729,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "retrieval-027",
+   "question_class": "plain_language",
+   "key_status": "developer_keyed_not_sme",
+   "targets": [
+    {
+     "target": "21 CFR 820.10(c)",
+     "level": "section",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    },
+    {
+     "target": "21 CFR 820.10(c)",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2587,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "retrieval-032",
+   "question_class": "plain_language",
+   "key_status": "developer_keyed_not_sme",
+   "targets": [
+    {
+     "target": "21 CFR 314.50",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    },
+    {
+     "target": "21 CFR 312.20",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2612,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "retrieval-037",
+   "question_class": "plain_language",
+   "key_status": "developer_keyed_not_sme",
+   "targets": [
+    {
+     "target": "21 CFR 312.20",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2448,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "S-007",
+   "question_class": "plain_language",
+   "key_status": "draft_unverified",
+   "targets": [
+    {
+     "target": "21 CFR 111.16",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [
+    {
+     "target": "21 CFR 111.15",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": 25,
+     "topk_rank": 5,
+     "stage": "dropped",
+     "drop_reasons": [
+      "soft_budget"
+     ],
+     "prompt_indices": []
+    }
+   ],
+   "alternative_key_status": "audit_reading_unverified",
+   "context_chars": 3600,
+   "guidance_chars": 2295,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "D-016",
+   "question_class": "plain_language",
+   "key_status": "draft_unverified",
+   "targets": [
+    {
+     "target": "21 CFR 211.122",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    },
+    {
+     "target": "21 CFR 211.125",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": 25,
+     "topk_rank": 7,
+     "stage": "dropped",
+     "drop_reasons": [
+      "soft_budget"
+     ],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2077,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "P-009",
+   "question_class": "plain_language",
+   "key_status": "draft_unverified",
+   "targets": [
+    {
+     "target": "21 CFR 812.2",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    },
+    {
+     "target": "21 CFR 812.3(m)",
+     "level": "section",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    },
+    {
+     "target": "21 CFR 812.3(m)",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2489,
+   "gate": "UNKNOWN"
+  },
+  {
+   "id": "K-005",
+   "question_class": "plain_language",
+   "key_status": "draft_unverified",
+   "targets": [
+    {
+     "target": "21 CFR 56.107",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": null,
+     "topk_rank": null,
+     "stage": "not_retrieved",
+     "drop_reasons": [],
+     "prompt_indices": []
+    },
+    {
+     "target": "21 CFR 56.111",
+     "level": "provision",
+     "exists_in_db": true,
+     "candidate_rank": 4,
+     "topk_rank": 4,
+     "stage": "dropped",
+     "drop_reasons": [
+      "filtered"
+     ],
+     "prompt_indices": []
+    }
+   ],
+   "alternative": [],
+   "alternative_key_status": null,
+   "context_chars": 3600,
+   "guidance_chars": 2568,
+   "gate": "UNKNOWN"
+  }
+ ],
+ "unresolved_gold_keys": {
+  "audit_alternatives": [
+   {
+    "id": "S-007",
+    "key": [
+     "21 CFR 111.16"
+    ],
+    "alternative": [
+     "21 CFR 111.15"
+    ]
+   }
+  ],
+  "key_target_not_in_snapshot": [
+   {
+    "id": "M-031",
+    "target": "21 CFR 820.30"
+   },
+   {
+    "id": "M-032",
+    "target": "21 CFR 820.100"
+   },
+   {
+    "id": "M-033",
+    "target": "21 CFR 820.198"
+   },
+   {
+    "id": "M-034",
+    "target": "21 CFR 820.181"
+   },
+   {
+    "id": "M-034",
+    "target": "21 CFR 820.184"
+   },
+   {
+    "id": "M-034",
+    "target": "21 CFR 820.30(j)"
+   },
+   {
+    "id": "M-035",
+    "target": "21 CFR 820.20"
+   },
+   {
+    "id": "M-036",
+    "target": "21 CFR 820.22"
+   },
+   {
+    "id": "M-037",
+    "target": "21 CFR 820.50"
+   },
+   {
+    "id": "M-038",
+    "target": "21 CFR 820.75"
+   },
+   {
+    "id": "M-039",
+    "target": "21 CFR 820.72"
+   },
+   {
+    "id": "M-040",
+    "target": "21 CFR 820.250"
+   },
+   {
+    "id": "X-004",
+    "target": "21 CFR 4.110"
+   }
+  ],
+  "part_only_key": [
+   {
+    "id": "F-022",
+    "key": [
+     "21 CFR part 117",
+     "21 CFR part 1"
+    ]
+   },
+   {
+    "id": "L-015",
+    "key": [
+     "21 CFR part 102",
+     "21 CFR part 101"
+    ]
+   },
+   {
+    "id": "M-030",
+    "key": [
+     "21 CFR part 820"
+    ]
+   },
+   {
+    "id": "P-007",
+    "key": [
+     "21 CFR part 860"
+    ]
+   },
+   {
+    "id": "T-005",
+    "key": [
+     "21 CFR part 1107"
+    ]
+   },
+   {
+    "id": "T-006",
+    "key": [
+     "21 CFR part 1114"
+    ]
+   },
+   {
+    "id": "T-007",
+    "key": [
+     "21 CFR part 1140"
+    ]
+   },
+   {
+    "id": "T-008",
+    "key": [
+     "21 CFR part 1100"
+    ]
+   },
+   {
+    "id": "Z-004",
+    "key": [
+     "21 CFR part 1003",
+     "21 CFR part 1004"
+    ]
+   },
+   {
+    "id": "SD-010",
+    "key": [
+     "21 CFR part 4"
+    ]
+   },
+   {
+    "id": "SD-011",
+    "key": [
+     "21 CFR part 820"
+    ]
+   },
+   {
+    "id": "SD-013",
+    "key": [
+     "21 CFR part 820"
+    ]
+   }
+  ],
+  "no_cfr_key": [
+   {
+    "id": "T-011",
+    "category": "Direct Lookup"
+   },
+   {
+    "id": "T-012",
+    "category": "Direct Lookup"
+   },
+   {
+    "id": "C-001",
+    "category": "Direct Lookup"
+   },
+   {
+    "id": "C-005",
+    "category": "Direct Lookup"
+   },
+   {
+    "id": "PB-001",
+    "category": "Abstention"
+   },
+   {
+    "id": "PB-003",
+    "category": "Application"
+   },
+   {
+    "id": "PB-004",
+    "category": "Distinction"
+   },
+   {
+    "id": "PB-007",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "PB-008",
+    "category": "Temporal/Version"
+   },
+   {
+    "id": "SD-001",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-002",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-003",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-004",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-005",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-006",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-007",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-008",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-009",
+    "category": "Scope/Boundary"
+   },
+   {
+    "id": "SD-012",
+    "category": "Scope/Boundary"
+   }
+  ],
+  "named_identifier_not_in_key": [
+   {
+    "id": "retrieval-017",
+    "named": [
+     "21 CFR part 11"
+    ],
+    "key": [
+     "docket:FDA-2003-D-0143"
+    ]
+   },
+   {
+    "id": "SD-010",
+    "named": [
+     "21 CFR part 211",
+     "21 CFR part 820"
+    ],
+    "key": [
+     "21 CFR part 4"
+    ]
+   }
+  ],
+  "zero_heading_overlap_and_never_retrieved": [
+   {
+    "id": "retrieval-027",
+    "key": [
+     "21 CFR 820.10(c)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "retrieval-031",
+    "key": [
+     "21 CFR 111.1",
+     "21 CFR 201.66"
+    ],
+    "headings": [
+     "Who is subject to this part?",
+     "Format and content requirements for over-the-counter (OTC) drug product labeling."
+    ]
+   },
+   {
+    "id": "retrieval-032",
+    "key": [
+     "21 CFR 314.50",
+     "21 CFR 312.20"
+    ],
+    "headings": [
+     "Content and format of an NDA.",
+     "Requirement for an IND."
+    ]
+   },
+   {
+    "id": "retrieval-034",
+    "key": [
+     "21 CFR 211.1"
+    ],
+    "headings": [
+     "Scope."
+    ]
+   },
+   {
+    "id": "S-007",
+    "key": [
+     "21 CFR 111.16"
+    ],
+    "headings": [
+     "What are the requirements under this subpart C for written procedures?"
+    ]
+   },
+   {
+    "id": "L-010",
+    "key": [
+     "21 CFR 101.4"
+    ],
+    "headings": [
+     "Food; designation of ingredients."
+    ]
+   },
+   {
+    "id": "D-005",
+    "key": [
+     "21 CFR 211.42(c)(10)"
+    ],
+    "headings": [
+     "Design and construction features."
+    ]
+   },
+   {
+    "id": "M-003",
+    "key": [
+     "21 CFR 820.1(a)(3)"
+    ],
+    "headings": [
+     "Scope."
+    ]
+   },
+   {
+    "id": "M-004",
+    "key": [
+     "21 CFR 820.1(a)(4)"
+    ],
+    "headings": [
+     "Scope."
+    ]
+   },
+   {
+    "id": "M-006",
+    "key": [
+     "21 CFR 820.1(c)"
+    ],
+    "headings": [
+     "Scope."
+    ]
+   },
+   {
+    "id": "M-007",
+    "key": [
+     "21 CFR 820.1(d)",
+     "21 CFR 10.30"
+    ],
+    "headings": [
+     "Scope.",
+     "Citizen petition."
+    ]
+   },
+   {
+    "id": "M-009",
+    "key": [
+     "21 CFR 820.3(b)"
+    ],
+    "headings": [
+     "Definitions."
+    ]
+   },
+   {
+    "id": "M-011",
+    "key": [
+     "21 CFR 820.7(b)"
+    ],
+    "headings": [
+     "Incorporation by reference."
+    ]
+   },
+   {
+    "id": "M-013",
+    "key": [
+     "21 CFR 820.10(b)(1)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "M-014",
+    "key": [
+     "21 CFR 820.10(b)(2)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "M-015",
+    "key": [
+     "21 CFR 820.10(b)(3)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "M-016",
+    "key": [
+     "21 CFR 820.10(b)(4)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "M-017",
+    "key": [
+     "21 CFR 820.10(c)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "M-018",
+    "key": [
+     "21 CFR 820.10(d)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   },
+   {
+    "id": "M-041",
+    "key": [
+     "21 CFR 820.10(a)",
+     "21 CFR 820.1(c)"
+    ],
+    "headings": [
+     "Requirements for a quality management system.",
+     "Scope."
+    ]
+   },
+   {
+    "id": "M-042",
+    "key": [
+     "21 CFR 820.10(b)(1)",
+     "21 CFR 820.35(c)"
+    ],
+    "headings": [
+     "Requirements for a quality management system.",
+     "Control of records."
+    ]
+   },
+   {
+    "id": "E-004",
+    "key": [
+     "21 CFR 11.10(e)"
+    ],
+    "headings": [
+     "Controls for closed systems."
+    ]
+   },
+   {
+    "id": "P-002",
+    "key": [
+     "21 CFR 807.100"
+    ],
+    "headings": [
+     "FDA action on a premarket notification."
+    ]
+   },
+   {
+    "id": "P-003",
+    "key": [
+     "21 CFR 807.81(a)(3)"
+    ],
+    "headings": [
+     "When a premarket notification submission is required."
+    ]
+   },
+   {
+    "id": "P-009",
+    "key": [
+     "21 CFR 812.2",
+     "21 CFR 812.3(m)"
+    ],
+    "headings": [
+     "Applicability.",
+     "Definitions."
+    ]
+   },
+   {
+    "id": "T-001",
+    "key": [
+     "21 CFR 1114.7"
+    ],
+    "headings": [
+     "Required content and format."
+    ]
+   },
+   {
+    "id": "T-002",
+    "key": [
+     "21 CFR 1114.7(l)"
+    ],
+    "headings": [
+     "Required content and format."
+    ]
+   },
+   {
+    "id": "K-003",
+    "key": [
+     "21 CFR 50.50",
+     "21 CFR 50.56"
+    ],
+    "headings": [
+     "IRB duties.",
+     "Wards."
+    ]
+   },
+   {
+    "id": "Y-008",
+    "key": [
+     "21 CFR 120.24"
+    ],
+    "headings": [
+     "Process controls."
+    ]
+   },
+   {
+    "id": "PB-002",
+    "key": [
+     "21 CFR 1114.7"
+    ],
+    "headings": [
+     "Required content and format."
+    ]
+   },
+   {
+    "id": "PB-005",
+    "key": [
+     "21 CFR 820.10(a)"
+    ],
+    "headings": [
+     "Requirements for a quality management system."
+    ]
+   }
+  ],
+  "negative_control_key_mentions_sections": []
+ },
+ "canonical_sha256": "d893dbad8c55ab49f9fd61a7094631d0be74ba296701841a4cf467b11dd9f141",
+ "generation_requests_answered_by_stub": 323
+}

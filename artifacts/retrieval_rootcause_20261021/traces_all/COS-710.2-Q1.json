@@ -1,0 +1,165 @@
+{
+ "id": "COS-710.2-Q1",
+ "question": "We started packaging cosmetics last month. What deadline does § 710.2 give, and is it binding?",
+ "key_citation": "21 CFR 710.2; 21 U.S.C. 364c(a)(1)",
+ "required": {
+  "710.2": []
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR 710.2"
+  ],
+  "docket": null,
+  "normalized_question": "We started packaging cosmetics last month. What deadline does § 710.2 give, and is it binding?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "packaging",
+   "cosmetics",
+   "deadline",
+   "started",
+   "binding",
+   "month",
+   "710.2",
+   "last"
+  ],
+  "primary_result_count": 1,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "We started packaging cosmetics last month. What deadline does § 710.2 give, and is it binding?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 710.2",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 183,
+     "metadata": {
+      "ordinal": 0
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "We started packaging cosmetics last month. What deadline does § 710.2 give, and is it binding?",
+   "tsquery": "'start' & 'packag' & 'cosmet' & 'last' & 'month' & 'deadlin' & '710.2' & 'give' & 'bind'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We started packaging cosmetics last month. What deadline does § 710.2 give, and is it binding?",
+   "tsquery": "'start' & 'packag' & 'cosmet' & 'last' & 'month' & 'deadlin' & '710.2' & 'give' & 'bind'",
+   "limit": 16,
+   "rows": []
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 710.2",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": true
+  }
+ ],
+ "topk": [
+  "21 CFR 710.2"
+ ],
+ "selection": {
+  "total_chars": 355,
+  "dropped": [],
+  "diagnostics": {
+   "required_count": 1,
+   "required_chars": 355,
+   "required_dropped": [],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 710.2",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 183,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "710.2": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 183,
+     "tail": "metic product should register his establishment within 30 days after the operation begins.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Time for registration."
+  }
+ },
+ "required_status": {
+  "21 CFR 710.2": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

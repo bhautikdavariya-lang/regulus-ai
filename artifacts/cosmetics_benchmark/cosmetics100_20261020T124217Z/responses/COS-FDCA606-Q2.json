@@ -1,0 +1,2173 @@
+{
+ "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+ "answer": "The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"small business\" definition. Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of, along with any \"affiliates\" and \"subsidiaries\" determined from the perspective of the relevant facility. This means that the size of a business is determined based on the size of the legal entity and its affiliates, not just the number of employees. For example, a facility that is part of a subsidiary will have its employees counted, while a facility that is an affiliate will have its employees counted as well. The rules also specify that employees of a company that is not a subsidiary or affiliate are not counted. The sources that support this are [1][2].",
+ "model_called": true,
+ "no_context": false,
+ "citations": [
+  {
+   "index": 1,
+   "label": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "corpus": "fda_guidance",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+   "cited_in_answer": true,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "role": "cited"
+  }
+ ],
+ "sources": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "corpus": "fda_guidance",
+   "heading": "Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507",
+   "method": "full_text_or",
+   "score": 1.495,
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+   "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary). An example is shown below in Figure 1. Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees of Companies B, C, and D, which are subsidiaries of the legal entity that Facility X is part of (Company A). • For Facility Y, the business comprises the employees of Company B (i.e., the employees of Facility Y) and the employees working at Facilities X, Z1, and Z2, which are affiliates of Facility Y. No employees of Company C are counted because Company C cannot include any affiliates because it does not have any facilities. Employees of Company A that are not working at Facility X are not counted because Company A is not a subsidiary of Company B (Company B does not own or control Company A), nor can all of Company A be considered an affiliate because Company A has employees who do not work at a facility. Employees of Company D that are not working at Facilities Z1 or Z2 are not coun [... truncated]",
+   "truncated": true,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "corpus": "fda_guidance",
+   "heading": "Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507",
+   "method": "full_text_or",
+   "score": 1.058,
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+   "text": "usiness? For the purpose of the small business calculation, we consider a business to consist of the legal entity that the relevant facility is part of, along with any “affiliates” and “subsidiaries” determined from the perspective of the relevant facility. Therefore, depending on your business structure, your business size calculation may not be the same for all of your facilities. For example, the business size calculation may be different for a facility that is part of a subsidiary Cont [... truncated]",
+   "truncated": true,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+   "corpus": "ecfr",
+   "heading": "Definitions.",
+   "method": "full_text_or",
+   "score": 1.645,
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+   "text": "(4) Is handmade or hand rolled (i.e., no machinery was used apart from simple tools, such as scissors to cut the tobacco prior to rolling);",
+   "truncated": false,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 1107.12(2)(ii)",
+   "corpus": "ecfr",
+   "heading": "Definitions.",
+   "method": "full_text_or",
+   "score": 1.488,
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+   "text": "Commercial distribution means any distribution of a tobacco product, whether domestic or imported, to consumers or to any person, but does not include interplant transfers of a tobacco product between establishments within the same parent, subsidiary, and/or affiliate company, nor does it include providing a tobacco product for product testing where such product is not made available for personal consumption or resale. “Commercial distribution” does not include the handing or transfer of a tobacco product from one consumer to another for personal consumption.",
+   "truncated": false,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  }
+ ],
+ "dropped_sources": 8,
+ "notes": [],
+ "grounding": null,
+ "retrieval": {
+  "primary_result_count": 0,
+  "fallback_used": true,
+  "fallback_terms": [
+   "businesses",
+   "cosmetics",
+   "4-person",
+   "handmade",
+   "company",
+   "account",
+   "size",
+   "gmp"
+  ],
+  "fallback_candidate_count": 12,
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "final_result_count": 8,
+  "retrieval_mode": "fallback",
+  "plan": {
+   "kind": "general",
+   "requirement_count": 0,
+   "requirement_ids": [],
+   "exact_attempts": 0,
+   "resolved": [],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 12
+   },
+   "method_counts": {
+    "full_text_or": 12
+   },
+   "candidate_count": 12,
+   "evidence_count": 12,
+   "protected_count": 0,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": true,
+   "requirements": {},
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  },
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  }
+ },
+ "query_type": "GENERAL_REGULATORY_SEARCH",
+ "plan": {
+  "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+  "normalized_question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "kind": "general",
+  "requirements": [],
+  "docket": null,
+  "guidance_requested": false,
+  "scan": {
+   "text": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+   "mentions": [],
+   "ranges": [],
+   "references": [],
+   "notes": []
+  },
+  "notes": []
+ },
+ "evidence": {
+  "plan_kind": "general",
+  "requirements": [],
+  "evidence": [
+   {
+    "evidence_id": "e1",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#8",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.4946,
+    "chars": 1438
+   },
+   {
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#7",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.058,
+    "chars": 1424
+   },
+   {
+    "evidence_id": "e3",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/draft-guidance-industry-classification-activities-harvesting-packing-holding-or#78",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 0.9348,
+    "chars": 1459
+   },
+   {
+    "evidence_id": "e4",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#9",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 0.928,
+    "chars": 1493
+   },
+   {
+    "evidence_id": "e5",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/draft-guidance-industry-lead-cosmetic-lip-products-and-externally-applied-cosmetics-recommended#1",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 0.8405,
+    "chars": 1406
+   },
+   {
+    "evidence_id": "e6",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/draft-guidance-industry-lead-cosmetic-lip-products-and-externally-applied-cosmetics-recommended#4",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 0.8384,
+    "chars": 1452
+   },
+   {
+    "evidence_id": "e7",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/medical-device-user-fee-small-business-qualification-and-determination#34",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Medical Device User Fee Small Business Qualification and Determination: Guidance for Industry, Food and Drug Administration Staff and Foreign Governments (final, 2025-07-31, Docket FDA-2018-D-1873)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 0.8189,
+    "chars": 1415
+   },
+   {
+    "evidence_id": "e8",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/draft-guidance-industry-lead-cosmetic-lip-products-and-externally-applied-cosmetics-recommended#12",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 0.7882,
+    "chars": 1477
+   },
+   {
+    "evidence_id": "e9",
+    "key": "ecfr:1107.12:(2)(ii)(2)(2)(2)(4):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.6452,
+    "chars": 139
+   },
+   {
+    "evidence_id": "e10",
+    "key": "ecfr:807.20:(a):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 807.20(a)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.5292,
+    "chars": 1465
+   },
+   {
+    "evidence_id": "e11",
+    "key": "ecfr:1107.12:(2)(ii):5",
+    "corpus": "ecfr",
+    "citation": "21 CFR 1107.12(2)(ii)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.4883,
+    "chars": 565
+   },
+   {
+    "evidence_id": "e12",
+    "key": "ecfr:201.1:(c)(4):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 201.1(c)(4)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.4664,
+    "chars": 355
+   }
+  ],
+  "requirement_state": {},
+  "resolved": [],
+  "unresolved": [],
+  "diagnostics": {
+   "kind": "general",
+   "requirement_count": 0,
+   "requirement_ids": [],
+   "exact_attempts": 0,
+   "resolved": [],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 12
+   },
+   "method_counts": {
+    "full_text_or": 12
+   },
+   "candidate_count": 12,
+   "evidence_count": 12,
+   "protected_count": 0,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": true,
+   "requirements": {},
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  }
+ },
+ "coverage": {
+  "state": "NO_EXPLICIT_REQUIREMENTS",
+  "complete": true,
+  "missing": [],
+  "missing_labels": [],
+  "total_requirements": 0,
+  "exact_requirements": 0,
+  "structural_only_requirements": 0,
+  "supporting_only_requirements": 0,
+  "discovery_only_requirements": 0,
+  "unresolved_requirements": 0,
+  "requirements": [],
+  "evidence_complete": true
+ },
+ "coverage_action": "answer",
+ "selection": {
+  "selected": [
+   {
+    "index": 1,
+    "evidence_id": "e1",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#8",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 1200,
+    "block_chars": 1610,
+    "truncated": true
+   },
+   {
+    "index": 2,
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#7",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 510,
+    "block_chars": 920,
+    "truncated": true
+   },
+   {
+    "index": 3,
+    "evidence_id": "e9",
+    "key": "ecfr:1107.12:(2)(ii)(2)(2)(2)(4):0",
+    "citation": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 139,
+    "block_chars": 325,
+    "truncated": false
+   },
+   {
+    "index": 4,
+    "evidence_id": "e11",
+    "key": "ecfr:1107.12:(2)(ii):5",
+    "citation": "21 CFR 1107.12(2)(ii)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 565,
+    "block_chars": 739,
+    "truncated": false
+   }
+  ],
+  "dropped": [
+   {
+    "evidence_id": "e3",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e4",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e5",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e6",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e7",
+    "citation": "FDA Guidance: Medical Device User Fee Small Business Qualification and Determination: Guidance for Industry, Food and Drug Administration Staff and Foreign Governments (final, 2025-07-31, Docket FDA-2018-D-1873)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e8",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e10",
+    "citation": "21 CFR 807.20(a)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e12",
+    "citation": "21 CFR 201.1(c)(4)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   }
+  ],
+  "policy": {
+   "max_results": 8,
+   "max_chars_per_result": 1200,
+   "max_total_chars": 3600,
+   "hard_max_results": 24,
+   "hard_max_total_chars": 9000,
+   "required_max_chars_per_result": 4000,
+   "binding_reserve_chars": 1200
+  },
+  "total_chars": 3600,
+  "overflow": false,
+  "required_count": 0,
+  "required_chars": 0,
+  "optional_count": 4,
+  "material_selected": [],
+  "required_dropped": [],
+  "required_truncated": [],
+  "optional_dropped": [
+   "e3",
+   "e4",
+   "e5",
+   "e6",
+   "e7",
+   "e8",
+   "e10",
+   "e12"
+  ],
+  "soft_budget_exceeded_by_required": false,
+  "binding_reserved": [
+   "e9",
+   "e11"
+  ],
+  "tier_counts": {
+   "exact": 0,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 4
+  }
+ },
+ "answer_shape": {
+  "mode": "synthesis",
+  "scope": "topic",
+  "exhaustive": false,
+  "requested_units": [],
+  "focus_terms": [],
+  "signals": [],
+  "rationale": "a general question: synthesize the relevant material"
+ },
+ "question_analysis": null,
+ "quality_flags": null,
+ "normalization": null,
+ "generation": {
+  "contract": "grounded_v1",
+  "shape": "general",
+  "max_new_tokens": 384,
+  "budget": {
+   "policy": "adaptive",
+   "base_tokens": 96,
+   "per_unit_tokens": 160,
+   "range_bonus_tokens": 64,
+   "general_tokens": 384,
+   "max_units": 10,
+   "min_tokens": 256,
+   "evidence_multiple": 1.4,
+   "evidence_cap_fraction": 0.75,
+   "hard_max_tokens": 2048
+  },
+  "coverage_state": "NO_EXPLICIT_REQUIREMENTS",
+  "requirements": [],
+  "satisfied_ids": [],
+  "missing_labels": [],
+  "sources": [
+   {
+    "index": 1,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+    "chars": 1200,
+    "truncated": true,
+    "evidence_id": "e1",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#8",
+    "is_docket": false
+   },
+   {
+    "index": 2,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+    "chars": 510,
+    "truncated": true,
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#7",
+    "is_docket": false
+   },
+   {
+    "index": 3,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "ecfr",
+    "citation": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+    "chars": 139,
+    "truncated": false,
+    "evidence_id": "e9",
+    "key": "ecfr:1107.12:(2)(ii)(2)(2)(2)(4):0",
+    "is_docket": false
+   },
+   {
+    "index": 4,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "ecfr",
+    "citation": "21 CFR 1107.12(2)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+    "chars": 565,
+    "truncated": false,
+    "evidence_id": "e11",
+    "key": "ecfr:1107.12:(2)(ii):5",
+    "is_docket": false
+   }
+  ],
+  "notes": [],
+  "answer_shape": {
+   "mode": "synthesis",
+   "scope": "topic",
+   "exhaustive": false,
+   "requested_units": [],
+   "focus_terms": [],
+   "signals": [],
+   "rationale": "a general question: synthesize the relevant material"
+  },
+  "answer_plan": {
+   "shape": {
+    "mode": "synthesis",
+    "scope": "topic",
+    "exhaustive": false,
+    "requested_units": [],
+    "focus_terms": [],
+    "signals": [],
+    "rationale": "a general question: synthesize the relevant material"
+   },
+   "mode": "synthesis",
+   "lead_in": [],
+   "groups": [
+    {
+     "key": "doc:FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "label": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "heading": null,
+     "kind": "document",
+     "head": 1,
+     "members": [
+      1,
+      2
+     ],
+     "items": [
+      2
+     ],
+     "requirement_ids": []
+    },
+    {
+     "key": "doc:21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+     "label": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+     "heading": null,
+     "kind": "document",
+     "head": 3,
+     "members": [
+      3
+     ],
+     "items": [],
+     "requirement_ids": []
+    },
+    {
+     "key": "doc:21 CFR 1107.12(2)(ii)",
+     "label": "21 CFR 1107.12(2)(ii)",
+     "heading": null,
+     "kind": "document",
+     "head": 4,
+     "members": [
+      4
+     ],
+     "items": [],
+     "requirement_ids": []
+    }
+   ],
+   "context": [],
+   "related": [],
+   "sources": [
+    {
+     "index": 1,
+     "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "tier": "discovery",
+     "role": "related",
+     "section": null,
+     "paragraph": "",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    },
+    {
+     "index": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "tier": "discovery",
+     "role": "related",
+     "section": null,
+     "paragraph": "",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    },
+    {
+     "index": 3,
+     "citation": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+     "tier": "discovery",
+     "role": "related",
+     "section": "1107.12",
+     "paragraph": "(2)(ii)(2)(2)(2)(4)",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    },
+    {
+     "index": 4,
+     "citation": "21 CFR 1107.12(2)(ii)",
+     "tier": "discovery",
+     "role": "related",
+     "section": "1107.12",
+     "paragraph": "(2)(ii)",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    }
+   ],
+   "notes": []
+  },
+  "generated_tokens": 195,
+  "finished": true,
+  "prompt_tokens": 1379,
+  "stop_reason": null,
+  "tokens_per_second": 10.174,
+  "decode_tokens_per_second": 11.84,
+  "prompt_chars": 4263
+ },
+ "validation": {
+  "initial": {
+   "status": "evidence_mismatched",
+   "ok": false,
+   "codes": [
+    "invented_condition"
+   ],
+   "problems": [
+    {
+     "code": "invented_condition",
+     "severity": "error",
+     "requirement_id": null,
+     "citation": null
+    }
+   ],
+   "addressed": [],
+   "unaddressed": [],
+   "cited": [
+    1,
+    2
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 195,
+   "max_new_tokens": 384,
+   "answer_class": "answer",
+   "n_sources": 4,
+   "explicit": false,
+   "cited_tiers": {
+    "1": "discovery",
+    "2": "discovery"
+   },
+   "warnings": 0,
+   "errors": 1,
+   "shape": {
+    "mode": "synthesis",
+    "shape": {
+     "mode": "synthesis",
+     "scope": "topic",
+     "exhaustive": false,
+     "requested_units": [],
+     "focus_terms": [],
+     "signals": [],
+     "rationale": "a general question: synthesize the relevant material"
+    },
+    "groups": 3,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 0,
+    "material_items_covered": 0,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "final": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [],
+   "unaddressed": [],
+   "cited": [
+    1,
+    2
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 195,
+   "max_new_tokens": 384,
+   "answer_class": "answer",
+   "n_sources": 4,
+   "explicit": false,
+   "cited_tiers": {
+    "1": "discovery",
+    "2": "discovery"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "synthesis",
+    "shape": {
+     "mode": "synthesis",
+     "scope": "topic",
+     "exhaustive": false,
+     "requested_units": [],
+     "focus_terms": [],
+     "signals": [],
+     "rationale": "a general question: synthesize the relevant material"
+    },
+    "groups": 3,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 0,
+    "material_items_covered": 0,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "repair": "invented_conditions_removed"
+ },
+ "citation_support": {
+  "markers": [
+   1,
+   2
+  ],
+  "by_tier": {
+   "exact": 0,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 2,
+   "invalid": 0
+  },
+  "exact_source_cited_for": {}
+ },
+ "answerability": {
+  "state": "UNKNOWN",
+  "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+  "signals": {
+   "question_type": "procedure",
+   "scope": "in_scope",
+   "requested_provisions": [],
+   "sources": 4,
+   "weak_evidence": true
+  },
+  "confidence": "UNDETERMINED",
+  "evidence_ids": [
+   "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#8",
+   "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#7",
+   "ecfr:1107.12:(2)(ii)(2)(2)(2)(4):0",
+   "ecfr:1107.12:(2)(ii):5"
+  ],
+  "blocking_conditions": [],
+  "blocked": false,
+  "limitation": null,
+  "acted_on": true
+ },
+ "generation_called": true,
+ "generation_blocked": false,
+ "block_reason": null,
+ "fallback_type": null,
+ "fallback_reason": null,
+ "scope_policy": {
+  "status": "potentially_related",
+  "reason": "regulatory terms present, but no passage matched every term",
+  "domain_terms": [
+   "company",
+   "cosmetics",
+   "fda",
+   "gmp",
+   "person",
+   "rules",
+   "size"
+  ]
+ },
+ "semantic_fallback": {
+  "invoked": false,
+  "lexical_insufficient": null,
+  "config": {
+   "semantic_top_n": 8,
+   "similarity_floor": 0.75,
+   "merge_policy": "interleave",
+   "general_questions": false
+  },
+  "lexical_mode": "fallback",
+  "skipped": null
+ },
+ "reference_lookup": null,
+ "timings_ms": {
+  "plan_ms": 0.22,
+  "retrieval_ms": 814.46,
+  "context_ms": 2.72,
+  "package_ms": 1.59,
+  "answerability_ms": 0.27,
+  "prompt_ms": 0.02,
+  "generation_ms": 19183.53,
+  "model_prepare_ms": 16.34,
+  "model_first_token_ms": 2781.62,
+  "model_detokenize_ms": 0.16,
+  "model_decode_ms": 16384.78,
+  "validation_ms": 4.41,
+  "citations_ms": 0.05,
+  "total_ms": 20007.55,
+  "metadata_ms": 0.47
+ },
+ "input_tokens": 1379,
+ "output_tokens": 195,
+ "adapter": {
+  "id": "",
+  "name": null,
+  "r": null,
+  "dataset_hash": null
+ },
+ "model": {
+  "id": "qwen3-0.6b",
+  "label": "Qwen3-0.6B (default)"
+ },
+ "snapshot_date": "2026-09-03",
+ "evidence_snapshot": {
+  "schema": "regulus_evidence_snapshot_v1",
+  "fingerprint": "6e8216e220dc5f96a632eace64f8e64447ad6030903d3d72aa8687b51cd9e3ad",
+  "capture_point": "generation_package",
+  "model_called": true,
+  "prompt_sha256": "64f2c2e34cece47d26954b53db585196393f458c3d8179a2a065c2c051efece3",
+  "prompt_verified": true,
+  "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+  "requirements": [],
+  "satisfied_ids": [],
+  "missing_labels": [],
+  "coverage_explicit": false,
+  "items": [
+   {
+    "order": 0,
+    "index": 1,
+    "evidence_id": "e1",
+    "source_type": "guidance",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "document": "Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507",
+    "part": null,
+    "section": null,
+    "paragraph": null,
+    "heading": null,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#8",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+    "is_docket": false,
+    "truncated": true,
+    "chars": 1200,
+    "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary). An example is shown below in Figure 1. Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees of Companies B, C, and D, which are subsidiaries of the legal entity that Facility X is part of (Company A). • For Facility Y, the business comprises the employees of Company B (i.e., the employees of Facility Y) and the employees working at Facilities X, Z1, and Z2, which are affiliates of Facility Y. No employees of Company C are counted because Company C cannot include any affiliates because it does not have any facilities. Employees of Company A that are not working at Facility X are not counted because Company A is not a subsidiary of Company B (Company B does not own or control Company A), nor can all of Company A be considered an affiliate because Company A has employees who do not work at a facility. Employees of Company D that are not working at Facilities Z1 or Z2 are not coun [... truncated]",
+    "citation_fields": {
+     "corpus": "fda_guidance",
+     "label": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+     "title": null,
+     "part": null,
+     "section": null,
+     "paragraph": null,
+     "heading": null,
+     "document_title": "Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507",
+     "docket_number": "FDA-2018-D-0671",
+     "status": "final",
+     "issued_on": "2019-06-19",
+     "center": "CFSAN"
+    }
+   },
+   {
+    "order": 1,
+    "index": 2,
+    "evidence_id": "e2",
+    "source_type": "guidance",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "document": "Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507",
+    "part": null,
+    "section": null,
+    "paragraph": null,
+    "heading": null,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507#7",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+    "is_docket": false,
+    "truncated": true,
+    "chars": 510,
+    "text": "usiness? For the purpose of the small business calculation, we consider a business to consist of the legal entity that the relevant facility is part of, along with any “affiliates” and “subsidiaries” determined from the perspective of the relevant facility. Therefore, depending on your business structure, your business size calculation may not be the same for all of your facilities. For example, the business size calculation may be different for a facility that is part of a subsidiary Cont [... truncated]",
+    "citation_fields": {
+     "corpus": "fda_guidance",
+     "label": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-determining-number-employees-purposes-small-business-definition-parts-117-and-507",
+     "title": null,
+     "part": null,
+     "section": null,
+     "paragraph": null,
+     "heading": null,
+     "document_title": "Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507",
+     "docket_number": "FDA-2018-D-0671",
+     "status": "final",
+     "issued_on": "2019-06-19",
+     "center": "CFSAN"
+    }
+   },
+   {
+    "order": 2,
+    "index": 3,
+    "evidence_id": "e9",
+    "source_type": "ecfr",
+    "corpus": "ecfr",
+    "citation": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+    "document": null,
+    "part": "1107",
+    "section": "1107.12",
+    "paragraph": "(2)(ii)(2)(2)(2)(4)",
+    "heading": "Definitions.",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "ecfr:1107.12:(2)(ii)(2)(2)(2)(4):0",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+    "is_docket": false,
+    "truncated": false,
+    "chars": 139,
+    "text": "(4) Is handmade or hand rolled (i.e., no machinery was used apart from simple tools, such as scissors to cut the tobacco prior to rolling);",
+    "citation_fields": {
+     "corpus": "ecfr",
+     "label": "21 CFR 1107.12(2)(ii)(2)(2)(2)(4)",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+     "title": "21",
+     "part": "1107",
+     "section": "1107.12",
+     "paragraph": "(2)(ii)(2)(2)(2)(4)",
+     "heading": "Definitions.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    }
+   },
+   {
+    "order": 3,
+    "index": 4,
+    "evidence_id": "e11",
+    "source_type": "ecfr",
+    "corpus": "ecfr",
+    "citation": "21 CFR 1107.12(2)(ii)",
+    "document": null,
+    "part": "1107",
+    "section": "1107.12",
+    "paragraph": "(2)(ii)",
+    "heading": "Definitions.",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "ecfr:1107.12:(2)(ii):5",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+    "is_docket": false,
+    "truncated": false,
+    "chars": 565,
+    "text": "Commercial distribution means any distribution of a tobacco product, whether domestic or imported, to consumers or to any person, but does not include interplant transfers of a tobacco product between establishments within the same parent, subsidiary, and/or affiliate company, nor does it include providing a tobacco product for product testing where such product is not made available for personal consumption or resale. “Commercial distribution” does not include the handing or transfer of a tobacco product from one consumer to another for personal consumption.",
+    "citation_fields": {
+     "corpus": "ecfr",
+     "label": "21 CFR 1107.12(2)(ii)",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-K/part-1107/section-1107.12",
+     "title": "21",
+     "part": "1107",
+     "section": "1107.12",
+     "paragraph": "(2)(ii)",
+     "heading": "Definitions.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    }
+   }
+  ]
+ },
+ "server_timings_ms": {
+  "engine_setup_ms": 0.06,
+  "pipeline_answer_ms": 20008.03,
+  "response_build_ms": 0.04,
+  "accuracy_ms": 179.6,
+  "request_parse_ms": 0.05,
+  "lock_wait_ms": 0.0
+ },
+ "accuracy": {
+  "status": "unable_to_determine",
+  "accuracy": null,
+  "reason": "Cannot be verified: 5 statement(s) address the question but none could be verified against the retrieved evidence",
+  "rubric_id": "regulus_live_evidence_assessment_v2",
+  "rubric": {
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "version": "2.0.0",
+   "frozen": "2026-10-08",
+   "dimensions": [
+    "question_relevance",
+    "substantive_correctness",
+    "evidence_support",
+    "citation_correctness",
+    "fabrication_free",
+    "completeness",
+    "scope_correct"
+   ],
+   "absolute": [
+    "fabrication_free",
+    "substantive_correctness",
+    "question_relevance"
+   ],
+   "deductions": {
+    "fabrication_free:fail": 100,
+    "substantive_correctness:fail": 100,
+    "question_relevance:fail": 100,
+    "substantive_correctness:partial": 45,
+    "citation_correctness:fail": 40,
+    "scope_correct:fail": 40,
+    "evidence_support:fail": 35,
+    "completeness:fail": 25,
+    "completeness:partial": 10,
+    "evidence_support:not_established": 15,
+    "fabrication_free:not_established": 10,
+    "citation_correctness:not_established": 10,
+    "completeness:not_established": 5,
+    "scope_correct:not_established": 5
+   },
+   "formula": "score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided",
+   "is_acceptance_rubric": false
+  },
+  "basis": "Based on the authoritative regulatory evidence retrieved for this answer.",
+  "not_the_benchmark": "An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.",
+  "answer_verdict": {
+   "verdict": "unverifiable",
+   "reason": "5 statement(s) address the question but none could be verified against the retrieved evidence",
+   "counts": {
+    "supported": 0,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 5
+   },
+   "elements_covered": [],
+   "elements_missing": [],
+   "elements_unverified": [
+    "the question's subject"
+   ]
+  },
+  "dimensions": [
+   {
+    "dimension": "question_relevance",
+    "label": "Answers the question",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "5 statement(s) correspond to regulation about what the question asks (we'r/person/handmad/company/fda'/gmp/account/business/size)",
+    "evidence": [],
+    "claim": "the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part"
+   },
+   {
+    "dimension": "substantive_correctness",
+    "label": "Substantive correctness",
+    "state": "not_established",
+    "glyph": "?",
+    "detail": "5 statement(s) address the question but none could be verified against the retrieved evidence",
+    "evidence": [],
+    "claim": "every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it"
+   },
+   {
+    "dimension": "evidence_support",
+    "label": "Evidence support",
+    "state": "not_established",
+    "glyph": "?",
+    "detail": "5 of 5 statement(s) that answer the question could not be checked: 1 have no corresponding evidence, 4 correspond to evidence that does not decide them",
+    "evidence": [
+     "The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"small business\" definition.",
+     "Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of, along with any \"affiliates\" and \"subsid",
+     "This means that the size of a business is determined based on the size of the legal entity and its affiliates, not just the number of employees."
+    ],
+    "claim": "every material claim is a verbatim passage of an authoritative source retrieved for this question"
+   },
+   {
+    "dimension": "citation_correctness",
+    "label": "Citation correctness",
+    "state": "fail",
+    "glyph": "✗",
+    "detail": "5 of 5 statement(s) have a citation defect: the paragraph's marker (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) does not cite this statement",
+    "evidence": [
+     "missing: The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"sm",
+     "missing: Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of,",
+     "missing: This means that the size of a business is determined based on the size of the legal entity and its affiliates, not just "
+    ],
+    "claim": "every citation resolves to a supplied source, and to the provision the sentence it is attached to is about"
+   },
+   {
+    "dimension": "fabrication_free",
+    "label": "Unsupported claims",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "every figure, condition and identifier in the answer appears in the supplied evidence",
+    "evidence": [],
+    "claim": "the answer names no section, clause, condition or figure that the authoritative evidence does not contain"
+   },
+   {
+    "dimension": "completeness",
+    "label": "Completeness",
+    "state": "not_established",
+    "glyph": "?",
+    "detail": "the answer addresses the question's subject, but none of the statements doing so could be verified, so whether it covers it correctly is not established",
+    "evidence": [],
+    "claim": "every provision the question requested has authoritative text and is addressed in the answer"
+   },
+   {
+    "dimension": "scope_correct",
+    "label": "Scope",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome",
+    "evidence": [],
+    "claim": "the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome"
+   }
+  ],
+  "deductions": [
+   {
+    "dimension": "evidence_support",
+    "state": "not_established",
+    "points": 15
+   },
+   {
+    "dimension": "citation_correctness",
+    "state": "fail",
+    "points": 40
+   },
+   {
+    "dimension": "completeness",
+    "state": "not_established",
+    "points": 5
+   }
+  ],
+  "checked": {
+   "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+   "intent": {
+    "kind": "application",
+    "provisions": [],
+    "sections": [],
+    "parts": [],
+    "topic": [
+     "we'r",
+     "person",
+     "handmad",
+     "company",
+     "fda'",
+     "gmp",
+     "account",
+     "business",
+     "size"
+    ],
+    "domains": [
+     "G"
+    ],
+    "domain_names": [
+     "cosmetics"
+    ],
+    "elements": [
+     {
+      "label": "the question's subject",
+      "terms": [
+       "we'r",
+       "person",
+       "handmad",
+       "company",
+       "fda'",
+       "gmp",
+       "account",
+       "business",
+       "size"
+      ]
+     }
+    ],
+    "signals": [
+     "domain:G",
+     "kind:application"
+    ],
+    "planner_type": "procedure"
+   },
+   "answer_verdict": {
+    "verdict": "unverifiable",
+    "reason": "5 statement(s) address the question but none could be verified against the retrieved evidence",
+    "counts": {
+     "supported": 0,
+     "supported_with_citation_defect": 0,
+     "partially_supported": 0,
+     "contradicted": 0,
+     "irrelevant": 0,
+     "unverifiable": 5
+    },
+    "elements_covered": [],
+    "elements_missing": [],
+    "elements_unverified": [
+     "the question's subject"
+    ]
+   },
+   "sources": 4,
+   "evidence_passages": 12,
+   "evidence_excluded_domain": [],
+   "citations": 1,
+   "sentences": 6,
+   "material_claims": 5,
+   "claims_answering_question": 5,
+   "sentence_origins": {
+    "model_claim": 5,
+    "inserted_quotation": 0,
+    "pipeline_sentence": 0,
+    "citation_label": 0,
+    "question_echo": 0,
+    "too_short": 0,
+    "heading_fragment": 0,
+    "pointer_sentence": 0,
+    "question_restatement": 0,
+    "meta_statement": 1,
+    "uncertain": 0
+   },
+   "claim_status": {
+    "supported": 0,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 5
+   },
+   "aligner": "semantic",
+   "identifiers_named": 0,
+   "identifiers_verified_absent": 0,
+   "identifier_index_used": true,
+   "validation_status": "valid",
+   "validation_error_codes": [],
+   "abstention": {
+    "declined": false,
+    "outcome": null,
+    "reason": "the answer states regulatory requirements rather than declining",
+    "evidence": []
+   },
+   "fallback_type": null,
+   "claims": [
+    {
+     "claim": "The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"small business\" definition.",
+     "split_from": null,
+     "relevance": {
+      "verdict": "relevant",
+      "reason": "no corresponding evidence; the statement itself is about fda'/gmp/account/business/size",
+      "content": "The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"small business\" definition.",
+      "basis": "claim_text",
+      "topic_hits": [
+       "fda'",
+       "gmp",
+       "account",
+       "business",
+       "size"
+      ],
+      "evidence": [
+       "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 0.44,
+       "evidence_passages": 5,
+       "domain": "consistent",
+       "provision": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary)."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "An example is shown below in Figure 1."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees o"
+      }
+     ],
+     "support": "unverifiable",
+     "support_basis": "no_evidence",
+     "support_reason": "no passage of the authoritative evidence is about this statement",
+     "operators": {},
+     "operator_trace": null,
+     "citation": "missing",
+     "citation_detail": "the paragraph's marker (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) does not cite this statement",
+     "final": "unverifiable",
+     "claim_id": "s0",
+     "sentence_index": 0,
+     "normalized_text": "The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"small business\" definition.",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [],
+     "selected_evidence": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "trailing",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "unsupported",
+        "supports": false
+       },
+       {
+        "marker": 2,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "unsupported",
+        "supports": false
+       }
+      ],
+      "rule": "a later marker in the paragraph that does not support this statement: uncited, not mis-cited"
+     }
+    },
+    {
+     "claim": "Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of, along with any \"affiliates\" and \"subsidiaries\" determined from the perspective of the relevant facility.",
+     "split_from": null,
+     "relevance": {
+      "verdict": "partially_relevant",
+      "reason": "the regulation it corresponds to (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) is about company/business/size",
+      "content": "Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of, along with any \"affiliates\" and \"subsidiaries\" determined from the perspective of the relevant facility.",
+      "basis": "evidence",
+      "topic_hits": [
+       "company",
+       "business",
+       "size"
+      ],
+      "evidence": [
+       "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 0.85,
+       "evidence_passages": 6,
+       "domain": "consistent",
+       "provision": "consistent",
+       "section": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary)."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "An example is shown below in Figure 1."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees o"
+      }
+     ],
+     "support": "unverifiable",
+     "support_basis": "not_decisive",
+     "support_reason": "aligned to FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) (SOURCE 1), but it does not establish the claim: the claim names along, consist, determin, relevant, which FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) does not and another source does (along: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671); consist: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671); determin: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671); relevant: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671))",
+     "operators": {
+      "actor": "matched",
+      "strength": "undetermined",
+      "polarity": "undetermined",
+      "quantity": "undetermined",
+      "date": "undetermined"
+     },
+     "operator_trace": {
+      "evidence_citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+      "source_type": "guidance",
+      "claim_operators": {
+       "strength": null,
+       "polarity": null,
+       "duty_holder": "facility",
+       "conditions": []
+      },
+      "evidence_operators": {
+       "strength": null,
+       "polarity": null,
+       "duty_holder": "facility",
+       "conditions": []
+      },
+      "conflicts": [],
+      "relations": [],
+      "support_blocked": null,
+      "verdict": "undecidable",
+      "content_gate": {
+       "content_gate_verdict": "blocked",
+       "content_support_reason": null,
+       "support_block_reason": "the claim names along, consist, determin, relevant, which FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) does not and another source does (along: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671); consist: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671); determin: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671); relevant: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671))",
+       "distinguishing_terms": [
+        "along",
+        "consist",
+        "determin",
+        "relevant"
+       ],
+       "distinguishing_term_sources": {
+        "along": [
+         "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+        ],
+        "consist": [
+         "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+        ],
+        "determin": [
+         "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+        ],
+        "relevant": [
+         "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+        ]
+       },
+       "core_overlap": 0.38,
+       "term_overlap": 0.31,
+       "raw_term_overlap": 0.29,
+       "verbatim_coverage": 0.2,
+       "operators_agreed": [
+        "actor"
+       ],
+       "operator_silent_passage": true,
+       "core_object_match": false,
+       "core_subject_match": false,
+       "core_action_match": "undetermined",
+       "core_actor_match": "matched",
+       "condition_match": true,
+       "material_omissions": [],
+       "candidate_selection": {
+        "passage": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "method": "semantic",
+        "similarity": 0.8813269734382629
+       }
+      }
+     },
+     "citation": "missing",
+     "citation_detail": "the paragraph's marker (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) does not cite this statement",
+     "final": "unverifiable",
+     "claim_id": "s1",
+     "sentence_index": 1,
+     "normalized_text": "Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of, along with any \"affiliates\" and \"subsidiaries\" determined from the perspective of the relevant facility.",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [
+      "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+     ],
+     "selected_evidence": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "trailing",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       },
+       {
+        "marker": 2,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       }
+      ],
+      "rule": "a later marker in the paragraph that does not support this statement: uncited, not mis-cited"
+     }
+    },
+    {
+     "claim": "This means that the size of a business is determined based on the size of the legal entity and its affiliates, not just the number of employees.",
+     "split_from": null,
+     "relevance": {
+      "verdict": "partially_relevant",
+      "reason": "the regulation it corresponds to (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) is about company/business/size",
+      "content": "This means that the size of a business is determined based on the size of the legal entity and its affiliates, not just the number of employees.",
+      "basis": "evidence",
+      "topic_hits": [
+       "company",
+       "business",
+       "size"
+      ],
+      "evidence": [
+       "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 0.78,
+       "evidence_passages": 7,
+       "domain": "consistent",
+       "provision": "consistent",
+       "section": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary)."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "An example is shown below in Figure 1."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees o"
+      }
+     ],
+     "support": "unverifiable",
+     "support_basis": "not_decisive",
+     "support_reason": "aligned to FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) (SOURCE 2), but it does not establish the claim: the claim names employ, which FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) does not and another source does (employ: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671))",
+     "operators": {
+      "strength": "undetermined",
+      "polarity": "undetermined",
+      "actor": "undetermined",
+      "quantity": "undetermined",
+      "date": "undetermined"
+     },
+     "operator_trace": {
+      "evidence_citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+      "source_type": "guidance",
+      "claim_operators": {
+       "strength": null,
+       "polarity": null,
+       "duty_holder": null,
+       "conditions": []
+      },
+      "evidence_operators": {
+       "strength": null,
+       "polarity": null,
+       "duty_holder": "facility",
+       "conditions": []
+      },
+      "conflicts": [],
+      "relations": [],
+      "support_blocked": null,
+      "verdict": "undecidable",
+      "content_gate": {
+       "content_gate_verdict": "blocked",
+       "content_support_reason": null,
+       "support_block_reason": "the claim names employ, which FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) does not and another source does (employ: FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671))",
+       "distinguishing_terms": [
+        "employ"
+       ],
+       "distinguishing_term_sources": {
+        "employ": [
+         "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+        ]
+       },
+       "core_overlap": 0.5,
+       "term_overlap": 0.5,
+       "raw_term_overlap": 0.5,
+       "verbatim_coverage": 0.17,
+       "operators_agreed": [],
+       "operator_silent_passage": true,
+       "core_object_match": false,
+       "core_subject_match": false,
+       "core_action_match": "undetermined",
+       "core_actor_match": "undetermined",
+       "condition_match": true,
+       "material_omissions": [],
+       "candidate_selection": {
+        "passage": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "method": "semantic",
+        "similarity": 0.8154095411300659
+       }
+      }
+     },
+     "citation": "missing",
+     "citation_detail": "the paragraph's marker (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) does not cite this statement",
+     "final": "unverifiable",
+     "claim_id": "s2",
+     "sentence_index": 2,
+     "normalized_text": "the size of a business is determined based on the size of the legal entity and its affiliates, not just the number of employees.",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [
+      "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+     ],
+     "selected_evidence": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "trailing",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       },
+       {
+        "marker": 2,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       }
+      ],
+      "rule": "a later marker in the paragraph that does not support this statement: uncited, not mis-cited"
+     }
+    },
+    {
+     "claim": "For example, a facility that is part of a subsidiary will have its employees counted, while a facility that is an affiliate will have its employees counted as well.",
+     "split_from": null,
+     "relevance": {
+      "verdict": "partially_relevant",
+      "reason": "the regulation it corresponds to (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), 21 CFR 1107.12(2)(ii)) is about person/company/business/size",
+      "content": "For example, a facility that is part of a subsidiary will have its employees counted, while a facility that is an affiliate will have its employees counted as well.",
+      "basis": "evidence",
+      "topic_hits": [
+       "person",
+       "company",
+       "business",
+       "size"
+      ],
+      "evidence": [
+       "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "21 CFR 1107.12(2)(ii)"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 0.75,
+       "evidence_passages": 8,
+       "domain": "consistent",
+       "provision": "consistent",
+       "section": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary)."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "An example is shown below in Figure 1."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees o"
+      }
+     ],
+     "support": "unverifiable",
+     "support_basis": "not_decisive",
+     "support_reason": "aligned to FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) (SOURCE 1), but it does not establish the claim: 1 operator(s) agree, 38% of its terms and 50% of its core terms are present: the passage does not state the claim",
+     "operators": {
+      "actor": "matched",
+      "strength": "undetermined",
+      "polarity": "undetermined",
+      "quantity": "undetermined",
+      "date": "undetermined"
+     },
+     "operator_trace": {
+      "evidence_citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+      "source_type": "guidance",
+      "claim_operators": {
+       "strength": null,
+       "polarity": null,
+       "duty_holder": "facility",
+       "conditions": []
+      },
+      "evidence_operators": {
+       "strength": null,
+       "polarity": "negate",
+       "duty_holder": "facility",
+       "conditions": []
+      },
+      "conflicts": [],
+      "relations": [],
+      "support_blocked": null,
+      "verdict": "undecidable",
+      "content_gate": {
+       "content_gate_verdict": "not_established",
+       "content_support_reason": null,
+       "support_block_reason": "1 operator(s) agree, 38% of its terms and 50% of its core terms are present: the passage does not state the claim",
+       "distinguishing_terms": [],
+       "distinguishing_term_sources": {},
+       "core_overlap": 0.5,
+       "term_overlap": 0.38,
+       "raw_term_overlap": 0.38,
+       "verbatim_coverage": 0.03,
+       "operators_agreed": [
+        "actor"
+       ],
+       "operator_silent_passage": false,
+       "core_object_match": true,
+       "core_subject_match": true,
+       "core_action_match": "undetermined",
+       "core_actor_match": "matched",
+       "condition_match": true,
+       "material_omissions": [],
+       "candidate_selection": {
+        "passage": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "method": "semantic",
+        "similarity": 0.864203929901123
+       }
+      }
+     },
+     "citation": "missing",
+     "citation_detail": "the paragraph's marker (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) does not cite this statement",
+     "final": "unverifiable",
+     "claim_id": "s3",
+     "sentence_index": 3,
+     "normalized_text": "For example, a facility that is part of a subsidiary will have its employees counted, while a facility that is an affiliate will have its employees counted as well.",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [
+      "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+     ],
+     "selected_evidence": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "trailing",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       },
+       {
+        "marker": 2,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       }
+      ],
+      "rule": "a later marker in the paragraph that does not support this statement: uncited, not mis-cited"
+     }
+    },
+    {
+     "claim": "The rules also specify that employees of a company that is not a subsidiary or affiliate are not counted.",
+     "split_from": null,
+     "relevance": {
+      "verdict": "partially_relevant",
+      "reason": "the regulation it corresponds to (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), 21 CFR 1107.12(2)(ii)) is about person/company/business",
+      "content": "The rules also specify that employees of a company that is not a subsidiary or affiliate are not counted.",
+      "basis": "evidence",
+      "topic_hits": [
+       "person",
+       "company",
+       "business"
+      ],
+      "evidence": [
+       "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "21 CFR 1107.12(2)(ii)"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 0.83,
+       "evidence_passages": 6,
+       "domain": "consistent",
+       "provision": "consistent",
+       "section": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "or the legal entity that the facility is a part of (from the perspective of the facility in the subsidiary)."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "An example is shown below in Figure 1."
+      },
+      {
+       "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+       "source_index": 1,
+       "heading": null,
+       "text": "Company A owns Company B, Company C, and Company D. • For Facility X, the business comprises all of the employees of Company A (including the employees working at Facility X and the other employees of Company A), plus all of the employees o"
+      }
+     ],
+     "support": "unverifiable",
+     "support_basis": "not_decisive",
+     "support_reason": "aligned to FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671) (SOURCE 1), but it does not establish the claim: 1 operator(s) agree, 71% of its terms and 83% of its core terms are present: the passage does not state the claim",
+     "operators": {
+      "polarity": "matched",
+      "strength": "undetermined",
+      "actor": "undetermined",
+      "quantity": "undetermined",
+      "date": "undetermined"
+     },
+     "operator_trace": {
+      "evidence_citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+      "source_type": "guidance",
+      "claim_operators": {
+       "strength": null,
+       "polarity": "negate",
+       "duty_holder": null,
+       "conditions": []
+      },
+      "evidence_operators": {
+       "strength": "permissive",
+       "polarity": "negate",
+       "duty_holder": "facility",
+       "conditions": []
+      },
+      "conflicts": [],
+      "relations": [],
+      "support_blocked": null,
+      "verdict": "undecidable",
+      "content_gate": {
+       "content_gate_verdict": "not_established",
+       "content_support_reason": null,
+       "support_block_reason": "1 operator(s) agree, 71% of its terms and 83% of its core terms are present: the passage does not state the claim",
+       "distinguishing_terms": [],
+       "distinguishing_term_sources": {},
+       "core_overlap": 0.83,
+       "term_overlap": 0.71,
+       "raw_term_overlap": 0.71,
+       "verbatim_coverage": 0.21,
+       "operators_agreed": [
+        "polarity"
+       ],
+       "operator_silent_passage": false,
+       "core_object_match": true,
+       "core_subject_match": true,
+       "core_action_match": "undetermined",
+       "core_actor_match": "undetermined",
+       "condition_match": true,
+       "material_omissions": [],
+       "candidate_selection": {
+        "passage": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "method": "semantic",
+        "similarity": 0.8729501962661743
+       }
+      }
+     },
+     "citation": "missing",
+     "citation_detail": "the paragraph's marker (FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671), FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)) does not cite this statement",
+     "final": "unverifiable",
+     "claim_id": "s4",
+     "sentence_index": 4,
+     "normalized_text": "The rules also specify that employees of a company that is not a subsidiary or affiliate are not counted.",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [
+      "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)"
+     ],
+     "selected_evidence": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "trailing",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "undecidable",
+        "supports": false
+       },
+       {
+        "marker": 2,
+        "source": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+        "verdict": "unsupported",
+        "supports": false
+       }
+      ],
+      "rule": "a later marker in the paragraph that does not support this statement: uncited, not mis-cited"
+     }
+    }
+   ],
+   "excluded_sentences": [
+    {
+     "text": "The sources that support this are [1][2].",
+     "origin": "meta_statement",
+     "reason": "a statement about the sources or the answer, not about the regulation",
+     "claim_status": "non_claim",
+     "paragraph": 0
+    }
+   ],
+   "claim_candidates": [
+    {
+     "sentence_index": 0,
+     "text": "The FDA's GMP rules require that businesses of a certain size must account for their employees in the context of the \"small business\" definition.",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    },
+    {
+     "sentence_index": 1,
+     "text": "Specifically, the rules state that a business is defined as consisting of the legal entity that the facility is part of, along with any \"affiliates\" and \"subsidiaries\" determined from the perspective of the relevant facility.",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    },
+    {
+     "sentence_index": 2,
+     "text": "This means that the size of a business is determined based on the size of the legal entity and its affiliates, not just the number of employees.",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    },
+    {
+     "sentence_index": 3,
+     "text": "For example, a facility that is part of a subsidiary will have its employees counted, while a facility that is an affiliate will have its employees counted as well.",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    },
+    {
+     "sentence_index": 4,
+     "text": "The rules also specify that employees of a company that is not a subsidiary or affiliate are not counted.",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    },
+    {
+     "sentence_index": 5,
+     "text": "The sources that support this are [1][2].",
+     "origin": "meta_statement",
+     "reason": "a statement about the sources or the answer, not about the regulation",
+     "claim_status": "non_claim",
+     "paragraph": 0
+    }
+   ],
+   "claim_status_counts": {
+    "claim": 5,
+    "non_claim": 1,
+    "uncertain": 0
+   },
+   "evidence_provenance": "exact"
+  },
+  "elapsed_ms": 179.43,
+  "evidence_provenance": "exact",
+  "evidence": {
+   "provenance": "exact",
+   "fingerprint": "6e8216e220dc5f96a632eace64f8e64447ad6030903d3d72aa8687b51cd9e3ad",
+   "items": 4,
+   "guidance_items": 2,
+   "capture_point": "generation_package",
+   "model_called": true,
+   "prompt_sha256": "64f2c2e34cece47d26954b53db585196393f458c3d8179a2a065c2c051efece3",
+   "prompt_verified": true,
+   "schema": "regulus_evidence_snapshot_v1",
+   "package_matches_snapshot": true
+  },
+  "question_relevance": true,
+  "substantive_correctness": null,
+  "evidence_support": null,
+  "citation_correctness": false,
+  "fabrication_free": true,
+  "completeness": null,
+  "scope_correct": true,
+  "question_review": {
+   "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+   "status": "not_evaluated",
+   "label": "NOT EVALUATED",
+   "substantive_correctness": null,
+   "citation_correctness": null,
+   "explanation": "Cannot be verified: 5 statement(s) address the question but none could be verified against the retrieved evidence",
+   "live_check_score": null,
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "basis": "Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result."
+  }
+ },
+ "wall_seconds": 20.2
+}

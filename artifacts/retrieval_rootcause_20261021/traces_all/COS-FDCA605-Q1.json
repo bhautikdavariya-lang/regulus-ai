@@ -1,0 +1,662 @@
+{
+ "id": "COS-FDCA605-Q1",
+ "question": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+ "key_citation": "FD&C Act 605(a), (b)(1) [21 U.S.C. 364a(a), (b)(1)]; 604(5)",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "brand owner u.s consumer reported eye infection using cream submit",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "infection",
+   "consumer",
+   "reported",
+   "submit",
+   "brand",
+   "owner",
+   "using",
+   "cream"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+   "tsquery": "'re' & 'brand' & 'owner' & 'u.s' & 'consum' & 'report' & 'eye' & 'infect' & 'use' & 'eye' & 'cream' & 'must' & 'submit' & 'fda'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+   "tsquery": "'re' & 'brand' & 'owner' & 'u.s' & 'consum' & 'report' & 'eye' & 'infect' & 'use' & 'eye' & 'cream' & 'must' & 'submit' & 'fda'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 1.623(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.5556,
+     "chars": 463,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.31111112
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 1.1123(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.5035,
+     "chars": 94,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.3006993
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "brand owner u.s consumer reported eye infection using cream submit",
+   "tsquery": "'brand' & 'owner' & 'u.s' & 'consum' & 'report' & 'eye' & 'infect' & 'use' & 'cream' & 'submit'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 314.81(b)(2)(ii)(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8813,
+     "chars": 1494,
+     "metadata": {
+      "ordinal": 8,
+      "section_coverage": 0.8292,
+      "paragraph_coverage": 0.2996
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 314.81(b)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8385,
+     "chars": 615,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.8292,
+      "paragraph_coverage": 0.2739
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 314.50(g)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7904,
+     "chars": 602,
+     "metadata": {
+      "ordinal": 80,
+      "section_coverage": 0.7875,
+      "paragraph_coverage": 0.2868
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 1114.41(a)(1)(viii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7626,
+     "chars": 486,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 0.7936,
+      "paragraph_coverage": 0.2639
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "infection or consumer or reported or submit or brand or owner or using or cream",
+   "tsquery": "'infect' | 'consum' | 'report' | 'submit' | 'brand' | 'owner' | 'use' | 'cream'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.8941,
+     "chars": 1462,
+     "metadata": {
+      "ts_rank_cd": 3.0306008
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.627,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 2.6032083
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5555,
+     "chars": 1447,
+     "metadata": {
+      "ts_rank_cd": 2.4888422
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5351,
+     "chars": 1482,
+     "metadata": {
+      "ts_rank_cd": 2.456189
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4022,
+     "chars": 1451,
+     "metadata": {
+      "ts_rank_cd": 2.2434742
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3371,
+     "chars": 1427,
+     "metadata": {
+      "ts_rank_cd": 2.1393855
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3143,
+     "chars": 1483,
+     "metadata": {
+      "ts_rank_cd": 2.1028862
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2921,
+     "chars": 1471,
+     "metadata": {
+      "ts_rank_cd": 2.0674145
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8941,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.627,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "21 CFR 1.623(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.5556,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5555,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5351,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "21 CFR 1.1123(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.5035,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4022,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3371,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3143,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2921,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 314.81(b)(2)(ii)(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8813,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 314.81(b)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8385,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 314.50(g)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7904,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 14,
+   "citation": "21 CFR 1114.41(a)(1)(viii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7626,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+  "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+  "21 CFR 1.623(a)",
+  "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+  "21 CFR 314.81(b)(2)(ii)(b)",
+  "21 CFR 314.81(b)(2)",
+  "21 CFR 314.50(g)(3)",
+  "21 CFR 1114.41(a)(1)(viii)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "21 CFR 1.623(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.1123(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 314.81(b)(2)(ii)(b)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 314.50(g)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1114.41(a)(1)(viii)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e12"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 314.81(b)(2)(ii)(b)",
+    "tier": "discovery",
+    "block_chars": 1393,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 314.81(b)(2)",
+    "tier": "discovery",
+    "block_chars": 801,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 314.50(g)(3)",
+    "tier": "discovery",
+    "block_chars": 789,
+    "used_before": 801,
+    "reserve_spent_before": 801,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1114.41(a)(1)(viii)",
+    "tier": "discovery",
+    "block_chars": 676,
+    "used_before": 801,
+    "reserve_spent_before": 801,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "tier": "discovery",
+    "used_before": 801,
+    "block_chars": 1689,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "tier": "discovery",
+    "used_before": 2492,
+    "block_chars": 1106,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.623(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1656,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1527,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.1123(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1656,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1656,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1690,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1605,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 314.81(b)(2)(ii)(b)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1393,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 314.50(g)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 789,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1114.41(a)(1)(viii)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 676,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 779,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 314.81(b)(2)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 615,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

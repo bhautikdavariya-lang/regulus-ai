@@ -1,0 +1,2060 @@
+{
+ "question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+ "answer": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter. [1]",
+ "model_called": true,
+ "no_context": false,
+ "citations": [
+  {
+   "index": 1,
+   "label": "21 CFR 82.1321",
+   "corpus": "ecfr",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1321",
+   "cited_in_answer": true,
+   "tier": "exact",
+   "requirement_ids": [
+    "r1"
+   ],
+   "role": "cited"
+  }
+ ],
+ "sources": [
+  {
+   "index": 1,
+   "citation": "21 CFR 82.1321",
+   "corpus": "ecfr",
+   "heading": "D&C Red No. 21.",
+   "method": "exact_cfr",
+   "score": 100.0,
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1321",
+   "text": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter.",
+   "truncated": false,
+   "tier": "exact",
+   "requirement_ids": [
+    "r1"
+   ],
+   "protected": true,
+   "selection_reason": "required_exact"
+  }
+ ],
+ "dropped_sources": 32,
+ "notes": [],
+ "grounding": null,
+ "retrieval": {
+  "primary_result_count": 33,
+  "fallback_used": false,
+  "fallback_terms": [],
+  "fallback_candidate_count": 0,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "final_result_count": 8,
+  "retrieval_mode": "exact",
+  "plan": {
+   "kind": "single_provision",
+   "requirement_count": 1,
+   "requirement_ids": [
+    "r1"
+   ],
+   "exact_attempts": 1,
+   "resolved": [
+    "r1"
+   ],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 32,
+    "discovery": 0
+   },
+   "method_counts": {
+    "exact_cfr": 1,
+    "full_text": 32
+   },
+   "candidate_count": 33,
+   "evidence_count": 33,
+   "protected_count": 1,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": false,
+   "requirements": {
+    "r1": {
+     "requirement_id": "r1",
+     "canonical": "21 CFR 82.1321",
+     "exact_attempted": true,
+     "exact_hits": 1,
+     "structural_hits": 0,
+     "discovery_hits": 0,
+     "resolved": true,
+     "fallback_run": false,
+     "fallback_terms": [],
+     "note": null
+    }
+   },
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  },
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  }
+ },
+ "query_type": "EXACT_CFR",
+ "plan": {
+  "question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+  "normalized_question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+  "query_type": "EXACT_CFR",
+  "kind": "single_provision",
+  "requirements": [
+   {
+    "id": "r1",
+    "order": 1,
+    "canonical": "21 CFR 82.1321",
+    "title": "21",
+    "part": "82",
+    "section": "82.1321",
+    "paragraph_path": "",
+    "level": "section",
+    "raw": "82.1321",
+    "origin": "explicit",
+    "mention": 0
+   }
+  ],
+  "docket": null,
+  "guidance_requested": false,
+  "scan": {
+   "text": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+   "mentions": [
+    {
+     "index": 0,
+     "form": "bare",
+     "start": 74,
+     "end": 81,
+     "text": "82.1321",
+     "canonical": "21 CFR 82.1321"
+    }
+   ],
+   "ranges": [],
+   "references": [
+    {
+     "canonical": "21 CFR 82.1321",
+     "origin": "explicit",
+     "mention": 0,
+     "reference": {
+      "title": "21",
+      "part": "82",
+      "section": "82.1321",
+      "paragraph_path": "",
+      "level": "section",
+      "canonical": "21 CFR 82.1321",
+      "raw": "82.1321"
+     }
+    }
+   ],
+   "notes": []
+  },
+  "notes": []
+ },
+ "evidence": {
+  "plan_kind": "single_provision",
+  "requirements": [
+   {
+    "id": "r1",
+    "order": 1,
+    "canonical": "21 CFR 82.1321",
+    "title": "21",
+    "part": "82",
+    "section": "82.1321",
+    "paragraph_path": "",
+    "level": "section",
+    "raw": "82.1321",
+    "origin": "explicit",
+    "mention": 0
+   }
+  ],
+  "evidence": [
+   {
+    "evidence_id": "e1",
+    "key": "ecfr:82.1321::1",
+    "corpus": "ecfr",
+    "citation": "21 CFR 82.1321",
+    "tier": "exact",
+    "satisfies": [
+     "r1"
+    ],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {
+     "r1": "exact"
+    },
+    "retrieval_method": "exact_cfr",
+    "methods": [
+     "exact_cfr"
+    ],
+    "score": 100.0,
+    "chars": 143
+   },
+   {
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/setting-endotoxin-limits-during-development-investigational-oncology-drugs-and-biological-products#2",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 11.504,
+    "chars": 1451
+   },
+   {
+    "evidence_id": "e3",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/setting-endotoxin-limits-during-development-investigational-oncology-drugs-and-biological-products#0",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 9.1834,
+    "chars": 1477
+   },
+   {
+    "evidence_id": "e4",
+    "key": "ecfr:801.3:(2)(2)(v):2",
+    "corpus": "ecfr",
+    "citation": "21 CFR 801.3(2)(2)(v)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 7.5785,
+    "chars": 130
+   },
+   {
+    "evidence_id": "e5",
+    "key": "ecfr:830.3:(2)(2)(v):2",
+    "corpus": "ecfr",
+    "citation": "21 CFR 830.3(2)(2)(v)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 7.5785,
+    "chars": 130
+   },
+   {
+    "evidence_id": "e6",
+    "key": "ecfr:361.1:(b)(1)(i):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 361.1(b)(1)(i)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 7.2135,
+    "chars": 96
+   },
+   {
+    "evidence_id": "e7",
+    "key": "ecfr:361.1:(b)(1)(ii):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 361.1(b)(1)(ii)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 7.0591,
+    "chars": 91
+   },
+   {
+    "evidence_id": "e8",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/setting-endotoxin-limits-during-development-investigational-oncology-drugs-and-biological-products#11",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 7.0381,
+    "chars": 1424
+   },
+   {
+    "evidence_id": "e9",
+    "key": "ecfr:314.92:(a):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 314.92(a)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 6.9195,
+    "chars": 117
+   },
+   {
+    "evidence_id": "e10",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/compliance-guide-cabinet-x-ray-systems#25",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Compliance Guide for Cabinet X-Ray Systems (final, 2007-09-18, Docket FDA-2020-D-0957)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 6.3785,
+    "chars": 1454
+   },
+   {
+    "evidence_id": "e11",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/draft-guidance-industry-lead-cosmetic-lip-products-and-externally-applied-cosmetics-recommended#4",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 6.0081,
+    "chars": 1452
+   },
+   {
+    "evidence_id": "e12",
+    "key": "ecfr:180.22:(f)(3):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 180.22(f)(3)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 6.002,
+    "chars": 260
+   },
+   {
+    "evidence_id": "e13",
+    "key": "ecfr:177.2480:(b)(1):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 177.2480(b)(1)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 5.9395,
+    "chars": 270
+   },
+   {
+    "evidence_id": "e14",
+    "key": "ecfr:361.1:(d)(2):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 361.1(d)(2)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 5.4982,
+    "chars": 353
+   },
+   {
+    "evidence_id": "e15",
+    "key": "ecfr:866.3982:(b)(4)(viii):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 866.3982(b)(4)(viii)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.4951,
+    "chars": 43
+   },
+   {
+    "evidence_id": "e16",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/elemental-impurities-drug-products-guidance-industry#6",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.3476,
+    "chars": 1442
+   },
+   {
+    "evidence_id": "e17",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/patient-reported-outcome-measures-use-medical-product-development-support-labeling-claims#36",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0764,
+    "chars": 1439
+   },
+   {
+    "evidence_id": "e18",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/design-considerations-and-pre-market-submission-recommendations-interoperable-medical-devices#17",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Design Considerations and Pre-market Submission Recommendations for Interoperable Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2017-09-06, Docket FDA-2015-D-4852)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0414,
+    "chars": 1454
+   },
+   {
+    "evidence_id": "e19",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adaptive-design-clinical-trials-drugs-and-biologics-guidance-industry#54",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0357,
+    "chars": 1426
+   },
+   {
+    "evidence_id": "e20",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/ich-q12-implementation-considerations-fda-regulated-products#12",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: ICH Q12: Implementation Considerations for FDA-Regulated Products: Draft Guidance for Industry (draft, 2021-05-20, Docket FDA-2021-D-0166)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0243,
+    "chars": 1430
+   },
+   {
+    "evidence_id": "e21",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adaptive-design-clinical-trials-drugs-and-biologics-guidance-industry#55",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0077,
+    "chars": 1465
+   },
+   {
+    "evidence_id": "e22",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/submission-quality-metrics-data-guidance-industry#5",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0077,
+    "chars": 1423
+   },
+   {
+    "evidence_id": "e23",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/minimizing-risk-childrens-toy-laser-products#3",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Minimizing Risk for Children's Toy Laser Products: Guidance for Industry and Food and Drug Administration Staff (final, 2014-12-19, Docket FDA-2012-D-1092)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 4.0022,
+    "chars": 1437
+   },
+   {
+    "evidence_id": "e24",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/elemental-impurities-drug-products-guidance-industry#7",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 3.9968,
+    "chars": 1440
+   },
+   {
+    "evidence_id": "e25",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-106-use-published-literature-support-new-animal-drug-approvals#56",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: CVM GFI #106 The Use of Published Literature in Support of New Animal Drug Approvals (final, 2023-03-16, Docket FDA-2021-D-1155)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 3.9862,
+    "chars": 1427
+   },
+   {
+    "evidence_id": "e26",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/unique-device-identification-system-small-entity-compliance-guide#19",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Unique Device Identification System: Small Entity Compliance Guide: Guidance for Industry and Food and Drug Administration Staff (final, 2014-08-13, Docket FDA-2011-D-0790)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 3.9707,
+    "chars": 1439
+   },
+   {
+    "evidence_id": "e27",
+    "key": "ecfr:17.43::1",
+    "corpus": "ecfr",
+    "citation": "21 CFR 17.43",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 2.2093,
+    "chars": 1098
+   },
+   {
+    "evidence_id": "e28",
+    "key": "ecfr:888.3046:(b)(4)(iv)(A):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 888.3046(b)(4)(iv)(A)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 1.7363,
+    "chars": 251
+   },
+   {
+    "evidence_id": "e29",
+    "key": "ecfr:870.1100:(a):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 870.1100(a)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 1.4849,
+    "chars": 233
+   },
+   {
+    "evidence_id": "e30",
+    "key": "ecfr:1020.30:(b)(2):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 1020.30(b)(2)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 1.1542,
+    "chars": 274
+   },
+   {
+    "evidence_id": "e31",
+    "key": "ecfr:880.5130:(a):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 880.5130(a)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 0.948,
+    "chars": 640
+   },
+   {
+    "evidence_id": "e32",
+    "key": "ecfr:500.51:(b):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 500.51(b)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 0.9385,
+    "chars": 194
+   },
+   {
+    "evidence_id": "e33",
+    "key": "ecfr:1020.30:(b)(3)(2)(iii)(2)(3)(4)(5):4",
+    "corpus": "ecfr",
+    "citation": "21 CFR 1020.30(b)(3)(2)(iii)(2)(3)(4)(5)",
+    "tier": "supporting",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text",
+    "methods": [
+     "full_text"
+    ],
+    "score": 0.9243,
+    "chars": 132
+   }
+  ],
+  "requirement_state": {
+   "r1": {
+    "requirement_id": "r1",
+    "canonical": "21 CFR 82.1321",
+    "exact_attempted": true,
+    "exact_hits": 1,
+    "structural_hits": 0,
+    "discovery_hits": 0,
+    "resolved": true,
+    "fallback_run": false,
+    "fallback_terms": [],
+    "note": null
+   }
+  },
+  "resolved": [
+   "r1"
+  ],
+  "unresolved": [],
+  "diagnostics": {
+   "kind": "single_provision",
+   "requirement_count": 1,
+   "requirement_ids": [
+    "r1"
+   ],
+   "exact_attempts": 1,
+   "resolved": [
+    "r1"
+   ],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 32,
+    "discovery": 0
+   },
+   "method_counts": {
+    "exact_cfr": 1,
+    "full_text": 32
+   },
+   "candidate_count": 33,
+   "evidence_count": 33,
+   "protected_count": 1,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": false,
+   "requirements": {
+    "r1": {
+     "requirement_id": "r1",
+     "canonical": "21 CFR 82.1321",
+     "exact_attempted": true,
+     "exact_hits": 1,
+     "structural_hits": 0,
+     "discovery_hits": 0,
+     "resolved": true,
+     "fallback_run": false,
+     "fallback_terms": [],
+     "note": null
+    }
+   },
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  }
+ },
+ "coverage": {
+  "state": "COMPLETE",
+  "complete": true,
+  "missing": [],
+  "missing_labels": [],
+  "total_requirements": 1,
+  "exact_requirements": 1,
+  "structural_only_requirements": 0,
+  "supporting_only_requirements": 0,
+  "discovery_only_requirements": 0,
+  "unresolved_requirements": 0,
+  "requirements": [
+   {
+    "requirement_id": "r1",
+    "canonical": "21 CFR 82.1321",
+    "status": "exact",
+    "satisfied": true,
+    "exact_evidence_ids": [
+     "e1"
+    ],
+    "structural_evidence_ids": [],
+    "supporting_evidence_ids": [],
+    "discovery_evidence_ids": [],
+    "note": null
+   }
+  ],
+  "evidence_complete": true
+ },
+ "coverage_action": "answer",
+ "selection": {
+  "selected": [
+   {
+    "index": 1,
+    "evidence_id": "e1",
+    "key": "ecfr:82.1321::1",
+    "citation": "21 CFR 82.1321",
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "protected": true,
+    "reason": "required_exact",
+    "chars": 143,
+    "block_chars": 311,
+    "truncated": false
+   }
+  ],
+  "dropped": [
+   {
+    "evidence_id": "e4",
+    "citation": "21 CFR 801.3(2)(2)(v)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e5",
+    "citation": "21 CFR 830.3(2)(2)(v)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e6",
+    "citation": "21 CFR 361.1(b)(1)(i)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e7",
+    "citation": "21 CFR 361.1(b)(1)(ii)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e8",
+    "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e9",
+    "citation": "21 CFR 314.92(a)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e10",
+    "citation": "FDA Guidance: Compliance Guide for Cabinet X-Ray Systems (final, 2007-09-18, Docket FDA-2020-D-0957)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e11",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e12",
+    "citation": "21 CFR 180.22(f)(3)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e13",
+    "citation": "21 CFR 177.2480(b)(1)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e14",
+    "citation": "21 CFR 361.1(d)(2)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e15",
+    "citation": "21 CFR 866.3982(b)(4)(viii)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e16",
+    "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e17",
+    "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e18",
+    "citation": "FDA Guidance: Design Considerations and Pre-market Submission Recommendations for Interoperable Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2017-09-06, Docket FDA-2015-D-4852)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e19",
+    "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e20",
+    "citation": "FDA Guidance: ICH Q12: Implementation Considerations for FDA-Regulated Products: Draft Guidance for Industry (draft, 2021-05-20, Docket FDA-2021-D-0166)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e21",
+    "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e22",
+    "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e23",
+    "citation": "FDA Guidance: Minimizing Risk for Children's Toy Laser Products: Guidance for Industry and Food and Drug Administration Staff (final, 2014-12-19, Docket FDA-2012-D-1092)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e24",
+    "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e25",
+    "citation": "FDA Guidance: CVM GFI #106 The Use of Published Literature in Support of New Animal Drug Approvals (final, 2023-03-16, Docket FDA-2021-D-1155)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e26",
+    "citation": "FDA Guidance: Unique Device Identification System: Small Entity Compliance Guide: Guidance for Industry and Food and Drug Administration Staff (final, 2014-08-13, Docket FDA-2011-D-0790)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e27",
+    "citation": "21 CFR 17.43",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e28",
+    "citation": "21 CFR 888.3046(b)(4)(iv)(A)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e29",
+    "citation": "21 CFR 870.1100(a)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e30",
+    "citation": "21 CFR 1020.30(b)(2)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e31",
+    "citation": "21 CFR 880.5130(a)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e32",
+    "citation": "21 CFR 500.51(b)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e33",
+    "citation": "21 CFR 1020.30(b)(3)(2)(iii)(2)(3)(4)(5)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e2",
+    "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "optional_not_needed_exact_evidence_complete",
+    "required": false
+   },
+   {
+    "evidence_id": "e3",
+    "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "tier": "supporting",
+    "requirement_ids": [],
+    "reason": "optional_not_needed_exact_evidence_complete",
+    "required": false
+   }
+  ],
+  "policy": {
+   "max_results": 8,
+   "max_chars_per_result": 1200,
+   "max_total_chars": 3600,
+   "hard_max_results": 24,
+   "hard_max_total_chars": 9000,
+   "required_max_chars_per_result": 4000,
+   "binding_reserve_chars": 1200
+  },
+  "total_chars": 311,
+  "overflow": false,
+  "required_count": 1,
+  "required_chars": 311,
+  "optional_count": 0,
+  "material_selected": [],
+  "required_dropped": [],
+  "required_truncated": [],
+  "optional_dropped": [
+   "e4",
+   "e5",
+   "e6",
+   "e7",
+   "e8",
+   "e9",
+   "e10",
+   "e11",
+   "e12",
+   "e13",
+   "e14",
+   "e15",
+   "e16",
+   "e17",
+   "e18",
+   "e19",
+   "e20",
+   "e21",
+   "e22",
+   "e23",
+   "e24",
+   "e25",
+   "e26",
+   "e27",
+   "e28",
+   "e29",
+   "e30",
+   "e31",
+   "e32",
+   "e33"
+  ],
+  "soft_budget_exceeded_by_required": false,
+  "tier_counts": {
+   "exact": 1,
+   "structural": 0,
+   "supporting": 2,
+   "discovery": 0
+  },
+  "required_only": true
+ },
+ "answer_shape": {
+  "mode": "focused",
+  "scope": "section",
+  "exhaustive": false,
+  "requested_units": [
+   "21 CFR 82.1321"
+  ],
+  "focus_terms": [
+   "we're",
+   "contract",
+   "making",
+   "lipstick",
+   "red",
+   "restrict",
+   "limit"
+  ],
+  "signals": [
+   "topic_inside_provision"
+  ],
+  "rationale": "21 CFR 82.1321, restricted to: we're, contract, making, lipstick, red, restrict, limit"
+ },
+ "question_analysis": null,
+ "quality_flags": null,
+ "normalization": null,
+ "generation": {
+  "contract": "grounded_v1",
+  "shape": "single",
+  "max_new_tokens": 256,
+  "budget": {
+   "policy": "adaptive",
+   "base_tokens": 96,
+   "per_unit_tokens": 160,
+   "range_bonus_tokens": 64,
+   "general_tokens": 384,
+   "max_units": 10,
+   "min_tokens": 256,
+   "evidence_multiple": 1.4,
+   "evidence_cap_fraction": 0.75,
+   "hard_max_tokens": 2048
+  },
+  "coverage_state": "COMPLETE",
+  "requirements": [
+   {
+    "id": "r1",
+    "canonical": "21 CFR 82.1321"
+   }
+  ],
+  "satisfied_ids": [
+   "r1"
+  ],
+  "missing_labels": [],
+  "sources": [
+   {
+    "index": 1,
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "protected": true,
+    "corpus": "ecfr",
+    "citation": "21 CFR 82.1321",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1321",
+    "chars": 143,
+    "truncated": false,
+    "evidence_id": "e1",
+    "key": "ecfr:82.1321::1",
+    "is_docket": false
+   }
+  ],
+  "notes": [],
+  "answer_shape": {
+   "mode": "focused",
+   "scope": "section",
+   "exhaustive": false,
+   "requested_units": [
+    "21 CFR 82.1321"
+   ],
+   "focus_terms": [
+    "we're",
+    "contract",
+    "making",
+    "lipstick",
+    "red",
+    "restrict",
+    "limit"
+   ],
+   "signals": [
+    "topic_inside_provision"
+   ],
+   "rationale": "21 CFR 82.1321, restricted to: we're, contract, making, lipstick, red, restrict, limit"
+  },
+  "answer_plan": {
+   "shape": {
+    "mode": "focused",
+    "scope": "section",
+    "exhaustive": false,
+    "requested_units": [
+     "21 CFR 82.1321"
+    ],
+    "focus_terms": [
+     "we're",
+     "contract",
+     "making",
+     "lipstick",
+     "red",
+     "restrict",
+     "limit"
+    ],
+    "signals": [
+     "topic_inside_provision"
+    ],
+    "rationale": "21 CFR 82.1321, restricted to: we're, contract, making, lipstick, red, restrict, limit"
+   },
+   "mode": "focused",
+   "lead_in": [],
+   "groups": [
+    {
+     "key": "82.1321",
+     "label": "21 CFR 82.1321",
+     "heading": null,
+     "kind": "requirement",
+     "head": 1,
+     "members": [
+      1
+     ],
+     "items": [],
+     "requirement_ids": [
+      "r1"
+     ]
+    }
+   ],
+   "context": [],
+   "related": [],
+   "sources": [
+    {
+     "index": 1,
+     "citation": "21 CFR 82.1321",
+     "tier": "exact",
+     "role": "requirement",
+     "section": "82.1321",
+     "paragraph": "",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [
+      "§ 74.1321"
+     ],
+     "requirement_ids": [
+      "r1"
+     ]
+    }
+   ],
+   "notes": []
+  },
+  "generated_tokens": 47,
+  "finished": true,
+  "prompt_tokens": 695,
+  "stop_reason": null,
+  "tokens_per_second": 27.655,
+  "decode_tokens_per_second": 73.189,
+  "prompt_chars": 1027
+ },
+ "validation": {
+  "initial": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [
+    "r1"
+   ],
+   "unaddressed": [],
+   "cited": [
+    1
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 47,
+   "max_new_tokens": 256,
+   "answer_class": "answer",
+   "n_sources": 1,
+   "explicit": true,
+   "cited_tiers": {
+    "1": "exact"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "focused",
+    "shape": {
+     "mode": "focused",
+     "scope": "section",
+     "exhaustive": false,
+     "requested_units": [
+      "21 CFR 82.1321"
+     ],
+     "focus_terms": [
+      "we're",
+      "contract",
+      "making",
+      "lipstick",
+      "red",
+      "restrict",
+      "limit"
+     ],
+     "signals": [
+      "topic_inside_provision"
+     ],
+     "rationale": "21 CFR 82.1321, restricted to: we're, contract, making, lipstick, red, restrict, limit"
+    },
+    "groups": 1,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 1,
+    "material_items_covered": 1,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "final": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [
+    "r1"
+   ],
+   "unaddressed": [],
+   "cited": [
+    1
+   ],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 47,
+   "max_new_tokens": 256,
+   "answer_class": "answer",
+   "n_sources": 1,
+   "explicit": true,
+   "cited_tiers": {
+    "1": "exact"
+   },
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "focused",
+    "shape": {
+     "mode": "focused",
+     "scope": "section",
+     "exhaustive": false,
+     "requested_units": [
+      "21 CFR 82.1321"
+     ],
+     "focus_terms": [
+      "we're",
+      "contract",
+      "making",
+      "lipstick",
+      "red",
+      "restrict",
+      "limit"
+     ],
+     "signals": [
+      "topic_inside_provision"
+     ],
+     "rationale": "21 CFR 82.1321, restricted to: we're, contract, making, lipstick, red, restrict, limit"
+    },
+    "groups": 1,
+    "groups_covered": 1,
+    "uncovered_groups": [],
+    "material_items": 1,
+    "material_items_covered": 1,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "repair": null
+ },
+ "citation_support": {
+  "markers": [
+   1
+  ],
+  "by_tier": {
+   "exact": 1,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 0,
+   "invalid": 0
+  },
+  "exact_source_cited_for": {
+   "r1": true
+  }
+ },
+ "answerability": {
+  "state": "ANSWERABLE",
+  "reason": "every requested provision has exact evidence and nothing checkable is missing (claim-level support is checked after generation by validation)",
+  "signals": {
+   "question_type": "requirement",
+   "scope": "in_scope",
+   "requested_provisions": [
+    "21 CFR 82.1321"
+   ],
+   "sources": 1
+  },
+  "confidence": "PROVEN",
+  "evidence_ids": [
+   "ecfr:82.1321::1"
+  ],
+  "blocking_conditions": [],
+  "blocked": false,
+  "limitation": null,
+  "acted_on": true
+ },
+ "generation_called": true,
+ "generation_blocked": false,
+ "block_reason": null,
+ "fallback_type": null,
+ "fallback_reason": null,
+ "scope_policy": {
+  "status": "in_scope",
+  "reason": "names a CFR provision or guidance docket",
+  "domain_terms": [
+   "contract",
+   "limit",
+   "making",
+   "manufacturer",
+   "red",
+   "set",
+   "use"
+  ]
+ },
+ "semantic_fallback": {
+  "invoked": false,
+  "lexical_insufficient": null,
+  "config": {
+   "semantic_top_n": 8,
+   "similarity_floor": 0.75,
+   "merge_policy": "interleave",
+   "general_questions": false
+  },
+  "lexical_mode": "exact",
+  "skipped": null
+ },
+ "reference_lookup": null,
+ "timings_ms": {
+  "plan_ms": 0.22,
+  "retrieval_ms": 274.98,
+  "context_ms": 1.03,
+  "package_ms": 0.35,
+  "answerability_ms": 0.19,
+  "prompt_ms": 0.02,
+  "generation_ms": 1710.81,
+  "model_prepare_ms": 11.15,
+  "model_first_token_ms": 1071.0,
+  "model_detokenize_ms": 0.06,
+  "model_decode_ms": 628.51,
+  "validation_ms": 0.85,
+  "citations_ms": 0.02,
+  "total_ms": 1988.4,
+  "metadata_ms": 0.26
+ },
+ "input_tokens": 695,
+ "output_tokens": 47,
+ "adapter": {
+  "id": "",
+  "name": null,
+  "r": null,
+  "dataset_hash": null
+ },
+ "model": {
+  "id": "qwen3-1.7b",
+  "label": "Qwen3-1.7B (MLX 4-bit)",
+  "backend": "mlx",
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "21457c6f51ed54a7c16e988c0844db973815c137",
+  "dtype": "mlx-4bit-g128"
+ },
+ "snapshot_date": "2026-09-03",
+ "evidence_snapshot": {
+  "schema": "regulus_evidence_snapshot_v1",
+  "fingerprint": "696d93a8f2f479d4d678e620b4f4dd530d6ee3ad240b0a6bf8ac56b3fc3f78cf",
+  "capture_point": "generation_package",
+  "model_called": true,
+  "prompt_sha256": "555c90855020b5605b237f9bf02ef08a35744e03e486b369ae54b22d4f0ae63a",
+  "prompt_verified": true,
+  "question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+  "requirements": [
+   {
+    "id": "r1",
+    "canonical": "21 CFR 82.1321"
+   }
+  ],
+  "satisfied_ids": [
+   "r1"
+  ],
+  "missing_labels": [],
+  "coverage_explicit": true,
+  "items": [
+   {
+    "order": 0,
+    "index": 1,
+    "evidence_id": "e1",
+    "source_type": "ecfr",
+    "corpus": "ecfr",
+    "citation": "21 CFR 82.1321",
+    "document": null,
+    "part": "82",
+    "section": "82.1321",
+    "paragraph": null,
+    "heading": "D&C Red No. 21.",
+    "tier": "exact",
+    "requirement_ids": [
+     "r1"
+    ],
+    "protected": true,
+    "key": "ecfr:82.1321::1",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1321",
+    "is_docket": false,
+    "truncated": false,
+    "chars": 143,
+    "text": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter.",
+    "citation_fields": {
+     "corpus": "ecfr",
+     "label": "21 CFR 82.1321",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-82/section-82.1321",
+     "title": "21",
+     "part": "82",
+     "section": "82.1321",
+     "paragraph": null,
+     "heading": "D&C Red No. 21.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    }
+   }
+  ]
+ },
+ "server_timings_ms": {
+  "engine_setup_ms": 0.03,
+  "pipeline_answer_ms": 1988.67,
+  "response_build_ms": 0.02,
+  "accuracy_ms": 4.2,
+  "request_parse_ms": 0.51,
+  "lock_wait_ms": 0.0
+ },
+ "accuracy": {
+  "status": "evaluated",
+  "accuracy": 30,
+  "reason": "Partially correct: 1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1321) is about red; the answer does not cover: the question's subject",
+  "rubric_id": "regulus_live_evidence_assessment_v2",
+  "rubric": {
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "version": "2.0.0",
+   "frozen": "2026-10-08",
+   "dimensions": [
+    "question_relevance",
+    "substantive_correctness",
+    "evidence_support",
+    "citation_correctness",
+    "fabrication_free",
+    "completeness",
+    "scope_correct"
+   ],
+   "absolute": [
+    "fabrication_free",
+    "substantive_correctness",
+    "question_relevance"
+   ],
+   "deductions": {
+    "fabrication_free:fail": 100,
+    "substantive_correctness:fail": 100,
+    "question_relevance:fail": 100,
+    "substantive_correctness:partial": 45,
+    "citation_correctness:fail": 40,
+    "scope_correct:fail": 40,
+    "evidence_support:fail": 35,
+    "completeness:fail": 25,
+    "completeness:partial": 10,
+    "evidence_support:not_established": 15,
+    "fabrication_free:not_established": 10,
+    "citation_correctness:not_established": 10,
+    "completeness:not_established": 5,
+    "scope_correct:not_established": 5
+   },
+   "formula": "score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided",
+   "is_acceptance_rubric": false
+  },
+  "basis": "Based on the authoritative regulatory evidence retrieved for this answer.",
+  "not_the_benchmark": "An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.",
+  "answer_verdict": {
+   "verdict": "partial",
+   "reason": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1321) is about red; the answer does not cover: the question's subject",
+   "counts": {
+    "supported": 1,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "elements_covered": [],
+   "elements_missing": [
+    "the question's subject"
+   ],
+   "elements_unverified": []
+  },
+  "dimensions": [
+   {
+    "dimension": "question_relevance",
+    "label": "Answers the question",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "1 statement(s) correspond to regulation about what the question asks (we'r/contract/making/lipstick/red/restrict/limit)",
+    "evidence": [],
+    "claim": "the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part"
+   },
+   {
+    "dimension": "substantive_correctness",
+    "label": "Substantive correctness",
+    "state": "partial",
+    "glyph": "⚠",
+    "detail": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1321) is about red; the answer does not cover: the question's subject",
+    "evidence": [],
+    "claim": "every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it"
+   },
+   {
+    "dimension": "evidence_support",
+    "label": "Evidence support",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "every one of the 1 statement(s) that answer the question corresponds to authoritative evidence and was compared with it operator by operator",
+    "evidence": [],
+    "claim": "every material claim is a verbatim passage of an authoritative source retrieved for this question"
+   },
+   {
+    "dimension": "citation_correctness",
+    "label": "Citation correctness",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "1 of 1 statement(s) cite a source that supports them and none cites a wrong one",
+    "evidence": [],
+    "claim": "every citation resolves to a supplied source, and to the provision the sentence it is attached to is about"
+   },
+   {
+    "dimension": "fabrication_free",
+    "label": "Unsupported claims",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "every figure, condition and identifier in the answer appears in the supplied evidence (21 CFR 74.1321(a)(1), 21 CFR 74.1321(b))",
+    "evidence": [],
+    "claim": "the answer names no section, clause, condition or figure that the authoritative evidence does not contain"
+   },
+   {
+    "dimension": "completeness",
+    "label": "Completeness",
+    "state": "fail",
+    "glyph": "✗",
+    "detail": "the answer does not address: the question's subject",
+    "evidence": [
+     "the question's subject"
+    ],
+    "claim": "every provision the question requested has authoritative text and is addressed in the answer"
+   },
+   {
+    "dimension": "scope_correct",
+    "label": "Scope",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome",
+    "evidence": [],
+    "claim": "the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome"
+   }
+  ],
+  "deductions": [
+   {
+    "dimension": "substantive_correctness",
+    "state": "partial",
+    "points": 45
+   },
+   {
+    "dimension": "completeness",
+    "state": "fail",
+    "points": 25
+   }
+  ],
+  "checked": {
+   "question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+   "intent": {
+    "kind": "application",
+    "provisions": [
+     "21 CFR 82.1321"
+    ],
+    "sections": [
+     "82.1321"
+    ],
+    "parts": [
+     "82"
+    ],
+    "topic": [
+     "we'r",
+     "contract",
+     "making",
+     "lipstick",
+     "red",
+     "restrict",
+     "limit"
+    ],
+    "domains": [
+     "A"
+    ],
+    "domain_names": [
+     "general"
+    ],
+    "elements": [
+     {
+      "label": "the question's subject",
+      "terms": [
+       "we'r",
+       "contract",
+       "making",
+       "lipstick",
+       "red",
+       "restrict",
+       "limit"
+      ]
+     }
+    ],
+    "signals": [
+     "kind:application"
+    ],
+    "planner_type": "requirement"
+   },
+   "answer_verdict": {
+    "verdict": "partial",
+    "reason": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1321) is about red; the answer does not cover: the question's subject",
+    "counts": {
+     "supported": 1,
+     "supported_with_citation_defect": 0,
+     "partially_supported": 0,
+     "contradicted": 0,
+     "irrelevant": 0,
+     "unverifiable": 0
+    },
+    "elements_covered": [],
+    "elements_missing": [
+     "the question's subject"
+    ],
+    "elements_unverified": []
+   },
+   "sources": 1,
+   "evidence_passages": 1,
+   "evidence_excluded_domain": [],
+   "citations": 1,
+   "sentences": 1,
+   "material_claims": 1,
+   "claims_answering_question": 1,
+   "sentence_origins": {
+    "model_claim": 1,
+    "inserted_quotation": 0,
+    "pipeline_sentence": 0,
+    "citation_label": 0,
+    "question_echo": 0,
+    "too_short": 0,
+    "heading_fragment": 0,
+    "pointer_sentence": 0,
+    "question_restatement": 0,
+    "meta_statement": 0,
+    "uncertain": 0
+   },
+   "claim_status": {
+    "supported": 1,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "aligner": "lexical",
+   "identifiers_named": 2,
+   "identifiers_verified_absent": 0,
+   "identifier_index_used": true,
+   "validation_status": "valid",
+   "validation_error_codes": [],
+   "abstention": {
+    "declined": false,
+    "outcome": null,
+    "reason": "the answer states regulatory requirements rather than declining",
+    "evidence": []
+   },
+   "fallback_type": null,
+   "claims": [
+    {
+     "claim": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter [1].",
+     "split_from": null,
+     "relevance": {
+      "verdict": "partially_relevant",
+      "reason": "the regulation it corresponds to (21 CFR 82.1321) is about red",
+      "content": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter  .",
+      "basis": "evidence",
+      "topic_hits": [
+       "red"
+      ],
+      "evidence": [
+       "21 CFR 82.1321"
+      ],
+      "checks": {
+       "lead_restating_question": null,
+       "content_found_in_evidence": 1.0,
+       "evidence_passages": 1,
+       "domain": "consistent",
+       "provision": "consistent",
+       "section": "consistent"
+      }
+     },
+     "evidence": [
+      {
+       "citation": "21 CFR 82.1321",
+       "source_index": 1,
+       "heading": "D&C Red No. 21.",
+       "text": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter."
+      }
+     ],
+     "support": "supported",
+     "support_basis": "verbatim",
+     "support_reason": "100% of it is verbatim in 21 CFR 82.1321 (SOURCE 1) and no regulatory operator disagrees",
+     "operators": {
+      "strength": "matched",
+      "polarity": "matched",
+      "actor": "undetermined",
+      "quantity": "undetermined",
+      "date": "undetermined"
+     },
+     "operator_trace": {
+      "evidence_citation": "21 CFR 82.1321",
+      "source_type": "binding_regulation",
+      "claim_operators": {
+       "strength": "mandatory",
+       "polarity": "affirm",
+       "duty_holder": null,
+       "conditions": []
+      },
+      "evidence_operators": {
+       "strength": "mandatory",
+       "polarity": "affirm",
+       "duty_holder": null,
+       "conditions": []
+      },
+      "conflicts": [],
+      "relations": [],
+      "support_blocked": null,
+      "verdict": "supported",
+      "content_gate": {
+       "content_gate_verdict": "established",
+       "content_support_reason": "100% verbatim",
+       "support_block_reason": null,
+       "distinguishing_terms": [],
+       "distinguishing_term_sources": {},
+       "core_overlap": 1.0,
+       "term_overlap": 1.0,
+       "raw_term_overlap": 1.0,
+       "verbatim_coverage": 1.0,
+       "operators_agreed": [
+        "strength",
+        "polarity"
+       ],
+       "operator_silent_passage": false,
+       "core_object_match": true,
+       "core_subject_match": true,
+       "core_action_match": "matched",
+       "core_actor_match": "undetermined",
+       "condition_match": true,
+       "material_omissions": [],
+       "candidate_selection": {
+        "passage": "21 CFR 82.1321",
+        "method": "lexical",
+        "similarity": null
+       }
+      }
+     },
+     "citation": "correct",
+     "citation_detail": "cites 21 CFR 82.1321, which supports it",
+     "final": "supported",
+     "claim_id": "s0",
+     "sentence_index": 0,
+     "normalized_text": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter  .",
+     "resolved_from": null,
+     "subclaim": null,
+     "candidate_evidence": [
+      "21 CFR 82.1321"
+     ],
+     "selected_evidence": "21 CFR 82.1321",
+     "match_path": "sentence",
+     "citation_trace": {
+      "kind": "own",
+      "markers": [
+       {
+        "marker": 1,
+        "source": "21 CFR 82.1321",
+        "verdict": "supported",
+        "supports": true
+       }
+      ],
+      "rule": "a cited source supports the claim"
+     }
+    }
+   ],
+   "excluded_sentences": [],
+   "claim_candidates": [
+    {
+     "sentence_index": 0,
+     "text": "The color additive D&C Red No. 21 shall conform in identity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter [1].",
+     "origin": "model_claim",
+     "reason": "",
+     "claim_status": "claim",
+     "paragraph": 0
+    }
+   ],
+   "claim_status_counts": {
+    "claim": 1,
+    "non_claim": 0,
+    "uncertain": 0
+   },
+   "evidence_provenance": "exact"
+  },
+  "elapsed_ms": 4.11,
+  "evidence_provenance": "exact",
+  "evidence": {
+   "provenance": "exact",
+   "fingerprint": "696d93a8f2f479d4d678e620b4f4dd530d6ee3ad240b0a6bf8ac56b3fc3f78cf",
+   "items": 1,
+   "guidance_items": 0,
+   "capture_point": "generation_package",
+   "model_called": true,
+   "prompt_sha256": "555c90855020b5605b237f9bf02ef08a35744e03e486b369ae54b22d4f0ae63a",
+   "prompt_verified": true,
+   "schema": "regulus_evidence_snapshot_v1",
+   "package_matches_snapshot": true
+  },
+  "question_relevance": true,
+  "substantive_correctness": "partial",
+  "evidence_support": true,
+  "citation_correctness": true,
+  "fabrication_free": true,
+  "completeness": false,
+  "scope_correct": true,
+  "question_review": {
+   "question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+   "status": "fail",
+   "label": "FAIL",
+   "substantive_correctness": {
+    "state": "partial",
+    "label": "Partial",
+    "detail": "1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1321) is about red; the answer does not cover: the question's subject"
+   },
+   "citation_correctness": {
+    "state": "pass",
+    "label": "Pass",
+    "detail": "1 of 1 statement(s) cite a source that supports them and none cites a wrong one"
+   },
+   "explanation": "Partially correct: 1 statement(s) only partly address the question - e.g. the regulation it corresponds to (21 CFR 82.1321) is about red; the answer does not cover: the question's subject",
+   "live_check_score": 30,
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "basis": "Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result."
+  }
+ },
+ "wall_seconds": 2.0
+}

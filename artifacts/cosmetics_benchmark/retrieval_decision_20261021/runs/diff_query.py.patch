@@ -1,0 +1,23 @@
+--- artifacts/cosmetics_benchmark/retrieval_decision_20261021/pre_edit/src/regulus/retrieval/query.py	2026-10-20 13:37:19
++++ src/regulus/retrieval/query.py	2026-10-21 12:06:16
+@@ -155,8 +155,20 @@
+         seen.add(tok)
+         out.append(tok)
+     return out
++
++
++# websearch_to_tsquery reads a standalone "or" (any case, beside spaces, commas or brackets) as its OR operator;
++# "and/or" and "either-or" stay ordinary tokens. "or" is an English stop word, so removing the operator loses no
++# searchable term. The limit: a question that offers real alternatives ("a lipstick or a lip balm") then needs
++# every word in one row, as if it had said "and".
++_OR_OPERATOR_RE = re.compile(r"(?<![\w/-])or(?![\w/-])", re.IGNORECASE)
+ 
+ 
++def literal_or(text: str) -> str:
++    """`text` with each standalone "or" replaced by a space, for an all-words full-text search."""
++    return _OR_OPERATOR_RE.sub(" ", text or "")
++
++
+ # A definitional question about ONE short term. Narrow on purpose: "What does
+ # FDA stand for?", "What does adulterated mean?", "What is the meaning/definition
+ # of X?", "Define X", "What is meant by X?". A question that names a provision,

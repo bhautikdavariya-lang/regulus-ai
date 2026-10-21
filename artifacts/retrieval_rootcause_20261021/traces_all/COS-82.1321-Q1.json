@@ -1,0 +1,1014 @@
+{
+ "id": "COS-82.1321-Q1",
+ "question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+ "key_citation": "21 CFR 82.1321; 21 CFR 82.1050",
+ "required": {
+  "82.1321": [],
+  "82.1050": []
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR 82.1321"
+  ],
+  "docket": null,
+  "normalized_question": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 16,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "manufacturer",
+   "contract",
+   "lipstick",
+   "restrict",
+   "82.1321",
+   "making",
+   "limit",
+   "red"
+  ],
+  "primary_result_count": 33,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 82.1321",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+   "tsquery": "'re' & 'contract' & 'manufactur' & 'make' & 'lipstick' & 'd' & 'c' & 'red' & '21' & '82.1321' & 'restrict' & 'use' | 'set' & 'limit'",
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 801.3(2)(2)(v)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 7.5785,
+     "chars": 130,
+     "metadata": {
+      "ordinal": 28,
+      "ts_rank_cd": 0.15156928
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 830.3(2)(2)(v)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 7.5785,
+     "chars": 130,
+     "metadata": {
+      "ordinal": 28,
+      "ts_rank_cd": 0.15156928
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 361.1(b)(1)(i)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 7.2135,
+     "chars": 96,
+     "metadata": {
+      "ordinal": 3,
+      "ts_rank_cd": 0.14426951
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 361.1(b)(1)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 7.0591,
+     "chars": 91,
+     "metadata": {
+      "ordinal": 4,
+      "ts_rank_cd": 0.14118245
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "21 CFR 314.92(a)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 6.9195,
+     "chars": 117,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.13839051
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "21 CFR 180.22(f)(3)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 6.002,
+     "chars": 260,
+     "metadata": {
+      "ordinal": 16,
+      "ts_rank_cd": 0.120040655
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "21 CFR 177.2480(b)(1)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 5.9395,
+     "chars": 270,
+     "metadata": {
+      "ordinal": 3,
+      "ts_rank_cd": 0.11878968
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "21 CFR 361.1(d)(2)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 5.4982,
+     "chars": 353,
+     "metadata": {
+      "ordinal": 27,
+      "ts_rank_cd": 0.10996303
+     }
+    },
+    {
+     "rank": 9,
+     "citation": "21 CFR 866.3982(b)(4)(viii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 4.4951,
+     "chars": 43,
+     "metadata": {
+      "ordinal": 13,
+      "ts_rank_cd": 0.08990228
+     }
+    },
+    {
+     "rank": 10,
+     "citation": "21 CFR 17.43",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 2.2093,
+     "chars": 1098,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.044185337
+     }
+    },
+    {
+     "rank": 11,
+     "citation": "21 CFR 888.3046(b)(4)(iv)(A)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 1.7363,
+     "chars": 251,
+     "metadata": {
+      "ordinal": 20,
+      "ts_rank_cd": 0.034726884
+     }
+    },
+    {
+     "rank": 12,
+     "citation": "21 CFR 870.1100(a)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 1.4849,
+     "chars": 233,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.02969742
+     }
+    },
+    {
+     "rank": 13,
+     "citation": "21 CFR 1020.30(b)(2)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 1.1542,
+     "chars": 274,
+     "metadata": {
+      "ordinal": 27,
+      "ts_rank_cd": 0.02308312
+     }
+    },
+    {
+     "rank": 14,
+     "citation": "21 CFR 880.5130(a)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 0.948,
+     "chars": 640,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.018959558
+     }
+    },
+    {
+     "rank": 15,
+     "citation": "21 CFR 500.51(b)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 0.9385,
+     "chars": 194,
+     "metadata": {
+      "ordinal": 4,
+      "ts_rank_cd": 0.01876907
+     }
+    },
+    {
+     "rank": 16,
+     "citation": "21 CFR 1020.30(b)(3)(2)(iii)(2)(3)(4)(5)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 0.9243,
+     "chars": 132,
+     "metadata": {
+      "ordinal": 119,
+      "ts_rank_cd": 0.018486599
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're a contract manufacturer making a lipstick with D&C Red No. 21. Does 82.1321 restrict that use or set a limit?",
+   "tsquery": "'re' & 'contract' & 'manufactur' & 'make' & 'lipstick' & 'd' & 'c' & 'red' & '21' & '82.1321' & 'restrict' & 'use' | 'set' & 'limit'",
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 11.504,
+     "chars": 1451,
+     "metadata": {
+      "ts_rank_cd": 0.23007926
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 9.1834,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 0.18366803
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 7.0381,
+     "chars": 1424,
+     "metadata": {
+      "ts_rank_cd": 0.14076287
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Compliance Guide for Cabinet X-Ray Systems (final, 2007-09-18, Docket FDA-2020-D-0957)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 6.3785,
+     "chars": 1454,
+     "metadata": {
+      "ts_rank_cd": 0.12756963
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 6.0081,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 0.12016225
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.3476,
+     "chars": 1442,
+     "metadata": {
+      "ts_rank_cd": 0.086951755
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0764,
+     "chars": 1439,
+     "metadata": {
+      "ts_rank_cd": 0.081528716
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Design Considerations and Pre-market Submission Recommendations for Interoperable Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2017-09-06, Docket FDA-2015-D-4852)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0414,
+     "chars": 1454,
+     "metadata": {
+      "ts_rank_cd": 0.08082833
+     }
+    },
+    {
+     "rank": 9,
+     "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0357,
+     "chars": 1426,
+     "metadata": {
+      "ts_rank_cd": 0.08071307
+     }
+    },
+    {
+     "rank": 10,
+     "citation": "FDA Guidance: ICH Q12: Implementation Considerations for FDA-Regulated Products: Draft Guidance for Industry (draft, 2021-05-20, Docket FDA-2021-D-0166)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0243,
+     "chars": 1430,
+     "metadata": {
+      "ts_rank_cd": 0.080485925
+     }
+    },
+    {
+     "rank": 11,
+     "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0077,
+     "chars": 1465,
+     "metadata": {
+      "ts_rank_cd": 0.080153376
+     }
+    },
+    {
+     "rank": 12,
+     "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0077,
+     "chars": 1423,
+     "metadata": {
+      "ts_rank_cd": 0.080153376
+     }
+    },
+    {
+     "rank": 13,
+     "citation": "FDA Guidance: Minimizing Risk for Children's Toy Laser Products: Guidance for Industry and Food and Drug Administration Staff (final, 2014-12-19, Docket FDA-2012-D-1092)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 4.0022,
+     "chars": 1437,
+     "metadata": {
+      "ts_rank_cd": 0.08004463
+     }
+    },
+    {
+     "rank": 14,
+     "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 3.9968,
+     "chars": 1440,
+     "metadata": {
+      "ts_rank_cd": 0.07993691
+     }
+    },
+    {
+     "rank": 15,
+     "citation": "FDA Guidance: CVM GFI #106 The Use of Published Literature in Support of New Animal Drug Approvals (final, 2023-03-16, Docket FDA-2021-D-1155)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 3.9862,
+     "chars": 1427,
+     "metadata": {
+      "ts_rank_cd": 0.079724476
+     }
+    },
+    {
+     "rank": 16,
+     "citation": "FDA Guidance: Unique Device Identification System: Small Entity Compliance Guide: Guidance for Industry and Food and Drug Administration Staff (final, 2014-08-13, Docket FDA-2011-D-0790)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 3.9707,
+     "chars": 1439,
+     "metadata": {
+      "ts_rank_cd": 0.07941309
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 82.1321",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.504,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 9.1834,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "21 CFR 801.3(2)(2)(v)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 7.5785,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "21 CFR 830.3(2)(2)(v)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 7.5785,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "21 CFR 361.1(b)(1)(i)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 7.2135,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "21 CFR 361.1(b)(1)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 7.0591,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 7.0381,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 314.92(a)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 6.9195,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "FDA Guidance: Compliance Guide for Cabinet X-Ray Systems (final, 2007-09-18, Docket FDA-2020-D-0957)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 6.3785,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 6.0081,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 180.22(f)(3)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 6.002,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 177.2480(b)(1)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 5.9395,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 14,
+   "citation": "21 CFR 361.1(d)(2)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 5.4982,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 15,
+   "citation": "21 CFR 866.3982(b)(4)(viii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.4951,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 16,
+   "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.3476,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 17,
+   "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0764,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 18,
+   "citation": "FDA Guidance: Design Considerations and Pre-market Submission Recommendations for Interoperable Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2017-09-06, Docket FDA-2015-D-4852)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0414,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 19,
+   "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0357,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 20,
+   "citation": "FDA Guidance: ICH Q12: Implementation Considerations for FDA-Regulated Products: Draft Guidance for Industry (draft, 2021-05-20, Docket FDA-2021-D-0166)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0243,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 21,
+   "citation": "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0077,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 22,
+   "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0077,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 23,
+   "citation": "FDA Guidance: Minimizing Risk for Children's Toy Laser Products: Guidance for Industry and Food and Drug Administration Staff (final, 2014-12-19, Docket FDA-2012-D-1092)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 4.0022,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 24,
+   "citation": "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 3.9968,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 25,
+   "citation": "FDA Guidance: CVM GFI #106 The Use of Published Literature in Support of New Animal Drug Approvals (final, 2023-03-16, Docket FDA-2021-D-1155)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 3.9862,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 26,
+   "citation": "FDA Guidance: Unique Device Identification System: Small Entity Compliance Guide: Guidance for Industry and Food and Drug Administration Staff (final, 2014-08-13, Docket FDA-2011-D-0790)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 3.9707,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 27,
+   "citation": "21 CFR 17.43",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 2.2093,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 28,
+   "citation": "21 CFR 888.3046(b)(4)(iv)(A)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 1.7363,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 29,
+   "citation": "21 CFR 870.1100(a)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 1.4849,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 30,
+   "citation": "21 CFR 1020.30(b)(2)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 1.1542,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 31,
+   "citation": "21 CFR 880.5130(a)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 0.948,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 32,
+   "citation": "21 CFR 500.51(b)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 0.9385,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 33,
+   "citation": "21 CFR 1020.30(b)(3)(2)(iii)(2)(3)(4)(5)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 0.9243,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 82.1321",
+  "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+  "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+  "21 CFR 801.3(2)(2)(v)",
+  "21 CFR 830.3(2)(2)(v)",
+  "21 CFR 361.1(b)(1)(i)",
+  "21 CFR 361.1(b)(1)(ii)",
+  "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)"
+ ],
+ "selection": {
+  "total_chars": 311,
+  "dropped": [
+   [
+    "21 CFR 801.3(2)(2)(v)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 830.3(2)(2)(v)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 361.1(b)(1)(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 361.1(b)(1)(ii)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 314.92(a)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Compliance Guide for Cabinet X-Ray Systems (final, 2007-09-18, Docket FDA-2020-D-0957)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 180.22(f)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 177.2480(b)(1)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 361.1(d)(2)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 866.3982(b)(4)(viii)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Design Considerations and Pre-market Submission Recommendations for Interoperable Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2017-09-06, Docket FDA-2015-D-4852)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: ICH Q12: Implementation Considerations for FDA-Regulated Products: Draft Guidance for Industry (draft, 2021-05-20, Docket FDA-2021-D-0166)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Adaptive Design Clinical Trials for Drugs and Biologics Guidance for Industry (final, 2019-12-02, Docket FDA-2018-D-3124)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Minimizing Risk for Children's Toy Laser Products: Guidance for Industry and Food and Drug Administration Staff (final, 2014-12-19, Docket FDA-2012-D-1092)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Elemental Impurities in Drug Products Guidance for Industry (final, 2018-08-08, Docket FDA-2016-D-1692)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #106 The Use of Published Literature in Support of New Animal Drug Approvals (final, 2023-03-16, Docket FDA-2021-D-1155)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Unique Device Identification System: Small Entity Compliance Guide: Guidance for Industry and Food and Drug Administration Staff (final, 2014-08-13, Docket FDA-2011-D-0790)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 17.43",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 888.3046(b)(4)(iv)(A)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 870.1100(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1020.30(b)(2)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 880.5130(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 500.51(b)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1020.30(b)(3)(2)(iii)(2)(3)(4)(5)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "optional_not_needed_exact_evidence_complete"
+   ],
+   [
+    "FDA Guidance: Setting Endotoxin Limits During Development of Investigational Oncology Drugs and Biological Products Guidance for Industry: Draft Guidance for Industry (draft, 2020-07-28, Docket FDA-2020-D-1294)",
+    "optional_not_needed_exact_evidence_complete"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 1,
+   "required_chars": 311,
+   "required_dropped": [],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 2,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 82.1321",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 143,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "82.1050": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 274,
+     "tail": "requirements of § 82.5 and to the specifications set forth in this subpart for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "General."
+  },
+  "82.1321": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 143,
+     "tail": "entity and specifications to the requirements of § 74.1321 (a)(1) and (b) of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "D&C Red No. 21."
+  }
+ },
+ "required_status": {
+  "21 CFR 82.1321": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 82.1050": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

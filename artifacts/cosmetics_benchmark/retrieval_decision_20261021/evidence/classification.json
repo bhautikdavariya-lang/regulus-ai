@@ -1,0 +1,902 @@
+{
+ "COS-70.3-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "fallback",
+  "A_sub": 1
+ },
+ "COS-70.3-Q3": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "AI",
+  "cause_2b": null,
+  "A_category": "PASS",
+  "A_kind": "fallback",
+  "A_sub": 2
+ },
+ "COS-70.19-Q2": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "answer",
+  "A_sub": 0
+ },
+ "COS-70.50-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section in the top 4, but cut by the 4-row cap",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-70.50-Q2": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "PASS",
+  "A_kind": "answer",
+  "A_sub": 2
+ },
+ "COS-70.51-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-70.55-Q1": {
+  "cat": "D in registry, dropped by the context budget",
+  "cov": "none",
+  "primary_2a": "ESD",
+  "cause_2b": "Context-budget loss",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-71.1-Q2": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: no overlap with RC1's terms",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-71.6-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-71.15-Q2": {
+  "cat": "D in registry, dropped by the context budget",
+  "cov": "none",
+  "primary_2a": "ESD",
+  "cause_2b": "Context-budget loss",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-71.25-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-71.26-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-71.27-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: AND matched but ranked 22nd of 16; fallback skipped",
+  "A_category": "FAIL",
+  "A_kind": "withheld",
+  "A_sub": 0
+ },
+ "COS-73.2085-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2095-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2180-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2250-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2298-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2575-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2645-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2646-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2647-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-73.2725-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: the AND leg filled from other rows and the fallback legs were skipped (H1)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2052-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2203-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2208-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "withheld",
+  "A_sub": 0
+ },
+ "COS-74.2254-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2304-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2317-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2322-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2327-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2340-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2602a-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section in the top 4, but cut by the 4-row cap",
+  "A_category": "FAIL",
+  "A_kind": "answer",
+  "A_sub": 0
+ },
+ "COS-74.2708-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2710-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-74.2711-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-80.10-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-80.31-Q1": {
+  "cat": "B2 exists, required paragraph not retrieved (rest of evidence present)",
+  "cov": "part",
+  "primary_2a": "EI",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-80.37-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "IE",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-80.38-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-81.30-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-82.6-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-82.50-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.101-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.203-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "GF",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.304-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "GF",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.1104-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-82.1205-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.1206-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-82.1254-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-82.1307-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "AI",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "withheld",
+  "A_sub": 0
+ },
+ "COS-82.1317-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-82.1321-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.1327-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-82.2050-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "withheld",
+  "A_sub": 0
+ },
+ "COS-700.13-Q2": {
+  "cat": "B2 exists, required paragraph not retrieved (rest of evidence present)",
+  "cov": "part",
+  "primary_2a": "EI",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-700.14-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-700.15-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "EI",
+  "cause_2b": "Ranked out: right section, wrong paragraph (2-row cap)",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-700.18-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "VFP",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-700.25-Q2": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "EI",
+  "cause_2b": "Ranked out: right section, wrong paragraph (2-row cap)",
+  "A_category": "FAIL",
+  "A_kind": "answer",
+  "A_sub": 0
+ },
+ "COS-700.35-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section in the top 4, but cut by the 4-row cap",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.3-Q1": {
+  "cat": "D in registry, dropped by the context budget",
+  "cov": "none",
+  "primary_2a": "ESD",
+  "cause_2b": "Context-budget loss",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.3-Q4": {
+  "cat": "B2 exists, required paragraph not retrieved (rest of evidence present)",
+  "cov": "part",
+  "primary_2a": "EI",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.9-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: no overlap with RC1's terms",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.12-Q2": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.13-G1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.13-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-701.13-Q3": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-710.2-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "MC",
+  "cause_2b": null,
+  "A_category": "PARTIALLY FAIL",
+  "A_kind": "answer",
+  "A_sub": 1
+ },
+ "COS-710.4-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "AI",
+  "cause_2b": null,
+  "A_category": "PARTIALLY PASS",
+  "A_kind": "answer",
+  "A_sub": 2
+ },
+ "COS-710.5-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "full",
+  "primary_2a": "PASS",
+  "cause_2b": null,
+  "A_category": "PARTIALLY PASS",
+  "A_kind": "answer",
+  "A_sub": 2
+ },
+ "COS-720.3-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-720.4-Q3": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "AI",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-720.7-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: no overlap with RC1's terms",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-720.8-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-740.11-Q1": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: no overlap with RC1's terms",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-740.11-Q2": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section in the top 4, but cut by the 4-row cap",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-740.12-Q1": {
+  "cat": "E evidence reached the model; 1.7B answer is the limit",
+  "cov": "part",
+  "primary_2a": "GE",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-740.19-Q1": {
+  "cat": "C retrieved by a leg but ranked/capped out before the registry",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Ranked out: RC1 section below the top 4",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA201(i)-Q1": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA601-Q3": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA603-Q1": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA605-Q1": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA605-Q3": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "answer",
+  "A_sub": 0
+ },
+ "COS-FDCA606-Q2": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA607-Q2": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA607-Q3": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA609-Q1": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA609-Q2": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA613-Q2": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "COS-FDCA614-Q2": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-006": {
+  "cat": "B exists, not retrieved (no leg generated it)",
+  "cov": "none",
+  "primary_2a": "RM",
+  "cause_2b": "Not generated: no overlap with RC1's terms",
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-009": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-011": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-013": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-015": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-016": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-017": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-020": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ },
+ "UC-COS-021": {
+  "cat": "G statute-only key (FD&C Act text not in corpus)",
+  "cov": "statute",
+  "primary_2a": "CG",
+  "cause_2b": null,
+  "A_category": "FAIL",
+  "A_kind": "decline",
+  "A_sub": 0
+ }
+}

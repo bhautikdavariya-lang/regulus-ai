@@ -1,0 +1,592 @@
+{
+ "id": "UC-COS-017",
+ "question": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+ "key_citation": "FD&C Act 605(a), (b)(1)–(2) (21 U.S.C. 364a); 604 responsible person",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "distributor name label made contract manufacturer user hospitalized using hair-straightening cream reports goes report",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "hair-straightening",
+   "manufacturer",
+   "hospitalized",
+   "distributor",
+   "contract",
+   "reports",
+   "report",
+   "label"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+   "tsquery": "'re' & 'distributor' & 'whose' & 'name' & 'label' & 'product' & 'made' & 'contract' & 'manufactur' & 'user' & 'hospit' & 'use' & 'hair-straighten' <-> 'hair' <-> 'straighten' & 'cream' & 'report' & 'goe' & 'report'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+   "tsquery": "'re' & 'distributor' & 'whose' & 'name' & 'label' & 'product' & 'made' & 'contract' & 'manufactur' & 'user' & 'hospit' & 'use' & 'hair-straighten' <-> 'hair' <-> 'straighten' & 'cream' & 'report' & 'goe' & 'report'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "distributor name label made contract manufacturer user hospitalized using hair-straightening cream reports goes report",
+   "tsquery": "'distributor' & 'name' & 'label' & 'made' & 'contract' & 'manufactur' & 'user' & 'hospit' & 'use' & 'hair-straighten' <-> 'hair' <-> 'straighten' & 'cream' & 'report' & 'goe' & 'report'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 700.13(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.762,
+     "chars": 656,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.7134,
+      "paragraph_coverage": 0.3438
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 720.4(c)(5)(iii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7071,
+     "chars": 25,
+     "metadata": {
+      "ordinal": 38,
+      "section_coverage": 0.769,
+      "paragraph_coverage": 0.2552
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 720.4(a)(1)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.565,
+     "chars": 149,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 0.769,
+      "paragraph_coverage": 0.17
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 821.1(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5377,
+     "chars": 991,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 0.6659,
+      "paragraph_coverage": 0.2567
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "hair-straightening or manufacturer or hospitalized or distributor or contract or reports or report or label",
+   "tsquery": "'hair-straighten' <-> 'hair' <-> 'straighten' | 'manufactur' | 'hospit' | 'distributor' | 'contract' | 'report' | 'report' | 'label'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4848,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 2.3756852
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4249,
+     "chars": 1467,
+     "metadata": {
+      "ts_rank_cd": 2.2798264
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4207,
+     "chars": 1462,
+     "metadata": {
+      "ts_rank_cd": 2.2730715
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3744,
+     "chars": 1449,
+     "metadata": {
+      "ts_rank_cd": 2.1990416
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3599,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 2.1758158
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Postmarketing Adverse Event Reporting for Medical Products and Dietary Supplements During a Pandemic (final, 2020-05-11, Docket FDA-2008-D-0610)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3481,
+     "chars": 1460,
+     "metadata": {
+      "ts_rank_cd": 2.1569192
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3471,
+     "chars": 1495,
+     "metadata": {
+      "ts_rank_cd": 2.1554153
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Voluntary Malfunction Summary Reporting (VMSR) Program for Manufacturers: Guidance for Industry and Food and Drug Administration Staff (final, 2024-08-29, Docket FDA-2022-D-2873)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3135,
+     "chars": 1421,
+     "metadata": {
+      "ts_rank_cd": 2.1015365
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4848,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4249,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4207,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3744,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3599,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Postmarketing Adverse Event Reporting for Medical Products and Dietary Supplements During a Pandemic (final, 2020-05-11, Docket FDA-2008-D-0610)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3481,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3471,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Voluntary Malfunction Summary Reporting (VMSR) Program for Manufacturers: Guidance for Industry and Food and Drug Administration Staff (final, 2024-08-29, Docket FDA-2022-D-2873)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3135,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 700.13(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.762,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 720.4(c)(5)(iii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7071,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 720.4(a)(1)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.565,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 821.1(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5377,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+  "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+  "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+  "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+  "21 CFR 700.13(a)",
+  "21 CFR 720.4(c)(5)(iii)",
+  "21 CFR 720.4(a)(1)",
+  "21 CFR 821.1(b)"
+ ],
+ "selection": {
+  "total_chars": 3599,
+  "dropped": [
+   [
+    "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Postmarketing Adverse Event Reporting for Medical Products and Dietary Supplements During a Pandemic (final, 2020-05-11, Docket FDA-2008-D-0610)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Voluntary Malfunction Summary Reporting (VMSR) Program for Manufacturers: Guidance for Industry and Food and Drug Administration Staff (final, 2024-08-29, Docket FDA-2022-D-2873)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 720.4(a)(1)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 821.1(b)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.13(a)",
+    "tier": "discovery",
+    "block_chars": 935,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(c)(5)(iii)",
+    "tier": "discovery",
+    "block_chars": 232,
+    "used_before": 935,
+    "reserve_spent_before": 935,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(a)(1)",
+    "tier": "discovery",
+    "block_chars": 351,
+    "used_before": 1169,
+    "reserve_spent_before": 1167,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 821.1(b)",
+    "tier": "discovery",
+    "block_chars": 1150,
+    "used_before": 1169,
+    "reserve_spent_before": 1167,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+    "tier": "discovery",
+    "used_before": 1169,
+    "block_chars": 1607,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+    "tier": "discovery",
+    "used_before": 2778,
+    "block_chars": 819,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1572,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1524,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1527,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Postmarketing Adverse Event Reporting for Medical Products and Dietary Supplements During a Pandemic (final, 2020-05-11, Docket FDA-2008-D-0610)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1578,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1487,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Voluntary Malfunction Summary Reporting (VMSR) Program for Manufacturers: Guidance for Industry and Food and Drug Administration Staff (final, 2024-08-29, Docket FDA-2022-D-2873)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1584,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 720.4(a)(1)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 351,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 821.1(b)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1150,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 532,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 700.13(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 656,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 720.4(c)(5)(iii)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 25,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

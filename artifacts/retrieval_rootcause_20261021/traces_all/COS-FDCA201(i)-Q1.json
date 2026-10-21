@@ -1,0 +1,635 @@
+{
+ "id": "COS-FDCA201(i)-Q1",
+ "question": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+ "key_citation": "FD&C Act 201(i)(1) [21 U.S.C. 321(i)]",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "sell scented body oil marketed soften beautify skin cosmetic act definition",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "definition",
+   "marketed",
+   "beautify",
+   "cosmetic",
+   "scented",
+   "soften",
+   "sell",
+   "body"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {
+   "soften": 1,
+   "beautify": 1,
+   "skin": 1,
+   "beautify skin": 3,
+   "beautify skins": 3,
+   "soften and beautify": 3,
+   "soften and beautifys": 3,
+   "soften and beautify skin": 3,
+   "soften and beautify skins": 3,
+   "scented body": 2,
+   "scented bodys": 2,
+   "body oil": 2,
+   "body oils": 2,
+   "oil marketed": 2,
+   "oil marketeds": 2,
+   "act definition": 2,
+   "act definitions": 2,
+   "sell a scented": 2,
+   "sell a scenteds": 2,
+   "scented body oil": 2,
+   "scented body oils": 2,
+   "body oil marketed": 2,
+   "body oil marketeds": 2,
+   "marketed to soften": 2,
+   "marketed to softens": 2,
+   "sell a scented body": 2,
+   "sell a scented bodys": 2,
+   "scented body oil marketed": 2,
+   "scented body oil marketeds": 2,
+   "oil marketed to soften": 2,
+   "oil marketed to softens": 2
+  },
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance",
+   "defined_terms_ecfr"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+   "tsquery": "'sell' & 'scent' & 'bodi' & 'oil' & 'market' & 'soften' & 'beautifi' & 'skin' & 'cosmet' & 'fd' & 'c' & 'act' & 'definit'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+   "tsquery": "'sell' & 'scent' & 'bodi' & 'oil' & 'market' & 'soften' & 'beautifi' & 'skin' & 'cosmet' & 'fd' & 'c' & 'act' & 'definit'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "sell scented body oil marketed soften beautify skin cosmetic act definition",
+   "tsquery": "'sell' & 'scent' & 'bodi' & 'oil' & 'market' & 'soften' & 'beautifi' & 'skin' & 'cosmet' & 'act' & 'definit'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 800.30(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8517,
+     "chars": 836,
+     "metadata": {
+      "ordinal": 4,
+      "section_coverage": 0.797,
+      "paragraph_coverage": 0.314
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 349.3(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8469,
+     "chars": 147,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.7731,
+      "paragraph_coverage": 0.3351
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 1107.12(2)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.71,
+     "chars": 186,
+     "metadata": {
+      "ordinal": 11,
+      "section_coverage": 0.738,
+      "paragraph_coverage": 0.2881
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 1114.3(2)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.71,
+     "chars": 186,
+     "metadata": {
+      "ordinal": 11,
+      "section_coverage": 0.738,
+      "paragraph_coverage": 0.2881
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "definition or marketed or beautify or cosmetic or scented or soften or sell or body",
+   "tsquery": "'definit' | 'market' | 'beautifi' | 'cosmet' | 'scent' | 'soften' | 'sell' | 'bodi'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9864,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 1.5782504
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8405,
+     "chars": 1491,
+     "metadata": {
+      "ts_rank_cd": 1.3448714
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8405,
+     "chars": 1406,
+     "metadata": {
+      "ts_rank_cd": 1.3448713
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8374,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 1.3398556
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry and FDA Staff: Model Accreditation Standards for Third-Party Certification Body Accreditation for Food Safety Audits (final, 2022-02-24, Docket FDA-2011-N-0146)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8079,
+     "chars": 1484,
+     "metadata": {
+      "ts_rank_cd": 1.2926108
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7882,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 1.2610406
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7445,
+     "chars": 1500,
+     "metadata": {
+      "ts_rank_cd": 1.1911964
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: The Accreditation Scheme for Conformity Assessment (ASCA) Pilot Program: Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (final, 2020-09-25, Docket FDA-2019-D-3805)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6675,
+     "chars": 1499,
+     "metadata": {
+      "ts_rank_cd": 1.067986
+     }
+    }
+   ]
+  },
+  {
+   "leg": "defined_terms_ecfr",
+   "input": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+   "tsquery": null,
+   "limit": null,
+   "rows": []
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9864,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8405,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8405,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8374,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry and FDA Staff: Model Accreditation Standards for Third-Party Certification Body Accreditation for Food Safety Audits (final, 2022-02-24, Docket FDA-2011-N-0146)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8079,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7882,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7445,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: The Accreditation Scheme for Conformity Assessment (ASCA) Pilot Program: Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (final, 2020-09-25, Docket FDA-2019-D-3805)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6675,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 800.30(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8517,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 349.3(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8469,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 1107.12(2)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.71,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 1114.3(2)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.71,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "21 CFR 800.30(b)",
+  "21 CFR 349.3(e)",
+  "21 CFR 1107.12(2)(ii)",
+  "21 CFR 1114.3(2)(ii)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry and FDA Staff: Model Accreditation Standards for Third-Party Certification Body Accreditation for Food Safety Audits (final, 2022-02-24, Docket FDA-2011-N-0146)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: The Accreditation Scheme for Conformity Assessment (ASCA) Pilot Program: Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (final, 2020-09-25, Docket FDA-2019-D-3805)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 349.3(e)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1107.12(2)(ii)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1114.3(2)(ii)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 800.30(b)",
+    "tier": "discovery",
+    "block_chars": 1029,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 349.3(e)",
+    "tier": "discovery",
+    "block_chars": 312,
+    "used_before": 1029,
+    "reserve_spent_before": 1029,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1107.12(2)(ii)",
+    "tier": "discovery",
+    "block_chars": 360,
+    "used_before": 1029,
+    "reserve_spent_before": 1029,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1114.3(2)(ii)",
+    "tier": "discovery",
+    "block_chars": 358,
+    "used_before": 1029,
+    "reserve_spent_before": 1029,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 1029,
+    "block_chars": 1597,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "tier": "discovery",
+    "used_before": 2628,
+    "block_chars": 970,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1596,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1597,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry and FDA Staff: Model Accreditation Standards for Third-Party Certification Body Accreditation for Food Safety Audits (final, 2022-02-24, Docket FDA-2011-N-0146)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1614,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1606,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Classification of Activities as Harvesting, Packing, Holding, or Manufacturing/Processing for Farms and Facilities (draft, 2016-08-25, Docket FDA-2016-D-2373)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1606,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: The Accreditation Scheme for Conformity Assessment (ASCA) Pilot Program: Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (final, 2020-09-25, Docket FDA-2019-D-3805)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1623,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 349.3(e)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 312,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1107.12(2)(ii)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 360,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1114.3(2)(ii)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 358,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 595,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 800.30(b)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 836,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,73 @@
+{
+ "adapters": [
+  {
+   "id": "",
+   "label": "Base Qwen3-0.6B (no adapter)"
+  },
+  {
+   "id": "sft2_smoke_tmp",
+   "label": "sft2_smoke_tmp adapter"
+  },
+  {
+   "id": "sft2_v1",
+   "label": "sft2_v1 adapter"
+  },
+  {
+   "id": "stage12_v1",
+   "label": "stage12_v1 adapter"
+  },
+  {
+   "id": "stage13_v1",
+   "label": "stage13_v1 adapter"
+  }
+ ],
+ "models": [
+  {
+   "id": "qwen3-0.6b",
+   "label": "Qwen3-0.6B (default)",
+   "available": true
+  },
+  {
+   "id": "qwen3-1.7b",
+   "label": "Qwen3-1.7B (MLX 4-bit, experimental)",
+   "available": false,
+   "reason": "not configured (REGULUS_MLX_PYTHON and REGULUS_MLX_MODEL_PATH)"
+  }
+ ],
+ "active_model": "qwen3-0.6b",
+ "model_id": "Qwen/Qwen3-0.6B",
+ "device": "cpu",
+ "dtype": "float32",
+ "inference_backend": "transformers",
+ "measurement": {
+  "enabled": true,
+  "session_id": "ui_20261020T124416Z_8270714b",
+  "state": "open",
+  "written": 0,
+  "write_failures": {},
+  "recovered_partial_lines": 0,
+  "records_without_row": 0,
+  "ordinals_assigned": 0,
+  "last_failure": null
+ },
+ "snapshot_date": "2026-09-03",
+ "defaults": {
+  "top_k": 8,
+  "max_new_tokens": 2048
+ },
+ "accuracy": {
+  "enabled": true,
+  "rubric_id": "regulus_live_evidence_assessment_v2",
+  "alignment": "semantic",
+  "note": "an evidence-based assessment of this one answer; not the 300-question acceptance-test score"
+ },
+ "conversations": {
+  "enabled": true,
+  "context": "each question is answered on its own: earlier messages are kept as history but are never sent to the model or used as evidence"
+ },
+ "answer_length": {
+  "policy": "adaptive",
+  "ceiling": 2048,
+  "note": "the ceiling is a safety limit against a model that never stops, not a target length; the pipeline sets each question's allowance from its evidence"
+ }
+}

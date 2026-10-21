@@ -1,0 +1,592 @@
+{
+ "id": "UC-COS-021",
+ "question": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+ "key_citation": "FD&C Act 610 (21 U.S.C. 364f); 611 (21 U.S.C. 364g) mandatory recall; 607 (21 U.S.C. 364c) suspension",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "believes lash adhesive likely caused serious injuries refuse stop distribution records see affected lots",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "distribution",
+   "believes",
+   "adhesive",
+   "injuries",
+   "affected",
+   "serious",
+   "records",
+   "likely"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+   "tsquery": "'fda' & 'believ' & 'lash' & 'adhes' & 'like' & 'caus' & 'serious' & 'injuri' & 'refus' & 'stop' & 'distribut' & 'fda' & 'record' & 'see' & 'affect' & 'lot'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+   "tsquery": "'fda' & 'believ' & 'lash' & 'adhes' & 'like' & 'caus' & 'serious' & 'injuri' & 'refus' & 'stop' & 'distribut' & 'fda' & 'record' & 'see' & 'affect' & 'lot'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "believes lash adhesive likely caused serious injuries refuse stop distribution records see affected lots",
+   "tsquery": "'believ' & 'lash' & 'adhes' & 'like' & 'caus' & 'serious' & 'injuri' & 'refus' & 'stop' & 'distribut' & 'record' & 'see' & 'affect' & 'lot'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 1.1455(c)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2037,
+     "chars": 997,
+     "metadata": {
+      "ordinal": 7,
+      "section_coverage": 0.8815,
+      "paragraph_coverage": 0.4407
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 1.361",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.1148,
+     "chars": 1111,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.8459,
+      "paragraph_coverage": 0.423
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 803.3(o)(2)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8362,
+     "chars": 205,
+     "metadata": {
+      "ordinal": 35,
+      "section_coverage": 0.7903,
+      "paragraph_coverage": 0.3115
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 803.3(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7033,
+     "chars": 243,
+     "metadata": {
+      "ordinal": 6,
+      "section_coverage": 0.7903,
+      "paragraph_coverage": 0.2317
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "distribution or believes or adhesive or injuries or affected or serious or records or likely",
+   "tsquery": "'distribut' | 'believ' | 'adhes' | 'injuri' | 'affect' | 'serious' | 'record' | 'like'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: What You Need to Know About Establishment and Maintenance of Records (final, 2014-04-04, Docket FDA-2013-N-1421)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1303,
+     "chars": 1415,
+     "metadata": {
+      "ts_rank_cd": 1.808415
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1419,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9774,
+     "chars": 1484,
+     "metadata": {
+      "ts_rank_cd": 1.5638463
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9157,
+     "chars": 1465,
+     "metadata": {
+      "ts_rank_cd": 1.4650925
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8911,
+     "chars": 1490,
+     "metadata": {
+      "ts_rank_cd": 1.4257833
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8803,
+     "chars": 1426,
+     "metadata": {
+      "ts_rank_cd": 1.4085037
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, Docket FDA-2017-D-1105)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8708,
+     "chars": 1426,
+     "metadata": {
+      "ts_rank_cd": 1.3933452
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8694,
+     "chars": 1480,
+     "metadata": {
+      "ts_rank_cd": 1.3909954
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: What You Need to Know About Establishment and Maintenance of Records (final, 2014-04-04, Docket FDA-2013-N-1421)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1303,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9774,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9157,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8911,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8803,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, Docket FDA-2017-D-1105)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8708,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8694,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 1.1455(c)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2037,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 1.361",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.1148,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 803.3(o)(2)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8362,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 803.3(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7033,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Small Entity Compliance Guide: What You Need to Know About Establishment and Maintenance of Records (final, 2014-04-04, Docket FDA-2013-N-1421)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+  "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+  "21 CFR 1.1455(c)(3)",
+  "21 CFR 1.361",
+  "21 CFR 803.3(o)(2)(ii)",
+  "21 CFR 803.3(c)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, Docket FDA-2017-D-1105)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.1455(c)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.361",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e11",
+    "e12"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.1455(c)(3)",
+    "tier": "discovery",
+    "block_chars": 1228,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.361",
+    "tier": "discovery",
+    "block_chars": 1305,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 803.3(o)(2)(ii)",
+    "tier": "discovery",
+    "block_chars": 413,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 803.3(c)",
+    "tier": "discovery",
+    "block_chars": 444,
+    "used_before": 413,
+    "reserve_spent_before": 413,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: What You Need to Know About Establishment and Maintenance of Records (final, 2014-04-04, Docket FDA-2013-N-1421)",
+    "tier": "discovery",
+    "used_before": 859,
+    "block_chars": 1575,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+    "tier": "discovery",
+    "used_before": 2436,
+    "block_chars": 1162,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1527,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1690,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1686,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1593,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Electronic Systems, Electronic Records, and Electronic Signatures in Clinical Investigations: Questions and Answers (final, 2024-10-01, Docket FDA-2017-D-1105)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1596,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1686,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.1455(c)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1228,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.361",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1305,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: What You Need to Know About Establishment and Maintenance of Records (final, 2014-04-04, Docket FDA-2013-N-1421)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 676,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 803.3(o)(2)(ii)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 205,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 803.3(c)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 243,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,705 @@
+{
+ "id": "COS-71.25-Q1",
+ "question": "FDA reviewed our petition and won't exempt our new pigment from certification. What does that mean for the listing and for using batches that aren't certified?",
+ "key_citation": "21 CFR 71.25(a), (b)",
+ "required": {
+  "71.25": [
+   "a",
+   "b"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "FDA reviewed our petition and won't exempt our new pigment from certification. What does that mean for the listing and for using batches that aren't certified?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "reviewed petition won exempt pigment certification listing using batches aren certified",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "certification",
+   "certified",
+   "reviewed",
+   "petition",
+   "pigment",
+   "listing",
+   "batches",
+   "exempt"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "FDA reviewed our petition and won't exempt our new pigment from certification. What does that mean for the listing and for using batches that aren't certified?",
+   "tsquery": "'fda' & 'review' & 'petit' & 'won' & 'exempt' & 'new' & 'pigment' & 'certif' & 'mean' & 'list' & 'use' & 'batch' & 'aren' & 'certifi'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "FDA reviewed our petition and won't exempt our new pigment from certification. What does that mean for the listing and for using batches that aren't certified?",
+   "tsquery": "'fda' & 'review' & 'petit' & 'won' & 'exempt' & 'new' & 'pigment' & 'certif' & 'mean' & 'list' & 'use' & 'batch' & 'aren' & 'certifi'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "FDA reviewed our petition and won't exempt our new pigment from certification. What does that mean for the listing and for using batches that aren't certified?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 1.1370",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.6216,
+     "chars": 219,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.3243243
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 71.27",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.558,
+     "chars": 374,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.3115942
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "reviewed petition won exempt pigment certification listing using batches aren certified",
+   "tsquery": "'review' & 'petit' & 'won' & 'exempt' & 'pigment' & 'certif' & 'list' & 'use' & 'batch' & 'aren' & 'certifi'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 80.35(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.9088,
+     "chars": 752,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.2102,
+      "paragraph_coverage": 0.5351
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 73.1350(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.7868,
+     "chars": 268,
+     "metadata": {
+      "ordinal": 9,
+      "section_coverage": 1.1485,
+      "paragraph_coverage": 0.5236
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 73.3128(d)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.7868,
+     "chars": 235,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 1.1485,
+      "paragraph_coverage": 0.5236
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 73.350(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.7868,
+     "chars": 234,
+     "metadata": {
+      "ordinal": 17,
+      "section_coverage": 1.1485,
+      "paragraph_coverage": 0.5236
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "certification or certified or reviewed or petition or pigment or listing or batches or exempt",
+   "tsquery": "'certif' | 'certifi' | 'review' | 'petit' | 'pigment' | 'list' | 'batch' | 'exempt'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5308,
+     "chars": 1492,
+     "metadata": {
+      "ts_rank_cd": 2.4493368
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2938,
+     "chars": 1446,
+     "metadata": {
+      "ts_rank_cd": 2.070113
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2083,
+     "chars": 1447,
+     "metadata": {
+      "ts_rank_cd": 1.9333568
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1534,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 1.8453987
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.135,
+     "chars": 1426,
+     "metadata": {
+      "ts_rank_cd": 1.8160217
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Premarket Approval Application and Humanitarian Device Exemption Modular Review: Guidance for Industry and FDA Staff (final, 2025-01-13, Docket FDA-2024-D-5332)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9927,
+     "chars": 1482,
+     "metadata": {
+      "ts_rank_cd": 1.588262
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9828,
+     "chars": 1488,
+     "metadata": {
+      "ts_rank_cd": 1.5724518
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: IRB Continuing Review After Clinical Investigation Approval: Guidance for IRBs, Clinical Investigators, and Sponsors (final, 2012-02-27, Docket FDA-2009-D-0605)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9796,
+     "chars": 1429,
+     "metadata": {
+      "ts_rank_cd": 1.567293
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 1.1370",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.6216,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "21 CFR 71.27",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.558,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5308,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2938,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2083,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1534,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.135,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Premarket Approval Application and Humanitarian Device Exemption Modular Review: Guidance for Industry and FDA Staff (final, 2025-01-13, Docket FDA-2024-D-5332)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9927,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9828,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "FDA Guidance: IRB Continuing Review After Clinical Investigation Approval: Guidance for IRBs, Clinical Investigators, and Sponsors (final, 2012-02-27, Docket FDA-2009-D-0605)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9796,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 80.35(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.9088,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 73.1350(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.7868,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 73.3128(d)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.7868,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 14,
+   "citation": "21 CFR 73.350(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.7868,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 1.1370",
+  "21 CFR 71.27",
+  "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+  "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+  "21 CFR 80.35(b)",
+  "21 CFR 73.1350(e)",
+  "21 CFR 73.3128(d)",
+  "21 CFR 73.350(e)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "21 CFR 1.1370",
+    "filtered"
+   ],
+   [
+    "21 CFR 71.27",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Premarket Approval Application and Humanitarian Device Exemption Modular Review: Guidance for Industry and FDA Staff (final, 2025-01-13, Docket FDA-2024-D-5332)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: IRB Continuing Review After Clinical Investigation Approval: Guidance for IRBs, Clinical Investigators, and Sponsors (final, 2012-02-27, Docket FDA-2009-D-0605)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 73.1350(e)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 73.3128(d)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 73.350(e)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 80.35(b)",
+    "tier": "discovery",
+    "block_chars": 976,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.1350(e)",
+    "tier": "discovery",
+    "block_chars": 456,
+    "used_before": 976,
+    "reserve_spent_before": 976,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.3128(d)",
+    "tier": "discovery",
+    "block_chars": 423,
+    "used_before": 976,
+    "reserve_spent_before": 976,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.350(e)",
+    "tier": "discovery",
+    "block_chars": 420,
+    "used_before": 976,
+    "reserve_spent_before": 976,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.1370",
+    "tier": "discovery",
+    "used_before": 976,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 71.27",
+    "tier": "discovery",
+    "used_before": 976,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+    "tier": "discovery",
+    "used_before": 976,
+    "block_chars": 1626,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+    "tier": "discovery",
+    "used_before": 2604,
+    "block_chars": 994,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1657,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1657,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1657,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Premarket Approval Application and Humanitarian Device Exemption Modular Review: Guidance for Industry and FDA Staff (final, 2025-01-13, Docket FDA-2024-D-5332)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1579,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1626,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: IRB Continuing Review After Clinical Investigation Approval: Guidance for IRBs, Clinical Investigators, and Sponsors (final, 2012-02-27, Docket FDA-2009-D-0605)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1559,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 73.1350(e)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 456,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 73.3128(d)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 423,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 73.350(e)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 420,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 568,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 80.35(b)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 752,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "71.25": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 346,
+     "tail": "'s order shall state in detail the specifications that shall be met by the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 246,
+     "tail": "rescribed in this section would result in adulteration of the product in which it is used.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Condition for certification."
+  }
+ },
+ "required_status": {
+  "21 CFR 71.25(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 71.25(b)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,689 @@
+{
+ "id": "COS-700.13-Q2",
+ "question": "We plan to import a skin-lightening cream containing mercury that is marketed for freckles and age spots. How does FDA treat it?",
+ "key_citation": "21 CFR 700.13(a), (d)(1), (d)(2)",
+ "required": {
+  "700.13": [
+   "a",
+   "d"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We plan to import a skin-lightening cream containing mercury that is marketed for freckles and age spots. How does FDA treat it?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "plan import skin-lightening cream containing mercury marketed freckles age spots treat",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "skin-lightening",
+   "containing",
+   "marketed",
+   "freckles",
+   "mercury",
+   "import",
+   "cream",
+   "spots"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We plan to import a skin-lightening cream containing mercury that is marketed for freckles and age spots. How does FDA treat it?",
+   "tsquery": "'plan' & 'import' & 'skin-lighten' <-> 'skin' <-> 'lighten' & 'cream' & 'contain' & 'mercuri' & 'market' & 'freckl' & 'age' & 'spot' & 'fda' & 'treat'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We plan to import a skin-lightening cream containing mercury that is marketed for freckles and age spots. How does FDA treat it?",
+   "tsquery": "'plan' & 'import' & 'skin-lighten' <-> 'skin' <-> 'lighten' & 'cream' & 'contain' & 'mercuri' & 'market' & 'freckl' & 'age' & 'spot' & 'fda' & 'treat'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We plan to import a skin-lightening cream containing mercury that is marketed for freckles and age spots. How does FDA treat it?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "plan import skin-lightening cream containing mercury marketed freckles age spots treat",
+   "tsquery": "'plan' & 'import' & 'skin-lighten' <-> 'skin' <-> 'lighten' & 'cream' & 'contain' & 'mercuri' & 'market' & 'freckl' & 'age' & 'spot' & 'treat'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 700.13(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.9973,
+     "chars": 656,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.1989,
+      "paragraph_coverage": 0.5995
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 700.13(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.3008,
+     "chars": 1017,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.1989,
+      "paragraph_coverage": 0.1815
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 524.920(d)(3)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.202,
+     "chars": 157,
+     "metadata": {
+      "ordinal": 20,
+      "section_coverage": 0.5469,
+      "paragraph_coverage": 0.1743
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 720.4(c)(6)(vi)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.1763,
+     "chars": 32,
+     "metadata": {
+      "ordinal": 51,
+      "section_coverage": 0.5356,
+      "paragraph_coverage": 0.1702
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "skin-lightening or containing or marketed or freckles or mercury or import or cream or spots",
+   "tsquery": "'skin-lighten' <-> 'skin' <-> 'lighten' | 'contain' | 'market' | 'freckl' | 'mercuri' | 'import' | 'cream' | 'spot'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1272,
+     "chars": 1463,
+     "metadata": {
+      "ts_rank_cd": 1.803451
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9837,
+     "chars": 1497,
+     "metadata": {
+      "ts_rank_cd": 1.5739049
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Importation of Prescription Drugs Final Rule Questions and Answers; Small Entity Compliance Guide (final, 2022-05-25, Docket FDA-2021-D-0958)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9113,
+     "chars": 1487,
+     "metadata": {
+      "ts_rank_cd": 1.4580781
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9108,
+     "chars": 1473,
+     "metadata": {
+      "ts_rank_cd": 1.4573526
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.909,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 1.4543376
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8564,
+     "chars": 1416,
+     "metadata": {
+      "ts_rank_cd": 1.3701819
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8384,
+     "chars": 1443,
+     "metadata": {
+      "ts_rank_cd": 1.3414687
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8179,
+     "chars": 1490,
+     "metadata": {
+      "ts_rank_cd": 1.3086345
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1272,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9837,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Importation of Prescription Drugs Final Rule Questions and Answers; Small Entity Compliance Guide (final, 2022-05-25, Docket FDA-2021-D-0958)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9113,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9108,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.909,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8564,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8384,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8179,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 700.13(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.9973,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 700.13(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.3008,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 524.920(d)(3)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.202,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 720.4(c)(6)(vi)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1763,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+  "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+  "FDA Guidance: Importation of Prescription Drugs Final Rule Questions and Answers; Small Entity Compliance Guide (final, 2022-05-25, Docket FDA-2021-D-0958)",
+  "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+  "21 CFR 700.13(a)",
+  "21 CFR 700.13(b)",
+  "21 CFR 524.920(d)(3)(i)",
+  "21 CFR 720.4(c)(6)(vi)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Importation of Prescription Drugs Final Rule Questions and Answers; Small Entity Compliance Guide (final, 2022-05-25, Docket FDA-2021-D-0958)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 700.13(b)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 524.920(d)(3)(i)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e12"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.13(a)",
+    "tier": "discovery",
+    "block_chars": 935,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.13(b)",
+    "tier": "discovery",
+    "block_chars": 1296,
+    "used_before": 935,
+    "reserve_spent_before": 935,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 524.920(d)(3)(i)",
+    "tier": "discovery",
+    "block_chars": 329,
+    "used_before": 935,
+    "reserve_spent_before": 935,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(c)(6)(vi)",
+    "tier": "discovery",
+    "block_chars": 238,
+    "used_before": 935,
+    "reserve_spent_before": 935,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+    "tier": "discovery",
+    "used_before": 1175,
+    "block_chars": 1508,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "tier": "discovery",
+    "used_before": 2685,
+    "block_chars": 913,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Importation of Prescription Drugs Final Rule Questions and Answers; Small Entity Compliance Guide (final, 2022-05-25, Docket FDA-2021-D-0958)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1574,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1630,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #152 Evaluating the Safety of Antimicrobial New Animal Drugs with Regard to Their Microbiological Effects on Bacteria of Human Health Concern (final, 2026-08-05, Docket FDA-1998-D-0038)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1630,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1580,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1508,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 700.13(b)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1296,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 524.920(d)(3)(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 329,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 533,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 700.13(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 656,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 720.4(c)(6)(vi)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 32,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "700.13": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 656,
+     "tail": "d other bath preparations; makeup; antiperspirants and deodorants; and eye-area cosmetics.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 1017,
+     "tail": "been found in the food supply and is now considered to be a serious environmental problem.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 408,
+     "tail": "d satisfactory substitutes are available except in the case of certain eye-area cosmetics.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 703,
+     "tail": "Pseudomonas infection of the eye can cause serious injury, including blindness. Therefore:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(d)(1)",
+     "ordinal": 4,
+     "chars": 589,
+     "tail": "he jurisdiction of the Act after January 5, 1973 will be the subject of regulatory action.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(2)",
+     "ordinal": 5,
+     "chars": 323,
+     "tail": " unless the cosmetic meets the conditions of paragraph (d)(2) (i) or (ii) of this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(d)(2)(i)",
+     "ordinal": 6,
+     "chars": 237,
+     "tail": "practice and is less than 1 part per million (0.0001 percent), calculated as the metal; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(2)(ii)",
+     "ordinal": 7,
+     "chars": 294,
+     "tail": "ffective and safe nonmercurial substitute preservative available for use in such cosmetic.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Use of mercury compounds in cosmetics including use as skinbleaching agents in cosmetic preparations also regarded as drugs."
+  }
+ },
+ "required_status": {
+  "21 CFR 700.13(a)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 700.13(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

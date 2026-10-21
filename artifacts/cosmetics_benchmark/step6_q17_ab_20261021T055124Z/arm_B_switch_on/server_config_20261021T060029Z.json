@@ -1,0 +1,52 @@
+{
+ "adapters": [
+  {
+   "id": "",
+   "label": "No adapter"
+  }
+ ],
+ "models": [
+  {
+   "id": "qwen3-1.7b",
+   "label": "Qwen3-1.7B (MLX 4-bit)",
+   "available": true
+  }
+ ],
+ "active_model": "qwen3-1.7b",
+ "model_id": "Qwen/Qwen3-1.7B",
+ "model_revision": "21457c6f51ed54a7c16e988c0844db973815c137",
+ "device": "mlx-gpu",
+ "dtype": "mlx-4bit-g128",
+ "inference_backend": "mlx",
+ "measurement": {
+  "enabled": true,
+  "session_id": "ui_20261021T060022Z_ac25224a",
+  "state": "open",
+  "written": 0,
+  "write_failures": {},
+  "recovered_partial_lines": 0,
+  "records_without_row": 0,
+  "ordinals_assigned": 0,
+  "last_failure": null
+ },
+ "snapshot_date": "2026-09-03",
+ "defaults": {
+  "top_k": 8,
+  "max_new_tokens": 2048
+ },
+ "accuracy": {
+  "enabled": true,
+  "rubric_id": "regulus_live_evidence_assessment_v2",
+  "alignment": "lexical",
+  "note": "an evidence-based assessment of this one answer; not the 300-question acceptance-test score"
+ },
+ "conversations": {
+  "enabled": true,
+  "context": "each question is answered on its own: earlier messages are kept as history but are never sent to the model or used as evidence"
+ },
+ "answer_length": {
+  "policy": "adaptive",
+  "ceiling": 2048,
+  "note": "the ceiling is a safety limit against a model that never stops, not a target length; the pipeline sets each question's allowance from its evidence"
+ }
+}

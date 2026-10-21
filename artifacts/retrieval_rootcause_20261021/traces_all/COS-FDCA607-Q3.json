@@ -1,0 +1,662 @@
+{
+ "id": "COS-FDCA607-Q3",
+ "question": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+ "key_citation": "FD&C Act 607(f)(1)-(3) [21 U.S.C. 364c(f)]",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "notified intends suspend facility registration grounds chance get respond",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "registration",
+   "notified",
+   "facility",
+   "intends",
+   "suspend",
+   "grounds",
+   "respond",
+   "chance"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+   "tsquery": "'fda' & 'notifi' & 'us' & 'intend' & 'suspend' & 'facil' & 'registr' & 'ground' & 'chanc' & 'get' & 'respond'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+   "tsquery": "'fda' & 'notifi' & 'us' & 'intend' & 'suspend' & 'facil' & 'registr' & 'ground' & 'chanc' & 'get' & 'respond'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 1.235(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.7227,
+     "chars": 260,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.34453782
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 1.234(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.5041,
+     "chars": 573,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.30081302
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "notified intends suspend facility registration grounds chance get respond",
+   "tsquery": "'notifi' & 'intend' & 'suspend' & 'facil' & 'registr' & 'ground' & 'chanc' & 'get' & 'respond'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 1.234(d)(5)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.6448,
+     "chars": 1114,
+     "metadata": {
+      "ordinal": 12,
+      "section_coverage": 0.6859,
+      "paragraph_coverage": 0.301
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 1.285(k)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.6448,
+     "chars": 883,
+     "metadata": {
+      "ordinal": 20,
+      "section_coverage": 0.6859,
+      "paragraph_coverage": 0.301
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 1.234(c)(4)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5957,
+     "chars": 120,
+     "metadata": {
+      "ordinal": 6,
+      "section_coverage": 0.6859,
+      "paragraph_coverage": 0.2716
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 1.285(i)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5957,
+     "chars": 448,
+     "metadata": {
+      "ordinal": 12,
+      "section_coverage": 0.6859,
+      "paragraph_coverage": 0.2716
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "registration or notified or facility or intends or suspend or grounds or respond or chance",
+   "tsquery": "'registr' | 'notifi' | 'facil' | 'intend' | 'suspend' | 'ground' | 'respond' | 'chanc'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.6236,
+     "chars": 1408,
+     "metadata": {
+      "ts_rank_cd": 2.597796
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5267,
+     "chars": 1408,
+     "metadata": {
+      "ts_rank_cd": 2.442671
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5144,
+     "chars": 1414,
+     "metadata": {
+      "ts_rank_cd": 2.4229808
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.489,
+     "chars": 1463,
+     "metadata": {
+      "ts_rank_cd": 2.382393
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4568,
+     "chars": 1431,
+     "metadata": {
+      "ts_rank_cd": 2.330846
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3915,
+     "chars": 1456,
+     "metadata": {
+      "ts_rank_cd": 2.2264464
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3367,
+     "chars": 1467,
+     "metadata": {
+      "ts_rank_cd": 2.138675
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3236,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 2.1177025
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 1.235(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.7227,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6236,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5267,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5144,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "21 CFR 1.234(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.5041,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.489,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4568,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3915,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3367,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3236,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 1.234(d)(5)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6448,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 1.285(k)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6448,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 1.234(c)(4)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5957,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 14,
+   "citation": "21 CFR 1.285(i)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5957,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 1.235(a)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+  "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+  "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+  "21 CFR 1.234(d)(5)",
+  "21 CFR 1.285(k)",
+  "21 CFR 1.234(c)(4)",
+  "21 CFR 1.285(i)(2)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "21 CFR 1.235(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.234(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.234(d)(5)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.234(c)(4)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.285(i)(2)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e12"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.234(d)(5)",
+    "tier": "discovery",
+    "block_chars": 1336,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.285(k)",
+    "tier": "discovery",
+    "block_chars": 1182,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.234(c)(4)",
+    "tier": "discovery",
+    "block_chars": 342,
+    "used_before": 1182,
+    "reserve_spent_before": 1182,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.285(i)(2)",
+    "tier": "discovery",
+    "block_chars": 750,
+    "used_before": 1182,
+    "reserve_spent_before": 1182,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.235(a)",
+    "tier": "discovery",
+    "used_before": 1182,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "tier": "discovery",
+    "used_before": 1182,
+    "block_chars": 1575,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "tier": "discovery",
+    "used_before": 2759,
+    "block_chars": 839,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1504,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.234(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1575,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1575,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1504,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1513,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CPG Sec 100.250 Food Facility Registration (Human and Animal Food) (final, 2014-06-01, Docket FDA-2013-D-0126)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1513,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.234(d)(5)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1336,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.234(c)(4)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 342,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.285(i)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 750,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 535,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 1.285(k)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 883,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,644 @@
+{
+ "id": "COS-740.12-Q1",
+ "question": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+ "key_citation": "21 CFR 740.12(a), (b)",
+ "required": {
+  "740.12": [
+   "a",
+   "b"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "launching all-over body deodorant spray marketed women everywhere freshness special caution",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "everywhere",
+   "launching",
+   "deodorant",
+   "freshness",
+   "all-over",
+   "marketed",
+   "special",
+   "caution"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+   "tsquery": "'re' & 'launch' & 'all-ov' & 'bodi' & 'deodor' & 'spray' & 'market' & 'women' & 'everywher' & 'fresh' & 'need' & 'special' & 'caution'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+   "tsquery": "'re' & 'launch' & 'all-ov' & 'bodi' & 'deodor' & 'spray' & 'market' & 'women' & 'everywher' & 'fresh' & 'need' & 'special' & 'caution'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "launching all-over body deodorant spray marketed women everywhere freshness special caution",
+   "tsquery": "'launch' & 'all-ov' & 'bodi' & 'deodor' & 'spray' & 'market' & 'women' & 'everywher' & 'fresh' & 'special' & 'caution'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 740.12(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7781,
+     "chars": 409,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 0.7286,
+      "paragraph_coverage": 0.3383
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 740.12(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.754,
+     "chars": 229,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.7286,
+      "paragraph_coverage": 0.3238
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 522.1290(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4571,
+     "chars": 541,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 0.5828,
+      "paragraph_coverage": 0.2914
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 522.914(d)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4571,
+     "chars": 402,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.5828,
+      "paragraph_coverage": 0.2914
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "everywhere or launching or deodorant or freshness or all-over or marketed or special or caution",
+   "tsquery": "'everywher' | 'launch' | 'deodor' | 'fresh' | 'all-ov' | 'market' | 'special' | 'caution'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6499,
+     "chars": 1442,
+     "metadata": {
+      "ts_rank_cd": 1.03987
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.612,
+     "chars": 1489,
+     "metadata": {
+      "ts_rank_cd": 0.97925055
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6053,
+     "chars": 1475,
+     "metadata": {
+      "ts_rank_cd": 0.9685568
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Applications for Premarket Review of New Tobacco Products: Draft Guidance for Industry (draft, 2011-09-28, Docket FDA-2011-D-0212)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5841,
+     "chars": 1454,
+     "metadata": {
+      "ts_rank_cd": 0.93461615
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5723,
+     "chars": 1423,
+     "metadata": {
+      "ts_rank_cd": 0.9156269
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5392,
+     "chars": 1393,
+     "metadata": {
+      "ts_rank_cd": 0.8627677
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5246,
+     "chars": 1440,
+     "metadata": {
+      "ts_rank_cd": 0.8393375
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5129,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 0.82063407
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6499,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.612,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6053,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Applications for Premarket Review of New Tobacco Products: Draft Guidance for Industry (draft, 2011-09-28, Docket FDA-2011-D-0212)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5841,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5723,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5392,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5246,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5129,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 740.12(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7781,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 740.12(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.754,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 522.1290(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4571,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 522.914(d)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4571,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+  "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+  "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+  "FDA Guidance: Applications for Premarket Review of New Tobacco Products: Draft Guidance for Industry (draft, 2011-09-28, Docket FDA-2011-D-0212)",
+  "21 CFR 740.12(c)",
+  "21 CFR 740.12(a)",
+  "21 CFR 522.1290(c)",
+  "21 CFR 522.914(d)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Applications for Premarket Review of New Tobacco Products: Draft Guidance for Industry (draft, 2011-09-28, Docket FDA-2011-D-0212)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 522.1290(c)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 522.914(d)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 740.12(c)",
+    "tier": "discovery",
+    "block_chars": 590,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 740.12(a)",
+    "tier": "discovery",
+    "block_chars": 410,
+    "used_before": 590,
+    "reserve_spent_before": 590,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 522.1290(c)",
+    "tier": "discovery",
+    "block_chars": 711,
+    "used_before": 1002,
+    "reserve_spent_before": 1000,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 522.914(d)",
+    "tier": "discovery",
+    "block_chars": 573,
+    "used_before": 1002,
+    "reserve_spent_before": 1000,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "tier": "discovery",
+    "used_before": 1002,
+    "block_chars": 1622,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+    "tier": "discovery",
+    "used_before": 2626,
+    "block_chars": 972,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Postmarketing Safety Reporting for Combination Products: Guidance for Industry and FDA Staff (final, 2019-07-22, Docket FDA-2008-N-0424)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1527,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Applications for Premarket Review of New Tobacco Products: Draft Guidance for Industry (draft, 2011-09-28, Docket FDA-2011-D-0212)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1520,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1492,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1593,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1644,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: The Special 510(k) Program: Guidance for Industry and Food and Drug Administration Staff (final, 2019-09-13, Docket FDA-2018-D-3304)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1492,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 522.1290(c)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 711,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 522.914(d)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 573,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 528,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 740.12(c)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 409,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 740.12(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 229,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "740.12": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 229,
+     "tail": "gests that the product is for use in the female genital area or for use all over the body.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 79,
+     "tail": "(b) The label of a feminine deodorant spray shall bear the following statement:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 409,
+     "tail": "n 502(a) of the Act and illegal new drugs marketed in violation of section 505 of the Act.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Feminine deodorant sprays."
+  }
+ },
+ "required_status": {
+  "21 CFR 740.12(a)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 740.12(b)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,739 @@
+{
+ "result": "B (generation errors persist: prioritise answer generation)",
+ "improved": [],
+ "persist_with_sufficient_packet": [
+  "COS-700.18-Q1",
+  "COS-82.1321-Q1",
+  "COS-740.12-Q1",
+  "COS-82.101-Q1",
+  "COS-720.4-Q3",
+  "COS-80.10-Q1",
+  "COS-73.2725-Q1",
+  "COS-74.2317-Q1",
+  "COS-700.15-Q1"
+ ],
+ "control_drops": [
+  "COS-70.3-Q3"
+ ],
+ "classes": {
+  "acceptable in both": 2,
+  "generation failure persists": 10
+ },
+ "dimensions": {
+  "A": {
+   "categories": {
+    "PARTIALLY PASS": 1,
+    "FAIL": 7,
+    "PARTIALLY FAIL": 3,
+    "PASS": 1
+   },
+   "sub": {
+    "2": 2,
+    "0": 7,
+    "1": 3
+   },
+   "comp": {
+    "1": 2,
+    "0": 8,
+    "2": 2
+   },
+   "ce": 5,
+   "fab": 0,
+   "citation_support": {
+    "yes": 5,
+    "na": 7
+   },
+   "conditions_exceptions": {
+    "yes": 3,
+    "na": 7,
+    "partly": 1,
+    "no": 1
+   },
+   "declined": 7,
+   "decline_appropriate": {
+    "no": 3,
+    "yes": 4
+   }
+  },
+  "B": {
+   "categories": {
+    "PARTIALLY PASS": 1,
+    "FAIL": 8,
+    "PARTIALLY FAIL": 2,
+    "PASS": 1
+   },
+   "sub": {
+    "2": 2,
+    "0": 8,
+    "1": 2
+   },
+   "comp": {
+    "1": 3,
+    "0": 8,
+    "2": 1
+   },
+   "ce": 4,
+   "fab": 0,
+   "citation_support": {
+    "yes": 4,
+    "na": 8
+   },
+   "conditions_exceptions": {
+    "yes": 2,
+    "na": 8,
+    "partly": 2
+   },
+   "declined": 8,
+   "decline_appropriate": {
+    "no": 8
+   }
+  }
+ },
+ "A_agreement_with_step6": 11,
+ "questions": {
+  "COS-710.5-Q1": {
+   "A": "PARTIALLY PASS",
+   "A_step6": "PARTIALLY PASS",
+   "A_consistent_with_step6": true,
+   "B": "PARTIALLY PASS",
+   "A_coverage": "full",
+   "control": true,
+   "class": "acceptable in both",
+   "A_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 2,
+    "comp": 1,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "yes"
+   },
+   "B_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 2,
+    "comp": 1,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "yes"
+   },
+   "A_declined": false,
+   "B_declined": false,
+   "A_why": "The answer correctly gives the 30-day window and says a new Form FD-2511 'should' be submitted to amend the registration. It keeps the advisory 'should' and cites 710.5 correctly. It leaves out R3 (an amendment is also needed to cancel after a name change), although that sentence was in the evidence.",
+   "B_why": "The answer correctly gives the 30-day window and says a new Form FD-2511 'should' be submitted to amend the registration. It keeps the advisory 'should' and cites 710.5 correctly. It leaves out R3 (an amendment is also needed to cancel after a name change), although that sentence was in the evidence.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "present"
+    },
+    {
+     "rid": "R2",
+     "status": "present"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-700.18-Q1": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "full",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "A generic decline with no substance, so none of R1-R3 is given. The key section 700.18(b), including the residue exemption, was in the evidence (Source 3) next to two unrelated guidance excerpts, so an answer was supported.",
+   "B_why": "A generic decline with no substance, so none of R1-R3 is given. The key section 700.18(b), including the processing-solvent residue exemption, was in the evidence and would have answered the question directly.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-82.1321-Q1": {
+   "A": "PARTIALLY FAIL",
+   "A_step6": "PARTIALLY FAIL",
+   "A_consistent_with_step6": true,
+   "B": "PARTIALLY FAIL",
+   "A_coverage": "part",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 1,
+    "comp": 1,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "partly"
+   },
+   "B_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 1,
+    "comp": 1,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "partly"
+   },
+   "A_declined": false,
+   "B_declined": false,
+   "A_why": "The answer quotes 82.1321's conformity requirement to 74.1321(a)(1) and (b) accurately and cites it correctly (R1). It never answers the question asked, which is that 82.1321 sets no use restriction or limit (R2). It also leaves out the 82.1050 certification condition for drugs and cosmetics (R3), which was not in the evidence.",
+   "B_why": "The answer quotes 82.1321's conformity requirement to 74.1321(a)(1) and (b) accurately and cites it correctly (R1). It never answers the question asked, which is that 82.1321 sets no use restriction or limit (R2). It also leaves out the 82.1050 certification condition for drugs and cosmetics (R3), which was not in the evidence.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "present"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-740.12-Q1": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "part",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "yes",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "Generic decline on a question the key answers, so R1-R3 are all absent. The evidence held 740.12(a) and (c) but not 740.12(b), so nothing given to the model showed that a caution statement is required. The decline was therefore defensible on the core question.",
+   "B_why": "Generic decline on a question the key answers, so R1-R3 are all absent. The evidence held 740.12(a), the 740.12(b) stem ('shall bear the following statement') and (c). That was enough to say an all-over-body spray is a feminine deodorant spray whose label must carry the 740.12(b) statement, so the decline was not appropriate.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-70.50-Q2": {
+   "A": "PASS",
+   "A_step6": "PASS",
+   "A_consistent_with_step6": true,
+   "B": "PASS",
+   "A_coverage": "full",
+   "control": true,
+   "class": "acceptable in both",
+   "A_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 2,
+    "comp": 2,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "yes"
+   },
+   "B_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 2,
+    "comp": 2,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "yes"
+   },
+   "A_declined": false,
+   "B_declined": false,
+   "A_why": "The answer quotes 70.50(b) correctly and cites it, so R1-R3 are all present. That covers the Commissioner's determination for non-ingestion routes, external uses not being precluded if the facts are not established, and no listing if an appropriate test shows cancer. Paragraphs (a) and (c) are labelled separately and not applied to external use. The answer's own summaries are vague, and the (c) paraphrase is loose but beside the question.",
+   "B_why": "The answer quotes 70.50(b) correctly and cites it, so R1-R3 are all present. That covers the Commissioner's determination for non-ingestion routes, external uses not being precluded if the facts are not established, and no listing if an appropriate test shows cancer. Paragraphs (a) and (c) are labelled separately and not applied to external use. The answer's own summaries are vague, and the (c) paraphrase is loose but beside the question.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "present"
+    },
+    {
+     "rid": "R2",
+     "status": "present"
+    },
+    {
+     "rid": "R3",
+     "status": "present"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-82.101-Q1": {
+   "A": "PARTIALLY FAIL",
+   "A_step6": "PARTIALLY FAIL",
+   "A_consistent_with_step6": true,
+   "B": "PARTIALLY FAIL",
+   "A_coverage": "full",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 1,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "no"
+   },
+   "B_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 1,
+    "comp": 1,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "partly"
+   },
+   "A_declined": false,
+   "B_declined": false,
+   "A_why": "Only the 82.101 conformity to 74.101(a)(1) and (b) is given, correctly cited. 82.50 (which was in the evidence) is missing, as are the 82.5 lead, arsenic and heavy-metal limits and the impurity requirement: 82.5 appears only as a bare 'unless:' clause. The answer also adds an irrelevant 82.6(a) mixture clause, so the specifications the question asks for are largely missing.",
+   "B_why": "Present and correctly cited: the 82.101 conformity to 74.101(a)(1) and (b), the 82.5(a) avoidable-impurities rule, and the subpart B limits (lead 0.001%, arsenic 0.00014%, heavy metals trace). 82.50 is missing, and the answer never says FD&C Blue No. 1 is a subpart B colour. It lists the subpart B limits without that label, next to the subpart C/D limits and empty header lines, so it is unclear which set applies.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "present"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "present"
+    },
+    {
+     "rid": "R4",
+     "status": "present"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-720.4-Q3": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "part",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "This is a generic decline, so no key element is stated. The evidence included 720.4(e) and (c)(6)(i), which were enough to answer the core form-count part (12 hair-dye statements, one form for the lipstick shades). 720.4(d), which governs ingredient listing, was not in the evidence.",
+   "B_why": "This is a generic decline, so no key element is stated. Every section the key needs was in the evidence: 720.4(c)(6), (c)(7)(v) lipstick, (d)(1)-(3) and (e).",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    },
+    {
+     "rid": "R4",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-70.3-Q3": {
+   "A": "PARTIALLY FAIL",
+   "A_step6": "PASS",
+   "A_consistent_with_step6": false,
+   "B": "FAIL",
+   "A_coverage": "full",
+   "control": true,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 1,
+    "fab": 0,
+    "sub": 1,
+    "comp": 2,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "n/a",
+    "citation_support": "yes",
+    "conditions_exceptions": "yes"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": false,
+   "B_declined": true,
+   "A_why": "The answer quotes 70.3(s), (v) and (u) verbatim with correct paragraph citations: eyebrow and skin below it, lips excluded, and the exemption's caution and patch-test conditions; the extra 70.3(f) is also cited correctly. It never draws the key's conclusions (brow tint is eye-area use, lip gloss is not externally applied) and says the sources do not establish how the definitions apply. That incomplete framing could mislead, so sub is 1.",
+   "B_why": "This is a generic decline, so no key element is stated. All three key sections, 70.3(s), (u) and (v), were in the evidence and fully supported an answer.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-80.10-Q1": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "part",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "This is a generic decline, so no key element is stated. The evidence included 80.10(a), which was enough for the fee part ($0.45/lb, $288 minimum, so $900). 80.10(c) and (d), on advance deposits and payment method, were not in the evidence, so only a partial answer was possible.",
+   "B_why": "This is a generic decline, so no key element is stated. All three key paragraphs were in the evidence: 80.10(a) for the fee, (c) for advance deposits and (d) for the payment method. They fully supported an answer.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-73.2725-Q1": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "none",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "yes",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "The answer is a generic decline, so R1-R3 are all missing. None of the key's 73.2725 sections were in the evidence, which held only unrelated 1271.90 HCT/P labeling text, so declining was appropriate given that evidence.",
+   "B_why": "The answer is a generic decline, so R1 (eye-area and external use permitted in GMP amounts), R2 (labeling under 70.25) and R3 (exempt from certification) are all missing. The key's sections 73.2725(a)-(e) were all in the evidence, and (c), (d) and (e) fully supported an answer.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-74.2317-Q1": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "none",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "yes",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "The answer is a generic decline, so R1-R4 are all missing. None of the key's sections were in the evidence, which held only animal-food supply-chain guidance and 170.3 food definitions, so declining was appropriate given that evidence.",
+   "B_why": "The answer is a generic decline, so R1 (permitted for external use; body butter is external under 70.3(v)), R2 (GMP amounts, no numeric limit), R3 (part 80 certification) and R4 (label per 70.25) are all missing. Every key section, 74.2317(b), (c), (d) and 70.3(v), was in the evidence, which fully supported an answer.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    },
+    {
+     "rid": "R3",
+     "status": "absent"
+    },
+    {
+     "rid": "R4",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  },
+  "COS-700.15-Q1": {
+   "A": "FAIL",
+   "A_step6": "FAIL",
+   "A_consistent_with_step6": true,
+   "B": "FAIL",
+   "A_coverage": "none",
+   "control": false,
+   "class": "generation failure persists",
+   "A_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "yes",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "B_scores": {
+    "ce": 0,
+    "fab": 0,
+    "sub": 0,
+    "comp": 0,
+    "scope": 1,
+    "not_evaluable": false,
+    "decline_appropriate": "no",
+    "citation_support": "na",
+    "conditions_exceptions": "na"
+   },
+   "A_declined": true,
+   "B_declined": true,
+   "A_why": "The answer is a generic decline, so R1 and R2 are missing. Of the key's sections, the evidence held only 700.15(a), which describes the hazard but not the adulteration prohibition; 700.15(b) and (c) were absent and the rest was infant-formula guidance, so the evidence did not support answering the core question.",
+   "B_why": "The answer is a generic decline, so R1 (any level of TBS makes the cosmetic adulterated under 601(a)) and R2 (products introduced after 1 Dec 1975 are subject to regulatory action) are missing. The evidence held 700.15(a), (b) and (c), which directly supported a 'No' answer.",
+   "B_checklist": [
+    {
+     "rid": "R1",
+     "status": "absent"
+    },
+    {
+     "rid": "R2",
+     "status": "absent"
+    }
+   ],
+   "B_critical": [],
+   "A_critical": []
+  }
+ },
+ "disputed_items": [
+  "COS-70.3-Q3#X"
+ ],
+ "adjudications": {
+  "COS-70.3-Q3#X": {
+   "final": {
+    "checklist": [
+     {
+      "rid": "R1",
+      "status": "absent"
+     },
+     {
+      "rid": "R2",
+      "status": "absent"
+     },
+     {
+      "rid": "R3",
+      "status": "present"
+     }
+    ]
+   },
+   "reason": "Adjudicated blind, before un-blinding. The rubric/checklist verifier's correction is accepted: R1 and R2 require the conclusions ('so a brow tint is eye-area use', 'so lip gloss is not externally applied'). The answer quotes 70.3(s), (v) and (u) verbatim but explicitly declines to draw those conclusions. This is the same standard the scorers applied to COS-82.1321 R2, where verbatim text without the conclusion counts as absent. The rubric fields (ce 1, fab 0, sub 1, comp 2, scope 1) are unchanged; both verifiers' reasons agree with them."
+  }
+ }
+}

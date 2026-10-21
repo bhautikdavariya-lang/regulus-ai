@@ -1,0 +1,314 @@
+Starting Qwen3-1.7B (MLX 4-bit) in the MLX worker ...
+Answering model: Qwen/Qwen3-1.7B mlx-4bit-g128 revision 21457c6f51ed54a7c16e988c0844db973815c137, MLX worker {'mlx': '0.32.3', 'mlx-metal': '0.32.3', 'mlx-lm': '0.32.0'}, tokenizer.json sha256 aeb13307a71a, ready in 2.2s
+Database regulus read-only=on
+Conversation history: /Users/sensussoftsoftware/Desktop/Prachi Patel/Regulus AI.nosync/data/chat/regulus_chat.sqlite3
+  measurement event=session_opened session=ui_20261021T060022Z_ac25224a
+Measurement records: ON -> artifacts/cosmetics_benchmark/step6_q17_ab_20261021T055124Z/arm_B_switch_on/ui_measurements/ui_20261021T060022Z_ac25224a (local only; --no-measure to turn off)
+
+  Regulus test UI:  http://127.0.0.1:8765
+  Ctrl+C to stop. Answers take 30-90 s on this CPU.
+
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-9afe2e17354f478dadf845138b0259d7 ordinal=1 status=captured
+  timing: serialize+send 6.78 ms, request total 10909.71 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-6c4eacff24f04b3eb2c951db80ea2ef5 ordinal=2 status=captured
+  timing: serialize+send 4.42 ms, request total 3916.11 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-ef9b14e00a604d4da687e6dcc2e225f4 ordinal=3 status=captured
+  timing: serialize+send 4.53 ms, request total 3523.68 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-61090055901f4f7aaa1f25937d23b2c5 ordinal=4 status=captured
+  timing: serialize+send 5.64 ms, request total 2928.32 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-2d4eb702e4b6422ca960ee19917d788d ordinal=5 status=captured
+  timing: serialize+send 5.94 ms, request total 2853.34 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-7ac945ae27c14076a765c82c650da5a8 ordinal=6 status=captured
+  timing: serialize+send 5.71 ms, request total 5191.4 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-d7c4cef5d1cd4099b3de731e13d84cfc ordinal=7 status=captured
+  timing: serialize+send 6.42 ms, request total 2918.48 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-e526deb4ce0c483081ae1b7c3c602e32 ordinal=8 status=captured
+  timing: serialize+send 6.19 ms, request total 3224.71 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-02b78a639caf4746aedbfb6e4cfe7fc0 ordinal=9 status=captured
+  timing: serialize+send 5.95 ms, request total 3010.28 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-f74d15d156d4487a81bbc9665763873b ordinal=10 status=captured
+  timing: serialize+send 5.24 ms, request total 3004.39 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-12d1f01a10b34c10b2fe506a0fcd037e ordinal=11 status=captured
+  timing: serialize+send 5.46 ms, request total 3021.41 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-110153f848ff4008bd38ac663de0e160 ordinal=12 status=captured
+  timing: serialize+send 4.19 ms, request total 3081.54 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-e21a04caf00240f2b081e8b2dad1c4c6 ordinal=13 status=captured
+  timing: serialize+send 5.86 ms, request total 4910.82 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-4bf1d80235274886a29fbee2db7a9496 ordinal=14 status=captured
+  timing: serialize+send 5.53 ms, request total 3012.86 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-8e52a871044e4ca0b0523ade6a519d98 ordinal=15 status=captured
+  timing: serialize+send 3.45 ms, request total 2366.01 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-25f728c2ebed4c46b3a66172e9afa15d ordinal=16 status=captured
+  timing: serialize+send 5.91 ms, request total 2739.04 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-f748ad9fcf064520934d6cbb6af87973 ordinal=17 status=captured
+  timing: serialize+send 4.86 ms, request total 2949.75 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-773417f15e8648c2967dba7a60938a5c ordinal=18 status=captured
+  timing: serialize+send 5.84 ms, request total 2343.11 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-ead52f64e3c14fb085cd03206b085637 ordinal=19 status=captured
+  timing: serialize+send 6.28 ms, request total 2350.93 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-3e3a2e79b04b430a92512d710103bf2a ordinal=20 status=captured
+  timing: serialize+send 6.94 ms, request total 2358.5 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-26ac42e91b4e4d7e8ba59e2e3ef65d99 ordinal=21 status=captured
+  timing: serialize+send 3.92 ms, request total 2344.68 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-64f80449ee10435e9488e21e3d4b56df ordinal=22 status=captured
+  timing: serialize+send 6.73 ms, request total 2353.53 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-c276d222c1e04f0fbdb60b5814de20d5 ordinal=23 status=captured
+  timing: serialize+send 6.48 ms, request total 2342.18 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-2b449050aec04580a17e7acffce0911d ordinal=24 status=captured
+  timing: serialize+send 5.79 ms, request total 2346.4 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-9b8c80cb80df4c45bc3b7c7ddb7e4886 ordinal=25 status=captured
+  timing: serialize+send 6.97 ms, request total 4730.25 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-aa7bb31117564583a5219029697a9e90 ordinal=26 status=captured
+  timing: serialize+send 6.66 ms, request total 3326.62 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-4c7490b1aaef4ef6b36298862051f910 ordinal=27 status=captured
+  timing: serialize+send 5.08 ms, request total 4258.52 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-3f604a70746e44ca892103008e014b9a ordinal=28 status=captured
+  timing: serialize+send 5.66 ms, request total 4157.64 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-07739b1677a24eab821c66848c001593 ordinal=29 status=captured
+  timing: serialize+send 5.93 ms, request total 4561.19 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-fa1057d3e6e642f984742a4e12fe7b28 ordinal=30 status=captured
+  timing: serialize+send 4.85 ms, request total 4267.89 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-f7c179c5415045919c9074aee488dcbc ordinal=31 status=captured
+  timing: serialize+send 5.33 ms, request total 3548.42 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-0a834f41e55145e5801c95bbc5656cbb ordinal=32 status=captured
+  timing: serialize+send 5.65 ms, request total 3355.02 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-bf171f691ac244aba09279f947c6e66d ordinal=33 status=captured
+  timing: serialize+send 5.45 ms, request total 4404.54 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-197c84397df847128d8ec4e07f950ca2 ordinal=34 status=captured
+  timing: serialize+send 6.11 ms, request total 4236.09 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-be7de0f092cb49139cdb176ba3854c19 ordinal=35 status=captured
+  timing: serialize+send 5.98 ms, request total 4248.94 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-62d6b5db634b496c956e147324aeafad ordinal=36 status=captured
+  timing: serialize+send 5.98 ms, request total 3011.42 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-b421f2929e4f4edebc503eadc211971a ordinal=37 status=captured
+  timing: serialize+send 5.8 ms, request total 4244.71 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-6da3893a485a4403a574caa2a577249a ordinal=38 status=captured
+  timing: serialize+send 6.09 ms, request total 3909.2 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-99d274ecc7b94ce487fab713ae92bd68 ordinal=39 status=captured
+  timing: serialize+send 5.86 ms, request total 3006.45 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-a032891064de4c23b7e3987a4c02a575 ordinal=40 status=captured
+  timing: serialize+send 5.37 ms, request total 2869.75 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-84374f1f9abb4a5790159af313226161 ordinal=41 status=captured
+  timing: serialize+send 5.73 ms, request total 2831.64 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-8f8dd00f206d43639cf11b7896b0d5e6 ordinal=42 status=captured
+  timing: serialize+send 4.18 ms, request total 3978.04 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-43a8ba11f63d46168f74a5036464990e ordinal=43 status=captured
+  timing: serialize+send 5.67 ms, request total 3972.88 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-37776674634c4e63b54793f3b907da5b ordinal=44 status=captured
+  timing: serialize+send 6.57 ms, request total 4066.99 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-8e09eeccd3c249b28a7e0f89c0dddcec ordinal=45 status=captured
+  timing: serialize+send 8.25 ms, request total 9519.22 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-70e7447e5f234df08e00ea16555fa241 ordinal=46 status=captured
+  timing: serialize+send 10.94 ms, request total 7387.73 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-dfc48121eb6d4f9fbf255f3175456fa8 ordinal=47 status=captured
+  timing: serialize+send 7.91 ms, request total 14077.82 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-06ef1a0a227e473e8cb4c5604949dedc ordinal=48 status=captured
+  timing: serialize+send 4.44 ms, request total 4066.37 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-0a06d8c79948463396e5d61bf4b0ff83 ordinal=49 status=captured
+  timing: serialize+send 4.49 ms, request total 2032.48 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-3b9de2c37848447cb29849f97314dc89 ordinal=50 status=captured
+  timing: serialize+send 5.46 ms, request total 3845.43 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-fb3695cdbdc24473a912a930a30a1b6b ordinal=51 status=captured
+  timing: serialize+send 5.76 ms, request total 4038.59 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-b6a1a822fee34d3a9853a8ca854722a4 ordinal=52 status=captured
+  timing: serialize+send 9.06 ms, request total 34272.48 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-e3f8ee24daa64daeb10c12a7581a78c2 ordinal=53 status=captured
+  timing: serialize+send 9.98 ms, request total 4257.88 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-c9ef06fc2406428b821d763d12e1c508 ordinal=54 status=captured
+  timing: serialize+send 4.68 ms, request total 1998.16 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-0c879a026ea94c54ba16609218f4531c ordinal=55 status=captured
+  timing: serialize+send 4.71 ms, request total 1899.58 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-dab160cfacbd4ad58e59b6d9495262c0 ordinal=56 status=captured
+  timing: serialize+send 11.92 ms, request total 10672.33 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-5d2a224aca404a85a01b7c56c98b5b2b ordinal=57 status=captured
+  timing: serialize+send 4.98 ms, request total 3797.08 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-b5ea9f413d64437f98951d0cd7440225 ordinal=58 status=captured
+  timing: serialize+send 5.51 ms, request total 4647.64 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-ab064df7ba254669a2af37d0ba35b8ae ordinal=59 status=captured
+  timing: serialize+send 5.87 ms, request total 3545.55 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-3ebe0191cd6e4fc78c59ede67475c7a2 ordinal=60 status=captured
+  timing: serialize+send 5.58 ms, request total 4006.78 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-977e39b4329346bd9dc33ac5838c47ce ordinal=61 status=captured
+  timing: serialize+send 5.5 ms, request total 3462.21 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-67a46eea666244c8b5c775b4bfd9eb71 ordinal=62 status=captured
+  timing: serialize+send 6.08 ms, request total 3888.52 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-f3c51ce6095e41279ededbf72a05563e ordinal=63 status=captured
+  timing: serialize+send 5.48 ms, request total 3208.99 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-e19d4bcad75742608c712fd31717a927 ordinal=64 status=captured
+  timing: serialize+send 5.48 ms, request total 2961.48 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-a3cdd94518cc4fc981eeb88d75e07f52 ordinal=65 status=captured
+  timing: serialize+send 4.88 ms, request total 3321.91 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-fcdd12fcc7f34e10927da895cebfeaf0 ordinal=66 status=captured
+  timing: serialize+send 5.74 ms, request total 3372.5 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-29897dc920fe4d95b5fd4d1ea1ba1a68 ordinal=67 status=captured
+  timing: serialize+send 5.69 ms, request total 4251.64 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-76e24599199f4e779beeb813a86ab280 ordinal=68 status=captured
+  timing: serialize+send 5.87 ms, request total 3156.83 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-45f1b262020641ffae2dad2a43441a0e ordinal=69 status=captured
+  timing: serialize+send 5.97 ms, request total 2861.62 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-239fb9408f8b452da575bbf1ef6e26c2 ordinal=70 status=captured
+  timing: serialize+send 4.14 ms, request total 1694.34 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-445728f0fc1e49a1b9ab063b55531e65 ordinal=71 status=captured
+  timing: serialize+send 3.7 ms, request total 1965.2 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-4df89e429f9646fea0ed9fdd3e988b0f ordinal=72 status=captured
+  timing: serialize+send 3.28 ms, request total 1938.07 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-75ca32d8b1004f29b4cf855f043eb291 ordinal=73 status=captured
+  timing: serialize+send 5.21 ms, request total 3306.21 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-31cbf56cf8a143b09e8dcb1f8666bd83 ordinal=74 status=captured
+  timing: serialize+send 4.07 ms, request total 4104.54 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-7ef52f8b26da49969f8a186550c3ca64 ordinal=75 status=captured
+  timing: serialize+send 5.28 ms, request total 3065.31 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-cafe39393ada4abdb21fcaa743dc0518 ordinal=76 status=captured
+  timing: serialize+send 6.68 ms, request total 4298.16 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-4e48022e67354b908e5c10acbbd23732 ordinal=77 status=captured
+  timing: serialize+send 4.94 ms, request total 3417.09 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-042cd5b5ef014e2d88cb700d89466beb ordinal=78 status=captured
+  timing: serialize+send 5.72 ms, request total 4351.72 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-d1dc5b21b2f04b71980be189eadeaec4 ordinal=79 status=captured
+  timing: serialize+send 5.79 ms, request total 3253.63 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-fd4a56e93f8c4a359c15abd8cc5db22c ordinal=80 status=captured
+  timing: serialize+send 6.08 ms, request total 3440.4 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-13286366128146348bfbb6441bd4fc10 ordinal=81 status=captured
+  timing: serialize+send 5.93 ms, request total 3227.02 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-b74953fda5ac4af189be02ab254ab2dc ordinal=82 status=captured
+  timing: serialize+send 6.02 ms, request total 4230.5 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-5da867db63e244638a770c6580fd5627 ordinal=83 status=captured
+  timing: serialize+send 5.53 ms, request total 3168.03 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-7a31ac2d268844289cf9a6f48c867a8d ordinal=84 status=captured
+  timing: serialize+send 4.53 ms, request total 4159.26 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-0838f42da4ec4667b7943dd58b68a59e ordinal=85 status=captured
+  timing: serialize+send 5.89 ms, request total 3431.49 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-db7cc239e1d945a19b845c40a4c225a2 ordinal=86 status=captured
+  timing: serialize+send 5.54 ms, request total 2907.35 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-963f83abe1f14f498952004b08fb55cc ordinal=87 status=captured
+  timing: serialize+send 5.73 ms, request total 3999.88 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-f19cc0fa7938433db78af3116cd879c4 ordinal=88 status=captured
+  timing: serialize+send 5.4 ms, request total 3397.77 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-209c528658b349c39e05c552a4784b74 ordinal=89 status=captured
+  timing: serialize+send 4.81 ms, request total 7087.74 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-fd196a62ed614402a9725166526c8f43 ordinal=90 status=captured
+  timing: serialize+send 5.69 ms, request total 2997.57 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-055445dd773b4226ba69ae9f4c0f2f13 ordinal=91 status=captured
+  timing: serialize+send 5.26 ms, request total 3640.42 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-e1252d06282d4e5c8ab211b0ee9bb3d8 ordinal=92 status=captured
+  timing: serialize+send 5.02 ms, request total 3075.37 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-c31c5d261b4c4825a8bfee55166e9da3 ordinal=93 status=captured
+  timing: serialize+send 5.41 ms, request total 3226.52 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-3b99f2b641164714baab430d90217cba ordinal=94 status=captured
+  timing: serialize+send 6.05 ms, request total 3545.86 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-02faa118d7eb4bcbb73abea9287732b4 ordinal=95 status=captured
+  timing: serialize+send 6.1 ms, request total 6138.41 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-303991303e764624b0f27febdadb220d ordinal=96 status=captured
+  timing: serialize+send 5.7 ms, request total 3742.08 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-ed4c19b422724672aaf8db61f2628ee6 ordinal=97 status=captured
+  timing: serialize+send 5.28 ms, request total 3375.14 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-6b6ac8283cbc4b639969957566b18618 ordinal=98 status=captured
+  timing: serialize+send 6.22 ms, request total 3026.82 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-ad8d222db5264a84b0c09a601bed035f ordinal=99 status=captured
+  timing: serialize+send 5.7 ms, request total 4568.75 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-1cd91c101fa448858373d2d63af48b1c ordinal=100 status=captured
+  timing: serialize+send 7.96 ms, request total 3119.04 ms
+  127.0.0.1 "POST /api/ask HTTP/1.1" 200 -
+  measurement event=recorded session=ui_20261021T060022Z_ac25224a question_id=ui-da98eda4fa144f538cf65f76cf380c3e ordinal=101 status=captured
+  timing: serialize+send 5.19 ms, request total 4486.3 ms
+  measurement event=session_closed session=ui_20261021T060022Z_ac25224a written=101 recovered_partial_lines=0 records_without_row=0 ordinals_assigned=101 write_failures=0

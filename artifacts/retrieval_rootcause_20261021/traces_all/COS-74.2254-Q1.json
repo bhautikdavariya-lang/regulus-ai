@@ -1,0 +1,876 @@
+{
+ "id": "COS-74.2254-Q1",
+ "question": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+ "key_citation": "21 CFR 74.2254(b), (c), (d); 21 CFR 70.3(v)",
+ "required": {
+  "74.2254": [
+   "b",
+   "c",
+   "d"
+  ],
+  "70.3": [
+   "v"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "small skincare brand formulating tinted body butter supplier offers orange use limit color certification",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "certification",
+   "formulating",
+   "skincare",
+   "supplier",
+   "tinted",
+   "butter",
+   "offers",
+   "orange"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "tsquery": "'re' & 'small' & 'skincar' & 'brand' & 'formul' & 'tint' & 'bodi' & 'butter' & 'supplier' & 'offer' & 'd' & 'c' & 'orang' & '4' & 'use' & 'use' & 'limit' & 'color' & 'need' & 'fda' & 'certif'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "tsquery": "'re' & 'small' & 'skincar' & 'brand' & 'formul' & 'tint' & 'bodi' & 'butter' & 'supplier' & 'offer' & 'd' & 'c' & 'orang' & '4' & 'use' & 'use' & 'limit' & 'color' & 'need' & 'fda' & 'certif'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "small skincare brand formulating tinted body butter supplier offers orange use limit color certification",
+   "tsquery": "'small' & 'skincar' & 'brand' & 'formul' & 'tint' & 'bodi' & 'butter' & 'supplier' & 'offer' & 'orang' & 'use' & 'limit' & 'color' & 'certif'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 101.22(i)(4)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5891,
+     "chars": 948,
+     "metadata": {
+      "ordinal": 32,
+      "section_coverage": 0.7427,
+      "paragraph_coverage": 0.2107
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 101.22(k)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5289,
+     "chars": 365,
+     "metadata": {
+      "ordinal": 42,
+      "section_coverage": 0.7427,
+      "paragraph_coverage": 0.1746
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 70.3(u)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4652,
+     "chars": 891,
+     "metadata": {
+      "ordinal": 20,
+      "section_coverage": 0.6571,
+      "paragraph_coverage": 0.222
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 70.3(f)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4551,
+     "chars": 2174,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.6571,
+      "paragraph_coverage": 0.216
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "certification or formulating or skincare or supplier or tinted or butter or offers or orange",
+   "tsquery": "'certif' | 'formul' | 'skincar' | 'supplier' | 'tint' | 'butter' | 'offer' | 'orang'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0423,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 1.667675
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0344,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.6551157
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9901,
+     "chars": 1466,
+     "metadata": {
+      "ts_rank_cd": 1.5842036
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9319,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 1.4910804
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8892,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 1.4227698
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8816,
+     "chars": 1493,
+     "metadata": {
+      "ts_rank_cd": 1.4104815
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8205,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.3127674
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7983,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 1.2772832
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0423,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0344,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9901,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9319,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8892,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8816,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8205,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7983,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 101.22(i)(4)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5891,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 101.22(k)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5289,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 70.3(u)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 70.3(f)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4551,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+  "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+  "21 CFR 101.22(i)(4)",
+  "21 CFR 101.22(k)(3)",
+  "21 CFR 70.3(u)",
+  "21 CFR 70.3(f)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 101.22(k)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 70.3(u)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 70.3(f)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.22(i)(4)",
+    "tier": "discovery",
+    "block_chars": 1182,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.22(k)(3)",
+    "tier": "discovery",
+    "block_chars": 599,
+    "used_before": 1182,
+    "reserve_spent_before": 1182,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(u)",
+    "tier": "discovery",
+    "block_chars": 1053,
+    "used_before": 1182,
+    "reserve_spent_before": 1182,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(f)",
+    "tier": "discovery",
+    "block_chars": 1362,
+    "used_before": 1182,
+    "reserve_spent_before": 1182,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "tier": "discovery",
+    "used_before": 1182,
+    "block_chars": 1586,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 2770,
+    "block_chars": 828,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1586,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1580,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1580,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1580,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1508,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 101.22(k)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 599,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 70.3(u)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1053,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 70.3(f)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1362,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 465,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 101.22(i)(4)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 948,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "70.3": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 63,
+     "tail": "(a) Secretary means the Secretary of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 65,
+     "tail": "(b) Department means the Department of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 58,
+     "tail": "(c) Commissioner means the Commissioner of Food and Drugs.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 66,
+     "tail": "(d) Act means the Federal Food, Drug, and Cosmetic Act as amended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 348,
+     "tail": "bed, and including the examination of samples of color additives subject to certification.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 5,
+     "chars": 2174,
+     "tail": "rials which do not contribute any color apparent to the naked eye are not color additives.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 6,
+     "chars": 525,
+     "tail": "nditions are such that the primary purpose of the material is other than to impart color.)",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 7,
+     "chars": 662,
+     "tail": "of this property colors the produce of the soil, it is a color additive and is not exempt.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 8,
+     "chars": 161,
+     "tail": "reasonable certainty that no harm will result from the intended use of the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 9,
+     "chars": 192,
+     "tail": " includes lakes and such substances as are permitted by the specifications for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 10,
+     "chars": 144,
+     "tail": "xing two or more straight colors, or one or more straight colors and one or more diluents.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 11,
+     "chars": 205,
+     "tail": "nation that does not include any combination of ingredients made by simple mixing process.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 12,
+     "chars": 491,
+     "tail": "zing, or may be a functional component of an article intended for coloring the human body.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 13,
+     "chars": 90,
+     "tail": "(n) The term substratum means the substance on which the pure color in a lake is extended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 14,
+     "chars": 171,
+     "tail": "of any intermediate or other component, or of any diluent or substratum contained therein.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 15,
+     "chars": 233,
+     "tail": " set apart and held as a unit for the purpose of obtaining certification of such quantity.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 16,
+     "chars": 112,
+     "tail": "ber means the number assigned to a batch by the person who requests certification thereof.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 17,
+     "chars": 118,
+     "tail": "s an identifying number or symbol assigned to a batch by the Food and Drug Administration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)",
+     "ordinal": 18,
+     "chars": 349,
+     "tail": "ll, and the soft areolar tissue that lies within the perimeter of the infra-orbital ridge.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)",
+     "ordinal": 19,
+     "chars": 617,
+     "tail": " container for such unit shall be considered to be the package as defined in this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(u)",
+     "ordinal": 20,
+     "chars": 891,
+     "tail": "r shampoo, rinse, tint, or similar dual-purpose cosmetic that alter the color of the hair.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(v)",
+     "ordinal": 21,
+     "chars": 206,
+     "tail": "rnal parts of the body and not to the lips or any body surface covered by mucous membrane.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Definitions."
+  },
+  "74.2254": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 162,
+     "tail": "ll conform in identity and specifications to the requirements of § 74.1254 (a)(1) and (b).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 160,
+     "tail": "oring externally applied cosmetics in amounts consistent with good manufacturing practice.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 107,
+     "tail": " label of the color additive shall conform to the requirements of § 70.25 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 128,
+     "tail": "Orange No. 4 shall be certified in accordance with regulations in part 80 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "D&C Orange No. 4."
+  }
+ },
+ "required_status": {
+  "21 CFR 74.2254(b)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 74.2254(c)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 74.2254(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 70.3(v)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

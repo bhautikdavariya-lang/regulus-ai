@@ -1,0 +1,79 @@
+{
+ "schema": "regulus_ui_session_v1",
+ "session_id": "ui_20261021T055200Z_7ce245c6",
+ "source": "ui",
+ "state": "closed",
+ "started_utc": "2026-10-21T05:52:00+00:00",
+ "finished_utc": "2026-10-21T06:00:04+00:00",
+ "pid": 3730,
+ "host": "f440a732cc54e779",
+ "counters": {
+  "written": 101,
+  "write_failures": {},
+  "recovered_partial_lines": 0,
+  "records_without_row": 0,
+  "ordinals_assigned": 101
+ },
+ "run": {
+  "source": "ui",
+  "model": {
+   "backend": "mlx",
+   "model_id": "Qwen/Qwen3-1.7B",
+   "model_revision": "21457c6f51ed54a7c16e988c0844db973815c137",
+   "device": "mlx-gpu",
+   "dtype": "mlx-4bit-g128",
+   "quantization": {
+    "group_size": 128,
+    "bits": 4
+   },
+   "runtime_versions": {
+    "mlx": "0.32.3",
+    "mlx-metal": "0.32.3",
+    "mlx-lm": "0.32.0"
+   },
+   "adapter": null,
+   "decoding": {
+    "max_new_tokens": 2048,
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "enable_thinking": false
+   },
+   "tokenizer": {
+    "loaded_from": "Qwen/Qwen3-0.6B",
+    "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "identical_to_mlx_model": true
+   }
+  },
+  "database": {
+   "snapshot_date": "2026-09-03",
+   "observed": "at server start"
+  },
+  "generation_config": {
+   "do_sample": false,
+   "temperature": 0.7,
+   "top_p": 0.8,
+   "top_k": 20,
+   "enable_thinking": false,
+   "repetition_penalty": 1.0,
+   "no_repeat_ngram_size": 0
+  },
+  "system_prompt_sha256": "d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79",
+  "pipeline_config_sha256": "6cd19913cc7b83b4302d1bffdfb439fc2384ab7ca51a8af4adc84cbd2627796c",
+  "code_revision": {
+   "git_commit": "6f949381550fb96e49219a1b8679b3806b1126e5",
+   "git_dirty": true,
+   "tracked_diff_sha256": "d5c4fbb5e48311ded40167bc41b710a1de3fe556d587ff53213bc56b99526137"
+  },
+  "evaluator": {
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "rubric_version": "2.0.0",
+   "evaluator_version": null,
+   "accuracy_enabled": true,
+   "aligner_configured": "lexical",
+   "identifier_index": "database"
+  },
+  "run_id": "ui_20261021T055200Z_7ce245c6"
+ }
+}

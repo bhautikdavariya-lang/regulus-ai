@@ -1,0 +1,902 @@
+{
+ "COS-70.3-Q1": {
+  "ce": 1,
+  "fab": 0,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. Restates parts of the 70.3(f) color-additive definition with a correct citation, but opens by saying the sources cannot answer, never applies the definition to the mica/iron-oxide shimmer or the cocoa tint (key: colorants intentionally used to color are color additives), turns the 70.3(f) container sentence into a requirement ('must be capable of imparting a color to a container'), and omits the 70.3(g) 'clearly unimportant' exemption test.",
+  "action": "Incomplete and partly misstated answer: the definition was retrieved (70.3(f) in evidence) but not applied to the user's products; 70.3(g) missing and the container clause misread. Review answer generation for applicability questions."
+ },
+ "COS-70.3-Q3": {
+  "ce": 1,
+  "fab": 0,
+  "sub": 1,
+  "comp": 2,
+  "scope": 1,
+  "why": "Partly correct. Correctly points to 70.3(s), (v) and (u) and states the lips/mucous-membrane exclusion from 'externally applied'. But the eye-area summary omits the eyebrow and skin below it (the key point that a brow tint is eye-area use), and the coal-tar hair-dye exemption is reduced to 'bear a caution label', dropping the patch-test-directions condition - an oversimplified conditional requirement.",
+  "action": "Omission in a conditional requirement: the 601(a) hair-dye exemption conditions (caution statement AND patch-test directions) and the eyebrow element of 'area of the eye' were in the retrieved evidence but not stated."
+ },
+ "COS-70.19-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered. The draft failed validation (degenerate output, truncation, prompt echo, repeated statement) and was replaced by a withholding notice. The key's fees ($1,800/$1,600 amendment, $250 diluent listing), payment method (70.19(p)) and waiver/refund relief (70.19(q)-(r)) were not provided. 70.19(j) and (o) were among the retrieved sources.",
+  "action": "Answer withheld after a degenerate draft although part of 70.19 was in evidence. Review why generation degenerated on a multi-part fee question; check whether 70.19(i), (p)-(r) were retrievable."
+ },
+ "COS-70.50-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld by the validator (unsupported figure, invented condition). 21 CFR 70.50 was not in the retrieved evidence (sources were 81.10(q)(1), 81.10(s) and two unrelated guidance documents), so the cancer-clause procedure in the key was not provided.",
+  "action": "Missing evidence: the expected section 70.50 was not retrieved (81.10 and unrelated guidance instead). Review retrieval for questions phrased as 'cancer provision of section 721'."
+ },
+ "COS-70.50-Q2": {
+  "ce": 1,
+  "fab": 0,
+  "sub": 1,
+  "comp": 2,
+  "scope": 1,
+  "why": "Partly correct. The repair appended the verbatim text of 21 CFR 70.50(a)-(c), which contains the key's 70.50(b) rule for non-ingested uses with correct citations. But the model's own summary misstates 70.50(a) (it says ingested additives are subject to the cancer clause if the data establish safety) and never addresses external use, which is what was asked; the user must find the answer in the quoted text.",
+  "action": "Misleading summary above a correct verbatim quote: the model summarised the wrong paragraph (a) and misstated it while (b) was in evidence. Review the summary-plus-quote repair output."
+ },
+ "COS-70.51-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Describes an FDA drug formal-dispute-resolution guidance (CDER/CBER/CVM, Ombudsman, 30-day response, 10.75(b)(2)) instead of 21 CFR 70.51, which subjects anticancer-clause advisory committee requests to part 14, subpart H; the 70.19(l)-(m) referral fees are absent. The answer is also cut off at the token limit and repeats itself. 70.51 was not in the retrieved evidence.",
+  "action": "Missing evidence and off-topic answer: 70.51 not retrieved; answer built from drug-dispute guidance, presents guidance as requirements, truncated. Review retrieval and the truncation/repetition outcome."
+ },
+ "COS-70.55-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld (unsupported claim). Neither 70.55 nor 70.19(n) was in the retrieved evidence (two color-additive guidance documents and 71.6(c)(1)), so the key's answer - FDA will consider requests, limited study types, $5,000 advance deposit - was not provided.",
+  "action": "Missing evidence: 70.55 and 70.19(n) were not retrieved. Review retrieval for 'FDA run studies for our petition'."
+ },
+ "COS-71.1-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Lists animal food-additive petition recommendations from FDA guidance (systematic name, genus and species, dietary exposure) as 'must' requirements and ends by saying the sources are insufficient. It does not give the 71.1(c) attachments A-J, and cites guidance documents rather than the regulation. 71.1 was not in the retrieved evidence.",
+  "action": "Missing evidence and guidance stated as requirement: 71.1(c) not retrieved; answer built from animal food-additive guidance. Review retrieval for petition-content questions."
+ },
+ "COS-71.6-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined: says the requested provision is not found in the available eCFR data. 21 CFR 71.6 is part of Part 71, which is in the Regulus database, but it was not in the retrieved evidence. The key's answer (yes, written notice, extension to no more than 180 days after filing) was not provided.",
+  "action": "Missing evidence leading to a false 'not found' statement: 71.6(a) exists in the corpus but was not retrieved. Review retrieval for timing questions that do not name the section."
+ },
+ "COS-71.15-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 0,
+  "scope": 1,
+  "why": "Conclusion directionally right (the three categories stay non-public) but unsupported and oversimplified: it cites an unrelated manufacturing-change guidance instead of 71.15, omits the conditions (unless previously disclosed under 20.81, or relating to an abandoned product, and the aggregated-compilation exception for sales data). 71.15 was not in the retrieved evidence.",
+  "action": "Unsupported claim with wrong source: right conclusion, wrong citation, conditions omitted; 71.15 not retrieved. Review retrieval for confidentiality questions."
+ },
+ "COS-71.25-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft echoed the prompt and was withheld. 71.25 was not in the retrieved evidence (a 505(q) citizen-petition guidance and 80.35(b)), so the key's answer (listing order in part 74 with specifications; period after which uncertified batches adulterate) was not provided.",
+  "action": "Missing evidence: 71.25 not retrieved; draft was a prompt echo. Review retrieval for certification-exemption denial questions."
+ },
+ "COS-71.26-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Talks about certification of color additive mixtures and an Inactive Ingredient Database check (drug guidance presented as an FDA obligation) and never answers whether an exemption can be cancelled. Key: yes - under 71.26 the exemption is cancelled by a notice published in the Federal Register. 71.26 was not in the retrieved evidence; no citation given.",
+  "action": "Missing evidence and off-topic answer: 71.26 not retrieved; answer mixes 80.35-style certification text with drug guidance. Review retrieval for 'take that exemption away'."
+ },
+ "COS-71.27-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'), citing 80.35(b). Key: yes - under 71.27 FDA may list a color additive or exempt it from certification on its own initiative by regulation in part 73 or 74. 71.27 was not in the retrieved evidence.",
+  "action": "Missing evidence: 71.27 not retrieved, so the system declined. Review retrieval for FDA-initiated listing questions."
+ },
+ "COS-73.2085-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld (unsupported claim). The retrieved evidence was entirely 21 CFR 1271.90 (human cells/tissues donor-eligibility exceptions), not 73.2085, so the key's answer (listed for cosmetics generally incl. eye area, GMP amounts, 73.85 specs, 70.25 labeling, certification-exempt) was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) for a 'we're developing ... want to use X as the colorant' question; 73.2085 not retrieved. Same pattern in 73.2095-73.2725."
+ },
+ "COS-73.2095-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld (unsupported claim, condition not in cited source). The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2095, so the key's listing, specification, labeling and certification-exemption answer was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2095. Review retrieval for colorant-listing questions."
+ },
+ "COS-73.2180-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'), citing a Prussian Blue drug guidance. Key: guaiazulene is permitted in externally applied cosmetics (serum yes), lips excluded under 70.3(v) (lip balm no), 70.25 labeling, certification-exempt. 73.2180 was not in the retrieved evidence.",
+  "action": "Missing evidence: 73.2180 not retrieved (Prussian Blue guidance instead), so the system declined."
+ },
+ "COS-73.2250-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld (unsupported claim, invented condition, qualifier errors). The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2250, so the key's answer (synthetic iron oxides listed for cosmetics incl. eye area; As 3 / Pb 10 / Hg 3 ppm; 70.25 labeling; certification-exempt) was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2250."
+ },
+ "COS-73.2298-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld. The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2298, so the key's answer (listed for externally applied cosmetics incl. eye area, 73.1298 specs, 70.25 labeling, certification-exempt) was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2298."
+ },
+ "COS-73.2575-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was degenerate (truncated, repeated) and withheld. The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2575, so the key's titanium dioxide answer was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2575."
+ },
+ "COS-73.2645-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld. The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2645, so the key's aluminum powder answer (externally applied incl. eye area, 73.1645 specs, 70.25 labeling, certification-exempt) was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2645."
+ },
+ "COS-73.2646-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld. The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2646, so the key's bronze powder answer was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2646."
+ },
+ "COS-73.2647-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld. The retrieved evidence was entirely 21 CFR 1271.90 (HCT/P), not 73.2647, so the key's copper powder answer was not provided.",
+  "action": "Missing evidence: retrieval returned 21 CFR 1271.90 (HCT/P) instead of 73.2647."
+ },
+ "COS-73.2725-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Answers with human cell/tissue (HCT/P) labeling and donor-testing rules from 21 CFR 1271.90 ('FOR AUTOLOGOUS USE ONLY'), which have nothing to do with ultramarine blue in eye shadow. Key: ultramarines listed for externally applied cosmetics incl. eye area; Pb 20 / As 3 / Hg 1 ppm; 70.25 labeling; certification-exempt. 73.2725 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): HCT/P labeling rules (21 CFR 1271.90) stated as applying to an eye shadow.",
+  "action": "Missing evidence and wrong delivered answer: retrieval returned 21 CFR 1271.90 (HCT/P) and the model answered from it; the validator passed it. Review retrieval and why this off-topic answer was not withheld."
+ },
+ "COS-74.2052-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft was withheld (condition not in cited source), although 74.2052(a) and (c) were in the retrieved evidence. The key's answer (mascara and lipstick listed, hair gel not; no numeric limit; batch certification under part 80) was not provided.",
+  "action": "Answer withheld with the right evidence present (74.2052(c) retrieved). Review the generation/validation outcome for list-membership questions."
+ },
+ "COS-74.2203-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'), citing 720.4(c)(3)(iii). Key: permitted in cosmetics generally (blush yes), not eye-area use under 70.5(a) (eye shadow no), batch certification required. Neither 74.2203 nor 70.5 was in the retrieved evidence.",
+  "action": "Missing evidence: 74.2203 and 70.5(a) not retrieved, so the system declined."
+ },
+ "COS-74.2208-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Invents a restriction - use 'limited under section 520(e) of the act to physicians' (a restricted-device provision) - and supply-chain controls from animal-food guidance; omits the 0.01% by-weight limit and the external-use condition. Only the statement that certification is required matches the key. Cites an animal-food guidance and 21 CFR 1271.210(c). 74.2208 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented restriction: use 'limited under section 520(e) of the act to physicians'.",
+  "action": "Unsupported claim and missing evidence: 74.2208 not retrieved; answer invents a physician-use restriction. Review retrieval and why the invented restriction passed validation."
+ },
+ "COS-74.2254-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported claim). 74.2254 and 70.3(v) were not in the retrieved evidence (animal/human-food preventive-controls guidance and 101.22(i)(4)), so the key's answer (permitted in externally applied cosmetics, GMP amounts, batch certification under part 80) was not provided.",
+  "action": "Missing evidence: 74.2254 not retrieved (food preventive-controls guidance instead)."
+ },
+ "COS-74.2304-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'), citing 74.2052(c). 74.2304 was not in the retrieved evidence, so the key's answer (permitted in externally applied cosmetics incl. nail enamel, no numeric limit, batch certification) was not provided.",
+  "action": "Missing evidence: 74.2304 not retrieved (74.2052 instead), so the system declined."
+ },
+ "COS-74.2317-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported figure/claim). 74.2317 was not in the retrieved evidence (animal-food guidance, 170.3), so the key's answer was not provided.",
+  "action": "Missing evidence: 74.2317 not retrieved."
+ },
+ "COS-74.2322-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing an animal-food color guidance. Key: lip gloss permitted (cosmetics generally), mascara not authorized under 70.5(a), batch certification required. Neither 74.2322 nor 70.5 was in the retrieved evidence.",
+  "action": "Missing evidence: 74.2322 and 70.5(a) not retrieved, so the system declined."
+ },
+ "COS-74.2327-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing 74.2052(c). Key: blush permitted, eye shadow not authorized under 70.5(a), batch certification required. Neither 74.2327 nor 70.5 was in the retrieved evidence.",
+  "action": "Missing evidence: 74.2327 and 70.5(a) not retrieved, so the system declined."
+ },
+ "COS-74.2340-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported figure, invented condition). 74.2340 was not in the retrieved evidence (82.2051, 82.1051 and two guidance documents), so the key's answer (calcium-lake eye shadow not permitted; straight-color lip gloss permitted; certification) was not provided.",
+  "action": "Missing evidence: 74.2340 not retrieved."
+ },
+ "COS-74.2602a-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. States the color 'does not require FDA certification, as it is a non-certificate color' - the key says all batches must be certified under part 80 (74.2602a(e)). The use-limit line is vague and the supplier-verification line presents food-safety guidance as a requirement. 74.2602a was not in the retrieved evidence.",
+  "action": "Materially wrong (certification status inverted) with missing evidence: 74.2602a not retrieved; answer delivered from unrelated sources. Review why an uncited certification claim passed validation."
+ },
+ "COS-74.2708-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Invents a restriction ('limited under section 520(e) of the act to physicians') and supply-chain duties from food guidance; never answers the use limit or certification (key: externally applied, GMP amounts, batch certification under part 80). No citation. 74.2708 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented restriction: use 'limited under section 520(e) of the act to physicians'.",
+  "action": "Unsupported claim and missing evidence: 74.2708 not retrieved; invented physician-use restriction delivered (same as 74.2208)."
+ },
+ "COS-74.2710-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing a drug color-replacement guidance. Key: lip gloss permitted, mascara not authorized under 70.5(a), batch certification required. Neither 74.2710 nor 70.5 was in the retrieved evidence.",
+  "action": "Missing evidence: 74.2710 and 70.5(a) not retrieved, so the system declined."
+ },
+ "COS-74.2711-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported figure/claim). 74.2711 was not in the retrieved evidence (animal-food guidance, 720.4, 74.2052(c)), so the key's answer was not provided.",
+  "action": "Missing evidence: 74.2711 not retrieved."
+ },
+ "COS-80.10-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported figure), although 80.10(a) and (b) were in the retrieved evidence. The key's answer ($0.45/lb, minimum $288, so $900; payment by money order/bank draft/certified check per 80.10(d); advance deposits per (c)) was not provided.",
+  "action": "Answer withheld with the fee paragraph present: a computed figure ($900 from $0.45/lb) is likely what failed the figure check; 80.10(d) payment method not retrieved. Review figure validation for arithmetic answers."
+ },
+ "COS-80.31-Q1": {
+  "ce": 1,
+  "fab": 0,
+  "sub": 1,
+  "comp": 2,
+  "scope": 1,
+  "why": "Partly correct. States that the batch must comply with the regulations and that the certificate shows the lot number and certified status (80.31(a)(3) and certificate content, correctly cited). Omits two of the three findings FDA must make - no untrue statement of material fact in the 80.21 request, and conformance to specifications - and repeats itself; it also frames the opening as 'to determine whether a batch must be certified'.",
+  "action": "Incomplete answer: 80.31(a)(1)-(2) were in evidence but not stated. Note the live evaluator scored this PASS 100, which the rubric does not support."
+ },
+ "COS-80.37-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Describes produce-safety environmental sampling (112.145(c)(2), monthly) and blood-glucose-meter perturbation studies instead of 80.37's holding requirements (store to prevent composition change, keep under requester's control, mark as not for use until certified). 80.37 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Produce-safety sampling rule (112.145(c)(2), monthly) stated as applying to a color-certification batch.",
+  "action": "Missing evidence and off-topic answer: 80.37 not retrieved; answer assembled from unrelated sampling guidance and 112.145. Review why it passed validation."
+ },
+ "COS-80.38-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing 101.9(b)(5)(ix). 80.38 was not in the retrieved evidence, so the key's answer (label with the certified lot number; store to prevent composition change until packaged/labeled per 70.20 and 70.25) was not provided.",
+  "action": "Missing evidence: 80.38 not retrieved, so the system declined."
+ },
+ "COS-81.30-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing a lead-in-cosmetics draft guidance. 81.30(r) was not in the retrieved evidence, so the key's answer (No - certificates for D&C Red No. 19 cancelled, external uses after July 15, 1988) was not provided.",
+  "action": "Missing evidence: 81.30(r) not retrieved, so the system declined."
+ },
+ "COS-82.6-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong/off-topic. Mostly describes how certified colors are declared on food labels ('Artificial Color', 'Blue 1'), attributed to 82.6(a), and never states whether the mixture can be certified. The only related fragment garbles the 82.6(a)(3) diluent exception; the key's conditions (each color from a certified batch, harmless diluents, sodium benzoate up to 0.1% in aqueous mixtures) are not given. 82.6(a) was in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Food 'Artificial Color' declaration stated as required for cosmetics.",
+  "action": "Wrong content attributed to the right section: 82.6(a) was in evidence but the answer is food-labeling text. Review citation support checking."
+ },
+ "COS-82.50-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate (truncated, invented condition) and withheld. 82.50 was not in the retrieved evidence (82.1050, 82.2050, 82.6(a), guidance), so the key's answer (subpart B batch certifiable for food, drugs and cosmetics if it meets 82.5 and subpart specs) was not provided.",
+  "action": "Missing evidence: 82.50 not retrieved although neighbouring 82.1050/82.2050 were."
+ },
+ "COS-82.101-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. Correctly says a batch must meet 82.5 and the subpart's specifications, but points to 82.1104 (D&C Blue No. 4) for FD&C Blue No. 1, misstates subpart B certification as 'drugs and cosmetics' (82.50 allows food, drugs and cosmetics), omits the 74.101(a)(1)/(b) identity cross-reference and the 82.5 limits, and ends with 'not enough information'. Cited 82.1104 is the wrong section. 82.101 and 82.50 were both in the retrieved evidence.",
+  "action": "Wrong section cited with the right evidence present (82.101, 82.50 retrieved; part-level evidence was cut by the budget). Review citation selection among sibling Part 82 sections."
+ },
+ "COS-82.203-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate (truncated, repeated, invented condition) and withheld, although 82.203, 82.5 and 82.50 were in the retrieved evidence. The key's answer (conform to 74.203(a)(1) and (b); 82.5 lead/arsenic/heavy-metal limits) was not provided.",
+  "action": "Answer withheld after a degenerate draft with the right evidence present. Review generation on Part 82 specification questions."
+ },
+ "COS-82.304-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate and withheld, although 82.304 and 82.50 were in the retrieved evidence. The key's answer (74.1304 specs; restricted to externally applied drugs and cosmetics; 82.5 limits) was not provided.",
+  "action": "Answer withheld after a degenerate draft with the right evidence present."
+ },
+ "COS-82.1104-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong/off-topic. Describes how color additives are declared on labels and OTC lip-protectant statements (347.50) instead of answering. Key: No - 82.1104 restricts D&C Blue No. 4 to externally applied products and 70.3(v) excludes lips. 82.1104 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Food/OTC lip-protectant declaration rules stated as the regulation's requirement for the lip balm.",
+  "action": "Missing evidence and off-topic answer: 82.1104 and 70.3(v) not retrieved."
+ },
+ "COS-82.1205-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: the draft refused despite evidence and was withheld. 82.1205 was the only source retrieved. The key's answer (one sentence: conform to 74.1205(a)(1) and (b)(2); no use restriction or limit; 82.1050 drugs-and-cosmetics certification) was not provided.",
+  "action": "Answer withheld with the exact section in evidence (82.1205); 82.1050 not retrieved. Review refusal-with-evidence behaviour on 'does X restrict' questions."
+ },
+ "COS-82.1206-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong/off-topic. Describes label declaration of color additives and points to hair-coloring labeling (720.4(c)(6)); never says whether D&C Green No. 6 may be used in a pomade. Key: within the externally-applied restriction; conform to 74.1206. 82.1206 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Food color-declaration rules stated as required for hair pomades.",
+  "action": "Missing evidence and off-topic answer: 82.1206 not retrieved."
+ },
+ "COS-82.1254-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong/off-topic. Talks about declaring colors on human and animal food labels, then says the sources are insufficient. Key: No - 82.1254 restricts D&C Orange No. 4 to externally applied products; toothpaste contacts mucous membrane. 82.1254 was not in the retrieved evidence.",
+  "action": "Missing evidence and off-topic answer: 82.1254 not retrieved."
+ },
+ "COS-82.1307-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 2,
+  "scope": 1,
+  "why": "Partly correct. Contains 82.1307(a) and (b) correctly (identity per 74.1307; combined D&C Red No. 6 + No. 7 not over 5 mg per daily dose), repeated verbatim. But it is mostly an unrelated dump of Part 82 text with misattributed paragraphs (e.g. lake-naming text labelled 82.5(b)), and never answers whether 82.1307 addresses the lipstick (key: it does not address cosmetic use).",
+  "action": "Correct core buried in a misattributed text dump; lipstick sub-question unanswered. Review the verbatim/synthesis repair that produced the dump."
+ },
+ "COS-82.1317-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (invented condition). 82.1317 was not in the retrieved evidence (720.4, food guidance), so the key's answer (within the externally-applied restriction; 74.1317 specs; no limit) was not provided.",
+  "action": "Missing evidence: 82.1317 not retrieved."
+ },
+ "COS-82.1321-Q1": {
+  "ce": 1,
+  "fab": 1,
+  "sub": 0,
+  "comp": 1,
+  "scope": 1,
+  "why": "Wrong. States that 82.1321 'restricts the use of D&C Red No. 21 in the production of lipstick'. The key: 82.1321 contains only the identity/specification sentence and states no use restriction or limit. Cites the right section but misstates its content; 82.1050 is not mentioned. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented restriction: 82.1321 'restricts the use of D&C Red No. 21 in ... lipstick'.",
+  "action": "Unsupported claim attributed to the correct section (82.1321 in evidence). Review why a claim with low overlap with its cited source passed validation."
+ },
+ "COS-82.1327-Q1": {
+  "ce": 1,
+  "fab": 1,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. The first sentence states 82.1327 correctly (conform to 74.1327(a)(1) and (b)). The second sentence says 82.1327 'also requires that the use limit ... is not exceeded', implying a limit that does not exist (key: no use restriction or quantitative limit). 82.1050 is not mentioned. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented use limit attributed to 82.1327.",
+  "action": "Misleading added claim (a non-existent use limit) after a correct sentence; 82.1050 not retrieved."
+ },
+ "COS-82.2050-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (condition not in cited source, invented condition), although 82.2050 was in the retrieved evidence. The key's answer (Subpart D: externally applied drugs and cosmetics only; lips excluded under 70.3(v), so not lipstick) was not provided.",
+  "action": "Answer withheld with the right section present (82.2050); 70.3(v) not retrieved."
+ },
+ "COS-700.13-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. Names 700.13(a) and says the product is treated as a drug 'or' a cosmetic (the key: drug AS WELL AS cosmetic), then adds irrelevant importer-program (VQIP) text. Omits the core consequences in 700.13(d): misbranded under 502, possibly an unapproved new drug, and adulterated as a cosmetic unless (d)(2)(i)/(ii) is met. The [n] markers point to a VQIP guidance and 720.4, not 700.13. 700.13 was in the retrieved evidence.",
+  "action": "Incomplete and partly misstated: 700.13(d) consequences missing; markers point to wrong sources. Review citation alignment and completeness."
+ },
+ "COS-700.14-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate (truncated, repeated) and withheld, although 700.14(b) was in the retrieved evidence. The key's answer (No - vinyl chloride in a cosmetic aerosol is deleterious and adulterated at any level) was not provided.",
+  "action": "Answer withheld after a degenerate draft; 700.14(b) retrieved but not (a). Review generation on prohibited-ingredient questions."
+ },
+ "COS-700.15-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'), citing an infant-formula guidance, although 700.15 was in the retrieved evidence. Key: No - tribromsalan in a cosmetic at any level makes it adulterated under 601(a).",
+  "action": "Declined with the right section in evidence (700.15). Review refusal-with-evidence on prohibited-ingredient questions."
+ },
+ "COS-700.18-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (invented condition, unsupported claim), although 700.18(b) - which contains the processing-solvent residue exclusion - was in the retrieved evidence. The key's answer (residue alone does not make chloroform an ingredient) was not provided.",
+  "action": "Answer withheld with the exact paragraph present (700.18(b))."
+ },
+ "COS-700.25-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported claim). Only 700.25(a) was retrieved, not (d), so the key's exemption procedure (citizen petition under 10.30, marked envelope, required contents) was not provided.",
+  "action": "Missing evidence: 700.25(d) not retrieved (only (a))."
+ },
+ "COS-700.35-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. 700.35 was not in the retrieved evidence (lead-in-cosmetics guidance, 740.19), so the key's answer (qualify 'sunscreen' with the cosmetic benefit, prominently, e.g. 'Contains a sunscreen—to protect product color') was not provided.",
+  "action": "Missing evidence: 700.35 not retrieved."
+ },
+ "COS-701.3-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Answers from tobacco-product ingredient-listing guidance and tampon absorbency rules (801.430). The key: 701.3(a) descending order of predominance, (b) letters at least 1/16 inch on an information panel, (f) the 1% alternative ordering. 701.3 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Tobacco ingredient-listing and tampon sampling-plan requirements stated as the lotion's ingredient-list requirements.",
+  "action": "Missing evidence and off-topic answer: 701.3 not retrieved (tobacco and tampon sources instead); answer passed validation."
+ },
+ "COS-701.3-Q4": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. Gives the 701.3(m) idea that alternative ingredients may be declared after the usual ingredient or after all ingredients (correctly cited to 701.3(m)), but assigns the duty to 'suppliers', omits the required 'or' / 'may also contain' wording, and says nothing about 701.3(r) - the direct-mail declaration option that is half of the question. It also cites an animal-food supply-chain guidance.",
+  "action": "Incomplete: 701.3(r) (direct-mail sellers) missing; a guidance citation added. Review completeness on two-part questions."
+ },
+ "COS-701.9-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Says the bulk drums must carry full consumer labeling and quotes prescription-drug labeling type sizes and food bulk rules. Key: exempt in transit under 701.9(a) if, for an unaffiliated filler, a signed written agreement per (a)(2) exists. 701.9 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented requirement: bulk drums 'must carry full consumer labeling' with drug type sizes.",
+  "action": "Missing evidence and materially wrong conclusion: 701.9 not retrieved; answer would lead to unnecessary labeling and misses the written-agreement condition."
+ },
+ "COS-701.12-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing the food rule 101.5(d). 701.12(d) was not in the retrieved evidence, so the key's answer (street address may be omitted only if listed in a current city or telephone directory) was not provided.",
+  "action": "Missing evidence: 701.12(d) not retrieved (food analogue 101.5(d) instead), so the system declined."
+ },
+ "COS-701.13-G1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported claim), although 701.13(e)(1) - the decorative-container / one-fourth-ounce tear-away-tag provision - was in the retrieved evidence. The key's answer was not provided.",
+  "action": "Answer withheld with the exact paragraph present (701.13(e)(1))."
+ },
+ "COS-701.13-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 0,
+  "scope": 1,
+  "why": "Partly correct but too thin to act on. States only that type size is set by the PDP area and must be uniform for same-size packages. Omits the key's specifics: fluid ounces ('8 fl. oz.'), at least 1/8-inch letters for a 5-25 sq in PDP, and placement as a distinct item in the bottom 30% of the PDP. No citation; 701.13 was not in the retrieved evidence.",
+  "action": "Missing evidence and incomplete answer: 701.13(a), (f), (i)(2), (j) not retrieved."
+ },
+ "COS-701.13-Q3": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 2,
+  "comp": 1,
+  "scope": 1,
+  "why": "Substantively correct on the key point: for a pressurized container, declare the quantity expelled when used as directed, and the propellant is included (matches 701.13(g)(1)). But the statement was drawn from the food rule 101.7(g) and is cited to 21 CFR 700.14(b), a vinyl-chloride provision - a wrong citation - and 701.13 is never named. It also adds an unrelated drug-label 'no trailing zero' recommendation, attributed to guidance.",
+  "action": "Wrong citation: correct rule cited to 700.14(b); 701.13(g)(1) not retrieved (food analogue 101.7(g) used). Review citation re-pointing and retrieval of Part 701."
+ },
+ "COS-710.2-Q1": {
+  "ce": 1,
+  "fab": 1,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. Correctly states 710.2's 30-day 'should register' timing (cited 710.2), but then says 'This deadline is binding'. The key: 710.2 is part of the voluntary Part 710 program (no longer accepted since March 2023); the binding deadline is FD&C Act 607(a)(1)(B) (60 days). The binding-status answer is wrong and the statutory requirement is missing. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented binding status: the voluntary 710.2 'should register within 30 days' is stated to be binding.",
+  "action": "Material error on binding status; statute (FD&C 607) not in corpus. Review how 'should' provisions are characterised."
+ },
+ "COS-710.4-Q1": {
+  "ce": 1,
+  "fab": 0,
+  "sub": 2,
+  "comp": 1,
+  "scope": 1,
+  "why": "Correct for 710.4 (name and address with ZIP, all trading names, type of business), correctly cited. Omits the key's 700.3(j) element that the information is given separately for each establishment.",
+  "action": "Minor omission: 700.3(j) per-establishment element not stated (700.3 not retrieved)."
+ },
+ "COS-710.5-Q1": {
+  "ce": 1,
+  "fab": 0,
+  "sub": 2,
+  "comp": 2,
+  "scope": 1,
+  "why": "Correct and complete for 710.5: a new Form FD-2511 'should' be submitted within 30 days of a change, and a new form is needed to cancel when the establishment changes its name; correctly cited. Keeps the provision's advisory 'should'.",
+  "action": ""
+ },
+ "COS-720.3-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported figure, invented condition). 720.3 was not in the retrieved evidence (drug postmarketing form guidance, food rules), so the key's answer (forms obtainable from FDA College Park or district offices; mail to Cosmetic Product Statement, FDA, College Park) was not provided.",
+  "action": "Missing evidence: 720.3 not retrieved."
+ },
+ "COS-720.4-Q3": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 1,
+  "scope": 1,
+  "why": "Partly correct. Quotes the 720.4(e) general rule that one Form 2512 may cover shades differing only in color-additive amounts (correctly cited), but misses the exception that hair coloring preparations need a statement for each shade - so it implies the 12 hair-dye shades could share one form (key: 12 statements). The ingredient-listing part uses an NDA composition-statement guidance (nominal amounts) instead of 720.4(d) (descending order, 701.3(c) names).",
+  "action": "Material omission of an exception and wrong source for listing rules; 720.4(c)(6)/(d) not used though 720.4 was in evidence."
+ },
+ "COS-720.7-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. 720.7 was not in the retrieved evidence, so the key's answer (permanent statement number or FDA reference number; notice of incompleteness) was not provided.",
+  "action": "Missing evidence: 720.7 not retrieved."
+ },
+ "COS-720.8-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing 108.25(k) (acidified foods). 720.8 was not in the retrieved evidence, so the key's trade-secret request requirements (720.8(b)(1)-(6), (c)) were not provided.",
+  "action": "Missing evidence: 720.8 not retrieved, so the system declined."
+ },
+ "COS-740.11-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Lists cigarette health warnings ('Tobacco smoke can harm your children', etc.) and cigarette print-run rules for an aerosol dry shampoo. Key: the 740.11(a)(1) aerosol warning ('Avoid spraying in eyes. Contents under pressure...') with its permitted variations. 740.11 was not in the retrieved evidence. Fabricated = 1 (bank Instructions rule 3, invented requirement): Cigarette health warnings stated as required on an aerosol dry-shampoo can.",
+  "action": "Missing evidence and badly off-topic delivered answer (cigarette warnings). Review retrieval for 'warning must the can carry' and why the validator delivered it."
+ },
+ "COS-740.11-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 1,
+  "comp": 0,
+  "scope": 1,
+  "why": "Conclusion right (an intentional-misuse warning is required for a hydrocarbon propellant) but grounded in the wrong regulations - 21 CFR 369.21 (OTC drugs) and 501.17(b)(1) (animal food) - instead of 740.11(b)(1), and the exemptions asked about (foam <10% propellant, barrier containers, <2 oz metered, <1/2 oz) are omitted. 740.11 was not in the retrieved evidence.",
+  "action": "Wrong governing section and missing exemptions: 740.11(b) not retrieved; drug/animal-food analogues used."
+ },
+ "COS-740.12-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Says the spray 'must be labeled with the word hygiene or hygienic to avoid misbranding' - the opposite of 740.12(c), which says using 'hygiene' renders it misbranded - and never states the required caution. Key: yes, 740.12(a) covers all-over-body sprays and (b) requires the caution text. 740.12(a) and (c) were in the retrieved evidence; (b) was not. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented requirement: must be labeled 'hygiene'/'hygienic' (740.12(c) says that word misbrands it).",
+  "action": "Evidence inverted: 740.12(c) in evidence but misstated; 740.12(b) caution not retrieved. Review why an inverted claim passed validation."
+ },
+ "COS-740.19-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported claim). 740.19 was not in the retrieved evidence (sunscreen drug labeling 352.52, cigarette and OTC guidance), so the key's answer (both need the 'does not contain a sunscreen' warning) was not provided.",
+  "action": "Missing evidence: 740.19 not retrieved."
+ },
+ "COS-FDCA201(i)-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported claim). The key's source is FD&C Act 201(i) (statute), which is not in the Regulus corpus (eCFR and FDA guidance only); the key's answer (an oil applied to beautify fits the 'cosmetic' definition; soap excluded) was not provided.",
+  "action": "Corpus gap: the statutory definition (FD&C Act 201(i)) is not in the corpus; no eCFR definition was retrieved either."
+ },
+ "COS-FDCA601-Q3": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'), citing a biologics contract-manufacturing guidance. The key's source is FD&C Act 601(e)-(g) (statute), which is not in the Regulus corpus; the key's answer (unsafe color additive, GMP under 606, safety substantiation under 608) was not provided.",
+  "action": "Corpus gap: FD&C Act 601(e)-(g) statute text is not in the corpus."
+ },
+ "COS-FDCA603-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Opens by declining, then twice asserts 'the requested provision requires that drums need full consumer labeling', citing a plant-based food labeling guidance. Key: FD&C Act 603 directs exemption regulations for cosmetics shipped in bulk for processing/labeling elsewhere (implemented in 701.9). The statute is not in the corpus. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented requirement: 'drums need full consumer labeling'.",
+  "action": "Corpus gap plus an invented requirement: statute not in corpus and 701.9 not retrieved; the answer asserts the opposite of the exemption."
+ },
+ "COS-FDCA605-Q1": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Describes drug postmarketing reporting (Form FDA 3500A, 60 days after approval, annual report with Form 2252) instead of MoCRA: the responsible person must report a serious adverse event (infection is a serious outcome) with the label within 15 business days (FD&C Act 605(a), (b)(1)). The statute is not in the corpus; the answer is also cut off. Fabricated = 1 (bank Instructions rule 3, invented requirement): Drug postmarketing reporting (60 days, Form 3500A, Form 2252) stated as the cosmetic brand owner's obligation.",
+  "action": "Corpus gap and wrong regime: FD&C 605 not in corpus; drug reporting rules delivered instead."
+ },
+ "COS-FDCA605-Q3": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate and withheld. The key's source FD&C Act 605(f) (fragrance ingredient list within 30 days of a written request; withheld from FOIA) is not in the corpus.",
+  "action": "Corpus gap: FD&C Act 605(f) not in corpus."
+ },
+ "COS-FDCA606-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. Explains how employees are counted for the food 'small business' definition (Parts 117/507 guidance) and presents it as FDA's cosmetic GMP rule. Key: FD&C Act 606(b) requires the GMP rules to consider business size, give flexibility and simplified requirements for smaller businesses; 612 may exempt small businesses. The statute is not in the corpus.",
+  "action": "Corpus gap: FD&C 606(b)/612 not in corpus; food small-business guidance used instead."
+ },
+ "COS-FDCA607-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld (unsupported figure). The key's source FD&C Act 607(c) (one listing may cover shades differing only in colors; new products within 120 days; annual updates) is not in the corpus; 720.4(e) (voluntary program) was retrieved.",
+  "action": "Corpus gap: FD&C Act 607(c) not in corpus."
+ },
+ "COS-FDCA607-Q3": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. The key's source FD&C Act 607(f) (suspension grounds, 5-business-day plan, informal hearing) is not in the corpus; food facility registration guidance and 1.285(k) were retrieved instead.",
+  "action": "Corpus gap: FD&C Act 607(f) not in corpus."
+ },
+ "COS-FDCA609-Q1": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate and withheld. The key's source FD&C Act 609(a) (label must bear a domestic address, domestic phone or electronic contact; a foreign address alone does not satisfy it) is not in the corpus.",
+  "action": "Corpus gap: FD&C Act 609(a) not in corpus."
+ },
+ "COS-FDCA609-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined ('sources do not provide enough information'). The key's source FD&C Act 609(b)-(c) (professional-use statement; fragrance allergen labeling by regulation) is not in the corpus.",
+  "action": "Corpus gap: FD&C Act 609(b)-(c) not in corpus."
+ },
+ "COS-FDCA613-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. The key's source FD&C Act 613(b) (facility making both OTC drugs and cosmetics is not exempt from 605-611 for the cosmetic-only products) is not in the corpus.",
+  "action": "Corpus gap: FD&C Act 613 not in corpus."
+ },
+ "COS-FDCA614-Q2": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. The key's source FD&C Act 614(b) (no preemption of state laws limiting a cosmetic ingredient) is not in the corpus.",
+  "action": "Corpus gap: FD&C Act 614 not in corpus."
+ },
+ "UC-COS-006": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. None of the key's CFR sources (700.3(b), 211.1(a), 211.67, 211.68(a), 211.160(b)(4)) were in the retrieved evidence, and FD&C Act 613 is not in the corpus; the key's answer (SPF product is also a drug, so Part 211 cleaning/calibration applies) was not provided.",
+  "action": "Missing evidence: Part 211 and 700.3 not retrieved for a drug/cosmetic shared-equipment question; statute not in corpus."
+ },
+ "UC-COS-009": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. The key's sources (FD&C Act 601(c), 604, 607) are statute and not in the corpus; the key's answer (possible adulteration for insanitary conditions, brand is the responsible person, 607 suspension procedure) was not provided.",
+  "action": "Corpus gap: FD&C Act 601(c)/604/607 not in corpus."
+ },
+ "UC-COS-011": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Declined, citing an infant-formula guidance. The key's sources (FD&C Act 601(c) 'held', 604 facility exclusions, 607) are statute and not in the corpus.",
+  "action": "Corpus gap: FD&C Act 601(c)/604 not in corpus."
+ },
+ "UC-COS-013": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. States 'The FDA requires that cosmetics be stored within a temperature and humidity range', citing a draft lead-in-cosmetics guidance. The verified key says there is no FDA-codified temperature/humidity requirement for cosmetic storage; 601(c) and 608 are what apply. Fabricated = 1 (bank Instructions rule 3, invented requirement): Invented requirement on a 'regulation is silent' question: FDA-required storage temperature/humidity range.",
+  "action": "Invented requirement on a 'regulation is silent' question; draft guidance cited as an FDA requirement. Review handling of absence-of-requirement questions."
+ },
+ "UC-COS-015": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft withheld. The key's answer (no codified cosmetic storage regulations, so no FDA-specified storage records; 608 safety substantiation records are what exist) was not provided; the statute is not in the corpus.",
+  "action": "Withheld on an absence-of-requirement question; FD&C 608 not in corpus."
+ },
+ "UC-COS-016": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate and withheld. The key's answer (only serious adverse events must be reported within 15 business days; a transient rash is not serious; keep records 6 years) depends on FD&C Act 604/605, which are not in the corpus.",
+  "action": "Corpus gap: FD&C Act 604/605 not in corpus."
+ },
+ "UC-COS-017": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "No answer delivered: draft degenerate and withheld. The key's answer (the labeled distributor is the responsible person and reports within 15 business days with the label) depends on FD&C Act 604/605, which are not in the corpus.",
+  "action": "Corpus gap: FD&C Act 604/605 not in corpus."
+ },
+ "UC-COS-020": {
+  "ce": 0,
+  "fab": 1,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Wrong. States food-plant sanitation requirements ('storing of food ... contaminated food shall be rejected') and contract-manufacturing guidance as FDA requirements for an eye-shadow rework. Key: no codified cosmetic rework rule; 601(b)-(c) adulteration, 608 substantiation, and eye-area products are excluded from the 612 small-business exemption. Fabricated = 1 (bank Instructions rule 3, invented requirement): Food-plant sanitation requirements stated as FDA requirements for reworking an eye shadow.",
+  "action": "Food CGMP rules imported as requirements on an absence-of-requirement question; statute not in corpus."
+ },
+ "UC-COS-021": {
+  "ce": 0,
+  "fab": 0,
+  "sub": 0,
+  "comp": 0,
+  "scope": 1,
+  "why": "Fails to answer. Restates the question and says only that FDA 'can access records related to the affected lots ... as per the FDA guidance', citing food recordkeeping guidance and a device MDR definition. It does not describe what FDA can do on refusal (611 mandatory cessation order, informal hearing within 10 days, recall order) or 607 suspension, and the records statement is not supported by any cosmetic provision. The statute is not in the corpus.",
+  "action": "Corpus gap: FD&C Act 610/611 not in corpus; answer is unsupported and incomplete."
+ }
+}

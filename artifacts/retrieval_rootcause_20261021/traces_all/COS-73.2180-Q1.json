@@ -1,0 +1,698 @@
+{
+ "id": "COS-73.2180-Q1",
+ "question": "We want guaiazulene to give a blue tint to a facial serum and a lip balm. Is that allowed, and what applies?",
+ "key_citation": "21 CFR 73.2180(a)-(e)",
+ "required": {
+  "73.2180": [
+   "a",
+   "b",
+   "c",
+   "d",
+   "e"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We want guaiazulene to give a blue tint to a facial serum and a lip balm. Is that allowed, and what applies?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "guaiazulene blue tint facial serum lip balm allowed",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "guaiazulene",
+   "allowed",
+   "facial",
+   "serum",
+   "blue",
+   "tint",
+   "balm",
+   "lip"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We want guaiazulene to give a blue tint to a facial serum and a lip balm. Is that allowed, and what applies?",
+   "tsquery": "'want' & 'guaiazulen' & 'give' & 'blue' & 'tint' & 'facial' & 'serum' & 'lip' & 'balm' & 'allow' & 'appli'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We want guaiazulene to give a blue tint to a facial serum and a lip balm. Is that allowed, and what applies?",
+   "tsquery": "'want' & 'guaiazulen' & 'give' & 'blue' & 'tint' & 'facial' & 'serum' & 'lip' & 'balm' & 'allow' & 'appli'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We want guaiazulene to give a blue tint to a facial serum and a lip balm. Is that allowed, and what applies?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "guaiazulene blue tint facial serum lip balm allowed",
+   "tsquery": "'guaiazulen' & 'blue' & 'tint' & 'facial' & 'serum' & 'lip' & 'balm' & 'allow'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 347.3",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4662,
+     "chars": 174,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 0.5865,
+      "paragraph_coverage": 0.2932
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 347.50(a)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4662,
+     "chars": 182,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 0.5865,
+      "paragraph_coverage": 0.2932
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 347.50(b)(2)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.1855,
+     "chars": 395,
+     "metadata": {
+      "ordinal": 9,
+      "section_coverage": 0.5865,
+      "paragraph_coverage": 0.1248
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 874.3375(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 0.9618,
+     "chars": 403,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.3847,
+      "paragraph_coverage": 0.1924
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "guaiazulene or allowed or facial or serum or blue or tint or balm or lip",
+   "tsquery": "'guaiazulen' | 'allow' | 'facial' | 'serum' | 'blue' | 'tint' | 'balm' | 'lip'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.526,
+     "chars": 1414,
+     "metadata": {
+      "ts_rank_cd": 0.84161043
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Electromagnetic Compatibility (EMC) of Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-06-06, Docket FDA-2015-D-3787)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5186,
+     "chars": 1489,
+     "metadata": {
+      "ts_rank_cd": 0.8298271
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5172,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 0.82755786
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Classification and Requirements for Laser Illuminated Projectors (LIPs) (Laser Notice No. 57): Guidance for Industry and Food and Drug Administration (final, 2019-05-08, Docket FDA-2014-D-2245)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5044,
+     "chars": 1458,
+     "metadata": {
+      "ts_rank_cd": 0.80707043
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.4746,
+     "chars": 1468,
+     "metadata": {
+      "ts_rank_cd": 0.75940067
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.4609,
+     "chars": 1497,
+     "metadata": {
+      "ts_rank_cd": 0.7373928
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Biocompatibility Testing of Medical Devices - Standards Specific Information for the Accreditation Scheme for Conformity Assessment (ASCA) Program : Draft Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (draft, 2024-09-23, Docket FDA-2019-D-3805)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.4235,
+     "chars": 1494,
+     "metadata": {
+      "ts_rank_cd": 0.67755705
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.4219,
+     "chars": 1488,
+     "metadata": {
+      "ts_rank_cd": 0.67501134
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.526,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Electromagnetic Compatibility (EMC) of Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-06-06, Docket FDA-2015-D-3787)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5186,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5172,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Classification and Requirements for Laser Illuminated Projectors (LIPs) (Laser Notice No. 57): Guidance for Industry and Food and Drug Administration (final, 2019-05-08, Docket FDA-2014-D-2245)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5044,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.4746,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.4609,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Biocompatibility Testing of Medical Devices - Standards Specific Information for the Accreditation Scheme for Conformity Assessment (ASCA) Program : Draft Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (draft, 2024-09-23, Docket FDA-2019-D-3805)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.4235,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.4219,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 347.3",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4662,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 347.50(a)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4662,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 347.50(b)(2)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1855,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 874.3375(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9618,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+  "FDA Guidance: Electromagnetic Compatibility (EMC) of Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-06-06, Docket FDA-2015-D-3787)",
+  "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+  "FDA Guidance: Classification and Requirements for Laser Illuminated Projectors (LIPs) (Laser Notice No. 57): Guidance for Industry and Food and Drug Administration (final, 2019-05-08, Docket FDA-2014-D-2245)",
+  "21 CFR 347.3",
+  "21 CFR 347.50(a)(2)",
+  "21 CFR 347.50(b)(2)(i)",
+  "21 CFR 874.3375(a)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Classification and Requirements for Laser Illuminated Projectors (LIPs) (Laser Notice No. 57): Guidance for Industry and Food and Drug Administration (final, 2019-05-08, Docket FDA-2014-D-2245)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Biocompatibility Testing of Medical Devices - Standards Specific Information for the Accreditation Scheme for Conformity Assessment (ASCA) Program : Draft Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (draft, 2024-09-23, Docket FDA-2019-D-3805)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 347.50(b)(2)(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 874.3375(a)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 347.3",
+    "tier": "discovery",
+    "block_chars": 336,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 347.50(a)(2)",
+    "tier": "discovery",
+    "block_chars": 382,
+    "used_before": 336,
+    "reserve_spent_before": 336,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 347.50(b)(2)(i)",
+    "tier": "discovery",
+    "block_chars": 598,
+    "used_before": 720,
+    "reserve_spent_before": 718,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 874.3375(a)",
+    "tier": "discovery",
+    "block_chars": 596,
+    "used_before": 720,
+    "reserve_spent_before": 718,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+    "tier": "discovery",
+    "used_before": 720,
+    "block_chars": 1506,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Electromagnetic Compatibility (EMC) of Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-06-06, Docket FDA-2015-D-3787)",
+    "tier": "discovery",
+    "used_before": 2228,
+    "block_chars": 1370,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1471,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Classification and Requirements for Laser Illuminated Projectors (LIPs) (Laser Notice No. 57): Guidance for Industry and Food and Drug Administration (final, 2019-05-08, Docket FDA-2014-D-2245)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1616,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1506,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1470,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Biocompatibility Testing of Medical Devices - Standards Specific Information for the Accreditation Scheme for Conformity Assessment (ASCA) Program : Draft Guidance for Industry, Accreditation Bodies, Testing Laboratories, and Food and Drug Administration Staff (draft, 2024-09-23, Docket FDA-2019-D-3805)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1738,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1506,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 347.50(b)(2)(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 598,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 874.3375(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 596,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Prussian Blue Drug Products — Submitting a New Drug Application (final, 2003-02-04, Docket FDA-2003-D-0727)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Electromagnetic Compatibility (EMC) of Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-06-06, Docket FDA-2015-D-3787)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1021,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 347.3",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 174,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 347.50(a)(2)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 182,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "73.2180": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 13,
+     "tail": "(a) Identity.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(a)(1)",
+     "ordinal": 1,
+     "chars": 85,
+     "tail": "(1) The color additive, guaiazulene, is principally 1,4-dimethyl-7-isopropyl-azulene.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(a)(2)",
+     "ordinal": 2,
+     "chars": 94,
+     "tail": "Color additive mixtures of guaiazulene for cosmetic use may contain the following diluent:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 3,
+     "chars": 224,
+     "tail": "d, to the extent that such other impurities may be avoided by good manufacturing practice.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 4,
+     "chars": 145,
+     "tail": "ed in externally applied cosmetics in amounts consistent with good manufacturing practice.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 5,
+     "chars": 192,
+     "tail": "n part for coloring purposes shall conform to the requirements of § 70.25 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 6,
+     "chars": 257,
+     "tail": "tches thereof are exempt from the certification requirements of section 721(c) of the act.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Guaiazulene."
+  }
+ },
+ "required_status": {
+  "21 CFR 73.2180(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 73.2180(b)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 73.2180(c)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 73.2180(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 73.2180(e)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,211 @@
+--- /private/tmp/claude-501/-Users-sensussoftsoftware-Desktop-Prachi-Patel-Regulus-AI-nosync/ccb13d8a-5576-44ec-89de-8adef836ae63/scratchpad/s5/pre_edit_B/src/regulus/rag/generation.py	2026-10-20 09:45:45
++++ src/regulus/rag/generation.py	2026-10-21 11:14:41
+@@ -23,6 +23,7 @@
+ 
+ from __future__ import annotations
+ 
++import os
+ import re
+ from dataclasses import dataclass, field, replace
+ from typing import Any
+@@ -30,7 +31,8 @@
+ from regulus.inference.types import Message
+ from regulus.planning.plan import KIND_GENERAL, KIND_MULTI, KIND_MULTIPLE_REFERENCE, KIND_RANGE, KIND_SINGLE, QueryPlan
+ from regulus.planning.shape import AnswerShape
+-from regulus.rag.answer_plan import AnswerPlan, build_answer_plan, format_line, plan_lines, profile_for, value_entries
++from regulus.rag.answer_plan import (_KEEP, AnswerPlan, build_answer_plan, format_line, plan_lines, profile_for,
++                                     value_entries)
+ from regulus.rag.evidence_values import selection_value_kind
+ from regulus.rag.context import CORPUS_LABEL
+ from regulus.rag.coverage import CoverageReport
+@@ -93,6 +95,13 @@
+         "question and leave out the rest."
+     ),
+ }
++
++# Off unless REGULUS_GENERAL_ANSWER_FORMAT=1. A general question (no requested provision) otherwise gets its
++# answer plan's format line, which can speak of "the requested provision" while the prompt above it says
++# "none (general question)". With the switch on it gets the SHAPE_GENERAL line instead, followed by the plan
++# line's rule against dropping conditions (_KEEP) and led by any Stage 3 profile, so no safeguard is lost.
++# Provision and docket prompts are the same either way; with the switch off, every prompt is.
++GENERAL_ANSWER_FORMAT_ENABLED = os.environ.get("REGULUS_GENERAL_ANSWER_FORMAT", "") == "1"
+ 
+ 
+ # ---------------------------------------------------------------- budget
+@@ -319,6 +328,11 @@
+         return self.answer_plan.shape if self.answer_plan is not None else None
+ 
+     @property
++    def general_format(self) -> bool:
++        """The switch above replaces this package's plan format line with the general-question line."""
++        return GENERAL_ANSWER_FORMAT_ENABLED and self.shape == SHAPE_GENERAL and self.answer_plan is not None
++
++    @property
+     def requirement_labels(self) -> dict[str, str]:
+         return dict(self.requirements)
+ 
+@@ -348,6 +362,8 @@
+             out["question_analysis"] = self.question_analysis.to_dict()
+             out["profile"] = self.profile
+             out["weak_evidence"] = self.weak_evidence
++        if self.general_format:   # absent unless the switch changed the line, so records without it are unchanged
++            out["format_line"] = SHAPE_GENERAL
+         return out
+ 
+ 
+@@ -454,7 +470,12 @@
+         parts.append("")
+         parts.extend(f"NOTE: {n}" for n in package.notes)
+     parts.append("")
+-    if package.answer_plan is not None:
++    if package.general_format:
++        line, profile = _FORMAT[SHAPE_GENERAL] + " " + _KEEP, package.profile
++        if profile:   # the Stage 3 lead instruction stays first, where format_line puts it
++            line = "ANSWER FORMAT: " + profile + " " + line[len("ANSWER FORMAT: "):]
++        parts.append(line)
++    elif package.answer_plan is not None:
+         parts.append(format_line(package.answer_plan, package.profile))
+     else:
+         parts.append(_FORMAT[package.shape])
+--- /private/tmp/claude-501/-Users-sensussoftsoftware-Desktop-Prachi-Patel-Regulus-AI-nosync/ccb13d8a-5576-44ec-89de-8adef836ae63/scratchpad/s5/pre_edit_B/src/regulus/system_identity.py	2026-10-01 09:19:21
++++ src/regulus/system_identity.py	2026-10-21 11:14:00
+@@ -41,6 +41,7 @@
+ 
+ from regulus.config import GenerationConfig, Settings, load_settings
+ from regulus.dashboard.fingerprint import normalize_evaluation_config, pipeline_fingerprint
++from regulus.rag import generation as rag_generation
+ from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT, GenerationBudget
+ from regulus.rag.pipeline import RagConfig
+ 
+@@ -75,6 +76,13 @@
+ def pipeline_config(config: RagConfig) -> dict[str, Any]:
+     """The model-independent sections of the evaluation configuration."""
+     rag = config.to_dict()
++    prompt = {"system_prompt_sha256": hashlib.sha256(GROUNDED_SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
++              # Stage 12: whether the user turn carries the answer shape and evidence plan
++              "answer_shape": rag.get("answer_shape")}
++    if rag_generation.GENERAL_ANSWER_FORMAT_ENABLED:
++        # REGULUS_GENERAL_ANSWER_FORMAT=1 changes general-question prompts; recorded only when on, so the
++        # fingerprint of every run without it is unchanged
++        prompt["general_answer_format"] = True
+     return {
+         "retrieval": {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")},
+         "coverage": {k: rag.get(k) for k in ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation")},
+@@ -84,9 +92,7 @@
+         # Stage 5 keeps the raw answer and derives the repaired one with the
+         # pipeline's own deterministic repair function.
+         "repair": {"mode": "post_hoc_deterministic"},
+-        "prompt": {"system_prompt_sha256": hashlib.sha256(GROUNDED_SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
+-                   # Stage 12: whether the user turn carries the answer shape and evidence plan
+-                   "answer_shape": rag.get("answer_shape")},
++        "prompt": prompt,
+     }
+ 
+ 
+--- /dev/null	2026-10-21 11:17:07
++++ tests/test_general_answer_format.py	2026-10-21 11:16:01
+@@ -0,0 +1,104 @@
++"""The general-question format line (REGULUS_GENERAL_ANSWER_FORMAT; off by default).
++
++Through the real pipeline in its production answer shape ("adaptive") with a scripted model. Pinned:
++  * off, every prompt, package record and pipeline fingerprint is exactly as before;
++  * on, a general question's prompt differs only in its last line: the general-question line plus the plan
++    line's rule against dropping conditions, never "the requested provision", led by any Stage 3 profile;
++  * provision and docket prompts and records are byte-identical either way;
++  * a run with the switch on is marked in the package record and in the pipeline fingerprint.
++"""
++from __future__ import annotations
++
++import os
++
++import pytest
++
++from regulus.rag import RagConfig, RagPipeline
++from regulus.rag import generation as G
++from regulus.rag.answer_plan import _KEEP
++from regulus.retrieval import LexicalRetriever
++from regulus.system_identity import pipeline_config
++from tests.test_answer_shape import BROAD, COMPARE, EXHAUSTIVE, FOCUSED, TABLE
++from tests.test_answer_validation import ScriptedGenerator
++from tests.test_retrieval_plan import TableDatabase, guidance_row, row
++
++ROWS = [row("700.18", "(a)", 0, rank=0.5, text="Any cosmetic product containing chloroform as an ingredient is deemed adulterated."),
++        row("700.18", "(b)", 1, rank=0.4, text="Chloroform remaining as a residue from its use as a processing solvent is not "
++                                              "considered an ingredient.")]
++GENERAL = {   # every mode a question that names no provision can take (regulus.planning.shape)
++    "synthesis": "May a face cream contain chloroform left over from processing?",
++    "direct": "What is a coal-tar hair dye?",
++    "comparison": "Compare the warning statements for feminine deodorant sprays and aerosol cosmetics.",
++    "enumeration": "List all colour additives exempt from certification.",
++}
++GENERAL_LINE = G._FORMAT[G.SHAPE_GENERAL] + " " + _KEEP
++
++
++def ask(question, db, monkeypatch, *, enabled, answer_shape="adaptive"):
++    """The user turn the model receives, the answer, and its package record, all with the switch set as given
++    (the switch is fixed for a process; here it changes between calls, so the record is taken now)."""
++    monkeypatch.setattr(G, "GENERAL_ANSWER_FORMAT_ENABLED", enabled)
++    g = ScriptedGenerator("Scripted answer [1].")
++    out = RagPipeline(LexicalRetriever(db()), g, RagConfig(answer_shape=answer_shape)).answer(question)
++    assert g.calls, "the model was not called"
++    return g.calls[0]["messages"][1]["content"], out, out.package.to_dict()
++
++
++def general_db():
++    return TableDatabase(full_text=list(ROWS))
++
++
++def test_the_switch_is_off_unless_set():
++    if os.environ.get("REGULUS_GENERAL_ANSWER_FORMAT") == "1":
++        pytest.skip("REGULUS_GENERAL_ANSWER_FORMAT=1 is set in this environment")
++    assert G.GENERAL_ANSWER_FORMAT_ENABLED is False
++
++
++def test_off_a_general_question_keeps_its_plan_line(monkeypatch):
++    prompt, _, record = ask(GENERAL["synthesis"], general_db, monkeypatch, enabled=False)
++    assert "REQUESTED PROVISIONS:\nnone (general question)" in prompt
++    last = prompt.split("\n")[-1]
++    assert last.startswith("ANSWER FORMAT: a synthesized overview") and "the requested provision" in last
++    assert "format_line" not in record
++
++
++@pytest.mark.parametrize("mode", sorted(GENERAL))
++def test_on_a_general_question_gets_the_general_line_and_nothing_else_changes(monkeypatch, mode):
++    off, _, record_off = ask(GENERAL[mode], general_db, monkeypatch, enabled=False)
++    on, out_on, record_on = ask(GENERAL[mode], general_db, monkeypatch, enabled=True)
++    assert out_on.package.shape == G.SHAPE_GENERAL and out_on.package.answer_plan.mode == mode
++    off_lines, on_lines = off.split("\n"), on.split("\n")
++    assert on_lines[:-1] == off_lines[:-1]                      # question, provisions, evidence and notes unchanged
++    assert on_lines[-1] == GENERAL_LINE and "requested provision" not in on_lines[-1]
++    assert record_on["format_line"] == G.SHAPE_GENERAL and "format_line" not in record_off
++    assert {k: v for k, v in record_on.items() if k != "format_line"} == record_off
++
++
++def test_on_the_stage3_profile_lead_and_its_caveats_are_kept(monkeypatch):
++    on, out, _ = ask(GENERAL["synthesis"], general_db, monkeypatch, enabled=True, answer_shape="structured")
++    profile = out.package.profile
++    assert profile and on.split("\n")[-1] == "ANSWER FORMAT: " + profile + " " + GENERAL_LINE[len("ANSWER FORMAT: "):]
++
++
++@pytest.mark.parametrize("question, db", [
++    (BROAD, lambda: TableDatabase(TABLE)),
++    (FOCUSED, lambda: TableDatabase(TABLE)),
++    (EXHAUSTIVE, lambda: TableDatabase(TABLE)),
++    (COMPARE, lambda: TableDatabase(TABLE)),
++    ("Summarise FDA-2016-D-2565", lambda: TableDatabase(docket=[guidance_row(0), guidance_row(1)])),
++], ids=["section", "paragraph", "enumeration", "comparison", "docket"])
++def test_provision_and_docket_prompts_are_byte_identical(monkeypatch, question, db):
++    off, _, record_off = ask(question, db, monkeypatch, enabled=False)
++    on, out_on, record_on = ask(question, db, monkeypatch, enabled=True)
++    assert out_on.package.shape != G.SHAPE_GENERAL
++    assert on == off and record_on == record_off
++
++
++def test_the_pipeline_fingerprint_marks_the_switch_only_when_on(monkeypatch):
++    monkeypatch.setattr(G, "GENERAL_ANSWER_FORMAT_ENABLED", False)
++    off = pipeline_config(RagConfig())
++    assert set(off["prompt"]) == {"system_prompt_sha256", "answer_shape"}       # the shape it had before the switch
++    monkeypatch.setattr(G, "GENERAL_ANSWER_FORMAT_ENABLED", True)
++    on = pipeline_config(RagConfig())
++    assert on["prompt"]["general_answer_format"] is True
++    assert {**on, "prompt": {k: v for k, v in on["prompt"].items() if k != "general_answer_format"}} == off

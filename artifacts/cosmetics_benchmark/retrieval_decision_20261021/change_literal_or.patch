@@ -1,0 +1,236 @@
+--- artifacts/cosmetics_benchmark/retrieval_decision_20261021/pre_edit/src/regulus/retrieval/lexical.py	2026-10-20 13:37:19
++++ src/regulus/retrieval/lexical.py	2026-10-21 12:06:20
+@@ -25,6 +25,7 @@
+ 
+ import dataclasses
+ import logging
++import os
+ import re
+ import time
+ from dataclasses import dataclass, field
+@@ -64,6 +65,7 @@
+     question_words,
+     definitional_terms,
+     fallback_terms,
++    literal_or,
+     HEADING_MAX_SECTIONS,
+     HEADING_MAX_WORD_DF,
+     heading_in_question,
+@@ -89,6 +91,13 @@
+ 
+ log = logging.getLogger("regulus.retrieval")
+ 
++# Off unless REGULUS_ECFR_LITERAL_OR=1. A general question's own eCFR all-words search reads a standalone "or" as
++# websearch_to_tsquery's OR operator: "...certification or labeling apply?" then matches any row holding "labeling"
++# and "apply", the search fills, and section coverage (RC1) never runs. With the switch on, that one search gets the
++# question without the operator (query.literal_or). Questions that name a provision or a docket, exact citation, the
++# guidance search, every other leg and the question the model sees are unchanged.
++ECFR_LITERAL_OR_ENABLED = os.environ.get("REGULUS_ECFR_LITERAL_OR", "") == "1"
++
+ DEFAULT_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_DEFINITION)
+ PRIMARY_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_DEFINITION)
+ DEFINITION_LIMIT = 3  # the asked term's definitions kept as evidence; many parts define the same term
+@@ -509,7 +518,9 @@
+         # 3. supporting: the question's own full-text search on each corpus
+         if METHOD_FULL_TEXT in enabled and not definitions:
+             if ecfr_on:
+-                timed(f"{METHOD_FULL_TEXT}:ecfr", self.full_text_ecfr, question, filters, text_limit)
++                general = not plan.requirements and plan.docket is None
++                ecfr_query = literal_or(question) if ECFR_LITERAL_OR_ENABLED and general else question
++                timed(f"{METHOD_FULL_TEXT}:ecfr", self.full_text_ecfr, ecfr_query, filters, text_limit)
+             if guidance_on:
+                 timed(f"{METHOD_FULL_TEXT}:fda_guidance", self.full_text_guidance, question, filters, text_limit)
+ 
+--- artifacts/cosmetics_benchmark/retrieval_decision_20261021/pre_edit/src/regulus/retrieval/query.py	2026-10-20 13:37:19
++++ src/regulus/retrieval/query.py	2026-10-21 12:06:16
+@@ -155,8 +155,20 @@
+         seen.add(tok)
+         out.append(tok)
+     return out
++
++
++# websearch_to_tsquery reads a standalone "or" (any case, beside spaces, commas or brackets) as its OR operator;
++# "and/or" and "either-or" stay ordinary tokens. "or" is an English stop word, so removing the operator loses no
++# searchable term. The limit: a question that offers real alternatives ("a lipstick or a lip balm") then needs
++# every word in one row, as if it had said "and".
++_OR_OPERATOR_RE = re.compile(r"(?<![\w/-])or(?![\w/-])", re.IGNORECASE)
+ 
+ 
++def literal_or(text: str) -> str:
++    """`text` with each standalone "or" replaced by a space, for an all-words full-text search."""
++    return _OR_OPERATOR_RE.sub(" ", text or "")
++
++
+ # A definitional question about ONE short term. Narrow on purpose: "What does
+ # FDA stand for?", "What does adulterated mean?", "What is the meaning/definition
+ # of X?", "Define X", "What is meant by X?". A question that names a provision,
+--- artifacts/cosmetics_benchmark/retrieval_decision_20261021/pre_edit/src/regulus/system_identity.py	2026-10-21 11:45:16
++++ src/regulus/system_identity.py	2026-10-21 12:06:28
+@@ -43,6 +43,7 @@
+ from regulus.dashboard.fingerprint import normalize_evaluation_config, pipeline_fingerprint
+ from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT, GenerationBudget
+ from regulus.rag.pipeline import RagConfig
++from regulus.retrieval import lexical as retrieval_lexical
+ 
+ CHECKPOINT_RE = re.compile(r"checkpoint-\d+")
+ EVALUATION_VALIDATION_BEHAVIOR = "annotate"
+@@ -75,8 +76,13 @@
+ def pipeline_config(config: RagConfig) -> dict[str, Any]:
+     """The model-independent sections of the evaluation configuration."""
+     rag = config.to_dict()
++    retrieval = {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")}
++    if retrieval_lexical.ECFR_LITERAL_OR_ENABLED:
++        # REGULUS_ECFR_LITERAL_OR=1 changes general questions' eCFR all-words search; recorded only when on, so the
++        # fingerprint of every run without it is unchanged
++        retrieval["ecfr_literal_or"] = True
+     return {
+-        "retrieval": {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")},
++        "retrieval": retrieval,
+         "coverage": {k: rag.get(k) for k in ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation")},
+         "context": dict(rag.get("context") or {}),
+         "generation_budget": dict(rag.get("generation_budget") or {}),
+--- /dev/null	2026-10-21 12:20:02
++++ tests/test_retrieval_literal_or.py	2026-10-21 12:07:01
+@@ -0,0 +1,142 @@
++"""The literal-"or" switch (REGULUS_ECFR_LITERAL_OR; off by default).
++
++websearch_to_tsquery reads a standalone "or" as its OR operator. Checked against PostgreSQL on 2026-10-21:
++"certification or labeling" / "OR" / "Or" / ", or" / "or," / "(... or ...)" all parse to 'certif' | 'label';
++"and/or" and "either-or" stay ordinary tokens; a leading or trailing "or" is dropped. Pinned:
++  * literal_or removes exactly those operator forms and leaves every other text byte-identical;
++  * a question offering real alternatives becomes an all-words query (the documented limit);
++  * with the switch on, only a general question's eCFR all-words search changes: questions that name a provision
++    or a docket, the guidance search and the question the pipeline answers are unchanged; off, nothing changes;
++  * the pipeline fingerprint names the switch only when it is on.
++"""
++from __future__ import annotations
++
++import os
++
++import pytest
++
++from regulus.planning import plan_query
++from regulus.rag import RagConfig
++from regulus.retrieval import lexical as L
++from regulus.retrieval.lexical import LexicalRetriever
++from regulus.retrieval.query import literal_or
++from regulus.system_identity import pipeline_config
++from tests.test_retrieval_plan import TableDatabase
++
++PART73 = "We make an eye shadow with ultramarine blue. What restrictions, certification or labeling apply?"
++
++
++# ------------------------------------------------------------------ the helper
++
++
++@pytest.mark.parametrize("text, words", [
++    ("What restrictions, certification or labeling apply?", ["What", "restrictions,", "certification", "labeling", "apply?"]),
++    ("certification OR labeling", ["certification", "labeling"]),
++    ("certification Or labeling", ["certification", "labeling"]),
++    ("certification, or labeling", ["certification,", "labeling"]),
++    ("certification or, labeling", ["certification", ",", "labeling"]),
++    ("(certification or labeling)", ["(certification", "labeling)"]),
++    ("or labeling", ["labeling"]),
++    ("labeling or?", ["labeling", "?"]),
++])
++def test_each_standalone_or_operator_is_removed(text, words):
++    assert literal_or(text).split() == words
++
++
++@pytest.mark.parametrize("text", [
++    "lipstick and/or lip balm",          # PostgreSQL keeps 'and/or' as a token
++    "either-or rule",                    # and 'either-or'
++    "color for vendors order",           # words that contain "or"
++    "Oral care products for minors",
++    "What labeling applies to a hair dye?",
++    "",
++])
++def test_text_without_an_operator_is_byte_identical(text):
++    assert literal_or(text) == text
++
++
++def test_real_alternatives_become_all_words_the_documented_limit():
++    # "a lipstick or a lip balm" asks about either; without the operator every word must match one row
++    assert literal_or("Is a lipstick or a lip balm a cosmetic?").split() == \
++        ["Is", "a", "lipstick", "a", "lip", "balm", "a", "cosmetic?"]
++
++
++# ------------------------------------------------------------------ where it applies
++
++
++class Recording(LexicalRetriever):
++    """Records the text each full-text leg receives; finds nothing, so every later leg runs as it would."""
++
++    def __init__(self):
++        super().__init__(TableDatabase())
++        self.ecfr, self.guidance = [], []
++
++    def full_text_ecfr(self, query, filters, limit):
++        self.ecfr.append(query)
++        return []
++
++    def full_text_guidance(self, query, filters, limit):
++        self.guidance.append(query)
++        return []
++
++
++def legs(question, monkeypatch, enabled):
++    monkeypatch.setattr(L, "ECFR_LITERAL_OR_ENABLED", enabled)
++    r = Recording()
++    plan = plan_query(question)
++    r.run_plan(plan, top_k=8)
++    return r, plan.normalized_question or plan.question
++
++
++def test_the_switch_is_off_unless_set():
++    if os.environ.get("REGULUS_ECFR_LITERAL_OR") == "1":
++        pytest.skip("REGULUS_ECFR_LITERAL_OR=1 is set in this environment")
++    assert L.ECFR_LITERAL_OR_ENABLED is False
++
++
++def test_off_the_general_question_is_searched_as_asked(monkeypatch):
++    r, question = legs(PART73, monkeypatch, enabled=False)
++    assert r.ecfr == [question] and r.guidance == [question]
++
++
++def test_on_only_the_general_ecfr_search_loses_the_operator(monkeypatch):
++    r, question = legs(PART73, monkeypatch, enabled=True)
++    assert r.ecfr == [literal_or(question)] and r.ecfr != [question]
++    assert r.guidance == [question]                                  # guidance search unchanged
++
++
++@pytest.mark.parametrize("question", [
++    "Does 21 CFR 73.2725 restrict certification or labeling?",      # names a provision
++    "Summarise FDA-2016-D-2565 labeling or certification",           # names a docket
++])
++def test_on_questions_that_name_a_provision_or_docket_are_unchanged(monkeypatch, question):
++    off, _ = legs(question, monkeypatch, enabled=False)
++    on, _ = legs(question, monkeypatch, enabled=True)
++    assert on.ecfr == off.ecfr and on.guidance == off.guidance
++
++
++def test_on_a_general_question_without_or_is_unchanged(monkeypatch):
++    off, _ = legs("What labeling applies to a hair dye?", monkeypatch, enabled=False)
++    on, _ = legs("What labeling applies to a hair dye?", monkeypatch, enabled=True)
++    assert on.ecfr == off.ecfr and on.guidance == off.guidance
++
++
++def test_the_question_itself_is_never_rewritten(monkeypatch):
++    monkeypatch.setattr(L, "ECFR_LITERAL_OR_ENABLED", True)
++    plan = plan_query(PART73)
++    before = (plan.question, plan.normalized_question)
++    Recording().run_plan(plan, top_k=8)
++    assert (plan.question, plan.normalized_question) == before and " or " in plan.question
++
++
++# ------------------------------------------------------------------ the fingerprint
++
++
++def test_the_pipeline_fingerprint_names_the_switch_only_when_on(monkeypatch):
++    monkeypatch.setattr(L, "ECFR_LITERAL_OR_ENABLED", False)
++    off = pipeline_config(RagConfig())
++    assert "ecfr_literal_or" not in off["retrieval"]
++    monkeypatch.setattr(L, "ECFR_LITERAL_OR_ENABLED", True)
++    on = pipeline_config(RagConfig())
++    assert on["retrieval"]["ecfr_literal_or"] is True
++    assert {**on, "retrieval": {k: v for k, v in on["retrieval"].items() if k != "ecfr_literal_or"}} == off

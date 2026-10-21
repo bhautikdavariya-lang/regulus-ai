@@ -1,0 +1,595 @@
+{
+ "id": "UC-COS-013",
+ "question": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+ "key_citation": "21 CFR Parts 700–740 (no storage provision); FD&C Act 601(c); 608",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "warehouse lipsticks creams isn air-conditioned fda-required temperature humidity range storing cosmetics",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "air-conditioned",
+   "fda-required",
+   "temperature",
+   "warehouse",
+   "lipsticks",
+   "cosmetics",
+   "humidity",
+   "storing"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+   "tsquery": "'warehous' & 'lipstick' & 'cream' & 'isn' & 'air-condit' <-> 'air' <-> 'condit' & 'fda-requir' <-> 'fda' <-> 'requir' & 'temperatur' | 'humid' & 'rang' & 'store' & 'cosmet'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+   "tsquery": "'warehous' & 'lipstick' & 'cream' & 'isn' & 'air-condit' <-> 'air' <-> 'condit' & 'fda-requir' <-> 'fda' <-> 'requir' & 'temperatur' | 'humid' & 'rang' & 'store' & 'cosmet'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "warehouse lipsticks creams isn air-conditioned fda-required temperature humidity range storing cosmetics",
+   "tsquery": "'warehous' & 'lipstick' & 'cream' & 'isn' & 'air-condit' <-> 'air' <-> 'condit' & 'fda-requir' <-> 'fda' <-> 'requir' & 'temperatur' & 'humid' & 'rang' & 'store' & 'cosmet'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 600.11(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.545,
+     "chars": 1172,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.618,
+      "paragraph_coverage": 0.309
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 809.10(a)(5)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5404,
+     "chars": 626,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.6504,
+      "paragraph_coverage": 0.2738
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 201.327(i)(2)(ii)(D)(7)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5115,
+     "chars": 322,
+     "metadata": {
+      "ordinal": 100,
+      "section_coverage": 0.6485,
+      "paragraph_coverage": 0.2584
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 809.10(b)(5)(iv)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4251,
+     "chars": 564,
+     "metadata": {
+      "ordinal": 27,
+      "section_coverage": 0.6504,
+      "paragraph_coverage": 0.2046
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "air-conditioned or fda-required or temperature or warehouse or lipsticks or cosmetics or humidity or storing",
+   "tsquery": "'air-condit' <-> 'air' <-> 'condit' | 'fda-requir' <-> 'fda' <-> 'requir' | 'temperatur' | 'warehous' | 'lipstick' | 'cosmet' | 'humid' | 'store'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8405,
+     "chars": 1406,
+     "metadata": {
+      "ts_rank_cd": 1.3448713
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8384,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 1.3415128
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7882,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 1.2610406
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7091,
+     "chars": 1454,
+     "metadata": {
+      "ts_rank_cd": 1.1345872
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7013,
+     "chars": 1429,
+     "metadata": {
+      "ts_rank_cd": 1.1221472
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Blood Glucose Monitoring Test Systems for Prescription Point-of-Care Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1445)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6985,
+     "chars": 1473,
+     "metadata": {
+      "ts_rank_cd": 1.1176227
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CVM GFI #245 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals (final, 2022-07-08, Docket FDA-2018-D-0388)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6176,
+     "chars": 1429,
+     "metadata": {
+      "ts_rank_cd": 0.98808783
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6036,
+     "chars": 1487,
+     "metadata": {
+      "ts_rank_cd": 0.96583104
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8405,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8384,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7882,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7091,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7013,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Blood Glucose Monitoring Test Systems for Prescription Point-of-Care Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1445)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6985,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #245 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals (final, 2022-07-08, Docket FDA-2018-D-0388)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6176,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6036,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 600.11(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.545,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 809.10(a)(5)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5404,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 201.327(i)(2)(ii)(D)(7)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5115,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 809.10(b)(5)(iv)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4251,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "21 CFR 600.11(a)",
+  "21 CFR 809.10(a)(5)",
+  "21 CFR 201.327(i)(2)(ii)(D)(7)",
+  "21 CFR 809.10(b)(5)(iv)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Blood Glucose Monitoring Test Systems for Prescription Point-of-Care Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1445)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #245 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals (final, 2022-07-08, Docket FDA-2018-D-0388)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 600.11(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 201.327(i)(2)(ii)(D)(7)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 809.10(b)(5)(iv)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 600.11(a)",
+    "tier": "discovery",
+    "block_chars": 1380,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 809.10(a)(5)",
+    "tier": "discovery",
+    "block_chars": 826,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 201.327(i)(2)(ii)(D)(7)",
+    "tier": "discovery",
+    "block_chars": 583,
+    "used_before": 826,
+    "reserve_spent_before": 826,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 809.10(b)(5)(iv)",
+    "tier": "discovery",
+    "block_chars": 768,
+    "used_before": 826,
+    "reserve_spent_before": 826,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 826,
+    "block_chars": 1596,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 2424,
+    "block_chars": 1174,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1597,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1572,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Blood Glucose Monitoring Test Systems for Prescription Point-of-Care Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1445)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1583,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #245 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals (final, 2022-07-08, Docket FDA-2018-D-0388)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1542,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 600.11(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1380,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 201.327(i)(2)(ii)(D)(7)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 583,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 809.10(b)(5)(iv)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 768,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 777,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 809.10(a)(5)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 626,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

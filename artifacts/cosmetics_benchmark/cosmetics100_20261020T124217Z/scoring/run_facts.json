@@ -1,0 +1,130 @@
+{
+ "run_id": "cosmetics100_20261020T124217Z",
+ "run_window": "2026-10-20 12:45:38.782 → 13:14:34.437 UTC",
+ "wall_seconds": 1735.655,
+ "timeout_s": 1800,
+ "bank_file": "Regulus_QBank_Cosmetics_REV01.xlsx",
+ "base_model_short": "Qwen/Qwen3-0.6B",
+ "base_model_cell": "Qwen/Qwen3-0.6B",
+ "embedding_model_cell": "BAAI/bge-small-en-v1.5 (evaluator aligner; semantic retrieval not invoked)",
+ "model_config_lines": [
+  [
+   "Base language model",
+   "Qwen/Qwen3-0.6B (Hugging Face model ID), revision c1899de289a04d12100db370d81485cdf75e47ca; no adapter. Runtime-verified: every response reports model 'qwen3-0.6b' / 'Qwen3-0.6B (default)'."
+  ],
+  [
+   "Provider / runtime",
+   "Local, in-process Hugging Face transformers 5.17.0 + torch 2.14.0, CPU, float32 (configured 'auto'/'auto', resolved at load). No external API or remote endpoint."
+  ],
+  [
+   "Decoding",
+   "Greedy (do_sample false), thinking off, repetition stop on; adaptive per-question token allowance with a 2,048-token hard ceiling."
+  ],
+  [
+   "Embedding model",
+   "BAAI/bge-small-en-v1.5, revision 5c38ec7c405ec4b44b94cc5a9bb96e735b38267a, 384 dimensions, CLS pooling, normalized (runtime-verified in the measurement records)."
+  ],
+  [
+   "Embedding model — role in this run",
+   "Used by the live evaluator to align claims with evidence on all 100 answers. The same model backs the semantic-fallback retrieval index (semantic_expanded_v1, 28,882 items), but semantic fallback was invoked on 0 of 100 questions, so all evidence came from lexical retrieval."
+  ],
+  [
+   "Retrieval / index",
+   "Lexical PostgreSQL retrieval (full-text, definition and identifier lookups) over the read-only regulatory database: eCFR snapshot 2026-09-03 plus FDA guidance. top_k 8 (UI default); grounding gate off (UI default). The database has no FD&C Act (statute) text."
+  ],
+  [
+   "Evaluator",
+   "Category = question-bank rubric (main benchmark Scoring Rubric) applied against the bank's verified key, AI-assisted (Claude), not SME-signed. Recorded alongside: Regulus live evaluator regulus_live_evidence_assessment_v2 2.0.0 (evidence-based, no reference answer)."
+  ],
+  [
+   "Unresolved uncertainty",
+   "Rubric scores have not been confirmed by an SME. The database's cfr_records.embedding vectors (labelled text-embedding-3-large, provenance UNVERIFIED per docs/embedding_provenance.md) are not queried by the answering pipeline and played no part."
+  ]
+ ],
+ "metadata_lines": [
+  [
+   "Run ID",
+   "cosmetics100_20261020T124217Z (results directory artifacts/cosmetics_benchmark/cosmetics100_20261020T124217Z/). UI measurement session ui_20261020T124416Z_8270714b."
+  ],
+  [
+   "Date and time (UTC)",
+   "Server started 12:44:16; warm-up 12:44:28-12:45:38 (excluded); benchmark 12:45:38.782 → 13:14:34.437 on 2026-10-20 (1,735.655 s wall clock). Workbook built after scoring."
+  ],
+  [
+   "Source question bank",
+   "Regulus_QBank_Cosmetics_REV01.xlsx (project root), Excel 2007+ workbook; sheet 'Questions' (277 main questions, all 'Key Verified = Y'). The 'Follow-Ups' sheet (1,385 rows) was not used, per the user's instruction: main questions only. Opened read-only; sha256 c7d4e02635898ffebdd49d670be33f3aada31c633c43e0d0627ad22c56f262fd before and after selection (unchanged)."
+  ],
+  [
+   "Eligibility and exclusions",
+   "277 rows; 277 unique IDs; 277 unique question texts (whitespace/case-normalised); 0 blank. No exclusions."
+  ],
+  [
+   "Selection method and seed",
+   "stratified random sampling by Part (column B; blank Part = own stratum), proportional largest-remainder allocation (ties: larger stratum, then label), random.Random(f'{seed}:{stratum}').sample within stratum; run in bank order. Seed 20261020. Allocation (selected/bank): 70: 7/18; 700: 6/18; 701: 7/20; 71: 6/17; 710: 3/9; 720: 4/11; 73: 10/29; 74: 13/36; 740: 4/11; 80: 4/10; 81: 1/3; 82: 14/39; FDCA: 12/32; UC-COS (Part blank): 9/24. The first draw was kept; seeds were not re-drawn to improve balance."
+  ],
+  [
+   "Representativeness check",
+   "Difficulty: Advanced 19 selected / 52 in bank; Intermediate 37 selected / 119 in bank; Basic 44 selected / 106 in bank. Question Type: Applicability 43 selected / 114 in bank; Specific Requirement 26 selected / 89 in bank; How to Comply 17 selected / 31 in bank; Records/Evidence 3 selected / 16 in bank; Exemption 11 selected / 26 in bank; Application Scenario 0 selected / 1 in bank. Basic and How-to-Comply are over-represented and Specific Requirement and Records/Evidence under-represented relative to the bank; strata were by Part only."
+  ],
+  [
+   "Selected question IDs (run order)",
+   "COS-70.3-Q1, COS-70.3-Q3, COS-70.19-Q2, COS-70.50-Q1, COS-70.50-Q2, COS-70.51-Q1, COS-70.55-Q1, COS-71.1-Q2, COS-71.6-Q1, COS-71.15-Q2, COS-71.25-Q1, COS-71.26-Q1, COS-71.27-Q1, COS-73.2085-Q1, COS-73.2095-Q1, COS-73.2180-Q1, COS-73.2250-Q1, COS-73.2298-Q1, COS-73.2575-Q1, COS-73.2645-Q1, COS-73.2646-Q1, COS-73.2647-Q1, COS-73.2725-Q1, COS-74.2052-Q1, COS-74.2203-Q1, COS-74.2208-Q1, COS-74.2254-Q1, COS-74.2304-Q1, COS-74.2317-Q1, COS-74.2322-Q1, COS-74.2327-Q1, COS-74.2340-Q1, COS-74.2602a-Q1, COS-74.2708-Q1, COS-74.2710-Q1, COS-74.2711-Q1, COS-80.10-Q1, COS-80.31-Q1, COS-80.37-Q1, COS-80.38-Q1, COS-81.30-Q1, COS-82.6-Q1, COS-82.50-Q1, COS-82.101-Q1, COS-82.203-Q1, COS-82.304-Q1, COS-82.1104-Q1, COS-82.1205-Q1, COS-82.1206-Q1, COS-82.1254-Q1, COS-82.1307-Q1, COS-82.1317-Q1, COS-82.1321-Q1, COS-82.1327-Q1, COS-82.2050-Q1, COS-700.13-Q2, COS-700.14-Q1, COS-700.15-Q1, COS-700.18-Q1, COS-700.25-Q2, COS-700.35-Q1, COS-701.3-Q1, COS-701.3-Q4, COS-701.9-Q1, COS-701.12-Q2, COS-701.13-G1, COS-701.13-Q1, COS-701.13-Q3, COS-710.2-Q1, COS-710.4-Q1, COS-710.5-Q1, COS-720.3-Q1, COS-720.4-Q3, COS-720.7-Q1, COS-720.8-Q1, COS-740.11-Q1, COS-740.11-Q2, COS-740.12-Q1, COS-740.19-Q1, COS-FDCA201(i)-Q1, COS-FDCA601-Q3, COS-FDCA603-Q1, COS-FDCA605-Q1, COS-FDCA605-Q3, COS-FDCA606-Q2, COS-FDCA607-Q2, COS-FDCA607-Q3, COS-FDCA609-Q1, COS-FDCA609-Q2, COS-FDCA613-Q2, COS-FDCA614-Q2, UC-COS-006, UC-COS-009, UC-COS-011, UC-COS-013, UC-COS-015, UC-COS-016, UC-COS-017, UC-COS-020, UC-COS-021"
+  ],
+  [
+   "Git commit and branch",
+   "main @ 6f949381550fb96e49219a1b8679b3806b1126e5 ('Acceptance scoring: one validated implementation for workbook and dashboard')."
+  ],
+  [
+   "Working-tree status",
+   "Dirty: 27 tracked files modified (data/evaluation/semantic/semantic_expanded_v1/manifest.yaml, scripts/build_semantic_index.py, scripts/run_acceptance_test.py, scripts/serve_ui.py, src/regulus/accuracy/claims.py, src/regulus/config/settings.py, src/regulus/rag/{context,fallback,generation,pipeline,prompt,remote_generator,selection}.py, src/regulus/retrieval/{lexical,models,query,ranking,references,sql}.py, src/regulus/retrieval/semantic/{index,models}.py, src/regulus/traceability/ui_session.py, 4 test files, web/index.html) plus untracked modules (e.g. src/regulus/retrieval/advanced.py, src/regulus/grounding/premise.py, src/regulus/rag/mlx_generator.py). Tracked diff sha256 5833cb001b31b93cd1e59622feee478d4cb85121254dc811ab0dd8a1e5218440. The diff hash and the sha256 of all 228 modified/untracked files were identical at run start and finish, so the code did not change during the run. The benchmark itself modified no project code or configuration."
+  ],
+  [
+   "Base model",
+   "Qwen/Qwen3-0.6B, revision c1899de289a04d12100db370d81485cdf75e47ca (local HF cache refs/main), transformers backend, CPU float32, no adapter. The UI's optional Qwen3-1.7B (MLX) was not configured and not used."
+  ],
+  [
+   "Embedding model",
+   "BAAI/bge-small-en-v1.5, revision 5c38ec7c405ec4b44b94cc5a9bb96e735b38267a, 384-d, CLS pooling, normalized, max_length 512; loaded from the local cache (load 0.43 s). Role: live-evaluator aligner on every answer; semantic-fallback retrieval configured but invoked on 0/100. Semantic index semantic_expanded_v1: 28,882 items, embedded 2026-10-20T05:29:36Z, corpus sha256 b6f857eb2e8d651a1674d5c9a53f033cf26e0406bca512fe6089205aedea2eca; it does not include Subchapter G (Parts 700-740) or Parts 71, 80, 81."
+  ],
+  [
+   "Retrieval configuration",
+   "configured_rag_config(settings) as served by scripts/serve_ui.py: LexicalRetriever wrapped in SemanticFallbackRetriever (semantic_top_n 8, similarity_floor 0.75, merge interleave, general_questions false); top_k 8; grounding gate off; validation_behavior repair; answer_length policy adaptive. pipeline_config_sha256 6cd19913cc7b83b4302d1bffdfb439fc2384ab7ca51a8af4adc84cbd2627796c; system_prompt_sha256 d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79. Database opened read-only; eCFR snapshot 2026-09-03."
+  ],
+  [
+   "Evaluation configuration",
+   "(1) Reporting category: question-bank rubric (Citation Exact, Fabricated, Substantive, Completeness, Scope) scored by Claude against the verified key and, where needed, the retrieved regulation text; AI-assisted, not SME-signed. The bank and the main benchmark state that scoring is to be done by an SME or independent reviewer, so these categories should be confirmed by one before contractual use. (2) Regulus live evaluator regulus_live_evidence_assessment_v2, rubric version 2.0.0, semantic aligner, identifier index = database - recorded per question; it compares the answer only with its retrieved evidence and does not use the reference answer. (3) Every CFR section named in a delivered answer's text (31 distinct) was checked against the database: all exist (scoring/cited_section_check.json)."
+  ],
+  [
+   "Inference settings affecting reproducibility",
+   "Greedy decoding (deterministic up to CPU floating-point order), thinking off, repetition stop on, adaptive allowance per question (hard ceiling 2,048 tokens), single process, one request at a time. Outcomes: 10 generations ended by the repetition stop and 11 reported finished=false (token allowance reached)."
+  ],
+  [
+   "Execution commands",
+   "Server: .venv/bin/python scripts/serve_ui.py --port 8765 --offline --measure-dir artifacts/cosmetics_benchmark/<run>/ui_measurements (defaults otherwise: transformers backend, accuracy on, semantic alignment, measurement on). Client: .venv/bin/python artifacts/cosmetics_benchmark/<run>/tools/run_benchmark.py <run> --url http://127.0.0.1:8765 --timeout 1800 --warmup \"What does 21 CFR 11.10 require for closed systems?\". Selection: tools/select_questions.py; scoring merge: tools/merge_verdicts.py; workbook: tools/build_workbook.py."
+  ],
+  [
+   "Why the HTTP path",
+   "scripts/run_acceptance_test.py hard-codes the REV02 300-question workbook, so it could not take this bank without editing it. The benchmark instead POSTs each question verbatim to the application's own /api/ask endpoint ({\"question\": ...}, every control at its default), the stateless path the UI serves; no application file was changed."
+  ],
+  [
+   "Token accounting",
+   "Input Tokens = prompt tokens of the one answer-generation call per question (length of the tokenized chat-templated prompt, as reported by the runtime). Output Tokens = tokens generated by that call, including text that validation later removed or replaced. When the validator withheld an answer (44 questions), the delivered text is a pipeline notice, not model output, but the generation's tokens are still counted. No other generative model call occurs; the bge-small embedder used by the evaluator is not counted. All 100 questions report both counts."
+  ],
+  [
+   "Timing methodology",
+   "Duration = client-side time.perf_counter() (monotonic) round trip from sending the HTTP request to receiving the complete response, in seconds (3 dp). /api/ask returns after the live evaluation, so Duration includes it (mean 0.27 s) and HTTP/serialization overhead (mean 0.074 s over pipeline time). Component times are the server's own timings_ms/server_timings_ms. Questions ran strictly sequentially; one warm-up question was sent first and excluded from every statistic; no other benchmark or test process was running."
+  ],
+  [
+   "Errors, retries, skips",
+   "0 execution errors, 0 timeouts (client timeout 1,800 s), 0 retries, 0 skipped. Each question was asked exactly once."
+  ],
+  [
+   "Deviations and limitations",
+   "(a) AI-assisted rubric scoring, not SME-signed. (b) 'Generated Answer' is the delivered answer exactly as returned; for 44 questions that is the validator's withholding notice. (c) 22 selected questions cite the FD&C Act in their key (20 rely on the statute, or on Parts 700-740 generally, with no specific CFR section; COS-710.2-Q1 and UC-COS-006 cite both), and the corpus has no statute text. (d) ISO concordance not scored (all selected rows '—'). (e) openpyxl came from the local uv cache and formulas were verified with pycel (no LibreOffice installed); the workbook is set to recalculate fully on open."
+  ],
+  [
+   "Missing or unverified information",
+   "No missing duration or token telemetry. Unverified: SME confirmation of rubric categories; model weights file hashes (revision recorded, weights not hashed in this run); provenance of the unused database vectors."
+  ]
+ ]
+}
