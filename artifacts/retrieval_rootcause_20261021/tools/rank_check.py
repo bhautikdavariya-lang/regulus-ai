@@ -46,7 +46,7 @@ def main() -> int:
         st = {k: v for k, v in db.status().items() if k != "url"}
         assert st["default_transaction_read_only"] == "on", st
         fp0 = RB.database_fingerprint(db)
-        for f in sorted(TR.glob("COS-*.json")):
+        for f in sorted([p for p in TR.glob("*.json") if p.name != "summary.json"]):
             d = json.loads(f.read_text(encoding="utf-8"))
             q = PREV[d["id"]]
             if not q["general"] or not q["labels"]:

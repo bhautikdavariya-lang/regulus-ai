@@ -32,7 +32,7 @@ def sec_of(label):
 rows, per_q = [], {}
 ctx = Counter()
 ecfr_dropped_while_guidance_selected = 0
-for f in sorted(TR.glob("COS-*.json")):
+for f in sorted([p for p in TR.glob("*.json") if p.name != "summary.json"]):
     d = json.loads(f.read_text(encoding="utf-8"))
     g = d["gates"]
     general = not g["requirements"] and g["docket"] is None
