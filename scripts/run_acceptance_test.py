@@ -59,6 +59,7 @@ from regulus.retrieval import Database  # noqa: E402
 from regulus.retrieval.factory import build_retriever  # noqa: E402
 from regulus.system_identity import configured_generation_config, configured_rag_config  # noqa: E402
 from regulus.traceability import measurement as M  # noqa: E402
+from regulus.traceability.corpus import corpus_identity  # noqa: E402
 from run_diagnostics import reproducibility  # noqa: E402
 
 
@@ -120,6 +121,8 @@ def run_identity(out_dir: Path, meta: dict) -> dict:
         # no evaluator version identifier exists; the code revision is what identifies the evaluator
         "evaluator": {"rubric_id": RUBRIC_ID, "rubric_version": RUBRIC_VERSION, "evaluator_version": None},
         "benchmark": {k: bench.get(k) for k in ("benchmark_key", "version", "sha256_before")},
+        # the text the evidence came from (database snapshot and semantic index), as it was when the run started
+        "corpus": meta.get("corpus"),
     }
 
 
@@ -215,6 +218,12 @@ def main() -> int:
     meta_path = out_dir / "run_metadata.json"
     meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
     meta.setdefault("started_utc", datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    corpus_now = corpus_identity(db)
+    meta.setdefault("corpus", corpus_now)
+    if meta["corpus"] != corpus_now:   # a resumed run whose source text changed since it started: say so, keep both
+        meta.setdefault("corpus_changed_on_resume", []).append(corpus_now)
+        print("WARNING: the corpus or semantic index changed since this run started (run_metadata.json "
+              "corpus_changed_on_resume)", flush=True)
     meta.update({
         "benchmark": {"file": str(DEFAULT_WORKBOOK), "benchmark_key": bench.benchmark_key, "version": bench.to_dict()["version"],
                       "questions": len(questions), "sha256_before": meta.get("benchmark", {}).get("sha256_before", sha_before),
