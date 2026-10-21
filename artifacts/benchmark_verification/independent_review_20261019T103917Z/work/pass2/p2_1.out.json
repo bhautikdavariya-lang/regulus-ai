@@ -1,0 +1,1273 @@
+[
+ {
+  "question_id": "S-004",
+  "question_interpretation": "Asks which hygienic practices Part 111 requires of personnel (employees) working in dietary supplement operations.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "incorrect",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_citation",
+    "detail": "G cites 21 CFR 111.13, which is 'What supervisor requirements apply?' (assigning qualified supervisors). Hygienic practices are in 21 CFR 111.10(b); exclusion of sick personnel ('disease control') is 111.10(a). 111.13 contains none of the J elements."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "A correct answer citing 111.10(b) would score citation-exact 0 against this key, and an answer citing 111.13 would be rewarded for a non-governing section."
+   },
+   {
+    "type": "precision",
+    "detail": "J omits several listed practices in 111.10(b): personal cleanliness, intact impermeable gloves, hair restraints, not storing clothing/personal belongings in exposed areas, and the catch-all 'any other precautions'; also 111.8 written procedures. J elements that are present are substantively correct."
+   }
+  ],
+  "explanation": "Every element of J (handwashing, outer garments, jewelry, eating/drinking restrictions, disease control) is found in 21 CFR 111.10, not 111.13. 111.13 only requires qualified supervisors. The answer content is substantively right but the governing citation is wrong, which is a demonstrable error in G.",
+  "proposed_corrected_answer": "Under 21 CFR 111.10(b), anyone working in an operation where adulteration could occur must use hygienic practices, including: wearing outer garments protectively; maintaining adequate personal cleanliness; washing (and sanitizing if necessary) hands before starting work and whenever hands may be soiled/contaminated; removing unsecured jewelry and hand jewelry that cannot be sanitized (or covering it); intact, clean, impermeable gloves; effective hair restraints where appropriate; not storing clothing/personal belongings where components/contact surfaces are exposed; no eating, gum, drinking or tobacco in such areas; and any other necessary precautions. Under 111.10(a), persons with an illness, infection, open lesion or other source of microbial contamination must be excluded, and employees instructed to notify supervisors. Written procedures are required by 111.8.",
+  "proposed_sections": "21 CFR 111.10(b) (hygienic practices); 111.10(a) (exclusion of sick/infected personnel); 111.8",
+  "evidence": [
+   {
+    "quote": "(a) You must assign qualified personnel to supervise the manufacturing, packaging, labeling, or holding of dietary supplements.",
+    "source_title": "21 CFR 111.13 — What supervisor requirements apply?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.13(a)",
+    "location": "§ 111.13(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.13",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The cited section concerns supervisors only, not hygienic practices."
+   },
+   {
+    "quote": "(b) Hygienic practices. If you work in an operation during which adulteration of the component, dietary supplement, or contact surface could occur, you must use hygienic practices to the extent necessary to protect against such contamination of components, dietary supplements, or contact surfaces.",
+    "source_title": "21 CFR 111.10 — What requirements apply for preventing microbial contamination from sick or infected personnel and for hygienic practices?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.10(b)",
+    "location": "§ 111.10(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.10",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Hygienic practices are governed by 111.10(b)."
+   },
+   {
+    "quote": "(8) Not eating food, chewing gum, drinking beverages, or using tobacco products in areas where components, dietary supplements, or any contact surfaces are exposed, or where contact surfaces are washed; and",
+    "source_title": "21 CFR 111.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.10(b)(8)",
+    "location": "§ 111.10(b)(8)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.10",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Eating/drinking restriction element is in 111.10(b)(8)."
+   },
+   {
+    "quote": "(1) Excluding from working in any operations that may result in contamination any person who, by medical examination, the person's acknowledgement, or supervisory observation, is shown to have, or appears to have, an illness, infection, open lesion, or any other abnormal source of microbial contamination",
+    "source_title": "21 CFR 111.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.10(a)(1)",
+    "location": "§ 111.10(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.10",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Disease-control element is in 111.10(a)."
+   }
+  ],
+  "search_performed": "Listed all Subpart B sections of Part 111 (111.8, 111.10, 111.12, 111.13, 111.14) and read each.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — G points to the supervisor section, so a correctly cited answer (111.10(b)) fails citation-exact."
+ },
+ {
+  "question_id": "S-013",
+  "question_interpretation": "Asks which representative samples Part 111 requires to be collected and what requirements apply to reserve samples.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J's list of representative samples (components, packaging, labels, in-process, finished batch) omits two of the five categories in 111.80: (d) each unique shipment/lot of product received for packaging or labeling as a dietary supplement, and (e) each lot of packaged and labeled dietary supplements."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J's 'storage conditions' element for reserve samples is governed by 21 CFR 111.465(a) (hold under conditions consistent with product labels or ordinary storage conditions; protect against contamination and deterioration), which G does not cite. 111.83 itself addresses the container-closure system, identification, retention and quantity."
+   },
+   {
+    "type": "precision",
+    "detail": "J omits the 111.83(b)(1)-(2) requirements (same container-closure system; identified with batch, lot or control number), the fact that reserve samples are required for each lot of packaged and labeled supplements distributed (111.83(a)), and the specific numbers: retention 1 year past shelf life date or 2 years from distribution of the last associated batch; at least twice the quantity needed for all specification tests."
+   }
+  ],
+  "explanation": "111.80 and 111.83 are the right core sections and J's elements are not wrong, but J lists only three of the five 111.80 sample categories and gives reserve-sample elements only generically. The storage-conditions element actually rests on 111.465, which is not cited, so a complete answer citing it is not reflected in the key.",
+  "proposed_corrected_answer": "21 CFR 111.80 requires representative samples of: (a) each unique lot of components, packaging and labels (and each unique shipment and lot within shipment from a supplier); (b) in-process materials at points specified in the master manufacturing record; (c) a subset of finished batches identified by a sound statistical sampling plan (or every finished batch) before release; (d) each unique shipment/lot of product received for packaging or labeling as a dietary supplement; and (e) each lot of packaged and labeled dietary supplements. 21 CFR 111.83 requires reserve samples of each lot of packaged and labeled dietary supplements distributed, held in the same container-closure system (or one with essentially the same protective characteristics), identified with the batch, lot or control number, retained 1 year past the shelf life date (if used) or 2 years from distribution of the last associated batch, and consisting of at least twice the quantity needed for all specification tests. 21 CFR 111.465 requires holding reserve samples under conditions consistent with product labels (or ordinary storage conditions) to protect against contamination and deterioration.",
+  "proposed_sections": "21 CFR 111.80(a)-(e); 111.83; 111.465",
+  "evidence": [
+   {
+    "quote": "(d) Representative samples of each unique shipment, and of each unique lot within each unique shipment, of product that you receive for packaging or labeling as a dietary supplement",
+    "source_title": "21 CFR 111.80 — What representative samples must you collect?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.80(d)",
+    "location": "§ 111.80(d)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.80",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "A sample category omitted from J."
+   },
+   {
+    "quote": "(e) Representative samples of each lot of packaged and labeled dietary supplements to determine whether the packaging and labeling of the finished packaged and labeled dietary supplements meet specifications",
+    "source_title": "21 CFR 111.80",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.80(e)",
+    "location": "§ 111.80(e)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.80",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "A second sample category omitted from J."
+   },
+   {
+    "quote": "(3) Be retained for 1 year past the shelf life date (if shelf life dating is used), or for 2 years from the date of distribution of the last batch of dietary supplements associated with the reserve sample, for use in appropriate investigations; and",
+    "source_title": "21 CFR 111.83 — What are the requirements for reserve samples?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.83(b)(3)",
+    "location": "§ 111.83(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.83",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Reserve sample retention period."
+   },
+   {
+    "quote": "(4) Consist of at least twice the quantity necessary for all tests or examinations to determine whether or not the dietary supplement meets product specifications.",
+    "source_title": "21 CFR 111.83",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.83(b)(4)",
+    "location": "§ 111.83(b)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.83",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Reserve sample size."
+   },
+   {
+    "quote": "(1) Holding the reserve samples under conditions consistent with product labels or, if no storage conditions are recommended on the label, under ordinary storage conditions; and",
+    "source_title": "21 CFR 111.465 — What requirements apply to holding reserve samples of dietary supplements?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.465(a)(1)",
+    "location": "§ 111.465(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.465",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Reserve sample storage conditions are governed by 111.465, not cited in G."
+   }
+  ],
+  "search_performed": "Read Subpart E (111.70-111.95) and Subpart M (111.453-111.475) of Part 111; searched 'reserve sample' across Part 111.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "mostly fair — G's sections are right, but completeness scoring against J would not reward the 111.80(d)/(e) categories or require 111.465."
+ },
+ {
+  "question_id": "S-028",
+  "question_interpretation": "Asks how long Part 111 records must be kept and the form/availability requirements for them (FDA access).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_number",
+    "detail": "J says the retention period is 'tied to date of manufacture/expiration'. 111.605(a) ties it to the shelf life date (1 year past it, if shelf life dating is used) or to the date of distribution of the last batch (2 years beyond it). Date of manufacture plays no role; the key states the wrong anchor and gives no periods."
+   },
+   {
+    "type": "precision",
+    "detail": "J omits that electronic records must comply with Part 11 (111.605(c)), that records (or copies) must be readily available during the retention period (111.610(a)), and that reader/photocopying equipment must be available if reduction techniques are used (111.610(b))."
+   }
+  ],
+  "explanation": "The cited sections (111.605, 111.610) are correct. But the core retention element is misstated: the rule is 1 year past the shelf life date or 2 years beyond distribution of the last associated batch, not a period tied to date of manufacture. An answer stating the correct rule would not match J, and an answer echoing J would be wrong.",
+  "proposed_corrected_answer": "Keep all Part 111 written records for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records (111.605(a)). Records may be kept as originals, true copies (photocopies, microfilm, microfiche or other accurate reproductions) or electronic records (111.605(b)); electronic records must comply with Part 11 (111.605(c)). All required records, or copies, must be readily available during the retention period for FDA inspection and copying on request (111.610(a)); if reduction techniques such as microfilming are used, suitable reader and photocopying equipment must be readily available to FDA (111.610(b)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records.",
+    "source_title": "21 CFR 111.605 — What requirements apply to the records that you make and keep?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(a)",
+    "location": "§ 111.605(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention is anchored to shelf life date or date of distribution of last batch, not date of manufacture."
+   },
+   {
+    "quote": "(c) All electronic records must comply with part 11 of this chapter.",
+    "source_title": "21 CFR 111.605",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(c)",
+    "location": "§ 111.605(c)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted electronic-records element."
+   },
+   {
+    "quote": "(a) You must have all records required under this part, or copies of such records, readily available during the retention period for inspection and copying by FDA when requested.",
+    "source_title": "21 CFR 111.610 — What records must be made available to FDA?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.610(a)",
+    "location": "§ 111.610(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.610",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Availability element (correct in J)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — the retention element in J would penalise or fail to recognise the correct shelf-life/distribution-based rule."
+ },
+ {
+  "question_id": "F-017",
+  "question_interpretation": "Asks what Subpart D of Part 117 requires of a facility solely engaged in storing unexposed packaged food that needs time/temperature control for safety.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J is a high-level list. It could add the applicability trigger (facility solely engaged in storage of unexposed packaged food; 117.7(b) routes it to 117.206), the corrective-action components (correct the problem, evaluate affected food, prevent adulterated food from entering commerce), the verification details (calibration; review of monitoring/corrective-action records within 7 working days unless a PCQI-justified longer timeframe), and that records are subject to Subpart F (117.206(b)). These are details within the listed elements, not omissions of a requirement category."
+   }
+  ],
+  "explanation": "117.206(a) requires temperature controls, monitoring, corrective actions, verification and records for refrigerated packaged TCS food at a facility solely engaged in storage of unexposed packaged food; 117.7(b) confirms Subpart D's 117.206 is the governing rule. J's five elements match the five paragraphs of 117.206(a).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(1) Establish and implement temperature controls adequate to significantly minimize or prevent the growth of, or toxin production by, pathogens;",
+    "source_title": "21 CFR 117.206 — Modified requirements that apply to a facility solely engaged in the storage of unexposed packaged food.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 117.206(a)(1)",
+    "location": "§ 117.206(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-117/section-117.206",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Temperature controls element."
+   },
+   {
+    "quote": "(2) Monitor the temperature controls with adequate frequency to provide assurance that the temperature controls are consistently performed;",
+    "source_title": "21 CFR 117.206",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 117.206(a)(2)",
+    "location": "§ 117.206(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-117/section-117.206",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Monitoring element."
+   },
+   {
+    "quote": "(iii) Reviewing records of monitoring and corrective actions taken to correct a problem with the control of temperature within 7 working days after the records are created or within a reasonable timeframe, provided that the preventive controls qualified individual prepares (or oversees the preparation of) a written justification for a timeframe that exceeds 7 working days;",
+    "source_title": "21 CFR 117.206",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 117.206(a)(4)(iii)",
+    "location": "§ 117.206(a)(4)(iii)",
+    "url": "https://www.ecfr.gov/current/title-21/part-117/section-117.206",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Verification element."
+   },
+   {
+    "quote": "(iii) Records documenting verification activities.",
+    "source_title": "21 CFR 117.206",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 117.206(a)(5)(iii)",
+    "location": "§ 117.206(a)(5)",
+    "url": "https://www.ecfr.gov/current/title-21/part-117/section-117.206",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Records element."
+   },
+   {
+    "quote": "(b) Applicability of subpart D. A facility solely engaged in the storage of unexposed packaged food, including unexposed packaged food that requires time/temperature control to significantly minimize or prevent the growth of, or toxin production by, pathogens is subject to the modified requirements in § 117.206",
+    "source_title": "21 CFR 117.7 — Applicability of subparts C, D, and G ...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 117.7(b)",
+    "location": "§ 117.7(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-117/section-117.7",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Confirms 117.206 is the governing Subpart D provision."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G and J match the governing section."
+ },
+ {
+  "question_id": "D-009",
+  "question_interpretation": "Asks what Part 211 requires for testing, approving (or rejecting) incoming components before use.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J's 'retest intervals' element is governed by 21 CFR 211.87, not 211.84, and G does not cite 211.87. 211.87 sets no fixed interval: retesting/reexamination is required 'as necessary, e.g., after storage for long periods or after exposure to air, heat or other conditions'. The only 'intervals' in 211.84 concern periodic validation of the supplier's test results (211.84(d)(2))."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J omits that each lot must be withheld from use until sampled/tested and released by the quality control unit (211.84(a)), and the quarantine of untested material (211.82(b))."
+   },
+   {
+    "type": "precision",
+    "detail": "'Supplier COA' — the rule says 'report of analysis' for components (certificate of testing for containers/closures), conditioned on at least one specific identity test by the manufacturer and on validating the supplier's results at appropriate intervals. The rejection criterion is failure to meet written specifications (211.84(e)); rejected material is quarantined under 211.89."
+   }
+  ],
+  "explanation": "211.84 is the core section and J's sampling, identity-test, supplier-report and rejection elements are supported. But the retest element belongs to 211.87 and is mischaracterised as 'intervals', and J leaves out QC-unit release (211.84(a)), so the citation and elements are incomplete rather than wrong.",
+  "proposed_corrected_answer": "Each lot of components must be withheld from use until sampled, tested or examined and released by the quality control unit (211.84(a)); untested components are held in quarantine (211.82(b)). Representative samples of each shipment of each lot are collected using statistically based criteria and specified sampling procedures (211.84(b)-(c)). At least one identity test (specific identity test where one exists) is conducted on each component, and each component is tested for conformity with written specifications for purity, strength and quality; a supplier's report of analysis may replace that testing only if the manufacturer conducts at least one specific identity test and validates the supplier's results at appropriate intervals (211.84(d)(1)-(2)); microscopic, filth and microbiological examination as applicable (211.84(d)(4)-(6)). Lots that meet specifications may be approved; those that do not must be rejected (211.84(e)) and quarantined (211.89). Approved components are retested or reexamined as necessary, e.g., after long storage or adverse exposure (211.87).",
+  "proposed_sections": "21 CFR 211.84; 211.87; 211.82(b); 211.89",
+  "evidence": [
+   {
+    "quote": "(a) Each lot of components, drug product containers, and closures shall be withheld from use until the lot has been sampled, tested, or examined, as appropriate, and released for use by the quality control unit.",
+    "source_title": "21 CFR 211.84 — Testing and approval or rejection of components, drug product containers, and closures.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(a)",
+    "location": "§ 211.84(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-211/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC-unit release requirement omitted from J."
+   },
+   {
+    "quote": "(1) At least one test shall be conducted to verify the identity of each component of a drug product. Specific identity tests, if they exist, shall be used.",
+    "source_title": "21 CFR 211.84",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(d)(1)",
+    "location": "§ 211.84(d)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-211/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Identity test element."
+   },
+   {
+    "quote": "In lieu of such testing by the manufacturer, a report of analysis may be accepted from the supplier of a component, provided that at least one specific identity test is conducted on such component by the manufacturer, and provided that the manufacturer establishes the reliability of the supplier's analyses through appropriate validation of the supplier's test results at appropriate intervals.",
+    "source_title": "21 CFR 211.84",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(d)(2)",
+    "location": "§ 211.84(d)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-211/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supplier report-of-analysis conditions; the only 'intervals' in 211.84."
+   },
+   {
+    "quote": "Components, drug product containers, and closures shall be retested or reexamined, as appropriate, for identity, strength, quality, and purity and approved or rejected by the quality control unit in accordance with § 211.84 as necessary, e.g., after storage for long periods or after exposure to air, heat or other conditions that might adversely affect the component, drug product container, or closure.",
+    "source_title": "21 CFR 211.87 — Retesting of approved components, drug product containers, and closures.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.87",
+    "location": "§ 211.87",
+    "url": "https://www.ecfr.gov/current/title-21/part-211/section-211.87",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retesting is governed by 211.87 and is 'as necessary', not at fixed intervals."
+   }
+  ],
+  "search_performed": "Read Subpart E of Part 211 (211.80-211.89).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — an answer citing 211.87 for retesting would be correct but not reflected in G; an answer inventing fixed retest intervals could be credited by J."
+ },
+ {
+  "question_id": "M-006",
+  "question_interpretation": "Asks what current Part 820 says about foreign manufacturers that refuse to permit an FDA inspection.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "temporal",
+    "detail": "J paraphrases the pre-QMSR 21 CFR 820.1(d) ('If a manufacturer who offers devices for import ... refuses to permit or allow the completion of a[n] FDA inspection ... it shall appear for purposes of section 801(a) ... that the devices ... are adulterated'). That provision was replaced effective 2026-02-02. Current 820.1(c) says nothing about refusal of inspection; it says only that an imported device is subject to refusal of admission under 801(a) if, among other things, it appears to be adulterated."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Under current law the inspection-refusal link runs through FD&C Act 501(j) (21 U.S.C. 351(j)): a device is adulterated if the establishment owner/operator/agent delays, denies or limits an inspection or refuses to permit entry or inspection; adulterated articles are refused admission under 801(a)(3). G cites 801(a) but not 501(j)."
+   },
+   {
+    "type": "false_premise_key",
+    "detail": "The question presumes current Part 820 contains a refusal-to-permit-inspection provision; the key should correct that premise rather than attribute the old rule to current 820.1(c). FDA's QMSR preamble states it revised 820.1(c) to align with sections 501 and 801 of the FD&C Act without changing foreign manufacturers' obligations."
+   }
+  ],
+  "explanation": "Current 820.1(c) (eCFR 2026-10-14) does not mention refusal of inspection; the key's element reproduces the repealed 820.1(d) wording and attributes it to Part 820. The practical outcome (refusal of admission) is still reachable through FD&C Act 501(j) plus 801(a), so the key should be rewritten to state what current 820.1(c) actually provides and to route the inspection-refusal consequence to 501(j)/801(a).",
+  "proposed_corrected_answer": "Current Part 820 no longer contains a specific provision on foreign manufacturers that refuse inspection (that was former 820.1(d), removed by the QMSR effective February 2, 2026). Current 21 CFR 820.1(c) provides that a device imported or offered for import is subject to refusal of admission under section 801(a) of the FD&C Act if, among other things, it appears to be adulterated. Under FD&C Act 501(j), a device is adulterated if the owner, operator or agent of the establishment where it was manufactured, processed, packed or held delays, denies or limits an inspection or refuses to permit entry or inspection; such an adulterated device is subject to refusal of admission under 801(a). (Before February 2, 2026, former 820.1(d) expressly deemed such refusal to show nonconformity with 520(f) and adulteration under 501(h) for purposes of 801(a).)",
+  "proposed_sections": "21 CFR 820.1(c); FD&C Act 501(j) (21 U.S.C. 351(j)); FD&C Act 801(a) (21 U.S.C. 381(a)); historical: former 21 CFR 820.1(d) (in force through 2026-02-01)",
+  "evidence": [
+   {
+    "quote": "(c) Foreign manufacturers. A device that is imported or offered for import into the United States is subject to refusal of admission to the United States under section 801(a) of the Federal Food, Drug, and Cosmetic Act if, among other things, it appears to be adulterated as set forth in the Federal Food, Drug, and Cosmetic Act and its implementing regulations.",
+    "source_title": "21 CFR 820.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.1(c)",
+    "location": "§ 820.1(c)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.1",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Current 820.1(c) contains no refusal-of-inspection provision."
+   },
+   {
+    "quote": "(d) Foreign manufacturers. If a manufacturer who offers devices for import into the United States refuses to permit or allow the completion of a Food and Drug Administration (FDA) inspection of the foreign facility for the purpose of determining compliance with this part, it shall appear for purposes of section 801(a) of the act,",
+    "source_title": "21 CFR 820.1 — Scope (Quality System regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "former 21 CFR 820.1(d)",
+    "location": "§ 820.1(d) as of 2026-01-31",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/part-820/section-820.1",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31",
+    "check_level": "official_cached",
+    "supports": "J's wording reflects this repealed provision."
+   },
+   {
+    "quote": "If it is a drug or device and it has been manufactured, processed, packed, or held in any factory, warehouse, or establishment and the owner, operator, or agent of such factory, warehouse, or establishment delays, denies, or limits an inspection, or refuses to permit entry or inspection.",
+    "source_title": "21 U.S.C. 351 (FD&C Act 501) — Adulterated drugs and devices",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 351(j); FD&C Act 501(j)",
+    "location": "§ 351(j)",
+    "url": "https://www.govinfo.gov/app/details/USCODE-2024-title21/USCODE-2024-title21-chap9-subchapV-partA-sec351",
+    "local_source_file": "usc_title21/21usc351.txt",
+    "date": "U.S. Code 2024 edition",
+    "check_level": "official_cached",
+    "supports": "Current statutory basis: refusal of inspection renders a device adulterated."
+   },
+   {
+    "quote": "or (3) such article is adulterated, misbranded, or in violation of section 355 of this title",
+    "source_title": "21 U.S.C. 381 (FD&C Act 801) — Imports and exports",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 381(a); FD&C Act 801(a)(3)",
+    "location": "§ 381(a)",
+    "url": "https://www.govinfo.gov/app/details/USCODE-2024-title21/USCODE-2024-title21-chap9-subchapVIII-sec381",
+    "local_source_file": "usc_title21/21usc381.txt",
+    "date": "U.S. Code 2024 edition",
+    "check_level": "official_cached",
+    "supports": "Adulterated imported articles are refused admission."
+   },
+   {
+    "quote": "FDA notes that although it has made changes to revise Sec.  820.1(c) to align with the statutory language in sections 501 and 801 of the FD&C Act, it has not changed a foreign manufacturer's obligations under this part.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (preamble, response to Comment 58)",
+    "location": "preamble, Comment 58 response",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA confirms 820.1(c) was rewritten to track FD&C Act 501/801."
+   }
+  ],
+  "search_performed": "Searched current Part 820 (ecfr_2026-10-14) for 'inspect' and 'refus': only 820.1(c) refers to refusal of admission and it contains no inspection-refusal language. Compared with Part 820 as of 2026-01-31 (former 820.1(d)). Searched 21 U.S.C. 351 and 381 for inspection-refusal language.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — the key rewards attributing repealed 820.1(d) content to current 820.1(c) and would not credit the correct 501(j)/801(a) routing."
+ },
+ {
+  "question_id": "M-028",
+  "question_interpretation": "Asks what Part 820 requires to prevent labeling/packaging mixups and what must be documented about labeling and packaging operations.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "The question asks 'what must be documented'. J gives only the inspection results (820.45(c)). The 820.45 introductory text also requires the manufacturer to document and maintain procedures describing labeling and packaging integrity, inspection, storage and operations, and 820.45(b) requires the release of labeling for use to be documented under ISO Clause 4.2.5."
+   },
+   {
+    "type": "precision",
+    "detail": "J omits the specific mixup control named in 820.45(c): inspection of labeling and packaging before use to assure all devices have correct labeling and packaging as specified in the medical device file."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "H (4.2.3 Medical device file; 4.2.5 Control of records) is corroborated: 820.45(c) refers to the medical device file and Clause 4.2.5, and the QMSR preamble ties the MDF to Clause 4.2.3. However, 820.45 states it applies 'In addition to the requirements of Clause 7.5.1 of ISO 13485 ... Control of production and service provision', and the preamble notes Clause 7.5.1(e) covers defined labelling and packaging operations; 7.5.1 is arguably the primary concordant clause and is missing from H."
+   }
+  ],
+  "explanation": "820.45(c) is the right core citation and J's two elements are accurate. But the documentation half of the question is answered incompletely (procedures under the 820.45 introductory text and documented labeling release under 820.45(b)), and H leaves out Clause 7.5.1, which 820.45 itself names as the base requirement.",
+  "proposed_corrected_answer": "Under 21 CFR 820.45, in addition to ISO 13485 Clause 7.5.1, the manufacturer must document and maintain procedures detailing the activities that ensure the integrity, inspection, storage and operations for labeling and packaging. Labeling and packaging operations must be established and maintained to prevent mixups, including inspection of labeling and packaging before use to assure all devices have correct labeling and packaging as specified in the medical device file; the results of that labeling inspection must be documented per Clause 4.2.5 (820.45(c)). Labeling and packaging must be examined for accuracy before release or storage (UDI/UPC, expiration date, storage, handling and additional processing instructions) (820.45(a)), and the release of labeling for use must be documented per Clause 4.2.5 (820.45(b)). ISO: 7.5.1; 4.2.3; 4.2.5.",
+  "proposed_sections": "21 CFR 820.45 (introductory text), 820.45(b), 820.45(c); ISO 13485 Clauses 7.5.1, 4.2.3, 4.2.5",
+  "evidence": [
+   {
+    "quote": "(c) The manufacturer must ensure labeling and packaging operations have been established and maintained to prevent mixups, including, but not limited to, inspection of the labeling and packaging before use to assure that all devices have correct labeling and packaging, as specified in the medical device file. Results of such labeling inspection must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(c)",
+    "location": "§ 820.45(c)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.45",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's two elements and shows the before-use inspection control."
+   },
+   {
+    "quote": "In addition to the requirements of Clause 7.5.1 of ISO 13485 (incorporated by reference, see § 820.7), Control of production and service provision, each manufacturer must document and maintain procedures that provide a detailed description of the activities to ensure the integrity, inspection, storage, and operations for labeling and packaging",
+    "source_title": "21 CFR 820.45",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45 (introductory text)",
+    "location": "§ 820.45 intro",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.45",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Documented-procedures requirement omitted from J; names Clause 7.5.1."
+   },
+   {
+    "quote": "(b) The release of the labeling for use must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "source_title": "21 CFR 820.45",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(b)",
+    "location": "§ 820.45(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.45",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Further documentation requirement omitted from J."
+   },
+   {
+    "quote": "In addition to the requirements of Clause 4.2.5 in ISO 13485 (incorporated by reference, see § 820.7), Control of Records,",
+    "source_title": "21 CFR 820.35 — Control of records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35 (introductory text)",
+    "location": "§ 820.35 intro",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.35",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Corroborates Clause 4.2.5 = Control of records."
+   },
+   {
+    "quote": "medical device file (MDF), discussed in Clause 4.2.3 of ISO 13485.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (preamble)",
+    "location": "preamble discussion of DMR vs MDF",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Corroborates Clause 4.2.3 = medical device file."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether the omission of 7.5.1 from H and of the procedures/release documentation from J is 'material' is a judgment call; the text itself is clear.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — an answer that correctly anchors 820.45 to Clause 7.5.1 (as the regulation does) may lose ISO-concordance credit."
+ },
+ {
+  "question_id": "M-030",
+  "question_interpretation": "Asks what the QMSR final rule changed in Part 820 and when it took effect.",
+  "question_clarity": "clear",
+  "temporal_scope": "date_specific",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The final rule is 89 FR 7496-7525; 7523 is the page where codified Part 820 text appears (the eCFR source note for 820.3 cites '89 FR 7523'). 'Compliance date' is the rule's effective date (the rule text says 'effective February 2, 2026'). 820.10(b)-(e) are new QMSR provisions rather than 'retained' QS requirements."
+   },
+   {
+    "type": "precision",
+    "detail": "J could also mention: Part 820 retitled 'Quality Management System Regulation'; former Subpart B sections 820.20-820.30 also reserved (Subpart B now 'Supplemental Provisions'); conforming amendments to Part 4 (combination products); removal of the former 820.180(c) exception for management review, audit and supplier audit reports; ISO 9000:2015 Clause 3 incorporated for definitions; technical conforming amendments at 90 FR 55978 (effective 2026-02-02)."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "H '1 through 8 (entire standard)' with the title given is consistent with 820.7(b) incorporating ISO 13485:2016 for §§ 820.1, 820.3, 820.10, 820.35 and 820.45 and 820.10(a) requiring compliance with its applicable requirements. The title is corroborated by FDA text; the specific clause numbering 1-8 rests on general knowledge."
+   }
+  ],
+  "explanation": "The Federal Register rule incorporates ISO 13485:2016 by reference, removes and reserves Subparts C through O, keeps FDA-specific requirements in 820.10, 820.35 and 820.45, and is effective February 2, 2026. J's four elements are each supported; the remaining gaps are precision points rather than errors.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "DATES: This rule is effective February 2, 2026.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496",
+    "location": "DATES",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Effective (compliance) date."
+   },
+   {
+    "quote": "Subparts C through  O of the QS regulation have been removed and reserved.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (preamble, response to Comment 15)",
+    "location": "preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C-O reserved."
+   },
+   {
+    "quote": "(b) ISO 13485:2016(E) (“ISO 13485”), Medical devices—Quality management systems—Requirements for regulatory purposes, Third edition, March 1, 2016; IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "source_title": "21 CFR 820.7 — Incorporation by reference.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.7(b)",
+    "location": "§ 820.7(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.7",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "ISO 13485:2016 incorporated by reference; standard title."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "§ 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QMS must comply with ISO 13485 plus Part 820 supplements."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — an answer citing the rule at 89 FR 7496 rather than 7523 should still be treated as correct."
+ },
+ {
+  "question_id": "E-008",
+  "question_interpretation": "Asks what Part 11 requires for electronic signature uniqueness, identity verification and certification to FDA.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "The question asks for the certification requirements. J omits two certification requirements in 11.100(c): the certification must be signed with a traditional handwritten signature and submitted in electronic or paper form (11.100(c)(1)); and on agency request, persons must provide additional certification or testimony that a specific electronic signature is the legally binding equivalent of the signer's handwritten signature (11.100(c)(2))."
+   },
+   {
+    "type": "precision",
+    "detail": "The certification covers electronic signatures used on or after August 20, 1997, is made prior to or at the time of use, and states they are 'intended to be' the legally binding equivalent of handwritten signatures. Identity must be verified before the organization establishes, assigns, certifies or otherwise sanctions the signature."
+   }
+  ],
+  "explanation": "11.100 is the governing section and J's four elements are accurate. But the question specifically asks about certification and J leaves out the handwritten-signature form of the certification and the on-request additional certification, both mandatory 'shall' requirements in 11.100(c)(1)-(2).",
+  "proposed_corrected_answer": "Under 21 CFR 11.100: (a) each electronic signature must be unique to one individual and not reused by or reassigned to anyone else; (b) before establishing, assigning, certifying or otherwise sanctioning an individual's electronic signature (or any element of it), the organization must verify the individual's identity; (c) persons using electronic signatures must, before or at the time of use, certify to FDA that the electronic signatures in their system (used on or after August 20, 1997) are intended to be the legally binding equivalent of traditional handwritten signatures. The certification must be signed with a traditional handwritten signature and submitted in electronic or paper form (see FDA's Letters of Non-Repudiation Agreement page) (c)(1), and on FDA request persons must provide additional certification or testimony that a specific electronic signature is the legally binding equivalent of the signer's handwritten signature (c)(2).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) Each electronic signature shall be unique to one individual and shall not be reused by, or reassigned to, anyone else.",
+    "source_title": "21 CFR 11.100 — General requirements.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 11.100(a)",
+    "location": "§ 11.100(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-11/section-11.100",
+    "local_source_file": "ecfr_2026-10-14/part-11.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Uniqueness element."
+   },
+   {
+    "quote": "(c) Persons using electronic signatures shall, prior to or at the time of such use, certify to the agency that the electronic signatures in their system, used on or after August 20, 1997, are intended to be the legally binding equivalent of traditional handwritten signatures.",
+    "source_title": "21 CFR 11.100",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 11.100(c)",
+    "location": "§ 11.100(c)",
+    "url": "https://www.ecfr.gov/current/title-21/part-11/section-11.100",
+    "local_source_file": "ecfr_2026-10-14/part-11.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Certification element."
+   },
+   {
+    "quote": "(1) The certification shall be signed with a traditional handwritten signature and submitted in electronic or paper form.",
+    "source_title": "21 CFR 11.100",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 11.100(c)(1)",
+    "location": "§ 11.100(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-11/section-11.100",
+    "local_source_file": "ecfr_2026-10-14/part-11.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted certification-form requirement."
+   },
+   {
+    "quote": "(2) Persons using electronic signatures shall, upon agency request, provide additional certification or testimony that a specific electronic signature is the legally binding equivalent of the signer's handwritten signature.",
+    "source_title": "21 CFR 11.100",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 11.100(c)(2)",
+    "location": "§ 11.100(c)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-11/section-11.100",
+    "local_source_file": "ecfr_2026-10-14/part-11.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted additional-certification requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "J's existing elements are all correct; whether the (c)(1)-(2) omissions are material enough for PARTIALLY_CORRECT rather than VERIFIED_CORRECT is a judgment call.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G is correct; a fuller answer would not be penalised, but the key under-specifies completeness."
+ },
+ {
+  "question_id": "P-005",
+  "question_interpretation": "Asks what contents 21 CFR 814.20 requires in a PMA application.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "J lists 'samples' unconditionally; 814.20(b)(9) requires samples only 'if requested by FDA' (or naming a location where FDA may examine devices if submitting samples is impractical)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits required content items: applicant signature and U.S. countersignature for foreign applicants (814.20(a)); electronic format, name/address and table of contents with separate nonclinical and clinical sections (b)(1)-(2); justification when relying on a single investigation (b)(7); the identification/analysis of other safety and effectiveness information (b)(8)(ii); environmental assessment or claim of categorical exclusion (b)(11); pediatric-use information if readily available (b)(13); other information FDA requests (b)(14); and the justification-of-omission statement (814.20(d))."
+   },
+   {
+    "type": "precision",
+    "detail": "'Performance standards' should read: reference to applicable section 514/534 performance standards and relevant voluntary standards, with information showing conformance or justifying deviations (b)(5). Clinical sections must include IRB/informed consent/Part 812 compliance statements and, for foreign studies, 812.28 GCP (b)(6)(ii)(A)-(C)."
+   }
+  ],
+  "explanation": "814.20 is the correct citation and J's listed elements appear in 814.20(b). But J states samples as an unconditional requirement when they are needed only if FDA requests them, and it leaves out several mandatory items (environmental assessment, pediatric information, signature, single-investigation justification).",
+  "proposed_corrected_answer": "Under 21 CFR 814.20, the PMA must be signed by the applicant or authorized representative (countersigned by a U.S. representative for a foreign applicant) and, unless an omission is justified under 814.20(d), include in electronic format: applicant name and address; table of contents with separate nonclinical and clinical sections; a summary (indications for use, device description, alternative practices, marketing history, summary of studies, conclusions); a complete device description including manufacturing methods, facilities and controls; reference to applicable performance standards and relevant voluntary standards (with conformance or justified deviations); technical sections with nonclinical laboratory study results (with a Part 58 compliance statement) and clinical investigation results (with Parts 50/56/812 and 812.28 statements); a single-investigation justification where applicable; a bibliography and analysis of other relevant information; samples if FDA requests them; copies of all proposed labeling; an environmental assessment or claim of categorical exclusion; financial certification/disclosure under Part 54; pediatric-use information if readily available; and other information FDA requests.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(9) One or more samples of the device and its components, if requested by FDA.",
+    "source_title": "21 CFR 814.20 — Application.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(9)",
+    "location": "§ 814.20(b)(9)",
+    "url": "https://www.ecfr.gov/current/title-21/part-814/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Samples are conditional on FDA request."
+   },
+   {
+    "quote": "(11) An environmental assessment under § 25.20(n) prepared in the applicable format in § 25.40, unless the action qualifies for exclusion under § 25.30 or § 25.34.",
+    "source_title": "21 CFR 814.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(11)",
+    "location": "§ 814.20(b)(11)",
+    "url": "https://www.ecfr.gov/current/title-21/part-814/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted required element."
+   },
+   {
+    "quote": "(13) Information concerning uses in pediatric patients. The application must include the following information, if readily available:",
+    "source_title": "21 CFR 814.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(13)",
+    "location": "§ 814.20(b)(13)",
+    "url": "https://www.ecfr.gov/current/title-21/part-814/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted required element."
+   },
+   {
+    "quote": "(12) A financial certification or disclosure statement or both as required by part 54 of this chapter.",
+    "source_title": "21 CFR 814.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(12)",
+    "location": "§ 814.20(b)(12)",
+    "url": "https://www.ecfr.gov/current/title-21/part-814/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Financial certification element (correct in J)."
+   },
+   {
+    "quote": "(a) The applicant or an authorized representative shall sign the PMA.",
+    "source_title": "21 CFR 814.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(a)",
+    "location": "§ 814.20(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-814/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted signature requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "mostly fair — G is right, but J would credit an answer saying samples are always required."
+ },
+ {
+  "question_id": "R-008",
+  "question_interpretation": "Asks how FDA's regulations distinguish a recall, a market withdrawal and a stock recovery.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A market withdrawal also covers removals/corrections that involve no violation at all (e.g., normal stock rotation, routine equipment adjustments); J mentions only 'minor violation not subject to legal action'. 7.3(g) also states that a recall does not include a market withdrawal or a stock recovery."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "The row is in the device postmarket domain; 21 CFR 806.2(i) and 806.2(m) give parallel device-specific definitions of market withdrawal and stock recovery. An answer citing 806.2 for those terms should not be scored as a wrong citation."
+   }
+  ],
+  "explanation": "21 CFR 7.3(g), (j) and (k) define recall (removal/correction of a marketed product FDA considers violative and against which it would initiate legal action), market withdrawal (minor or no violation not subject to legal action) and stock recovery (product not marketed or not left the firm's direct control). J's contrasts match these definitions.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(g) Recall means a firm's removal or correction of a marketed product that the Food and Drug Administration considers to be in violation of the laws it administers and against which the agency would initiate legal action, e.g., seizure. Recall does not include a market withdrawal or a stock recovery.",
+    "source_title": "21 CFR 7.3 — Definitions.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(g)",
+    "location": "§ 7.3(g)",
+    "url": "https://www.ecfr.gov/current/title-21/part-7/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Recall definition."
+   },
+   {
+    "quote": "(j) Market withdrawal means a firm's removal or correction of a distributed product which involves a minor violation that would not be subject to legal action by the Food and Drug Administration or which involves no violation, e.g., normal stock rotation practices, routine equipment adjustments and repairs, etc.",
+    "source_title": "21 CFR 7.3",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(j)",
+    "location": "§ 7.3(j)",
+    "url": "https://www.ecfr.gov/current/title-21/part-7/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Market withdrawal definition (includes 'no violation')."
+   },
+   {
+    "quote": "(k) Stock recovery means a firm's removal or correction of a product that has not been marketed or that has not left the direct control of the firm,",
+    "source_title": "21 CFR 7.3",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(k)",
+    "location": "§ 7.3(k)",
+    "url": "https://www.ecfr.gov/current/title-21/part-7/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Stock recovery definition."
+   },
+   {
+    "quote": "(i) Market withdrawal means a correction or removal of a distributed device that involves a minor violation of the act that would not be subject to legal action by FDA or that involves no violation of the act, e.g., normal stock rotation practices.",
+    "source_title": "21 CFR 806.2 — Definitions.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.2(i)",
+    "location": "§ 806.2(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-806/section-806.2",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Parallel device definition."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair if 806.2(i)/(m) are accepted as alternative device-specific citations."
+ },
+ {
+  "question_id": "Z-002",
+  "question_interpretation": "Asks what MQSA quality standards in 21 CFR 900.12 require for equipment QA, medical records and mammography reports (and related QA programs).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J is a heading-level outline of 900.12(c)-(f) and (h). It could add the general QA program and lead interpreting physician/QC technologist/medical physicist responsibilities (900.12(d)), report-communication deadlines (written report to the provider within 30 days; lay summary to patients) and record retention (900.12(c)), and that the equipment standards in 900.12(b) and 21 CFR 1020.30/1020.31 also apply. Alternative standards may be approved under 900.18."
+   }
+  ],
+  "explanation": "21 CFR 900.12 contains medical records and mammography reports (c), general QA (d), equipment QA/QC tests (e), the medical outcomes audit (f) and the consumer complaint mechanism (h). J's elements correspond to these paragraphs and contain no misstatement.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(c) Medical records and mammography reports—(1) Contents and terminology. Each facility shall prepare a written report of the results of each mammographic examination performed under its certificate.",
+    "source_title": "21 CFR 900.12 — Quality standards.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(c)(1)",
+    "location": "§ 900.12(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Medical records and reports element."
+   },
+   {
+    "quote": "(d) Quality assurance—general. Each facility shall establish and maintain a quality assurance program to ensure the safety, reliability, clarity, and accuracy of mammography services performed at the facility.",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(d)",
+    "location": "§ 900.12(d)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QA program."
+   },
+   {
+    "quote": "(e) Quality assurance—equipment—(1) Daily quality control tests.",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(e)(1)",
+    "location": "§ 900.12(e)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Equipment QA and QC testing."
+   },
+   {
+    "quote": "(f) Quality assurance-mammography medical outcomes audit. Each facility shall establish and maintain a mammography medical outcomes audit program to followup positive mammographic assessments and to correlate pathology results with the interpreting physician's findings.",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(f)",
+    "location": "§ 900.12(f)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Medical outcomes audit."
+   },
+   {
+    "quote": "(1) Establish a written and documented system for collecting and resolving consumer complaints;",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(h)(1)",
+    "location": "§ 900.12(h)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Consumer complaint mechanism."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the key's section and outline match the regulation."
+ },
+ {
+  "question_id": "PB-005",
+  "question_interpretation": "False-premise question: asks which FDA guidance imposes the device supplier-qualification requirement. The platform must say guidance creates no requirement and route the obligation to the QMSR and ISO 13485 purchasing clauses.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "Clause 7.4 'Purchasing' with its subclauses is corroborated by 21 CFR 4.4(b)(1)(iii) ('Purchasing. Clause 7.4. and its subclauses of ISO 13485') and by the QMSR preamble (Clause 7.4 requires evaluating suppliers). The 7.4.1 subclause title 'Purchasing process' is not stated in FDA text (general knowledge)."
+   },
+   {
+    "type": "precision",
+    "detail": "The key could also cite 21 CFR 10.115(d)(1) as the authority that guidance documents do not establish legally enforceable responsibilities, and 820.10(e) (failure to comply renders a device adulterated under 501(h))."
+   }
+  ],
+  "explanation": "Under 21 CFR 10.115(d)(1), FDA guidance does not establish legally enforceable responsibilities, so no guidance 'requires' supplier qualification. The binding obligation is 820.10(a), which requires a QMS complying with the applicable requirements of ISO 13485, whose Clause 7.4 (Purchasing) covers supplier evaluation and selection. The key's premise correction and routing are right.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(d) Are you or FDA required to follow a guidance document? (1) No. Guidance documents do not establish legally enforceable rights or responsibilities. They do not legally bind the public or FDA.",
+    "source_title": "21 CFR 10.115 — Good guidance practices.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 10.115(d)(1)",
+    "location": "§ 10.115(d)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-10/section-10.115",
+    "local_source_file": "ecfr_2026-10-14/part-10.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Guidance cannot create the requirement (premise is false)."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "§ 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Binding source of the obligation."
+   },
+   {
+    "quote": "(iii) Purchasing. Clause 7.4. and its subclauses of ISO 13485;",
+    "source_title": "21 CFR 4.4 — Current good manufacturing practice requirements for combination products.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(iii)",
+    "location": "§ 4.4(b)(1)(iii)",
+    "url": "https://www.ecfr.gov/current/title-21/part-4/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA text identifies Clause 7.4 and subclauses as Purchasing."
+   },
+   {
+    "quote": "Clause 7.4  of ISO 13485 specifies that an organization must evaluate suppliers of  purchased products in terms of ability and performance of the supplier,",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (preamble)",
+    "location": "preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA describes Clause 7.4 as the supplier-evaluation requirement."
+   }
+  ],
+  "search_performed": "Checked 21 CFR 10.115 (good guidance practices) for the binding effect of guidance; checked Part 820 and Part 4 for the purchasing/supplier routing.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the expected behaviour (premise correction plus routing to 820.10(a)/Clause 7.4) is correct."
+ },
+ {
+  "question_id": "NC-005",
+  "question_interpretation": "Trap question asserting that 21 CFR 820.20 requires quarterly management review. The platform must correct the premise: 820.20 is reserved under the QMSR and no quarterly frequency is mandated.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "unverified_general_knowledge",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J says 'The regulation requires defined intervals per the manufacturer's procedures'. That wording mirrors former 820.20(c) (pre-2026-02-02). Under the current QMSR the management review requirement comes through 820.10(a) and ISO 13485 Clause 5.6 (understood to require review at documented planned intervals); current Part 820 text has no management review provision of its own."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "FDA text corroborates that Clause 5 and its subclauses are 'management responsibility' (21 CFR 4.4(b)(1)(i)), but neither the clause number 5.6.1, its title, nor the absence of a fixed frequency in the standard is stated in FDA text; those require the controlled ISO 13485 copy."
+   },
+   {
+    "type": "temporal",
+    "detail": "Under either version the premise fails: former 820.20(c) (in force through 2026-02-01) required review 'at defined intervals and with sufficient frequency according to established procedures' — no quarterly mandate."
+   }
+  ],
+  "explanation": "Current Part 820 lists '§§ 820.20-820.30 [Reserved]', and a search of current Part 820 finds no management-review frequency; the former 820.20(c) also set no quarterly frequency. The premise is therefore unsupported under both current and former law, and the key's required correction is right. Only the ISO-side statement (no fixed frequency in Clause 5.6.1) cannot be confirmed from FDA text.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR Part 820, Subpart B",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20-820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/subpart-B",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.20 is reserved under the current QMSR."
+   },
+   {
+    "quote": "(c) Management review. Management with executive responsibility shall review the suitability and effectiveness of the quality system at defined intervals and with sufficient frequency according to established procedures",
+    "source_title": "21 CFR 820.20 — Management responsibility (Quality System regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "former 21 CFR 820.20(c)",
+    "location": "§ 820.20(c) as of 2026-01-31",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/part-820/section-820.20",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31",
+    "check_level": "official_cached",
+    "supports": "Even the former rule set no quarterly frequency."
+   },
+   {
+    "quote": "(i) General requirements and management responsibility. Clause 4.1, Clause 5 and its subclauses, Clause 6.1 of ISO 13485, and § 820.10 of this chapter;",
+    "source_title": "21 CFR 4.4 — Current good manufacturing practice requirements for combination products.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(i)",
+    "location": "§ 4.4(b)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-4/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA text places management responsibility in ISO Clause 5 and subclauses."
+   }
+  ],
+  "search_performed": "Searched current Part 820 (ecfr_2026-10-14/part-820.txt) for 'quarter', 'review', 'interval': no management-review provision or frequency. Searched the QMSR final rule text (federal_register/2024-01709.txt) for 'quarterly' (0 hits) and 'management review' (5 hits, none setting a frequency). Read former 820.20(c) in ecfr_2026-01-31/part-820.txt.",
+  "confidence": "Medium",
+  "uncertainty_reason": "The Part 820 side is High confidence; the claim that the incorporated standard specifies no fixed frequency, and the 5.6.1 clause identity, rest on general knowledge of ISO 13485.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm against the controlled ISO 13485:2016 copy that Clause 5.6.1 (Management review — General) requires review at documented planned intervals with no fixed frequency.",
+  "rubric_fairness": "fair — the expected premise correction is right; an answer routing to 820.10(a) + Clause 5.6 should be credited."
+ },
+ {
+  "question_id": "SD-013",
+  "question_interpretation": "Scope test: asserts a Health Canada MDSAP certificate requirement and asks whether FDA requires the same. The platform must flag the Canadian rule as outside Title 21 and answer only the FDA side.",
+  "question_clarity": "out_of_scope",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "outside_scope",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A strong FDA-side answer would add, from the QMSR preamble, that MDSAP participation is voluntary for FDA-regulated manufacturers, that FDA may accept MDSAP audit reports in lieu of routine surveillance inspections, and that FDA does not intend to require ISO 13485 certification and will not accept a certificate as a substitute for inspection. These are preamble/program statements, not codified requirements."
+   }
+  ],
+  "explanation": "Current Part 820 contains no certification requirement (no occurrence of 'certif' in the part). The QMSR preamble states MDSAP participation is voluntary for FDA-regulated device manufacturers and FDA does not intend to require ISO 13485 certification. The Canadian requirement is outside Title 21, so the key's scope flag and FDA-side answer are correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Participation in MDSAP is voluntary for device  manufacturers regulated by FDA.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (preamble, response to Comment 79)",
+    "location": "preamble, Implementation Strategy",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA does not require MDSAP participation/certificates."
+   },
+   {
+    "quote": "As such, FDA does not intend to require medical device  manufacturers to obtain ISO 13485 certification and will not rely on  ISO 13485 certificates to conduct its regulatory oversight of medical  device manufacturers.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (final rule preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (preamble, response to Comment 79)",
+    "location": "preamble, Implementation Strategy",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "No FDA certification requirement."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "§ 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA's requirement is a documented QMS, not third-party certification."
+   }
+  ],
+  "search_performed": "grep -i 'certif' on current Part 820 (ecfr_2026-10-14/part-820.txt): 0 hits. grep for 'MDSAP|single audit|third-party audit' across all cached eCFR parts and U.S. Code files: no device QMS certification requirement (only a Part 1 food third-party certification program reference). Read QMSR preamble Comments 78-80 on MDSAP and certification. The Canadian requirement was not verified because it is outside Title 21.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the expected scope behaviour and FDA-side answer are correct."
+ }
+]

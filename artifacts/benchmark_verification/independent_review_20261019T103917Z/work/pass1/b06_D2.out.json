@@ -1,0 +1,1260 @@
+[
+ {
+  "question_id": "D-015",
+  "question_interpretation": "Asks for the Part 211 requirements on time limits for production phases and on control of microbiological contamination (non-sterile and sterile products).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "211.111 makes time limits conditional ('When appropriate') and expressly allows deviation from established limits if quality is not compromised, provided the deviation is justified and documented. J states 'established time limits for each phase' unconditionally and omits the justify-and-document requirement."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "211.113(b) requires validation of all aseptic AND sterilization processes; J mentions only sterilization processes, and does not state the separate written-procedure requirement for products purporting to be sterile."
+   }
+  ],
+  "explanation": "G (211.111; 211.113) is the correct governing pair. J is accurate as far as it goes but drops the 'when appropriate' condition and the requirement that deviations be justified and documented (211.111), and reduces 211.113(b) to sterilization validation, omitting aseptic process validation. These are affirmative requirements in the cited text, so the key is substantially right but incomplete.",
+  "proposed_corrected_answer": "211.111: when appropriate, time limits for completion of each phase of production must be established to assure drug product quality; deviation is acceptable only if it does not compromise quality and must be justified and documented. 211.113(a): written procedures designed to prevent objectionable microorganisms in drug products not required to be sterile must be established and followed. 211.113(b): written procedures designed to prevent microbiological contamination of drug products purporting to be sterile must be established and followed, including validation of all aseptic and sterilization processes.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "When appropriate, time limits for the completion of each phase of production shall be established to assure the quality of the drug product. Deviation from established time limits may be acceptable if such deviation does not compromise the quality of the drug product. Such deviation shall be justified and documented.",
+    "source_title": "21 CFR 211.111",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.111",
+    "location": "§ 211.111 (sole paragraph)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.111",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Time limits are required 'when appropriate'; deviations allowed only if quality not compromised and must be justified and documented."
+   },
+   {
+    "quote": "(a) Appropriate written procedures, designed to prevent objectionable microorganisms in drug products not required to be sterile, shall be established and followed.",
+    "source_title": "21 CFR 211.113",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.113(a)",
+    "location": "§ 211.113(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.113",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Non-sterile products: written procedures against objectionable microorganisms."
+   },
+   {
+    "quote": "Appropriate written procedures, designed to prevent microbiological contamination of drug products purporting to be sterile, shall be established and followed. Such procedures shall include validation of all aseptic and sterilization processes.",
+    "source_title": "21 CFR 211.113",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.113(b)",
+    "location": "§ 211.113(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.113",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Sterile products: written procedures including validation of aseptic and sterilization processes."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether the omitted qualifications are 'material' is a judgment call; every element J does state is supported.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - a correct, fully cited answer would satisfy J; the key is merely more lenient than the text."
+ },
+ {
+  "question_id": "D-016",
+  "question_interpretation": "Asks for Part 211 requirements for control and issuance of labeling (receipt/examination/storage of labeling materials and issuance/reconciliation).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J omits some further controls in the cited sections: special controls when cut labeling is used (211.122(g)), separate storage with limited access (211.122(d)), destruction of obsolete labeling (211.122(e)) and of excess lot-numbered labeling (211.125(d)), examination of issued labeling against the master/batch record (211.125(b)), investigation of reconciliation discrepancies under 211.192 and the reconciliation waiver for 100% examination (211.125(c)). 211.130 (packaging and labeling operations) is closely related but not required by the question's wording."
+   }
+  ],
+  "explanation": "211.122 and 211.125 are the governing sections for labeling materials control and labeling issuance. Each J element is supported: written procedures for receipt, identification, storage, handling, sampling, examination (211.122(a)); issuance control and reconciliation (211.125(a),(c),(f)); gang-printing prohibited unless adequately differentiated (211.122(f)). Omissions are additional detail rather than errors.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "There shall be written procedures describing in sufficient detail the receipt, identification, storage, handling, sampling, examination, and/or testing of labeling and packaging materials; such written procedures shall be followed.",
+    "source_title": "21 CFR 211.122",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.122(a)",
+    "location": "§ 211.122(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.122",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Written procedures for receipt, identification, storage, handling, sampling, examination."
+   },
+   {
+    "quote": "Use of gang-printed labeling for different drug products, or different strengths or net contents of the same drug product, is prohibited unless the labeling from gang-printed sheets is adequately differentiated by size, shape, or color.",
+    "source_title": "21 CFR 211.122",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.122(f)",
+    "location": "§ 211.122(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.122",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Gang-printing restriction."
+   },
+   {
+    "quote": "Procedures shall be used to reconcile the quantities of labeling issued, used, and returned, and shall require evaluation of discrepancies found between the quantity of drug product finished and the quantity of labeling issued when such discrepancies are outside narrow preset limits based on historical operating data.",
+    "source_title": "21 CFR 211.125",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.125(c)",
+    "location": "§ 211.125(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.125",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Issuance reconciliation."
+   },
+   {
+    "quote": "Strict control shall be exercised over labeling issued for use in drug product labeling operations.",
+    "source_title": "21 CFR 211.125",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.125(a)",
+    "location": "§ 211.125(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.125",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Issuance control."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - correct citations and elements; a fuller answer would still satisfy J."
+ },
+ {
+  "question_id": "D-017",
+  "question_interpretation": "Asks for the Part 211 requirements for drug product inspection (finishing-operation label checks) and expiration dating.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J does not mention the representative-sample visual examination at completion of finishing and recording of results (211.134(b),(c)), the link of expiration dates to labeled storage conditions (211.137(b)), dual expiration information for reconstituted products (211.137(c)), or the exemptions in 211.137(e)-(h) (homeopathic, allergenic extracts 'No U.S. Standard of Potency', investigational drugs, OTC enforcement policy). 'Appearance on labeling' is per 201.17 (211.137(d))."
+   }
+  ],
+  "explanation": "211.134 and 211.137 are the correct sections. Every J element is supported: examination of packaged and labeled products (211.134(a)), expiration date determined by stability testing under 211.166 (211.137(a)), and expiration dates on labeling per 201.17 (211.137(d)). The omitted paragraphs are worth adding but J contains no error.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) Packaged and labeled products shall be examined during finishing operations to provide assurance that containers and packages in the lot have the correct label.",
+    "source_title": "21 CFR 211.134",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.134(a)",
+    "location": "§ 211.134(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.134",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Packaged and labeled product examination."
+   },
+   {
+    "quote": "(b) A representative sample of units shall be collected at the completion of finishing operations and shall be visually examined for correct labeling.",
+    "source_title": "21 CFR 211.134",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.134(b)",
+    "location": "§ 211.134(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.134",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Additional inspection element omitted by J."
+   },
+   {
+    "quote": "it shall bear an expiration date determined by appropriate stability testing described in § 211.166.",
+    "source_title": "21 CFR 211.137",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.137(a)",
+    "location": "§ 211.137(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.137",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Expiration date determined by stability testing."
+   },
+   {
+    "quote": "(d) Expiration dates shall appear on labeling in accordance with the requirements of § 201.17 of this chapter.",
+    "source_title": "21 CFR 211.137",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.137(d)",
+    "location": "§ 211.137(d)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.137",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Appearance on labeling."
+   },
+   {
+    "quote": "(e) Homeopathic drug products shall be exempt from the requirements of this section.",
+    "source_title": "21 CFR 211.137",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.137(e)",
+    "location": "§ 211.137(e)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.137",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Exemptions exist (not in J)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether omission of 211.137(b),(c) and exemptions should be treated as material is a judgment call.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - J is a correct minimum set."
+ },
+ {
+  "question_id": "D-018",
+  "question_interpretation": "Asks for Part 211 Subpart H holding (warehousing) and distribution requirements.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J should note that quarantine is pending release 'by the quality control unit', that storage conditions cover temperature, humidity and light, and that the oldest-approved-stock-first rule permits temporary and appropriate deviation (211.150(a)). Distribution records (211.196, Subpart J) are related but not required by the question."
+   }
+  ],
+  "explanation": "211.142 and 211.150 are the only sections of Subpart H and govern the question. All J elements are supported: written procedures, quarantine before QCU release, appropriate storage conditions, oldest approved stock first, and a lot-distribution system to facilitate recall.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Written procedures describing the warehousing of drug products shall be established and followed. They shall include:",
+    "source_title": "21 CFR 211.142",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.142",
+    "location": "§ 211.142 intro",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.142",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Written warehousing procedures."
+   },
+   {
+    "quote": "(a) Quarantine of drug products before release by the quality control unit.",
+    "source_title": "21 CFR 211.142",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.142(a)",
+    "location": "§ 211.142(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.142",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Quarantine before QCU release."
+   },
+   {
+    "quote": "(b) Storage of drug products under appropriate conditions of temperature, humidity, and light so that the identity, strength, quality, and purity of the drug products are not affected.",
+    "source_title": "21 CFR 211.142",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.142(b)",
+    "location": "§ 211.142(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.142",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Storage conditions."
+   },
+   {
+    "quote": "(a) A procedure whereby the oldest approved stock of a drug product is distributed first. Deviation from this requirement is permitted if such deviation is temporary and appropriate.",
+    "source_title": "21 CFR 211.150",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.150(a)",
+    "location": "§ 211.150(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.150",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Oldest stock first, with deviation allowance."
+   },
+   {
+    "quote": "(b) A system by which the distribution of each lot of drug product can be readily determined to facilitate its recall if necessary.",
+    "source_title": "21 CFR 211.150",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.150(b)",
+    "location": "§ 211.150(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.150",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Recall facilitation."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G and J match the regulation."
+ },
+ {
+  "question_id": "D-019",
+  "question_interpretation": "Asks for the general laboratory control requirements of 21 CFR 211.160.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J could add: specifications etc. are drafted by the appropriate organizational unit and reviewed and approved by the QCU (including changes); requirements must be documented at the time of performance; deviations must be recorded and justified (211.160(a)); and conformity determinations for components, containers, closures, labeling, in-process materials and drug products with representative samples (211.160(b)(1)-(3))."
+   }
+  ],
+  "explanation": "211.160 is the correct section. J's three elements are each supported: scientifically sound and appropriate specifications and test procedures (211.160(b)), QCU review and approval (211.160(a)), and calibration of instruments under a written program (211.160(b)(4)).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "shall be drafted by the appropriate organizational unit and reviewed and approved by the quality control unit.",
+    "source_title": "21 CFR 211.160",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.160(a)",
+    "location": "§ 211.160(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.160",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QCU approval of specifications, test procedures and changes."
+   },
+   {
+    "quote": "Laboratory controls shall include the establishment of scientifically sound and appropriate specifications, standards, sampling plans, and test procedures",
+    "source_title": "21 CFR 211.160",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.160(b)",
+    "location": "§ 211.160(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.160",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Scientifically sound specifications and test procedures."
+   },
+   {
+    "quote": "(4) The calibration of instruments, apparatus, gauges, and recording devices at suitable intervals in accordance with an established written program containing specific directions, schedules, limits for accuracy and precision, and provisions for remedial action in the event accuracy and/or precision limits are not met.",
+    "source_title": "21 CFR 211.160",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.160(b)(4)",
+    "location": "§ 211.160(b)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.160",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Calibration."
+   },
+   {
+    "quote": "Any deviation from the written specifications, standards, sampling plans, test procedures, or other laboratory control mechanisms shall be recorded and justified.",
+    "source_title": "21 CFR 211.160",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.160(a)",
+    "location": "§ 211.160(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.160",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Additional requirement (deviations) for completeness."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G and J match the regulation."
+ },
+ {
+  "question_id": "D-020",
+  "question_interpretation": "Asks what testing and release requirements must be met before a drug product batch is distributed.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The 'release' part of the question is not covered: products failing specifications must be rejected (211.165(f)); acceptance criteria are applied by the QCU 'as a condition for their approval and release' (211.165(d)); and all production and control records must be reviewed and approved by the QCU before a batch is released or distributed (211.192)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits testing of each batch required to be free of objectionable microorganisms (211.165(b)), the short-lived radiopharmaceutical sterility/pyrogen exception (211.165(a)), and special testing (sterility/pyrogen, ophthalmic ointments, controlled release) in 211.167."
+   }
+  ],
+  "explanation": "211.165 is the core section and each J element is supported: identity and strength of each active ingredient (a), written sampling plans (c), statistical quality control criteria (d), and established/documented method accuracy, sensitivity, specificity and reproducibility (e). But the question asks about release before distribution, and J omits the rejection rule (211.165(f)) and the QCU production record review before release (211.192), which a complete answer should surface.",
+  "proposed_corrected_answer": "Before release, each batch must have laboratory determination of conformance to final specifications, including identity and strength of each active ingredient (211.165(a); short-lived radiopharmaceutical sterility/pyrogen exception), microbial testing where required (211.165(b)), written sampling and testing plans (c), QCU acceptance criteria with statistical acceptance/rejection levels as a condition of approval and release (d), established and documented accuracy, sensitivity, specificity and reproducibility of test methods (e), and rejection of products failing specifications (f). Special testing applies to sterile/pyrogen-free, ophthalmic ointment and controlled-release products (211.167). The QCU must review and approve all production and control records before the batch is released or distributed (211.192).",
+  "proposed_sections": "21 CFR 211.165; 211.167; 211.192",
+  "evidence": [
+   {
+    "quote": "For each batch of drug product, there shall be appropriate laboratory determination of satisfactory conformance to final specifications for the drug product, including the identity and strength of each active ingredient, prior to release.",
+    "source_title": "21 CFR 211.165",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.165(a)",
+    "location": "§ 211.165(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.165",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Identity and strength testing before release."
+   },
+   {
+    "quote": "Acceptance criteria for the sampling and testing conducted by the quality control unit shall be adequate to assure that batches of drug products meet each appropriate specification and appropriate statistical quality control criteria as a condition for their approval and release.",
+    "source_title": "21 CFR 211.165",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.165(d)",
+    "location": "§ 211.165(d)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.165",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Statistical criteria; QCU approval and release."
+   },
+   {
+    "quote": "(e) The accuracy, sensitivity, specificity, and reproducibility of test methods employed by the firm shall be established and documented.",
+    "source_title": "21 CFR 211.165",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.165(e)",
+    "location": "§ 211.165(e)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.165",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Method validation."
+   },
+   {
+    "quote": "(f) Drug products failing to meet established standards or specifications and any other relevant quality control criteria shall be rejected.",
+    "source_title": "21 CFR 211.165",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.165(f)",
+    "location": "§ 211.165(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.165",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Rejection requirement omitted by J."
+   },
+   {
+    "quote": "All drug product production and control records, including those for packaging and labeling, shall be reviewed and approved by the quality control unit to determine compliance with all established, approved written procedures before a batch is released or distributed.",
+    "source_title": "21 CFR 211.192",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "§ 211.192 first sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.192",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Release precondition omitted by G/J."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "If the question is read narrowly as the Subpart I laboratory testing requirement only, 211.165 alone would suffice; the explicit 'release ... before distribution' wording supports adding 211.165(f) and 211.192.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - a correct answer satisfies J; however an answer citing 211.192 for release would not be penalised for fabrication, only the key is narrower than the question."
+ },
+ {
+  "question_id": "D-021",
+  "question_interpretation": "Asks what 21 CFR 211.166 (stability testing) requires.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits 211.166(a)(5) (testing of products for reconstitution both at dispensing and after reconstitution), that results are used to determine storage conditions and expiration dates (211.166(a)), and all of 211.166(b): an adequate number of batches tested with records maintained, and accelerated studies usable only for tentative expiration dates while full shelf-life studies are conducted until the date is verified."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "Special rules for homeopathic products (211.166(c)) and exemption for allergenic extracts labeled 'No U.S. Standard of Potency' (211.166(d)) are omitted."
+   }
+  ],
+  "explanation": "211.166 is the correct section and the J elements match 211.166(a)(1)-(4) exactly. But the question asks what the regulation requires as a whole, and J omits reconstitution testing, the adequate-number-of-batches/records requirement and the conditions on accelerated data for tentative expiry in 211.166(b), which are central requirements.",
+  "proposed_corrected_answer": "Written stability testing program, followed, whose results determine storage conditions and expiration dates, including: sample size and test intervals based on statistical criteria; storage conditions for retained samples; reliable, meaningful and specific test methods; testing in the marketed container-closure system; testing of products for reconstitution at dispensing and after reconstitution (211.166(a)). An adequate number of batches must be tested and records kept; accelerated studies may support only tentative expiration dates while full shelf-life studies continue until the date is verified (211.166(b)). Homeopathic products follow 211.166(c); allergenic extracts labeled 'No U.S. Standard of Potency' are exempt (211.166(d)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) There shall be a written testing program designed to assess the stability characteristics of drug products. The results of such stability testing shall be used in determining appropriate storage conditions and expiration dates.",
+    "source_title": "21 CFR 211.166",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.166(a)",
+    "location": "§ 211.166(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.166",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Written program; results determine storage and expiry."
+   },
+   {
+    "quote": "(4) Testing of the drug product in the same container-closure system as that in which the drug product is marketed;",
+    "source_title": "21 CFR 211.166",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.166(a)(4)",
+    "location": "§ 211.166(a)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.166",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Container-closure element in J."
+   },
+   {
+    "quote": "(5) Testing of drug products for reconstitution at the time of dispensing (as directed in the labeling) as well as after they are reconstituted.",
+    "source_title": "21 CFR 211.166",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.166(a)(5)",
+    "location": "§ 211.166(a)(5)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.166",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted element."
+   },
+   {
+    "quote": "(b) An adequate number of batches of each drug product shall be tested to determine an appropriate expiration date and a record of such data shall be maintained.",
+    "source_title": "21 CFR 211.166",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.166(b)",
+    "location": "§ 211.166(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.166",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Materiality of the omissions is a judgment; nothing in J is wrong.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - J is a subset of the regulation; a fuller answer still passes."
+ },
+ {
+  "question_id": "D-022",
+  "question_interpretation": "Asks for the reserve sample requirements of 21 CFR 211.170 for active ingredients and drug products (quantity, retention periods, storage, examination).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "The quantity is at least twice that needed for all required tests EXCEPT sterility and pyrogen testing (211.170(a),(b)); J states 'twice that needed for all required tests' without the exception."
+   },
+   {
+    "type": "wrong_number",
+    "detail": "J says only 'retention periods' without the numbers: active ingredient 1 year after expiration of the last drug product lot containing it; drug product 1 year after its expiration; radioactive products 3 months (dating period 30 days or less) or 6 months (more than 30 days); expiry-exempt OTC products 3 years after distribution."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Visual examination applies to drug product reserve samples (211.170(b)), at least once a year, for representative lots selected statistically, unless it would affect sample integrity; deterioration must be investigated under 211.192 and results recorded with stability data. Drug product samples must be stored under labeled conditions in the same or an equivalent immediate container-closure system."
+   }
+  ],
+  "explanation": "211.170 is correct and J's elements are broadly supported, but J omits the sterility/pyrogen exception to the twice-quantity rule and gives no retention periods even though they are the substance of the regulation. It also omits storage and container-closure requirements and the conditions of the annual visual examination.",
+  "proposed_corrected_answer": "Active ingredients (211.170(a)): an identified, representative reserve sample of each lot in each shipment, at least twice the quantity needed for all specification tests except sterility and pyrogen, retained 1 year after expiry of the last drug product lot containing it (radioactive: 3 months if dating period is 30 days or less, 6 months if more; expiry-exempt OTC: 3 years after distribution of the last lot). Drug products (211.170(b)): an identified, representative reserve sample of each lot or batch, at least twice the quantity for all required tests except sterility and pyrogens, stored under labeled conditions in the marketed (or an equivalent) immediate container-closure; retained 1 year after expiry (radioactive 3/6 months; expiry-exempt OTC 3 years after distribution); samples from statistically selected representative lots examined visually at least once a year unless this would affect integrity, with deterioration investigated under 211.192 and results recorded with stability data.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "The reserve sample consists of at least twice the quantity necessary for all tests required to determine whether the active ingredient meets its established specifications, except for sterility and pyrogen testing.",
+    "source_title": "21 CFR 211.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.170(a)",
+    "location": "§ 211.170(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.170",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Quantity rule with sterility/pyrogen exception (API)."
+   },
+   {
+    "quote": "(1) For an active ingredient in a drug product other than those described in paragraphs (a) (2) and (3) of this section, the reserve sample shall be retained for 1 year after the expiration date of the last lot of the drug product containing the active ingredient.",
+    "source_title": "21 CFR 211.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.170(a)(1)",
+    "location": "§ 211.170(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.170",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "API retention period."
+   },
+   {
+    "quote": "The reserve sample consists of at least twice the quantity necessary to perform all the required tests, except those for sterility and pyrogens.",
+    "source_title": "21 CFR 211.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.170(b)",
+    "location": "§ 211.170(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.170",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Quantity rule with exception (drug product)."
+   },
+   {
+    "quote": "reserve samples from representative sample lots or batches selected by acceptable statistical procedures shall be examined visually at least once a year for evidence of deterioration unless visual examination would affect the integrity of the reserve sample.",
+    "source_title": "21 CFR 211.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.170(b)",
+    "location": "§ 211.170(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.170",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Visual examination scope and frequency."
+   },
+   {
+    "quote": "(1) For a drug product other than those described in paragraphs (b) (2) and (3) of this section, the reserve sample shall be retained for 1 year after the expiration date of the drug product.",
+    "source_title": "21 CFR 211.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.170(b)(1)",
+    "location": "§ 211.170(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.170",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Drug product retention period."
+   },
+   {
+    "quote": "(3) For an OTC drug product that is exempt for bearing an expiration date under § 211.137, the reserve sample must be retained for 3 years after the lot or batch of drug product is distributed.",
+    "source_title": "21 CFR 211.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.170(b)(3)",
+    "location": "§ 211.170(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.170",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "OTC exception."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - but J is too vague on retention periods to tell a correct answer from one with wrong numbers."
+ },
+ {
+  "question_id": "D-023",
+  "question_interpretation": "For an OOS HPLC assay result, asks what Part 211 requires (binding) and what the Barr Laboratories decision (US v. Barr Labs, D.N.J. 1993) and the FDA OOS framework add (case law and nonbinding guidance).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "mandatory_vs_guidance",
+    "detail": "J lists 'Phase I laboratory investigation and Phase II full-scale investigation; no invalidation without assignable cause' alongside the 211.192 elements with no indication that they come from FDA's nonbinding OOS guidance (Revision 1, May 2022) and a 1993 district-court opinion, not from Part 211. The question asks for exactly this split, so the key should label the source of each element."
+   },
+   {
+    "type": "unsupported_element",
+    "detail": "The 'Phase I / Phase II' terminology is FDA guidance terminology (guidance sections III and IV); the guidance cites the Barr opinion only for the point that outlier testing should not be used to invalidate chemical assays. Calling Phase I/II the 'Barr decision framework' is a common industry shorthand, not something the guidance or Part 211 states. Whether the opinion itself used a two-phase structure could not be checked against the opinion text."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits the guidance/Barr limits on testing into compliance: retests must be predefined in an SOP with a set maximum number, resampling only under predetermined procedures, no averaging that hides an OOS individual result, and no outlier tests to invalidate chemical assays. It also omits related binding provisions the guidance relies on: 211.165(f) (reject batches failing specifications), 211.194 (complete data from all tests kept), and 211.160(a) (deviations recorded and justified)."
+   }
+  ],
+  "explanation": "211.192 is correctly identified as the binding source of the investigation duty (thorough investigation, extension to other batches and products, written record with conclusions and follow-up), and 211.160(b) is a reasonable second citation. The answer elements labelled as the 'Barr framework' are substantively consistent with FDA's OOS guidance (Phase I lab investigation; Phase II full-scale; invalidation only with a documented test event that caused the result), but J does not mark them as nonbinding guidance or case law. It also omits the retest, averaging and outlier limits that are the core of what Barr added. A court decision and guidance are not regulations, and a model that presented the phases as Part 211 requirements would score full marks under this key.",
+  "proposed_corrected_answer": "Binding (Part 211): an OOS result must be thoroughly investigated whether or not the batch is distributed; the investigation extends to other batches and products that may be associated; and a written record with conclusions and follow-up is required (211.192). Laboratory controls must be scientifically sound (211.160(b)) and deviations recorded and justified (211.160(a)). Batches failing specifications must be rejected (211.165(f)), and complete data from all tests must be retained (211.194). Nonbinding (FDA OOS guidance, Rev. 1, May 2022, drawing on United States v. Barr Laboratories, D.N.J. 1993): Phase I laboratory investigation (analyst/supervisor assessment of data accuracy); if no laboratory error is found, a Phase II full-scale investigation (production review plus additional lab testing under predefined procedures). A result may be invalidated only on the observation and documentation of a test event that can reasonably be determined to have caused the OOS result. No 'testing into compliance': the maximum number of retests is specified in advance in an SOP, averaging must not hide an OOS individual result, and outlier tests should not be used to invalidate chemical assays (Barr). A confirmed OOS result leads to rejection and a batch-failure investigation extended to other batches.",
+  "proposed_sections": "21 CFR 211.192; 211.160(a),(b); 211.165(f); 211.194 (plus FDA OOS guidance Rev. 1, May 2022, and US v. Barr Laboratories, 812 F. Supp. 458 (D.N.J. 1993), labelled nonbinding / case law)",
+  "evidence": [
+   {
+    "quote": "Any unexplained discrepancy (including a percentage of theoretical yield exceeding the maximum or minimum percentages established in master production and control records) or the failure of a batch or any of its components to meet any of its specifications shall be thoroughly investigated, whether or not the batch has already been distributed.",
+    "source_title": "21 CFR 211.192",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "§ 211.192 second sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.192",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Binding duty to investigate a specification failure."
+   },
+   {
+    "quote": "The investigation shall extend to other batches of the same drug product and other drug products that may have been associated with the specific failure or discrepancy. A written record of the investigation shall be made and shall include the conclusions and followup.",
+    "source_title": "21 CFR 211.192",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "§ 211.192 third and fourth sentences",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.192",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Extension to other batches; written record with conclusions and follow-up."
+   },
+   {
+    "quote": "(f) Drug products failing to meet established standards or specifications and any other relevant quality control criteria shall be rejected.",
+    "source_title": "21 CFR 211.165",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.165(f)",
+    "location": "§ 211.165(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.165",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Binding rejection requirement relevant to confirmed OOS."
+   },
+   {
+    "quote": "(a) Laboratory records shall include complete data derived from all tests necessary to assure compliance with established specifications and standards, including examinations and assays, as follows:",
+    "source_title": "21 CFR 211.194",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.194(a)",
+    "location": "§ 211.194(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.194",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "All data, including OOS results, must be recorded."
+   },
+   {
+    "quote": "This guidance represents the current thinking of the Food and Drug Administration ( FDA or Agency ) on this topic. It does not establish any rights for any person and is not binding on FDA or the public.",
+    "source_title": "FDA Guidance for Industry: Investigating Out-of-Specification (OOS) Test Results for Pharmaceutical Production, Revision 1 (May 2022)",
+    "issuing_authority": "FDA",
+    "identifier": "FDA OOS Guidance Rev. 1 (May 2022), disclaimer",
+    "location": "page 1",
+    "url": "https://www.fda.gov/media/158416/download",
+    "local_source_file": "",
+    "date": "May 2022 (Revision 1; FDA page labels it 'Level 2 revision', final)",
+    "check_level": "webfetch",
+    "supports": "Guidance is nonbinding."
+   },
+   {
+    "quote": "IV. INVESTIGATING OOS TEST RESULTS — PHASE II: FULL- SCALE OOS INVESTIGATION When the initial assessment does not determine that laboratory error cau sed the OOS result and testing results appear to be accurate, a full - scale OOS investigation using a predefined procedure should be conducted.",
+    "source_title": "FDA Guidance for Industry: Investigating Out-of-Specification (OOS) Test Results for Pharmaceutical Production, Revision 1 (May 2022)",
+    "issuing_authority": "FDA",
+    "identifier": "FDA OOS Guidance Rev. 1, section IV",
+    "location": "section IV (p. 6)",
+    "url": "https://www.fda.gov/media/158416/download",
+    "local_source_file": "",
+    "date": "May 2022 (Revision 1; FDA page labels it 'Level 2 revision', final)",
+    "check_level": "webfetch",
+    "supports": "Phase I/Phase II structure comes from the guidance ('should'); headings at sections III and IV. Text extracted from the FDA PDF; spacing artefacts from extraction."
+   },
+   {
+    "quote": "Invalidation of a discrete test result may be done only upon the observation and documentation of a test event that can reasonably be determined to have caused the OOS result.",
+    "source_title": "FDA Guidance for Industry: Investigating Out-of-Specification (OOS) Test Results for Pharmaceutical Production, Revision 1 (May 2022)",
+    "issuing_authority": "FDA",
+    "identifier": "FDA OOS Guidance Rev. 1, section V",
+    "location": "section V (Concluding the Investigation)",
+    "url": "https://www.fda.gov/media/158416/download",
+    "local_source_file": "",
+    "date": "May 2022 (Revision 1; FDA page labels it 'Level 2 revision', final)",
+    "check_level": "webfetch",
+    "supports": "Guidance basis for 'no invalidation without assignable cause'."
+   },
+   {
+    "quote": "Outlier testing should not be used to invalidate chemical assays. See United States District Court for the District of New Jersey, U.S.A. v. Barr Laboratories, Inc., et al. Civil Action Number 92 - 1744, OPINION, February 4, 1993.",
+    "source_title": "FDA Guidance for Industry: Investigating Out-of-Specification (OOS) Test Results for Pharmaceutical Production, Revision 1 (May 2022)",
+    "issuing_authority": "FDA",
+    "identifier": "FDA OOS Guidance Rev. 1, footnote 15",
+    "location": "footnote 15 (p. 11)",
+    "url": "https://www.fda.gov/media/158416/download",
+    "local_source_file": "",
+    "date": "May 2022 (Revision 1; FDA page labels it 'Level 2 revision', final)",
+    "check_level": "webfetch",
+    "supports": "The guidance cites Barr for the outlier-test limitation; it does not attribute Phase I/II to Barr."
+   },
+   {
+    "quote": "FDA inspections have revealed that some firms use a strategy of repeated testing until a passing result is obtain ed, then disregarding the OOS results without scientific justification. This practice of “testing into compliance” is unscientific and objectionable under CGMP .",
+    "source_title": "FDA Guidance for Industry: Investigating Out-of-Specification (OOS) Test Results for Pharmaceutical Production, Revision 1 (May 2022)",
+    "issuing_authority": "FDA",
+    "identifier": "FDA OOS Guidance Rev. 1, section IV.B.1",
+    "location": "section IV.B.1 Retesting",
+    "url": "https://www.fda.gov/media/158416/download",
+    "local_source_file": "",
+    "date": "May 2022 (Revision 1; FDA page labels it 'Level 2 revision', final)",
+    "check_level": "webfetch",
+    "supports": "Retesting limits omitted by J."
+   }
+  ],
+  "search_performed": "Read 21 CFR 211.160, 211.165, 211.192, 211.194 in the cached eCFR. Retrieved the FDA OOS guidance PDF (fda.gov/media/158416/download, Revision 1, May 2022, CDER, docket FDA-1998-D-0019; the FDA landing page labels it 'Level 2 revision', final) via WebFetch and extracted the text locally; searched it for 'Barr', 'Phase I/II', 'invalidat', 'averag', 'outlier', '211.'. The Barr opinion itself (812 F. Supp. 458) was not retrieved.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Guidance quotes are from a WebFetch-downloaded PDF (not machine-verifiable). The Barr opinion text was not read, so attributing specific holdings to it rests on the guidance's footnote plus general knowledge.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm how the benchmark should characterise the Barr opinion's holdings (retesting, averaging, outliers, formal failure investigation) against the opinion text, and whether J should require explicit binding vs nonbinding labelling.",
+  "rubric_fairness": "unfair - J does not separate binding and nonbinding sources, so an answer that wrongly presents guidance phases as Part 211 requirements scores the same as a correctly labelled answer, and J misses the core Barr limits on retesting, averaging and outliers."
+ },
+ {
+  "question_id": "D-024",
+  "question_interpretation": "Asks for the general records and reports requirements of 21 CFR 211.180 (retention, availability, form of records, annual review, management notification).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "Retention is at least 1 year after the batch expiration date, but for OTC products exempt from expiration dating under 211.137 it is 3 years after distribution (211.180(a),(b)). J gives only the 1-year rule. Component, container, closure and labeling records follow the same rule keyed to the last lot (211.180(b))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits 211.180(d) (originals or true copies; reader/copy equipment) and 211.180(f) (procedures to notify responsible officials in writing of investigations under 211.198/204/208, recalls, FDA inspectional observations and regulatory actions). It also omits the required content of the annual evaluation procedures (representative batches; complaints, recalls, returned or salvaged products, 211.192 investigations) (211.180(e)(1),(2)). 'Record system' is vague and not a term the regulation uses."
+   }
+  ],
+  "explanation": "211.180 is the correct section and the J elements are broadly supported: 1-year post-expiration retention, records readily available for inspection (211.180(c)), and at-least-annual product quality evaluation (211.180(e)). But J omits the 3-year alternative for expiry-exempt OTC products and the management-notification requirement of 211.180(f), both material parts of the general requirements.",
+  "proposed_corrected_answer": "Batch-associated production, control and distribution records are kept at least 1 year after batch expiration (3 years after distribution for expiry-exempt OTC products) (a). Component, container, closure and labeling records follow the same rule, keyed to the last lot using them (b). All records are readily available for authorized inspection at the establishment during retention; electronic retrieval from another location is acceptable (c). Originals or true copies are permitted (d). Written procedures cover an at-least-annual evaluation of each product's quality standards, reviewing representative batches and complaints, recalls, returned or salvaged products and 211.192 investigations (e). Procedures must ensure responsible officials are notified in writing of investigations under 211.198/204/208, recalls, FDA inspectional observations and regulatory actions (f).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "shall be retained for at least 1 year after the expiration date of the batch or, in the case of certain OTC drug products lacking expiration dating because they meet the criteria for exemption under § 211.137, 3 years after distribution of the batch.",
+    "source_title": "21 CFR 211.180",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.180(a)",
+    "location": "§ 211.180(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.180",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention, including OTC 3-year alternative."
+   },
+   {
+    "quote": "All records required under this part, or copies of such records, shall be readily available for authorized inspection during the retention period at the establishment where the activities described in such records occurred.",
+    "source_title": "21 CFR 211.180",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.180(c)",
+    "location": "§ 211.180(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.180",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Availability for inspection."
+   },
+   {
+    "quote": "Written records required by this part shall be maintained so that data therein can be used for evaluating, at least annually, the quality standards of each drug product to determine the need for changes in drug product specifications or manufacturing or control procedures.",
+    "source_title": "21 CFR 211.180",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.180(e)",
+    "location": "§ 211.180(e)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.180",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Annual product review."
+   },
+   {
+    "quote": "Procedures shall be established to assure that the responsible officials of the firm, if they are not personally involved in or immediately aware of such actions, are notified in writing of any investigations conducted under §§ 211.198, 211.204, or 211.208 of these regulations, any recalls, reports of inspectional observations issued by the Food and Drug Administration, or any regulatory actions relating to good manufacturing practices brought by the Food and Drug Administration.",
+    "source_title": "21 CFR 211.180",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.180(f)",
+    "location": "§ 211.180(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.180",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted management-notification requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "The judgment that the omissions are material is reviewer opinion; nothing J states is wrong.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - J's elements are correct; an answer stating only the 1-year rule would not be penalised for omitting the OTC alternative."
+ },
+ {
+  "question_id": "D-025",
+  "question_interpretation": "Asks how the master production and control record (211.186) differs from the batch production and control record (211.188).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A complete answer would add that master records exist for each drug product and each batch size, are signed with a full handwritten signature by the preparer and independently checked, dated and signed by a second person, under a written procedure. Batch records are prepared for each batch, and their reproduction of the master must be checked for accuracy, dated and signed, with documentation of each significant step (211.188(a),(b)(1)-(13))."
+   }
+  ],
+  "explanation": "211.186 and 211.188 are the governing sections. J correctly captures the distinction: the master record is the approved template with defined content and independent second-person check (211.186(a),(b)), and the batch record is an accurate reproduction of the master plus documentation of actual execution of each significant step (211.188(a),(b)).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "To assure uniformity from batch to batch, master production and control records for each drug product, including each batch size thereof, shall be prepared, dated, and signed (full signature, handwritten) by one person and independently checked, dated, and signed by a second person.",
+    "source_title": "21 CFR 211.186",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.186(a)",
+    "location": "§ 211.186(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.186",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Master record and independent verification."
+   },
+   {
+    "quote": "Batch production and control records shall be prepared for each batch of drug product produced and shall include complete information relating to the production and control of each batch.",
+    "source_title": "21 CFR 211.188",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.188",
+    "location": "§ 211.188 intro",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.188",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Batch record per batch."
+   },
+   {
+    "quote": "(a) An accurate reproduction of the appropriate master production or control record, checked for accuracy, dated, and signed;",
+    "source_title": "21 CFR 211.188",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.188(a)",
+    "location": "§ 211.188(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.188",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Batch record reproduces the master."
+   },
+   {
+    "quote": "(b) Documentation that each significant step in the manufacture, processing, packing, or holding of the batch was accomplished, including:",
+    "source_title": "21 CFR 211.188",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.188(b)",
+    "location": "§ 211.188(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.188",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Actual execution documentation."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G and J match the regulation."
+ },
+ {
+  "question_id": "D-026",
+  "question_interpretation": "Asks what the production record review under 211.192 must cover and who performs it.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "'What must the review include' is answered only partially: J omits that the review covers ALL drug product production and control records including packaging and labeling records, and that its purpose is to determine compliance with all established, approved written procedures."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits that unexplained discrepancies include yield outside the master record's maximum/minimum percentages, that investigation is required whether or not the batch has already been distributed, that the investigation extends to other batches and other associated drug products, and that a written record with conclusions and follow-up is required."
+   }
+  ],
+  "explanation": "211.192 is correct and J correctly names the quality control unit as reviewer, with approval before release and investigation of unexplained discrepancies or failures. But the question asks what the review must include, and J leaves out the scope (all production and control records incl. packaging and labeling, checked against approved procedures) and the investigation's mandatory extension and written record. 211.22(a) (QCU authority to review production records) is a supporting citation.",
+  "proposed_corrected_answer": "The quality control unit must review and approve all drug product production and control records, including packaging and labeling records, to determine compliance with all established, approved written procedures before a batch is released or distributed. Any unexplained discrepancy (including theoretical yield outside the master record's limits) or failure of a batch or component to meet specifications must be thoroughly investigated, whether or not the batch has been distributed; the investigation extends to other batches and other drug products that may be associated; and a written record including conclusions and follow-up is required (211.192; QCU authority in 211.22(a)).",
+  "proposed_sections": "21 CFR 211.192 (supporting: 211.22(a))",
+  "evidence": [
+   {
+    "quote": "All drug product production and control records, including those for packaging and labeling, shall be reviewed and approved by the quality control unit to determine compliance with all established, approved written procedures before a batch is released or distributed.",
+    "source_title": "21 CFR 211.192",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "§ 211.192 first sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.192",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Who (QCU), scope and timing of the review."
+   },
+   {
+    "quote": "The investigation shall extend to other batches of the same drug product and other drug products that may have been associated with the specific failure or discrepancy. A written record of the investigation shall be made and shall include the conclusions and followup.",
+    "source_title": "21 CFR 211.192",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "§ 211.192 third and fourth sentences",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.192",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted investigation requirements."
+   },
+   {
+    "quote": "the authority to review production records to assure that no errors have occurred or, if errors have occurred, that they have been fully investigated.",
+    "source_title": "21 CFR 211.22",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.22(a)",
+    "location": "§ 211.22(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.22",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QCU authority over production record review."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Nothing in J is wrong; the partial status rests on the question explicitly asking what the review must include.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - J's elements are correct; a complete answer passes."
+ },
+ {
+  "question_id": "D-027",
+  "question_interpretation": "Asks for the complaint file requirements of 21 CFR 211.198: written procedures, QCU review, adverse-experience reportability review, record content, location and retention.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_citation",
+    "detail": "J says the procedures must determine 'whether a report under Part 310 or 314 is required'. 211.198(a) actually requires review of whether the complaint is a serious and unexpected adverse drug experience reportable 'in accordance with §§ 310.305 and 514.80' (Part 514 = new animal drugs), not Part 314. 314.80/314.81 impose separate reporting duties on application holders, but 211.198 does not reference them."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "QCU review is required for complaints 'involving the possible failure of a drug product to meet any of its specifications', with a determination of whether a 211.192 investigation is needed. J states QCU review without that scope."
+   },
+   {
+    "type": "wrong_number",
+    "detail": "J says only 'record contents and retention'. Retention is at least 1 year after the drug product's expiration date or 1 year after the complaint was received, whichever is longer; for expiry-exempt OTC products, 3 years after distribution (211.198(b)). Required content is the product name and strength, lot number, complainant name, nature of complaint and reply, plus investigation findings and follow-up, or the reason no investigation was needed and who decided (211.198(b)(1)-(3)). The file location rule is also omitted."
+   }
+  ],
+  "explanation": "211.198 is the correct section, but J misstates the adverse-experience cross-reference: the regulation names 310.305 and 514.80, not Part 314. That is a demonstrable citation error inside the answer key. A model answer that correctly quotes '310.305 and 514.80' would not match J's 'Part 310 or 314'. J also leaves the retention period and record contents unspecified and drops the condition on QCU review.",
+  "proposed_corrected_answer": "Written procedures for handling all written and oral complaints, established and followed, including: QCU review of any complaint involving possible failure to meet specifications and a determination of whether a 211.192 investigation is needed; and review of whether the complaint is a serious and unexpected adverse drug experience reportable under 21 CFR 310.305 (and 514.80 for animal drugs) (211.198(a)). A written record of each complaint is kept in a designated complaint file at the manufacturing/processing/packing establishment, or elsewhere if readily available for inspection. Records are kept at least 1 year after the product's expiration date or 1 year after receipt of the complaint, whichever is longer, or 3 years after distribution for expiry-exempt OTC products. The record includes, where known, name and strength, lot number, complainant, nature of complaint and reply; investigation findings and follow-up; or, where no investigation was done, the reason and the responsible person (211.198(b)). (Application holders separately review and report adverse experiences under 314.80; that duty is not part of 211.198.)",
+  "proposed_sections": "21 CFR 211.198 (cross-references 310.305 and 514.80; 211.192)",
+  "evidence": [
+   {
+    "quote": "Such procedures shall include provisions for review to determine whether the complaint represents a serious and unexpected adverse drug experience which is required to be reported to the Food and Drug Administration in accordance with §§ 310.305 and 514.80 of this chapter.",
+    "source_title": "21 CFR 211.198",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.198(a)",
+    "location": "§ 211.198(a) third sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.198",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Cross-reference is to 310.305 and 514.80, not Part 314."
+   },
+   {
+    "quote": "Such procedures shall include provisions for review by the quality control unit, of any complaint involving the possible failure of a drug product to meet any of its specifications and, for such drug products, a determination as to the need for an investigation in accordance with § 211.192.",
+    "source_title": "21 CFR 211.198",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.198(a)",
+    "location": "§ 211.198(a) second sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.198",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Scope of QCU review."
+   },
+   {
+    "quote": "Written records involving a drug product shall be maintained until at least 1 year after the expiration date of the drug product, or 1 year after the date that the complaint was received, whichever is longer.",
+    "source_title": "21 CFR 211.198",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.198(b)",
+    "location": "§ 211.198(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.198",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention period."
+   },
+   {
+    "quote": "(1) The written record shall include the following information, where known: the name and strength of the drug product, lot number, name of complainant, nature of complaint, and reply to complainant.",
+    "source_title": "21 CFR 211.198",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.198(b)(1)",
+    "location": "§ 211.198(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.198",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Record contents."
+   },
+   {
+    "quote": "§ 514.80 Records and reports concerning experience with approved new animal drugs.",
+    "source_title": "21 CFR 514.80",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 514.80",
+    "location": "§ 514.80 heading",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-E/part-514/section-514.80",
+    "local_source_file": "ecfr_2026-10-14/part-514.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "514.80 is the animal-drug experience reporting section referenced by 211.198(a)."
+   },
+   {
+    "quote": "(2) Manufacturers and packers may retain the records required in paragraph (f)(1) of this section as part of its complaint files maintained under § 211.198 of this chapter.",
+    "source_title": "21 CFR 310.305",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 310.305(f)(2)",
+    "location": "§ 310.305(f)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-310/section-310.305",
+    "local_source_file": "ecfr_2026-10-14/part-310.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Link between 310.305 and the 211.198 complaint file."
+   }
+  ],
+  "search_performed": "Read 211.198 in full; searched part-314.txt for '211.198' and 'complaint' (no cross-reference to 211.198; only a public-disclosure reference to consumer complaints in 314.430); read the 310.305 and 314.80 headings; fetched Part 514 (eCFR 2026-10-14) into the cache with the protocol's fetch_ecfr.py to confirm 514.80.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - J's 'Part 310 or 314' does not match the regulation; an answer quoting the actual cross-reference (310.305 and 514.80) could be marked down, and one inventing a 211.198 link to Part 314 would be rewarded."
+ },
+ {
+  "question_id": "D-028",
+  "question_interpretation": "Asks for the Part 211 Subpart K requirements for returned drug products (211.204) and drug product salvaging (211.208).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "Destruction under 211.204 is required only where the holding, storage or shipping conditions, or the condition of the product or its container, carton or labeling, cast doubt on its safety, identity, strength, quality or purity. Even then destruction is avoided if examination, testing or other investigations prove the product meets standards. J ('destruction unless testing supports suitability') drops the triggering condition, and 211.204 also permits reprocessing."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits for returned products: required records (name and label potency, lot number, reason for return, quantity, date and ultimate disposition); a 211.192 investigation when the reason for return implicates associated batches; and written, followed procedures for holding, testing and reprocessing. For salvage: products subjected to improper storage conditions from disasters, fires, accidents or equipment failures must not be salvaged. Where that is in question, salvage needs BOTH laboratory evidence of meeting standards AND premises-inspection evidence, and organoleptic exams are only supplemental."
+   }
+  ],
+  "explanation": "211.204 and 211.208 are the correct sections and J is broadly consistent with them. But J overstates the destruction rule by dropping its 'casts doubt' trigger, omits reprocessing, return records, associated-batch investigation and written procedures, and reduces 211.208's two-part evidentiary test to 'specified conditions'.",
+  "proposed_corrected_answer": "Returned products (211.204): identify as returned and hold. If holding, storage or shipping conditions, or the product, container, carton or labeling condition, cast doubt on safety, identity, strength, quality or purity, destroy the product unless examination, testing or other investigations prove it meets appropriate standards; reprocessing is allowed if the resulting product meets standards. Records must cover name and label potency, lot number, reason for return, quantity, disposition date and ultimate disposition. A 211.192 investigation is required if the reason for return implicates associated batches. Written procedures for holding, testing and reprocessing must be followed. Salvage (211.208): products subjected to improper storage conditions (temperature, humidity, smoke, fumes, pressure, age, radiation) from natural disasters, fires, accidents or equipment failures must not be salvaged and returned to market. Where that is in question, salvage is allowed only with (a) laboratory evidence that standards are met and (b) premises-inspection evidence that the products and packaging were not exposed. Organoleptic examination is supplemental only. Records of name, lot number and disposition must be kept.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Returned drug products shall be identified as such and held.",
+    "source_title": "21 CFR 211.204",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.204",
+    "location": "§ 211.204 first sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.204",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Identification and holding."
+   },
+   {
+    "quote": "the returned drug product shall be destroyed unless examination, testing, or other investigations prove the drug product meets appropriate standards of safety, identity, strength, quality, or purity.",
+    "source_title": "21 CFR 211.204",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.204",
+    "location": "§ 211.204 second sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.204",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Destruction rule (conditional on doubt, see sentence start)."
+   },
+   {
+    "quote": "If the reason for a drug product being returned implicates associated batches, an appropriate investigation shall be conducted in accordance with the requirements of § 211.192. Procedures for the holding, testing, and reprocessing of returned drug products shall be in writing and shall be followed.",
+    "source_title": "21 CFR 211.204",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.204",
+    "location": "§ 211.204 final sentences",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.204",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted investigation and written-procedure requirements."
+   },
+   {
+    "quote": "Whenever there is a question whether drug products have been subjected to such conditions, salvaging operations may be conducted only if there is (a) evidence from laboratory tests and assays (including animal feeding studies where applicable) that the drug products meet all applicable standards of identity, strength, quality, and purity and (b) evidence from inspection of the premises that the drug products and their associated packaging were not subjected to improper storage conditions as a result of the disaster or accident.",
+    "source_title": "21 CFR 211.208",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.208",
+    "location": "§ 211.208",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.208",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Two-part salvage condition."
+   },
+   {
+    "quote": "Records including name, lot number, and disposition shall be maintained for drug products subject to this section.",
+    "source_title": "21 CFR 211.208",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.208",
+    "location": "§ 211.208 last sentence",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.208",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Salvage records."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "J's terse wording could be read charitably; the status rests on the omitted 'casts doubt' trigger and the omitted returned-product records and procedures.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - a correct answer satisfies J, though J would not catch an answer that requires destruction of every returned product."
+ }
+]

@@ -1,0 +1,1104 @@
+[
+  {
+    "question_id": "S-001",
+    "question_interpretation": "Who is covered by the Part 111 dietary supplement CGMP rule (scope/applicability), including any exclusion.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J omits the two express inclusions in 111.1(a): (1) a dietary supplement you manufacture that is packaged or labeled by another person, and (2) dietary supplements imported or offered for import into any State/territory, DC or Puerto Rico."
+      },
+      {
+        "type": "missing_exception",
+        "detail": "J's 'excludes certain retailers/holders' overstates and blurs 111.1(b): the exclusion covers only the requirements pertaining to HOLDING, only for holding at a retail establishment for the sole purpose of direct retail sale to individual consumers, and a retail establishment expressly does not include a warehouse or other storage facility for a retailer or one that sells directly to consumers. Retailers are not excluded from the part as a whole."
+      },
+      {
+        "type": "precision",
+        "detail": "'includes those who hold for distribution' is not text of 111.1; holding is covered generally by 111.1(a) ('hold a dietary supplement'). Harmless but not a distinct element."
+      }
+    ],
+    "explanation": "111.1 is the governing section and the core of J (manufacture, package, label or hold) is correct. However J omits the 111.1(a)(1)-(2) inclusions (contract-packaged/labeled product; imports) and describes the 111.1(b) exclusion too loosely: it exempts only holding requirements for retail-establishment holding for direct retail sale, and warehouses are carved back in. A key this vague would credit an answer that says retailers are outside Part 111 altogether.",
+    "proposed_corrected_answer": "You are subject to Part 111 if you manufacture, package, label, or hold a dietary supplement, including (1) a dietary supplement you manufacture but that is packaged or labeled by another person and (2) a dietary supplement imported or offered for import into any State or territory, DC or Puerto Rico (111.1(a)). Exception (111.1(b)): the requirements pertaining to holding do not apply to holding at a retail establishment for the sole purpose of direct retail sale to individual consumers; a retail establishment does not include a warehouse or other storage facility for a retailer or one that sells directly to individual consumers.",
+    "proposed_sections": "21 CFR 111.1(a)(1)-(2), (b)",
+    "evidence": [
+      {
+        "quote": "you are subject to this part if you manufacture, package, label, or hold a dietary supplement, including:",
+        "source_title": "21 CFR 111.1 — Who is subject to this part?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.1(a)",
+        "location": "§ 111.1(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.1",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Core applicability."
+      },
+      {
+        "quote": "(1) A dietary supplement you manufacture but that is packaged or labeled by another person; and (2) A dietary supplement imported or offered for import in any State or territory of the United States, the District of Columbia, or the Commonwealth of Puerto Rico.",
+        "source_title": "21 CFR 111.1 — Who is subject to this part?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.1(a)(1)-(2)",
+        "location": "§ 111.1(a)(1)-(2)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.1",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Express inclusions omitted from J."
+      },
+      {
+        "quote": "The requirements pertaining to holding dietary supplements do not apply to you if you are holding those dietary supplements at a retail establishment for the sole purpose of direct retail sale to individual consumers. A retail establishment does not include a warehouse or other storage facility for a retailer or a warehouse or other storage facility that sells directly to individual consumers.",
+        "source_title": "21 CFR 111.1 — Who is subject to this part?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.1(b)",
+        "location": "§ 111.1(b)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.1",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Exclusion is limited to holding requirements and carves warehouses back in."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — a correct answer citing 111.1 would score correctly; the vague exclusion element risks crediting an over-broad retailer exemption."
+  },
+  {
+    "question_id": "S-002",
+    "question_interpretation": "Where Part 111 definitions are located and whether Part 111 adopts definitions from another source.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_INCORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "incorrect",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "unsupported_element",
+        "detail": "J says Part 111 'also incorporates FD&C Act and Part 1 definitions by reference'. 111.3 incorporates only the definitions and interpretations of terms in section 201 of the FD&C Act. Nothing in Part 111 incorporates 21 CFR Part 1 definitions; the only Part 1 reference (111.5) points importers to the FSVP regulation in subpart L of part 1, which is a substantive-compliance pointer, not a definitions incorporation."
+      },
+      {
+        "type": "precision",
+        "detail": "'FD&C Act' should be narrowed to section 201 of the FD&C Act (21 U.S.C. 321)."
+      }
+    ],
+    "explanation": "111.3 is the right section and does incorporate FD&C Act section 201 definitions. The key's claim that Part 1 definitions are incorporated is not supported anywhere in Part 111, so a model that correctly says only section 201 is incorporated could be marked incomplete, and a model that repeats the Part 1 claim would be rewarded for a fabrication.",
+    "proposed_corrected_answer": "Definitions are in 21 CFR 111.3. It states that the definitions and interpretations of terms in section 201 of the FD&C Act apply to such terms when used in Part 111, and then sets out additional Part 111 definitions (e.g., batch, component, contact surface, quality control personnel, representative sample, reserve sample, you). Part 111 does not incorporate 21 CFR Part 1 definitions; 111.5 separately requires compliance with other applicable statutes/regulations and points importers to FSVP in 21 CFR part 1 subpart L.",
+    "proposed_sections": "21 CFR 111.3",
+    "evidence": [
+      {
+        "quote": "The definitions and interpretations of terms in section 201 of the Federal Food, Drug, and Cosmetic Act (the act) apply to such terms when used in this part. For the purpose of this part, the following definitions also apply:",
+        "source_title": "21 CFR 111.3 — What definitions apply to this part?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.3",
+        "location": "§ 111.3",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.3",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "The only incorporation by reference is FD&C Act section 201."
+      },
+      {
+        "quote": "For importers of dietary supplements and dietary supplement components, the regulation on foreign supplier verification programs can be found in subpart L of part 1 of this chapter.",
+        "source_title": "21 CFR 111.5 — Do other statutory provisions and regulations apply?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.5",
+        "location": "§ 111.5",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.5",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Only mention of Part 1 in Part 111 — not a definitions incorporation."
+      }
+    ],
+    "search_performed": "grep -n -i for 'part 1', 'definition' across ecfr_2026-10-14/part-111.txt: the only Part 1 reference is 111.5 (FSVP, subpart L of part 1); 'definition(s)' appears only in 111.3.",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — the Part 1 element would penalize a correct answer and reward a fabricated incorporation."
+  },
+  {
+    "question_id": "S-003",
+    "question_interpretation": "What personnel qualification requirements Part 111 Subpart B (Personnel) imposes.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J includes 'supervisor requirements', which are in 111.13 (assign qualified supervisors; supervisors qualified by education, training, or experience), not 111.12. G cites only 111.12, so an answer correctly citing 111.13 for the supervisor element is not covered by the key citation."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J omits 111.12(b): you must identify who is responsible for quality control operations; each person identified to perform QC operations must be qualified and have distinct and separate responsibilities for those operations."
+      },
+      {
+        "type": "precision",
+        "detail": "Training documentation (date, type, persons trained) is required by 111.14(b)(2); optional to mention but relevant to personnel qualification."
+      }
+    ],
+    "explanation": "111.12 governs qualifications (qualified employees; education, training, or experience for assigned functions) but J's supervisor element comes from 111.13, which G does not cite, and J omits the QC-personnel identification/separation requirement of 111.12(b).",
+    "proposed_corrected_answer": "111.12(a): you must have qualified employees who manufacture, package, label, or hold dietary supplements. 111.12(b): you must identify who is responsible for QC operations; each person identified to perform QC operations must be qualified and have distinct and separate responsibilities when performing them. 111.12(c): each person engaged in manufacturing, packaging, labeling, holding or QC must have the education, training, or experience to perform assigned functions. 111.13: you must assign qualified personnel to supervise, and each supervisor must be qualified by education, training, or experience. (Training records: 111.14(b)(2).)",
+    "proposed_sections": "21 CFR 111.12(a)-(c); 111.13(a)-(b); (records 111.14(b)(2))",
+    "evidence": [
+      {
+        "quote": "You must identify who is responsible for your quality control operations. Each person who is identified to perform quality control operations must be qualified to do so and have distinct and separate responsibilities related to performing such operations from those responsibilities that the person otherwise has when not performing such operations.",
+        "source_title": "21 CFR 111.12 — What personnel qualification requirements apply?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.12(b)",
+        "location": "§ 111.12(b)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.12",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "QC identification/separation requirement omitted from J."
+      },
+      {
+        "quote": "Each person engaged in manufacturing, packaging, labeling, or holding, or in performing any quality control operations, must have the education, training, or experience to perform the person's assigned functions.",
+        "source_title": "21 CFR 111.12 — What personnel qualification requirements apply?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.12(c)",
+        "location": "§ 111.12(c)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.12",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Education/training/experience element of J."
+      },
+      {
+        "quote": "(a) You must assign qualified personnel to supervise the manufacturing, packaging, labeling, or holding of dietary supplements. (b) Each supervisor whom you use must be qualified by education, training, or experience to supervise.",
+        "source_title": "21 CFR 111.13 — What supervisor requirements apply?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.13",
+        "location": "§ 111.13",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.13",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Supervisor element is in 111.13, not cited in G."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — the key requires a supervisor element but cites only 111.12; an answer correctly attributing it to 111.13 may lose citation-exact credit."
+  },
+  {
+    "question_id": "S-004",
+    "question_interpretation": "What hygienic practices employees must follow under Part 111.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "VERIFIED_INCORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "incorrect",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "wrong_citation",
+        "detail": "G cites 21 CFR 111.13, which is 'What supervisor requirements apply?' and says nothing about hygiene. Hygienic practices are in 111.10(b); exclusion of sick/infected personnel ('disease control') is 111.10(a)."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits several enumerated 111.10(b) practices: maintaining adequate personal cleanliness (b)(2); intact, clean, sanitary impermeable gloves (b)(5); hair nets/caps/beard covers (b)(6); not storing clothing/personal belongings in exposed areas (b)(7); other necessary precautions (b)(9). Also the hand-washing timing (before starting work and whenever hands may be soiled) and the alternative of covering non-removable hand jewelry."
+      },
+      {
+        "type": "rubric_fairness",
+        "detail": "An answer correctly citing 111.10(b) would fail citation-exact against a key requiring 111.13; an answer citing 111.13 would be rewarded for a wrong citation."
+      }
+    ],
+    "explanation": "The cited section 111.13 is the supervisor-qualification section; the hygiene requirements are in 111.10(b) (with 111.10(a) for exclusion of ill personnel). J's listed practices are substantively supported by 111.10, but the citation is demonstrably wrong and the list is incomplete.",
+    "proposed_corrected_answer": "111.10(b): anyone working in an operation where adulteration of components, dietary supplements or contact surfaces could occur must use hygienic practices, including: outer garments worn to protect against contamination; adequate personal cleanliness; thorough hand-washing (and sanitizing if necessary) in an adequate facility before starting work and whenever hands may be soiled or contaminated; removing unsecured jewelry and hand jewelry that cannot be sanitized (or covering it with intact, clean, sanitary material); intact, clean, sanitary impermeable gloves; effective hair restraints where appropriate; not storing clothing/personal belongings where components, supplements or contact surfaces are exposed or washed; not eating, chewing gum, drinking or using tobacco in those areas; and any other necessary precautions. 111.10(a): exclude persons with an illness, infection, open lesion or other abnormal source of microbial contamination until the condition no longer exists, and instruct employees to notify supervisors. Written procedures: 111.8.",
+    "proposed_sections": "21 CFR 111.10(b)(1)-(9); 111.10(a); (written procedures 111.8)",
+    "evidence": [
+      {
+        "quote": "(a) You must assign qualified personnel to supervise the manufacturing, packaging, labeling, or holding of dietary supplements.",
+        "source_title": "21 CFR 111.13 — What supervisor requirements apply?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.13(a)",
+        "location": "§ 111.13(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.13",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "The cited section concerns supervisors, not hygiene."
+      },
+      {
+        "quote": "(b) Hygienic practices. If you work in an operation during which adulteration of the component, dietary supplement, or contact surface could occur, you must use hygienic practices to the extent necessary to protect against such contamination of components, dietary supplements, or contact surfaces.",
+        "source_title": "21 CFR 111.10 — What requirements apply for preventing microbial contamination from sick or infected personnel and for hygienic practices?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.10(b)",
+        "location": "§ 111.10(b)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.10",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Hygienic practices are governed by 111.10(b)."
+      },
+      {
+        "quote": "(8) Not eating food, chewing gum, drinking beverages, or using tobacco products in areas where components, dietary supplements, or any contact surfaces are exposed, or where contact surfaces are washed; and",
+        "source_title": "21 CFR 111.10 — What requirements apply for preventing microbial contamination from sick or infected personnel and for hygienic practices?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.10(b)(8)",
+        "location": "§ 111.10(b)(8)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.10",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Eating/drinking restriction is in 111.10(b)."
+      },
+      {
+        "quote": "(5) Maintaining gloves used in handling components or dietary supplements in an intact, clean, and sanitary condition. The gloves must be of an impermeable material;",
+        "source_title": "21 CFR 111.10 — What requirements apply for preventing microbial contamination from sick or infected personnel and for hygienic practices?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.10(b)(5)",
+        "location": "§ 111.10(b)(5)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.10",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Example of an enumerated practice omitted from J."
+      },
+      {
+        "quote": "(1) Excluding from working in any operations that may result in contamination any person who, by medical examination, the person's acknowledgement, or supervisory observation, is shown to have, or appears to have, an illness, infection, open lesion, or any other abnormal source of microbial contamination,",
+        "source_title": "21 CFR 111.10 — What requirements apply for preventing microbial contamination from sick or infected personnel and for hygienic practices?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.10(a)(1)",
+        "location": "§ 111.10(a)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.10",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "'Disease control' element is 111.10(a)."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — the key's citation (111.13) is the wrong section; correct 111.10 answers lose citation credit."
+  },
+  {
+    "question_id": "S-005",
+    "question_interpretation": "Which records Subpart B (Personnel) requires, and where the general recordkeeping rules governing those records are found.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_question_part",
+        "detail": "J does not state what the records are. 111.14(b) requires (1) written procedures for fulfilling Subpart B requirements and (2) documentation of training including the date, the type of training, and the person(s) trained. A key reading only 'Subpart B records requirement' cannot distinguish a correct answer from a vague one."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J does not state the Subpart P content: retention 1 year past shelf life date (if used) or 2 years beyond distribution of the last associated batch; original records, true copies or electronic records; electronic records must comply with part 11 (111.605); records readily available to FDA for inspection and copying during retention (111.610)."
+      }
+    ],
+    "explanation": "G is right: 111.14 makes the records requirement and expressly routes it to Subpart P (111.605, 111.610). J is directionally correct but omits the substance the question asks for (the two specific records) and the Subpart P rules, so it is only partially adequate as an answer key.",
+    "proposed_corrected_answer": "111.14(b): make and keep (1) written procedures for fulfilling Subpart B requirements and (2) documentation of training, including the date, the type of training, and the person(s) trained. 111.14(a) requires these records to be made and kept in accordance with Subpart P: keep for 1 year past the shelf-life date (if shelf-life dating is used) or 2 years beyond the date of distribution of the last associated batch; as original records, true copies, or electronic records (electronic records must comply with part 11) (111.605); and have them readily available to FDA for inspection and copying during the retention period (111.610).",
+    "proposed_sections": "21 CFR 111.14(a)-(b); 111.605(a)-(c); 111.610(a)-(b)",
+    "evidence": [
+      {
+        "quote": "(a) You must make and keep records required under this subpart B in accordance with subpart P of this part. (b) You must make and keep the following records: (1) Written procedures for fulfilling the requirements of this subpart B; and (2) Documentation of training, including the date of the training, the type of training, and the person(s) trained.",
+        "source_title": "21 CFR 111.14 — Under this subpart B, what records must you make and keep?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.14",
+        "location": "§ 111.14",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.14",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "The specific Subpart B records and routing to Subpart P."
+      },
+      {
+        "quote": "(a) You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records.",
+        "source_title": "21 CFR 111.605 — What requirements apply to the records that you make and keep?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.605(a)",
+        "location": "§ 111.605(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.605",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Retention period."
+      },
+      {
+        "quote": "You must have all records required under this part, or copies of such records, readily available during the retention period for inspection and copying by FDA when requested.",
+        "source_title": "21 CFR 111.610 — What records must be made available to FDA?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.610(a)",
+        "location": "§ 111.610(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.610",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "FDA access."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair for citation; J too vague to score completeness reliably."
+  },
+  {
+    "question_id": "S-006",
+    "question_interpretation": "What sanitation requirements 111.15 imposes on the physical plant and grounds.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "111.15 has eleven paragraphs (a)-(k). J covers grounds/litter-waste (a), cleaning (b), cleaning compounds/sanitizing agents (c), pest control (d), plumbing (f) and bathrooms (h), but omits water supply (e), sewage disposal (g), hand-washing facilities (i), trash disposal (j), the restriction on use/holding of toxic materials (c)(2)-(3), and the mandatory sanitation supervisor(s) (k)."
+      },
+      {
+        "type": "precision",
+        "detail": "Related: 111.16 requires written procedures for cleaning the physical plant and for pest control; 111.23 records."
+      }
+    ],
+    "explanation": "Citation is correct and every J element is supported by 111.15. But J omits several distinct mandatory paragraphs of the cited section, notably sanitation supervisors (k), water supply (e), hand-washing facilities (i) and sewage (g), so a key-complete answer could still miss material requirements.",
+    "proposed_corrected_answer": "111.15: (a) grounds kept to protect against contamination (storing equipment, removing litter/waste, cutting weeds, maintaining roads/yards, drainage, waste treatment, care where bordered by uncontrolled grounds); (b) plant kept clean, sanitary and in repair; (c) cleaning compounds/sanitizing agents free of microorganisms of public health significance and safe; toxic materials only if necessary and identified/held to prevent contamination; (d) no animals/pests (guard/guide dogs in some areas), effective pest exclusion, precautions with pesticides; (e) safe, sanitary water (water that may become a component must meet Federal, State and local requirements); (f) adequate plumbing incl. no backflow/cross-connection; (g) adequate sewage disposal; (h) clean, readily accessible bathrooms; (i) adequate hand-washing facilities with running water at suitable temperature; (j) trash conveyed, stored and disposed of to minimize odors/pests and protect against contamination; (k) one or more qualified employees assigned to supervise overall sanitation. Written cleaning and pest-control procedures: 111.16.",
+    "proposed_sections": "21 CFR 111.15(a)-(k); (procedures 111.16; records 111.23)",
+    "evidence": [
+      {
+        "quote": "(k) Sanitation supervisors. You must assign one or more employees to supervise overall sanitation. Each of these supervisors must be qualified by education, training, or experience to develop and supervise sanitation procedures.",
+        "source_title": "21 CFR 111.15 — What sanitation requirements apply to your physical plant and grounds?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.15(k)",
+        "location": "§ 111.15(k)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.15",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Mandatory element omitted from J."
+      },
+      {
+        "quote": "(i) Hand-washing facilities. You must provide hand-washing facilities that are designed to ensure that an employee's hands are not a source of contamination of components, dietary supplements, or any contact surface,",
+        "source_title": "21 CFR 111.15 — What sanitation requirements apply to your physical plant and grounds?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.15(i)",
+        "location": "§ 111.15(i)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.15",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Mandatory element omitted from J."
+      },
+      {
+        "quote": "(d) Pest control. (1) You must not allow animals or pests in any area of your physical plant.",
+        "source_title": "21 CFR 111.15 — What sanitation requirements apply to your physical plant and grounds?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.15(d)(1)",
+        "location": "§ 111.15(d)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.15",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Supports J pest-control element."
+      },
+      {
+        "quote": "(h) Bathrooms. You must provide your employees with adequate, readily accessible bathrooms.",
+        "source_title": "21 CFR 111.15 — What sanitation requirements apply to your physical plant and grounds?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.15(h)",
+        "location": "§ 111.15(h)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.15",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Supports J 'toilet facilities' element."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "Whether omitting enumerated paragraphs of the single cited section is 'material' depends on rubric granularity; every J element is itself accurate.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — correct 111.15 answers are credited; key is lenient on completeness."
+  },
+  {
+    "question_id": "S-007",
+    "question_interpretation": "What Part 111 requires for the water supply of a dietary supplement facility.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "VERIFIED_INCORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "incorrect",
+    "answer_elements_assessment": "incorrect",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "wrong_citation",
+        "detail": "G cites 21 CFR 111.16, which only requires written procedures for cleaning the physical plant and for pest control. The water supply requirement is 111.15(e); related requirements are 111.23(c) (records showing water that may become a component meets 111.15(e)(2)), 111.365(c) (manufacturing operations precaution), and plumbing 111.15(f)."
+      },
+      {
+        "type": "unsupported_element",
+        "detail": "J says water that contacts components/product or contact surfaces 'must be safe and sanitary quality'. The text assigns the 'safe and sanitary' standard (with suitable temperature and pressure) to water used where it does NOT become a component (111.15(e)(1)). Water that may become a component — e.g., water that contacts components, dietary supplements, or contact surfaces — must at a minimum comply with applicable Federal, State, and local requirements and not contaminate the dietary supplement (111.15(e)(2))."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits the 111.23(c) record requirement and the two-tier structure of 111.15(e)."
+      }
+    ],
+    "explanation": "111.16 is the Subpart C written-procedures section and does not mention water. The governing provision is 111.15(e), and J misstates which standard applies to contact water: contact water is treated as water that may become a component and must comply with applicable Federal, State and local requirements and not contaminate the product, with records under 111.23(c).",
+    "proposed_corrected_answer": "111.15(e)(1): provide water that is safe and sanitary, at suitable temperatures, and under pressure as needed, for all uses where water does not become a component of the dietary supplement. 111.15(e)(2): water used in a manner such that it may become a component (e.g., water that contacts components, dietary supplements, or any contact surface) must, at a minimum, comply with applicable Federal, State, and local requirements and not contaminate the dietary supplement. 111.23(c): make and keep records showing that such water meets 111.15(e)(2). Related: plumbing must carry sufficient water and prevent backflow/cross-connection (111.15(f)); manufacturing operations must use such water (111.365(c)).",
+    "proposed_sections": "21 CFR 111.15(e)(1)-(2); 111.23(c); (related 111.15(f), 111.365(c))",
+    "evidence": [
+      {
+        "quote": "You must establish and follow written procedures for cleaning the physical plant and for pest control.",
+        "source_title": "21 CFR 111.16 — What are the requirements under this subpart C for written procedures?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.16",
+        "location": "§ 111.16",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.16",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Cited section is unrelated to water supply."
+      },
+      {
+        "quote": "(e) Water supply. (1) You must provide water that is safe and sanitary, at suitable temperatures, and under pressure as needed, for all uses where water does not become a component of the dietary supplement.",
+        "source_title": "21 CFR 111.15 — What sanitation requirements apply to your physical plant and grounds?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.15(e)(1)",
+        "location": "§ 111.15(e)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.15",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "'Safe and sanitary' applies to non-component uses."
+      },
+      {
+        "quote": "(2) Water that is used in a manner such that the water may become a component of the dietary supplement, e.g., when such water contacts components, dietary supplements, or any contact surface, must, at a minimum, comply with applicable Federal, State, and local requirements and not contaminate the dietary supplement.",
+        "source_title": "21 CFR 111.15 — What sanitation requirements apply to your physical plant and grounds?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.15(e)(2)",
+        "location": "§ 111.15(e)(2)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.15",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Correct standard for contact water."
+      },
+      {
+        "quote": "(c) You must make and keep records that show that water, when used in a manner such that the water may become a component of the dietary supplement, meets the requirements of § 111.15(e)(2).",
+        "source_title": "21 CFR 111.23 — Under this subpart C, what records must you make and keep?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.23(c)",
+        "location": "§ 111.23(c)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.23",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Record requirement omitted from key."
+      }
+    ],
+    "search_performed": "grep -n -i 'water' over ecfr_2026-10-14/part-111.txt: water-supply requirements appear only at 111.15(e), 111.15(f) plumbing, 111.15(i)/(j), 111.23(c), 111.27(a)(2)(vi) and 111.365(c); none in 111.16.",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — the key's citation is the wrong section and J would mark the correct contact-water standard as a deviation."
+  },
+  {
+    "question_id": "S-008",
+    "question_interpretation": "What design and construction requirements 111.20 imposes on the physical plant.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J covers 111.20(a) size/construction/design, (c) separate or defined areas, (d)(1)(i) floors/walls/ceilings, (d)(1)(iii) ventilation and (e) lighting, but omits (b) adequate space for orderly placement of equipment and holding of materials; (d)(1)(ii) fixtures/ducts/pipes not dripping; (d)(1)(iv) temperature/humidity control equipment when necessary; (d)(1)(v) adequate aisles/working spaces; (d)(2) fan placement; (f) safety-type glass over exposed product; (g) protection of bulk fermentation vessels; (h) screening against pests."
+      },
+      {
+        "type": "precision",
+        "detail": "'Separation of operations' should note that 111.20(c) allows separate or defined areas OR other control systems (e.g., computerized inventory controls or automated separation)."
+      }
+    ],
+    "explanation": "Citation is correct and each J element is supported, but J omits several distinct mandatory requirements of the cited section (notably safety-type glass, screening against pests, temperature/humidity control and adequate space/aisles).",
+    "proposed_corrected_answer": "111.20: the physical plant must (a) be suitable in size, construction and design to facilitate maintenance, cleaning and sanitizing; (b) have adequate space for orderly placement of equipment and holding of materials; (c) permit precautions against mixups/contamination, using separate or defined areas or other control systems for receiving/holding, separating materials awaiting disposition, separating product types, laboratory work, cleaning contact surfaces, packaging/labeling and holding; (d) be designed and constructed to prevent contamination, including cleanable floors, walls and ceilings, non-dripping fixtures/ducts/pipes, adequate ventilation, temperature/humidity control where necessary, adequate aisles, and appropriately located fans; (e) provide adequate lighting; (f) use safety-type glass over exposed product unless otherwise protected; (g) protect bulk fermentation vessels; (h) use adequate screening or other protection against pests where necessary.",
+    "proposed_sections": "21 CFR 111.20(a)-(h)",
+    "evidence": [
+      {
+        "quote": "(a) Be suitable in size, construction, and design to facilitate maintenance, cleaning, and sanitizing operations;",
+        "source_title": "21 CFR 111.20 — What design and construction requirements apply to your physical plant?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.20(a)",
+        "location": "§ 111.20(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.20",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Supports J size/construction/design."
+      },
+      {
+        "quote": "(f) Use safety-type light bulbs, fixtures, skylights, or other glass or glass-like materials when the light bulbs, fixtures, skylights or other glass or glass-like materials are suspended over exposed components or dietary supplements in any step of preparation,",
+        "source_title": "21 CFR 111.20 — What design and construction requirements apply to your physical plant?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.20(f)",
+        "location": "§ 111.20(f)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.20",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Mandatory element omitted from J."
+      },
+      {
+        "quote": "(h) Use adequate screening or other protection against pests, where necessary.",
+        "source_title": "21 CFR 111.20 — What design and construction requirements apply to your physical plant?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.20(h)",
+        "location": "§ 111.20(h)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.20",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Mandatory element omitted from J."
+      },
+      {
+        "quote": "(i) Floors, walls, and ceilings that can be adequately cleaned and kept clean and in good repair;",
+        "source_title": "21 CFR 111.20 — What design and construction requirements apply to your physical plant?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.20(d)(1)(i)",
+        "location": "§ 111.20(d)(1)(i)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.20",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Supports J floors/walls/ceilings."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "Materiality of omitting enumerated paragraphs of the single cited section depends on rubric granularity; every J element is accurate.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — correct 111.20 answers are credited; key is lenient on completeness."
+  },
+  {
+    "question_id": "S-009",
+    "question_interpretation": "What Part 111 requires for automated, mechanical, or electronic equipment used to manufacture, package, label or hold dietary supplements.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J's 'backup' element is not in 111.30; it comes from 111.35(b)(5) (backup files of current software programs, outdated software needed to retrieve records, and data entered; backup must be exact and complete and kept secure). G omits 111.35(b)(4)-(6) and the written-procedure requirement 111.25(b) (calibrating, inspecting, checking automated equipment)."
+      },
+      {
+        "type": "unsupported_element",
+        "detail": "'Design/installation for intended use' is loose: 111.30(a) requires designing or selecting equipment to ensure specifications are consistently met; 111.30(b) suitability (capable of operating within required operating limits); 111.30(e) controls to ensure it functions per intended use. 'Installation' is not a 111.30 requirement."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J omits quality control personnel roles: QC must periodically review calibrations/inspections/checks (111.30(c)), approve changes, which may be instituted only by authorized personnel (111.30(d)), and approve intended-use controls (111.30(e)); see also 111.117(c)-(d)."
+      }
+    ],
+    "explanation": "111.30 is the primary section and J's calibration and change-control elements are supported, but the backup element belongs to 111.35(b)(5), which G does not cite, and J omits the suitability requirement and the QC approval/review roles that 111.30 itself imposes.",
+    "proposed_corrected_answer": "111.30: (a) design or select the equipment to ensure specifications are consistently met; (b) determine suitability — capable of operating satisfactorily within required operating limits; (c) routinely calibrate, inspect, or check it, with QC periodically reviewing those calibrations/inspections/checks; (d) establish and use controls (including software for computer-controlled processes) so that any changes are approved by QC personnel and instituted only by authorized personnel; (e) establish and use QC-approved controls to ensure it functions in accordance with its intended use. Records (111.35(b)(4)-(6)): written records of calibrations, inspections and checks; backup files of current software (and outdated software needed to retrieve records) and of data entered, exact and complete and secured from alteration, erasure or loss; documentation of intended-use controls. Written procedures: 111.25(b). QC review: 111.117(c)-(d).",
+    "proposed_sections": "21 CFR 111.30(a)-(e); 111.35(b)(4)-(6); 111.25(b); 111.117(c)-(d)",
+    "evidence": [
+      {
+        "quote": "(c) Routinely calibrate, inspect, or check the equipment to ensure proper performance. Your quality control personnel must periodically review these calibrations, inspections, or checks;",
+        "source_title": "21 CFR 111.30 — What requirements apply to automated, mechanical, or electronic equipment?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.30(c)",
+        "location": "§ 111.30(c)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.30",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Calibration element plus QC review omitted from J."
+      },
+      {
+        "quote": "(d) Establish and use appropriate controls for automated, mechanical, and electronic equipment (including software for a computer controlled process) to ensure that any changes to the manufacturing, packaging, labeling, holding, or other operations are approved by quality control personnel and instituted only by authorized personnel; and",
+        "source_title": "21 CFR 111.30 — What requirements apply to automated, mechanical, or electronic equipment?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.30(d)",
+        "location": "§ 111.30(d)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.30",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Change-control element."
+      },
+      {
+        "quote": "(5) Backup file(s) of current software programs (and of outdated software that is necessary to retrieve records that you are required to keep in accordance with subpart P of this part, when current software is not able to retrieve such records) and of data entered into computer systems that you use to manufacture, package, label, or hold dietary supplements.",
+        "source_title": "21 CFR 111.35 — Under this subpart D, what records must you make and keep?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.35(b)(5)",
+        "location": "§ 111.35(b)(5)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.35",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Backup requirement sits in 111.35, not 111.30."
+      },
+      {
+        "quote": "(b) Determine the suitability of the equipment by ensuring that your equipment is capable of operating satisfactorily within the operating limits required by the process;",
+        "source_title": "21 CFR 111.30 — What requirements apply to automated, mechanical, or electronic equipment?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.30(b)",
+        "location": "§ 111.30(b)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.30",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Suitability element omitted."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — an answer correctly attributing backup to 111.35(b)(5) is outside the key citation."
+  },
+  {
+    "question_id": "S-010",
+    "question_interpretation": "What Part 111 requires regarding establishing/implementing a production and process control system (Subpart E).",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "VERIFIED_INCORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "incorrect",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "unsupported_element",
+        "detail": "J frames the requirement as 'establish and follow written procedures covering all stages'. 111.55 requires you to IMPLEMENT A SYSTEM OF PRODUCTION AND PROCESS CONTROLS covering all stages of manufacturing, packaging, labeling and holding, to ensure quality and that the product is packaged and labeled as specified in the master manufacturing record. Neither 111.55 nor any other section of Subpart E contains a written-procedures requirement."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J omits the purpose/standard in 111.55 (ensure quality of the dietary supplement and packaging/labeling as specified in the master manufacturing record)."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "111.60 (design: system must include all requirements of subparts E through L and be reviewed and approved by QC personnel) and 111.65 (implement quality control operations) are part of the same requirement and are not cited."
+      }
+    ],
+    "explanation": "111.55 is the right primary section, but J substitutes a written-procedures obligation the section does not contain and omits the regulatory purpose (quality and conformance to the master manufacturing record). The companion design requirement in 111.60(b) — subparts E-L included and QC review/approval — is also missing.",
+    "proposed_corrected_answer": "111.55: you must implement a system of production and process controls that covers all stages of manufacturing, packaging, labeling, and holding of the dietary supplement to ensure its quality and that it is packaged and labeled as specified in the master manufacturing record. 111.60: the system must be designed to that end, must include all requirements of subparts E through L, and must be reviewed and approved by quality control personnel. 111.65: you must implement quality control operations in manufacturing, packaging, labeling and holding.",
+    "proposed_sections": "21 CFR 111.55; 111.60(a)-(b); 111.65",
+    "evidence": [
+      {
+        "quote": "You must implement a system of production and process controls that covers all stages of manufacturing, packaging, labeling, and holding of the dietary supplement to ensure the quality of the dietary supplement and that the dietary supplement is packaged and labeled as specified in the master manufacturing record.",
+        "source_title": "21 CFR 111.55 — What are the requirements to implement a production and process control system?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.55",
+        "location": "§ 111.55",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.55",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Actual requirement: implement a system of controls, not written procedures."
+      },
+      {
+        "quote": "(b) The production and in-process control system must include all requirements of subparts E through L of this part and must be reviewed and approved by quality control personnel.",
+        "source_title": "21 CFR 111.60 — What are the design requirements for the production and process control system?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.60(b)",
+        "location": "§ 111.60(b)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.60",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Design requirement omitted from key."
+      }
+    ],
+    "search_performed": "grep -n -i 'written procedures' over part-111.txt: written-procedure sections exist for subparts B (111.8), C (111.16), D (111.25), F (111.103), G (111.153), J (111.303), K (111.353), L (111.403), M (111.453), N (111.503), O (111.553); none in Subpart E (111.55-111.95).",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — an answer quoting 111.55 accurately (a system of controls, no written-procedures duty) could be marked as missing the key's central element."
+  },
+  {
+    "question_id": "S-011",
+    "question_interpretation": "Which specifications a dietary supplement manufacturer must establish under 111.70.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "J's 'packaging/label' should make explicit that two different specification sets are required: label and packaging specifications (111.70(d), incl. packaging must be safe, suitable and non-reactive) and specifications for the packaging and labeling of the finished packaged and labeled dietary supplement (111.70(g))."
+      },
+      {
+        "type": "precision",
+        "detail": "J could add 111.70(a) (a specification at any point, step or stage where control is necessary) and the attributes required: component identity specification, purity/strength/composition, and limits on contamination (111.70(b), (e))."
+      }
+    ],
+    "explanation": "111.70 is the governing section and J's five categories (component, in-process, packaging/label, finished batch product, received-product) correspond to 111.70(b)-(g). Omissions are of detail (the general 111.70(a) requirement, attribute content, and explicit (g)) rather than a missing category, so the key is adequate.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "(a) You must establish a specification for any point, step, or stage in the manufacturing process where control is necessary to ensure the quality of the dietary supplement and that the dietary supplement is packaged and labeled as specified in the master manufacturing record.",
+        "source_title": "21 CFR 111.70 — What specifications must you establish?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.70(a)",
+        "location": "§ 111.70(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.70",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "General specification requirement."
+      },
+      {
+        "quote": "(e) For each dietary supplement that you manufacture you must establish product specifications for the identity, purity, strength, and composition of the finished batch of the dietary supplement,",
+        "source_title": "21 CFR 111.70 — What specifications must you establish?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.70(e)",
+        "location": "§ 111.70(e)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.70",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Finished batch specifications."
+      },
+      {
+        "quote": "(f) If you receive a product from a supplier for packaging or labeling as a dietary supplement (and for distribution rather than for return to the supplier), you must establish specifications to provide sufficient assurance that the product you receive is adequately identified and is consistent with your purchase order.",
+        "source_title": "21 CFR 111.70 — What specifications must you establish?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.70(f)",
+        "location": "§ 111.70(f)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.70",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Product-received specifications."
+      },
+      {
+        "quote": "(g) You must establish specifications for the packaging and labeling of the finished packaged and labeled dietary supplements, including specifications that ensure that you used the specified packaging and that you applied the specified label.",
+        "source_title": "21 CFR 111.70 — What specifications must you establish?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.70(g)",
+        "location": "§ 111.70(g)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.70",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Finished packaging/labeling specifications (should be explicit)."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "Judgment call whether 'packaging/label' adequately covers both 111.70(d) and (g); all J elements are supported.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — correct 111.70 answers are credited."
+  },
+  {
+    "question_id": "S-012",
+    "question_interpretation": "When a finished batch fails an identity (product) specification, what Part 111 requires the firm to do and who decides disposition.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "G omits 111.77(a) — the section that directly answers 'what must you do if established specifications are not met': for 111.70(e) product specifications not met, QC personnel must reject the dietary supplement unless they approve a treatment, in-process adjustment, or reprocessing that will ensure quality, and no finished batch may be released unless it complies with 111.123(b)."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "G omits 111.113 (QC must conduct a material review and make a disposition decision when a 111.70 specification is not met; reject unless QC approves treatment/adjustment/reprocessing as permitted by 111.77; document at time of performance) and 111.123(b)(2) (QC must not approve and release any batch, including a reprocessed batch, that does not meet all 111.70(e) product specifications)."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J does not state the default outcome (rejection) or the release prohibition, and omits documentation of the material review/disposition and investigation in the batch production record (111.113(c), 111.140(b)(3)) and corrective action plans (111.75(i))."
+      },
+      {
+        "type": "precision",
+        "detail": "Distinguish component identity failures: a component that fails its 111.70(b)(1) identity specification must be rejected and not used (111.77(b)), and any batch containing such a component cannot be released (111.123(b)(1))."
+      }
+    ],
+    "explanation": "The cited 111.87 (QC personnel decide) and 111.90 (reprocessing conditions) are correct and answer 'who', but the key omits 111.77(a), the provision that tells the firm what to do when a specification is not met, plus 111.113 and 111.123(b). A fully correct answer centered on 111.77/111.113/111.123(b) would cite sections outside the key.",
+    "proposed_corrected_answer": "A finished batch's identity specification is a 111.70(e) product specification; you must determine whether it is met (111.73, 111.75(c)). If it is not met, quality control personnel must conduct a material review and make a disposition decision (111.87, 111.113(a)(1)) and must reject the batch unless they approve a reprocessing (or treatment/in-process adjustment) that will ensure quality and correct packaging/labeling (111.77(a), 111.113(b)(2)). Reprocessing requires a QC material review and disposition decision based on a scientifically valid reason, must be permitted by 111.77, and the reprocessed batch must be approved by QC and comply with 111.123(b) before release (111.90). QC must not release any batch, including a reprocessed batch, that does not meet all product specifications (111.123(b)(2)). The material review and disposition must be documented at the time of performance, including the investigation and corrective/preventive action, in the batch production record (111.113(c), 111.140(b)(3)); corrective action plans for unmet specifications are required (111.75(i)).",
+    "proposed_sections": "21 CFR 111.73; 111.75(c), (i); 111.77(a); 111.87; 111.90; 111.113(a)(1), (b)(2), (c); 111.123(b)(2); 111.140(b)(3)",
+    "evidence": [
+      {
+        "quote": "(a) For specifications established under § 111.70(a), (b)(2), (b)(3), (c), (d), (e), and (g) that you do not meet, quality control personnel, in accordance with the requirements in subpart F of this part, must reject the component, dietary supplement, package or label unless such personnel approve a treatment, an in-process adjustment, or reprocessing that will ensure the quality of the finished dietary supplement",
+        "source_title": "21 CFR 111.77 — What must you do if established specifications are not met?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.77(a)",
+        "location": "§ 111.77(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.77",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Governing 'what to do' provision omitted from G."
+      },
+      {
+        "quote": "Quality control personnel must conduct all required material reviews and make all required disposition decisions.",
+        "source_title": "21 CFR 111.87 — Who conducts a material review and makes a disposition decision?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.87",
+        "location": "§ 111.87",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.87",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Who decides."
+      },
+      {
+        "quote": "(2) Any batch of dietary supplement, including any reprocessed batch, that does not meet all product specifications established in accordance with § 111.70(e);",
+        "source_title": "21 CFR 111.123 — What quality control operations are required for the master manufacturing record, the batch production record, and manufacturing operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.123(b)(2)",
+        "location": "§ 111.123(b)(2)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.123",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Release prohibition omitted from key."
+      },
+      {
+        "quote": "(c) The person who conducts a material review and makes the disposition decision must, at the time of performance, document that material review and disposition decision.",
+        "source_title": "21 CFR 111.113 — What quality control operations are required for a material review and disposition decision?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.113(c)",
+        "location": "§ 111.113(c)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.113",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Documentation requirement."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — answers correctly citing 111.77(a), 111.113 and 111.123(b) go beyond the key's citation set and may be penalised on citation-exact."
+  },
+  {
+    "question_id": "S-013",
+    "question_interpretation": "Which representative samples Part 111 requires, and the requirements for reserve samples.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J lists representative samples of components, packaging, labels, in-process and finished batch but omits 111.80(d) (each unique shipment/lot of product received for packaging or labeling) and 111.80(e) (each lot of packaged and labeled dietary supplements)."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J's 'storage conditions' element is governed by 111.465(a)(1) (hold under conditions consistent with product labels or, if none, ordinary storage conditions), which G does not cite; 111.83 only specifies the container-closure system."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J omits that reserve samples must be collected from each lot of packaged and labeled dietary supplements distributed (111.83(a)) and identified with the batch, lot, or control number (111.83(b)(2)); and does not state the actual values (at least twice the quantity needed for all tests; 1 year past shelf life or 2 years from distribution of the last batch)."
+      }
+    ],
+    "explanation": "111.80 and 111.83 are the right primary sections, but J omits two of the five representative-sample categories, and its storage-conditions element comes from 111.465 (not cited). Key numeric values are not stated in J, so the key cannot check them.",
+    "proposed_corrected_answer": "111.80: collect representative samples of (a) each unique lot of components, packaging and labels (and of each unique shipment and lot within it when received from a supplier); (b) in-process materials for each batch at control points in the master manufacturing record; (c) a subset of finished batches identified through a sound statistical sampling plan (or every finished batch) before release; (d) each unique shipment and lot of product received for packaging or labeling; (e) each lot of packaged and labeled dietary supplements. 111.83: collect and hold reserve samples of each lot of packaged and labeled dietary supplements you distribute; held in the same container-closure system as distributed (or one with essentially the same protective characteristics); identified with batch, lot or control number; retained 1 year past the shelf-life date (if used) or 2 years from distribution of the last associated batch; at least twice the quantity necessary for all tests/examinations to determine whether product specifications are met. 111.465: hold reserve samples to protect against contamination and deterioration, under conditions consistent with product labels or, if none, ordinary storage conditions. QC ensures collection (111.105(f)-(g)).",
+    "proposed_sections": "21 CFR 111.80(a)-(e); 111.83(a)-(b); 111.465(a)-(b); (QC 111.105(f)-(g))",
+    "evidence": [
+      {
+        "quote": "(d) Representative samples of each unique shipment, and of each unique lot within each unique shipment, of product that you receive for packaging or labeling as a dietary supplement",
+        "source_title": "21 CFR 111.80 — What representative samples must you collect?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.80(d)",
+        "location": "§ 111.80(d)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.80",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Category omitted from J."
+      },
+      {
+        "quote": "(e) Representative samples of each lot of packaged and labeled dietary supplements to determine whether the packaging and labeling of the finished packaged and labeled dietary supplements meet specifications established in accordance with § 111.70(g),",
+        "source_title": "21 CFR 111.80 — What representative samples must you collect?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.80(e)",
+        "location": "§ 111.80(e)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.80",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Category omitted from J."
+      },
+      {
+        "quote": "(3) Be retained for 1 year past the shelf life date (if shelf life dating is used), or for 2 years from the date of distribution of the last batch of dietary supplements associated with the reserve sample, for use in appropriate investigations; and (4) Consist of at least twice the quantity necessary for all tests or examinations to determine whether or not the dietary supplement meets product specifications.",
+        "source_title": "21 CFR 111.83 — What are the requirements for reserve samples?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.83(b)(3)-(4)",
+        "location": "§ 111.83(b)(3)-(4)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.83",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Retention period and size."
+      },
+      {
+        "quote": "(1) Holding the reserve samples under conditions consistent with product labels or, if no storage conditions are recommended on the label, under ordinary storage conditions; and",
+        "source_title": "21 CFR 111.465 — What requirements apply to holding reserve samples of dietary supplements?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.465(a)(1)",
+        "location": "§ 111.465(a)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.465",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Storage conditions are in 111.465, not cited in G."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — the storage-conditions element is scored against a citation set that omits 111.465."
+  },
+  {
+    "question_id": "S-014",
+    "question_interpretation": "What Part 111 requires quality control personnel to do (QC duties).",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "The question asks what QC must do 'under Part 111', but G cites only 111.105. J's elements 'perform material review and disposition' and 'approve reprocessing' come from 111.87, 111.113, 111.120(c)-(d), 111.123(a)(4)-(5) and 111.130, and 'review records' from 111.123(a)(2), 111.127(c), 111.117(b)-(c); none is in 111.105 itself."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J omits 111.105 duties: reviewing/approving supplier-qualification and specification-basis documentation (b)-(e), ensuring representative samples are collected (f), ensuring reserve samples are collected and held (g), and determining whether all 111.70(a) specifications are met (h); and the core release function (approving and releasing, or rejecting, each finished batch, 111.123(a)(8)), with the 111.123(b) release prohibitions."
+      },
+      {
+        "type": "precision",
+        "detail": "QC must document review/approval/rejection at the time of performance with date and signature (111.140(b)(2))."
+      }
+    ],
+    "explanation": "111.105 is the central section and J's 'approve/reject' (deviations and modifications) element is supported by 111.105(a), but other J elements come from sections not in G, and J omits several 111.105 duties and the batch release decision. The key is incomplete in both citation and content.",
+    "proposed_corrected_answer": "111.105: QC personnel must ensure operations ensure quality and correct packaging/labeling per the master manufacturing record, including (a) approving or rejecting all processes, specifications, written procedures, controls, tests and examinations, and deviations from or modifications to them, that may affect identity, purity, strength or composition; (b)-(e) reviewing and approving supplier-qualification documentation and the documented bases for in-process, finished-batch and exempted specifications; (f) ensuring required representative samples are collected; (g) ensuring reserve samples are collected and held; (h) determining whether all 111.70(a) specifications are met; (i) other Subpart F operations. These include: conducting all material reviews and disposition decisions (111.87, 111.113); laboratory control review (111.110); equipment/calibration review (111.117); approving and releasing components, packaging and labels from quarantine (111.120); reviewing and approving MMRs and batch records, approving or rejecting reprocessing, and approving and releasing or rejecting each finished batch, never releasing batches that fail 111.123(b) (111.123); packaging/labeling, returned-product and complaint duties (111.127, 111.130, 111.135); documenting each review at the time of performance with date and signature (111.140(b)(2)).",
+    "proposed_sections": "21 CFR 111.105(a)-(i); 111.87; 111.110-111.135; 111.140(b)(2)",
+    "evidence": [
+      {
+        "quote": "(a) Approving or rejecting all processes, specifications, written procedures, controls, tests, and examinations, and deviations from or modifications to them, that may affect the identity, purity, strength, or composition of a dietary supplement;",
+        "source_title": "21 CFR 111.105 — What must quality control personnel do?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.105(a)",
+        "location": "§ 111.105(a)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.105",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Supports J approve/reject element."
+      },
+      {
+        "quote": "(f) Ensuring that required representative samples are collected; (g) Ensuring that required reserve samples are collected and held; (h) Determining whether all specifications established under § 111.70(a) are met; and",
+        "source_title": "21 CFR 111.105 — What must quality control personnel do?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.105(f)-(h)",
+        "location": "§ 111.105(f)-(h)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.105",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Duties omitted from J."
+      },
+      {
+        "quote": "(8) Approving and releasing, or rejecting, each finished batch for distribution, including any reprocessed finished batch.",
+        "source_title": "21 CFR 111.123 — What quality control operations are required for the master manufacturing record, the batch production record, and manufacturing operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.123(a)(8)",
+        "location": "§ 111.123(a)(8)",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.123",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Release duty, outside cited section."
+      },
+      {
+        "quote": "Quality control personnel must conduct all required material reviews and make all required disposition decisions.",
+        "source_title": "21 CFR 111.87 — Who conducts a material review and makes a disposition decision?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 111.87",
+        "location": "§ 111.87",
+        "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.87",
+        "local_source_file": "ecfr_2026-10-14/part-111.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Material review element comes from 111.87, not 111.105."
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — J requires elements whose governing sections are not in G, so a well-cited answer may lose citation-exact credit."
+  }
+]

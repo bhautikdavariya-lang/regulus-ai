@@ -1,0 +1,1803 @@
+[
+ {
+  "question_id": "M-022",
+  "question_interpretation": "Asks for the minimum information Part 820 requires to be recorded for servicing activities.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J paraphrases item (2) as 'unique device identifier or other identification'; the text reads 'Any UDI or UPC, and any other device identification(s)' (UPC omitted). Item (4) is 'individual(s)'. Not material."
+   }
+  ],
+  "explanation": "820.35(b) lists exactly six items to be recorded 'at a minimum' for servicing activities: device name, any UDI/UPC and other identification, date of service, individual(s) who serviced, service performed, and any test and inspection data. J matches. 820.35(b) itself names Clause 7.5.4 Servicing Activities, corroborating H/I.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(b) Records of servicing activities. In adhering to Clause 7.5.4 in ISO 13485, Servicing Activities, the manufacturer must record the following information, at a minimum, for servicing activities:",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(b)",
+    "location": "820.35(b) introductory text",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Servicing records requirement, its 'at a minimum' character, and ISO clause 7.5.4 (Servicing Activities)."
+   },
+   {
+    "quote": "(1) The name of the device serviced; (2) Any UDI or UPC, and any other device identification(s); (3) The date of service; (4) The individual(s) who serviced the device; (5) The service performed; and (6) Any test and inspection data.",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(b)(1)-(6)",
+    "location": "820.35(b)(1)-(6)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The six required data elements."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G and J match the regulatory text; a correct answer citing 820.35(b) and listing the six items scores correctly."
+ },
+ {
+  "question_id": "M-023",
+  "question_interpretation": "Asks what Part 820 requires about recording the UDI and which record-control section states it.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.35 also requires any UDI/UPC to be recorded in complaint records (820.35(a)(3)) and servicing records (820.35(b)(2)), and 820.10(b)(1) requires a documented UDI-assignment system per part 830. Not required by the question's focus on 'the' record-control section, but a fuller answer may mention them."
+   }
+  ],
+  "explanation": "820.35(c) states, in addition to Clauses 7.5.1, 7.5.8 and 7.5.9, that the UDI must be recorded for each medical device or batch of medical devices. J matches verbatim. The three clauses in H are named in 820.35(c); their titles in I are corroborated by 820.45 (7.5.1 Control of production and service provision), 820.10(b)(1) (7.5.8 Identification) and 820.10(b)(2) (7.5.9.1 Traceability—General).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(c) Unique Device Identification. In addition to the requirements of Clauses 7.5.1, 7.5.8, and 7.5.9 in ISO 13485, the UDI must be recorded for each medical device or batch of medical devices.",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(c)",
+    "location": "820.35(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "UDI recording requirement and the ISO clauses it supplements."
+   },
+   {
+    "quote": "(1) For Clause 7.5.8 in ISO 13485, Identification, the manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)(1)",
+    "location": "820.10(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Clause 7.5.8 = Identification (FDA text)."
+   },
+   {
+    "quote": "(2) For Clause 7.5.9.1 in ISO 13485, Traceability—General, the manufacturer must document procedures for traceability in accordance with the requirements of part 821 of this chapter, if applicable.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)(2)",
+    "location": "820.10(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Clause 7.5.9 family = Traceability (FDA text)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the key matches 820.35(c); answers that also cite 820.35(a)(3)/(b)(2) or 820.10(b)(1) remain correct."
+ },
+ {
+  "question_id": "M-024",
+  "question_interpretation": "Asks how a manufacturer may flag a record as confidential for FDA.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J omits that the disclosure determination is made under the public information regulation in part 20; useful but not required by the question."
+   }
+  ],
+  "explanation": "820.35(d) permits records deemed confidential by the manufacturer to be marked to aid FDA in determining whether information may be disclosed under part 20. J matches. H 'None' is appropriate: 820.35(d) names no ISO clause, and FDA describes it as a clarification retained from former 820.180.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(d) Confidentiality. Records deemed confidential by the manufacturer may be marked to aid FDA in determining whether information may be disclosed under the public information regulation in part 20 of this chapter.",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(d)",
+    "location": "820.35(d)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The marking provision and its purpose."
+   },
+   {
+    "quote": "Last, we are retaining the clarification from Sec.  820.180 (21 CFR 820.180) of the former QS regulation that governs the confidentiality of records FDA receives.",
+    "source_title": "QMSR final rule preamble, Supplementary Provisions (Comment 52 response)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7513",
+    "location": "Section V.G.1",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "820.35(d) is an FDA-specific clarification carried over from former 820.180, not an ISO clause (supports H = None)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — single-paragraph lookup; key matches text."
+ },
+ {
+  "question_id": "M-025",
+  "question_interpretation": "Asks what 820.45 requires beyond the incorporated ISO 13485 (i.e., the FDA-added labeling and packaging requirements).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The whole of 820.45 is 'in addition to' Clause 7.5.1, not only its introductory text. G cites only the introductory text and J lists only documented procedures; it omits 820.45(a) (examination for accuracy before release or storage, covering UDI/UPC, expiration date, storage, handling and additional processing instructions), 820.45(b) (documented release of labeling) and 820.45(c) (operations to prevent mixups, inspection before use against the MDF, documented results)."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "FDA's preamble identifies 820.45(a)(2)-(5) and the labeling inspection as the requirements 'not specified in ISO 13485'; a correct answer built on those would cite 820.45(a)-(c) and not match a key limited to the introductory text."
+   }
+  ],
+  "explanation": "820.45 opens 'In addition to the requirements of Clause 7.5.1 of ISO 13485' and then imposes procedures plus paragraphs (a)-(c). FDA's preamble says ISO 13485 does not specifically address labeling inspection and that 820.45(a)(2)-(5) are 'not specified in ISO 13485'. A key limited to the introductory procedures requirement omits the core FDA additions. H 7.5.1 is corroborated by 820.45's own text.",
+  "proposed_corrected_answer": "820.45 supplements ISO 13485 Clause 7.5.1 by requiring: (intro) documented and maintained procedures describing the activities to ensure the integrity, inspection, storage and operations for labeling and packaging under customary conditions of processing, storage, handling, distribution and, as appropriate, use; (a) examination of labeling and packaging for accuracy before release or storage where applicable, including correct UDI/UPC or other identification, expiration date, storage instructions, handling instructions and any additional processing instructions; (b) documented release of labeling for use per Clause 4.2.5; (c) labeling and packaging operations established and maintained to prevent mixups, including inspection before use to assure correct labeling and packaging as specified in the medical device file, with inspection results documented per Clause 4.2.5.",
+  "proposed_sections": "21 CFR 820.45 (introductory text), (a), (b), (c)",
+  "evidence": [
+   {
+    "quote": "In addition to the requirements of Clause 7.5.1 of ISO 13485 (incorporated by reference, see § 820.7), Control of production and service provision, each manufacturer must document and maintain procedures that provide a detailed description of the activities to ensure the integrity, inspection, storage, and operations for labeling and packaging, during the customary conditions of processing, storage, handling, distribution, and, as appropriate, use of the device.",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45 (introductory text)",
+    "location": "820.45 intro",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Section supplements Clause 7.5.1; procedures requirement."
+   },
+   {
+    "quote": "(a) The manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage where applicable, to include the following:",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(a)",
+    "location": "820.45(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Additional examination requirement omitted from J."
+   },
+   {
+    "quote": "The requirements set forth at Sec.  820.45(a)(2) through (5) are necessary to implement a QMS that is consistent with applicable FD&C Act requirements, but are not specified in ISO 13485.",
+    "source_title": "QMSR final rule preamble, Comment 64 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7516",
+    "location": "Section V.G.2",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA identifies 820.45(a)(2)-(5) as requirements not in ISO 13485."
+   },
+   {
+    "quote": "FDA agrees that ISO 13485 does not specifically address the inspection of labeling by the manufacturer, which is why FDA is retaining in this rule requirements from the QS regulation that strengthen controls for labeling and packaging operations.",
+    "source_title": "QMSR final rule preamble, Comment 60 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7515",
+    "location": "Section V.G.2",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Labeling inspection (820.45(a), (c)) is an FDA addition not in ISO 13485."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — a complete answer citing 820.45(a)-(c) would exceed and partly mismatch a key restricted to the introductory text."
+ },
+ {
+  "question_id": "M-026",
+  "question_interpretation": "Asks what examination of labeling and packaging Part 820 requires before release or storage.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J restates only that labeling and packaging must be examined for accuracy; it omits the five items the examination must include (correct UDI/UPC or other identification, expiration date, storage instructions, handling instructions, additional processing instructions) and the 'where applicable' qualifier. The question asks what examination is required, so its content is the substance."
+   }
+  ],
+  "explanation": "820.45(a) requires examination for accuracy before release or storage where applicable, 'to include' five listed items. G is right; J omits the enumerated content of the examination. H 7.5.1 is corroborated as the clause 820.45 supplements.",
+  "proposed_corrected_answer": "Under 820.45(a) the manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage, where applicable, including: (1) the correct UDI or UPC, or other device identification; (2) expiration date; (3) storage instructions; (4) handling instructions; and (5) any additional processing instructions.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) The manufacturer must ensure labeling and packaging has been examined for accuracy prior to release or storage where applicable, to include the following:",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(a)",
+    "location": "820.45(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Examination requirement and qualifier."
+   },
+   {
+    "quote": "(1) The correct unique device identifier (UDI) or universal product code (UPC), or any other device identification(s); (2) Expiration date; (3) Storage instructions; (4) Handling instructions; and (5) Any additional processing instructions.",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(a)(1)-(5)",
+    "location": "820.45(a)(1)-(5)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The five required examination items omitted from J."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair for citation; J is too thin to judge completeness — an answer omitting the five items would still match J."
+ },
+ {
+  "question_id": "M-027",
+  "question_interpretation": "Asks what must be documented when labeling is released for use.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J omits 'in accordance with Clause 4.2.5 of ISO 13485'; H carries the clause, so not material."
+   }
+  ],
+  "explanation": "820.45(b) requires that the release of labeling for use be documented in accordance with Clause 4.2.5. G and J match; 820.35 identifies Clause 4.2.5 as 'Control of Records', corroborating H/I.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(b) The release of the labeling for use must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(b)",
+    "location": "820.45(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Documentation of labeling release, per Clause 4.2.5."
+   },
+   {
+    "quote": "In addition to the requirements of Clause 4.2.5 in ISO 13485 (incorporated by reference, see § 820.7), Control of Records,",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35 (introductory text)",
+    "location": "820.35 intro",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Clause 4.2.5 = Control of Records (FDA text)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — single-paragraph lookup."
+ },
+ {
+  "question_id": "M-028",
+  "question_interpretation": "Asks what controls Part 820 requires over labeling and packaging operations to prevent mixups and what must be documented.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J says only that operations must be 'controlled' to prevent mixups; it omits the specified control — operations established and maintained, including inspection of labeling and packaging before use to assure all devices have correct labeling and packaging as specified in the medical device file — and that results are documented in accordance with Clause 4.2.5."
+   },
+   {
+    "type": "precision",
+    "detail": "820.45(b) (documented release of labeling) is a related documentation requirement an answer may reasonably add; not required by the mixup focus."
+   }
+  ],
+  "explanation": "820.45(c) requires labeling and packaging operations to be established and maintained to prevent mixups, including inspection before use against the medical device file, and documentation of the inspection results per Clause 4.2.5. G is right; J omits the inspection-before-use control the question asks for. H (4.2.3 MDF; 4.2.5 Control of records) is corroborated: 820.45(c) refers to the medical device file and Clause 4.2.5, and the preamble ties the before-use inspection to Clause 4.2.3.",
+  "proposed_corrected_answer": "Under 820.45(c) the manufacturer must ensure labeling and packaging operations are established and maintained to prevent mixups, including (but not limited to) inspection of labeling and packaging before use to assure all devices have the correct labeling and packaging as specified in the medical device file; the results of that labeling inspection must be documented in accordance with ISO 13485 Clause 4.2.5.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(c) The manufacturer must ensure labeling and packaging operations have been established and maintained to prevent mixups, including, but not limited to, inspection of the labeling and packaging before use to assure that all devices have correct labeling and packaging, as specified in the medical device file. Results of such labeling inspection must be documented in accordance with Clause 4.2.5 of ISO 13485.",
+    "source_title": "21 CFR 820.45 — Device labeling and packaging controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(c)",
+    "location": "820.45(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Mixup controls, inspection before use against the MDF, documentation per 4.2.5."
+   },
+   {
+    "quote": "Section 820.45 specifically requires that manufacturers inspect labeling and packaging before use to assure that all devices have the correct labeling and packaging, in accordance with Clause 4.2.3 and that manufacturers document that inspection.",
+    "source_title": "QMSR final rule preamble, Comment 60 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7515",
+    "location": "Section V.G.2",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA ties the before-use inspection to Clause 4.2.3 (MDF), corroborating H."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Materiality of J's brevity is a judgment; the regulatory content itself is unambiguous.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair for citation and ISO; J is too thin to distinguish an answer that omits the before-use inspection against the MDF."
+ },
+ {
+  "question_id": "M-029",
+  "question_interpretation": "Asks which Part 820 provisions are FDA-authored supplements to ISO 13485 rather than incorporation by reference. 'Supplements' can mean Subpart B 'Supplemental Provisions' (820.35, 820.45) or every FDA-specific requirement beyond the standard (which would also include 820.10(b)-(d) and arguably 820.1 and 820.3(b)).",
+  "question_clarity": "ambiguous",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "AMBIGUOUS_QUESTION",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "ambiguity",
+    "detail": "Part 820 labels only Subpart B (820.35, 820.45) as 'Supplemental Provisions'. FDA's preamble describes the 'additional requirements' more broadly ('see e.g., §§ 820.10 through 820.45'; '§ 820.10(b)(i) through (iv)'). 820.3(b) also supersedes ISO definitions and 820.1 adds scope, conflict and variance rules. Each reading yields a different provision list."
+   },
+   {
+    "type": "other",
+    "detail": "820.10(e) is an enforcement/adulteration provision and 820.10(c) limits Clause 7.3 to certain device classes; describing them as requirements 'in addition to the standard' is loose."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "H lists clauses named in 820.35 and 820.45 plus 7.5.8/7.5.9/8.2.3, but omits other clauses expressly named in the cited 820.10(b)-(d): 7.2.3 and 8.3.3 (820.10(b)(4)), 7.3 (820.10(c)) and 7.5.9.2 (820.10(d)). H is internally inconsistent with G."
+   }
+  ],
+  "explanation": "The term 'supplement' maps literally to Subpart B 'Supplemental Provisions' (820.35 and 820.45), while FDA's preamble treats 820.10 through 820.45 as additional requirements. The key adopts a hybrid (820.10(b)-(e) + 820.35 + 820.45) and omits 820.3(b)'s superseding definitions. Different reasonable readings produce different correct lists. H is also incomplete relative to G.",
+  "proposed_corrected_answer": "Clarify the question. If 'supplements' means Subpart B: 820.35 (Control of records, supplementing Clauses 4.2.5, 8.2.2, 7.5.4, 7.5.1/7.5.8/7.5.9) and 820.45 (labeling and packaging controls, supplementing Clause 7.5.1). If it means all FDA-specific requirements beyond ISO 13485: also 820.10(b)(1)-(4) (parts 830, 821, 803, 806 for Clauses 7.5.8, 7.5.9.1, 8.2.3, 7.2.3/8.3.3), 820.10(c) (scope of Clause 7.3), 820.10(d) (Clause 7.5.9.2 for life-supporting/sustaining devices), 820.10(e) (enforcement), and the FDA definitions in 820.3 (including 820.3(b), which supersede ISO definitions) and scope/conflict rules in 820.1; 820.10(a) is the operative incorporation by reference. If H is kept, add 7.2.3, 7.3, 7.5.9.2 and 8.3.3.",
+  "proposed_sections": "21 CFR 820.35; 820.45 (Subpart B) — and, under the broader reading, 820.1; 820.3; 820.10(b)-(e)",
+  "evidence": [
+   {
+    "quote": "Subpart B—Supplemental Provisions",
+    "source_title": "21 CFR Part 820, Subpart B heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subpart B",
+    "location": "Subpart B heading",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 820 labels only Subpart B (820.35, 820.45) as supplemental provisions."
+   },
+   {
+    "quote": "FDA has added limited additional requirements to the QMSR where appropriate, and device manufacturers must meet those requirements in addition to those set forth in ISO 13485 (see e.g., Sec. Sec.  820.10 through 820.45).",
+    "source_title": "QMSR final rule preamble, Comment 25 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7506",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA describes 820.10 through 820.45 as additional requirements (broader reading)."
+   },
+   {
+    "quote": "(4) For Clauses 7.2.3, 8.2.3, and 8.3.3, advisory notices shall be handled in accordance with the requirements of part 806 of this chapter.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)(4)",
+    "location": "820.10(b)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Clauses 7.2.3 and 8.3.3 are named in the cited 820.10(b) but missing from H."
+   },
+   {
+    "quote": "(b) All definitions in section 201 of the Federal Food, Drug, and Cosmetic Act shall apply to the regulation of quality management systems under this part and shall supersede the correlating terms and definitions in ISO 13485",
+    "source_title": "21 CFR 820.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.3(b)",
+    "location": "820.3(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.3(b) is an FDA provision that overrides the standard, omitted from the key."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Classification depends on how 'supplements' is read; the key is defensible under one reading but incomplete under the other.",
+  "expert_review_required": true,
+  "expert_review_reason": "Benchmark owner should fix the intended meaning of 'supplements' (Subpart B only vs all FDA-added provisions) and align H with G.",
+  "rubric_fairness": "unfair — an answer giving Subpart B only, or the broader list including 820.3(b), would be penalised on completeness or citation exactness against the hybrid key."
+ },
+ {
+  "question_id": "M-030",
+  "question_interpretation": "Asks what the QMSR amendment changed in Part 820 and the date from which compliance is required.",
+  "question_clarity": "clear",
+  "temporal_scope": "historical",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "conflicts_with_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The final rule is 89 FR 7496 (pages 7496-7525). 89 FR 7523 is where the revised Part 820 text begins (the CFR source note for 820.3 uses it), so it is a valid pinpoint for the Part 820 amendment, but the rule citation should be 89 FR 7496; the Part 4 conforming amendments start at 89 FR 7522."
+   },
+   {
+    "type": "precision",
+    "detail": "The FR sets an effective date of February 2, 2026; there is no separate 'compliance date', though FDA states it will not require compliance before the effective date. Calling it the compliance date is acceptable."
+   },
+   {
+    "type": "precision",
+    "detail": "J says FDA supplements were 'retained' at 820.10(b)-(e), 820.35 and 820.45; these are new provisions (some carry over QS-regulation requirements, e.g. 820.45 labeling controls and the 820.35(d) confidentiality clarification)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits that ISO 9000:2015 Clause 3 (terms and definitions) was also incorporated by reference (820.7(a), 820.3), that the part was retitled 'Quality Management System Regulation', that QS-regulation record-type terms (DMR, DHR, DHF, QSR) were eliminated, and the conforming amendments to Part 4."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "H '1 through 8 (entire standard)' is internally inconsistent: FDA confirms the QMSR incorporates the entire standard including the Introduction (Clauses 0.1, 0.2, 0.4), and 820.3(b) itself relies on Clause 0.1. The standard's title in I matches 820.7(b)."
+   }
+  ],
+  "explanation": "The core of J is right: ISO 13485:2016 is incorporated by reference, former Subparts C-O were removed and reserved, Subpart B adds 820.35/820.45, and the QMSR applies from February 2, 2026. The key omits the ISO 9000 Clause 3 incorporation, the retitling and the elimination of DMR/DHR/DHF terminology. Its FR citation is a regulatory-text pinpoint rather than the rule citation. H's '1 through 8' range conflicts with FDA's statement that the whole standard, Introduction included, is incorporated.",
+  "proposed_corrected_answer": "The QMSR final rule (89 FR 7496, Feb. 2, 2024; revised Part 820 text at 89 FR 7523-7525) revised and retitled Part 820 'Quality Management System Regulation': it incorporates ISO 13485:2016 by reference (820.7(b), 820.10(a)) and ISO 9000:2015 Clause 3 definitions (820.7(a), 820.3); it keeps FDA scope and definitions (820.1, 820.3) and adds FDA requirements in 820.10(b)-(e), 820.35 and 820.45; the former QS regulation's Subparts C-O were removed and reserved (820.20-820.30 and 820.40 reserved); QS-regulation record-type terms such as DMR, DHR and DHF were eliminated; and Part 4 was conformed. Effective (and compliance required from) February 2, 2026. ISO scope: ISO 13485:2016 in its entirety, including the Introduction.",
+  "proposed_sections": "21 CFR Part 820 (820.1, 820.3, 820.7, 820.10, 820.35, 820.45); QMSR final rule, 89 FR 7496 (Feb. 2, 2024), effective Feb. 2, 2026",
+  "evidence": [
+   {
+    "quote": "[Pages 7496-7525]",
+    "source_title": "QMSR final rule header",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496-7525",
+    "location": "FR header",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "The final rule spans 89 FR 7496-7525; the rule citation is 89 FR 7496."
+   },
+   {
+    "quote": "DATES: This rule is effective February 2, 2026.",
+    "source_title": "QMSR final rule, DATES",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496",
+    "location": "DATES",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Legal effective date of the QMSR is February 2, 2026."
+   },
+   {
+    "quote": "However, FDA does not intend to require compliance with the QMSR until its effective date. Until then, manufacturers are required to comply with the QS regulation.",
+    "source_title": "QMSR final rule preamble, Effective Date (Comment 77 response)",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "Section VI.A",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Compliance with the QMSR is required from the effective date; before it the QS regulation applied."
+   },
+   {
+    "quote": "[89 FR 7523, Feb. 2, 2024; 89 FR 82945, Oct. 15, 2024]",
+    "source_title": "21 CFR 820.3 source note",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.3",
+    "location": "source note",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The Part 820 amendment is codified from 89 FR 7523 (valid pinpoint)."
+   },
+   {
+    "quote": "(a) ISO 9000:2015(E) (“ISO 9000”), Quality Management systems—Fundamentals and vocabulary, Clause 3—Terms and definitions, Fourth edition, September 15, 2015. IBR approved for § 820.3.",
+    "source_title": "21 CFR 820.7 — Incorporation by reference",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.7(a)",
+    "location": "820.7(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "ISO 9000 Clause 3 also incorporated; omitted from J."
+   },
+   {
+    "quote": "Subparts C through O of the QS regulation have been removed and reserved.",
+    "source_title": "QMSR final rule preamble, Comment 15 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Preamble section V, response to Comment 15",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA states that former Subparts C-O were removed and reserved (sections removed; subparts reserved)."
+   },
+   {
+    "quote": "FDA confirms that the QMSR incorporates ISO 13485:2016 by reference, including Clauses 0.1 (General), 0.2 (Clarification of Concepts), and 0.4 (Relationship with ISO 9001) of the Introduction of the standard.",
+    "source_title": "QMSR final rule preamble, Comment 11 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7503",
+    "location": "Section V",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "The entire standard, including Clause 0 Introduction, is incorporated; H '1 through 8' is inaccurate."
+   },
+   {
+    "quote": "we are not retaining separate requirements for these record types in the QMSR and have eliminated terms associated with these specific record types",
+    "source_title": "QMSR final rule preamble, Comment 31 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7507",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "DMR/DHR/DHF/QSR terminology eliminated; omitted from J."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Materiality of the omitted changes in an open-ended 'what changed' question is a judgment; the factual core of the key is supported.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — an answer citing the rule correctly as 89 FR 7496 could fail an exact-citation check keyed to 89 FR 7523, and an ISO answer of 'entire standard including the Introduction' does not match '1 through 8'."
+ },
+ {
+  "question_id": "M-031",
+  "question_interpretation": "Asks what 820.30 requires for design controls, presupposing 820.30 is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.30 is within the current reserved range '§§ 820.20-820.30 [Reserved]', so '[Reserved]' is accurate. Legal effective date is Feb. 2, 2026 (the eCFR displays the new text from Feb. 4, 2026)."
+   },
+   {
+    "type": "other",
+    "detail": "A complete answer may add that the risk-management documentation expectations formerly in 820.30(g) are carried by ISO 13485 (Part 4.4(b)(1)(ii) pairs Clause 7.3 with documented risk-management processes); not required by the key."
+   }
+  ],
+  "explanation": "820.30 now sits in the reserved range 820.20-820.30. Design and development requirements apply through 820.10(c), which requires class II, class III and listed class I manufacturers to comply with Clause 7.3 and its subclauses. FDA's technical amendments repoint QS-regulation references to 820.30 to '820.10(c)' as the equivalent provision. H (7.3 and subclauses, Design and development) is named in 820.10(c).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR Part 820, Subpart B (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20-820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Sections 820.20 through 820.30 are a reserved range in the current Part 820."
+   },
+   {
+    "quote": "(c) Design and development. Manufacturers of class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(c)",
+    "location": "820.10(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Design and development requirements (ISO 13485 Clause 7.3 and subclauses) apply through 820.10(c) to class II, III and listed class I devices."
+   },
+   {
+    "quote": "are being modified to change references to Sec.  820.30 (Design Controls) (21 CFR 820.30) in the QSR to the equivalent provision in the QMSR (Sec.  820.10(c) (21 CFR 820.10(c))).",
+    "source_title": "QMSR technical amendments, Section II",
+    "issuing_authority": "Federal Register",
+    "identifier": "90 FR 55978",
+    "location": "Section II",
+    "url": "https://www.federalregister.gov/d/2025-21955",
+    "local_source_file": "federal_register/2025-21955.txt",
+    "date": "90 FR 55978, published 2025-12-04, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA identifies 820.10(c) as the QMSR equivalent of former 820.30."
+   },
+   {
+    "quote": "§ 820.30 Design controls.",
+    "source_title": "21 CFR 820.30 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.30 (as in force 2026-01-31)",
+    "location": "820.30 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "820.30 existed as Design controls in the pre-QMSR text (historical baseline)."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the key credits premise correction plus 820.10(c)/Clause 7.3 routing, which is what the official text supports."
+ },
+ {
+  "question_id": "M-032",
+  "question_interpretation": "Asks for the CAPA requirements of 820.100, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.100 (former Subpart J) was in a former subpart (C-O) that the QMSR removed and reserved; the section itself was removed, not individually designated '[Reserved]'. 'Reserved' wording is imprecise but the routing is correct."
+   },
+   {
+    "type": "other",
+    "detail": "FDA's own crosswalk in 21 CFR 4.4(b)(1)(iv), which replaced the reference to 820.100, also lists Clause 8.2.2 with 820.35(a) and Clause 8.4. An answer may also note 820.35(a)(6) (corrective action recorded in complaint records). Not required for the trap."
+   }
+  ],
+  "explanation": "820.100 (former Subpart J) no longer exists; Subparts C-O are reserved. CAPA reaches the manufacturer through 820.10(a), which requires a documented QMS complying with ISO 13485. FDA's preamble identifies Clause 8.5.2 (corrective action) and Clause 8.5.3 (preventive action) as the incorporated CAPA clauses, corroborating H/I.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "Subparts C through O of the QS regulation have been removed and reserved.",
+    "source_title": "QMSR final rule preamble, Comment 15 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Preamble section V, response to Comment 15",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA states that former Subparts C-O were removed and reserved (sections removed; subparts reserved)."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "ISO 13485 has one Clause outlining expectations regarding corrective action (Clause 8.5.2) and has another Clause outlining the expectations regarding preventive action (Clause 8.5.3).",
+    "source_title": "QMSR final rule preamble, Comment 20 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7505",
+    "location": "Section V",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Clause 8.5.2 = corrective action; 8.5.3 = preventive action (FDA text)."
+   },
+   {
+    "quote": "§ 820.100 Corrective and preventive action.",
+    "source_title": "21 CFR 820.100 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.100 (as in force 2026-01-31)",
+    "location": "820.100 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline: 820.100 was the CAPA section."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — premise correction plus 820.10(a)/8.5.2/8.5.3 routing is supported; 'reserved' wording does not mislead the scoring."
+ },
+ {
+  "question_id": "M-033",
+  "question_interpretation": "Asks what a complaint file must contain under 820.198, presupposing 820.198 is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.198 (former Subpart M) was in a former subpart (C-O) that the QMSR removed and reserved; the section itself was removed, not individually designated '[Reserved]'. 'Reserved' wording is imprecise but the routing is correct."
+   },
+   {
+    "type": "precision",
+    "detail": "For complete content, an answer should list the seven 820.35(a)(1)-(7) items and the investigation/justification record requirements; the key routes to 820.35(a) without spelling them out. 820.10(b)(3) (MDR reporting under part 803, Clause 8.2.3) is a related routing."
+   }
+  ],
+  "explanation": "820.198 (former Subpart M) was removed; complaint-record content now appears in 820.35(a), which supplements Clause 8.2.2 Complaint Handling. FDA's technical amendments name 820.35 as the QMSR equivalent of former 820.198. H 8.2.2 is named in 820.35(a).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "(a) Records of complaints. In addition to Clause 8.2.2 in ISO 13485, Complaint Handling, the manufacturer shall maintain records of the review, evaluation, and investigation for any complaints involving the possible failure of a device, labeling, or packaging to meet any of its specifications.",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(a)",
+    "location": "820.35(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Complaint records now specified at 820.35(a); Clause 8.2.2 = Complaint Handling."
+   },
+   {
+    "quote": "(1) The name of the device; (2) The date the complaint was received; (3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s); (4) The name, address, and phone number of the complainant; (5) The nature and details of the complaint; (6) Any correction or corrective action taken; and (7) Any reply to the complainant.",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(a)(1)-(7)",
+    "location": "820.35(a)(1)-(7)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Required complaint-record content."
+   },
+   {
+    "quote": "820.198 (Records--Complaint files) in the QSR to the equivalent requirement in the QMSR (Sec.  820.35 (Control of Records) (21 CFR 820.35)).",
+    "source_title": "QMSR technical amendments, Section II",
+    "issuing_authority": "Federal Register",
+    "identifier": "90 FR 55978",
+    "location": "Section II",
+    "url": "https://www.federalregister.gov/d/2025-21955",
+    "local_source_file": "federal_register/2025-21955.txt",
+    "date": "90 FR 55978, published 2025-12-04, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA identifies 820.35 as the QMSR equivalent of former 820.198."
+   },
+   {
+    "quote": "§ 820.198 Complaint files.",
+    "source_title": "21 CFR 820.198 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.198 (as in force 2026-01-31)",
+    "location": "820.198 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — premise correction plus 820.35(a)/8.2.2 routing is supported."
+ },
+ {
+  "question_id": "M-034",
+  "question_interpretation": "Asks how DMR, DHR and DHF differ under the current Part 820, presupposing those record types still exist.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.181 and 820.184 (former Subpart M) were removed, not individually reserved; 820.30(j) falls within the reserved range 820.20-820.30. Wording is imprecise but correct in substance."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "FDA's preamble maps the former DHR to the medical device or batch record of Clause 7.5.1. H (4.2.3; 4.2.5; 7.3.10) and J ('record control') instead route the DHR equivalent to Clause 4.2.5, omitting the clause FDA itself names. 4.2.3 (MDF ← DMR) and 7.3.10 (design and development file ← DHF) are corroborated."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J could add that the MDF and design and development file terms appear in current Part 820 (820.3 'Rework' and 820.45(c) refer to the medical device file), and that FDA's technical amendments replaced 'design history file' references with 'design and development files'."
+   }
+  ],
+  "explanation": "Current Part 820 does not use DMR, DHR or DHF; FDA eliminated those record-type terms. The premise correction and 4.2.3 / 7.3.10 mapping are supported by the preamble. For the DHR, however, FDA names the medical device or batch record of Clause 7.5.1, which H/J omit in favour of the generic records-control Clause 4.2.5.",
+  "proposed_corrected_answer": "State that DMR, DHR and DHF are QS-regulation terms (former 820.181, 820.184, 820.30(j)) not used in current Part 820. Per FDA's preamble: DMR content (specifications, manufacturing/measuring/monitoring/servicing procedures, installation requirements) now sits in the medical device file (ISO 13485 Clause 4.2.3); DHR content is largely the medical device or batch record (Clause 7.5.1); DHF content is the design and development file (Clause 7.3.10). Records control (Clause 4.2.5, supplemented by 820.35) governs all of these records. H: 4.2.3; 7.5.1; 7.3.10 (4.2.5 optional).",
+  "proposed_sections": "21 CFR 820.10(a); 820.10(c); 820.35 (former 820.181, 820.184, 820.30(j) removed/reserved)",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR Part 820, Subpart B (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20-820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Sections 820.20 through 820.30 are a reserved range in the current Part 820."
+   },
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "we are not retaining separate requirements for these record types in the QMSR and have eliminated terms associated with these specific record types",
+    "source_title": "QMSR final rule preamble, Comment 31 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7507",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "DMR/DHR/DHF terms eliminated from the QMSR."
+   },
+   {
+    "quote": "For example, many of the requirements previously in the DHR are largely required to be in the medical device or batch record, as described in Clause 7.5.1.",
+    "source_title": "QMSR final rule preamble, Comment 31 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7507",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA maps the former DHR to Clause 7.5.1 (missing from H)."
+   },
+   {
+    "quote": "Similarly, consistent with the former DHF, Clause 7.3.10 requires the design and development file to contain or reference all the records necessary to establish compliance with design and development requirements",
+    "source_title": "QMSR final rule preamble, Comment 31 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7507",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "DHF → Clause 7.3.10 design and development file."
+   },
+   {
+    "quote": "requirements for installation were included in a manufacturer's DMR and will now be located in the manufacturer's MDF.",
+    "source_title": "QMSR final rule preamble, Comment 31 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7508",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "DMR → MDF (Clause 4.2.3)."
+   },
+   {
+    "quote": "One change in Sec.  801.45(e) (21 CFR 801.45(e)) changes a reference from the design history file in the QSR to the design and development files of the QMSR.",
+    "source_title": "QMSR technical amendments, Section II",
+    "issuing_authority": "Federal Register",
+    "identifier": "90 FR 55978",
+    "location": "Section II",
+    "url": "https://www.federalregister.gov/d/2025-21955",
+    "local_source_file": "federal_register/2025-21955.txt",
+    "date": "90 FR 55978, published 2025-12-04, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA's own conforming change DHF → design and development files."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — an answer that correctly follows FDA's preamble and maps the DHR to Clause 7.5.1 would not match H's 4.2.5 on ISO concordance."
+ },
+ {
+  "question_id": "M-035",
+  "question_interpretation": "Asks for the management responsibility requirements of 820.20, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "Clause 5 is corroborated. FDA's own replacement for the former 820.20 cross-reference in 21 CFR 4.4(b)(1)(i) lists 'Clause 4.1, Clause 5 and its subclauses, Clause 6.1 of ISO 13485, and § 820.10'. H '5' is the core but narrower than FDA's crosswalk; an answer adding 4.1/6.1 should not be penalised."
+   }
+  ],
+  "explanation": "820.20 is within the current reserved range 820.20-820.30. Management responsibility reaches the manufacturer through 820.10(a). FDA's Part 4 amendment replaced the reference to 'Section 820.20 ... Management responsibility' with 'General requirements and management responsibility. Clause 4.1, Clause 5 and its subclauses, Clause 6.1 ... and § 820.10'. That corroborates Clause 5 as management responsibility (with 4.1 and 6.1 as companions).",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR Part 820, Subpart B (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20-820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Sections 820.20 through 820.30 are a reserved range in the current Part 820."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "(i) General requirements and management responsibility. Clause 4.1, Clause 5 and its subclauses, Clause 6.1 of ISO 13485, and § 820.10 of this chapter;",
+    "source_title": "21 CFR 4.4 — CGMP for co-packaged or single-entity combination products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(i)",
+    "location": "4.4(b)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-4/subpart-A/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA crosswalk: management responsibility → Clause 5 (with 4.1, 6.1) and 820.10."
+   },
+   {
+    "quote": "(i) Section 820.20 of this chapter. Management responsibility.",
+    "source_title": "21 CFR 4.4 (pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(i) (as in force 2026-01-31)",
+    "location": "4.4(b)(1)(i)",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-A/part-4/subpart-A/section-4.4",
+    "local_source_file": "ecfr_2026-01-31/part-4.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "The same paragraph previously cited 820.20 — confirms the crosswalk."
+   },
+   {
+    "quote": "§ 820.20 Management responsibility.",
+    "source_title": "21 CFR 820.20 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20 (as in force 2026-01-31)",
+    "location": "820.20 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "Medium",
+  "uncertainty_reason": "Clause 5's title is corroborated only through FDA's combined heading in 4.4(b)(1)(i), and FDA's crosswalk is broader than H.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the key's minimum (premise correction, 820.10(a), Clause 5) is supported; answers adding 4.1/6.1 still include Clause 5."
+ },
+ {
+  "question_id": "M-036",
+  "question_interpretation": "Asks for the quality audit requirements of 820.22, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "NEEDS_EXPERT_REVIEW",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "requires_controlled_copy",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "No FDA text located that identifies Clause 8.2.4 as 'Internal audit'. The preamble only lists '8.2.4' among measurement clauses without a title. Clause identity rests on general knowledge."
+   },
+   {
+    "type": "other",
+    "detail": "Useful context, not required by the key: the QMSR dropped the former 820.180(c) exception, so internal audit and management review reports are no longer exempt from FDA inspection."
+   }
+  ],
+  "explanation": "820.22 is within the reserved range 820.20-820.30, and auditing reaches the manufacturer through 820.10(a), so G and J are supported. H's 8.2.4 'Internal audit' cannot be corroborated from FDA text and needs the controlled ISO copy. Status reflects only the ISO clause; the temporal routing is verified.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR Part 820, Subpart B (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20-820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Sections 820.20 through 820.30 are a reserved range in the current Part 820."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "Consistent with Clauses 8.1, 8.2.4, 8.2.5 and 8.2.6, FDA expects that correction and prevention of unacceptable QS practices should result in fewer nonconformities related to product.",
+    "source_title": "QMSR final rule preamble, Comment 14 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Section V",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Only FDA mention of 8.2.4 — no title given (absence of corroboration)."
+   },
+   {
+    "quote": "FDA disagrees that it should maintain the exceptions set forth at Sec.  820.180(c).",
+    "source_title": "QMSR final rule preamble, Comment 55 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7514",
+    "location": "Section V.G.1",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Audit reports no longer exempt from inspection (context)."
+   },
+   {
+    "quote": "§ 820.22 Quality audit.",
+    "source_title": "21 CFR 820.22 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.22 (as in force 2026-01-31)",
+    "location": "820.22 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "Medium",
+  "uncertainty_reason": "ISO clause identity unverifiable from FDA text.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm against the controlled ISO 13485:2016 copy that Clause 8.2.4 is the internal audit clause.",
+  "rubric_fairness": "fair for G/J; ISO concordance depends on unverified clause identity."
+ },
+ {
+  "question_id": "M-037",
+  "question_interpretation": "Asks for the purchasing control and supplier evaluation requirements of 820.50, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.50 (former Subpart E) was in a former subpart (C-O) that the QMSR removed and reserved; the section itself was removed, not individually designated '[Reserved]'. 'Reserved' wording is imprecise but the routing is correct."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "FDA text corroborates 'Clause 7.4 and its subclauses' for purchasing (21 CFR 4.4(b)(1)(iii), which replaced the 820.50 reference) and describes Clause 7.4 supplier evaluation. The individual subclause titles in I (7.4.1 Purchasing process, 7.4.2 Purchasing information, 7.4.3 Verification of purchased product) are not named in FDA text."
+   }
+  ],
+  "explanation": "820.50 (former Subpart E) was removed with Subparts C-O. Purchasing controls reach the manufacturer through 820.10(a). FDA's Part 4 crosswalk replaced 'Section 820.50 ... Purchasing controls' with 'Purchasing. Clause 7.4. and its subclauses', and the preamble describes Clause 7.4 supplier evaluation. That corroborates H at the 7.4-family level.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "(iii) Purchasing. Clause 7.4. and its subclauses of ISO 13485;",
+    "source_title": "21 CFR 4.4 — CGMP for combination products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(iii)",
+    "location": "4.4(b)(1)(iii)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-4/subpart-A/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA crosswalk: purchasing → Clause 7.4 and its subclauses."
+   },
+   {
+    "quote": "(iii) Section 820.50 of this chapter. Purchasing controls.",
+    "source_title": "21 CFR 4.4 (pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(iii) (as in force 2026-01-31)",
+    "location": "4.4(b)(1)(iii)",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-A/part-4/subpart-A/section-4.4",
+    "local_source_file": "ecfr_2026-01-31/part-4.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Same paragraph previously cited 820.50."
+   },
+   {
+    "quote": "The QMSR describes a process of continuous evaluation to address products and suppliers. Clause 7.4 of ISO 13485 specifies that an organization must evaluate suppliers of purchased products in terms of ability and performance of the supplier,",
+    "source_title": "QMSR final rule preamble, Comment 40 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7510",
+    "location": "Section V.D",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Clause 7.4 covers supplier evaluation."
+   },
+   {
+    "quote": "§ 820.50 Purchasing controls.",
+    "source_title": "21 CFR 820.50 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.50 (as in force 2026-01-31)",
+    "location": "820.50 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "Medium",
+  "uncertainty_reason": "Subclause titles 7.4.1-7.4.3 rest on general knowledge; the 7.4 family is corroborated.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — premise correction plus 820.10(a)/Clause 7.4 routing is supported."
+ },
+ {
+  "question_id": "M-038",
+  "question_interpretation": "Asks what 820.75 requires for process validation, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "NEEDS_EXPERT_REVIEW",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "requires_controlled_copy",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.75 (former Subpart G) was in a former subpart (C-O) that the QMSR removed and reserved; the section itself was removed, not individually designated '[Reserved]'. 'Reserved' wording is imprecise but the routing is correct."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "No FDA text located that names Clause 7.5.6 or 7.5.7 or gives their titles. The preamble maps only the former 820.75(b)(1) (qualified individuals) to Clause 6.2. Clause identity rests on general knowledge."
+   }
+  ],
+  "explanation": "820.75 (former Subpart G) was removed and process validation reaches the manufacturer through 820.10(a), so G and J are supported. H's 7.5.6/7.5.7 cannot be corroborated from FDA text. FDA's only explicit mapping for 820.75 content is 820.75(b)(1) → Clause 6.2, which an answer could also cite.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "Subparts C through O of the QS regulation have been removed and reserved.",
+    "source_title": "QMSR final rule preamble, Comment 15 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Preamble section V, response to Comment 15",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA states that former Subparts C-O were removed and reserved (sections removed; subparts reserved)."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "FDA considers Clause 6.2 of ISO 13485 to capture the intent of the previous Sec.  820.75(b)(1) adequately,",
+    "source_title": "QMSR final rule preamble, Comment 13 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Section V",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Only FDA mapping of former 820.75 content (to Clause 6.2)."
+   },
+   {
+    "quote": "§ 820.75 Process validation.",
+    "source_title": "21 CFR 820.75 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.75 (as in force 2026-01-31)",
+    "location": "820.75 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "Medium",
+  "uncertainty_reason": "ISO clause identity unverifiable from FDA text.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm against the controlled ISO 13485:2016 copy that Clauses 7.5.6 and 7.5.7 are the process-validation clauses (and titles in I).",
+  "rubric_fairness": "fair for G/J; ISO concordance depends on unverified clause identity."
+ },
+ {
+  "question_id": "M-039",
+  "question_interpretation": "Asks for the calibration requirements of 820.72, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "NEEDS_EXPERT_REVIEW",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "requires_controlled_copy",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.72 (former Subpart G) was in a former subpart (C-O) that the QMSR removed and reserved; the section itself was removed, not individually designated '[Reserved]'. 'Reserved' wording is imprecise but the routing is correct."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "No FDA text located that identifies Clause 7.6 as 'Control of monitoring and measuring equipment'. The preamble lists '7.6' only in a risk-management example list without a title."
+   }
+  ],
+  "explanation": "820.72 (former Subpart G) was removed and equipment control reaches the manufacturer through 820.10(a), so G and J are supported. H's Clause 7.6 title is not corroborated by FDA text.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "Subparts C through O of the QS regulation have been removed and reserved.",
+    "source_title": "QMSR final rule preamble, Comment 15 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Preamble section V, response to Comment 15",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA states that former Subparts C-O were removed and reserved (sections removed; subparts reserved)."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "quality system (see e.g., Clauses 4.1, 7.1, 7.3, 7.4, 7.5, 7.6, and 8.2 and certain subclauses therein of ISO 13485).",
+    "source_title": "QMSR final rule preamble, Comment 19 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7505",
+    "location": "Section V",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Only FDA mention of Clause 7.6 — untitled."
+   },
+   {
+    "quote": "§ 820.72 Inspection, measuring, and test equipment.",
+    "source_title": "21 CFR 820.72 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.72 (as in force 2026-01-31)",
+    "location": "820.72 heading",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical baseline."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "Medium",
+  "uncertainty_reason": "ISO clause identity unverifiable from FDA text.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm against the controlled ISO 13485:2016 copy that Clause 7.6 is Control of monitoring and measuring equipment.",
+  "rubric_fairness": "fair for G/J; ISO concordance depends on unverified clause identity."
+ },
+ {
+  "question_id": "M-040",
+  "question_interpretation": "Asks what statistical techniques 820.250 requires, presupposing it is in force.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "NEEDS_EXPERT_REVIEW",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "requires_controlled_copy",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "820.250 (former Subpart O) was in a former subpart (C-O) that the QMSR removed and reserved; the section itself was removed, not individually designated '[Reserved]'. 'Reserved' wording is imprecise but the routing is correct."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "Clause 8.4 is corroborated as 'Analysis of data' by 21 CFR 4.4(b)(1)(iv). FDA text mentions 8.1 and 8.2.6 only without titles or any link to statistical techniques; that 8.1 and 8.2.6 carry the statistical-technique and sampling content of former 820.250 rests on general knowledge."
+   }
+  ],
+  "explanation": "820.250 (former Subpart O, the last reserved subpart) was removed, and statistical-technique determination reaches the manufacturer through 820.10(a), so G and J are supported. Of H, only 8.4 (analysis of data) is corroborated by FDA text. 8.1 and 8.2.6 need the controlled copy.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 (current QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Former Subparts C through O (820.40-820.250 range of the QS regulation) are reserved; the former sections in them no longer exist in current Part 820."
+   },
+   {
+    "quote": "Subparts C through O of the QS regulation have been removed and reserved.",
+    "source_title": "QMSR final rule preamble, Comment 15 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7504",
+    "location": "Preamble section V, response to Comment 15",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA states that former Subparts C-O were removed and reserved (sections removed; subparts reserved)."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "(iv) Analysis of data, improvement, and complaint handling. Clause 8.2.2 and § 820.35(a) of this chapter, Clause 8.4, and Clause 8.5. and its subclauses of ISO 13485;",
+    "source_title": "21 CFR 4.4 — CGMP for combination products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(iv)",
+    "location": "4.4(b)(1)(iv)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-4/subpart-A/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Clause 8.4 associated with analysis of data (FDA text)."
+   },
+   {
+    "quote": "(a) Where appropriate, each manufacturer shall establish and maintain procedures for identifying valid statistical techniques required for establishing, controlling, and verifying the acceptability of process capability and product characteristics.",
+    "source_title": "21 CFR 820.250 (QS regulation, pre-QMSR)",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.250(a) (as in force 2026-01-31)",
+    "location": "820.250(a)",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historical content of the removed section."
+   }
+  ],
+  "search_performed": "Read the full current Part 820 (eCFR 2026-10-14, identical to 2026-02-04) and the full pre-QMSR Part 820 (2026-01-31; 2026-02-02/03 identical to it apart from a definition fix). Checked the QMSR final rule's Part 820 table of contents and amendatory text (89 FR 7523-7525) and the technical amendments (90 FR 55978).",
+  "confidence": "Medium",
+  "uncertainty_reason": "ISO clause identity for 8.1 and 8.2.6 unverifiable from FDA text.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm against the controlled ISO 13485:2016 copy which clauses carry statistical-technique and sampling-rationale requirements (8.1, 8.2.6, 8.4 and possibly others).",
+  "rubric_fairness": "fair for G/J; ISO concordance depends on unverified clause identity."
+ },
+ {
+  "question_id": "M-041",
+  "question_interpretation": "Asks whether Part 820 requires ISO 13485 certification and whether a certificate exempts a manufacturer from FDA inspection.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "requires_controlled_copy",
+  "issues": [
+   {
+    "type": "wrong_citation",
+    "detail": "820.1(c) (Foreign manufacturers) concerns refusal of admission of imported devices that appear adulterated; it says nothing about certification or exemption from inspection. It does not govern either part of the question."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "The 'no exemption from inspection' element rests on non-codified preamble statements (89 FR 7518-7519, Comments 79-81) and FDA's inspection authority under FD&C Act section 704 (21 U.S.C. 374), which is unaffected by the rule. No regulatory text in Part 820 addresses certificates. The key should say so rather than cite 820.1(c)."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "Clause 4.1 is corroborated as part of FDA's 'General requirements' grouping (21 CFR 4.4(b)(1)(i)); Clause 1 'Scope' is not named in any FDA text located."
+   }
+  ],
+  "explanation": "J is correct: Part 820 contains no certification requirement (820.10(a) requires a documented QMS that complies with ISO 13485), and FDA states it will not require certification and that certificate holders are not exempt from FDA inspection. G's 820.1(c) is not a governing provision for either point. A correct answer would cite 820.10(a), the preamble and FD&C Act 704, and would not match it. H's Clause 1 is unverified.",
+  "proposed_corrected_answer": "No. Part 820 imposes no ISO 13485 certification requirement; 820.10(a) requires the manufacturer to document a QMS that complies with the applicable requirements of ISO 13485 and the rest of Part 820. A certificate does not exempt the manufacturer from FDA inspection. FDA said in the QMSR preamble that it will not require or rely on ISO 13485 certificates and that certificate holders are not exempt from inspection, and its inspection authority under FD&C Act section 704 is unaffected. These are preamble statements and statutory authority, not Part 820 regulatory text.",
+  "proposed_sections": "21 CFR 820.10(a); QMSR final rule preamble, 89 FR 7518-7519 (Comments 79-81); FD&C Act section 704 (21 U.S.C. 374)",
+  "evidence": [
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The incorporated ISO 13485 requirements reach the manufacturer through 820.10(a)."
+   },
+   {
+    "quote": "(c) Foreign manufacturers. A device that is imported or offered for import into the United States is subject to refusal of admission to the United States under section 801(a) of the Federal Food, Drug, and Cosmetic Act if, among other things, it appears to be adulterated as set forth in the Federal Food, Drug, and Cosmetic Act and its implementing regulations.",
+    "source_title": "21 CFR 820.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.1(c)",
+    "location": "820.1(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.1(c) concerns import refusal, not certification or inspection exemption."
+   },
+   {
+    "quote": "As such, FDA does not intend to require medical device manufacturers to obtain ISO 13485 certification and will not rely on ISO 13485 certificates to conduct its regulatory oversight of medical device manufacturers.",
+    "source_title": "QMSR final rule preamble, Comment 79 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "Section VI.B",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "No certification requirement."
+   },
+   {
+    "quote": "In addition, manufacturers with a certificate of conformance to ISO 13485 are not exempt from FDA inspections.",
+    "source_title": "QMSR final rule preamble, Comment 81 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7519",
+    "location": "Section VI.B",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Certificate does not exempt from inspection."
+   },
+   {
+    "quote": "Although this rule does not impact FDA's authority to conduct inspections under section 704 of the FD&C Act,",
+    "source_title": "QMSR final rule preamble, Comment 81 response",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "Section VI.B",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Inspection authority rests on FD&C Act 704."
+   }
+  ],
+  "search_performed": "Searched current Part 820 in full for 'certif' and 'inspection' — no provision on certification; the only inspection-related text in the pre-QMSR part was former 820.1(d), which the QMSR's 820.1(c) no longer carries. Searched the QMSR final rule for 'certif'.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": true,
+  "expert_review_reason": "Clause 1 (Scope) identity in H needs the controlled ISO copy; the citation error is settled.",
+  "rubric_fairness": "unfair — a correct answer citing 820.10(a), the preamble and FD&C 704 would fail citation-exact against a key requiring 820.1(c)."
+ },
+ {
+  "question_id": "M-042",
+  "question_interpretation": "Asks which Title 21 parts govern establishment registration, device listing and UDI, and how they interact with Part 820.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "UDI is governed by part 830 and by part 801 subpart B (801.20: label and package must bear a UDI meeting subpart B and part 830; 801.45 direct marking). G/J omit part 801 subpart B."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Other Part 820 touchpoints for UDI: 820.35(a)(3) and 820.35(b)(2) (any UDI/UPC recorded in complaint and servicing records) and 820.45(a)(1) (labeling examined for the correct UDI/UPC). J mentions only 820.10(b)(1) and 820.35(c)."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J does not address how Part 807 interacts with Part 820. Part 820 contains no reference to part 807 and part 807 none to part 820; the honest answer is that they are separate obligations with overlapping 'manufacturer' coverage, and no cross-reference exists."
+   }
+  ],
+  "explanation": "Part 807 (registration and listing) and Part 830 (UDI system and GUDID) are correctly identified, as are 820.10(b)(1) (documented UDI-assignment system per part 830, for Clause 7.5.8) and 820.35(c) (UDI recorded per device or batch). The key omits the part 801 subpart B labeling requirement to bear a UDI and Part 820's other UDI provisions. It also does not answer the Part 807 half of 'how do they interact'. H (7.5.8; 7.5.9) is named in 820.10(b) and 820.35(c).",
+  "proposed_corrected_answer": "Registration and listing: 21 CFR part 807 (e.g., 807.20). UDI: 21 CFR part 830 (UDI requirements, issuing agencies, GUDID) and part 801 subpart B (801.20 label/package must bear a UDI; 801.45 direct marking). Interaction with Part 820: 820.10(b)(1) requires a documented system to assign UDIs per part 830 (Clause 7.5.8); 820.35(c) requires the UDI to be recorded for each device or batch (Clauses 7.5.1, 7.5.8, 7.5.9); 820.35(a)(3) and (b)(2) require any UDI/UPC in complaint and servicing records; 820.45(a)(1) requires labeling to be examined for the correct UDI/UPC. Part 820 does not cross-reference part 807; registration/listing is a separate obligation.",
+  "proposed_sections": "21 CFR Part 807; 21 CFR Part 830; 21 CFR Part 801, Subpart B (801.20, 801.45); 21 CFR 820.10(b)(1); 820.35(a)(3), (b)(2), (c); 820.45(a)(1)",
+  "evidence": [
+   {
+    "quote": "(a) In general. (1) The label of every medical device shall bear a unique device identifier (UDI) that meets the requirements of this subpart and part 830 of this chapter.",
+    "source_title": "21 CFR 801.20 — Label to bear a unique device identifier",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 801.20(a)(1)",
+    "location": "801.20(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-801",
+    "local_source_file": "ecfr_2026-10-14/part-801.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 801 subpart B also governs UDI (omitted from key)."
+   },
+   {
+    "quote": "A unique device identifier (UDI) must: (a) Be issued under a system operated by FDA or an FDA-accredited issuing agency;",
+    "source_title": "21 CFR 830.20 — Requirements for a unique device identifier",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 830.20(a)",
+    "location": "830.20",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-830",
+    "local_source_file": "ecfr_2026-10-14/part-830.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 830 governs the UDI system."
+   },
+   {
+    "quote": "PART 807—ESTABLISHMENT REGISTRATION AND DEVICE LISTING FOR MANUFACTURERS AND INITIAL IMPORTERS OF DEVICES",
+    "source_title": "21 CFR Part 807",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 807",
+    "location": "Part heading",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-807",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 807 governs registration and listing."
+   },
+   {
+    "quote": "(1) For Clause 7.5.8 in ISO 13485, Identification, the manufacturer must document a system to assign unique device identification to the medical device in accordance with the requirements of part 830 of this chapter.",
+    "source_title": "21 CFR 820.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)(1)",
+    "location": "820.10(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 820 link to part 830; Clause 7.5.8."
+   },
+   {
+    "quote": "(c) Unique Device Identification. In addition to the requirements of Clauses 7.5.1, 7.5.8, and 7.5.9 in ISO 13485, the UDI must be recorded for each medical device or batch of medical devices.",
+    "source_title": "21 CFR 820.35",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(c)",
+    "location": "820.35(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "UDI recording; Clauses 7.5.8/7.5.9."
+   },
+   {
+    "quote": "(1) The correct unique device identifier (UDI) or universal product code (UPC), or any other device identification(s);",
+    "source_title": "21 CFR 820.45",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.45(a)(1)",
+    "location": "820.45(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Additional Part 820 UDI touchpoint omitted from key."
+   }
+  ],
+  "search_performed": "Searched part 807 for '820', '830' and 'unique device' and part 830 for '820' — no cross-references found; current Part 820 contains no reference to part 807.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — an answer that correctly adds part 801 subpart B is not penalised, but the key cannot detect an answer that omits it or skips the 807 interaction."
+ }
+]

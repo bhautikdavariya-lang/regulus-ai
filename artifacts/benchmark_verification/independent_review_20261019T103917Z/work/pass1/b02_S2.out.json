@@ -1,0 +1,1288 @@
+[
+ {
+  "question_id": "S-015",
+  "question_interpretation": "Contrast what Part 111 requires of quality control (QC) personnel with what it requires of the personnel who manufacture, package, label or hold dietary supplements.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'QC independence' is not a Part 111 requirement. Part 111 has no word 'independent' or 'independence'. QC personnel may be 'within or outside of your organization' (111.3), and under 111.12(b) a person may perform both QC and other operations as long as the QC responsibilities are 'distinct and separate'. The 2007 preamble (72 FR 34800, 34810) says QC need not be a distinct or separate unit or person, and QC personnel 'can have dual functions'."
+   },
+   {
+    "type": "unsupported_element",
+    "detail": "'No self-approval of own work' does not appear in Part 111 for QC review. The preamble (72 FR 34800) gives an example of a packaging expert who does packaging QC and also works in the packaging operation. The only two-person verification rule is in the MMR/BPR for weighing, measuring and adding components in manual operations (111.210(h)(3)(ii); 111.260(j)(2)). That rule is about production steps, not QC approval."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J does not list the QC duties that the question asks for: approve or reject processes, specifications, procedures, controls, tests and deviations (111.105(a)); review supplier-qualification and specification-basis documentation (111.105(b)-(e)); ensure representative and reserve samples are collected (111.105(f)-(g)); conduct all material reviews and disposition decisions (111.87, 111.113); approve and release or reject batches (111.123). J also does not state the production-side requirements: qualified employees with education, training or experience (111.12(a),(c)) and qualified supervisors (111.13)."
+   },
+   {
+    "type": "wrong_citation",
+    "detail": "G names 111.105 and 111.12 but leaves out 111.87 (QC alone makes material review and disposition decisions) and 111.3 (QC personnel may be inside or outside the firm). These are central to the distinction."
+   }
+  ],
+  "explanation": "111.105 and 111.12 are the right core sections. Two of the four key elements, 'QC independence' and 'no self-approval of own work', are not in the regulation. The text requires only that each QC person be qualified and keep QC responsibilities 'distinct and separate' from their other duties. The QC personnel definition expressly allows QC to sit inside or outside the organization. A correct answer that says Part 111 does not require an independent QC unit would contradict this key.",
+  "proposed_corrected_answer": "QC personnel (any person or group, inside or outside the firm, that you designate; 111.3) must be identified and qualified. When performing QC, they must hold responsibilities 'distinct and separate' from any other duties they have (111.12(b)). Part 111 does not require an independent QC unit, and one person may hold both roles. QC personnel must ensure that operations ensure product quality and that packaging and labeling match the MMR. They approve or reject processes, specifications, written procedures, controls, tests and deviations; review and approve supplier-qualification and specification-basis documentation; ensure representative and reserve samples are collected; and determine whether specifications are met (111.105). QC alone conducts material reviews and makes disposition decisions (111.87; 111.113) and approves, releases or rejects batches (111.123). Production personnel must be qualified employees with the education, training or experience for their assigned functions (111.12(a),(c)), under qualified supervisors (111.13). They carry out operations according to the MMR and BPR.",
+  "proposed_sections": "21 CFR 111.3 (quality control personnel); 111.12(a)-(c); 111.13; 111.87; 111.105; cross-ref 111.110-111.135",
+  "evidence": [
+   {
+    "quote": "Each person who is identified to perform quality control operations must be qualified to do so and have distinct and separate responsibilities related to performing such operations from those responsibilities that the person otherwise has when not performing such operations.",
+    "source_title": "21 CFR 111.12 — What personnel qualification requirements apply?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.12(b)",
+    "location": "§ 111.12(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.12",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The separation requirement is 'distinct and separate responsibilities', not independence."
+   },
+   {
+    "quote": "Quality control personnel means any person, persons, or group, within or outside of your organization, who you designate to be responsible for your quality control operations.",
+    "source_title": "21 CFR 111.3 — What definitions apply to this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.3",
+    "location": "§ 111.3 definitions",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.3",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC may be inside the organization; no independence requirement."
+   },
+   {
+    "quote": "Quality control personnel must conduct all required material reviews and make all required disposition decisions.",
+    "source_title": "21 CFR 111.87 — Who conducts a material review and makes a disposition decision?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.87",
+    "location": "§ 111.87",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.87",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Material review and disposition authority sits with QC only."
+   },
+   {
+    "quote": "(a) Approving or rejecting all processes, specifications, written procedures, controls, tests, and examinations, and deviations from or modifications to them, that may affect the identity, purity, strength, or composition of a dietary supplement;",
+    "source_title": "21 CFR 111.105 — What must quality control personnel do?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.105(a)",
+    "location": "§ 111.105(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.105",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC approval authority."
+   },
+   {
+    "quote": "(c) Each person engaged in manufacturing, packaging, labeling, or holding, or in performing any quality control operations, must have the education, training, or experience to perform the person's assigned functions.",
+    "source_title": "21 CFR 111.12 — What personnel qualification requirements apply?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.12(c)",
+    "location": "§ 111.12(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.12",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Qualification requirement for production personnel."
+   },
+   {
+    "quote": "We agree the quality control functions do not need to be performed by a distinct or separate unit or person and that a person who is qualified by training, education, or experience can serve a quality control function.",
+    "source_title": "Final rule: CGMP in Manufacturing, Packaging, Labeling, or Holding Operations for Dietary Supplements (preamble)",
+    "issuing_authority": "Federal Register",
+    "identifier": "72 FR 34752 (Final rule preamble, response to comment on QC unit)",
+    "location": "72 FR 34810",
+    "url": "https://www.federalregister.gov/documents/full_text/text/2007/06/25/07-3039.txt",
+    "local_source_file": "",
+    "date": "Published 2007-06-25",
+    "check_level": "webfetch",
+    "supports": "FDA says QC need not be a separate unit or person, which contradicts 'QC independence'. Downloaded from federalregister.gov raw text; not in the cached sources, so not machine-verifiable here."
+   },
+   {
+    "quote": "thus, for example, the packaging expert who performs the quality control function for packaged dietary supplements could also have responsibilities in the actual packaging operation.",
+    "source_title": "Final rule preamble, 72 FR 34752",
+    "issuing_authority": "Federal Register",
+    "identifier": "72 FR 34752 (preamble, definition of quality control personnel)",
+    "location": "72 FR 34800",
+    "url": "https://www.federalregister.gov/documents/full_text/text/2007/06/25/07-3039.txt",
+    "local_source_file": "",
+    "date": "Published 2007-06-25",
+    "check_level": "webfetch",
+    "supports": "The same person may do both production and QC for the same operation, which contradicts a blanket 'no self-approval' rule. Not machine-verifiable here."
+   }
+  ],
+  "search_performed": "grep -i 'independen|own work|gang|self' over ecfr_2026-10-14/part-111.txt: no hits for independen or own work. Read all of Part 111 Subparts A-F. Grepped the 2007 final-rule preamble (72 FR 34752, from federalregister.gov) for 'independen', 'distinct and separate', 'same person' and 'own work'. It contains no rule against self-approval, and it states that QC personnel may have dual functions.",
+  "confidence": "High",
+  "uncertainty_reason": "The regulatory text alone settles it. The preamble quotes back it up but were read from a federalregister.gov download, not from the cached sources.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - a correct answer stating that Part 111 allows dual-role QC personnel, provided QC responsibilities are distinct and separate, would be marked down against 'QC independence' and 'no self-approval'."
+ },
+ {
+  "question_id": "S-016",
+  "question_interpretation": "What Part 111 requires for incoming components, packaging and labels before they are used in manufacture: receipt examination, quarantine, sampling, specification verification (identity/COA), QC approval and release, lot identification, holding, and handling of rejected materials.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The identity-verification and COA-reliance elements in J come from 111.75(a)(1)-(2), not from 111.155 or 111.160. The pre-use packaging and label checks are in 111.75(f). Rejection of unsuitable materials is in 111.77 and 111.170. QC pre-use operations are in 111.120. G cites none of these, so an answer that cites the provisions actually governing J's elements may be scored as off-key."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J leaves out requirements stated in the cited sections: visual examination of containers (content label, damage, broken seals) and of the supplier invoice, guarantee or certification (111.155(a)-(b), 111.160(a)-(b)); collection of representative samples; QC review and approval of results and release from quarantine (111.155(c), 111.160(c)); unique lot identification and traceability (111.155(d), 111.160(d)); and holding conditions (111.155(e), 111.160(e))."
+   },
+   {
+    "type": "precision",
+    "detail": "'Identity verification of each component' is imprecise. A dietary ingredient needs at least one identity test or examination unless FDA grants a petition exemption (111.75(a)(1)). The identity of other components may be confirmed by testing or by a qualified supplier COA (111.75(a)(2)). Packaging and labels need, at minimum, a visual identification or examination plus review of the supplier invoice, guarantee or certification (111.75(f))."
+   }
+  ],
+  "explanation": "The key's themes are real requirements (identity, COA conditions, quarantine, rejection). But two of the four elements come from sections G does not cite (111.75, 111.170), and J leaves out most of what 111.155 and 111.160 require: receipt examination, sampling, QC release from quarantine, lot traceability and holding. An answer complete for the question needs 111.75(a) and (f), 111.120 and 111.170 alongside 111.155 and 111.160.",
+  "proposed_corrected_answer": "On receipt, visually examine containers for appropriate content label, damage or broken seals, and the supplier's invoice, guarantee or certification against the purchase order (111.155(a)-(b); 111.160(a)-(b)). Quarantine until representative samples are collected (for packaging and labels, with at least a visual identification of containers and closures), QC has reviewed and approved any test or examination results, and QC has approved the material and released it from quarantine (111.155(c); 111.160(c); 111.120). Verify specifications before use (111.75): for a dietary ingredient, at least one appropriate identity test or examination, unless FDA grants a 111.75(a)(1)(ii) petition exemption; for other components, confirm identity and other 111.70(b) specifications by testing or by a supplier COA under the 111.75(a)(2)(ii) conditions; for packaging and labels, at least a visual identification or examination plus review of the supplier's invoice, guarantee or certification (111.75(f)). Give each unique lot a traceable identifier (111.155(d); 111.160(d)). Hold materials so as to prevent contamination, deterioration and mixups (111.155(e); 111.160(e)). QC must reject nonconforming material (111.77), and rejected material must be identified, held and controlled under a quarantine system (111.170). Records go under 111.180.",
+  "proposed_sections": "21 CFR 111.155; 111.160; 111.75(a), (f); 111.120; 111.77; 111.170; 111.180",
+  "evidence": [
+   {
+    "quote": "(c) You must quarantine components before you use them in the manufacture of a dietary supplement until:",
+    "source_title": "21 CFR 111.155 — What requirements apply to components of dietary supplements?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.155(c)",
+    "location": "§ 111.155(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.155",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Quarantine element."
+   },
+   {
+    "quote": "(3) Quality control personnel approve the components for use in the manufacture of a dietary supplement, including approval of any treatment (including in-process adjustments) of components to make them suitable for use in the manufacture of a dietary supplement, and releases them from quarantine.",
+    "source_title": "21 CFR 111.155",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.155(c)(3)",
+    "location": "§ 111.155(c)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.155",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC approval and release from quarantine, omitted from J."
+   },
+   {
+    "quote": "(1)(i) Conduct at least one appropriate test or examination to verify the identity of any component that is a dietary ingredient, unless you petition the agency under paragraph (a)(1)(ii) of this section and the agency exempts you from such testing;",
+    "source_title": "21 CFR 111.75 — What must you do to determine whether specifications are met?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(1)(i)",
+    "location": "§ 111.75(a)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The identity-verification element comes from 111.75, not from G."
+   },
+   {
+    "quote": "(f)(1) Before you use packaging, you must, at a minimum, conduct a visual identification of the containers and closures and review the supplier's invoice, guarantee, or certification to determine whether the packaging specifications are met; and",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(f)(1)",
+    "location": "§ 111.75(f)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Pre-use packaging verification, in a section G does not cite."
+   },
+   {
+    "quote": "You must clearly identify, hold, and control under a quarantine system for appropriate disposition any component, packaging, and label, and any product that you receive for packaging or labeling as a dietary supplement (and for distribution rather than for return to the supplier), that is rejected and unsuitable for use in manufacturing, packaging, or labeling operations.",
+    "source_title": "21 CFR 111.170",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.170",
+    "location": "§ 111.170",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.170",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The rejection element is governed by 111.170, which G does not cite."
+   },
+   {
+    "quote": "(e) Approving, and releasing from quarantine, all components, packaging, and labels before they are used.",
+    "source_title": "21 CFR 111.120",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.120(e)",
+    "location": "§ 111.120(e)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.120",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC pre-use operations."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - a complete answer citing 111.75, 111.120 and 111.170 (where J's elements actually come from) risks a citation-exact penalty because G lists only 111.155 and 111.160."
+ },
+ {
+  "question_id": "S-017",
+  "question_interpretation": "Whether a manufacturer may rely on a supplier certificate of analysis instead of its own identity testing of a component. The answer differs for dietary ingredients and other components.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "J says the manufacturer is required to test dietary-ingredient identity but leaves out the exception in the same paragraph G cites: a firm may petition FDA under 21 CFR 10.30 (111.75(a)(1)(ii)), and if FDA grants the petition, it tests under the terms FDA specifies."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J lists only supplier qualification and periodic re-confirmation. It leaves out the other mandatory COA conditions: the COA must describe the test methods, limits and actual results (111.75(a)(2)(ii)(B)); the firm must keep documentation of how it qualified the supplier (C); and QC personnel must review and approve the qualification documentation (E)."
+   },
+   {
+    "type": "precision",
+    "detail": "COA reliance covers confirming the identity of non-dietary-ingredient components as well as their other specifications (111.75(a)(2)). 'Other component specs' should say so. 111.155 (receipt and quarantine) is only a minor fit; 111.95(b)(2) (records of supplier qualification) and 111.105(b) (QC approval) are more relevant."
+   }
+  ],
+  "explanation": "The core rule is correct and correctly cited at 111.75(a)(1)-(2). Identity testing of a dietary ingredient cannot be replaced by a COA, while other components may rely on a COA under conditions. J leaves out the petition exemption in 111.75(a)(1)(ii), which goes to whether the practice is 'allowed', and three of the five COA conditions.",
+  "proposed_corrected_answer": "It depends on the component. For a dietary ingredient, no: the firm must conduct at least one appropriate test or examination to verify identity before use (111.75(a)(1)(i)). The only alternative is a 21 CFR 10.30 petition showing no material diminution of assurance; if FDA grants it, the firm tests under the terms FDA specifies (111.75(a)(1)(ii)). For any other component, the firm may confirm identity and other 111.70(b) specifications through a supplier COA, but only if it first qualifies the supplier by confirming the supplier's test results; the COA describes the test methods, limits and actual results; the firm documents how it qualified the supplier; it periodically re-confirms the COA; and QC reviews and approves the qualification and re-qualification basis (111.75(a)(2)(ii)(A)-(E); 111.105(b); records under 111.95(b)(2)).",
+  "proposed_sections": "21 CFR 111.75(a)(1)(i)-(ii), (a)(2)(i)-(ii)(A)-(E); 111.105(b); 111.95(b)(2)",
+  "evidence": [
+   {
+    "quote": "(1)(i) Conduct at least one appropriate test or examination to verify the identity of any component that is a dietary ingredient, unless you petition the agency under paragraph (a)(1)(ii) of this section and the agency exempts you from such testing;",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(1)(i)",
+    "location": "§ 111.75(a)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Identity testing of a dietary ingredient is required, subject to the petition exemption that J omits."
+   },
+   {
+    "quote": "(ii) You may submit a petition, under 21 CFR 10.30, to request an exemption from the testing requirements in paragraph (a)(1)(i) of this section.",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(1)(ii)",
+    "location": "§ 111.75(a)(1)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Petition exemption."
+   },
+   {
+    "quote": "(2) Confirm the identity of other components and determine whether other applicable component specifications established in accordance with § 111.70(b) are met. To do so, you must either:",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(2)",
+    "location": "§ 111.75(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "COA option covers identity and other specs of non-dietary-ingredient components."
+   },
+   {
+    "quote": "(B) The certificate of analysis includes a description of the test or examination method(s) used, limits of the test or examinations, and actual results of the tests or examinations;",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(2)(ii)(B)",
+    "location": "§ 111.75(a)(2)(ii)(B)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "COA content condition, omitted from J."
+   },
+   {
+    "quote": "(E) Your quality control personnel review and approve the documentation setting forth the basis for qualification (and re-qualification) of any supplier.",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(2)(ii)(E)",
+    "location": "§ 111.75(a)(2)(ii)(E)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC approval condition, omitted from J."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G is correct, but a strict completeness grader using J would not credit an answer for the petition exemption or the full COA conditions, and would not penalise an answer that omits them."
+ },
+ {
+  "question_id": "S-018",
+  "question_interpretation": "List the contents Part 111 requires in a master manufacturing record.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J leaves out several items 111.210 enumerates: a statement of any intentional overage of a dietary ingredient (111.210(e)); a statement of theoretical yield at each control point and at completion, with the maximum and minimum percentages beyond which a deviation investigation and material review are needed (111.210(f)); procedures for sampling and a cross-reference to test procedures (h)(2); specific actions to perform and verify control points, including weight or measure verification and, for manual operations, one person weighing or adding a component and a second person verifying ((h)(3)); special notations and precautions ((h)(4)); and corrective action plans ((h)(5))."
+   },
+   {
+    "type": "precision",
+    "detail": "'Batch size' is not a separate content item. 111.210(a) requires strength, concentration, weight or measure of each dietary ingredient 'for each batch size', and 111.205(a) requires an MMR for each batch size. 'In-process controls' is a loose summary of (h)(1) and (h)(3)."
+   }
+  ],
+  "explanation": "G is the right section. J reflects items (a)-(d), (g) and part of (h) but leaves out the overage statement, the theoretical yield limits that trigger deviation investigations, the two-person verification for manual operations, and corrective action plans. These are distinct enumerated requirements, so J is incomplete for a 'what must it include' question.",
+  "proposed_corrected_answer": "Under 111.210 the MMR must include: (a) the supplement name and the strength, concentration, weight or measure of each dietary ingredient for each batch size; (b) a complete list of components; (c) an accurate statement of the weight or measure of each component; (d) the identity and weight or measure of each dietary ingredient declared on the Supplement Facts label, and the identity of each ingredient on the ingredient list; (e) any intentional overage of a dietary ingredient; (f) theoretical yield at each control point and at completion, with maximum and minimum percentages beyond which deviation investigation and material review are required; (g) a description of packaging and a representative label (or a cross-reference to it); and (h) written instructions covering specifications for each control point, sampling procedures with a cross-reference to test procedures, specific actions to perform and verify each control point (including weight or measure and addition verification, with a second-person check for manual operations), special notations and precautions, and corrective action plans.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(e) A statement of any intentional overage amount of a dietary ingredient;",
+    "source_title": "21 CFR 111.210 — What must the master manufacturing record include?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.210(e)",
+    "location": "§ 111.210(e)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.210",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Overage statement, omitted from J."
+   },
+   {
+    "quote": "(f) A statement of theoretical yield of a manufactured dietary supplement expected at each point, step, or stage of the manufacturing process where control is needed to ensure the quality of the dietary supplement, and the expected yield when you finish manufacturing the dietary supplement, including the maximum and minimum percentages of theoretical yield beyond which a deviation investigation of a batch is necessary and material review is conducted and disposition decision is made;",
+    "source_title": "21 CFR 111.210",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.210(f)",
+    "location": "§ 111.210(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.210",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Theoretical yield statement, omitted from J."
+   },
+   {
+    "quote": "(5) Corrective action plans for use when a specification is not met.",
+    "source_title": "21 CFR 111.210",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.210(h)(5)",
+    "location": "§ 111.210(h)(5)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.210",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Corrective action plans, omitted from J."
+   },
+   {
+    "quote": "(a) The name of the dietary supplement to be manufactured and the strength, concentration, weight, or measure of each dietary ingredient for each batch size;",
+    "source_title": "21 CFR 111.210",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.210(a)",
+    "location": "§ 111.210(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.210",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's name, strength and batch-size element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G is right, but J under-specifies completeness, so an answer omitting yield, overage or corrective action plans would not be penalised."
+ },
+ {
+  "question_id": "S-019",
+  "question_interpretation": "When Part 111 requires a master manufacturing record, and how the batch production record relates to it.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Optional detail a complete answer may add: the MMR's purpose is uniformity from batch to batch (111.205(a)); a BPR must be prepared every time a batch is manufactured, and each step must be performed (111.255(a),(c)); the BPR records the date and initials for each MMR step (111.260(j)). None of these is a material omission."
+   }
+  ],
+  "explanation": "111.205(a) requires a written MMR for each unique formulation and each batch size. 111.255(c) requires the BPR to accurately follow the appropriate MMR. Both of J's elements are directly supported, and G cites the governing sections.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) You must prepare and follow a written master manufacturing record for each unique formulation of dietary supplement that you manufacture, and for each batch size, to ensure uniformity in the finished batch from batch to batch.",
+    "source_title": "21 CFR 111.205 — What is the requirement to establish a master manufacturing record?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.205(a)",
+    "location": "§ 111.205(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.205",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "MMR is required for each unique formulation and each batch size."
+   },
+   {
+    "quote": "(c) Your batch production record must accurately follow the appropriate master manufacturing record and you must perform each step in the production of the batch; and",
+    "source_title": "21 CFR 111.255 — What is the requirement to establish a batch production record?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.255(c)",
+    "location": "§ 111.255(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.255",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The BPR must accurately follow the MMR."
+   },
+   {
+    "quote": "(a) You must prepare a batch production record every time you manufacture a batch of a dietary supplement;",
+    "source_title": "21 CFR 111.255",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.255(a)",
+    "location": "§ 111.255(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.255",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "A BPR is required for every batch."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G and J match the governing text."
+ },
+ {
+  "question_id": "S-020",
+  "question_interpretation": "List the contents Part 111 requires in a batch production record.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J leaves out material items of 111.260: the unique identifier of each component, packaging and label used (d); actual yield and percentage of theoretical yield (f); actual monitoring results (g); documentation that the finished supplement meets the 111.70(e) and (g) specifications (i); at-the-time documentation of packaging and labeling operations, including label reconciliation and an actual or representative label (k); documentation that QC reviewed the BPR, approved or rejected reprocessing or repackaging, and approved and released or rejected the batch and the packaged and labeled product (l); and documentation of reprocessing (n)."
+   },
+   {
+    "type": "precision",
+    "detail": "'Documentation of deviations' corresponds to 111.260(m) (material review and disposition decision), with contents set by 111.140(b)(3). 'Dates and times' is accurate only for equipment maintenance, cleaning and sanitizing (c); for MMR steps only the date is required (j)(1)."
+   }
+  ],
+  "explanation": "G is the governing section, and each J element maps to 111.260. But J leaves out the QC review and release documentation (l), the yield statements (f), the unique component, packaging and label identifiers (d), and the packaging and labeling operation records (k). These are central, enumerated BPR contents.",
+  "proposed_corrected_answer": "Under 111.260 the BPR must include: (a) the batch, lot or control number of the finished batch and of each packaged and labeled lot, or lot distributed for packaging or labeling; (b) identity of equipment and processing lines; (c) date and time of maintenance, cleaning and sanitizing, or a cross-reference; (d) the unique identifier of each component (or received product), packaging and label used; (e) identity and weight or measure of each component; (f) actual yield and percentage of theoretical yield at appropriate phases; (g) actual monitoring results; (h) test and examination results, or a cross-reference; (i) documentation that the finished supplement meets the 111.70(e) and (g) specifications; (j) at-the-time documentation of manufacture, with the date of each MMR step and initials of the persons weighing or measuring, verifying, adding and verifying addition of each component; (k) at-the-time packaging and labeling documentation (identifiers and quantities, label reconciliation when required, an actual or representative label, and test results); (l) documentation that QC reviewed the BPR, approved or rejected reprocessing or repackaging, and approved and released or rejected the batch and the packaged and labeled product; (m) any material review and disposition decision; and (n) any reprocessing.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(f) A statement of the actual yield and a statement of the percentage of theoretical yield at appropriate phases of processing;",
+    "source_title": "21 CFR 111.260 — What must the batch record include?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.260(f)",
+    "location": "§ 111.260(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.260",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Yield statement, omitted from J."
+   },
+   {
+    "quote": "(3) Approved and released, or rejected, the batch for distribution, including any reprocessed batch; and",
+    "source_title": "21 CFR 111.260",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.260(l)(3)",
+    "location": "§ 111.260(l)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.260",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC release documentation, omitted from J."
+   },
+   {
+    "quote": "(d) The unique identifier that you assigned to each component (or, when applicable, to a product that you receive from a supplier for packaging or labeling as a dietary supplement), packaging, and label used;",
+    "source_title": "21 CFR 111.260",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.260(d)",
+    "location": "§ 111.260(d)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.260",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Unique identifiers, omitted from J."
+   },
+   {
+    "quote": "(m) Documentation at the time of performance of any required material review and disposition decision.",
+    "source_title": "21 CFR 111.260",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.260(m)",
+    "location": "§ 111.260(m)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.260",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's 'documentation of deviations' element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair - G is right, but J omits QC review and release and other enumerated items, so completeness scoring is under-specified."
+ },
+ {
+  "question_id": "S-021",
+  "question_interpretation": "What the laboratory control processes required by Part 111 must include (Subpart J).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "incorrect",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_citation",
+    "detail": "21 CFR 111.310 is 'What are the requirements for the laboratory facilities that you use?' (adequate laboratory facilities). Laboratory control processes are governed by 21 CFR 111.315, 'What are the requirements for laboratory control processes?'. A correct answer citing 111.315 would fail citation-exact against this key."
+   },
+   {
+    "type": "unsupported_element",
+    "detail": "'Criteria for accepting/rejecting test results' is not an element of 111.315. The section lists criteria for establishing appropriate specifications, sampling plans, criteria for selecting examination and testing methods, criteria for selecting standard reference materials, and use of test methods in accordance with established criteria. 'Sample use' does not match any listed item."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J leaves out: criteria for establishing appropriate specifications (111.315(a)); criteria for selecting standard reference materials (d); use of test methods and examinations in accordance with established criteria (e); the five categories that sampling plans must cover (b)(1)-(5); and the responsible party, since the processes must be reviewed and approved by QC personnel (111.315 intro; 111.110(a))."
+   }
+  ],
+  "explanation": "The key cites the laboratory-facilities section (111.310) instead of 111.315, which governs laboratory control processes. Its element list includes an item not in the regulation ('criteria for accepting/rejecting test results') and leaves out three of the five enumerated items and the QC approval requirement. Only 'sampling plans' and 'criteria for selecting test methods' are supported.",
+  "proposed_corrected_answer": "You must establish and follow laboratory control processes that are reviewed and approved by quality control personnel (111.315; see also 111.110(a)). They must include: (a) use of criteria for establishing appropriate specifications; (b) use of sampling plans for obtaining representative samples, in accordance with Subpart E, of components, packaging and labels; in-process materials; finished batches; product received for packaging or labeling; and packaged and labeled dietary supplements; (c) use of criteria for selecting appropriate examination and testing methods; (d) use of criteria for selecting standard reference materials; and (e) use of test methods and examinations in accordance with established criteria. Related: written laboratory procedures (111.303), adequate laboratory facilities (111.310), and records (111.325).",
+  "proposed_sections": "21 CFR 111.315 (with 111.110(a) for QC review and approval)",
+  "evidence": [
+   {
+    "quote": "You must use adequate laboratory facilities to perform whatever testing and examinations are necessary to determine whether:",
+    "source_title": "21 CFR 111.310 — What are the requirements for the laboratory facilities that you use?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.310",
+    "location": "§ 111.310 (heading: What are the requirements for the laboratory facilities that you use?)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.310",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "111.310 is about laboratory facilities, not control processes."
+   },
+   {
+    "quote": "You must establish and follow laboratory control processes that are reviewed and approved by quality control personnel, including the following:",
+    "source_title": "21 CFR 111.315 — What are the requirements for laboratory control processes?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.315 (introductory text)",
+    "location": "§ 111.315",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.315",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "111.315 is the governing section; QC must review and approve the processes."
+   },
+   {
+    "quote": "(a) Use of criteria for establishing appropriate specifications;",
+    "source_title": "21 CFR 111.315",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.315(a)",
+    "location": "§ 111.315(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.315",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Element omitted from J."
+   },
+   {
+    "quote": "(c) Use of criteria for selecting appropriate examination and testing methods;",
+    "source_title": "21 CFR 111.315",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.315(c)",
+    "location": "§ 111.315(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.315",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's method-selection criteria element."
+   },
+   {
+    "quote": "(d) Use of criteria for selecting standard reference materials used in performing tests and examinations; and",
+    "source_title": "21 CFR 111.315",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.315(d)",
+    "location": "§ 111.315(d)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.315",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Element omitted from J."
+   },
+   {
+    "quote": "(e) Use of test methods and examinations in accordance with established criteria.",
+    "source_title": "21 CFR 111.315",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.315(e)",
+    "location": "§ 111.315(e)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.315",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Element omitted from J. The section has no 'accept/reject test results' criterion."
+   },
+   {
+    "quote": "(a) Reviewing and approving all laboratory control processes associated with the production and process control system;",
+    "source_title": "21 CFR 111.110",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.110(a)",
+    "location": "§ 111.110(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.110",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Responsible party: QC reviews and approves laboratory control processes."
+   }
+  ],
+  "search_performed": "Read all of Subpart J (111.303-111.325) and 111.110. grep -i 'accept' over part-111.txt finds no laboratory criterion for accepting or rejecting test results.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - the correct 111.315 citation would fail citation-exact against G (111.310), and a faithful listing of 111.315(a)-(e) would not match 'criteria for accepting/rejecting test results'."
+ },
+ {
+  "question_id": "S-022",
+  "question_interpretation": "What Part 111 requires of the laboratory methods used for testing and examination.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'Verification of suitability for the matrix' paraphrases beyond the text. 111.320(a) requires verifying that methodologies are 'appropriate for their intended use'; Part 111 never uses the word 'matrix'. Matrix suitability is one reasonable reading of 'intended use', but a grader looking for 'matrix' could mark down a verbatim-correct answer."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "111.75(h) also governs test and examination methods. They must be appropriate, scientifically valid methods and must include at least one of: gross organoleptic, macroscopic, microscopic or chemical analysis, or another scientifically valid method. G does not cite 111.75(h). Related: written procedures for tests (111.303), documentation that methodology is followed, with results (111.325(b)(2)), and QC review and approval of laboratory control processes, including method-selection criteria (111.315(c); 111.110)."
+   },
+   {
+    "type": "precision",
+    "detail": "111.320(b) requires identifying and using a scientifically valid method 'for each established specification for which testing or examination is required'. J's 'methods must be appropriate and scientifically valid' captures this only loosely."
+   }
+  ],
+  "explanation": "111.320 is the right core section, and J's 'appropriate and scientifically valid' element is supported. But J substitutes 'suitability for the matrix' for the regulatory 'appropriate for their intended use', and it leaves out the parallel method requirements in 111.75(h), including the list of acceptable method types.",
+  "proposed_corrected_answer": "You must verify that laboratory examination and testing methodologies are appropriate for their intended use (111.320(a)), and identify and use an appropriate scientifically valid method for each established specification that requires testing or examination (111.320(b)). Tests and examinations used to determine whether specifications are met must be appropriate, scientifically valid methods and must include at least one of: gross organoleptic, macroscopic, microscopic or chemical analysis, or another scientifically valid method (111.75(h)). Methods are selected under QC-approved criteria (111.315(c),(e)), follow written procedures (111.303), and are documented at the time of performance with results (111.325(b)(2)).",
+  "proposed_sections": "21 CFR 111.320; 111.75(h); cross-ref 111.315(c), 111.303, 111.325",
+  "evidence": [
+   {
+    "quote": "(a) You must verify that the laboratory examination and testing methodologies are appropriate for their intended use.",
+    "source_title": "21 CFR 111.320 — What requirements apply to laboratory methods for testing and examination?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.320(a)",
+    "location": "§ 111.320(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.320",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The text says 'intended use', not 'matrix'."
+   },
+   {
+    "quote": "(b) You must identify and use an appropriate scientifically valid method for each established specification for which testing or examination is required to determine whether the specification is met.",
+    "source_title": "21 CFR 111.320",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.320(b)",
+    "location": "§ 111.320(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.320",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's 'appropriate and scientifically valid'."
+   },
+   {
+    "quote": "(h)(1) You must ensure that the tests and examinations that you use to determine whether the specifications are met are appropriate, scientifically valid methods.",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(h)(1)",
+    "location": "§ 111.75(h)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Parallel method requirement not cited in G."
+   },
+   {
+    "quote": "(2) The tests and examinations that you use must include at least one of the following:",
+    "source_title": "21 CFR 111.75",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(h)(2)",
+    "location": "§ 111.75(h)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.75",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "List of acceptable method types, omitted from J."
+   }
+  ],
+  "search_performed": "grep -i 'matrix' over part-111.txt: no hits.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether 'suitability for the matrix' is an acceptable gloss of 'appropriate for their intended use' is partly a matter of interpretation. The 2007 preamble may discuss matrix effects; I did not check it for this row.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - a verbatim-correct answer stating 'appropriate for their intended use' may miss the 'matrix' element, and an answer citing 111.75(h) is not reflected in G."
+ },
+ {
+  "question_id": "S-023",
+  "question_interpretation": "What Part 111 requires of manufacturing operations to prevent contamination (Subpart K).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J's 'sanitation' element comes from 111.360 ('You must conduct all manufacturing operations in accordance with adequate sanitation principles'), which G does not cite. 111.370 (rejected supplements held under quarantine) and 111.353 (written procedures) are also Subpart K requirements."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J is too generic to measure completeness against 111.365. It does not name the enumerated precautions: protective conditions and controls; washing components that contain soil; water quality; testing to prevent use of contaminated components; microbial controls (sterilizing, pH, aw, etc.); holding of materials that support rapid microbial growth; segregating material under review; contamination controls for mechanical steps; protection against metal or foreign material (filters, magnets, metal detectors); and identifying batch containers, processing lines and major equipment."
+   }
+  ],
+  "explanation": "111.365 is the right primary section and nothing in J is wrong. But J's sanitation element comes from the uncited 111.360, and J's three high-level themes do not capture the eleven enumerated precautions, so the key cannot tell a complete answer from a vague one.",
+  "proposed_corrected_answer": "Conduct all manufacturing operations under adequate sanitation principles (111.360) and take all necessary precautions to prevent contamination (111.365). These include: (a) conditions and controls against microbial growth and contamination; (b) washing or cleaning components with soil or other contaminants; (c) using water that meets Federal, State and local requirements when it may become a component; (d) chemical, microbiological or other testing as necessary to prevent use of contaminated components; (e) sterilizing, pasteurizing, freezing, refrigerating, controlling pH, humidity or water activity, or other effective means against microorganisms and decomposition; (f) holding materials that can support rapid growth of pathogens so as to prevent adulteration; (g) identifying and holding materials under material review apart from others; (h) protecting mechanical steps (cleaning and sanitizing contact surfaces, temperature and time controls); (i) effective measures against metal or other foreign material (filters, traps, magnets, metal detectors); (j) segregating and identifying batch containers; and (k) identifying processing lines and major equipment with contents and batch. Rejected supplements must be held under a quarantine system (111.370).",
+  "proposed_sections": "21 CFR 111.365; 111.360; cross-ref 111.353, 111.370",
+  "evidence": [
+   {
+    "quote": "You must conduct all manufacturing operations in accordance with adequate sanitation principles.",
+    "source_title": "21 CFR 111.360 — What are the requirements for sanitation?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.360",
+    "location": "§ 111.360",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.360",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The sanitation element is in 111.360, which G does not cite."
+   },
+   {
+    "quote": "You must take all the necessary precautions during the manufacture of a dietary supplement to prevent contamination of components or dietary supplements. These precautions include:",
+    "source_title": "21 CFR 111.365 — What precautions must you take to prevent contamination?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.365",
+    "location": "§ 111.365 (introductory text)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.365",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Primary governing section."
+   },
+   {
+    "quote": "(i) Using effective measures to protect against the inclusion of metal or other foreign material in components or dietary supplements, by, for example:",
+    "source_title": "21 CFR 111.365",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.365(i)",
+    "location": "§ 111.365(i)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.365",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Physical-hazard control, consistent with J's generic 'physical' element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether a generic three-theme J is a 'material omission' or just a summary-level key is a judgment call. The citation gap (111.360) is clear.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - J is too generic to distinguish a complete 111.365 answer from a vague one, and an answer citing 111.360 for sanitation is not reflected in G."
+ },
+ {
+  "question_id": "S-024",
+  "question_interpretation": "What Part 111 requires for packaging and labeling operations (Subpart L).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'Gang printing controls' is not a Part 111 requirement. Part 111 contains no gang-printing provision. That requirement is drug CGMP, 21 CFR 211.122(f). A correct Part 111 answer would not mention it."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J lists label reconciliation without the 111.410(b) exception: reconciliation is not required for cut or rolled labels if a 100-percent examination for correct labels is performed by appropriate electronic or electromechanical equipment."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J and G leave out: repackaging and relabeling only after QC approval, with sampling and QC batch approval (111.420); quarantine of rejected packaged and labeled product (111.425); written procedures (111.403); assigning lot numbers and examining representative samples against 111.70(g) (111.415(f)-(g)); disposing of obsolete or incorrect labels (111.415(h)); traceability through distribution (111.410(d)); and QC operations for packaging and labeling (111.127)."
+   }
+  ],
+  "explanation": "111.410 and 111.415 are the right core sections, and most J themes are supported. But 'gang printing controls' imports a drug-CGMP requirement (21 CFR 211.122(f)) that does not exist in Part 111. That is a requirement-that-does-not-exist error. J also leaves out the reconciliation exception and the repackaging/relabeling and rejection rules in 111.420 and 111.425.",
+  "proposed_corrected_answer": "Determine whether packaging meets specifications (111.410(a)). Control the issuance and use of packaging and labels and reconcile discrepancies; reconciliation is not required for cut or rolled labels when 100% electronic or electromechanical label examination is performed (111.410(b)). Examine packaging and labels for each batch before operations to confirm conformity to the MMR (111.410(c)). Be able to determine the complete manufacturing history through distribution (111.410(d)). Fill, assemble, package and label so as to ensure quality and conformance to the MMR, including cleaning and sanitizing equipment and packaging, protecting against airborne contamination, sanitary handling, physical or spatial separation to prevent mixups, identifying unlabeled filled containers, assigning lot numbers, examining a representative sample of each batch against 111.70(g), and disposing of obsolete or incorrect labels and packaging (111.415). Repackage or relabel only with QC approval, with sampling and QC batch approval (111.420). Quarantine rejected packaged and labeled product (111.425). Follow written procedures (111.403), and QC performs the 111.127 operations. Part 111 has no gang-printing provision.",
+  "proposed_sections": "21 CFR 111.410; 111.415; 111.420; 111.425; cross-ref 111.403, 111.127",
+  "evidence": [
+   {
+    "quote": "(b) You must control the issuance and use of packaging and labels and reconciliation of any issuance and use discrepancies. Label reconciliation is not required for cut or rolled labels if a 100-percent examination for correct labels is performed by appropriate electronic or electromechanical equipment during or after completion of finishing operations; and",
+    "source_title": "21 CFR 111.410 — What requirements apply to packaging and labels?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.410(b)",
+    "location": "§ 111.410(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.410",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Label reconciliation and its exception."
+   },
+   {
+    "quote": "(a) You may repackage or relabel dietary supplements only after quality control personnel have approved such repackaging or relabeling.",
+    "source_title": "21 CFR 111.420",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.420(a)",
+    "location": "§ 111.420(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.420",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Repackaging and relabeling, omitted from G and J."
+   },
+   {
+    "quote": "(f) Use of gang-printed labeling for different drug products, or different strengths or net contents of the same drug product, is prohibited unless the labeling from gang-printed sheets is adequately differentiated by size, shape, or color.",
+    "source_title": "21 CFR 211.122 — Materials examination and usage criteria",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.122(f)",
+    "location": "§ 211.122(f)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/section-211.122",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Gang-printing control is a drug CGMP (Part 211) requirement, not Part 111."
+   },
+   {
+    "quote": "You must clearly identify, hold, and control under a quarantine system for appropriate disposition any packaged and labeled dietary supplement that is rejected for distribution.",
+    "source_title": "21 CFR 111.425",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.425",
+    "location": "§ 111.425",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.425",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Rejected packaged and labeled product, omitted."
+   }
+  ],
+  "search_performed": "grep -i 'gang' over ecfr_2026-10-14/part-111.txt: no hits. The same grep over part-211.txt finds 211.122(f). Read all of Subpart L (111.403-111.430).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - a correct Part 111 answer cannot supply 'gang printing controls', and an answer citing 111.420 and 111.425 is not reflected in G."
+ },
+ {
+  "question_id": "S-025",
+  "question_interpretation": "What Part 111 requires for holding and distributing dietary supplements and related materials (Subpart M).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J's distribution element ('distribution under conditions protecting against deterioration') is governed by 111.470, which G does not cite. G also leaves out 111.460 (holding in-process material) and 111.475 (records, including records of product distribution)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J does not give the specific conditions: temperature, humidity and light for components and supplements; conditions preventing mixup, contamination and deterioration (111.455); and, for reserve samples, conditions consistent with the product label (or ordinary storage), the same container-closure system, and retention for 1 year past the shelf-life date or 2 years from distribution of the last associated batch (111.465)."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "The holding requirements do not apply to dietary supplements held at a retail establishment solely for direct retail sale to individual consumers (111.1(b))."
+   }
+  ],
+  "explanation": "111.453, 111.455 and 111.465 are correct, and J's themes are supported. But the distribution element is governed by 111.470, which G omits. G also omits 111.460 and 111.475, and J leaves out the reserve-sample retention period and container-closure requirements.",
+  "proposed_corrected_answer": "Establish and follow written procedures for holding and distributing (111.453). Hold components and dietary supplements under appropriate temperature, humidity and light so identity, purity, strength and composition are not affected; hold packaging and labels so they are not adversely affected; and hold all of them under conditions that prevent mixup, contamination and deterioration (111.455). Identify and hold in-process material under protective conditions of temperature, humidity and light (111.460). Hold reserve samples under label-consistent (or ordinary) storage conditions in the same container-closure system, and retain them for 1 year past the shelf-life date (if used) or 2 years from distribution of the last associated batch (111.465). Distribute under conditions protecting against contamination and deterioration (111.470). Keep written procedures and distribution records (111.475). The holding requirements do not apply to retail establishments holding product solely for direct retail sale to individual consumers (111.1(b)).",
+  "proposed_sections": "21 CFR 111.453; 111.455; 111.460; 111.465; 111.470; 111.475; cross-ref 111.1(b)",
+  "evidence": [
+   {
+    "quote": "You must distribute dietary supplements under conditions that will protect the dietary supplements against contamination and deterioration.",
+    "source_title": "21 CFR 111.470 — What requirements apply to distributing dietary supplements?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.470",
+    "location": "§ 111.470",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.470",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The distribution element is governed by 111.470, which G does not cite."
+   },
+   {
+    "quote": "(b) You must retain reserve samples for 1 year past the shelf life date (if shelf life dating is used), or for 2 years from the date of distribution of the last batch of dietary supplements associated with the reserve samples, for use in appropriate investigations.",
+    "source_title": "21 CFR 111.465",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.465(b)",
+    "location": "§ 111.465(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.465",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Reserve-sample retention period, omitted from J."
+   },
+   {
+    "quote": "(a) You must hold components and dietary supplements under appropriate conditions of temperature, humidity, and light so that the identity, purity, strength, and composition of the components and dietary supplements are not affected.",
+    "source_title": "21 CFR 111.455",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.455(a)",
+    "location": "§ 111.455(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.455",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's holding element."
+   },
+   {
+    "quote": "(a) You must identify and hold in-process material under conditions that protect against mixup, contamination, and deterioration.",
+    "source_title": "21 CFR 111.460",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.460(a)",
+    "location": "§ 111.460(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.460",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "In-process holding, omitted."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - an answer correctly citing 111.470 for distribution (the governing section for J's own element) is not reflected in G."
+ },
+ {
+  "question_id": "S-026",
+  "question_interpretation": "What Part 111 requires a manufacturer to do when a distributor returns a dietary supplement (Subpart N).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J includes 'investigation of other batches', but that requirement is in 111.530, which G does not cite."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J states the investigation without its condition. 111.530 applies only 'If the reason for a dietary supplement being returned implicates other batches', and it extends to the manufacturing processes as well as those batches."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Not listed: the material review is mandatory because the product was returned (111.113(a)(5)); QC operations for returns (111.130); written procedures (111.503); and records (111.535). 'Destruction or reprocessing conditions' should state the default: destroy or suitably dispose of the product unless QC approves salvage for redistribution or reprocessing (111.515). Reprocessed returns must meet all 111.70(e) specifications, and QC approves or rejects their release (111.525)."
+   }
+  ],
+  "explanation": "The cited sections 111.510-111.525 are correct and support quarantine, QC material review, the destroy-unless-approved rule, salvage and reprocessing. But the investigation element comes from the uncited 111.530 and is stated without its trigger (the return reason implicates other batches). The key also leaves out 111.113(a)(5) and 111.535.",
+  "proposed_corrected_answer": "Identify and quarantine the returned supplement until QC conducts a material review and makes a disposition decision (111.510; 111.113(a)(5); 111.130). Destroy or otherwise suitably dispose of it unless QC approves salvage for redistribution or approves reprocessing (111.515). Salvage only if QC's material review and disposition decision allows it (111.520). Any reprocessed return must meet all 111.70(e) product specifications, and QC approves or rejects its release (111.525). If the reason for the return implicates other batches, investigate the manufacturing processes and each of those batches for compliance with specifications (111.530). Follow written procedures (111.503) and keep records of the material review and disposition, test results and QC reevaluation (111.535).",
+  "proposed_sections": "21 CFR 111.510; 111.515; 111.520; 111.525; 111.530; cross-ref 111.113(a)(5), 111.130, 111.503, 111.535",
+  "evidence": [
+   {
+    "quote": "If the reason for a dietary supplement being returned implicates other batches, you must conduct an investigation of your manufacturing processes and each of those other batches to determine compliance with specifications.",
+    "source_title": "21 CFR 111.530 — When must an investigation be conducted of your manufacturing processes and other batches?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.530",
+    "location": "§ 111.530",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.530",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The investigation element is governed by the uncited 111.530 and is conditional."
+   },
+   {
+    "quote": "You must identify and quarantine returned dietary supplements until quality control personnel conduct a material review and make a disposition decision.",
+    "source_title": "21 CFR 111.510",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.510",
+    "location": "§ 111.510",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.510",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's identify, quarantine and QC review elements."
+   },
+   {
+    "quote": "You must destroy, or otherwise suitably dispose of, any returned dietary supplement unless the outcome of a material review and disposition decision is that quality control personnel do the following:",
+    "source_title": "21 CFR 111.515",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.515",
+    "location": "§ 111.515",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.515",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The default is destruction unless QC approves salvage or reprocessing."
+   },
+   {
+    "quote": "(5) A dietary supplement is returned.",
+    "source_title": "21 CFR 111.113",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.113(a)(5)",
+    "location": "§ 111.113(a)(5)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.113",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "A return triggers a mandatory material review."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - J requires the investigation element, but G does not include its governing section (111.530), so a fully cited answer could be penalised on citation-exact."
+ },
+ {
+  "question_id": "S-027",
+  "question_interpretation": "What a firm must do on receiving a product complaint about a dietary supplement. The domain is Part 111 (Subpart O), though the question does not say so.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_party",
+    "detail": "Under 111.560(a), a 'qualified person' reviews all product complaints and investigates those involving a possible failure. QC personnel's role (111.560(b); 111.135) is to review and approve the decision whether to investigate, and the investigation's findings and followup. J's 'QC personnel review' blurs these two roles."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J's 'record required information' element comes from 111.570, which G does not cite. 111.570 requires a written record of every complaint related to good manufacturing practice, including the product name and description, lot number (if available), date received and complainant contact (if available), nature of the complaint, any reply, and investigation findings and followup."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J leaves out 111.560(c): the review, investigation and QC review must extend to all relevant batches and records. J also does not say that investigation is required only for complaints involving a possible failure to meet specifications or other Part 111 requirements, including those that may result in a risk of illness or injury."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Outside Part 111: if the complaint reports a serious adverse event, the responsible person (the manufacturer, packer or distributor named on the label) must report it to FDA within 15 business days and keep adverse-event records for 6 years (FD&C Act 761, 21 U.S.C. 379aa-1). This matters if the question is read as asking about all obligations rather than Part 111 only."
+   }
+  ],
+  "explanation": "111.553 and 111.560 are the right core sections, and the review/possible-failure/investigate sequence is supported. But J assigns the initial review to QC when the rule assigns it to a qualified person, its recordkeeping element rests on the uncited 111.570, and it leaves out the all-relevant-batches-and-records requirement.",
+  "proposed_corrected_answer": "Follow written complaint procedures (111.553). A qualified person must review every product complaint to determine whether it involves a possible failure to meet specifications or other Part 111 requirements, including those that could result in a risk of illness or injury, and must investigate any complaint that does (111.560(a)). QC personnel must review and approve the decision whether to investigate and the findings and followup of any investigation (111.560(b); 111.135). The review and investigation must extend to all relevant batches and records (111.560(c)). Keep a written record of every GMP-related complaint, made at the time of performance, with the product name and description, lot number (if available), date received and complainant contact (if available), nature of the complaint, any reply, and investigation findings and followup (111.570). If the complaint is a serious adverse event, the responsible person named on the label must also report it to FDA within 15 business days under FD&C Act 761 (21 U.S.C. 379aa-1).",
+  "proposed_sections": "21 CFR 111.553; 111.560(a)-(c); 111.570; cross-ref 111.135, 111.3 (product complaint); FD&C Act 761 (21 U.S.C. 379aa-1) for serious adverse events",
+  "evidence": [
+   {
+    "quote": "(1) Review all product complaints to determine whether the product complaint involves a possible failure of a dietary supplement to meet any of its specifications, or any other requirements of this part 111, including those specifications and other requirements that, if not met, may result in a risk of illness or injury; and",
+    "source_title": "21 CFR 111.560 — What requirements apply to the review and investigation of a product complaint?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.560(a)(1)",
+    "location": "§ 111.560(a)(1), under '(a) A qualified person must:'",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.560",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The initial review is by a qualified person."
+   },
+   {
+    "quote": "(b) Quality control personnel must review and approve decisions about whether to investigate a product complaint and review and approve the findings and followup action of any investigation performed.",
+    "source_title": "21 CFR 111.560",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.560(b)",
+    "location": "§ 111.560(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.560",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QC's role is review and approval."
+   },
+   {
+    "quote": "(c) The review and investigation of the product complaint by a qualified person, and the review by quality control personnel about whether to investigate a product complaint, and the findings and followup action of any investigation performed, must extend to all relevant batches and records.",
+    "source_title": "21 CFR 111.560",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.560(c)",
+    "location": "§ 111.560(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.560",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Extension to all relevant batches and records, omitted from J."
+   },
+   {
+    "quote": "(2) A written record of every product complaint that is related to good manufacturing practice,",
+    "source_title": "21 CFR 111.570",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.570(b)(2)",
+    "location": "§ 111.570(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.570",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The recordkeeping element is governed by 111.570, which G does not cite."
+   },
+   {
+    "quote": "The responsible person shall submit to the Secretary a serious adverse event report no later than 15 business days after the report is received through the address or phone number described in section 343(y) of this title.",
+    "source_title": "21 U.S.C. 379aa-1 — Serious adverse event reporting for dietary supplements",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 379aa-1(c)(1) (FD&C Act 761(c)(1))",
+    "location": "§ 379aa-1(c)(1)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapVII-partH-sec379aa-1.htm",
+    "local_source_file": "usc_title21/21usc379aa-1.txt",
+    "date": "U.S. Code 2024 edition",
+    "check_level": "official_cached",
+    "supports": "Statutory serious adverse event reporting, which applies when a complaint is a serious adverse event."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - a correct answer citing 111.570 for recordkeeping is not reflected in G, and an answer correctly assigning the initial review to a 'qualified person' may be judged inconsistent with 'QC personnel review'."
+ },
+ {
+  "question_id": "S-028",
+  "question_interpretation": "How long Part 111 records must be kept, and how they must be kept and made available to FDA (Subpart P).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_number",
+    "detail": "J says the retention period is 'tied to date of manufacture/expiration' and gives no figures. 111.605(a) ties retention to the shelf-life date (1 year past it, if shelf-life dating is used) or to distribution (2 years beyond the date of distribution of the last batch associated with the records). The date of manufacture plays no part, and J omits both numbers."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J says 'original or true copy' but leaves out the third permitted form, electronic records, and the rule that all electronic records must comply with 21 CFR Part 11 (111.605(b)-(c))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "On availability, J leaves out that records (or copies) must be 'readily available during the retention period' 'when requested' (111.610(a)), and that firms using reduction techniques such as microfilming must make suitable reader and photocopying equipment readily available to FDA (111.610(b)). The responsible party is 'you', the person subject to Part 111."
+   }
+  ],
+  "explanation": "G cites the governing sections. But J's central retention element is wrong: it anchors retention to the date of manufacture, while 111.605(a) sets 1 year past the shelf-life date or 2 years beyond distribution of the last associated batch. J gives neither figure, and it leaves out electronic records with Part 11 compliance and the reader/photocopier requirement.",
+  "proposed_corrected_answer": "Keep all records required by Part 111 for 1 year past the shelf-life date, if shelf-life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records (111.605(a)). Records may be kept as originals, as true copies (photocopies, microfilm, microfiche or other accurate reproductions), or as electronic records; electronic records must comply with 21 CFR Part 11 (111.605(b)-(c)). All required records, or copies, must be readily available during the retention period for inspection and copying by FDA when requested (111.610(a)). If reduction techniques such as microfilming are used, suitable reader and photocopying equipment must be readily available to FDA (111.610(b)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records.",
+    "source_title": "21 CFR 111.605 — What requirements apply to the records that you make and keep?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(a)",
+    "location": "§ 111.605(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention runs from the shelf-life date or the last distribution date, not the manufacture date."
+   },
+   {
+    "quote": "(b) Records must be kept as original records, as true copies (such as photocopies, microfilm, microfiche, or other accurate reproductions of the original records), or as electronic records.",
+    "source_title": "21 CFR 111.605",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(b)",
+    "location": "§ 111.605(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Electronic records are a permitted form."
+   },
+   {
+    "quote": "(c) All electronic records must comply with part 11 of this chapter.",
+    "source_title": "21 CFR 111.605",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(c)",
+    "location": "§ 111.605(c)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 11 compliance, omitted from J."
+   },
+   {
+    "quote": "(a) You must have all records required under this part, or copies of such records, readily available during the retention period for inspection and copying by FDA when requested.",
+    "source_title": "21 CFR 111.610 — What records must be made available to FDA?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.610(a)",
+    "location": "§ 111.610(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.610",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Availability rule."
+   },
+   {
+    "quote": "(b) If you use reduction techniques, such as microfilming, you must make suitable reader and photocopying equipment readily available to FDA.",
+    "source_title": "21 CFR 111.610",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.610(b)",
+    "location": "§ 111.610(b)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-111/section-111.610",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Reader and photocopier requirement, omitted from J."
+   }
+  ],
+  "search_performed": "Read all of Subpart P (111.605, 111.610). grep -n 'shelf life|date of manufacture' over part-111.txt: retention is stated only in 111.605(a) (records) and in 111.83(b)(3) and 111.465(b) (reserve samples, same 1-year/2-year formula). Neither anchors retention to the date of manufacture.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair - J's 'date of manufacture' anchor would credit a wrong retention basis, and it does not require the 1-year/2-year figures that a correct answer must state."
+ }
+]

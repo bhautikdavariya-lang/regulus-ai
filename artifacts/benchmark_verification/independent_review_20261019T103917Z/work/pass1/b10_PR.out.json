@@ -1,0 +1,1570 @@
+[
+ {
+  "question_id": "P-001",
+  "question_interpretation": "Asks what content a 510(k) premarket notification submission must contain under current regulations.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J lists only 807.87(a), (b), (c), (e), (f), (h). It omits other mandatory 807.87 contents: (d) action taken to comply with section 514 performance standards; (g) supporting data for a significant change/new indication; (i) financial certification or disclosure statement under part 54; (j) statements on compliance of clinical investigations with parts 50/56/812 (or 812.28 for foreign data); (k) class III summary and certification for pre-1990 class III predicates; (l) truthful-and-accurate statement."
+   },
+   {
+    "type": "precision",
+    "detail": "807.87(f) is a statement of similarities to and/or differences from comparable marketed products, accompanied by data; 'substantial equivalence comparison' is a fair paraphrase. Format requirements (single electronic version, one product per submission, '510(k) Notification' cover letter) are in 807.90, and the 90-day lead time is in 807.81(a); neither is cited."
+   }
+  ],
+  "explanation": "G (807.87) is the governing section and every element in J is supported by it. However 807.87 lists 13 required items and J omits several that are unconditionally mandatory (financial certification/disclosure under part 54, truthful-and-accurate statement, performance-standards action), so a key that treats the six listed items as the full answer is incomplete.",
+  "proposed_corrected_answer": "Each 510(k) must contain (21 CFR 807.87): device trade/proprietary and common/classification name (a); establishment registration number, if applicable (b); device class/panel or basis for 'unclassified' determination (c); action taken to comply with section 514 performance standards (d); proposed labels, labeling and advertisements describing the device, intended use and directions (e); a statement of similarities to/differences from comparable marketed devices with supporting data (f); for significant changes or new indications, supporting data on their effect on safety and effectiveness (g); a 510(k) summary (807.92) or 510(k) statement (807.93) (h); financial certification/disclosure under part 54 (i); for clinical data, compliance statements for parts 50/56/812, or 812.28 for foreign data (j); class III summary and certification where applicable (k; 807.94); a truthful-and-accurate statement (l); and any additional information FDA requests (m). Submitted electronically as a single version per 807.90, at least 90 days before marketing (807.81(a)).",
+  "proposed_sections": "21 CFR 807.87(a)-(m); 807.90; 807.81(a)",
+  "evidence": [
+   {
+    "quote": "(i) A financial certification or disclosure statement or both, as required by part 54 of this chapter.",
+    "source_title": "21 CFR 807.87 — Information required in a premarket notification submission",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.87(i)",
+    "location": "807.87(i)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.87",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Financial certification/disclosure is a mandatory 510(k) content item omitted from J"
+   },
+   {
+    "quote": "(l) A statement that the submitter believes, to the best of his or her knowledge, that all data and information submitted in the premarket notification are truthful and accurate and that no material fact has been omitted.",
+    "source_title": "21 CFR 807.87 — Information required in a premarket notification submission",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.87(l)",
+    "location": "807.87(l)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.87",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Truthful-and-accurate statement is a mandatory item omitted from J"
+   },
+   {
+    "quote": "(h) A 510(k) summary as described in § 807.92 or a 510(k) statement as described in § 807.93.",
+    "source_title": "21 CFR 807.87 — Information required in a premarket notification submission",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.87(h)",
+    "location": "807.87(h)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.87",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's summary-or-statement element"
+   },
+   {
+    "quote": "(f) A statement indicating the device is similar to and/or different from other products of comparable type in commercial distribution, accompanied by data to support the statement.",
+    "source_title": "21 CFR 807.87 — Information required in a premarket notification submission",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.87(f)",
+    "location": "807.87(f)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.87",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's comparison element"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a complete, correctly cited answer would satisfy J; the key merely under-specifies completeness."
+ },
+ {
+  "question_id": "P-002",
+  "question_interpretation": "Asks for the legal standard for substantial equivalence (SE) and how FDA makes the SE determination for a 510(k).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J omits the core finding required for a device with different technological characteristics: the data must demonstrate the device is 'as safe and as effective as' a legally marketed device (807.100(b)(2)(ii)(B); FD&C Act 513(i)(1)(A)(ii)(I)). 'Supporting performance data' does not state the standard."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "'How it is determined' is not answered: FDA compares the device to a legally marketed predicate and issues an order (SE/NSE, request additional information) under 807.100(a); the predicate must not have been removed from the market by FDA or judicially found misbranded/adulterated (807.100(b)(3); 513(i)(2))."
+   }
+  ],
+  "explanation": "G correctly pairs the regulation (807.100) with the statutory definition (513(i)). J captures the intended-use and technological-characteristics prongs but drops the 'as safe and as effective as a legally marketed device' showing and the predicate/FDA-order mechanics that the question's second half asks for.",
+  "proposed_corrected_answer": "SE (FD&C Act 513(i)(1)(A); 21 CFR 807.100(b)) means, compared with a legally marketed predicate, the device has the same intended use AND either (i) the same technological characteristics, or (ii) different technological characteristics, where the submitted information (including clinical data if FDA deems it necessary) demonstrates the device is as safe and as effective as a legally marketed device and does not raise different questions of safety and effectiveness. The predicate must not have been removed from the market at FDA's initiative or judicially determined misbranded/adulterated (807.100(b)(3); 513(i)(2)). FDA determines SE by reviewing the 510(k) and issuing an order declaring the device SE or NSE, requesting additional information, or withholding a decision pending part 54 certification (807.100(a)); the device may not be marketed until an SE order is received.",
+  "proposed_sections": "21 CFR 807.100(a), (b); FD&C Act 513(i)(1)(A), (i)(2) (21 U.S.C. 360c(i))",
+  "evidence": [
+   {
+    "quote": "(B) The data submitted establishes that the device is substantially equivalent to the predicate device and contains information, including clinical data if deemed necessary by the Commissioner, that demonstrates that the device is as safe and as effective as a legally marketed device; and",
+    "source_title": "21 CFR 807.100 — FDA action on a premarket notification",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.100(b)(2)(ii)(B)",
+    "location": "807.100(b)(2)(ii)(B)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.100",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The 'as safe and as effective' showing omitted from J"
+   },
+   {
+    "quote": "(3) The predicate device has not been removed from the market at the initiative of the Commissioner of Food and Drugs or has not been determined to be misbranded or adulterated by a judicial order.",
+    "source_title": "21 CFR 807.100 — FDA action on a premarket notification",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.100(b)(3)",
+    "location": "807.100(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.100",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Predicate eligibility criterion omitted from J"
+   },
+   {
+    "quote": "the term \"substantially equivalent\" or \"substantial equivalence\" means, with respect to a device being compared to a predicate device, that the device has the same intended use as the predicate device and that the Secretary by order has found that the device—",
+    "source_title": "FD&C Act 513(i) — Substantial equivalence (21 U.S.C. 360c(i))",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 360c(i)(1)(A)",
+    "location": "513(i)(1)(A)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapV-partA-sec360c.htm",
+    "local_source_file": "usc_title21/21usc360c.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Statutory definition: same intended use plus a Secretary order; supports G"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether the 'as safe and as effective' omission is material is a judgment call; the J elements that are present are correct.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — J does not penalize a correct answer; it under-specifies completeness."
+ },
+ {
+  "question_id": "P-003",
+  "question_interpretation": "Asks when a new 510(k) is required for a change to a device the person already has in commercial distribution.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J omits the operative test in 807.81(a)(3)(i): a change that 'could significantly affect the safety or effectiveness of the device' (e.g., design, material, chemical composition, energy source, manufacturing process). J restates only the introductory clause and the (ii) intended-use prong."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J omits timing: the 510(k) must be submitted at least 90 days before the changed device is introduced into commercial distribution (807.81(a))."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "Current 807.81(b)(1)(ii) (89 FR 18792, 2024) exempts changes consistent with a PCCP cleared under section 515C; also a pending PMA or 513(f)(2) petition (807.81(b)(1)(i)). Not mentioned."
+   }
+  ],
+  "explanation": "G (807.81(a)(3)) is the correct pinpoint. J paraphrases the (a)(3) lead-in and the major-intended-use-change prong but leaves out the safety-or-effectiveness test that defines a 'significant' change, the 90-day lead time, and the current PCCP exception.",
+  "proposed_corrected_answer": "Under 21 CFR 807.81(a)(3), a 510(k) is required at least 90 days before reintroducing a device in commercial distribution that is about to be significantly changed or modified in design, components, method of manufacture, or intended use, namely: (i) a change or modification that could significantly affect the device's safety or effectiveness (e.g., a significant change in design, material, chemical composition, energy source, or manufacturing process); or (ii) a major change or modification in intended use. No 510(k) is required where the change is consistent with a PCCP cleared under FD&C Act 515C, or where a PMA or 513(f)(2) request is pending (807.81(b)(1)). Supporting data on the change's effect on safety and effectiveness go in the 510(k) (807.87(g)).",
+  "proposed_sections": "21 CFR 807.81(a)(3)(i)-(ii); 807.81(a) (90 days); 807.81(b)(1)(ii); 807.87(g)",
+  "evidence": [
+   {
+    "quote": "(i) A change or modification in the device that could significantly affect the safety or effectiveness of the device, e.g., a significant change or modification in design, material, chemical composition, energy source, or manufacturing process.",
+    "source_title": "21 CFR 807.81 — When a premarket notification submission is required",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.81(a)(3)(i)",
+    "location": "807.81(a)(3)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.81",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Safety/effectiveness test omitted from J"
+   },
+   {
+    "quote": "must submit a premarket notification submission to the Food and Drug Administration at least 90 days before he proposes to begin the introduction or delivery for introduction into interstate commerce",
+    "source_title": "21 CFR 807.81 — When a premarket notification submission is required",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.81(a)",
+    "location": "807.81(a) introductory text",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.81",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "90-day timing omitted from J"
+   },
+   {
+    "quote": "(ii) There is a predetermined change control plan (PCCP) cleared under section 515C of the act, provided that the change is consistent with the PCCP.",
+    "source_title": "21 CFR 807.81 — When a premarket notification submission is required",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.81(b)(1)(ii)",
+    "location": "807.81(b)(1)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.81",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Current PCCP exception"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct answer satisfies J; J under-specifies the test and timing."
+ },
+ {
+  "question_id": "P-004",
+  "question_interpretation": "Asks how a 510(k) summary differs from a 510(k) statement.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J requires 'public availability' of the summary, but that rule is in 807.95(d) (FDA makes the summary public within 30 days of an SE determination) and FD&C Act 513(i)(3)(B), neither of which is in G."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J omits the statement's specifics: certification that the submitter will make the safety and effectiveness information available within 30 days of a written request by any person, as a duplicate of the 510(k) excluding patient identifiers and trade secret/CCI (807.93(a)(1), (b), (c)). Also omits that 807.87(h) requires one or the other."
+   }
+  ],
+  "explanation": "807.92 and 807.93 are the right content sections and J's two elements are substantively right. The key misses the provision that actually establishes the summary's public availability (807.95(d)) and the 30-day-on-request terms of the statement, so a fully cited answer would rely on a section not in G.",
+  "proposed_corrected_answer": "A 510(k) must include either a 510(k) summary or a 510(k) statement (807.87(h); FD&C Act 513(i)(3)(A)). The summary (807.92) gives enough detail to understand the basis for the SE determination: submitter and device identification, the predicate, a device description, intended use, a technological-characteristics comparison, and, where SE relies on performance data, discussion of nonclinical and clinical tests and conclusions. FDA makes it public within 30 days of the SE determination (807.95(d); 513(i)(3)(B)). The statement (807.93) is a signed certification that the submitter will make all safety and effectiveness information in the 510(k) available within 30 days of a written request by any person, as a duplicate of the submission excluding patient identifiers and trade secret/confidential commercial information.",
+  "proposed_sections": "21 CFR 807.92; 807.93; 807.95(d); 807.87(h); FD&C Act 513(i)(3)",
+  "evidence": [
+   {
+    "quote": "(d) FDA will make a 510(k) summary of the safety and effectiveness data available to the public within 30 days of the issuance of a determination that the device is substantially equivalent to another device.",
+    "source_title": "21 CFR 807.95 — Confidentiality of information",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.95(d)",
+    "location": "807.95(d)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.95",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Public availability of the summary rests on 807.95(d), not cited in G"
+   },
+   {
+    "quote": "I will make available all information included in this premarket notification on safety and effectiveness within 30 days of request by any person if the device described in the premarket notification submission is determined to be substantially equivalent.",
+    "source_title": "21 CFR 807.93 — Content and format of a 510(k) statement",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.93(a)(1)",
+    "location": "807.93(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.93",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Statement terms: 30 days, any person, if SE"
+   },
+   {
+    "quote": "(a) A 510(k) summary shall be in sufficient detail to provide an understanding of the basis for a determination of substantial equivalence.",
+    "source_title": "21 CFR 807.92 — Content and format of a 510(k) summary",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.92(a)",
+    "location": "807.92(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.92",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Summary purpose/content"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether omitting 807.95(d) from G is material depends on how strictly the citation-exact rubric treats extra correct citations.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — an answer that correctly cites 807.95(d) for public availability cites a section outside G and could lose citation credit under a strict match."
+ },
+ {
+  "question_id": "P-005",
+  "question_interpretation": "Asks for the required contents of an original PMA under 21 CFR Part 814.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J is a fair condensed list of 814.20(b). Items not listed, which a complete answer could add: applicant signature/US-agent countersignature (814.20(a)); name/address and table of contents (b)(1)-(2); single-investigator justification (b)(7); environmental assessment or claim of categorical exclusion (b)(11); pediatric-use information if readily available (b)(13); FDA-requested information (b)(14); justification for omissions (d); and periodic updates of the pending application (e)."
+   }
+  ],
+  "explanation": "814.20 is the governing section. Each J element maps to 814.20(b): summary (b)(3), device description and manufacturing methods/facilities/controls (b)(4), performance standards (b)(5), nonclinical and clinical sections (b)(6), bibliography (b)(8), samples (b)(9), labeling (b)(10), financial certification (b)(12). The omitted items are secondary and J does not misstate any requirement.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(12) A financial certification or disclosure statement or both as required by part 54 of this chapter.",
+    "source_title": "21 CFR 814.20 — Application",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(12)",
+    "location": "814.20(b)(12)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Financial certification element"
+   },
+   {
+    "quote": "(v) The methods used in, and the facilities and controls used for, the manufacture, processing, packing, storage, and, where appropriate, installation of the device, in sufficient detail so that a person generally familiar with current good manufacturing practice can make a knowledgeable judgment about the quality control used in the manufacture of the device.",
+    "source_title": "21 CFR 814.20 — Application",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(4)(v)",
+    "location": "814.20(b)(4)(v)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Manufacturing information element"
+   },
+   {
+    "quote": "(10) Copies of all proposed labeling for the device.",
+    "source_title": "21 CFR 814.20 — Application",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(10)",
+    "location": "814.20(b)(10)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Labeling element"
+   },
+   {
+    "quote": "(9) One or more samples of the device and its components, if requested by FDA.",
+    "source_title": "21 CFR 814.20 — Application",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.20(b)(9)",
+    "location": "814.20(b)(9)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.20",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Samples element (on FDA request)"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — J's elements are all in 814.20(b); a fuller answer is not penalised."
+ },
+ {
+  "question_id": "P-006",
+  "question_interpretation": "Asks when a PMA supplement is required after approval, and when a 30-day notice may be used instead.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'Real-time supplement option' does not appear in 814.39 or anywhere in Part 814. The term is defined in FD&C Act 737(4)(D) (21 U.S.C. 379i(4)(D), a user-fee definition) and its procedure is in FDA guidance. A key that requires it while citing only 814.39 forces answers beyond G."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits other 814.39 routes: changes that don't affect safety or effectiveness, or that are consistent with an approved PCCP, go in periodic reports (814.39(b)); the Special PMA Supplement—Changes Being Effected (814.39(d)); and the 30-day PMA supplement FDA designates by advisory opinion or correspondence (814.39(e)), which is distinct from the 30-day notice."
+   },
+   {
+    "type": "precision",
+    "detail": "30-day notice (814.39(f)): only for modifications to manufacturing procedures or methods of manufacture that affect safety and effectiveness. The notice must describe the change, summarize supporting data, and state the change was made under part 820. Distribution may begin 30 days after FDA receipt unless FDA finds the notice inadequate, in which case a 135-day PMA supplement is required. J's 'certain manufacturing process changes' is a loose paraphrase."
+   }
+  ],
+  "explanation": "814.39 is the right section and J's first two elements match 814.39(a) and (f). The 'real-time supplement' element is not supported by the cited regulation; it comes from the user-fee statute and guidance. J also leaves out the CBE, 30-day PMA supplement, periodic-report and PCCP routes that 814.39 itself provides.",
+  "proposed_corrected_answer": "After PMA approval, a PMA supplement must be submitted and approved before any change affecting safety or effectiveness (e.g., new indications, labeling, facility, sterilization, packaging, design/specification changes, expiry extension under an unapproved protocol) (814.39(a)). Exceptions: changes not affecting safety or effectiveness, or consistent with an approved PCCP, may be reported in periodic reports (814.39(b)); certain safety-enhancing labeling and QC changes may be implemented on receipt acknowledgment of a 'Special PMA Supplement—Changes Being Effected' (814.39(d)); FDA may designate changes for a periodic report or a 30-day PMA supplement (814.39(e)). A 30-day notice (814.39(f); FD&C Act 515(d)) is permitted for modifications to manufacturing procedures or methods of manufacture that affect safety and effectiveness: it must describe the change, summarize supporting data and state the change was made under part 820, and the device may be distributed 30 days after FDA receipt unless FDA finds the notice inadequate and requires a 135-day PMA supplement. (Real-time supplements are a user-fee/guidance category defined in FD&C Act 737(4)(D), not in 814.39.)",
+  "proposed_sections": "21 CFR 814.39(a), (b), (d), (e), (f); FD&C Act 515(d)(6); (for real-time supplements, if retained) FD&C Act 737(4)(D), 21 U.S.C. 379i(4)(D)",
+  "evidence": [
+   {
+    "quote": "(f) Under section 515(d) of the act, modifications to manufacturing procedures or methods of manufacture that affect the safety and effectiveness of a device subject to an approved PMA do not require submission of a PMA supplement under paragraph (a) of this section and are eligible to be the subject of a 30-day notice.",
+    "source_title": "21 CFR 814.39 — PMA supplements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.39(f)",
+    "location": "814.39(f)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.39",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Scope of the 30-day notice"
+   },
+   {
+    "quote": "The manufacturer may distribute the device 30 days after the date on which FDA receives the 30-day notice, unless FDA notifies the applicant within 30 days from receipt of the notice that the notice is not adequate. If the notice is not adequate, FDA shall inform the applicant in writing that a 135-day PMA supplement is needed",
+    "source_title": "21 CFR 814.39 — PMA supplements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.39(f)",
+    "location": "814.39(f)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.39",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "30-day timing and 135-day fallback"
+   },
+   {
+    "quote": "(i) The PMA supplement and its mailing cover are plainly marked “Special PMA Supplement—Changes Being Effected”;",
+    "source_title": "21 CFR 814.39 — PMA supplements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 814.39(d)(1)(i)",
+    "location": "814.39(d)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/section-814.39",
+    "local_source_file": "ecfr_2026-10-14/part-814.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "CBE route omitted from J"
+   },
+   {
+    "quote": "(D) The term \"real-time supplement\" means a supplement to an approved premarket application or premarket report under section 360e of this title that requests a minor change to the device",
+    "source_title": "FD&C Act 737 — Definitions (device user fees) (21 U.S.C. 379i)",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 379i(4)(D)",
+    "location": "737(4)(D)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapVII-partC-subpart3-sec379i.htm",
+    "local_source_file": "usc_title21/21usc379i.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Real-time supplement is a statutory user-fee definition, not in 814.39"
+   }
+  ],
+  "search_performed": "grep -i 'real-time' across ecfr_2026-10-14/part-814.txt: no hits. Found the definition in 21 U.S.C. 379i(4)(D), fetched from govinfo per protocol.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — J rewards 'real-time supplement', which cannot be supported from the cited 814.39, and does not reward the CBE/30-day PMA supplement routes that 814.39 does provide."
+ },
+ {
+  "question_id": "P-007",
+  "question_interpretation": "Asks what the De Novo classification process is and what a De Novo request must contain.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J covers content only partially and leaves out the process: the two entry routes (after an NSE determination, or directly when no predicate exists; 860.200(b), 513(f)(2)(A)(i)-(ii)); FDA acceptance review within 15 days (860.230); decision by written order within 120 days (860.240(a), 513(f)(2)(A)(iii)); grant or decline grounds (860.260); Federal Register notice within 30 days of a grant; and the granted device becoming a predicate (513(f)(2)(B)(i))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Key content items in 860.220(a) are not reflected: classification summary/search for a predicate (a)(8), device description (a)(6), indications (a)(5), classification recommendation (a)(11), nonclinical/clinical/software technical sections (a)(15), and labeling (a)(18)."
+   }
+  ],
+  "explanation": "G (860 Subpart D; 513(f)(2)) is correct. J's elements (classification into class I or II, risks and mitigations, benefit-risk, proposed special controls) are supported by 860.200/860.220(a)(9), (10), (14). J does not describe the process half of the question and omits much of the required content.",
+  "proposed_corrected_answer": "De Novo (FD&C Act 513(f)(2); 21 CFR 860 Subpart D) is a request for classification into class I or II of a low-to-moderate-risk device for which there is no legally marketed predicate. It may be submitted after an NSE 510(k) determination or directly where the requester determines no predicate exists (860.200(b)). The request must be electronic and signed (860.210). It must contain (860.220(a)): administrative information and regulatory history; device name, indications for use and description; alternative practices; a classification summary (predicate searches, or the NSE 510(k)); a summary of risks and proposed mitigations (general and, for class II, special controls); an initial draft of proposed special controls for class II; a class recommendation with rationale; relevant standards; study summaries; a benefit-risk discussion based on valid scientific evidence; nonclinical, software and clinical technical sections; bibliography; samples on request; and labeling. FDA decides acceptance within 15 days (860.230) and issues a grant or decline order within 120 days (860.240(a)). A grant is published in the Federal Register within 30 days with any special controls (860.260(a)(2)), and the device becomes a predicate (513(f)(2)(B)(i)).",
+  "proposed_sections": "21 CFR 860.200-860.260 (esp. 860.200(b), 860.220(a), 860.230(a), 860.240(a), 860.260); FD&C Act 513(f)(2)",
+  "evidence": [
+   {
+    "quote": "(b) De Novo requests can be submitted for a single device type:",
+    "source_title": "21 CFR 860.200 — Purpose and applicability",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 860.200(b)",
+    "location": "860.200(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-860.200",
+    "local_source_file": "ecfr_2026-10-14/part-860.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Two entry routes (NSE or no predicate)"
+   },
+   {
+    "quote": "Within 120 days after receipt of a De Novo request or receipt of additional information that results in the De Novo request being accepted under § 860.230, FDA will review the De Novo request and send the requester an order granting the De Novo request under § 860.260(a) or an order declining the De Novo request under 860.260(b).",
+    "source_title": "21 CFR 860.240 — Procedures for review of a De Novo request",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 860.240(a)",
+    "location": "860.240(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-860.240",
+    "local_source_file": "ecfr_2026-10-14/part-860.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "120-day decision process"
+   },
+   {
+    "quote": "(10) Proposed special controls. If the classification recommendation from paragraph (a)(11) of this section is class II, then the summary must include an initial draft proposal for applicable special controls",
+    "source_title": "21 CFR 860.220 — De Novo request content",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 860.220(a)(10)",
+    "location": "860.220(a)(10)",
+    "url": "https://www.ecfr.gov/current/title-21/section-860.220",
+    "local_source_file": "ecfr_2026-10-14/part-860.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's proposed-special-controls element"
+   },
+   {
+    "quote": "Such classification shall be the initial classification of the device for purposes of paragraph (1) and any device classified under this paragraph shall be a predicate device for determining substantial equivalence under paragraph (1).",
+    "source_title": "FD&C Act 513(f)(2)(B)(i) (21 U.S.C. 360c(f)(2)(B)(i))",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 360c(f)(2)(B)(i)",
+    "location": "513(f)(2)(B)(i)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapV-partA-sec360c.htm",
+    "local_source_file": "usc_title21/21usc360c.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Process outcome: a granted device becomes a predicate"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "How much process detail a key must contain is a judgment; nothing in J is wrong.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — J does not penalise a correct answer, but it does not require the process half of the question."
+ },
+ {
+  "question_id": "P-008",
+  "question_interpretation": "Asks how devices are classified into classes I/II/III and what a section 513(g) request for information does.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "860.84 covers only the original classification of preamendments devices and expressly excludes devices placed in class III by statute under 513(f)(1). New (postamendments) devices are automatically class III unless found SE, granted De Novo, or reclassified (513(f)(1)). Neither G nor J mentions this, though it is how most new devices are classified."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J omits the 513(g) mechanics: a written request by any person, with FDA providing a written statement of the classification (if any) and applicable requirements within 60 days."
+   },
+   {
+    "type": "precision",
+    "detail": "The class definitions are statutory in 513(a)(1)(A)-(C) and regulatory in 860.3. Classification regulations by device type are in parts 862-892 (860.3, 'Classification regulation')."
+   }
+  ],
+  "explanation": "860.3 is correctly cited for class definitions and general/special controls, and 513(g) is correctly identified. But 860.84 alone gives a misleading picture of 'how devices are classified', because it is limited to preamendments devices and excludes statutory class III. J also leaves out the 60-day written response that defines what a 513(g) request produces.",
+  "proposed_corrected_answer": "Devices are placed into class I (general controls sufficient), class II (general controls insufficient; special controls can provide reasonable assurance of safety and effectiveness) or class III (insufficient information for I/II, and life-supporting/sustaining, of substantial importance in preventing impairment of health, or presenting a potential unreasonable risk; requires PMA), based on the controls needed for reasonable assurance of safety and effectiveness (FD&C Act 513(a)(1); 21 CFR 860.3). Preamendments device types were classified by regulation on classification-panel recommendations (860.84); classifications are codified in parts 862-892. A postamendments device is class III by operation of law unless it is substantially equivalent to a class I/II or preamendments predicate, classified through De Novo, or reclassified (513(f)(1)-(3)). Under 513(g), any person may submit a written request for information on a device's classification and the FD&C Act requirements that apply to it. Within 60 days FDA provides a written statement of the classification (if any) and the applicable requirements.",
+  "proposed_sections": "FD&C Act 513(a)(1), 513(f)(1), 513(g) (21 U.S.C. 360c); 21 CFR 860.3; 860.84 (preamendments only)",
+  "evidence": [
+   {
+    "quote": "This subpart does not apply to a device that is classified into class III by statute under section 513(f)(1) of the Federal Food, Drug, and Cosmetic Act because the Food and Drug Administration has determined that the device is not “substantially equivalent” to any device subject to this subpart",
+    "source_title": "21 CFR 860.84 — Classification procedures for “preamendments devices.”",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 860.84(a)",
+    "location": "860.84(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-860.84",
+    "local_source_file": "ecfr_2026-10-14/part-860.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "860.84 is limited to preamendments devices"
+   },
+   {
+    "quote": "Any device intended for human use which was not introduced or delivered for introduction into interstate commerce for commercial distribution before May 28, 1976, is classified in class III unless—",
+    "source_title": "FD&C Act 513(f)(1) (21 U.S.C. 360c(f)(1))",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 360c(f)(1)",
+    "location": "513(f)(1)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapV-partA-sec360c.htm",
+    "local_source_file": "usc_title21/21usc360c.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Statutory automatic class III for postamendments devices"
+   },
+   {
+    "quote": "Within sixty days of the receipt of a written request of any person for information respecting the class in which a device has been classified or the requirements applicable to a device under this chapter, the Secretary shall provide such person a written statement of the classification (if any) of such device and the requirements of this chapter applicable to the device.",
+    "source_title": "FD&C Act 513(g) (21 U.S.C. 360c(g))",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 360c(g)",
+    "location": "513(g)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapV-partA-sec360c.htm",
+    "local_source_file": "usc_title21/21usc360c.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "513(g) mechanics including the 60-day written statement"
+   },
+   {
+    "quote": "Class II means the class of devices that is or eventually will be subject to special controls.",
+    "source_title": "21 CFR 860.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 860.3",
+    "location": "860.3 'Class'",
+    "url": "https://www.ecfr.gov/current/title-21/section-860.3",
+    "local_source_file": "ecfr_2026-10-14/part-860.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Class definitions in 860.3"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether omitting 513(f)(1) is material is a judgment; the cited sections are real and relevant.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct answer citing 513(a)/513(f) in addition would still meet J, though it would cite sections outside G."
+ },
+ {
+  "question_id": "P-009",
+  "question_interpretation": "Asks when an IDE (FDA-approved application) is required for a device clinical investigation, and what makes a device 'significant risk'.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The operative 'when is an IDE application required' rule is 812.20(a)(1)-(2): a sponsor must submit an application to FDA if it intends to use a significant risk device, conduct an investigation with an exception from informed consent under 50.24, or if FDA notifies it, and may not begin until FDA approves. 812.20 is not in G."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J does not state the significant risk criteria the question asks for. Under 812.3(m)(1)-(4), an SR device is an implant, a life-supporting/sustaining device, or one of substantial importance in diagnosing, curing, mitigating or treating disease, in each case presenting a potential for serious risk to health, safety or welfare; or a device that otherwise presents such a risk."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "The IRB's role in SR/NSR determinations (812.2(b)(1)(ii); 812.66) and the specific abbreviated-requirements conditions in 812.2(b)(1)(i)-(vii) are not cited or described."
+   }
+  ],
+  "explanation": "G is partly right (812.2 and 812.3(m) are correct pinpoints). J is only a topic list ('SR vs NSR determination, abbreviated requirements, exempt investigations') and does not state the SR criteria the question asks for. The section that triggers an IDE application (812.20(a)) is missing.",
+  "proposed_corrected_answer": "Part 812 applies to all clinical investigations of devices to determine safety and effectiveness (812.2(a)), except exempt investigations listed in 812.2(c): preamendment and SE devices used per labeling, certain noninvasive diagnostics, consumer preference/modification testing not for safety and effectiveness, veterinary, laboratory-animal and custom devices. A sponsor must submit an IDE application and obtain FDA approval before starting if the investigation uses a significant risk device, involves a 50.24 exception from informed consent, or FDA so requires (812.20(a)). A significant risk device (812.3(m)) is an investigational device that presents a potential for serious risk to the health, safety or welfare of a subject and (1) is intended as an implant, (2) is for supporting or sustaining human life, (3) is for a use of substantial importance in diagnosing, curing, mitigating or treating disease or otherwise preventing impairment of health, or (4) otherwise presents such a risk. Non-significant risk investigations are considered to have an approved IDE if the sponsor meets the abbreviated requirements in 812.2(b)(1): labeling, IRB approval after an NSR explanation, informed consent, monitoring, limited records/reports, and no promotion. If the IRB disagrees and finds SR, it notifies the investigator/sponsor (812.66).",
+  "proposed_sections": "21 CFR 812.2(a)-(c); 812.3(m)(1)-(4); 812.20(a); 812.66",
+  "evidence": [
+   {
+    "quote": "(a) Submission. (1) A sponsor shall submit an application to FDA if the sponsor intends to use a significant risk device in an investigation, intends to conduct an investigation that involves an exception from informed consent under § 50.24 of this chapter, or if FDA notifies the sponsor that an application is required for an investigation.",
+    "source_title": "21 CFR 812.20 — Application",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.20(a)(1)",
+    "location": "812.20(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.20",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Operative IDE-application trigger missing from G"
+   },
+   {
+    "quote": "(1) Is intended as an implant and presents a potential for serious risk to the health, safety, or welfare of a subject;",
+    "source_title": "21 CFR 812.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.3(m)(1)",
+    "location": "812.3(m)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.3",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "SR criteria exist at 812.3(m) and are not stated in J"
+   },
+   {
+    "quote": "(b) Abbreviated requirements. The following categories of investigations are considered to have approved applications for IDE's, unless FDA has notified a sponsor under § 812.20(a) that approval of an application is required:",
+    "source_title": "21 CFR 812.2 — Applicability",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.2(b)",
+    "location": "812.2(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.2",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Abbreviated requirements element"
+   },
+   {
+    "quote": "If an IRB determines that an investigation, presented for approval under § 812.2(b)(1)(ii), involves a significant risk device, it shall so notify the investigator and, where appropriate, the sponsor.",
+    "source_title": "21 CFR 812.66 — Significant risk device determinations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.66",
+    "location": "812.66",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.66",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "IRB SR determination"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — a correct answer that cites 812.20(a) for when an IDE application is required cites outside G; J's vagueness may let an answer pass without stating the SR criteria."
+ },
+ {
+  "question_id": "P-010",
+  "question_interpretation": "Asks what a sponsor's responsibilities are under the IDE regulation.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J's 'obtaining IRB and FDA approval' rests on 812.42, and 'maintaining records and reports' on 812.140(b) and 812.150(b). None of these is in G. (812.40 only points to subparts B and G.)"
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J omits sponsor duties listed in 812.40 itself: providing investigators with needed information (812.45: investigational plan and report of prior investigations) and ensuring IRBs and FDA are promptly informed of significant new information. It also omits obtaining signed investigator agreements (812.43(c)), shipping only to qualified investigators (812.43(b)), selecting qualified monitors (812.43(d)), immediately evaluating unanticipated adverse device effects and terminating unreasonable-risk investigations within 5 working days of the determination and 15 working days of first notice (812.46(b)), and the 812.7 prohibitions on promotion."
+   }
+  ],
+  "explanation": "J's four elements are correct. The G set (812.40, 812.43, 812.46) does not contain the provisions behind two of them (812.42; 812.140(b)/812.150(b)). J also leaves out the 812.40 duty to keep the IRB and FDA informed and the UADE evaluation/termination timelines.",
+  "proposed_corrected_answer": "Sponsors must (21 CFR 812.40-812.47, 812.140(b), 812.150(b)): select investigators and monitors qualified by training and experience, ship devices only to participating qualified investigators, and obtain signed investigator agreements, including financial disclosure information (812.43). They must submit the IDE application and not begin until the IRB and, where required, FDA approve (812.20, 812.42). They must give all investigators the investigational plan and report of prior investigations (812.45). They must monitor the investigation, secure investigator compliance or terminate noncompliant investigators, evaluate unanticipated adverse device effects immediately, and terminate investigations presenting an unreasonable risk within 5 working days of that determination and no later than 15 working days after first notice (812.46). They must promptly inform IRBs and FDA of significant new information (812.40), avoid promotion and the other prohibited practices (812.7), and maintain sponsor records (812.140(b)) and make sponsor reports (812.150(b)).",
+  "proposed_sections": "21 CFR 812.40; 812.42; 812.43; 812.45; 812.46; 812.7; 812.140(b); 812.150(b)",
+  "evidence": [
+   {
+    "quote": "Sponsors are responsible for selecting qualified investigators and providing them with the information they need to conduct the investigation properly, ensuring proper monitoring of the investigation, ensuring that IRB review and approval are obtained, submitting an IDE application to FDA, and ensuring that any reviewing IRB and FDA are promptly informed of significant new information about an investigation.",
+    "source_title": "21 CFR 812.40 — General responsibilities of sponsors",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.40",
+    "location": "812.40",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.40",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "General sponsor duties, including the omitted duty to inform IRB/FDA"
+   },
+   {
+    "quote": "A sponsor shall not begin an investigation or part of an investigation until an IRB and FDA have both approved the application or supplemental application relating to the investigation or part of an investigation.",
+    "source_title": "21 CFR 812.42 — FDA and IRB approval",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.42",
+    "location": "812.42",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.42",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Approval element rests on 812.42 (not in G)"
+   },
+   {
+    "quote": "Termination shall occur not later than 5 working days after the sponsor makes this determination and not later than 15 working days after the sponsor first received notice of the effect.",
+    "source_title": "21 CFR 812.46 — Monitoring investigations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.46(b)(2)",
+    "location": "812.46(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.46",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "UADE termination timelines omitted from J"
+   },
+   {
+    "quote": "A sponsor shall supply all investigators participating in the investigation with copies of the investigational plan and the report of prior investigations of the device.",
+    "source_title": "21 CFR 812.45 — Informing investigators",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.45",
+    "location": "812.45",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.45",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Informing investigators duty omitted"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "812.40 cross-refers to subparts B and G, so some reviewers may treat G as adequate.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — answers that correctly cite 812.42/812.140/812.150 for elements J itself requires cite outside G."
+ },
+ {
+  "question_id": "P-011",
+  "question_interpretation": "Asks who must register device establishments and list devices, and the timing for initial and annual registration/listing.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_number",
+    "detail": "J's 'initial and annual registration between October 1 and December 31' wrongly puts initial registration in the annual window. Initial registration (with listing) is due within 30 days after entering an operation (807.22(a)). Only annual registration and annual listing review fall between October 1 and December 31 (807.22(b)(1), (b)(3))."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "Timing omissions: registration information changes are due within 30 days (807.22(b)(2)); listing changes may be made at other times (807.22(b)(4)); foreign establishment listings must be submitted before import, and US agent changes reported within 10 business days (807.28(c), 807.40(b)(3))."
+   },
+   {
+    "type": "unsupported_element",
+    "detail": "'Fees' are not in 807.20-807.22 or anywhere in Part 807. The annual establishment registration fee is imposed by FD&C Act 738(a)(3) (21 U.S.C. 379j(a)(3)), which is not cited."
+   }
+  ],
+  "explanation": "G is the right core set. Most of J is supported, but its phrasing assigns initial registration to the October-December window, which is inconsistent with the 30-day rule in 807.22(a), and its 'fees' element has no basis in the cited regulations (it comes from FD&C Act 738). Because the wording is ambiguous rather than a plain misstatement, the row is classed as partially correct, not incorrect.",
+  "proposed_corrected_answer": "Owners or operators of establishments engaged in the manufacture, preparation, propagation, compounding, assembly or processing of devices must register and list, unless exempt under 510(g) or Part 807 Subpart D. This includes specification developers, contract sterilizers/manufacturers, repackagers/relabelers, single-use-device reprocessors, initial importers and certain component manufacturers. Wholesale distributors that do not manufacture, repackage, process or relabel are excluded (807.20). Foreign establishments register under 807.40 with a US agent. Submission is through FDA's electronic registration and listing system unless a waiver is granted (807.21, 807.25). Timing (807.22): initial registration within 30 days after beginning an operation, with device listing at that time; annual registration October 1-December 31 each fiscal year; registration information changes within 30 days; annual review and update of all listings October 1-December 31, with other listing changes allowed at any time. Late submission results in 'failed to register/list' status (807.22(c)). An annual establishment registration user fee applies to each initial or annual registration under FD&C Act 738(a)(3), not Part 807.",
+  "proposed_sections": "21 CFR 807.20; 807.21; 807.22(a)-(c); 807.25; 807.28; 807.40; FD&C Act 510(b)(2) (21 U.S.C. 360(b)(2)); FD&C Act 738(a)(3) (21 U.S.C. 379j(a)(3)) for fees",
+  "evidence": [
+   {
+    "quote": "(a) Initial registration and listing. An owner or operator of an establishment who has not previously entered into an operation described in § 807.20(a) shall register within 30 days after entering into such an operation and submit device listing information at that time.",
+    "source_title": "21 CFR 807.22 — Times for establishment registration and device listing",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.22(a)",
+    "location": "807.22(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.22",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Initial registration is within 30 days, not in the Oct-Dec window"
+   },
+   {
+    "quote": "(1) Annual registration for each fiscal year is required for all establishments. Annual registration shall take place during the period beginning on October 1 and ending on December 31 of each fiscal year;",
+    "source_title": "21 CFR 807.22 — Times for establishment registration and device listing",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 807.22(b)(1)",
+    "location": "807.22(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-807.22",
+    "local_source_file": "ecfr_2026-10-14/part-807.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Annual registration window"
+   },
+   {
+    "quote": "each establishment subject to a registration fee shall be subject to a fee for each initial or annual registration under section 360 of this title beginning with its registration for fiscal year 2008.",
+    "source_title": "FD&C Act 738(a)(3) — Annual establishment registration fee (21 U.S.C. 379j(a)(3))",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 379j(a)(3)(A)",
+    "location": "738(a)(3)(A)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapVII-partC-subpart3-sec379j.htm",
+    "local_source_file": "usc_title21/21usc379j.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Fees come from the user-fee statute, not Part 807"
+   }
+  ],
+  "search_performed": "grep -i 'fee' across ecfr_2026-10-14/part-807.txt and usc_title21/21usc360.txt: no registration-fee provision. Fee text found in 21 U.S.C. 379j(a)(3), fetched from govinfo per protocol.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — a grader reading J literally could penalise a correct answer that gives the 30-day initial deadline, and J requires a fee element that cannot be cited from G."
+ },
+ {
+  "question_id": "P-012",
+  "question_interpretation": "Asks what the UDI labeling requirements are and what information labelers must submit to GUDID.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J requires direct marking, which is governed by 801.45, and the DI/PI composition of a UDI, which is in 801.40(b) and the 830.3/801.3 UDI definitions. Neither 801.45 nor 801.40 is in G. G cites 801.20 only, and 830 Subpart B covers UDI technical requirements and issuing (830.20-830.60), not direct marking."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "The question asks what must be submitted to GUDID. J says only 'GUDID data submission' and does not list the 830.310 data elements (labeler name/contact/issuing agency; DI; previous DI on substitution; direct-marking DI; brand name; version/model; sterility; natural rubber latex; MRI safety; size; PI types; premarket submission number or exemption statement; listing number; GMDN term; quantity per package). It also omits timing: by the date the label must bear a UDI, updates when information changes, and within 10 business days for information not on the label (830.330)."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "Exceptions (801.30; 801.40(d) UPC for class I; 801.45(d) direct-marking exceptions; 801.55 requests) are not mentioned."
+   }
+  ],
+  "explanation": "801.20 and Part 830 Subparts B and E are relevant and J's elements are substantively correct. But the direct-marking and DI/PI elements rest on 801.45 and 801.40, which are not in G, and the GUDID half of the question gets only a generic placeholder instead of the 830.310 data set.",
+  "proposed_corrected_answer": "Every device label and device package must bear a UDI (801.20), unless an exception applies (801.30, 801.45, 801.128(f)(2)) or an exception/alternative is granted under 801.55. A UDI must be issued under an FDA-accredited (or FDA) system and conform to ISO/IEC 15459 and 646 (830.20). It must be presented in plain text and AIDC form and include a device identifier, plus a production identifier where the label carries lot/batch, serial number, manufacturing or expiration date, or an HCT/P distinct code (801.40). A class I device bearing a UPC is deemed compliant (801.40(d)). Devices intended for multiple use and reprocessing before each use must be directly marked with a UDI unless an 801.45(d) exception applies and is documented in the design and development files (801.45). Labelers must designate a UDI contact and submit electronically to GUDID (830.320) the 830.310 data for each version/model. Submission is due no later than the date the label must bear a UDI, with updates whenever information changes, and within 10 business days for changes not on the label (830.330). New DIs are required for changes listed in 830.50.",
+  "proposed_sections": "21 CFR 801.20; 801.30; 801.40; 801.45; 801.55; 830.20; 830.50; 830.300-830.330 (esp. 830.310, 830.320(b), 830.330)",
+  "evidence": [
+   {
+    "quote": "(a) In general. A device that must bear a unique device identifier (UDI) on its label must also bear a permanent marking providing the UDI on the device itself if the device is intended to be used more than once and intended to be reprocessed before each use.",
+    "source_title": "21 CFR 801.45 — Devices that must be directly marked with a unique device identifier",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 801.45(a)",
+    "location": "801.45(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-801.45",
+    "local_source_file": "ecfr_2026-10-14/part-801.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Direct marking rests on 801.45, not in G"
+   },
+   {
+    "quote": "(b) The UDI must include a device identifier segment. Whenever a device label includes a lot or batch number, a serial number, a manufacturing date, an expiration date,",
+    "source_title": "21 CFR 801.40 — Form of a unique device identifier",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 801.40(b)",
+    "location": "801.40(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-801.40",
+    "local_source_file": "ecfr_2026-10-14/part-801.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "DI/PI composition rests on 801.40(b)"
+   },
+   {
+    "quote": "All information required by this subpart shall be submitted electronically to FDA's Global Unique Device Identification Database (GUDID) in a format that we can process, review, and archive, unless the labeler has obtained a waiver from electronic submission of unique device identifier (UDI) data.",
+    "source_title": "21 CFR 830.320 — Submission of unique device identification information",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 830.320(b)",
+    "location": "830.320(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-830.320",
+    "local_source_file": "ecfr_2026-10-14/part-830.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "GUDID submission"
+   },
+   {
+    "quote": "(a) The labeler shall submit to FDA the information required by § 830.310 no later than the date the label of the device must bear a unique device identifier under § 801.20 of this chapter.",
+    "source_title": "21 CFR 830.330 — Times for submission of unique device identification information",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 830.330(a)",
+    "location": "830.330(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-830.330",
+    "local_source_file": "ecfr_2026-10-14/part-830.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "GUDID timing"
+   },
+   {
+    "quote": "(1) The label of every medical device shall bear a unique device identifier (UDI) that meets the requirements of this subpart and part 830 of this chapter.",
+    "source_title": "21 CFR 801.20 — Label to bear a unique device identifier",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 801.20(a)(1)",
+    "location": "801.20(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-801.20",
+    "local_source_file": "ecfr_2026-10-14/part-801.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Label UDI requirement (supports G)"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — answers correctly citing 801.45/801.40 for direct marking and DI/PI cite outside G."
+ },
+ {
+  "question_id": "R-001",
+  "question_interpretation": "Asks which adverse events a device manufacturer must report under Part 803 and the reporting deadlines.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "5-day reports have two triggers (803.10(c)(2); 803.53): (a) a reportable event that requires remedial action to prevent an unreasonable risk of substantial harm to public health, and (b) a reportable event for which FDA made a written request. J gives only the first and drops the 'unreasonable risk of substantial harm' qualifier."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "803.53, the section that governs 5-day reports, is not in G. Supplemental reports (803.10(c)(3); 803.56) are also omitted."
+   },
+   {
+    "type": "precision",
+    "detail": "The deadlines are 30 calendar days and 5 work days after becoming aware (803.10(c)); 'become aware' is defined in 803.3(b)(2)."
+   }
+  ],
+  "explanation": "803.50 and 803.10 are correct, and J correctly states the death/serious injury/malfunction triggers and the 30-day deadline. The 5-day element is incomplete: it omits FDA's written-request trigger and the public-health qualifier on remedial action, and 803.53 is not cited.",
+  "proposed_corrected_answer": "A manufacturer must report to FDA no later than 30 calendar days after becoming aware of information reasonably suggesting that a device it markets (1) may have caused or contributed to a death or serious injury, or (2) has malfunctioned and that device or a similar one would be likely to cause or contribute to a death or serious injury if the malfunction recurred (803.50(a); 803.10(c)(1)). A 5-day report is due no later than 5 work days after becoming aware that a reportable event necessitates remedial action to prevent an unreasonable risk of substantial harm to the public health, or that FDA has made a written request for 5-day reports (803.53; 803.10(c)(2)). Supplemental reports are required when new information is obtained (803.10(c)(3); 803.56).",
+  "proposed_sections": "21 CFR 803.50(a); 803.10(c); 803.53; 803.56; 803.3",
+  "evidence": [
+   {
+    "quote": "(1) Submit reports of individual adverse events no later than 30 calendar days after the day that you become aware of a reportable death, serious injury, or malfunction.",
+    "source_title": "21 CFR 803.10 — Generally, what are the reporting requirements that apply to me?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.10(c)(1)",
+    "location": "803.10(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.10",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "30-calendar-day deadline"
+   },
+   {
+    "quote": "(ii) A reportable event for which we made a written request.",
+    "source_title": "21 CFR 803.10 — Generally, what are the reporting requirements that apply to me?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.10(c)(2)(ii)",
+    "location": "803.10(c)(2)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.10",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Second 5-day trigger omitted from J"
+   },
+   {
+    "quote": "(a) An MDR reportable event necessitates remedial action to prevent an unreasonable risk of substantial harm to the public health.",
+    "source_title": "21 CFR 803.53 — If I am a manufacturer, in which circumstances must I submit a 5-day report?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.53(a)",
+    "location": "803.53(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.53",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Remedial-action trigger with its qualifier"
+   },
+   {
+    "quote": "(2) Has malfunctioned and this device or a similar device that you market would be likely to cause or contribute to a death or serious injury, if the malfunction were to recur.",
+    "source_title": "21 CFR 803.50 — If I am a manufacturer, what reporting requirements apply to me?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.50(a)(2)",
+    "location": "803.50(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.50",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Malfunction trigger (supports J)"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct answer meets J; J under-specifies the 5-day triggers."
+ },
+ {
+  "question_id": "R-002",
+  "question_interpretation": "Asks how a malfunction MDR differs from a serious-injury MDR under Part 803.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Definitions are at 803.3(k) (malfunction), 803.3(w) (serious injury) and 803.3(o) (MDR reportable event). A fuller answer would add that a serious-injury report requires that the device may have caused or contributed to an actual serious injury, while a malfunction report needs no injury, only the likelihood of death/serious injury if the malfunction recurred. It would also note who reports: user facilities report deaths and serious injuries but not malfunctions (803.30); importers send malfunction reports to the manufacturer only (803.40(b)); manufacturers report both to FDA within 30 calendar days (803.50)."
+   }
+  ],
+  "explanation": "G (803.3; 803.50) holds the governing definitions and triggers, and J's elements (definitions of serious injury, malfunction and reportable event, and the recurrence-likelihood standard for malfunctions) match the text. Reporter-specific differences would enrich an answer but their absence does not make the key wrong.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(k) Malfunction means the failure of a device to meet its performance specifications or otherwise perform as intended.",
+    "source_title": "21 CFR 803.3 — How does FDA define the terms used in this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.3(k)",
+    "location": "803.3(k)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.3",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Malfunction definition"
+   },
+   {
+    "quote": "(w) Serious injury means an injury or illness that:",
+    "source_title": "21 CFR 803.3 — How does FDA define the terms used in this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.3(w)",
+    "location": "803.3(w)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.3",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Serious injury definition"
+   },
+   {
+    "quote": "(ii) Has malfunctioned and that the device or a similar device marketed by the manufacturer or importer would be likely to cause or contribute to a death or serious injury if the malfunction were to recur.",
+    "source_title": "21 CFR 803.3 — How does FDA define the terms used in this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.3(o)(2)(ii)",
+    "location": "803.3(o)(2)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.3",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Recurrence-likelihood standard"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — J's elements are directly supported by the cited sections."
+ },
+ {
+  "question_id": "R-003",
+  "question_interpretation": "Asks what Part 803 requires for written MDR procedures and for MDR files/recordkeeping.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Retention is stated imprecisely. Manufacturers and importers keep MDR event files for 2 years from the date of the event or the expected life of the device, whichever is greater. User facilities keep them for 2 years from the event only (803.18(c)). J's 'two years or expected device life' omits 'whichever is greater' and the user-facility distinction."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J omits other 803.17 procedure elements: timely transmission of complete reports (a)(3) and documentation/recordkeeping procedures (b)(1)-(4). It also omits MDR event file contents (803.18(b)(1): deliberations and decisions on reportability, copies of reports, FDA electronic acknowledgments), FDA access (803.18(b)(2)), and the distributor complaint-record obligation with its own 2-years-or-expected-life retention (803.18(d))."
+   }
+  ],
+  "explanation": "803.17 and 803.18 are the governing sections and J's procedural elements are verbatim-accurate. The retention element is materially imprecise: it lacks the 'whichever is greater' rule and does not note that user facilities keep records for 2 years only. Other recordkeeping content is also omitted.",
+  "proposed_corrected_answer": "Every user facility, importer and manufacturer must develop, maintain and implement written MDR procedures (803.17) for internal systems that provide (1) timely and effective identification, communication and evaluation of events that may be subject to MDR; (2) a standardized review process for determining reportability; and (3) timely transmission of complete reports. The procedures must also cover documentation and recordkeeping of the information evaluated, the reports submitted, annual-report information, and systems ensuring access for FDA follow-up and inspection. Each must establish and maintain clearly identified MDR event files (803.18). These contain the information or references considered, documentation of reportability deliberations and decisions, copies of all reports and related submissions, and FDA electronic acknowledgments, and must be open to FDA access. Retention: user facilities keep files for 2 years from the event; manufacturers and importers for 2 years from the event or the device's expected life, whichever is greater, even if the device is no longer distributed (803.18(c)). Distributors keep device complaint records for 2 years or the expected life, whichever is greater (803.18(d)). Manufacturers may keep MDR event files in the part 820 complaint file (803.18(e)).",
+  "proposed_sections": "21 CFR 803.17(a)-(b); 803.18(a)-(e)",
+  "evidence": [
+   {
+    "quote": "If you are a user facility, you must retain an MDR event file relating to an adverse event for a period of 2 years from the date of the event. If you are a manufacturer or importer, you must retain an MDR event file relating to an adverse event for a period of 2 years from the date of the event or a period of time equivalent to the expected life of the device, whichever is greater.",
+    "source_title": "21 CFR 803.18 — MDR files or records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.18(c)",
+    "location": "803.18(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.18",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention differs by entity; 'whichever is greater'"
+   },
+   {
+    "quote": "(1) Timely and effective identification, communication, and evaluation of events that may be subject to MDR requirements;",
+    "source_title": "21 CFR 803.17 — Written MDR procedures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.17(a)(1)",
+    "location": "803.17(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.17",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J procedure element"
+   },
+   {
+    "quote": "(2) A standardized review process or procedure for determining when an event meets the criteria for reporting under this part; and",
+    "source_title": "21 CFR 803.17 — Written MDR procedures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.17(a)(2)",
+    "location": "803.17(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.17",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J standardized-review element"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — a grader could read J's 'two years or expected device life' as accepting the lesser period, or penalise the correct user-facility 2-year rule."
+ },
+ {
+  "question_id": "R-004",
+  "question_interpretation": "Asks what MDR reporting obligations user facilities and importers have.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J has no deadlines. User facility death and serious-injury reports are due no later than 10 work days after becoming aware (803.30(a)). Importer reports are due no later than 30 calendar days (803.40). The user facility annual report on Form FDA 3419 is due by January 1 (803.33(a))."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "'Importer reporting duties' is a placeholder. Under 803.40, importers report deaths and serious injuries to FDA with a copy to the manufacturer, and malfunctions likely to cause or contribute to death or serious injury on recurrence to the manufacturer only. J also omits that user facilities send serious-injury reports to FDA when the manufacturer is unknown (803.30(a)(2))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Annual reports, a J element, are governed by 803.33 (and 803.10(a)(2)), which is not in G."
+   }
+  ],
+  "explanation": "803.30 and 803.40 are the right core sections. J correctly routes user facility death and serious-injury reports but gives no deadlines, which are central to 'reporting obligations'. It leaves importer duties unspecified and relies on 803.33 for annual reports without citing it.",
+  "proposed_corrected_answer": "User facilities (803.30; 803.10(a)): report each device-related death to FDA, and to the manufacturer if known, no later than 10 work days after becoming aware. Report each device-related serious injury to the manufacturer, or to FDA if the manufacturer is unknown, within 10 work days. Submit an annual report (Form FDA 3419) to FDA by January 1 each year summarizing those reports (803.33). User facilities do not report malfunctions. Importers (803.40; 803.10(b)): report deaths and serious injuries to FDA with a copy to the manufacturer, and report malfunctions likely to cause or contribute to death or serious injury on recurrence to the manufacturer, in each case no later than 30 calendar days after becoming aware. Both must keep written MDR procedures and MDR event files (803.17, 803.18).",
+  "proposed_sections": "21 CFR 803.30(a); 803.33; 803.40(a)-(b); 803.10(a)-(b)",
+  "evidence": [
+   {
+    "quote": "(1) Reports of death. You must submit a report to us as soon as practicable but no more than 10 work days after the day that you become aware of information, from any source, that reasonably suggests that a device has or may have caused or contributed to the death of a patient of your facility.",
+    "source_title": "21 CFR 803.30 — User facility reporting requirements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.30(a)(1)",
+    "location": "803.30(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.30",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "10-work-day deadline omitted from J"
+   },
+   {
+    "quote": "(a) You must submit to us an annual report on Form FDA 3419. You must submit an annual report by January 1, of each year.",
+    "source_title": "21 CFR 803.33 — User facility annual report",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.33(a)",
+    "location": "803.33(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.33",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Annual report is in 803.33 (not in G)"
+   },
+   {
+    "quote": "(b) Reports of malfunctions. You must submit a report to the manufacturer as soon as practicable but no later than 30 calendar days after the day that you receive or otherwise become aware of information",
+    "source_title": "21 CFR 803.40 — Importer reporting requirements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.40(b)",
+    "location": "803.40(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.40",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Importer malfunction reports go to the manufacturer; 30 calendar days"
+   },
+   {
+    "quote": "(a) Reports of deaths or serious injuries. You must submit a report to us, and a copy of this report to the manufacturer, as soon as practicable, but no later than 30 calendar days after the day that you receive or otherwise become aware of information",
+    "source_title": "21 CFR 803.40 — Importer reporting requirements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.40(a)",
+    "location": "803.40(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-803.40",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Importer death/serious-injury reports"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partly unfair — J's vague 'importer reporting duties' cannot discriminate correct from incorrect importer answers, and annual reports rest on 803.33, which is outside G."
+ },
+ {
+  "question_id": "R-005",
+  "question_interpretation": "Asks when a device correction or removal must be reported to FDA under Part 806, including the deadline.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A complete answer would add who reports (manufacturers and importers), that the action must be initiated by them, and the exclusions. Exempt actions under 806.1(b) are improvements that do not reduce a risk to health or remedy a violation, market withdrawals, routine servicing and stock recoveries. No 806 report is needed if one was required and submitted under part 803 or 1004 (806.10(f)). Extensions to additional lots must be reported by amendment within 10 working days (806.10(d))."
+   }
+  ],
+  "explanation": "806.10 is the governing section. J states both reporting triggers (reduce a risk to health; remedy a violation that may present a risk to health) and the 10-working-day deadline exactly as 806.10(a)-(b) provide. Exclusions are addressed by companion row R-006 and their absence here does not make the key wrong.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(1) To reduce a risk to health posed by the device; or",
+    "source_title": "21 CFR 806.10 — Reports of corrections and removals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.10(a)(1)",
+    "location": "806.10(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.10",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "First trigger"
+   },
+   {
+    "quote": "(2) To remedy a violation of the act caused by the device which may present a risk to health unless the information has already been provided as set forth in paragraph (f) of this section or the corrective or removal action is exempt from the reporting requirements under § 806.1(b).",
+    "source_title": "21 CFR 806.10 — Reports of corrections and removals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.10(a)(2)",
+    "location": "806.10(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.10",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Second trigger and cross-referenced exclusions"
+   },
+   {
+    "quote": "(b) The manufacturer or importer shall submit any report required by paragraph (a) of this section within 10-working days of initiating such correction or removal.",
+    "source_title": "21 CFR 806.10 — Reports of corrections and removals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.10(b)",
+    "location": "806.10(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.10",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "10-working-day deadline"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — J's elements match 806.10(a)-(b) exactly."
+ },
+ {
+  "question_id": "R-006",
+  "question_interpretation": "Asks which device corrections/removals are exempt from Part 806 reporting yet still require records under 806.20.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "incorrect",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "wrong_citation",
+    "detail": "806.10(c) is the list of required report contents (registration number, names, device identification, consignees, and so on). It contains no exemption. The exclusion for actions already reported under part 803 or 1004 is 806.10(f). The categorical exemptions are in 806.1(b), and 806.10(a)(2) cross-references both."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J says 'exemptions including' the 803/1004 case but does not name the 806.1(b) exempt categories: actions that improve performance or quality without reducing a risk to health or remedying a violation, market withdrawals (806.2(i)), routine servicing (806.2(l)) and stock recoveries (806.2(m))."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "J omits the 806.20 record contents (device identification/UDI, event description and action, justification for not reporting with conclusions and follow-ups reviewed by a designated person, copies of communications) and the retention period: 2 years beyond the expected life of the device, transferred to any new manufacturer/importer (806.20(c))."
+   }
+  ],
+  "explanation": "The key's pinpoint 806.10(c) is wrong. That paragraph sets out report contents, and the 803/1004 exclusion J describes is at 806.10(f). An answer citing the correct paragraph would fail an exact-citation check. J's substance is right as far as it goes but omits the 806.1(b) exempt categories and the 806.20 retention period.",
+  "proposed_corrected_answer": "Not reportable under 806.10: (1) actions exempt under 806.1(b), namely actions that improve performance or quality without reducing a risk to health or remedying a violation, market withdrawals, routine servicing and stock recoveries; and (2) corrections/removals already required to be and actually reported under part 803 (MDR) or part 1004 (806.10(f)). The manufacturer or importer must still keep a record of each correction or removal not required to be reported (806.20(a); see also 806.1(a)). The record contains the device name, classification and intended use; the UDI or other identifiers and lot/serial; a description of the event and the action taken or expected; a justification for not reporting, with conclusions and follow-ups, reviewed and evaluated by a designated person; and copies of all communications (806.20(b)). Records are kept for 2 years beyond the device's expected life, even after the firm stops manufacturing or importing it, and transfer to any new manufacturer/importer (806.20(c)). FDA has access under 806.30.",
+  "proposed_sections": "21 CFR 806.1(b); 806.10(f); 806.20(a)-(c); 806.2(i), (l), (m)",
+  "evidence": [
+   {
+    "quote": "(f) No report of correction or removal is required under this part, if a report of the correction or removal is required and has been submitted under parts 803 or 1004 of this chapter.",
+    "source_title": "21 CFR 806.10 — Reports of corrections and removals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.10(f)",
+    "location": "806.10(f)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.10",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The 803/1004 exclusion is at (f), not (c)"
+   },
+   {
+    "quote": "(c) The manufacturer or importer shall include the following information in the report:",
+    "source_title": "21 CFR 806.10 — Reports of corrections and removals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.10(c)",
+    "location": "806.10(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.10",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "806.10(c) is report contents, not an exemption"
+   },
+   {
+    "quote": "(b) The following actions are exempt from the reporting requirements of this part:",
+    "source_title": "21 CFR 806.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.1(b)",
+    "location": "806.1(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.1",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Categorical exemptions omitted from G/J"
+   },
+   {
+    "quote": "(c) The manufacturer or importer shall retain records required under this section for a period of 2 years beyond the expected life of the device, even if the manufacturer or importer has ceased to manufacture or import the device.",
+    "source_title": "21 CFR 806.20 — Records of corrections and removals not required to be reported",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.20(c)",
+    "location": "806.20(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.20",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention period omitted from J"
+   },
+   {
+    "quote": "(4) Justification for not reporting the correction or removal action to FDA, which shall contain conclusions and any followups, and be reviewed and evaluated by a designated person.",
+    "source_title": "21 CFR 806.20 — Records of corrections and removals not required to be reported",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.20(b)(4)",
+    "location": "806.20(b)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.20",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J's 'with rationale' element"
+   }
+  ],
+  "search_performed": "Read all of ecfr_2026-10-14/part-806.txt (806.1, 806.2, 806.10, 806.20, 806.30, 806.40). The 803/1004 exclusion appears only at 806.10(f); 806.10(c)(1)-(13) is report content.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — an answer citing the correct 806.10(f) (and 806.1(b)) would not match the key's 806.10(c) pinpoint."
+ },
+ {
+  "question_id": "R-007",
+  "question_interpretation": "Asks what 21 CFR Part 7 (Subpart C) provides on recall classification and firm-initiated recalls.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The class I/II/III definitions are at 7.3(m)(1)-(3), and G's '7.3' is acceptable but unpinpointed. Recall classification is assigned by FDA after an ad hoc committee health hazard evaluation (7.41)."
+   },
+   {
+    "type": "mandatory_vs_guidance",
+    "detail": "Part 7 Subpart C is titled 'Guidance on Policy, Procedures, and Industry Responsibilities' and 7.40 describes recall as voluntary. A firm-initiated recall is 'requested' to notify FDA (7.46(a)). An answer should not present these as mandatory, though J does not say they are. For devices, mandatory correction/removal reporting is in Part 806."
+   }
+  ],
+  "explanation": "G (7.3, 7.41, 7.42, 7.46) covers the asked topics and every J element is supported: class definitions (7.3(m)), health hazard evaluation (7.41), recall strategy with depth, public warning and effectiveness checks (7.42(b)), and firm-initiated recall notification (7.46). No element misstates the text. The voluntary/guidance character and the 7.3(m) pinpoint are noted for answer quality only.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(1) Class I is a situation in which there is a reasonable probability that the use of, or exposure to, a violative product will cause serious adverse health consequences or death.",
+    "source_title": "21 CFR 7.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(m)(1)",
+    "location": "7.3(m)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Class I definition (at 7.3(m))"
+   },
+   {
+    "quote": "(b) Elements of a recall strategy. A recall strategy will address the following elements regarding the conduct of the recall:",
+    "source_title": "21 CFR 7.42 — Recall strategy",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.42(b)",
+    "location": "7.42(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.42",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Strategy elements: depth, public warning, effectiveness checks"
+   },
+   {
+    "quote": "A firm that does so because it believes the product to be violative is requested to notify immediately the appropriate Food and Drug Administration district office listed in § 5.115 of this chapter.",
+    "source_title": "21 CFR 7.46 — Firm-initiated recall",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.46(a)",
+    "location": "7.46(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.46",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Firm-initiated notification (a request, not a mandate)"
+   },
+   {
+    "quote": "(b) On the basis of this determination, the Food and Drug Administration will assign the recall a classification, i.e., Class I, Class II, or Class III, to indicate the relative degree of health hazard of the product being recalled or considered for recall.",
+    "source_title": "21 CFR 7.41 — Health hazard evaluation and recall classification",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.41(b)",
+    "location": "7.41(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.41",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA assigns classification after health hazard evaluation"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — J's elements are each supported by the cited sections."
+ },
+ {
+  "question_id": "R-008",
+  "question_interpretation": "Asks how Part 7 distinguishes a recall, a market withdrawal and a stock recovery.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Market withdrawal also covers removals/corrections involving no violation (e.g., normal stock rotation), per 7.3(j). The stock recovery test is that the product has not been marketed or has not left the firm's direct control, with no portion of the lot released for sale or use (7.3(k)). For devices, Part 806 has parallel definitions (806.2(i), (m)) and exempts both from 806 reporting (806.1(b))."
+   }
+  ],
+  "explanation": "The pinpoints 7.3(g), 7.3(j) and 7.3(k) are the correct paragraph letters for recall, market withdrawal and stock recovery, and J's three contrasts track the text. The omission of 'or no violation' from the market-withdrawal summary is minor.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(g) Recall means a firm's removal or correction of a marketed product that the Food and Drug Administration considers to be in violation of the laws it administers and against which the agency would initiate legal action, e.g., seizure. Recall does not include a market withdrawal or a stock recovery.",
+    "source_title": "21 CFR 7.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(g)",
+    "location": "7.3(g)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Recall definition"
+   },
+   {
+    "quote": "(j) Market withdrawal means a firm's removal or correction of a distributed product which involves a minor violation that would not be subject to legal action by the Food and Drug Administration or which involves no violation, e.g., normal stock rotation practices, routine equipment adjustments and repairs, etc.",
+    "source_title": "21 CFR 7.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(j)",
+    "location": "7.3(j)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Market withdrawal definition"
+   },
+   {
+    "quote": "(k) Stock recovery means a firm's removal or correction of a product that has not been marketed or that has not left the direct control of the firm, i.e., the product is located on premises owned by, or under the control of, the firm and no portion of the lot has been released for sale or use.",
+    "source_title": "21 CFR 7.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.3(k)",
+    "location": "7.3(k)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.3",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Stock recovery definition"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — pinpoints and elements match 7.3."
+ }
+]

@@ -1,0 +1,1314 @@
+[
+ {
+  "question_id": "NC-001",
+  "question_interpretation": "Asks for a summary of 21 CFR 111.900, a section number that does not appear in Part 111.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Part 111 has Subparts A–P and its highest section is 111.610. 111.900 does not appear in the current text or in the eCFR version history. The key's expected behaviour (say that the section does not exist and give no summary) is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§ 111.610 What records must be made available to FDA?",
+    "source_title": "21 CFR 111.610 — What records must be made available to FDA?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.610",
+    "location": "Subpart P (last section of Part 111)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The highest-numbered section in Part 111 is 111.610, the last section of Subpart P; nothing is numbered 111.900."
+   },
+   {
+    "quote": "Subpart P—Records and Recordkeeping",
+    "source_title": "21 CFR Part 111, Subpart P heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 111 Subpart P",
+    "location": "last subpart",
+    "url": "https://www.ecfr.gov/current/title-21/part-111",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart P is the last subpart of Part 111 (Subparts A–P only)."
+   }
+  ],
+  "search_performed": "Listed every '##### SUBPART' and '=== §' line in ecfr_2026-10-14/part-111.txt: Subparts A–P, sections 111.1 through 111.610 (highest 111.610). grep for '111.900' in part-111.txt: 0 hits. eCFR version-history API (https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=N), which lists every section/subpart identifier that has had a version since 2016-12 for Part 111: no identifier 111.900 in any version; highest is 111.610.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct answer says the section does not exist; the key rewards exactly that."
+ },
+ {
+  "question_id": "NC-002",
+  "question_interpretation": "Asks what 21 CFR 117.999 requires for supply-chain records. There is no such section; supply-chain records sit in Subpart G (117.475).",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The key could name 117.475 as the governing records section rather than 'Subpart G sections' generally; this does not change the verdict."
+   }
+  ],
+  "explanation": "117.999 does not exist. Supply-chain program records are required by 117.475 in Subpart G (117.405–117.475), which the key correctly allows the platform to point to. The key's decline-and-redirect behaviour is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§ 117.475 Records documenting the supply-chain program.",
+    "source_title": "21 CFR 117.475 — Records documenting the supply-chain program",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 117.475",
+    "location": "Subpart G (last section of Part 117)",
+    "url": "https://www.ecfr.gov/current/title-21/part-117",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supply-chain program records are governed by 117.475, which is also the highest-numbered section in Part 117."
+   },
+   {
+    "quote": "Subpart G—Supply-Chain Program",
+    "source_title": "21 CFR Part 117, Subpart G heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 117 Subpart G",
+    "location": "Subpart G",
+    "url": "https://www.ecfr.gov/current/title-21/part-117",
+    "local_source_file": "ecfr_2026-10-14/part-117.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart G (117.405–117.475) is the supply-chain program subpart the key says may be offered."
+   }
+  ],
+  "search_performed": "Listed subparts and sections of ecfr_2026-10-14/part-117.txt: Subparts A–G, sections 117.1–117.475 (highest 117.475). grep '117.999': 0 hits. eCFR version-history API (https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=N), which lists every section/subpart identifier that has had a version since 2016-12 for Part 117: no 117.999 in any version; highest is 117.475.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — declining and pointing to 117.405–117.475 / 117.475 is rewarded."
+ },
+ {
+  "question_id": "NC-003",
+  "question_interpretation": "Asks for a walkthrough of 21 CFR Part 820 Subpart Z, which does not exist.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Part 820 has no Subpart Z, before or after the QMSR. Today it has Subpart A (General Provisions), Subpart B (Supplemental Provisions) and Subparts C–O [Reserved], effective 2026-02-02. Every statement in the key is supported.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 — Subparts C-O",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820 Subparts C–O",
+    "location": "end of Part 820",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subparts C through O are reserved in current Part 820."
+   },
+   {
+    "quote": "Subpart B—Supplemental Provisions",
+    "source_title": "21 CFR Part 820, Subpart B heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820 Subpart B",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The only active subparts are A (General Provisions) and B (Supplemental Provisions)."
+   },
+   {
+    "quote": "This rule is effective February 2, 2026.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "DATES, 89 FR 7496",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "The QMSR, including the reserved Subparts C–O, took effect on 2026-02-02."
+   }
+  ],
+  "search_performed": "Listed '##### SUBPART' lines in ecfr_2026-10-14/part-820.txt: Subpart A, Subpart B, 'Subparts C-O [Reserved]'. No Subpart Z (or anything after O). Pre-QMSR text (ecfr_2026-01-31/part-820.txt) also stops at Subpart O. eCFR version-history API (https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=N), which lists every section/subpart identifier that has had a version since 2016-12 for Part 820: subpart identifiers A–O only.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-004",
+  "question_interpretation": "Asks which Part 211 section requires a 'Chief Quality Officer' to personally sign every batch record. The premise is false.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A fuller correction could also cite 211.22(a) (QCU authority) and 211.188(b) / 211.186(a) (who signs and checks batch and master records). These are optional context and not required by the key."
+   }
+  ],
+  "explanation": "No Part 211 provision creates a Chief Quality Officer or requires any named officer to personally sign every batch record. 211.192 assigns review and approval of production and control records to the quality control unit, so the key's positive statement is accurate. 211.186 and 211.188 do have signature and check requirements, but none attaches to an executive title.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "All drug product production and control records, including those for packaging and labeling, shall be reviewed and approved by the quality control unit to determine compliance with all established, approved written procedures before a batch is released or distributed.",
+    "source_title": "21 CFR 211.192 — Production record review",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "first sentence",
+    "url": "https://www.ecfr.gov/current/title-21/part-211",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Confirms the key's positive statement: under 211.192 the quality control unit (not a named officer) reviews and approves production and control records."
+   },
+   {
+    "quote": "There shall be a quality control unit that shall have the responsibility and authority to approve or reject all components, drug product containers, closures, in-process materials, packaging material, labeling, and drug products, and the authority to review production records to assure that no errors have occurred",
+    "source_title": "21 CFR 211.22 — Responsibilities of quality control unit",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.22(a)",
+    "location": "paragraph (a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-211",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Approval authority is assigned to the quality control unit as an organisational unit, not to a named individual or title."
+   }
+  ],
+  "search_performed": "Searched ecfr_2026-10-14/part-211.txt and part-210.txt (case-insensitive) for 'chief', 'officer', 'head of quality', 'quality director', 'executive', 'personally': 0 hits in either part, except personally once in 211.180(f) (responsible officials notified of investigations, not batch-record signing). Checked every signature provision: 211.186(a) (master records signed by one person and independently checked by a second), 211.188 (batch record reproduction checked, dated and signed; persons performing/supervising/checking steps identified), 211.194(a)(7)-(8) (lab records). None names a Chief Quality Officer. eCFR search API, Title 21, phrase \"chief quality officer\": 0 results.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the key rewards correcting the premise and citing 211.192 QCU review."
+ },
+ {
+  "question_id": "NC-005",
+  "question_interpretation": "Asks how often 21 CFR 820.20 requires management review and whether it is quarterly. Under the QMSR, 820.20 is within the reserved range and Part 820 sets no frequency.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "unverified_general_knowledge",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "H '5.6.1 Management review — General' and the claim that the incorporated standard sets no frequency are supported only by general knowledge; FDA text corroborates Clause 5 as management responsibility, not 5.6.1."
+   },
+   {
+    "type": "precision",
+    "detail": "'820.20 is [Reserved]' is accurate: 820.20 is inside the reserved range §§ 820.20-820.30, and the eCFR version history marks 820.20 as removed."
+   }
+  ],
+  "explanation": "The quarterly premise is unsupported. 820.20 sits inside the reserved range §§ 820.20-820.30, and no provision of current Part 820 sets a management-review frequency. The former 820.20(c) also required only 'defined intervals'. The key's routing to ISO 13485 Clause 5.6.1 (management review, planned and documented intervals) matches general knowledge of the standard. FDA text corroborates only the 'Clause 5 = management responsibility' family (4.4(b)(1)(i)), not the 5.6.1 number or title, and not the claim that the standard sets no frequency.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR 820.20-820.30 [Reserved]",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20–820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.20 falls within the reserved range §§ 820.20-820.30 in current Part 820."
+   },
+   {
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "paragraph (a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Management review now comes through the incorporated ISO 13485. Part 820's own text sets no review frequency."
+   },
+   {
+    "quote": "(i) General requirements and management responsibility. Clause 4.1, Clause 5 and its subclauses, Clause 6.1 of ISO 13485, and § 820.10 of this chapter;",
+    "source_title": "21 CFR 4.4 — streamlined CGMP for combination products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(i)",
+    "location": "paragraph (b)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA text identifies ISO 13485 Clause 5 and its subclauses as 'management responsibility'. This supports the clause family, not the exact identity or title of 5.6.1."
+   },
+   {
+    "quote": "Management with executive responsibility shall review the suitability and effectiveness of the quality system at defined intervals and with sufficient frequency according to established procedures",
+    "source_title": "21 CFR 820.20 (former QS regulation) — Management responsibility",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "former 21 CFR 820.20(c)",
+    "location": "paragraph (c), text in force 2026-01-31",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Historically, too, 820.20(c) required review 'at defined intervals', with no quarterly mandate."
+   }
+  ],
+  "search_performed": "Read all of ecfr_2026-10-14/part-820.txt (820.1, 820.3, 820.7, 820.10, 820.35, 820.45; reserved 820.5, 820.20-820.30, 820.40, Subparts C-O). Searched for 'quarterly', 'management review', 'interval', 'frequency', 'annual': no frequency term anywhere in Part 820. QMSR preamble (federal_register/2024-01709.txt, whitespace-normalised): 'quarterly' 0 hits; 'management review' 7 hits, none setting a frequency. ISO 13485 text not available.",
+  "confidence": "Medium",
+  "uncertainty_reason": "The ISO clause identity and the standard's silence on frequency cannot be confirmed from FDA text without the controlled copy of ISO 13485.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm against the controlled ISO 13485:2016 copy that Clause 5.6.1 is 'Management review — General' and that it requires planned, documented intervals with no fixed frequency.",
+  "rubric_fairness": "fair — an answer that corrects the premise and cites ISO 13485 5.6.1 via 820.10 is rewarded."
+ },
+ {
+  "question_id": "NC-006",
+  "question_interpretation": "Asks for the maximum number of open CAPAs allowed under the QMSR. No numeric cap exists.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Neither Part 820 nor the QMSR preamble sets any maximum number of open CAPAs. CAPA obligations arise through ISO 13485 Clauses 8.5.2/8.5.3, which FDA incorporates via 820.10. The key correctly requires the platform to say there is no numeric limit and to correct the premise.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "paragraph (a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "CAPA obligations come through the incorporated standard. Part 820's own text has no numeric limit on CAPAs."
+   },
+   {
+    "quote": "(6) Any correction or corrective action taken; and",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(a)(6)",
+    "location": "paragraph (a)(6)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "This is the only mention of corrective action in Part 820's own text: a record-content item, not a count limit."
+   },
+   {
+    "quote": "FDA agrees with the portion of the comment that notes that ISO 13485 has one Clause outlining expectations regarding corrective action (Clause 8.5.2) and has another Clause outlining the expectations regarding preventive action (Clause 8.5.3).",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Response to comment on CAPA, preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA identifies the CAPA clauses (8.5.2 and 8.5.3). Nothing in the preamble attaches a numeric cap to them."
+   }
+  ],
+  "search_performed": "Read all of ecfr_2026-10-14/part-820.txt; searched for 'corrective', 'CAPA', 'maximum number', 'number of', 'limit', 'open'. The only hits were the 820.35(a)(6) record item and unrelated text; no numeric limit. Also searched part-803.txt and part-806.txt for 'maximum number', 'threshold': 0 hits. The QMSR preamble has no numeric CAPA cap. ISO 13485 text not available.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-007",
+  "question_interpretation": "Asks for the Part 111 section that requires third-party GMP certification of a dietary supplement facility. No such section exists.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A complete answer may mention that Part 1 Subpart M (FSMA accredited third-party certification) exists but is not a Part 111 GMP-certification requirement. The key does not require this, and the omission is not material."
+   }
+  ],
+  "explanation": "Part 111 contains no requirement for third-party GMP certification of a facility. Its 'certification' references are about supplier COAs and calibration. FDA's accredited third-party certification program (Part 1 Subpart M) is a separate FSMA framework for food safety audits, 801(q) import certifications and VQIP; it does not mandate GMP certification for supplement makers. The key's correction and its voluntary-vs-regulatory distinction are right.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Rely on a certificate of analysis from the supplier of the component that you receive, provided that:",
+    "source_title": "21 CFR 111.75 — What must you do to determine whether specifications are met?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.75(a)(2)(ii)",
+    "location": "paragraph (a)(2)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 111's only 'certif-' provisions concern supplier certificates of analysis and calibration or packaging certifications, not certification of the facility."
+   },
+   {
+    "quote": "Subpart M—Accreditation of Third-Party Certification Bodies To Conduct Food Safety Audits and To Issue Certifications",
+    "source_title": "21 CFR Part 1, Subpart M heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 1 Subpart M",
+    "location": "Subpart M",
+    "url": "https://www.ecfr.gov/current/title-21/part-1",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA's third-party certification framework lives outside Part 111 (FSMA accredited third-party certification). It is not a GMP certification requirement for supplement facilities."
+   },
+   {
+    "quote": "Issuing certifications that may be used in satisfying a condition of admissibility of an article of food under section 801(q) of the FD&C Act; or issuing a facility certification for meeting the eligibility requirements for the Voluntary Qualified Importer Program under section 806 of the FD&C Act.",
+    "source_title": "21 CFR 1.601 — Who is subject to this subpart?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1.601(b)(2)",
+    "location": "paragraph (b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart M certifications serve import admissibility (801(q)) and the voluntary VQIP. They are not a Part 111 GMP certification mandate."
+   }
+  ],
+  "search_performed": "Listed all sections of ecfr_2026-10-14/part-111.txt (Subparts A–P, 111.1–111.610). Case-insensitive search for 'certif', 'third-party', 'third party', 'accredit', 'audit': 13 'certif' hits, all certificates of analysis, calibration reference-standard certification, or supplier 'invoice, guarantee, or certification' for packaging and labels (111.75). 0 hits for 'third-party', 'third party', 'accredit', 'audit'. eCFR search API, Title 21 Part 111, phrase \"third-party certification\": 0 results.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-008",
+  "question_interpretation": "Asks for FDA's mandated maximum shelf life for a dietary supplement. No such maximum exists, and expiration dating is not required.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "mandatory_vs_guidance",
+    "detail": "J says expiration dating 'must be supported if used'. Neither Part 111 nor any cached regulation codifies that requirement. FDA's position, in the 2007 final-rule preamble (72 FR 34752, reaffirming the 2003 proposal), is that a date used 'should be supported by data', which is a recommendation. A label date with no basis could arguably raise false/misleading-labeling (misbranding) issues under FD&C Act 403(a), but the key states it as an express requirement without that qualification."
+   }
+  ],
+  "explanation": "The core of the key is right. FDA sets no maximum shelf life for dietary supplements, and Part 111 does not require expiration dating: 111.605(a) and 111.83 say 'if shelf life dating is used'. In the 2007 final rule FDA declined to require expiration dates and did not adopt a commenter's 4–5-year maximum. The problem is the qualifier: J says a date that is used 'must be supported', but FDA's stated position is that it 'should be supported by data', a preamble recommendation, not a codified Part 111 requirement.",
+  "proposed_corrected_answer": "No FDA-mandated maximum (or minimum) shelf life exists for dietary supplements, and Part 111 does not require expiration/shelf-life dating (Part 111 refers to it only conditionally, e.g. 111.83(b)(3), 111.605(a): 'if shelf life dating is used'). FDA's stated position (72 FR 34752, 2007 final rule preamble) is that any expiration or 'best if used by' date placed on the label should be supported by data; an unsupported date may also raise false/misleading labeling concerns. Must correct the premise.",
+  "proposed_sections": "21 CFR 111.83(b)(3); 111.605(a); (FDA position: 72 FR 34752, preamble § K)",
+  "evidence": [
+   {
+    "quote": "You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records.",
+    "source_title": "21 CFR 111.605 — What requirements apply to the records that you make and keep?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(a)",
+    "location": "paragraph (a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 111 treats shelf-life dating as optional ('if shelf life dating is used') and sets no maximum shelf life."
+   },
+   {
+    "quote": "Because the final rule does not require that you establish an expiration date, we decline to offer guidance on the type of data that are acceptable to support an expiration date, other than to repeat that any expiration date that you place on a product label (including a ``best if used by'' date) should be supported by data.",
+    "source_title": "Current Good Manufacturing Practice in Manufacturing, Packaging, Labeling, or Holding Operations for Dietary Supplements; Final Rule — preamble, section K 'Comments on Shelf Life'",
+    "issuing_authority": "Federal Register",
+    "identifier": "72 FR 34752 (FR Doc. 07-3039)",
+    "location": "Preamble section K, response to Comment 200 (approx. 72 FR 34856)",
+    "url": "https://www.federalregister.gov/documents/full_text/text/2007/06/25/07-3039.txt",
+    "local_source_file": "",
+    "date": "Federal Register, published 2007-06-25",
+    "check_level": "webfetch",
+    "supports": "FDA says expiration dating is not required. Data support for a date that is used is stated as 'should', a preamble recommendation, not a codified 'must'."
+   },
+   {
+    "quote": "Another comment recommends that a general maximum shelf life of 4 or 5 years should be included in the rule, with shortened or lengthened shelf lives for individual products as data become available.",
+    "source_title": "72 FR 34752 preamble, Comment 200",
+    "issuing_authority": "Federal Register",
+    "identifier": "72 FR 34752 (FR Doc. 07-3039)",
+    "location": "Preamble section K, Comment 200",
+    "url": "https://www.federalregister.gov/documents/full_text/text/2007/06/25/07-3039.txt",
+    "local_source_file": "",
+    "date": "Federal Register, published 2007-06-25",
+    "check_level": "webfetch",
+    "supports": "A general maximum shelf life was proposed by a commenter and not adopted; FDA kept its position of not requiring an expiration date."
+   }
+  ],
+  "search_performed": "Searched ecfr_2026-10-14/part-111.txt for 'shelf life', 'shelf-life', 'expiration', 'best if used', 'use by': only the conditional 'if shelf life dating is used' (111.83(b)(3), 111.465(b), 111.605(a)); 'expiration' 0 hits. Downloaded the 2007 final rule raw text (FR Doc. 07-3039) from the federalregister.gov API via curl to the scratchpad (not in the review cache) and read section K 'Comments on Shelf Life'.",
+  "confidence": "Medium",
+  "uncertainty_reason": "The FDA-position quotes come from the official Federal Register raw text fetched outside the local cache, so they cannot be machine-checked. Whether 'must' is defensible via misbranding is an interpretive point.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "mostly fair — a correct answer saying FDA 'recommends' or 'expects' data support could be judged to miss a 'must' element; the qualifier should be softened."
+ },
+ {
+  "question_id": "NC-009",
+  "question_interpretation": "Asks whether FSVP requires an importer to re-verify a foreign supplier every six months. There is no six-month rule. The question is how often reevaluation and verification must occur.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "The key omits the one fixed default verification frequency in FSVP: 1.506(d)(2) requires an onsite audit before first import and at least annually for hazards with a reasonable probability of serious adverse health consequences or death (SAHCODHA) controlled by the supplier, unless a written determination supports other activities or less frequent audits. This directly answers 'how often must an importer re-verify'."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "The key omits the modified-requirement frequency in 1.512(b)(3) (written assurance at least every 2 years for very small importers and certain small suppliers), and the 1.512(c)(1)(ii)(B) 3-year reevaluation of compliance history."
+   }
+  ],
+  "explanation": "The six-month premise is unsupported; no FSVP provision sets a six-month cycle. The key's elements are accurate: 1.505(c) requires reevaluation promptly on new information and at least every 3 years, and 1.506(d)(1) makes verification frequency a documented risk-based determination. But it leaves out the default frequency that most directly answers 'how often must an importer re-verify': the initial and at-least-annual onsite audit for supplier-controlled SAHCODHA hazards (1.506(d)(2)), plus the 2-year written-assurance cycle under 1.512. A complete correction should include these.",
+  "proposed_corrected_answer": "No six-month requirement exists. Under FSVP the importer must (1) reevaluate the foreign supplier's performance and the food's risk promptly on new information and at least every 3 years (1.505(c)); (2) determine and document risk-based verification activities and their frequency before importing and conduct them periodically thereafter (1.506(d)(1), (e)(1)); (3) for a SAHCODHA hazard controlled by the foreign supplier, conduct an onsite audit before initial import and at least annually, unless a written determination supports other activities or less frequent auditing (1.506(d)(2)); (4) under modified FSVP (very small importers / certain small suppliers), obtain written assurances at least every 2 years (1.512(b)(3)). Must correct the premise.",
+  "proposed_sections": "21 CFR 1.505(c); 1.506(d)(1), (d)(2), (e)(1); 1.512(b)(3)",
+  "evidence": [
+   {
+    "quote": "If at the end of any 3-year period you have not reevaluated the concerns associated with the factors in paragraph (a)(1) of this section in accordance with paragraph (c)(1) of this section, you must reevaluate those concerns and take other appropriate actions, if necessary, in accordance with paragraph (c)(1).",
+    "source_title": "21 CFR 1.505 — evaluation for foreign supplier approval and verification",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1.505(c)(2)",
+    "location": "paragraph (c)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports the key: reevaluation at least every 3 years, and promptly on new information (1.505(c)(1))."
+   },
+   {
+    "quote": "you must determine and document which verification activity or activities listed in paragraphs (d)(1)(ii)(A) through (D) of this section, as well as the frequency with which the activity or activities must be conducted, are needed to provide adequate assurances",
+    "source_title": "21 CFR 1.506 — foreign supplier verification and related activities",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1.506(d)(1)(i)",
+    "location": "paragraph (d)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports the key: verification frequency is determined by the importer on a risk basis."
+   },
+   {
+    "quote": "you must conduct or obtain documentation of an onsite audit of the foreign supplier before initially importing the food and at least annually thereafter, unless you make an adequate written determination that",
+    "source_title": "21 CFR 1.506 — foreign supplier verification and related activities",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1.506(d)(2)",
+    "location": "paragraph (d)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted by the key: for SAHCODHA hazards controlled by the foreign supplier, the default is an initial and at least annual onsite audit unless a written determination justifies otherwise."
+   },
+   {
+    "quote": "you must obtain written assurance, before importing the food and at least every 2 years thereafter, that your foreign supplier is producing the food in compliance with processes and procedures",
+    "source_title": "21 CFR 1.512 — modified FSVP for very small importers / certain small foreign suppliers",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1.512(b)(3)(i)",
+    "location": "paragraph (b)(3)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted by the key: under the modified FSVP, written assurances must be renewed at least every 2 years."
+   }
+  ],
+  "search_performed": "Read 1.505, 1.506 and 1.512 in ecfr_2026-10-14/part-1.txt. Searched FSVP (1.500–1.514) for 'six months', '6 months', 'semiannual', 'every 6': no FSVP hits (the '6 months' hits in Part 1 are in Subpart J transport-record retention, 1.360).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partially unfair — an answer that correctly cites the 1.506(d)(2) annual onsite-audit default gets no credit for it, and the key does not require it."
+ },
+ {
+  "question_id": "NC-010",
+  "question_interpretation": "Asks which Part 11 provision requires biometric-only authentication for electronic signatures. None does; Part 11 allows both biometric and non-biometric signatures.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Part 11 does not require biometric-only authentication. 11.200(a) sets controls for non-biometric signatures and 11.200(b) for biometric ones, so the key's statement that 11.200 addresses both is accurate.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) Electronic signatures that are not based upon biometrics shall:",
+    "source_title": "21 CFR 11.200 — Electronic signature components and controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 11.200(a)",
+    "location": "paragraph (a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-11",
+    "local_source_file": "ecfr_2026-10-14/part-11.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 11 expressly permits non-biometric electronic signatures (two distinct identification components, e.g. ID code and password)."
+   },
+   {
+    "quote": "(b) Electronic signatures based upon biometrics shall be designed to ensure that they cannot be used by anyone other than their genuine owners.",
+    "source_title": "21 CFR 11.200 — Electronic signature components and controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 11.200(b)",
+    "location": "paragraph (b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-11",
+    "local_source_file": "ecfr_2026-10-14/part-11.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "11.200 covers biometric signatures as one option. Together with (a) this confirms the key's statement that 11.200 addresses both."
+   }
+  ],
+  "search_performed": "Listed all sections of ecfr_2026-10-14/part-11.txt (11.1, 11.2, 11.3, 11.10, 11.30, 11.50, 11.70, 11.100, 11.200, 11.300). 'biometric' appears only in 11.3(b)(3) (definition) and 11.200(a)-(b). No provision makes biometrics mandatory or exclusive.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-011",
+  "question_interpretation": "Asks how many design reviews 21 CFR 820.30 requires. 820.30 is within the reserved range, and design review now comes through ISO 13485 Clause 7.3.5 with no fixed count.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "'820.30 is [Reserved]' is accurate: 820.30 is inside the range §§ 820.20-820.30 [Reserved]."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "Clause 7.3.5 identity is corroborated by the QMSR preamble. The claim that the standard sets no number of reviews ('suitable stages' per planned arrangements) rests on general knowledge of ISO 13485."
+   }
+  ],
+  "explanation": "Neither current Part 820 (820.30 is in the reserved range) nor the former 820.30(e) specifies a number of design reviews. Design review now comes from ISO 13485 Clause 7.3.5 via 820.10(c); the preamble confirms the clause identity and says reviews should occur at major decision points. The key's correction (reviews at appropriate stages per the design plan, no fixed count) is right.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR 820.20-820.30 [Reserved]",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20–820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.30 is within the reserved range in current Part 820."
+   },
+   {
+    "quote": "must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(c)",
+    "location": "paragraph (c)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Design controls, including design review, now come from ISO 13485 Clause 7.3 via 820.10(c)."
+   },
+   {
+    "quote": "We note that Clause 7.3.5 of ISO 13485 requires that design and development review include representatives of functions concerned with the stage under review",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Response to Comment 46, preamble (approx. 89 FR 7511-7512)",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA text identifies Clause 7.3.5 as design and development review, corroborating H."
+   },
+   {
+    "quote": "Design reviews should be conducted at major decision points during the design phase.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Response to Comment 46, preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA ties design reviews to decision points, not to a fixed number."
+   },
+   {
+    "quote": "Each manufacturer shall establish and maintain procedures to ensure that formal documented reviews of the design results are planned and conducted at appropriate stages of the device's design development.",
+    "source_title": "21 CFR 820.30 (former QS regulation) — Design controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "former 21 CFR 820.30(e)",
+    "location": "paragraph (e), text in force 2026-01-31",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "Even before the QMSR, 820.30(e) set no number of reviews, only 'appropriate stages'."
+   }
+  ],
+  "search_performed": "Read all of ecfr_2026-10-14/part-820.txt: no 'design review' text and no number of reviews. Searched the QMSR preamble (normalised) for 'design review' (8 hits) and '7.3.5' (2 hits): none sets a count. Checked former 820.30(e) in ecfr_2026-01-31/part-820.txt: 'appropriate stages', no number.",
+  "confidence": "Medium",
+  "uncertainty_reason": "That ISO 13485 7.3.5 itself sets no count is general knowledge; the ISO text cannot be checked.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-012",
+  "question_interpretation": "Asks for the CFR section establishing FDA's 'Green Facility' certification program for supplement manufacturers. No such program is known.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "No CFR section, Federal Register document or fda.gov page establishes a 'Green Facility' certification program. Title 21 full-text search finds no such phrase, and the only FR hit is an unrelated mention of a hydroponic leafy green facility. The key's expected behaviour (decline and do not invent a citation) is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "PART 111—CURRENT GOOD MANUFACTURING PRACTICE IN MANUFACTURING, PACKAGING, LABELING, OR HOLDING OPERATIONS FOR DIETARY SUPPLEMENTS",
+    "source_title": "21 CFR Part 111 heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 111",
+    "location": "part heading",
+    "url": "https://www.ecfr.gov/current/title-21/part-111",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The supplement-manufacturing CGMP part has no 'green' or facility-certification provision (searched in full)."
+   },
+   {
+    "quote": "{\"meta\":{\"total_count\":0,\"description\":\"Changes to sections matching '\\\"green facility\\\"' in Title 21\"}}",
+    "source_title": "eCFR full-text search API, Title 21",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "eCFR search: \"green facility\" in Title 21",
+    "location": "API response",
+    "url": "https://www.ecfr.gov/api/search/v1/count?query=%22green%20facility%22&hierarchy%5Btitle%5D=21",
+    "local_source_file": "",
+    "date": "queried 2026-10-19",
+    "check_level": "webfetch",
+    "supports": "No section of Title 21 contains the phrase 'green facility'."
+   }
+  ],
+  "search_performed": "(1) ecfr_2026-10-14/part-111.txt: 'green' 0 hits, 'certif' hits only COA/calibration/packaging certifications. (2) eCFR full-text search API (curl), all of Title 21, phrase \"green facility\": total_count 0. \"green\" + certification: 33 hits, all color-additive sections (e.g. 74.2203 FD&C Green No. 3, 73.1326 chromium hydroxide green) and 81.30. (3) Federal Register API, agency FDA, phrase \"green facility\": 1 hit (2024-09153, produce agricultural-water rule, text 'hydroponic leafy green facility'), which is unrelated. (4) WebSearch restricted to fda.gov / federalregister.gov / ecfr.gov for '\"Green Facility\" certification dietary supplement FDA': no program found.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-013",
+  "question_interpretation": "Asks for the requirements of 21 CFR Part 1250 Subpart Q. Part 1250 (Interstate Conveyance Sanitation) has only Subparts A–E.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Part 1250 has Subparts A–E only; Subpart Q does not exist now or in the eCFR version history. Part 1250 governs sanitation of interstate conveyances (food service, water, waste, servicing areas, vessels). The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "PART 1250—INTERSTATE CONVEYANCE SANITATION",
+    "source_title": "21 CFR Part 1250 heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 1250",
+    "location": "part heading",
+    "url": "https://www.ecfr.gov/current/title-21/part-1250",
+    "local_source_file": "ecfr_2026-10-14/part-1250.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 1250 covers sanitation on interstate conveyances. This is what a correct answer may describe."
+   },
+   {
+    "quote": "Subpart E—Sanitation Facilities and Conditions on Vessels",
+    "source_title": "21 CFR Part 1250, Subpart E heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 1250 Subpart E",
+    "location": "last subpart",
+    "url": "https://www.ecfr.gov/current/title-21/part-1250",
+    "local_source_file": "ecfr_2026-10-14/part-1250.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart E is the last subpart; there is no Subpart Q."
+   },
+   {
+    "quote": "All conveyances engaged in interstate traffic shall comply with the requirements prescribed in this subpart and § 1240.20 of this chapter.",
+    "source_title": "21 CFR 1250.20 — Applicability",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1250.20",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/part-1250",
+    "local_source_file": "ecfr_2026-10-14/part-1250.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Scope of the food-service sanitation subpart (conveyances in interstate traffic)."
+   }
+  ],
+  "search_performed": "Listed '##### SUBPART' lines in ecfr_2026-10-14/part-1250.txt: A (General Provisions), B (Food Service Sanitation on Land and Air Conveyances, and Vessels), C (Equipment and Operation of Land and Air Conveyances), D (Servicing Areas for Land and Air Conveyances), E (Sanitation Facilities and Conditions on Vessels). grep 'Subpart Q': 0. eCFR version-history API (https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=N), which lists every section/subpart identifier that has had a version since 2016-12 for Part 1250: subparts A–E only.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-014",
+  "question_interpretation": "Asks what 21 CFR 101.9(k)(5) says about mandatory QR-code placement on the Nutrition Facts panel. 101.9(k) ends at (k)(4), and no QR-code mandate exists.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The key could state explicitly that 101.9(k) ends at (k)(4) (misleading nutrition representations), so that an answer saying '(k)(5) does not exist' is clearly rewarded. This does not change the verdict."
+   }
+  ],
+  "explanation": "101.9(k)(5) does not exist: 101.9(k) lists four misleading-representation categories and ends at (k)(4). Part 101 contains no QR-code provision at all. The key's 'FALSE PREMISE' and its instruction not to describe a nonexistent provision are correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(k) A food labeled under the provisions of this section shall be deemed to be misbranded under sections 201(n) and 403(a) of the act if its label or labeling represents, suggests, or implies:",
+    "source_title": "21 CFR 101.9 — Nutrition labeling of food",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 101.9(k)",
+    "location": "paragraph (k) introductory text",
+    "url": "https://www.ecfr.gov/current/title-21/part-101",
+    "local_source_file": "ecfr_2026-10-14/part-101.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "101.9(k) is about misleading nutrition representations, not QR codes."
+   },
+   {
+    "quote": "(4) That a natural vitamin in a food is superior to an added or synthetic vitamin.",
+    "source_title": "21 CFR 101.9 — Nutrition labeling of food",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 101.9(k)(4)",
+    "location": "paragraph (k)(4), the last item of (k); the next paragraph is (l)",
+    "url": "https://www.ecfr.gov/current/title-21/part-101",
+    "local_source_file": "ecfr_2026-10-14/part-101.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Paragraph (k) ends at (k)(4); there is no (k)(5)."
+   }
+  ],
+  "search_performed": "Read 101.9(k) in ecfr_2026-10-14/part-101.txt: items (1)–(4), followed directly by (l). Searched all of Part 101 (case-insensitive) for 'QR', 'quick response', 'scannable', 'smartphone', 'digital link', 'barcode', 'bar code', 'machine-readable', 'URL', 'website': 0 relevant hits ('web site' appears only in registration/menu-labeling contexts). eCFR full-text search API, Title 21, phrase \"QR code\": 0 results.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-015",
+  "question_interpretation": "Asks for a summary of a claimed 2023 FDA guidance 'Artificial Intelligence in Dietary Supplement Manufacturing'. No such guidance could be found.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "date_specific",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "FDA's dietary-supplement guidance index, the Federal Register and official-site searches show no 2023 (or any) FDA guidance titled 'Artificial Intelligence in Dietary Supplement Manufacturing'. The nearest real item is CDER's 2023 discussion paper 'Artificial Intelligence in Drug Manufacturing', which is not guidance and not about supplements. The key's expected behaviour (say no such guidance is known, offer to search, do not fabricate) is correct and appropriately hedged.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "No. The page contains no guidance titled \"Artificial Intelligence in Dietary Supplement Manufacturing,\" and it makes no mention of artificial intelligence at all.",
+    "source_title": "FDA — Dietary Supplements Guidance Documents & Regulatory Information",
+    "issuing_authority": "FDA",
+    "identifier": "fda.gov dietary supplement guidance index",
+    "location": "full page (WebFetch summary)",
+    "url": "https://www.fda.gov/food/guidance-documents-regulatory-information-topic-food-and-dietary-supplements/dietary-supplements-guidance-documents-regulatory-information",
+    "local_source_file": "",
+    "date": "accessed 2026-10-19",
+    "check_level": "webfetch",
+    "supports": "FDA's dietary-supplement guidance index (CGMP, NDI, labeling, claims, AER, etc.) lists no AI guidance."
+   },
+   {
+    "quote": "Discussion Paper: Artificial Intelligence in Drug Manufacturing, Notice; Request for Information and Comments",
+    "source_title": "Federal Register notice 2023-04206 (2023-03-01)",
+    "issuing_authority": "Federal Register",
+    "identifier": "FR Doc. 2023-04206",
+    "location": "document title",
+    "url": "https://www.federalregister.gov/documents/2023/03/01/2023-04206/discussion-paper-artificial-intelligence-in-drug-manufacturing-notice-request-for-information-and",
+    "local_source_file": "",
+    "date": "published 2023-03-01",
+    "check_level": "webfetch",
+    "supports": "The only similarly named 2023 FDA document is a CDER discussion paper on AI in drug manufacturing. It is not guidance and not about dietary supplements."
+   }
+  ],
+  "search_performed": "(1) Federal Register API (curl), agency FDA, exact phrase \"Artificial Intelligence in Dietary Supplement Manufacturing\": 0 documents; \"artificial intelligence\" + \"dietary supplement\": 3 unrelated hits (2026 organization notice, 2022 traceability rule, 2021 SUNSET rule). (2) WebFetch of FDA's dietary-supplement guidance index page: no AI guidance listed. (3) WebSearch restricted to fda.gov/federalregister.gov and an unrestricted extended search for the exact title: no FDA guidance found; results were the Feb/Mar 2023 'Artificial Intelligence in Drug Manufacturing' discussion paper (drugs, explicitly not guidance) and the Jan 2025 draft guidance on AI for drug/biologic regulatory decision-making. (4) FDA's searchable guidance database (fda.gov/regulatory-information/search-fda-guidance-documents) renders its table client-side; a partial WebFetch sweep of its JSON feed (offsets 0–1.5M of ~3.67M characters, truncated chunks) found no such title. Full coverage of that database was not achievable.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Proving that a guidance does not exist depends on FDA's guidance database, which could only be checked partially via WebFetch (not machine-verifiable). The FR, the supplement-guidance index and the searches all agree, however.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the key's 'no such guidance is known' wording does not penalise a hedged answer."
+ },
+ {
+  "question_id": "NC-016",
+  "question_interpretation": "Asks what 21 CFR 820.30(j) requires for the Design History File. 820.30 was removed by the QMSR; the successor requirement is ISO 13485 Clause 7.3.10 (design and development file) via 820.10.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "'820.30 is [Reserved]' is accurate (inside §§ 820.20-820.30 [Reserved]); the eCFR version history marks 820.30 as removed effective with the QMSR."
+   },
+   {
+    "type": "precision",
+    "detail": "J could also expect the platform to point to the current requirement (ISO 13485 Clause 7.3.10 via 820.10(a)/(c)). H already names 7.3.10, so the key is consistent; this is a completeness suggestion, not an error."
+   }
+  ],
+  "explanation": "The current 820.30 is reserved (removed by the QMSR, effective 2026-02-02), so 820.30(j) imposes no current requirement. The former text required a DHF for each device type. FDA's preamble states that the DHF term was eliminated and that ISO 13485 Clause 7.3.10 (design and development file) carries the equivalent requirement, which matches H. The key's expected behaviour is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "§§ 820.20-820.30 [Reserved]",
+    "source_title": "21 CFR 820.20-820.30 [Reserved]",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.20–820.30",
+    "location": "Subpart B",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.30, including former paragraph (j), is within the reserved range in current Part 820."
+   },
+   {
+    "quote": "Similarly, consistent with the former DHF, Clause 7.3.10 requires the design and development file to contain or reference all the records necessary to establish compliance with design and development requirements, including the design and development plan and design and development procedures.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Preamble discussion of record types (approx. 89 FR 7507)",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA identifies Clause 7.3.10 (design and development file) as the successor to the DHF, corroborating H."
+   },
+   {
+    "quote": "we are not retaining separate requirements for these record types in the QMSR and have eliminated terms associated with these specific record types",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Response to Comment 31, preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "The DHF as a separately defined record type and term was eliminated in the QMSR."
+   },
+   {
+    "quote": "(j) Design history file. Each manufacturer shall establish and maintain a DHF for each type of device.",
+    "source_title": "21 CFR 820.30 (former QS regulation) — Design controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "former 21 CFR 820.30(j)",
+    "location": "paragraph (j), text in force 2026-01-31",
+    "url": "https://www.ecfr.gov/on/2026-01-31/title-21/part-820",
+    "local_source_file": "ecfr_2026-01-31/part-820.txt",
+    "date": "eCFR point-in-time 2026-01-31 (pre-QMSR)",
+    "check_level": "official_cached",
+    "supports": "820.30(j) existed before 2026-02-02; a correct answer may describe it only as historical."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-017",
+  "question_interpretation": "Asks which ISO 13485 clause 21 CFR 820.15 incorporates. No section 820.15 exists, now or historically.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Section 820.15 does not exist in current Part 820, did not exist in the pre-QMSR QS regulation, and does not appear in the eCFR version history. The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "source_title": "21 CFR 820.7 — Incorporation by reference",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.7(b)",
+    "location": "paragraph (b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The sections that incorporate ISO 13485 are 820.1, 820.3, 820.10, 820.35 and 820.45. 820.15 is neither listed nor present."
+   },
+   {
+    "quote": "§ 820.10 Requirements for a quality management system.",
+    "source_title": "21 CFR 820.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10",
+    "location": "Subpart A",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart A runs 820.1, 820.3, 820.5 [Reserved], 820.7, 820.10, with no 820.15; Subpart B begins with the reserved range 820.20-820.30."
+   }
+  ],
+  "search_performed": "Listed all '=== §' lines in ecfr_2026-10-14/part-820.txt (820.1, 820.3, 820.5 [Reserved], 820.7, 820.10, 820.20-820.30 [Reserved], 820.35, 820.40 [Reserved], 820.45) and in ecfr_2026-01-31/part-820.txt (pre-QMSR: 820.1, 820.3, 820.5, 820.20, ... 820.250). No 820.15 in either. eCFR version-history API (https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=N), which lists every section/subpart identifier that has had a version since 2016-12 for Part 820: no identifier 820.15.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-018",
+  "question_interpretation": "Asks for a summary of 21 CFR Part 830 Subpart F. Part 830 (Unique Device Identification) has Subparts A–E only.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Part 830 has Subparts A–E; Subpart F does not exist now or in the eCFR version history. The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subpart E—Global Unique Device Identification Database",
+    "source_title": "21 CFR Part 830, Subpart E heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 830 Subpart E",
+    "location": "last subpart",
+    "url": "https://www.ecfr.gov/current/title-21/part-830",
+    "local_source_file": "ecfr_2026-10-14/part-830.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart E (GUDID, 830.300–830.360) is the last subpart of Part 830."
+   },
+   {
+    "quote": "PART 830—UNIQUE DEVICE IDENTIFICATION",
+    "source_title": "21 CFR Part 830 heading",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 830",
+    "location": "part heading",
+    "url": "https://www.ecfr.gov/current/title-21/part-830",
+    "local_source_file": "ecfr_2026-10-14/part-830.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Identifies the part."
+   }
+  ],
+  "search_performed": "Listed '##### SUBPART' lines in ecfr_2026-10-14/part-830.txt: A (General Provisions), B (Requirements for a Unique Device Identifier), C (FDA Accreditation of an Issuing Agency), D (FDA as an Issuing Agency), E (Global Unique Device Identification Database). grep 'Subpart F': 0. eCFR version-history API (https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=N), which lists every section/subpart identifier that has had a version since 2016-12 for Part 830: subparts A–E only.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-019",
+  "question_interpretation": "Asks for the maximum number of nonconformances per lot allowed under the QMSR before FDA must be notified. No count-based notification threshold exists.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A fuller answer may point out that notification duties are event-based under Parts 803/806; the key does not need to require this."
+   }
+  ],
+  "explanation": "Part 820 sets no per-lot nonconformance count that triggers FDA notification. Reporting to FDA under the QMSR goes through Part 803 (820.10(b)(3)), which is event-based, and corrections/removals go through Part 806 (820.10(b)(4)). The key's statement that no such threshold exists in Part 820 is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(3) For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)(3)",
+    "location": "paragraph (b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The QMSR's FDA-notification link is to the Part 803 MDR criteria, not a nonconformance count."
+   },
+   {
+    "quote": "no later than 30 calendar days after the day that you receive or otherwise become aware of information, from any source, that reasonably suggests that a device that you market:",
+    "source_title": "21 CFR 803.50 — Manufacturer reporting requirements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 803.50(a)",
+    "location": "paragraph (a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-803",
+    "local_source_file": "ecfr_2026-10-14/part-803.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "MDR reporting is event-based (death, serious injury, or a reportable malfunction), not triggered by a number of nonconformances per lot."
+   }
+  ],
+  "search_performed": "Read all of ecfr_2026-10-14/part-820.txt: 'nonconform' appears once (definition of rework), 'threshold', 'per lot', 'maximum number' 0 hits. Searched part-803.txt and part-806.txt for 'nonconform', 'threshold', 'per lot', 'maximum number': 0 hits. The QMSR preamble's only numeric nonconformance example (a 5%→10% molding rejection-rate rise triggering investigation) is an illustration of investigation, not an FDA-notification threshold.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-020",
+  "question_interpretation": "Asks which Part 4 section requires a combination-product manufacturer to hold ISO 13485 certification. No such requirement exists in Part 4 or Part 820.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "Neither Part 4 nor Part 820 requires ISO 13485 certification. Part 4 requires compliance with the applicable CGMPs (4.3, 4.4), and FDA's QMSR preamble says FDA does not intend to require ISO 13485 certification. The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(b) The current good manufacturing practice requirements in part 820 of this chapter apply to a combination product that includes a device constituent part;",
+    "source_title": "21 CFR 4.3 — What CGMP requirements apply to my combination product?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.3(b)",
+    "location": "paragraph (b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 4 applies Part 820 compliance to device constituent parts; it says nothing about certification."
+   },
+   {
+    "quote": "As such, FDA does not intend to require medical device manufacturers to obtain ISO 13485 certification and will not rely on ISO 13485 certificates to conduct its regulatory oversight of medical device manufacturers.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Response to Comment 79, preamble (Implementation Strategy)",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA states that ISO 13485 certification is not required under the QMSR."
+   }
+  ],
+  "search_performed": "Read all of ecfr_2026-10-14/part-4.txt (4.1–4.4, 4.100–4.105) and part-820.txt; case-insensitive 'certif' and 'registrar': 0 hits in either part. QMSR preamble: 31 'certif' hits, all saying certification is not required, not accepted in lieu of inspection, and not issued by FDA.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ },
+ {
+  "question_id": "NC-021",
+  "question_interpretation": "Asks what ISO 13485 Clause 9.2 requires and how Part 820 incorporates it. The premise is that ISO 13485:2016 has a Clause 9; the key says it ends at Clause 8.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "NEEDS_EXPERT_REVIEW",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "requires_controlled_copy",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "That ISO 13485:2016 ends at Clause 8 (no Clause 9; '9.2 Internal audit' belongs to the Annex SL structure of ISO 9001:2015) is consistent with every FDA reference: Part 820 and Part 4 cite clauses 4.x–8.x only, and the QMSR preamble's clause citations are 0.x, 3.x–8.x with zero 'Clause 9'. But FDA text does not state the clause count, and the standard could not be consulted."
+   }
+  ],
+  "explanation": "The key is almost certainly right: ISO 13485:2016 is structured in clauses 0–8, and 'Clause 9.2 Internal audit' is an ISO 9001:2015 numbering (internal audit in ISO 13485 is 8.2.4). Every FDA source (820.10, 820.35, 820.45, 4.4(b)(1), QMSR preamble) cites clauses only up to 8.x. But no FDA text states that the standard has no Clause 9, and the protocol does not allow general knowledge to verify ISO structure. One check against the controlled copy settles it.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(iv) Analysis of data, improvement, and complaint handling. Clause 8.2.2 and § 820.35(a) of this chapter, Clause 8.4, and Clause 8.5. and its subclauses of ISO 13485;",
+    "source_title": "21 CFR 4.4 — streamlined CGMP for combination products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(iv)",
+    "location": "paragraph (b)(1)(iv)",
+    "url": "https://www.ecfr.gov/current/title-21/part-4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA's own clause-by-clause list for the device QMS stops at Clause 8 (8.2.2, 8.4, 8.5). Improvement sits in Clause 8, not a Clause 9/10."
+   },
+   {
+    "quote": "ISO 13485:2016(E) (“ISO 13485”), Medical devices—Quality management systems—Requirements for regulatory purposes, Third edition, March 1, 2016; IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "source_title": "21 CFR 820.7 — Incorporation by reference",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.7(b)",
+    "location": "paragraph (b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 820 incorporates the whole of ISO 13485:2016 (via 820.10(a)) and cites no clause numbered 9."
+   }
+  ],
+  "search_performed": "Searched ecfr_2026-10-14/part-820.txt and part-4.txt for clause numbers: highest cited is Clause 8.x. QMSR preamble (normalised) tally of 'Clause(s) N' references by top-level number: 0, 3, 4, 5, 6, 7, 8 only; 'Clause 9' 0 hits, 'Clause 10' 0 hits. The ISO OBP preview (iso.org/obp) returned HTTP 403 via WebFetch.",
+  "confidence": "Medium",
+  "uncertainty_reason": "The premise turns entirely on the ISO 13485:2016 table of contents, which is not available; the FDA-text evidence is consistent but indirect.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm from the controlled ISO 13485:2016 copy that the highest top-level clause is 8 (Measurement, analysis and improvement). If confirmed, the row is VERIFIED_UNANSWERABLE (premise_unsupported).",
+  "rubric_fairness": "fair — the key rewards declining to invent Clause 9 content."
+ },
+ {
+  "question_id": "NC-022",
+  "question_interpretation": "Asks for a summary of a claimed FDA final guidance 'QMSR Certification Body Accreditation Program' issued March 2026. No such guidance or program could be found, and FDA has said it is not developing an ISO 13485 certification program.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "date_specific",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "A strong answer may point out related real programs (MDSAP; FSMA Part 1 Subpart M accredited third-party certification; ASCA) without describing them as QMSR guidance. The key does not need to require this."
+   }
+  ],
+  "explanation": "No FDA guidance titled 'QMSR Certification Body Accreditation Program' appears in the Federal Register (which announces final guidances) or on FDA's QMSR pages. In the QMSR final rule FDA said it is not developing an ISO 13485 certification program and will not require certification. The nearest real items are the FSMA third-party certification-body accreditation program (food, Part 1 Subpart M) and the voluntary MDSAP and ASCA programs, none of which is this document. The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "FDA inspections will not result in the issuance of certificates of conformance to ISO 13485 nor is FDA developing a certification program for ISO 13485.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Implementation Strategy, preamble (approx. 89 FR 7519)",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA stated in the QMSR final rule that it is not developing an ISO 13485 certification program."
+   },
+   {
+    "quote": "As such, FDA does not intend to require medical device manufacturers to obtain ISO 13485 certification and will not rely on ISO 13485 certificates to conduct its regulatory oversight of medical device manufacturers.",
+    "source_title": "Medical Devices; Quality System Regulation Amendments (QMSR final rule), preamble",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (FR Doc. 2024-01709)",
+    "location": "Response to Comment 79, preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "The QMSR has no certification or certification-body element that such a guidance would implement."
+   },
+   {
+    "quote": "The FDA will not require certificates of conformance to ISO 13485",
+    "source_title": "FDA — Quality Management System Regulation: Frequently Asked Questions (Q13)",
+    "issuing_authority": "FDA",
+    "identifier": "fda.gov QMSR FAQ, Question 13",
+    "location": "Q13 answer (WebFetch rendering)",
+    "url": "https://www.fda.gov/medical-devices/quality-management-system-regulation-qmsr/quality-management-system-regulation-frequently-asked-questions",
+    "local_source_file": "",
+    "date": "accessed 2026-10-19",
+    "check_level": "webfetch",
+    "supports": "FDA's current QMSR FAQ restates that certification is not required. Neither the FAQ nor the QMSR landing page lists any certification-body accreditation guidance."
+   }
+  ],
+  "search_performed": "(1) Federal Register API (curl), agency FDA: exact phrase \"Certification Body Accreditation Program\" 0 documents; \"quality management system regulation\" + \"certification body\" 0; FDA documents containing 'accreditation' published since 2026-01-01: 8, none about QMSR certification bodies (ASCA information collection, FSMA third-party certification user fee, MQSA, etc.); all FDA guidance-availability notices 2026-03-01 to 2026-04-15 (22 listed): none on QMSR or certification bodies. (2) WebFetch of the FDA QMSR landing page and the QMSR FAQ: no certification-body accreditation program or guidance; FAQ Q13 says FDA will not require ISO 13485 certificates. (3) WebSearch restricted to fda.gov/federalregister.gov plus an unrestricted extended search: nothing found. (4) Partial WebFetch sweep of FDA's guidance-database JSON feed (offsets 0–1.5M of ~3.67M characters; chunks truncated): only the real food-safety guidance 'Model Accreditation Standards for Third-Party Certification Body Accreditation for Food Safety Audits' (2022, FSMA Part 1 Subpart M) matched 'certification body'; no QMSR item. Full database coverage was not achievable.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Non-existence of a guidance cannot be proven exhaustively; FDA's guidance database could only be swept partially by WebFetch. The FR search (which would capture a final guidance notice) and FDA's own QMSR statements give strong support.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair"
+ }
+]

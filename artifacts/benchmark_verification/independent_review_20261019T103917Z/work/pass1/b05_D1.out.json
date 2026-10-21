@@ -1,0 +1,999 @@
+[
+ {
+  "question_id": "D-001",
+  "question_interpretation": "Asks what Part 211 covers (its scope/applicability) and how it relates to the general CGMP provisions and definitions in Part 210.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J relies on 'Part 210 definitions' but the provision that makes the 210.3 definitions apply in Part 211 is 21 CFR 211.3 (definitions themselves at 210.3); neither is in G."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J omits the scope exclusions in 211.1(a): positron emission tomography drugs and medical gases (as defined in 213.3(b)(12)) are excluded from Part 211 (medical-gas exclusion added by 89 FR 51769, 2024). It also omits the 211.1(c) non-enforcement for OTC products that are also foods, and the 210.2(c) phase 1 investigational drug exemption from Part 211."
+   },
+   {
+    "type": "missing_question_part",
+    "detail": "The 'relationship to Part 210' answer should state that 210.1(a)/(b) make Parts 210 and 211 together the minimum CGMP, and that non-compliance renders the drug adulterated under FD&C Act 501(a)(2)(B); J does not mention the adulteration consequence."
+   },
+   {
+    "type": "precision",
+    "detail": "'Finished pharmaceuticals' is the Part title; 211.1(a) actually says 'preparation of drug products ... for administration to humans or animals'."
+   }
+  ],
+  "explanation": "G's three sections are real and govern the question, and J's elements are supported (minimum CGMP, applicability, supplement-not-supersede relationship). But J's 'Part 210 definitions' element is anchored in 211.3, which G omits, and J omits the express scope exclusions (PET drugs, medical gases) and the phase 1 exemption, which are material to any statement of Part 211's scope.",
+  "proposed_corrected_answer": "Part 211 contains the minimum CGMP for preparation of drug products for administration to humans or animals, excluding PET drugs and medical gases (211.1(a)); Parts 210 and 211 (with 213, 225, 226) together constitute minimum CGMP and non-compliance renders the drug adulterated under FD&C Act 501(a)(2)(B) (210.1); other applicable regulations (e.g., Parts 600-680, 1271) supplement rather than supersede, with the more specific regulation controlling in a conflict (210.2(a); 211.1(b)); persons performing only some operations comply only with the applicable regulations (210.2(b)); phase 1 investigational drugs are exempt from Part 211 (210.2(c)); OTC products that are also foods are not enforced under Part 211 (211.1(c)); the definitions in 210.3 apply in Part 211 (211.3).",
+  "proposed_sections": "21 CFR 210.1; 210.2; 210.3; 211.1; 211.3",
+  "evidence": [
+   {
+    "quote": "The regulations in this part contain the minimum current good manufacturing practice for preparation of drug products (excluding positron emission tomography drugs and medical gases as defined in § 213.3(b)(12) of this chapter) for administration to humans or animals.",
+    "source_title": "21 CFR 211.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.1(a)",
+    "location": "211.1(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.1",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Scope of Part 211 and its PET-drug and medical-gas exclusions."
+   },
+   {
+    "quote": "The definitions set forth in § 210.3 of this chapter apply in this part.",
+    "source_title": "21 CFR 211.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.3",
+    "location": "211.3",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.3",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 210 definitions apply via 211.3 (not cited in G)."
+   },
+   {
+    "quote": "The failure to comply with any regulation set forth in this part and in parts 211, 213, 225, and 226 of this chapter in the manufacture, processing, packing, or holding of a drug shall render such drug to be adulterated under section 501(a)(2)(B) of the act",
+    "source_title": "21 CFR 210.1 — Status of current good manufacturing practice regulations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 210.1(b)",
+    "location": "210.1(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-210.1",
+    "local_source_file": "ecfr_2026-10-14/part-210.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Relationship: Part 210 makes Part 211 non-compliance adulteration."
+   },
+   {
+    "quote": "The production of such drug is exempt from compliance with the regulations in part 211 of this chapter.",
+    "source_title": "21 CFR 210.2 — Applicability of current good manufacturing practice regulations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 210.2(c)",
+    "location": "210.2(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-210.2",
+    "local_source_file": "ecfr_2026-10-14/part-210.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Phase 1 investigational drug exemption from Part 211."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct answer that adds 211.3 cites a real governing section, but the key would not reward the exclusions it omits."
+ },
+ {
+  "question_id": "D-002",
+  "question_interpretation": "Asks what responsibilities and authority 21 CFR Part 211 assigns to the quality control unit.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J omits the 211.22(a) authority to review production records to assure no errors have occurred or that errors have been fully investigated, and the responsibility to approve or reject drug products manufactured, processed, packed, or held under contract by another company."
+   },
+   {
+    "type": "precision",
+    "detail": "J's approve/reject list omits containers, closures, in-process materials, packaging material and labeling; and 211.22(c) limits procedure/specification approval to those 'impacting on the identity, strength, quality, and purity of the drug product'. 'Written procedures' should say the QCU's responsibilities and procedures must be in writing and followed (211.22(d))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Optional: the QCU's production-record review duty is operationalised in 211.192; QCU approval of production procedures in 211.100(a)."
+   }
+  ],
+  "explanation": "211.22 is the governing section and each J element is supported. However J drops one of the core statutory responsibilities in 211.22(a) — production record review/assurance that errors are investigated — and the contract-manufacturer approval responsibility, both of which a complete answer must state.",
+  "proposed_corrected_answer": "QCU has responsibility and authority to approve or reject all components, drug product containers, closures, in-process materials, packaging material, labeling and drug products; authority to review production records to assure no errors occurred or that errors were fully investigated; responsibility for approving or rejecting drug products made or held under contract by another company (211.22(a)); adequate laboratory facilities available to it (211.22(b)); responsibility for approving or rejecting all procedures or specifications impacting identity, strength, quality and purity (211.22(c)); its responsibilities and procedures must be in writing and followed (211.22(d)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "There shall be a quality control unit that shall have the responsibility and authority to approve or reject all components, drug product containers, closures, in-process materials, packaging material, labeling, and drug products, and the authority to review production records to assure that no errors have occurred or, if errors have occurred, that they have been fully investigated.",
+    "source_title": "21 CFR 211.22 — Responsibilities of quality control unit",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.22(a)",
+    "location": "211.22(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.22",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Approval/rejection authority and the omitted production-record review authority."
+   },
+   {
+    "quote": "The quality control unit shall be responsible for approving or rejecting drug products manufactured, processed, packed, or held under contract by another company.",
+    "source_title": "21 CFR 211.22 — Responsibilities of quality control unit",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.22(a)",
+    "location": "211.22(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.22",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted contract-manufacture responsibility."
+   },
+   {
+    "quote": "The quality control unit shall have the responsibility for approving or rejecting all procedures or specifications impacting on the identity, strength, quality, and purity of the drug product.",
+    "source_title": "21 CFR 211.22 — Responsibilities of quality control unit",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.22(c)",
+    "location": "211.22(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.22",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Procedures/specifications element (supported)."
+   },
+   {
+    "quote": "The responsibilities and procedures applicable to the quality control unit shall be in writing; such written procedures shall be followed.",
+    "source_title": "21 CFR 211.22 — Responsibilities of quality control unit",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.22(d)",
+    "location": "211.22(d)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.22",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Written procedures element (supported)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citation is right; key under-specifies content but would not penalise a complete answer."
+ },
+ {
+  "question_id": "D-003",
+  "question_interpretation": "Asks what qualifications and training Part 211 requires of personnel engaged in drug manufacturing and their supervisors.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J could add that training must cover the particular operations the employee performs and CGMP as it relates to the employee's functions, and that CGMP training is conducted by qualified individuals with sufficient frequency; these are part of 211.25(a) but their omission is not material."
+   }
+  ],
+  "explanation": "All four J elements appear in 211.25(a)-(c): education/training/experience, continuing CGMP training, supervisor qualifications, and an adequate number of qualified personnel. 211.25 is the governing section.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Each person engaged in the manufacture, processing, packing, or holding of a drug product shall have education, training, and experience, or any combination thereof, to enable that person to perform the assigned functions.",
+    "source_title": "21 CFR 211.25 — Personnel qualifications",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.25(a)",
+    "location": "211.25(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.25",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Education/training/experience element."
+   },
+   {
+    "quote": "Training in current good manufacturing practice shall be conducted by qualified individuals on a continuing basis and with sufficient frequency to assure that employees remain familiar with CGMP requirements applicable to them.",
+    "source_title": "21 CFR 211.25 — Personnel qualifications",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.25(a)",
+    "location": "211.25(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.25",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Continuing CGMP training element."
+   },
+   {
+    "quote": "Each person responsible for supervising the manufacture, processing, packing, or holding of a drug product shall have the education, training, and experience, or any combination thereof, to perform assigned functions",
+    "source_title": "21 CFR 211.25 — Personnel qualifications",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.25(b)",
+    "location": "211.25(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.25",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supervisor qualification element."
+   },
+   {
+    "quote": "There shall be an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product.",
+    "source_title": "21 CFR 211.25 — Personnel qualifications",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.25(c)",
+    "location": "211.25(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.25",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Adequate number element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — key and citation match the regulation."
+ },
+ {
+  "question_id": "D-004",
+  "question_interpretation": "Asks what Part 211 requires regarding consultants who advise on drug manufacturing.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "211.34 is the only consultant provision in Part 211 and contains both elements: sufficient education, training and experience to advise on the subject retained for, and records of name, address, qualifications and type of service.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Consultants advising on the manufacture, processing, packing, or holding of drug products shall have sufficient education, training, and experience, or any combination thereof, to advise on the subject for which they are retained. Records shall be maintained stating the name, address, and qualifications of any consultants and the type of service they provide.",
+    "source_title": "21 CFR 211.34 — Consultants",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.34",
+    "location": "211.34",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.34",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Both J elements."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — key matches the full text of 211.34."
+ },
+ {
+  "question_id": "D-005",
+  "question_interpretation": "Asks what Part 211 building/facility requirements apply to aseptic processing areas.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'Air pressure differential systems' is not in 211.42(c)(10) or anywhere in Part 211 (no occurrence of 'differential'); it reflects FDA aseptic-processing guidance language, not the regulation. The nearest regulatory text is the general 211.46(b) requirement for equipment for adequate control over air pressure 'when appropriate', which is not aseptic-specific and is not cited."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits three of the six listed items in 211.42(c)(10): temperature and humidity controls (ii), a system for cleaning and disinfecting the room and equipment to produce aseptic conditions (v), and a system for maintaining equipment used to control aseptic conditions (vi)."
+   },
+   {
+    "type": "precision",
+    "detail": "J should keep the qualifiers: the items apply 'as appropriate', HEPA air is required 'regardless of whether flow is laminar or nonlaminar', and surfaces must be 'smooth, hard' and easily cleanable. The pinpoint 211.42(c)(10) exists and is correct."
+   }
+  ],
+  "explanation": "211.42(c)(10) exists and governs aseptic processing areas; separate/defined areas, cleanable surfaces, HEPA under positive pressure and environmental monitoring are supported. 'Air pressure differential systems' is not a Part 211 requirement (guidance concept), and J omits temperature/humidity controls, the cleaning/disinfection system and the maintenance system for aseptic-control equipment.",
+  "proposed_corrected_answer": "Aseptic processing must be performed in separate or defined areas or other control systems to prevent contamination or mixups (211.42(c)), including as appropriate: floors, walls and ceilings of smooth, hard, easily cleanable surfaces; temperature and humidity controls; air supply filtered through HEPA filters under positive pressure, laminar or nonlaminar; a system for monitoring environmental conditions; a system for cleaning and disinfecting the room and equipment to produce aseptic conditions; a system for maintaining equipment used to control aseptic conditions (211.42(c)(10)(i)-(vi)). Related: equipment for control of air pressure, micro-organisms, dust, humidity and temperature when appropriate (211.46(b)); validated aseptic processes (211.113(b)).",
+  "proposed_sections": "21 CFR 211.42(c)(10) (primary); related 211.46(b); 211.113(b)",
+  "evidence": [
+   {
+    "quote": "(10) Aseptic processing, which includes as appropriate: (i) Floors, walls, and ceilings of smooth, hard surfaces that are easily cleanable; (ii) Temperature and humidity controls; (iii) An air supply filtered through high-efficiency particulate air filters under positive pressure, regardless of whether flow is laminar or nonlaminar; (iv) A system for monitoring environmental conditions; (v) A system for cleaning and disinfecting the room and equipment to produce aseptic conditions; (vi) A system for maintaining any equipment used to control the aseptic conditions.",
+    "source_title": "21 CFR 211.42 — Design and construction features",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.42(c)(10)",
+    "location": "211.42(c)(10)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.42",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Full list of aseptic area requirements: confirms HEPA and environmental monitoring, shows (ii), (v), (vi) omitted and no pressure-differential item."
+   },
+   {
+    "quote": "Equipment for adequate control over air pressure, micro-organisms, dust, humidity, and temperature shall be provided when appropriate for the manufacture, processing, packing, or holding of a drug product.",
+    "source_title": "21 CFR 211.46 — Ventilation, air filtration, air heating and cooling",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.46(b)",
+    "location": "211.46(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.46",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Only Part 211 air-pressure requirement; general, 'when appropriate', not a 'differential system'."
+   }
+  ],
+  "search_performed": "Searched part-210.txt and part-211.txt (eCFR 2026-10-14) for 'differential', 'HEPA', 'high-efficiency', 'air pressure', 'environmental': 'differential' has 0 hits; 'air pressure' only at 211.46(b).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — a fully correct answer (all six 211.42(c)(10) items) would be marked incomplete for not mentioning pressure-differential systems, while omissions of (ii), (v), (vi) would go unpenalised."
+ },
+ {
+  "question_id": "D-006",
+  "question_interpretation": "Asks what 21 CFR 211.46 requires for ventilation, air filtration and air heating/cooling.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'Filtration for penicillin and other sensitive areas' misstates the rule. 211.46(d) requires that air-handling systems for penicillin be completely separate from those for other human drug products — a segregation requirement, not a filtration requirement. 'Other sensitive areas' does not appear; 211.46(c) requires filtration (prefilters and particulate matter air filters) when appropriate on air supplies to production areas generally."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits the recirculation control (measures to control recirculation of dust from production) and the requirement for adequate exhaust or other systems where air contamination occurs during production (211.46(c)); and that 211.46(b) equipment is required 'when appropriate'."
+   }
+  ],
+  "explanation": "211.46 is the right section and the ventilation and air-control elements of J are supported by (a) and (b). The penicillin element is wrong in substance: the regulation requires completely separate air-handling systems, not filtration, and 'other sensitive areas' has no basis. J also omits the recirculation and exhaust requirements of (c).",
+  "proposed_corrected_answer": "Adequate ventilation (211.46(a)); equipment for adequate control over air pressure, micro-organisms, dust, humidity and temperature when appropriate (211.46(b)); air filtration systems, including prefilters and particulate matter air filters, when appropriate on air supplies to production areas, control of recirculated dust, and adequate exhaust or other systems where air contamination occurs during production (211.46(c)); air-handling systems for penicillin completely separate from those for other human drug products (211.46(d)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Air filtration systems, including prefilters and particulate matter air filters, shall be used when appropriate on air supplies to production areas. If air is recirculated to production areas, measures shall be taken to control recirculation of dust from production. In areas where air contamination occurs during production, there shall be adequate exhaust systems or other systems adequate to control contaminants.",
+    "source_title": "21 CFR 211.46 — Ventilation, air filtration, air heating and cooling",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.46(c)",
+    "location": "211.46(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.46",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Actual filtration requirement (production areas, when appropriate) plus omitted recirculation/exhaust requirements."
+   },
+   {
+    "quote": "Air-handling systems for the manufacture, processing, and packing of penicillin shall be completely separate from those for other drug products for human use.",
+    "source_title": "21 CFR 211.46 — Ventilation, air filtration, air heating and cooling",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.46(d)",
+    "location": "211.46(d)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.46",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Penicillin requirement is separation, not filtration."
+   },
+   {
+    "quote": "Equipment for adequate control over air pressure, micro-organisms, dust, humidity, and temperature shall be provided when appropriate for the manufacture, processing, packing, or holding of a drug product.",
+    "source_title": "21 CFR 211.46 — Ventilation, air filtration, air heating and cooling",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.46(b)",
+    "location": "211.46(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.46",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supported air-control element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "The penicillin element may be a loose paraphrase rather than a substantive claim; but as worded it rewards a wrong statement and does not require the separate-air-handling requirement.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — an answer correctly stating separate penicillin air handling would not match 'filtration for penicillin', and the key would accept an incorrect filtration-only statement."
+ },
+ {
+  "question_id": "D-007",
+  "question_interpretation": "Asks what Part 211 requires for cleaning and maintaining equipment and utensils.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J covers each paragraph of 211.67 at summary level. A fuller answer adds sanitizing/sterilizing as appropriate (a), the remaining mandatory procedure contents in (b)(2)-(6) (schedules, methods incl. disassembly/reassembly, removal of previous batch identification, protection of clean equipment, inspection for cleanliness immediately before use), and that records are kept as specified in 211.180 and 211.182 (equipment cleaning and use log, signed by the persons performing and double-checking)."
+   }
+  ],
+  "explanation": "211.67 governs; the elements 'appropriate intervals', 'written procedures', 'assignment of responsibility' and 'cleaning records' are each supported by 211.67(a), (b), (b)(1) and (c). The omitted procedure contents and the 211.182 cross-reference are enrichment rather than errors.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Equipment and utensils shall be cleaned, maintained, and, as appropriate for the nature of the drug, sanitized and/or sterilized at appropriate intervals to prevent malfunctions or contamination",
+    "source_title": "21 CFR 211.67 — Equipment cleaning and maintenance",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.67(a)",
+    "location": "211.67(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.67",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Appropriate intervals element."
+   },
+   {
+    "quote": "(1) Assignment of responsibility for cleaning and maintaining equipment;",
+    "source_title": "21 CFR 211.67 — Equipment cleaning and maintenance",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.67(b)(1)",
+    "location": "211.67(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.67",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Assignment of responsibility; written procedures in (b)."
+   },
+   {
+    "quote": "Records shall be kept of maintenance, cleaning, sanitizing, and inspection as specified in §§ 211.180 and 211.182.",
+    "source_title": "21 CFR 211.67 — Equipment cleaning and maintenance",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.67(c)",
+    "location": "211.67(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.67",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Cleaning records element and cross-reference to 211.182."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Judgment call whether omission of five of the six enumerated procedure contents is material; elements present are all accurate.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citation correct; a complete answer citing 211.67 (and optionally 211.182) would score fully."
+ },
+ {
+  "question_id": "D-008",
+  "question_interpretation": "Asks what Part 211 requires for automatic, mechanical and electronic equipment, including computers, used in drug manufacturing.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_exception",
+    "detail": "J omits 211.68(c): automated equipment used for operations in 211.101(c)/(d), 211.103, 211.182 or 211.188(b)(11) can satisfy the one-person-performs/second-person-checks requirements if used in conformity with 211.68 and one person checks that the equipment properly performed the operation."
+   },
+   {
+    "type": "precision",
+    "detail": "'Control over changes' should be stated as controls ensuring changes in master production and control records or other records are instituted only by authorized personnel; J also omits that written records of calibration checks/inspections must be maintained, that I/O verification degree/frequency is based on system complexity and reliability, and that where data are eliminated by computerization a written record of the program with validation data is kept."
+   }
+  ],
+  "explanation": "211.68 is correct and J's five elements are supported by 211.68(a)-(b). J omits paragraph (c), the automated-equipment alternative to second-person verification with its one-person check condition, which is a material part of what the section requires.",
+  "proposed_corrected_answer": "Equipment may be used if it performs satisfactorily; it must be routinely calibrated, inspected or checked under a written program, with written records of checks (211.68(a)); appropriate controls so that changes to master production and control records or other records are made only by authorized personnel; input/output checked for accuracy at a degree/frequency based on complexity and reliability; backup file of data (or written program record with validation data where data are eliminated by computerization) secure from alteration, erasure or loss (211.68(b)); automated equipment can replace the second-person check for 211.101(c)/(d), 211.103, 211.182, 211.188(b)(11) operations if used per 211.68 and one person checks it performed properly (211.68(c)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "If such equipment is so used, it shall be routinely calibrated, inspected, or checked according to a written program designed to assure proper performance. Written records of those calibration checks and inspections shall be maintained.",
+    "source_title": "21 CFR 211.68 — Automatic, mechanical, and electronic equipment",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.68(a)",
+    "location": "211.68(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.68",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Calibration/checks and written program elements."
+   },
+   {
+    "quote": "Input to and output from the computer or related system of formulas or other records or data shall be checked for accuracy.",
+    "source_title": "21 CFR 211.68 — Automatic, mechanical, and electronic equipment",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.68(b)",
+    "location": "211.68(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.68",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "I/O verification element."
+   },
+   {
+    "quote": "Such automated equipment used for performance of operations addressed by §§ 211.101(c) or (d), 211.103, 211.182, or 211.188(b)(11) can satisfy the requirements included in those sections relating to the performance of an operation by one person and checking by another person if such equipment is used in conformity with this section, and one person checks that the equipment properly performed the operation.",
+    "source_title": "21 CFR 211.68 — Automatic, mechanical, and electronic equipment",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.68(c)",
+    "location": "211.68(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.68",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted paragraph (c)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Materiality of 211.68(c) omission is a judgment; all stated elements are accurate.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citation correct; key would not penalise a complete answer."
+ },
+ {
+  "question_id": "D-009",
+  "question_interpretation": "Asks what Part 211 requires for sampling, testing and approval or rejection of incoming components (and by extension containers/closures) before use.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_INCORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "incorrect",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "'Retest intervals' is not in 211.84. Retesting of approved components is in 211.87 (retest 'as necessary, e.g., after storage for long periods or after exposure to air, heat or other conditions') and 211.160(b)(1) (appropriate retesting of components subject to deterioration); neither sets intervals. The only 'at appropriate intervals' in 211.84 concerns validation of the supplier's test results."
+   },
+   {
+    "type": "precision",
+    "detail": "Part 211 uses 'report of analysis' (components) and 'certificate of testing' (containers/closures), not 'COA'. The reliance conditions are: at least one specific identity test by the manufacturer and establishing reliability of the supplier's analyses through appropriate validation of the supplier's test results at appropriate intervals (211.84(d)(2))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits: each lot withheld from use until sampled/tested and released by the QCU (211.84(a)); sample-collection procedures (211.84(c)); testing for conformity with all written specifications for purity, strength and quality (d)(2); microscopic, filth/extraneous-adulterant and microbiological examination where appropriate (d)(4)-(6); quarantine of untested components on receipt (211.82(b)); and that 'rejection criteria' means rejection of any lot not meeting specifications (211.84(e))."
+   }
+  ],
+  "explanation": "211.84 is the governing section and representative sampling, identity testing, supplier-report reliance and rejection are supported. 'Retest intervals' is not a 211.84 requirement and no interval-based retest requirement exists in Part 211; retesting is event-driven under 211.87. The key also omits the QCU release requirement and the full-specification testing requirement.",
+  "proposed_corrected_answer": "Each lot withheld from use until sampled, tested or examined and released by the QCU (211.84(a)); representative samples of each shipment of each lot based on appropriate (e.g., statistical) criteria (211.84(b)); sampling procedures preventing contamination, with identified samples (211.84(c)); at least one identity test on each component, specific identity tests where they exist (211.84(d)(1)); testing for conformity with written specifications for purity, strength and quality, or acceptance of a supplier's report of analysis provided the manufacturer conducts at least one specific identity test and establishes reliability of the supplier's analyses by validation at appropriate intervals (211.84(d)(2)); containers/closures tested or supplier certificate of testing accepted with visual identification and validation (d)(3); microscopic, filth and microbiological examination where appropriate (d)(4)-(6); lots meeting specifications may be approved and released, others rejected (211.84(e)). Untested components held in quarantine (211.82(b)); approved components retested as necessary, e.g., after long storage or adverse exposure (211.87).",
+  "proposed_sections": "21 CFR 211.84 (primary); related 211.82; 211.87",
+  "evidence": [
+   {
+    "quote": "In lieu of such testing by the manufacturer, a report of analysis may be accepted from the supplier of a component, provided that at least one specific identity test is conducted on such component by the manufacturer, and provided that the manufacturer establishes the reliability of the supplier's analyses through appropriate validation of the supplier's test results at appropriate intervals.",
+    "source_title": "21 CFR 211.84 — Testing and approval or rejection of components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(d)(2)",
+    "location": "211.84(d)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supplier-report reliance conditions; 'appropriate intervals' refers to validation, not retest."
+   },
+   {
+    "quote": "Components, drug product containers, and closures shall be retested or reexamined, as appropriate, for identity, strength, quality, and purity and approved or rejected by the quality control unit in accordance with § 211.84 as necessary, e.g., after storage for long periods or after exposure to air, heat or other conditions that might adversely affect the component, drug product container, or closure.",
+    "source_title": "21 CFR 211.87 — Retesting of approved components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.87",
+    "location": "211.87",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.87",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retesting is in 211.87, event-driven, no intervals."
+   },
+   {
+    "quote": "Each lot of components, drug product containers, and closures shall be withheld from use until the lot has been sampled, tested, or examined, as appropriate, and released for use by the quality control unit.",
+    "source_title": "21 CFR 211.84 — Testing and approval or rejection of components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(a)",
+    "location": "211.84(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted QCU release requirement."
+   },
+   {
+    "quote": "At least one test shall be conducted to verify the identity of each component of a drug product. Specific identity tests, if they exist, shall be used.",
+    "source_title": "21 CFR 211.84 — Testing and approval or rejection of components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(d)(1)",
+    "location": "211.84(d)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Identity test element."
+   },
+   {
+    "quote": "Any lot of such material that does not meet such specifications shall be rejected.",
+    "source_title": "21 CFR 211.84 — Testing and approval or rejection of components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.84(e)",
+    "location": "211.84(e)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.84",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Rejection element."
+   }
+  ],
+  "search_performed": "Searched part-211.txt for 'retest' (hits only 211.87 heading/text and 211.160(b)(1) 'appropriate retesting'), 'interval' (211.67(a) cleaning; 211.84(d)(2)/(3) supplier-result validation; 211.160(b)(4) instrument calibration; 211.166 stability test intervals — none concerns component retesting), 'certificate of analysis' (0 hits).",
+  "confidence": "Medium",
+  "uncertainty_reason": "'Retest intervals' may have been intended loosely as a pointer to 211.87; even so it is mis-sourced to 211.84 and misdescribes an event-driven requirement as interval-based.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — an answer correctly limited to 211.84 cannot state 'retest intervals' without inventing a requirement, so the key penalises correct answers."
+ },
+ {
+  "question_id": "D-010",
+  "question_interpretation": "Asks how approved components must be used (and retested) and how rejected components must be controlled under Part 211.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J could add the 211.86 allowance that deviation from oldest-stock-first rotation is permitted if temporary and appropriate; that retesting under 211.87 is 'as necessary' (e.g., after long storage or adverse exposure) with approval or rejection by the QCU per 211.84; and that rejected material is controlled under a quarantine system designed to prevent its use. 'FIFO' is shorthand for 'oldest approved stock is used first'."
+   }
+  ],
+  "explanation": "211.86, 211.87 and 211.89 are the governing sections for use of approved, retesting of approved, and control of rejected components, containers and closures, and each J element is supported. Omitted qualifiers are minor.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Components, drug product containers, and closures approved for use shall be rotated so that the oldest approved stock is used first. Deviation from this requirement is permitted if such deviation is temporary and appropriate.",
+    "source_title": "21 CFR 211.86 — Use of approved components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.86",
+    "location": "211.86",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.86",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Stock rotation element and deviation allowance."
+   },
+   {
+    "quote": "Components, drug product containers, and closures shall be retested or reexamined, as appropriate, for identity, strength, quality, and purity and approved or rejected by the quality control unit in accordance with § 211.84 as necessary",
+    "source_title": "21 CFR 211.87 — Retesting of approved components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.87",
+    "location": "211.87",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.87",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retesting element."
+   },
+   {
+    "quote": "Rejected components, drug product containers, and closures shall be identified and controlled under a quarantine system designed to prevent their use in manufacturing or processing operations for which they are unsuitable.",
+    "source_title": "21 CFR 211.89 — Rejected components, drug product containers, and closures",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.89",
+    "location": "211.89",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.89",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Control of rejected materials element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citations and elements match the three sections."
+ },
+ {
+  "question_id": "D-011",
+  "question_interpretation": "Asks what written production and process control procedures Part 211 requires and the related deviation rule.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "The question asks which procedures are required; 211.100(a) answers that they 'shall include all requirements in this subpart' (i.e., Subpart F, 211.100-211.115). J omits this."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits that the procedures, including any changes, must be drafted, reviewed and approved by the appropriate organizational units and reviewed and approved by the quality control unit (211.100(a)), and that they must be followed and documented at the time of performance (211.100(b))."
+   }
+  ],
+  "explanation": "211.100 is correct and J's two elements are supported. But J omits the QCU review/approval of procedures and changes and the requirement to follow and contemporaneously document them, and does not say that the procedures must cover all Subpart F requirements — material parts of the section.",
+  "proposed_corrected_answer": "Written procedures for production and process control designed to assure identity, strength, quality and purity, including all requirements of Subpart F; drafted, reviewed and approved by the appropriate organizational units and reviewed and approved by the QCU, including any changes (211.100(a)); followed in execution and documented at the time of performance; any deviation recorded and justified (211.100(b)).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Such procedures shall include all requirements in this subpart. These written procedures, including any changes, shall be drafted, reviewed, and approved by the appropriate organizational units and reviewed and approved by the quality control unit.",
+    "source_title": "21 CFR 211.100 — Written procedures; deviations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.100(a)",
+    "location": "211.100(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.100",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted scope and QCU approval elements."
+   },
+   {
+    "quote": "Written production and process control procedures shall be followed in the execution of the various production and process control functions and shall be documented at the time of performance. Any deviation from the written procedures shall be recorded and justified.",
+    "source_title": "21 CFR 211.100 — Written procedures; deviations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.100(b)",
+    "location": "211.100(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.100",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Deviation element (supported) and omitted follow/document requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citation correct; key under-specifies but would not penalise a complete answer."
+ },
+ {
+  "question_id": "D-012",
+  "question_interpretation": "Asks what controls Part 211 requires over charging components into a batch (formulation, weighing/dispensing, identification, verification).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits 211.101(a): the batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J omits the automated-equipment alternative: where weighing/measuring/subdividing or addition is performed by automated equipment under 211.68, only one person is needed to check/verify (211.101(c)(3), (d))."
+   },
+   {
+    "type": "precision",
+    "detail": "Second-person checks cover: component released by QCU, weight/measure correct per batch production record, containers properly identified (211.101(c)(1)-(3)); and each component added by one person and verified by a second (211.101(d)). Weighing operations must be adequately supervised. The new-container label must show name/item code, receiving or control number, weight/measure, and batch (211.101(b)(1)-(4))."
+   }
+  ],
+  "explanation": "211.101 is correct and 'verification by a second person' is supported by 211.101(c) and (d), as are weighing/measuring and container identification. J omits the 100 percent active-ingredient formulation requirement in (a) and the automated-equipment one-person alternative, both material to the section.",
+  "proposed_corrected_answer": "Batch formulated to provide not less than 100% of labeled/established active ingredient (211.101(a)); components weighed, measured or subdivided as appropriate, with any new container identified by component name/item code, receiving/control number, weight or measure, and batch (b); weighing operations adequately supervised and each dispensed container examined by a second person to confirm QCU release, correct weight/measure and proper identification (c); each component added by one person and verified by a second (d); where automated equipment under 211.68 is used, one person suffices (c)(3), (d).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "The batch shall be formulated with the intent to provide not less than 100 percent of the labeled or established amount of active ingredient.",
+    "source_title": "21 CFR 211.101 — Charge-in of components",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.101(a)",
+    "location": "211.101(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.101",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted 100% formulation requirement."
+   },
+   {
+    "quote": "Weighing, measuring, or subdividing operations for components shall be adequately supervised. Each container of component dispensed to manufacturing shall be examined by a second person to assure that:",
+    "source_title": "21 CFR 211.101 — Charge-in of components",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.101(c)",
+    "location": "211.101(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.101",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Second-person check element."
+   },
+   {
+    "quote": "Each component shall either be added to the batch by one person and verified by a second person or, if the components are added by automated equipment under § 211.68, only verified by one person.",
+    "source_title": "21 CFR 211.101 — Charge-in of components",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.101(d)",
+    "location": "211.101(d)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.101",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Second-person verification of addition and the automated exception."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citation correct; key under-specifies but would not penalise a complete answer."
+ },
+ {
+  "question_id": "D-013",
+  "question_interpretation": "Asks how actual and theoretical yields must be calculated and verified, and how yields are reconciled (limits and investigation of discrepancies).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The 'reconciliation' part of the question is governed by 211.186(b)(7) (master record statement of theoretical yield with maximum and minimum percentages beyond which investigation under 211.192 is required), 211.188(b)(7) (batch record statement of actual yield and percentage of theoretical yield) and 211.192 (unexplained discrepancy including yield outside the established percentages must be thoroughly investigated). G cites only 211.103 and J has no reconciliation element."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J omits that if the yield is calculated by automated equipment under 211.68 it must be independently verified by one person; it also drops 'independently' from the second-person verification."
+   },
+   {
+    "type": "ambiguity",
+    "detail": "In Part 211 the word 'reconcile' appears only for labeling (211.125(c)); a reader could take 'reconciliation' to include labeling reconciliation. Yield reconciliation via 211.186/188/192 is the more natural reading here."
+   }
+  ],
+  "explanation": "211.103 is supported and is the core section for yield calculation. But the question also asks about reconciliation, which is governed by the theoretical-yield limits in the master record (211.186(b)(7)), actual-yield statements in the batch record (211.188(b)(7)) and investigation of out-of-limit yields (211.192); none appears in G or J. The automated-calculation alternative is also omitted.",
+  "proposed_corrected_answer": "Actual yields and percentages of theoretical yield determined at the conclusion of each appropriate phase of manufacturing, processing, packaging or holding; calculation performed by one person and independently verified by a second, or if calculated by automated equipment under 211.68, independently verified by one person (211.103). Master records state theoretical yield with maximum and minimum percentages beyond which investigation is required (211.186(b)(7)); batch records state actual yield and percentage of theoretical yield at appropriate phases (211.188(b)(7)); yields outside the established percentages are unexplained discrepancies that must be thoroughly investigated, extended to other affected batches, and documented (211.192). Definitions at 210.3(b)(17)-(19).",
+  "proposed_sections": "21 CFR 211.103; 211.186(b)(7); 211.188(b)(7); 211.192",
+  "evidence": [
+   {
+    "quote": "Actual yields and percentages of theoretical yield shall be determined at the conclusion of each appropriate phase of manufacturing, processing, packaging, or holding of the drug product. Such calculations shall either be performed by one person and independently verified by a second person, or, if the yield is calculated by automated equipment under § 211.68, be independently verified by one person.",
+    "source_title": "21 CFR 211.103 — Calculation of yield",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.103",
+    "location": "211.103",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.103",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supported calculation element and omitted automated alternative."
+   },
+   {
+    "quote": "(7) A statement of theoretical yield, including the maximum and minimum percentages of theoretical yield beyond which investigation according to § 211.192 is required;",
+    "source_title": "21 CFR 211.186 — Master production and control records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.186(b)(7)",
+    "location": "211.186(b)(7)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.186",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Yield limits for reconciliation."
+   },
+   {
+    "quote": "(7) A statement of the actual yield and a statement of the percentage of theoretical yield at appropriate phases of processing;",
+    "source_title": "21 CFR 211.188 — Batch production and control records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.188(b)(7)",
+    "location": "211.188(b)(7)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.188",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Batch-record yield statement."
+   },
+   {
+    "quote": "Any unexplained discrepancy (including a percentage of theoretical yield exceeding the maximum or minimum percentages established in master production and control records) or the failure of a batch or any of its components to meet any of its specifications shall be thoroughly investigated, whether or not the batch has already been distributed.",
+    "source_title": "21 CFR 211.192 — Production record review",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.192",
+    "location": "211.192",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.192",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Investigation of out-of-limit yields."
+   }
+  ],
+  "search_performed": "Searched part-211.txt for 'reconcil' (hits only 211.125(c) labeling and 211.184(c) inventory reconciliation) and 'theoretical yield' (211.103, 211.186(b)(7), 211.188(b)(7), 211.192).",
+  "confidence": "Medium",
+  "uncertainty_reason": "Depends on reading 'reconciliation' as yield reconciliation; under any reading 211.103 alone does not address it.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — an answer that correctly cites 211.186(b)(7)/211.188(b)(7)/211.192 for reconciliation may be scored as citing extra sections, and J gives no credit for them."
+ },
+ {
+  "question_id": "D-014",
+  "question_interpretation": "Asks what Part 211 requires for sampling and testing of in-process materials and drug products during production.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits 211.110(c): in-process materials shall be tested for identity, strength, quality and purity as appropriate and approved or rejected by the quality control unit during the production process (e.g., at commencement or completion of significant phases or after long storage) — the core testing requirement and the responsible party."
+   },
+   {
+    "type": "precision",
+    "detail": "J could list the minimum in-process controls where appropriate in 211.110(a)(1)-(6) (weight variation, disintegration, mixing adequacy, dissolution, clarity/completeness/pH of solutions, bioburden); in-process specifications must be consistent with final specifications and derived from process average/variability with statistical procedures where appropriate (211.110(b)); rejected in-process materials controlled under a quarantine system (211.110(d))."
+   }
+  ],
+  "explanation": "211.110 is correct and J's elements are supported by 211.110(a), (b) and (d). J omits paragraph (c) — testing for identity, strength, quality and purity and QCU approval or rejection of in-process materials — which is central to 'in-process testing requirements'.",
+  "proposed_corrected_answer": "Written procedures, established and followed, describing in-process controls, tests or examinations on appropriate samples of each batch, established to monitor output and validate performance of processes that may cause variability, including where appropriate weight variation, disintegration, mixing adequacy, dissolution, solution clarity/completeness/pH and bioburden (211.110(a)); valid in-process specifications consistent with final specifications and derived statistically where appropriate (b); in-process materials tested for identity, strength, quality and purity as appropriate and approved or rejected by the QCU during production (c); rejected in-process materials identified and quarantined (d).",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "In-process materials shall be tested for identity, strength, quality, and purity as appropriate, and approved or rejected by the quality control unit, during the production process, e.g., at commencement or completion of significant phases or after storage for long periods.",
+    "source_title": "21 CFR 211.110 — Sampling and testing of in-process materials and drug products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.110(c)",
+    "location": "211.110(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.110",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted testing/QCU approval requirement."
+   },
+   {
+    "quote": "Such control procedures shall be established to monitor the output and to validate the performance of those manufacturing processes that may be responsible for causing variability in the characteristics of in-process material and the drug product.",
+    "source_title": "21 CFR 211.110 — Sampling and testing of in-process materials and drug products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.110(a)",
+    "location": "211.110(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.110",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Monitor output/validate performance element."
+   },
+   {
+    "quote": "Rejected in-process materials shall be identified and controlled under a quarantine system designed to prevent their use in manufacturing or processing operations for which they are unsuitable.",
+    "source_title": "21 CFR 211.110 — Sampling and testing of in-process materials and drug products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.110(d)",
+    "location": "211.110(d)",
+    "url": "https://www.ecfr.gov/current/title-21/section-211.110",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Rejected in-process material element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Materiality of the 211.110(c) omission is a judgment, but it is the paragraph that specifically addresses testing and the QCU's role.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — citation correct; key under-specifies but would not penalise a complete answer."
+ }
+]

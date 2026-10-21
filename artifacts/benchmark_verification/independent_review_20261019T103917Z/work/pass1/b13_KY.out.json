@@ -1,0 +1,1582 @@
+[
+ {
+  "question_id": "K-001",
+  "question_interpretation": "Asks for the general requirements for informed consent in 21 CFR 50.20 and the basic (and, by extension, additional) elements of informed consent in 50.25.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J lists only some of the 50.20 general requirements: it omits that consent may be sought only under circumstances giving the subject/LAR sufficient opportunity to consider participation and minimizing the possibility of coercion or undue influence, and that consent may come from the subject's legally authorized representative."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "50.20 is expressly subject to the exceptions in 50.22 (IRB waiver/alteration for minimal-risk investigations, added 88 FR 88248, Dec. 21, 2023), 50.23 and 50.24; J does not mention that the general requirement has exceptions."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "50.25(c) requires the ClinicalTrials.gov statement for applicable clinical trials; J lists only basic and additional elements."
+   },
+   {
+    "type": "precision",
+    "detail": "'Comprehension' is not regulatory wording; 50.20 requires information in language understandable to the subject or representative."
+   }
+  ],
+  "explanation": "G is correct: 50.20 sets the general requirements and 50.25 the elements. J is right as far as it goes, but its list of general requirements leaves out the coercion/undue-influence and opportunity-to-consider condition, the LAR route, and the express exceptions (50.22-50.24). It also leaves out the mandatory 50.25(c) statement. These omissions are material for a question about 'general requirements'.",
+  "proposed_corrected_answer": "50.20: no investigator may involve a human subject without the legally effective informed consent of the subject or the subject's legally authorized representative, except as provided in 50.22, 50.23 and 50.24. Consent may be sought only under circumstances that give sufficient opportunity to consider whether to participate and that minimize the possibility of coercion or undue influence. Information must be in language understandable to the subject/representative. No exculpatory language waiving the subject's legal rights or releasing the investigator, sponsor, institution or agents from liability for negligence. 50.25(a) basic elements (8): research statement/purpose/duration/procedures/experimental procedures; foreseeable risks; expected benefits; alternatives; confidentiality incl. possible FDA inspection; for more than minimal risk, compensation/medical treatment for injury; contacts for questions and research-related injury; voluntary participation, no penalty, may discontinue. 50.25(b) additional elements (6) when appropriate. 50.25(c) ClinicalTrials.gov statement for applicable clinical trials. (Documentation: 50.27.)",
+  "proposed_sections": "21 CFR 50.20; 21 CFR 50.25(a)-(c) (context: 50.22, 50.23, 50.24, 50.27)",
+  "evidence": [
+   {
+    "quote": "Except as provided in §§ 50.22, 50.23, and 50.24, no investigator may involve a human being as a subject in research covered by these regulations unless the investigator has obtained the legally effective informed consent of the subject or the subject's legally authorized representative.",
+    "source_title": "21 CFR 50.20 — General requirements for informed consent.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.20",
+    "location": "§ 50.20",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.20",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "General requirement, LAR route, and the express exceptions."
+   },
+   {
+    "quote": "An investigator shall seek such consent only under circumstances that provide the prospective subject or the representative sufficient opportunity to consider whether or not to participate and that minimize the possibility of coercion or undue influence.",
+    "source_title": "21 CFR 50.20 — General requirements for informed consent.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.20",
+    "location": "§ 50.20",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.20",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Opportunity-to-consider and coercion/undue-influence requirement omitted from J."
+   },
+   {
+    "quote": "(a) Basic elements of informed consent. In seeking informed consent, the following information shall be provided to each subject:",
+    "source_title": "21 CFR 50.25 — Elements of informed consent.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.25(a)",
+    "location": "§ 50.25(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.25",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Basic elements are mandatory and enumerated in 50.25(a)."
+   },
+   {
+    "quote": "When seeking informed consent for applicable clinical trials, as defined in 42 U.S.C. 282(j)(1)(A), the following statement shall be provided to each clinical trial subject in informed consent documents and processes.",
+    "source_title": "21 CFR 50.25 — Elements of informed consent.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.25(c)",
+    "location": "§ 50.25(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.25",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Mandatory ClinicalTrials.gov statement not in J."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "J is a terse checklist; whether the omitted coercion/exception items are 'material' is partly a judgment call.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G is right; a complete answer would be credited, but J would also credit an answer that omits the coercion and exception requirements."
+ },
+ {
+  "question_id": "K-002",
+  "question_interpretation": "Asks the conditions under which a clinical investigation may proceed under the exception from informed consent for emergency research (21 CFR 50.24).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits several 50.24(a) findings the IRB must make and document: concurrence of a licensed physician not otherwise participating; the investigation could not practicably be carried out without the waiver; a therapeutic window defined, with commitment to try to contact a LAR within it; IRB-approved consent procedures and document plus family-member objection procedures; an independent data monitoring committee."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "50.24(d), 312.20(c) and 812.20(a)(4): the protocol must be under a separate IND/IDE and may not proceed without FDA's prior written authorization (FDA decision within 30 days). Not in J or G (312.20(c)/812.20(a)(4) not cited)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "50.24(b) notification of the subject/LAR/family at the earliest feasible opportunity, 50.24(c) 3-year IRB record retention, 50.24(e) IRB disapproval findings; sponsor duties in 312.54/812.47."
+   }
+  ],
+  "explanation": "50.24 is the right governing section and J's items (life-threatening situation, consent not feasible, prospect of direct benefit, IRB findings, community consultation, public disclosure) are supported. J omits material conditions to proceed: physician concurrence, independent DMC, the therapeutic-window LAR-contact commitment, and the separate IND/IDE requirement with FDA's prior written authorization (50.24(d); 312.20(c); 812.20(a)(4)).",
+  "proposed_corrected_answer": "Under 50.24(a) the IRB, with concurrence of a licensed physician (IRB member or consultant) not otherwise participating, must find and document: (1) subjects in a life-threatening situation, available treatments unproven or unsatisfactory, and valid scientific evidence needed; (2) consent not feasible (medical condition; intervention must be given before LAR consent is feasible; no reasonable way to identify eligible subjects prospectively); (3) prospect of direct benefit (supported by preclinical studies; risks reasonable); (4) not practicable without the waiver; (5) therapeutic window defined and commitment to try to contact a LAR within it; (6) IRB-approved consent procedures/document and family-objection procedures; (7) additional protections: community consultation, public disclosure before and after the study, an independent data monitoring committee, attempts to contact family. 50.24(b): inform subject/LAR/family at the earliest feasible opportunity. 50.24(c): IRB keeps records 3 years. 50.24(d): separate IND/IDE; FDA prior written authorization required (312.20(c); 812.20(a)(4)). 50.24(e): IRB disapproval findings documented and disclosed; sponsor duties 312.54/812.47.",
+  "proposed_sections": "21 CFR 50.24(a)-(e); 21 CFR 312.20(c); 312.54; 812.20(a)(4); 812.47",
+  "evidence": [
+   {
+    "quote": "if the IRB (with the concurrence of a licensed physician who is a member of or consultant to the IRB and who is not otherwise participating in the clinical investigation) finds and documents each of the following:",
+    "source_title": "21 CFR 50.24 — Exception from informed consent requirements for emergency research.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.24(a)",
+    "location": "§ 50.24(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.24",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Physician concurrence and documentation of each finding."
+   },
+   {
+    "quote": "(iv) Establishment of an independent data monitoring committee to exercise oversight of the clinical investigation; and",
+    "source_title": "21 CFR 50.24 — Exception from informed consent requirements for emergency research.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.24(a)(7)(iv)",
+    "location": "§ 50.24(a)(7)(iv)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.24",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Independent DMC is a required protection omitted from J."
+   },
+   {
+    "quote": "Protocols involving an exception to the informed consent requirement under this section must be performed under a separate investigational new drug application (IND) or investigational device exemption (IDE) that clearly identifies such protocols as protocols that may include subjects who are unable to consent.",
+    "source_title": "21 CFR 50.24 — Exception from informed consent requirements for emergency research.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.24(d)",
+    "location": "§ 50.24(d)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.24",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Separate IND/IDE requirement."
+   },
+   {
+    "quote": "A sponsor shall submit a separate IND for any clinical investigation involving an exception from informed consent under § 50.24 of this chapter. Such a clinical investigation is not permitted to proceed without the prior written authorization from FDA.",
+    "source_title": "21 CFR 312.20 — Requirement for an IND.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 312.20(c)",
+    "location": "§ 312.20(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-312.20",
+    "local_source_file": "ecfr_2026-10-14/part-312.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA prior written authorization is a condition to proceed (drug side); device parallel at 812.20(a)(4)(i)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — 50.24 is correctly cited; J is incomplete, so an answer could score complete without the separate-IND/IDE and DMC conditions."
+ },
+ {
+  "question_id": "K-003",
+  "question_interpretation": "Asks what additional safeguards apply when children are subjects in an FDA-regulated clinical investigation (21 CFR 50 Subpart D).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "50.56 (wards): wards may be enrolled in 50.53/50.54 investigations only if related to their ward status or conducted where most child subjects are not wards, and the IRB must require an advocate for each ward. Within the cited range but absent from J."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "50.54: investigations not otherwise approvable may proceed only after the Commissioner, after consulting an expert panel and public review and comment, makes a determination. J's 'risk and benefit categories' does not convey this referral pathway."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "50.55 details omitted: assent waivable or not required in specified cases; one parent's permission may suffice for 50.51/50.52, but both parents are required for 50.53/50.54 (with exceptions); documentation per 50.27."
+   }
+  ],
+  "explanation": "G (50.50-50.56) is correct. J captures the risk categories, IRB findings, assent and parental permission, but omits the wards/advocate safeguard (50.56) and the Commissioner/expert-panel pathway (50.54), which are distinct safeguards in the cited range. It also omits the one-versus-both-parents rule.",
+  "proposed_corrected_answer": "IRB must approve only investigations meeting 50.51 (no greater than minimal risk), 50.52 (greater than minimal risk with prospect of direct benefit: risk justified by benefit and at least as favorable as alternatives), or 50.53 (minor increase over minimal risk, commensurate experiences, vital generalizable knowledge about the disorder), each with adequate provisions for assent and parental/guardian permission (50.50). Otherwise, 50.54 requires an IRB finding plus a Commissioner determination after expert-panel consultation and public comment. 50.55: assent when children are capable (age, maturity, psychological state); assent not required or waivable in specified cases; permission of one parent may suffice for 50.51/50.52, both parents for 50.53/50.54 unless one is deceased, unknown, incompetent, not reasonably available, or only one has legal responsibility; permission documented per 50.27; IRB decides whether and how assent is documented. 50.56: wards only in limited 50.53/50.54 investigations, with an advocate for each ward.",
+  "proposed_sections": "21 CFR 50.50-50.56 (definitions 50.3(n)-(s); see also 56.111(c))",
+  "evidence": [
+   {
+    "quote": "(b) If the clinical investigation is approved under paragraph (a) of this section, the IRB must require appointment of an advocate for each child who is a ward.",
+    "source_title": "21 CFR 50.56 — Wards.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.56(b)",
+    "location": "§ 50.56(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.56",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Wards/advocate safeguard omitted from J."
+   },
+   {
+    "quote": "(2) Where clinical investigations are covered by § 50.53 or § 50.54 and permission is to be obtained from parents, both parents must give their permission unless one parent is deceased, unknown, incompetent, or not reasonably available, or when only one parent has legal responsibility for the care and custody of the child.",
+    "source_title": "21 CFR 50.55 — Requirements for permission by parents or guardians and for assent by children.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.55(e)(2)",
+    "location": "§ 50.55(e)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.55",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Both-parent permission rule."
+   },
+   {
+    "quote": "(b) The Commissioner of Food and Drugs, after consultation with a panel of experts in pertinent disciplines (for example: science, medicine, education, ethics, law) and following opportunity for public review and comment, determines either:",
+    "source_title": "21 CFR 50.54 — Clinical investigations not otherwise approvable...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 50.54(b)",
+    "location": "§ 50.54(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-50.54",
+    "local_source_file": "ecfr_2026-10-14/part-50.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Commissioner/expert-panel pathway."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "J's 'risk and benefit categories' could be read generously to cover 50.54; the wards omission is clearer.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G is right; J would credit an answer that omits wards and the 50.54 pathway."
+ },
+ {
+  "question_id": "K-004",
+  "question_interpretation": "Asks which financial interests and arrangements of clinical investigators must be disclosed under Part 54 and who submits the certification/disclosure to FDA.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J could state the four disclosable categories and thresholds: outcome-affected compensation; significant payments of other sorts above $25,000; proprietary interest in the tested product; significant equity interest (any non-public-priced interest, or above $50,000 in a publicly traded sponsor). The time window covers the study and 1 year after completion. Forms: FDA 3454 (certification) and 3455 (disclosure), plus the due-diligence certification."
+   },
+   {
+    "type": "precision",
+    "detail": "The investigator's own duty is to provide accurate financial information to the sponsor and update it during the study and for 1 year after (54.4(b)); the applicant then submits it to FDA. 'Clinical investigator' includes spouse and dependent children (54.2(d))."
+   }
+  ],
+  "explanation": "54.2 defines the disclosable interests and 54.4 makes the applicant responsible for submitting, for each covered-study investigator, either a certification (Form 3454) or a disclosure (Form 3455). J states both parts correctly at a general level. Thresholds and the investigator-to-sponsor duty would strengthen the key but their absence is not an error.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "The applicant is required to submit for each clinical investigator who participates in a covered study, either a certification that none of the financial arrangements described in § 54.2 exist, or disclose the nature of those arrangements to the agency.",
+    "source_title": "21 CFR 54.4 — Certification and disclosure requirements.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 54.4",
+    "location": "§ 54.4",
+    "url": "https://www.ecfr.gov/current/title-21/section-54.4",
+    "local_source_file": "ecfr_2026-10-14/part-54.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Applicant submits certification or disclosure."
+   },
+   {
+    "quote": "(f) Significant payments of other sorts means payments made by the sponsor of a covered study to the investigator or the institution to support activities of the investigator that have a monetary value of more than $25,000,",
+    "source_title": "21 CFR 54.2 — Definitions.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 54.2(f)",
+    "location": "§ 54.2(f)",
+    "url": "https://www.ecfr.gov/current/title-21/section-54.2",
+    "local_source_file": "ecfr_2026-10-14/part-54.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "$25,000 threshold."
+   },
+   {
+    "quote": "or any equity interest in a publicly traded corporation that exceeds $50,000 during the time the clinical investigator is carrying out the study and for 1 year following completion of the study.",
+    "source_title": "21 CFR 54.2 — Definitions.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 54.2(b)",
+    "location": "§ 54.2(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-54.2",
+    "local_source_file": "ecfr_2026-10-14/part-54.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "$50,000 equity threshold and 1-year window."
+   },
+   {
+    "quote": "(b) The clinical investigator shall provide to the sponsor of the covered study sufficient accurate financial information to allow the sponsor to submit complete and accurate certification or disclosure statements as required in paragraph (a) of this section.",
+    "source_title": "21 CFR 54.4 — Certification and disclosure requirements.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 54.4(b)",
+    "location": "§ 54.4(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-54.4",
+    "local_source_file": "ecfr_2026-10-14/part-54.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Investigator's own disclosure duty runs to the sponsor."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "J is generic. It is accurate, but a stricter reviewer could treat the missing thresholds and the investigator-to-sponsor duty as material.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G and J match the regulation; correct answers citing 54.2/54.4 would be scored correctly."
+ },
+ {
+  "question_id": "K-005",
+  "question_interpretation": "Asks the IRB membership requirements (56.107) and the criteria the IRB must find to approve research (56.111).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits the minimum of at least five members (56.107(a)), the bar on an IRB made up entirely of one gender or one profession (56.107(b)), the exclusion of members with a conflicting interest (56.107(e)), and the rule that invited consultants may not vote (56.107(f))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J's approval criteria omit risks reasonable in relation to anticipated benefits (56.111(a)(2)), documentation of consent (a)(5), privacy/confidentiality (a)(7), additional safeguards for vulnerable subjects (56.111(b)), and Subpart D compliance for children (56.111(c))."
+   },
+   {
+    "type": "precision",
+    "detail": "Data monitoring is required only 'where appropriate' (56.111(a)(6))."
+   }
+  ],
+  "explanation": "G cites the correct sections. J is materially incomplete: it leaves out the five-member minimum, the core numeric membership requirement, and the risk/benefit criterion, one of the central approval findings. Its listed items are otherwise supported.",
+  "proposed_corrected_answer": "56.107: at least five members with varying backgrounds; sufficiently qualified and diverse (race, gender, cultural background, community attitudes); knowledgeable about institutional commitments, law and professional standards; consider members experienced with vulnerable populations; not all men or all women and not all one profession; at least one scientific and one nonscientific member; at least one member not affiliated with the institution (nor immediate family of an affiliated person); no member with a conflicting interest participates except to give information; consultants may assist but not vote. 56.111(a): risks minimized; risks reasonable in relation to anticipated benefits and knowledge; equitable selection; consent sought per Part 50; consent documented per 50.27; data monitoring where appropriate; privacy/confidentiality where appropriate. 56.111(b): additional safeguards for vulnerable subjects. 56.111(c): children research must comply with Part 50 Subpart D.",
+  "proposed_sections": "21 CFR 56.107(a)-(f); 21 CFR 56.111(a)-(c)",
+  "evidence": [
+   {
+    "quote": "(a) Each IRB shall have at least five members, with varying backgrounds to promote complete and adequate review of research activities commonly conducted by the institution.",
+    "source_title": "21 CFR 56.107 — IRB membership.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 56.107(a)",
+    "location": "§ 56.107(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-56.107",
+    "local_source_file": "ecfr_2026-10-14/part-56.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Five-member minimum omitted from J."
+   },
+   {
+    "quote": "(e) No IRB may have a member participate in the IRB's initial or continuing review of any project in which the member has a conflicting interest, except to provide information requested by the IRB.",
+    "source_title": "21 CFR 56.107 — IRB membership.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 56.107(e)",
+    "location": "§ 56.107(e)",
+    "url": "https://www.ecfr.gov/current/title-21/section-56.107",
+    "local_source_file": "ecfr_2026-10-14/part-56.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Conflict-of-interest rule."
+   },
+   {
+    "quote": "(2) Risks to subjects are reasonable in relation to anticipated benefits, if any, to subjects, and the importance of the knowledge that may be expected to result.",
+    "source_title": "21 CFR 56.111 — Criteria for IRB approval of research.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 56.111(a)(2)",
+    "location": "§ 56.111(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-56.111",
+    "local_source_file": "ecfr_2026-10-14/part-56.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Risk/benefit criterion omitted from J."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G correct; J under-specifies, so an answer missing the five-member minimum would not be penalized."
+ },
+ {
+  "question_id": "K-006",
+  "question_interpretation": "Asks when an IRB may use the expedited review procedure under 21 CFR 56.110.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Research on FDA's list must also be found by the reviewer(s) to involve no more than minimal risk; minor changes must be within the approval period (1 year or less). Expedited reviewers may exercise all IRB authority except disapproval (disapproval requires full-board review under 56.108(c)). The IRB must keep all members advised of approvals, and FDA may restrict, suspend or terminate an IRB's use of the procedure. These would enrich J but are not errors."
+   }
+  ],
+  "explanation": "56.110(b) permits expedited review for research on FDA's published list that the reviewer finds to involve no more than minimal risk, and for minor changes in previously approved research within the approval period. The review is done by the chairperson or experienced members the chair designates. J captures all three elements.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(b) An IRB may use the expedited review procedure to review either or both of the following: (1) Some or all of the research appearing on the list and found by the reviewer(s) to involve no more than minimal risk, (2) minor changes in previously approved research during the period (of 1 year or less) for which approval is authorized.",
+    "source_title": "21 CFR 56.110 — Expedited review procedures...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 56.110(b)",
+    "location": "§ 56.110(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-56.110",
+    "local_source_file": "ecfr_2026-10-14/part-56.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The two permitted uses."
+   },
+   {
+    "quote": "Under an expedited review procedure, the review may be carried out by the IRB chairperson or by one or more experienced reviewers designated by the IRB chairperson from among the members of the IRB.",
+    "source_title": "21 CFR 56.110 — Expedited review procedures...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 56.110(b)",
+    "location": "§ 56.110(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-56.110",
+    "local_source_file": "ecfr_2026-10-14/part-56.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Chairperson or designated reviewer."
+   },
+   {
+    "quote": "(a) The Food and Drug Administration has established, and published in the Federal Register, a list of categories of research that may be reviewed by the IRB through an expedited review procedure.",
+    "source_title": "21 CFR 56.110 — Expedited review procedures...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 56.110(a)",
+    "location": "§ 56.110(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-56.110",
+    "local_source_file": "ecfr_2026-10-14/part-56.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA-published categories."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — single governing section correctly cited; J matches 56.110(b)."
+ },
+ {
+  "question_id": "K-007",
+  "question_interpretation": "Asks the GLP study director's responsibilities (58.33) and required content of a nonclinical laboratory study protocol (58.120).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J could list the 58.33(a)-(f) assurances: protocol approved and followed; data accurately recorded and verified; unforeseen circumstances noted and corrected; test systems as specified; GLPs followed; materials transferred to archives. It could also list the 12 protocol elements in 58.120(a), including the date of sponsor approval and the study director's dated signature, and the 58.120(b) documentation of protocol changes."
+   }
+  ],
+  "explanation": "58.33 makes the study director the single point of study control with listed responsibilities. 58.120 requires an approved written protocol with enumerated contents and documented amendments. J's summary is accurate and both governing sections are cited.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "The study director has overall responsibility for the technical conduct of the study, as well as for the interpretation, analysis, documentation and reporting of results, and represents the single point of study control.",
+    "source_title": "21 CFR 58.33 — Study director.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.33",
+    "location": "§ 58.33",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.33",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Single point of study control."
+   },
+   {
+    "quote": "(a) Each study shall have an approved written protocol that clearly indicates the objectives and all methods for the conduct of the study.",
+    "source_title": "21 CFR 58.120 — Protocol.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.120(a)",
+    "location": "§ 58.120(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.120",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Approved written protocol."
+   },
+   {
+    "quote": "(11) The date of approval of the protocol by the sponsor and the dated signature of the study director.",
+    "source_title": "21 CFR 58.120 — Protocol.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.120(a)(11)",
+    "location": "§ 58.120(a)(11)",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.120",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Approval element."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — both governing sections cited; J consistent with text."
+ },
+ {
+  "question_id": "K-008",
+  "question_interpretation": "Asks how long GLP study records and specimens must be retained (58.195) and, per J, the archive requirements.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J gives no retention periods. 58.195(b) requires retention for whichever of these is shortest: at least 2 years after FDA approves the application the study supported (not for IND/IDE studies); at least 5 years after the results are submitted to FDA; or at least 2 years after study completion/termination if never submitted. 'Tied to the type of application' misdescribes a rule keyed to approval, submission or completion dates and resolved by 'whichever is shortest'."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J requires 'archive requirements' but G cites only 58.195. Archive requirements (orderly storage, minimizing deterioration, responsible individual, restricted access, indexing) are in 58.190(b)-(e)."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "58.195(c): fragile wet specimens/samples kept only as long as quality affords evaluation. 58.195(h): if the facility goes out of business, materials go to the sponsor's archives and FDA is notified in writing. 58.195(d)-(f): QA, training and equipment records."
+   }
+  ],
+  "explanation": "58.195 is the right retention section, but J states no periods and omits the 'whichever is shortest' rule, which is the substance of an Advanced retention question. J also invokes archive requirements without citing 58.190, where they live.",
+  "proposed_corrected_answer": "Under 58.195(b), documentation records, raw data and specimens are retained in the archives for whichever is shortest: (1) at least 2 years after FDA approves the research or marketing permit the study supported (does not apply to IND/IDE-supporting studies, which fall under (b)(2)); (2) at least 5 years after the study results are submitted to FDA in support of an application; (3) otherwise, at least 2 years after the study is completed, terminated or discontinued. Fragile wet specimens and test/control article samples are kept only as long as their quality affords evaluation (58.195(c)). QA master schedule/protocol copies/inspection records, training summaries and equipment records follow the same periods (58.195(d)-(f)). True copies are allowed (58.195(g)). If the facility goes out of business, records go to the sponsor's archives with written notice to FDA (58.195(h)). Archives: orderly storage and expedient retrieval, conditions minimizing deterioration, an individual responsible, authorized-only access, and indexing (58.190(b)-(e)). 58.195 does not supersede other retention rules (58.195(a)).",
+  "proposed_sections": "21 CFR 58.195(a)-(h); 21 CFR 58.190(a)-(e)",
+  "evidence": [
+   {
+    "quote": "shall be retained in the archive(s) for whichever of the following periods is shortest:",
+    "source_title": "21 CFR 58.195 — Retention of records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.195(b)",
+    "location": "§ 58.195(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.195",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "'Whichever is shortest' rule."
+   },
+   {
+    "quote": "(2) A period of at least 5 years following the date on which the results of the nonclinical laboratory study are submitted to the Food and Drug Administration in support of an application for a research or marketing permit.",
+    "source_title": "21 CFR 58.195 — Retention of records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.195(b)(2)",
+    "location": "§ 58.195(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.195",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "5-year period."
+   },
+   {
+    "quote": "(1) A period of at least 2 years following the date on which an application for a research or marketing permit, in support of which the results of the nonclinical laboratory study were submitted, is approved by the Food and Drug Administration.",
+    "source_title": "21 CFR 58.195 — Retention of records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.195(b)(1)",
+    "location": "§ 58.195(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.195",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "2-year post-approval period."
+   },
+   {
+    "quote": "(b) There shall be archives for orderly storage and expedient retrieval of all raw data, documentation, protocols, specimens, and interim and final reports.",
+    "source_title": "21 CFR 58.190 — Storage and retrieval of records and data.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 58.190(b)",
+    "location": "§ 58.190(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-58.190",
+    "local_source_file": "ecfr_2026-10-14/part-58.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Archive requirements are in 58.190, not cited in G."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — G lacks 58.190 although J requires archive requirements; J sets no numbers, so wrong periods would not be caught."
+ },
+ {
+  "question_id": "K-009",
+  "question_interpretation": "Asks what an IND must contain (312.23) and the sponsor's IND safety reporting requirements (312.32).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Timeframes: the 15-calendar-day IND safety report runs from the sponsor's determination that information qualifies (312.32(c)(1)). The 7-calendar-day notification covers unexpected fatal or life-threatening suspected adverse reactions and runs from initial receipt (312.32(c)(2)). Reportable categories also include findings from other studies, animal/in vitro findings, and increased rates of serious suspected adverse reactions (312.32(c)(1)(ii)-(iv))."
+   },
+   {
+    "type": "temporal",
+    "detail": "eCFR shows a pending amendment to 312.23 and 312.32 at 91 FR 60003 (Sept. 22, 2026). Per Federal Register metadata, it is part of the 'Nonclinical Testing Terminology' direct final rule (FR Doc. 2026-19350, effective 2027-02-04), which substitutes 'nonclinical' for 'animal' terminology. It is not in force as of 2026-10-14 and does not change the 15-/7-day timeframes."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Optional: investigator reporting to the sponsor (312.64(b)) also forms part of the IND safety reporting chain; not required by the question's framing."
+   }
+  ],
+  "explanation": "312.23 sets the required IND contents in order (Form FDA 1571 cover sheet, table of contents, introductory statement and general investigational plan, investigator's brochure, protocols, CMC, pharmacology/toxicology, prior human experience, etc.). 312.32 sets definitions and the 15-day and 7-day timeframes. J's elements are all supported by the cited text.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "as soon as possible, but in no case later than 15 calendar days after the sponsor determines that the information qualifies for reporting under paragraph (c)(1)(i), (c)(1)(ii), (c)(1)(iii), or (c)(1)(iv) of this section.",
+    "source_title": "21 CFR 312.32 — IND safety reporting.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 312.32(c)(1)",
+    "location": "§ 312.32(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-312.32",
+    "local_source_file": "ecfr_2026-10-14/part-312.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "15-day timeframe."
+   },
+   {
+    "quote": "(2) Unexpected fatal or life-threatening suspected adverse reaction reports. The sponsor must also notify FDA of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible but in no case later than 7 calendar days after the sponsor's initial receipt of the information.",
+    "source_title": "21 CFR 312.32 — IND safety reporting.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 312.32(c)(2)",
+    "location": "§ 312.32(c)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-312.32",
+    "local_source_file": "ecfr_2026-10-14/part-312.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "7-day timeframe and its scope."
+   },
+   {
+    "quote": "(a) A sponsor who intends to conduct a clinical investigation subject to this part shall submit an “Investigational New Drug Application” (IND) including, in the following order:",
+    "source_title": "21 CFR 312.23 — IND content and format.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 312.23(a)",
+    "location": "§ 312.23(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-312.23",
+    "local_source_file": "ecfr_2026-10-14/part-312.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "312.23 enumerates required IND content."
+   },
+   {
+    "quote": "Link to an amendment published at 91 FR 60003, Sept. 22, 2026.",
+    "source_title": "21 CFR 312.32 — IND safety reporting.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 312.32",
+    "location": "§ 312.32",
+    "url": "https://www.ecfr.gov/current/title-21/section-312.32",
+    "local_source_file": "ecfr_2026-10-14/part-312.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Pending (not yet effective) amendment noted in eCFR."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — governing sections correctly cited; numbers correct."
+ },
+ {
+  "question_id": "K-010",
+  "question_interpretation": "Asks how a significant risk (SR) device investigation differs from a nonsignificant risk (NSR) one, and what an IDE application must contain.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "Recommended additions: 812.66 (an IRB that finds the device is SR notifies the investigator/sponsor, and the sponsor may not begin except under 812.30(a)); 812.30(a) (investigation may begin 30 days after FDA receives the application unless FDA objects, or on FDA approval by order); 812.42 (IRB and FDA approval before starting); 812.20(a)(1) (application also required for a 50.24 investigation or when FDA notifies the sponsor)."
+   },
+   {
+    "type": "precision",
+    "detail": "NSR investigations are 'considered to have approved applications for IDE's' under 812.2(b)(1) if the device is not banned and the sponsor meets the listed abbreviated requirements."
+   }
+  ],
+  "explanation": "812.3(m) defines SR devices. 812.2(b)(1) gives the abbreviated-requirements pathway for non-SR devices, including the sponsor's explanation to the IRB of why the device is not SR. 812.20 sets when an application is required, its contents, and that the sponsor may not begin until FDA approves. J's elements are supported. The IRB determination (812.66) and the 812.30 approval mechanics would strengthen the key but are not errors.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(4) Otherwise presents a potential for serious risk to the health, safety, or welfare of a subject.",
+    "source_title": "21 CFR 812.3 — Definitions.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.3(m)",
+    "location": "§ 812.3(m)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.3",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "SR definition (final limb)."
+   },
+   {
+    "quote": "(ii) Obtains IRB approval of the investigation after presenting the reviewing IRB with a brief explanation of why the device is not a significant risk device, and maintains such approval;",
+    "source_title": "21 CFR 812.2 — Applicability.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.2(b)(1)(ii)",
+    "location": "§ 812.2(b)(1)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.2",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Abbreviated pathway for NSR."
+   },
+   {
+    "quote": "(a) Submission. (1) A sponsor shall submit an application to FDA if the sponsor intends to use a significant risk device in an investigation, intends to conduct an investigation that involves an exception from informed consent under § 50.24 of this chapter, or if FDA notifies the sponsor that an application is required for an investigation.",
+    "source_title": "21 CFR 812.20 — Application.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.20(a)(1)",
+    "location": "§ 812.20(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.20",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "When an IDE application is required."
+   },
+   {
+    "quote": "If an IRB determines that an investigation, presented for approval under § 812.2(b)(1)(ii), involves a significant risk device, it shall so notify the investigator and, where appropriate, the sponsor.",
+    "source_title": "21 CFR 812.66 — Significant risk device determinations.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 812.66",
+    "location": "§ 812.66",
+    "url": "https://www.ecfr.gov/current/title-21/section-812.66",
+    "local_source_file": "ecfr_2026-10-14/part-812.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "IRB's SR determination role (recommended addition)."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether the IRB-determination mechanism (812.66) is material to 'how is SR distinguished' is a judgment call.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — cited sections govern; an answer also citing 812.66/812.30 would not be wrong."
+ },
+ {
+  "question_id": "Y-001",
+  "question_interpretation": "Asks which farms and which produce are covered by the Produce Safety Rule (Part 112) and what exemptions/exclusions apply.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The 'produce rarely consumed raw' exclusion that J requires is in 21 CFR 112.2(a)(1), which G does not cite. 112.2 also excludes produce grown for personal or same-farm consumption and produce that is not a RAC (112.2(a)(2)-(3)), and provides the commercial-processing exemption with disclosure and annual written assurances (112.2(b))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Monetary thresholds should be stated: a covered farm averages more than $25,000 in annual produce sales over the previous 3 years (112.4(a)). The qualified exemption requires average annual food sales under $500,000 and sales to qualified end-users exceeding sales to all other buyers (112.5(a)). Both are inflation-adjusted from a 2011 baseline. Qualified-exempt farms have modified requirements (112.6) and records (112.7), and the exemption can be withdrawn (subpart R)."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "Because G omits 112.2, the key cites no home for one of its own required elements."
+   }
+  ],
+  "explanation": "112.1, 112.4 and 112.5 are correct for covered produce, covered farms and the qualified exemption. The rarely-consumed-raw exclusion and the other produce exclusions and exemptions are in 112.2, which G omits. J says 'monetary thresholds' without the $25,000 / $500,000 figures.",
+  "proposed_corrected_answer": "Covered produce: produce that is a RAC, domestic or imported, including the listed fruits and vegetables, mixes, mushrooms, sprouts and herbs (112.1), unless excluded. Not covered (112.2(a)): produce on the exhaustive rarely-consumed-raw list; produce for personal or same-farm consumption; produce that is not a RAC. Exempt subject to conditions (112.2(b)): produce that receives commercial processing that adequately reduces pathogens, with disclosure and annual written assurances and records. Covered farm (112.4(a)): average annual produce sales over the previous 3 years of more than $25,000 (inflation-adjusted, 2011 baseline). Not covered if the farm meets 112.5 and the exemption has not been withdrawn (112.4(b)). Qualified exemption (112.5): average annual food sales under $500,000 (inflation-adjusted) and sales to qualified end-users exceeding sales to all other buyers over the previous 3 years. Modified requirements apply (112.6, 112.7), and the exemption may be withdrawn (subpart R).",
+  "proposed_sections": "21 CFR 112.1; 112.2(a)-(b); 112.4; 112.5; (112.6, 112.7)",
+  "evidence": [
+   {
+    "quote": "(1) Produce that is rarely consumed raw, specifically the produce on the following exhaustive list:",
+    "source_title": "21 CFR 112.2 — What produce is not covered by this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.2(a)(1)",
+    "location": "§ 112.2(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.2",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The rarely-consumed-raw exclusion is in 112.2, not cited in G."
+   },
+   {
+    "quote": "a farm or farm mixed-type facility with an average annual monetary value of produce (as “produce” is defined in § 112.3) sold during the previous 3-year period of more than $25,000 (on a rolling basis), adjusted for inflation using 2011 as the baseline year for calculating the adjustment, is a “covered farm” subject to this part.",
+    "source_title": "21 CFR 112.4 — Which farms are subject to the requirements of this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.4(a)",
+    "location": "§ 112.4(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.4",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "$25,000 covered-farm threshold."
+   },
+   {
+    "quote": "(2) The average annual monetary value of all food (as defined in § 112.3) the farm sold during the 3-year period preceding the applicable calendar year was less than $500,000, adjusted for inflation.",
+    "source_title": "21 CFR 112.5 — Which farms are eligible for a qualified exemption...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.5(a)(2)",
+    "location": "§ 112.5(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.5",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "$500,000 qualified-exemption threshold."
+   },
+   {
+    "quote": "(1) The produce receives commercial processing that adequately reduces the presence of microorganisms of public health significance.",
+    "source_title": "21 CFR 112.2 — What produce is not covered by this part?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.2(b)(1)",
+    "location": "§ 112.2(b)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.2",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Commercial-processing exemption."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — G omits 112.2, which governs the exclusion J requires; a complete answer citing 112.2 is fine, but the key cannot check it."
+ },
+ {
+  "question_id": "Y-002",
+  "question_interpretation": "Asks what Part 112 Subpart E (agricultural water) requires, as amended by the 2024 pre-harvest agricultural water final rule.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits the written agricultural water assessment (112.43): at least annually and on significant change, for pre-harvest water directly applied to covered produce other than sprouts, with outcomes driving 112.45 measures. Since the 2024 amendments this replaces the former pre-harvest microbial quality/testing scheme and is the core pre-harvest requirement."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits the microbial quality criterion (no detectable generic E. coli per 100 mL and no untreated surface water) for sprout irrigation, harvest/post-harvest contact water, food-contact-surface water and hand-washing water (112.44(a)). It also omits the 4-sample initial / annual testing of untreated ground water (112.44(b)), treatment requirements (112.46), who may test (112.47), and corrective/mitigation measures (112.45)."
+   },
+   {
+    "type": "precision",
+    "detail": "'Testing' is not a general requirement for all agricultural water. It applies to untreated ground water for sprouts and harvest/post-harvest uses, and pre-harvest testing is only one option within the assessment (112.43(c)(4)(ii), (d))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "G range 112.41-112.50 omits 112.40 (applicability table mapping uses to requirements) and 112.151 (test methods). 112.48-112.49 are [Reserved]."
+   },
+   {
+    "type": "temporal",
+    "detail": "General knowledge (not verified from cached text): the 2024 rule's compliance dates for 112.43 were staggered by farm size (about April 2025 large, April 2026 small, April 2027 very small), so very small farms may not yet be subject to 112.43 as of 2026-10-14."
+   }
+  ],
+  "explanation": "G's range covers Subpart E's substantive sections. J reflects the pre-2024 framing ('testing and corrective measures') and omits the written agricultural water assessment in 112.43, now the central pre-harvest requirement. It also omits the 112.44 E. coli criterion and treatment, which are core harvest/post-harvest requirements.",
+  "proposed_corrected_answer": "112.40 maps each water use to its requirements. 112.41: all agricultural water must be safe and of adequate sanitary quality for its intended use. 112.42: inspect all agricultural water systems under your control at least annually and maintain them. 112.43: for pre-harvest water directly applied to covered produce (other than sprouts), prepare a written agricultural water assessment at least annually and on significant change, evaluating the water system, practices, crop characteristics, environmental conditions and other factors, with exemptions for water meeting 112.44(a)/(c) or treated under 112.46. Outcomes: discontinue use and take corrective measures; promptly mitigate animal, BSAAO or human-waste conditions; or mitigate within 1 year or test under 112.43(d). 112.44: no detectable generic E. coli/100 mL and no untreated surface water for sprout irrigation, harvest/post-harvest contact, food-contact surfaces and hand-washing. Untreated ground water tested initially at least 4 times, then annually. Water-change schedules and temperature/visual monitoring for harvest/post-harvest water. 112.45: corrective and mitigation measures. 112.46: effective, monitored treatment. 112.47: who may test. 112.50: records (inspections, assessments, test results, PWS certificates, actions, treatment monitoring, supporting data). Methods: 112.151.",
+  "proposed_sections": "21 CFR 112.40-112.47, 112.50 (112.48-112.49 reserved); 112.151",
+  "evidence": [
+   {
+    "quote": "at the beginning of the growing season, as appropriate, but at least once annually, you must prepare a written agricultural water assessment for water that you apply to covered produce (other than sprouts) using a direct application method during growing activities.",
+    "source_title": "21 CFR 112.43 — What requirements apply to assessing agricultural water used in growing covered produce (other than sprouts)?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.43(a)",
+    "location": "§ 112.43(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.43",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Written assessment requirement omitted from J."
+   },
+   {
+    "quote": "you must ensure there is no detectable generic Escherichia coli (E. coli) in 100 milliliters (mL) of agricultural water, and you must not use untreated surface water for any of these purposes:",
+    "source_title": "21 CFR 112.44 — What requirements apply to agricultural water used as sprout irrigation water and in harvesting, packing, and holding covered produce?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.44(a)",
+    "location": "§ 112.44(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.44",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Microbial quality criterion for harvest/sprout uses."
+   },
+   {
+    "quote": "All agricultural water must be safe and of adequate sanitary quality for its intended use.",
+    "source_title": "21 CFR 112.41 — What requirements apply to the quality of my agricultural water?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.41",
+    "location": "§ 112.41",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.41",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Quality standard (J element supported)."
+   },
+   {
+    "quote": "(2) Your written agricultural water assessments, including descriptions of factors evaluated and written determinations, in accordance with § 112.43;",
+    "source_title": "21 CFR 112.50 — Under this subpart, what requirements apply regarding records?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.50(b)(2)",
+    "location": "§ 112.50(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.50",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Records now include assessments."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair — J reflects the superseded pre-harvest framing, so an answer centered on the 112.43 assessment could look off-key while one about generic 'testing' could score complete."
+ },
+ {
+  "question_id": "Y-003",
+  "question_interpretation": "Asks the Produce Safety Rule's personnel qualification and training (Subpart C) and health and hygiene (Subpart D) requirements.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "The question asks about qualifications; J does not address them. 112.21(b) requires personnel who handle covered produce or food contact surfaces, and their supervisors, to have the education, training and experience needed for their duties."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits: training at hiring and at least once annually, easily understood, and repeated as necessary (112.21(a),(c),(d)); minimum training content and extra harvest training (112.22(a)-(b)); at least one supervisor or responsible party who completed food safety training at least equivalent to an FDA-recognized standardized curriculum (112.22(c)); assigned supervisors (112.23)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Health and hygiene specifics: exclusion of persons with applicable health conditions and instruction to notify supervisors (112.31); listed hygienic practices including hand-washing occasions (112.32); visitor measures and access to toilet/hand-washing facilities (112.33). J's 'health and hygiene practices' is generic and omits visitors."
+   }
+  ],
+  "explanation": "G (112.21-112.33) correctly spans Subparts C and D. J covers training, generic health and hygiene, and training records (112.30), but does not answer the 'qualification' part. It also omits the supervisor curriculum requirement, annual training frequency and visitor measures.",
+  "proposed_corrected_answer": "Subpart C: all personnel (including temporary, part-time, seasonal and contracted) who handle covered produce or food contact surfaces, or supervise them, must have the education, training and experience needed for their duties (112.21(b)). They must be trained at hiring and at least annually, in an easily understood manner, with retraining as necessary (112.21(a),(c),(d)). Minimum content: food hygiene and food safety; health and personal hygiene including recognizing symptoms; applicable Part 112 standards. Harvesters get additional training (112.22(a)-(b)). At least one supervisor or responsible party must have completed food safety training at least equivalent to an FDA-recognized standardized curriculum (112.22(c)). Supervisors must be assigned (112.23). Training records with date, topics and persons trained (112.30). Subpart D: exclude persons with applicable health conditions and instruct personnel to notify supervisors (112.31); hygienic practices including personal cleanliness, hand-washing at specified times, glove maintenance, jewelry, and no eating, gum or tobacco in covered-activity areas (112.32); make visitors aware of policies and give them toilet/hand-washing access (112.33).",
+  "proposed_sections": "21 CFR 112.21-112.23, 112.30 (Subpart C); 112.31-112.33 (Subpart D)",
+  "evidence": [
+   {
+    "quote": "must have a combination of education, training, and experience necessary to perform the person's assigned duties in a manner that ensures compliance with this part.",
+    "source_title": "21 CFR 112.21 — What requirements apply regarding qualifications and training for personnel...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.21(b)",
+    "location": "§ 112.21(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.21",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Qualification requirement (question part not covered by J)."
+   },
+   {
+    "quote": "(c) At least one supervisor or responsible party for your farm must have successfully completed food safety training at least equivalent to that received under standardized curriculum recognized as adequate by the Food and Drug Administration.",
+    "source_title": "21 CFR 112.22 — What minimum requirements apply for training personnel who conduct a covered activity?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.22(c)",
+    "location": "§ 112.22(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.22",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supervisor curriculum requirement."
+   },
+   {
+    "quote": "must receive adequate training, as appropriate to the person's duties, upon hiring, and periodically thereafter, at least once annually.",
+    "source_title": "21 CFR 112.21 — What requirements apply regarding qualifications and training...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.21(a)",
+    "location": "§ 112.21(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.21",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Training frequency."
+   },
+   {
+    "quote": "(a) You must make visitors aware of policies and procedures to protect covered produce and food contact surfaces from contamination by people and take all steps reasonably necessary to ensure that visitors comply with such policies and procedures.",
+    "source_title": "21 CFR 112.33 — What measures must I take to prevent visitors from contaminating covered produce...",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 112.33(a)",
+    "location": "§ 112.33(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-112.33",
+    "local_source_file": "ecfr_2026-10-14/part-112.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Visitor requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G correct; J incomplete, so an answer omitting qualifications would not be penalized."
+ },
+ {
+  "question_id": "Y-004",
+  "question_interpretation": "Asks the FDA registration and scheduled-process filing obligations of a commercial processor of thermally processed low-acid foods in hermetically sealed containers.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits the deadlines and forms in 108.35(c): register on Form FDA 2541 not later than 10 days after first engaging in LACF processing, and file scheduled-process information (Forms 2541d/2541f/2541g) not later than 60 days after registration and before packing a new product."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits the rules on changing a filed process (108.35(c)(2)(ii)): obtain substantiation from a qualified scientific authority before use, and submit the modification within 30 days after first use. It also omits that filing does not constitute FDA approval, and that each product must be processed in conformity with the filed process (108.35(c)(3))."
+   },
+   {
+    "type": "precision",
+    "detail": "113.83 governs how scheduled processes are established (by qualified persons with expert knowledge), not filing; it is a reasonable cross-reference but the filing obligation is in 108.35(c)(2)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Separate registration obligation: an LACF processing facility is a food facility that must also register under 21 CFR 1.225 (FD&C Act 415) unless exempt. The question's 'registration obligations' arguably reach it."
+   }
+  ],
+  "explanation": "108.35(c) is the governing section and J's broad elements are supported. For an Advanced question, J omits the operative 10-day registration and 60-day/before-packing filing deadlines, the forms, and the process-change rule. Food facility registration under Part 1 Subpart H is a distinct registration obligation not mentioned.",
+  "proposed_corrected_answer": "Under 108.35(c)(1), a commercial processor must register each establishment with FDA on Form FDA 2541 not later than 10 days after first engaging in manufacturing, processing or packing thermally processed low-acid foods in hermetically sealed containers. Under 108.35(c)(2), it must file scheduled-process information for each low-acid food in each container size not later than 60 days after registration and before packing a new product, on Form FDA 2541d, 2541f or 2541g as applicable. Filing is not FDA approval. Intentional changes that reduce process lethality need prior substantiation by a qualified scientific authority and submission within 30 days after first use. Products must be processed in conformity with the filed process (108.35(c)(3)). Scheduled processes must be established by qualified persons with expert knowledge, with permanent records of their establishment (113.83). Failure to register, file or comply with Part 113 can trigger an emergency permit (108.35(a)). Facility registration under 21 CFR 1.225 also applies unless exempt.",
+  "proposed_sections": "21 CFR 108.35(a), (c)(1)-(3); 21 CFR 113.83; (21 CFR 1.225)",
+  "evidence": [
+   {
+    "quote": "shall, not later than 10 days after first so engaging, register with the Food and Drug Administration on Form FDA 2541 (food canning establishment registration)",
+    "source_title": "21 CFR 108.35 — Thermal processing of low-acid foods packaged in hermetically sealed containers.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 108.35(c)(1)",
+    "location": "§ 108.35(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-108.35",
+    "local_source_file": "ecfr_2026-10-14/part-108.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "10-day registration deadline."
+   },
+   {
+    "quote": "shall, not later than 60 days after registration and prior to the packing of a new product, provide the Food and Drug Administration information as to the scheduled processes",
+    "source_title": "21 CFR 108.35 — Thermal processing of low-acid foods packaged in hermetically sealed containers.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 108.35(c)(2)",
+    "location": "§ 108.35(c)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-108.35",
+    "local_source_file": "ecfr_2026-10-14/part-108.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "60-day / before-packing filing deadline."
+   },
+   {
+    "quote": "your facility is engaged in the manufacturing/processing, packing, or holding of food for consumption in the United States, unless your facility qualifies for one of the exemptions in § 1.226.",
+    "source_title": "21 CFR 1.225 — Who must register under this subpart?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1.225(a)",
+    "location": "§ 1.225(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-1.225",
+    "local_source_file": "ecfr_2026-10-14/part-1.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Separate food facility registration obligation."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether Part 1 food facility registration is within the question's intended scope is a judgment call; the omitted 108.35 deadlines are clear.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — G cites the governing section; J does not check the deadlines."
+ },
+ {
+  "question_id": "Y-005",
+  "question_interpretation": "Asks what Part 113 requires for establishing scheduled processes for LACF and for keeping processing records.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J omits the records rules in the cited sections. A qualified plant-management representative must review processing and production records within 1 working day after the process and before shipment (113.100(b)). Records are kept at least 1 year at the plant plus 2 more years at the plant or an accessible location (113.100(g)). Records of establishing the scheduled process must be prepared and permanently retained by the person or organization making the determination (113.83)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "113.83 specifics: process established by qualified persons with expert knowledge and adequate facilities; production variations provided for; critical factors specified; acceptable scientific methods. Related: deviations must be handled and recorded (113.89); records may be electronic if Part 11-compliant (113.100(h))."
+   },
+   {
+    "type": "precision",
+    "detail": "113.81 (product preparation) concerns raw materials, blanching, etc.; it is part of Subpart E controls but does not govern establishing scheduled processes or records. J's 'qualified authority' paraphrases 'qualified persons having expert knowledge' (113.83) / 'competent processing authority' (113.3(r))."
+   }
+  ],
+  "explanation": "113.83 and 113.100 are the governing sections; 113.81 is tangential. J's elements are correct but generic. It omits the 1-working-day review, the 3-year retention, and permanent retention of process-establishment records, which are the substance of a question about keeping records.",
+  "proposed_corrected_answer": "113.83: scheduled processes must be established by qualified persons with expert knowledge of thermal processing and adequate facilities. They must provide for production variations, specify critical factors, and use acceptable scientific methods (thermal death time data, heat penetration, inoculated packs). Complete records of establishing the process and incubation tests are permanently retained by whoever makes the determination. 113.100: operators record processing and production data when observed, on forms with product, code, date, retort/system, container size, initial temperature, processing time, TID/TRD readings, etc., plus system-specific data. A qualified management representative reviews and signs records within 1 working day after the process and before release. TID and reference-device accuracy, container closure exams and initial distribution are recorded. Records are kept at the plant at least 1 year from manufacture plus 2 more years at the plant or an accessible location; electronic records must meet Part 11. Deviations: 113.89. Product preparation: 113.81.",
+  "proposed_sections": "21 CFR 113.83; 21 CFR 113.100(a)-(h); (113.89; 113.81)",
+  "evidence": [
+   {
+    "quote": "Scheduled processes for low-acid foods shall be established by qualified persons having expert knowledge of thermal processing requirements for low-acid foods in hermetically sealed containers and having adequate facilities for making such determinations.",
+    "source_title": "21 CFR 113.83 — Establishing scheduled processes.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 113.83",
+    "location": "§ 113.83",
+    "url": "https://www.ecfr.gov/current/title-21/section-113.83",
+    "local_source_file": "ecfr_2026-10-14/part-113.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Who establishes scheduled processes."
+   },
+   {
+    "quote": "Complete records covering all aspects of the establishment of the process and associated incubation tests shall be prepared and shall be permanently retained by the person or organization making the determination.",
+    "source_title": "21 CFR 113.83 — Establishing scheduled processes.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 113.83",
+    "location": "§ 113.83",
+    "url": "https://www.ecfr.gov/current/title-21/section-113.83",
+    "local_source_file": "ecfr_2026-10-14/part-113.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Permanent retention of process-establishment records."
+   },
+   {
+    "quote": "Not later than 1 working day after the actual process, and before shipment or release for distribution, a representative of plant management who is qualified by suitable training or experience shall review all processing and production records for completeness and to ensure that the product received the scheduled process.",
+    "source_title": "21 CFR 113.100 — Processing and production records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 113.100(b)",
+    "location": "§ 113.100(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-113.100",
+    "local_source_file": "ecfr_2026-10-14/part-113.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "1-working-day review."
+   },
+   {
+    "quote": "shall be retained at the processing plant for a period of not less than 1 year from the date of manufacture, and at the processing plant or other reasonably accessible location for an additional 2 years.",
+    "source_title": "21 CFR 113.100 — Processing and production records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 113.100(g)",
+    "location": "§ 113.100(g)",
+    "url": "https://www.ecfr.gov/current/title-21/section-113.100",
+    "local_source_file": "ecfr_2026-10-14/part-113.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention period."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "J is accurate in substance; whether the omitted review/retention specifics are material for a 'what does Part 113 require' question is partly judgment.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the main governing sections are cited; J's generic wording would not catch wrong retention numbers."
+ },
+ {
+  "question_id": "Y-006",
+  "question_interpretation": "Asks the pH-control requirements for acidified foods under Part 114.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J requires 'required records' but G does not cite 114.100. Under 114.100(b), processing and production records must show adherence to scheduled processes, including pH measurements, and under 114.100(e) they are retained 3 years from manufacture. 114.80(a)(2) does require 'recording of results'."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "114.89: when the finished equilibrium pH is higher than 4.6 or the process deviates, the processor must reprocess, have a competent processing authority evaluate the lot, or destroy it. This is a core pH-control consequence absent from G and J."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "114.80(a)(2): if the finished equilibrium pH is above 4.0, it must be measured potentiometrically, and in-process titration/colorimetry must be related to it. Also: pH 4.6 or below must be achieved within the time designated in the scheduled process and maintained (114.80(a)(1))."
+   },
+   {
+    "type": "precision",
+    "detail": "114.90 lists methods that 'may be used'; most of its procedural text is advisory ('should'). The mandatory method choice is in 114.80(a)(2). Related: 108.25 (registration and process filing for acidified foods)."
+   }
+  ],
+  "explanation": "114.80 is the core section, and J's pH 4.6 and monitoring elements are supported. J requires records but G omits 114.100, the records section. The pH-deviation rule (114.89) and the potentiometric-method requirement above pH 4.0 are omitted.",
+  "proposed_corrected_answer": "Acidified foods (aw > 0.85, finished equilibrium pH 4.6 or below; 114.3(b)) must be made so that a finished equilibrium pH of 4.6 or lower is achieved within the time set in the scheduled process and maintained. They must also be thermally processed (or preserved) to destroy vegetative cells (114.80(a)(1)). Sufficient control, including frequent testing and recording, must keep finished equilibrium pH no higher than 4.6. If finished pH is above 4.0, it is measured potentiometrically and in-process titration/colorimetry is related to it; at 4.0 or below any suitable method may be used (114.80(a)(2)). Methods are described in 114.90. If the process deviates or finished pH exceeds 4.6, the processor must fully reprocess, have the lot evaluated by a competent processing authority, or destroy it, and record the actions (114.89). Records of processing and production including pH measurements, deviations and initial distribution are kept 3 years (114.100(b)-(e)). Registration and process filing: 108.25.",
+  "proposed_sections": "21 CFR 114.80(a); 114.89; 114.90; 114.100(b),(c),(e); (114.3(b); 108.25)",
+  "evidence": [
+   {
+    "quote": "If the finished equilibrium pH of the food is above 4.0, the measurement of the finished equilibrium pH shall be by a potentiometric method, and the in-process measurements by titration or colorimetry shall be related to the finished equilibrium pH.",
+    "source_title": "21 CFR 114.80 — Processes and controls.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 114.80(a)(2)",
+    "location": "§ 114.80(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-114.80",
+    "local_source_file": "ecfr_2026-10-14/part-114.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Mandatory potentiometric method above pH 4.0."
+   },
+   {
+    "quote": "(1) Acidified foods shall be so manufactured, processed, and packaged that a finished equilibrium pH value of 4.6 or lower is achieved within the time designated in the scheduled process and maintained in all finished foods.",
+    "source_title": "21 CFR 114.80 — Processes and controls.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 114.80(a)(1)",
+    "location": "§ 114.80(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-114.80",
+    "local_source_file": "ecfr_2026-10-14/part-114.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "pH 4.6 requirement (J element supported)."
+   },
+   {
+    "quote": "Whenever any process operation deviates from the scheduled process for any acidified food and/or the equilibrium pH of the finished product is higher than 4.6, the commercial processor of the acidified food shall either:",
+    "source_title": "21 CFR 114.89 — Deviations from scheduled processes.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 114.89",
+    "location": "§ 114.89",
+    "url": "https://www.ecfr.gov/current/title-21/section-114.89",
+    "local_source_file": "ecfr_2026-10-14/part-114.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "pH-deviation consequences (not cited)."
+   },
+   {
+    "quote": "(b) Processing and production records showing adherence to scheduled processes, including records of pH measurements and other critical factors intended to ensure a safe product, shall be maintained",
+    "source_title": "21 CFR 114.100 — Records.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 114.100(b)",
+    "location": "§ 114.100(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-114.100",
+    "local_source_file": "ecfr_2026-10-14/part-114.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Records section omitted from G."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "114.80(a)(2) partly supports J's records element, so the missing 114.100 citation is a completeness rather than correctness gap.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the core section is cited; a complete answer would add 114.89/114.100 without penalty."
+ },
+ {
+  "question_id": "Y-007",
+  "question_interpretation": "Asks the juice HACCP hazard analysis (120.7) and HACCP plan (120.8) requirements.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Could add: the hazard analysis and plan must be developed by individuals trained under 120.13 and are subject to 120.12 records. The plan must be specific to each location and each type of juice, must list validation and verification procedures (120.11), and must provide a recordkeeping system for CCP monitoring (120.8(b)(7)). Sanitation controls monitored under 120.6 need not be in the plan. Hazards controlled by Part 113/114 need not be addressed (120.7(e)). The 5-log performance standard (120.24) must be built into the plan (see Y-008)."
+   }
+  ],
+  "explanation": "120.7 requires a written hazard analysis with the five listed components, and 120.8 requires a written HACCP plan with the seven listed contents whenever a hazard is reasonably likely to occur. J's elements match the text.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) Each processor shall develop, or have developed for it, a written hazard analysis to determine whether there are food hazards that are reasonably likely to occur for each type of juice processed by that processor and to identify control measures that the processor can apply to control those hazards.",
+    "source_title": "21 CFR 120.7 — Hazard analysis.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 120.7(a)",
+    "location": "§ 120.7(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-120.7",
+    "local_source_file": "ecfr_2026-10-14/part-120.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Written hazard analysis."
+   },
+   {
+    "quote": "(3) List the critical limits that shall be met at each of the critical control points;",
+    "source_title": "21 CFR 120.8 — Hazard Analysis and Critical Control Point (HACCP) plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 120.8(b)(3)",
+    "location": "§ 120.8(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/section-120.8",
+    "local_source_file": "ecfr_2026-10-14/part-120.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Plan content includes critical limits."
+   },
+   {
+    "quote": "(6) List the validation and verification procedures, and the frequency with which they are to be performed, that the processor will use in accordance with § 120.11; and",
+    "source_title": "21 CFR 120.8 — Hazard Analysis and Critical Control Point (HACCP) plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 120.8(b)(6)",
+    "location": "§ 120.8(b)(6)",
+    "url": "https://www.ecfr.gov/current/title-21/section-120.8",
+    "local_source_file": "ecfr_2026-10-14/part-120.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Plan content includes validation/verification."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — governing sections cited; J consistent with 120.8(b)."
+ },
+ {
+  "question_id": "Y-008",
+  "question_interpretation": "Asks the juice pathogen-reduction performance standard and the section that establishes it.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Could add: the 5-log reduction must last at least as long as the product's shelf life under normal and moderate abuse storage. The 'pertinent microorganism' is the most resistant microorganism of public health significance likely to occur in the juice. Exempt: processors subject to Part 113/114 and those using a single shelf-stabilizing thermal step or thermal concentration, with the process in the hazard analysis. Treatments must be applied to the juice, except citrus processors may treat fruit surfaces after culling and cleaning. Treatment and final packaging must occur in a single facility under CGMP (120.24(b)-(c)). Processors relying on treatments that do not contact all of the juice must run E. coli verification testing (120.25)."
+   }
+  ],
+  "explanation": "120.24(a) requires HACCP control measures that consistently achieve at least a 5-log reduction in the pertinent microorganism. J's elements are supported and the cited section is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "processors of juice products shall include in their Hazard Analysis and Critical Control Point (HACCP) plans control measures that will consistently produce, at a minimum, a 5 log (i.e., 10 5) reduction, for a period at least as long as the shelf life of the product when stored under normal and moderate abuse conditions, in the pertinent microorganism.",
+    "source_title": "21 CFR 120.24 — Process controls.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 120.24(a)",
+    "location": "§ 120.24(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-120.24",
+    "local_source_file": "ecfr_2026-10-14/part-120.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "5-log performance standard."
+   },
+   {
+    "quote": "For the purposes of this regulation, the “pertinent microorganism” is the most resistant microorganism of public health significance that is likely to occur in the juice.",
+    "source_title": "21 CFR 120.24 — Process controls.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 120.24(a)",
+    "location": "§ 120.24(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-120.24",
+    "local_source_file": "ecfr_2026-10-14/part-120.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Definition of pertinent microorganism."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — single governing section correctly cited; number correct."
+ },
+ {
+  "question_id": "Y-009",
+  "question_interpretation": "Asks the required contents of a seafood HACCP plan (123.6) and the required monitoring and verification (123.6(c)(4), 123.8).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "unsupported_element",
+    "detail": "J says 'verification and validation activities', but Part 123 never uses 'validation'. Its equivalent is reassessment of the HACCP plan's adequacy (123.8(a)(1)), at least annually and on relevant change, by a trained individual. Validation is the juice (Part 120) term."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J requires corrective actions, but G does not cite 123.7, which governs them; 123.6(c)(5) only incorporates corrective action plans developed under 123.7(b)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits: plan signed and dated by the most responsible onsite individual or a higher official at initial acceptance, on modification and on verification (123.6(d)); plan specific to each location and kind of product (123.6(b)); ongoing verification (consumer complaints, calibration, optional testing) (123.8(a)(2)); records review of CCP monitoring and corrective actions within 1 week (123.8(a)(3)); a recordkeeping system with actual values (123.6(c)(7); 123.9)."
+   }
+  ],
+  "explanation": "123.6 and 123.8 are the core sections and J's plan-content and monitoring elements are supported. J's 'validation' is not a Part 123 requirement; the regulation requires reassessment. Corrective actions are governed by 123.7, which G omits. The signing, annual reassessment and 1-week records-review requirements are also omitted.",
+  "proposed_corrected_answer": "Hazard analysis (123.6(a)). A written HACCP plan is required whenever a hazard is reasonably likely to occur, specific to each location and kind of fish/fishery product (123.6(b)). It must list hazards, CCPs, critical limits, monitoring procedures and frequency, corrective action plans (123.7(b)), verification procedures and frequency (123.8(a)), and a recordkeeping system with actual values (123.6(c)). It is signed and dated by the most responsible onsite individual or a higher-level official at initial acceptance, on modification and on verification (123.6(d)). Corrective actions follow 123.7. Verification (123.8): reassess the plan's adequacy at least annually and on relevant change, by an individual trained under 123.10; ongoing verification (consumer complaint review, calibration of process-monitoring instruments, optional end-product/in-process testing); records review of CCP monitoring and corrective actions within 1 week, and of calibration/testing within a reasonable time. Corrective action on verification findings; reassess a hazard analysis that found no hazards when changes occur. Records: 123.9.",
+  "proposed_sections": "21 CFR 123.6(a)-(d); 123.7; 123.8(a)-(d); (123.9, 123.10)",
+  "evidence": [
+   {
+    "quote": "A reassessment of the adequacy of the HACCP plan whenever any changes occur that could affect the hazard analysis or alter the HACCP plan in any way or at least annually.",
+    "source_title": "21 CFR 123.8 — Verification.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 123.8(a)(1)",
+    "location": "§ 123.8(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-123.8",
+    "local_source_file": "ecfr_2026-10-14/part-123.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 123 requires reassessment, not 'validation'."
+   },
+   {
+    "quote": "This review shall occur within 1 week of the day that the records are made;",
+    "source_title": "21 CFR 123.8 — Verification.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 123.8(a)(3)(i)",
+    "location": "§ 123.8(a)(3)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/section-123.8",
+    "local_source_file": "ecfr_2026-10-14/part-123.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "1-week records review."
+   },
+   {
+    "quote": "(5) Include any corrective action plans that have been developed in accordance with § 123.7(b), to be followed in response to deviations from critical limits at critical control points;",
+    "source_title": "21 CFR 123.6 — Hazard analysis and HACCP plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 123.6(c)(5)",
+    "location": "§ 123.6(c)(5)",
+    "url": "https://www.ecfr.gov/current/title-21/section-123.6",
+    "local_source_file": "ecfr_2026-10-14/part-123.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Corrective actions governed by 123.7 (not cited in G)."
+   },
+   {
+    "quote": "(1) The HACCP plan shall be signed and dated, either by the most responsible individual onsite at the processing facility or by a higher level official of the processor.",
+    "source_title": "21 CFR 123.6 — Hazard analysis and HACCP plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 123.6(d)(1)",
+    "location": "§ 123.6(d)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-123.6",
+    "local_source_file": "ecfr_2026-10-14/part-123.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Signing requirement omitted."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "The 'validation' wording is a terminology mismatch rather than a substantive misstatement (reassessment serves a similar function).",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — main sections cited; J's 'validation' could credit an answer that imports juice-HACCP terminology."
+ },
+ {
+  "question_id": "Y-010",
+  "question_interpretation": "Asks what the intentional adulteration rule (Part 121) requires a food defense plan to contain.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "121.126(b) lists five required contents of the written food defense plan. J names two (vulnerability assessment and mitigation strategies with explanations) and omits written procedures for food defense monitoring (121.140(a)), food defense corrective actions (121.145(a)(1)) and food defense verification (121.150(b))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J omits: the plan must be signed and dated by the owner, operator or agent in charge at initial completion and on any modification (121.310); the plan is a record subject to Subpart D (121.126(c)); reanalysis at least every 3 years (121.157); qualified individuals (121.4); the vulnerability assessment must evaluate public-health impact, physical access and attacker success, consider an inside attacker, and explain each step (121.130(a)-(c))."
+   }
+  ],
+  "explanation": "121.126 is the governing section and J's two elements are supported, but J omits three of the five mandatory plan components in 121.126(b). G also omits 121.140, 121.145, 121.150 and 121.310.",
+  "proposed_corrected_answer": "121.126: prepare (or have prepared) and implement a written food defense plan containing (1) the written vulnerability assessment with explanations identifying significant vulnerabilities and actionable process steps (121.130(c)); (2) written mitigation strategies with explanations (121.135(b)); (3) written food defense monitoring procedures (121.140(a)); (4) written food defense corrective action procedures (121.145(a)(1)); and (5) written food defense verification procedures (121.150(b)). The vulnerability assessment covers each food type and evaluates potential public-health impact, degree of physical access and an attacker's ability to contaminate, including an inside attacker (121.130). Mitigation strategies must significantly minimize or prevent each significant vulnerability, with written explanations (121.135), and are subject to management components (121.138). The plan is a record under Subpart D, signed and dated by the owner, operator or agent in charge at completion and on modification (121.310), and reanalyzed at least every 3 years (121.157). Activities are performed by qualified individuals (121.4).",
+  "proposed_sections": "21 CFR 121.126; 121.130; 121.135; 121.138; 121.140; 121.145; 121.150; 121.157; 121.310",
+  "evidence": [
+   {
+    "quote": "(3) The written procedures for the food defense monitoring of the implementation of the mitigation strategies as required by § 121.140(a);",
+    "source_title": "21 CFR 121.126 — Food defense plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 121.126(b)",
+    "location": "§ 121.126(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/section-121.126",
+    "local_source_file": "ecfr_2026-10-14/part-121.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Monitoring procedures are a required plan content."
+   },
+   {
+    "quote": "(4) The written procedures for food defense corrective actions as required by § 121.145(a)(1); and",
+    "source_title": "21 CFR 121.126 — Food defense plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 121.126(b)",
+    "location": "§ 121.126(b)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/section-121.126",
+    "local_source_file": "ecfr_2026-10-14/part-121.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Corrective action procedures required."
+   },
+   {
+    "quote": "(5) The written procedures for food defense verification as required by § 121.150(b).",
+    "source_title": "21 CFR 121.126 — Food defense plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 121.126(b)",
+    "location": "§ 121.126(b)(5)",
+    "url": "https://www.ecfr.gov/current/title-21/section-121.126",
+    "local_source_file": "ecfr_2026-10-14/part-121.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Verification procedures required."
+   },
+   {
+    "quote": "The owner, operator, or agent in charge of the facility must sign and date the food defense plan:",
+    "source_title": "21 CFR 121.310 — Additional requirements applying to the food defense plan.",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 121.310",
+    "location": "§ 121.310",
+    "url": "https://www.ecfr.gov/current/title-21/section-121.310",
+    "local_source_file": "ecfr_2026-10-14/part-121.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Signing requirement."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the main section is cited; J is incomplete, so an answer naming only two of five components would score complete."
+ }
+]

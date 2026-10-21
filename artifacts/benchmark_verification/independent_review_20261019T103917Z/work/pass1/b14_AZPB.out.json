@@ -1,0 +1,1469 @@
+[
+ {
+  "question_id": "A-001",
+  "question_interpretation": "Which CGMP requirements govern manufacturing, processing, packing and holding of animal food (21 CFR 507 Subpart B).",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J uses Part 117 (human food) headings. Part 507 headings are 'Plant operations' (507.25), not 'processes and controls', and 'Holding and distribution' (507.27), not 'warehousing and distribution'. An answer that uses the Part 507 headings must not be marked down."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "507.4 (Subpart A) requires that individuals handling animal food subject to Subpart B be qualified and trained, and that training records be kept. The key omits it although it is a CGMP personnel requirement that applies alongside Subpart B (507.14 covers only hygiene)."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "The key omits 507.5(h), which exempts certain establishments from Subpart B (RAC holding/transport, nut hulling, cotton ginning), and 507.1(d), which lets a facility subject to both Part 117 and Part 507 comply with Part 117 Subpart B instead."
+   }
+  ],
+  "explanation": "G correctly spans Subpart B (507.14-507.28) and J's list maps onto its eight sections. However, two of J's labels are Part 117 terminology rather than the Part 507 headings. The key also omits the 507.4 qualification and training requirement that applies to Subpart B operations, as well as the Subpart B exemptions and the Part 117 alternative.",
+  "proposed_corrected_answer": "Subpart B CGMPs: personnel hygiene (507.14); plant and grounds (507.17); sanitation (507.19); water supply and plumbing (507.20); equipment and utensils (507.22); plant operations (507.25); holding and distribution (507.27); holding and distribution of human food by-products for use as animal food (507.28). Also: individuals must be qualified and trained, with training records (507.4). Subpart B does not apply to the establishments listed in 507.5(h). A facility also subject to Part 117 Subpart B may comply with that subpart instead (507.1(d)).",
+  "proposed_sections": "21 CFR 507.14-507.28; 507.4; 507.5(h); 507.1(d)",
+  "evidence": [
+   {
+    "quote": "§ 507.25 Plant operations.",
+    "source_title": "21 CFR 507.25 — Plant operations",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.25",
+    "location": "21 CFR 507.25",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.25",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 507 heading is 'Plant operations', not 'processes and controls'"
+   },
+   {
+    "quote": "§ 507.27 Holding and distribution.",
+    "source_title": "21 CFR 507.27 — Holding and distribution",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.27",
+    "location": "21 CFR 507.27",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.27",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 507 heading is 'Holding and distribution'"
+   },
+   {
+    "quote": "The management of an establishment must ensure that all individuals who manufacture, process, pack, or hold animal food subject to subparts B and F of this part are qualified to perform their assigned duties",
+    "source_title": "21 CFR 507.4 — Qualifications of individuals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.4(a)(1)",
+    "location": "21 CFR 507.4(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.4",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Qualification/training requirement applies to Subpart B operations"
+   },
+   {
+    "quote": "Subpart B of this part does not apply to any of the following:",
+    "source_title": "21 CFR 507.5 — Exemptions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.5(h)",
+    "location": "21 CFR 507.5(h)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.5",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subpart B exemptions exist"
+   },
+   {
+    "quote": "then the facility may choose to comply with the requirements in subpart B of part 117, instead of subpart B of part 507",
+    "source_title": "21 CFR 507.1 — Applicability and status",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.1(d)",
+    "location": "21 CFR 507.1(d)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.1",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 117 Subpart B alternative"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether omitting 507.4 and the exemptions is material for an 'Intermediate' direct-lookup row is a judgment call; the citation range itself is right.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair with caveat — the citation range is right, but a scorer reading J literally could mark down an answer that uses the correct Part 507 headings."
+ },
+ {
+  "question_id": "A-002",
+  "question_interpretation": "What the hazard analysis and risk-based preventive controls requirements (21 CFR 507 Subpart C) require of an animal food facility.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "G cites only 507.33 and 507.34. J itself requires 'preventive control management components', which are imposed by 507.39 (monitoring 507.40, corrective actions 507.42, verification 507.45), and G does not cite 507.39. The overarching written food safety plan prepared or overseen by a PCQI (507.31) is also missing, as are the recall plan (507.38), reanalysis (507.50), PCQI requirements (507.53) and the 507.36 circumstances in which a preventive control is not required."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "A complete answer citing 507.31/507.39 etc. would exceed G; a 'completeness' score keyed to G would not reward surfacing the food safety plan."
+   }
+  ],
+  "explanation": "507.33 (written hazard analysis) and 507.34 (written preventive controls) are correctly cited and J's two elements are supported. However, Subpart C is built around the written food safety plan (507.31), and the management components that J names come from 507.39, which G does not cite. The key therefore under-cites the governing provisions.",
+  "proposed_corrected_answer": "Prepare and implement a written food safety plan, prepared or overseen by a PCQI (507.31). The plan includes: a written hazard analysis of known or reasonably foreseeable biological, chemical and physical hazards, written regardless of outcome (507.33); written preventive controls, namely process, sanitation, supply-chain, recall-plan and other controls (507.34); a recall plan (507.38); and preventive control management components (monitoring, corrective actions and verification) as appropriate (507.39-507.49). Reanalysis is required at least every 3 years (507.50). Exceptions are in 507.36.",
+  "proposed_sections": "21 CFR 507.31; 507.33; 507.34; 507.36; 507.38; 507.39-507.49; 507.50; 507.53",
+  "evidence": [
+   {
+    "quote": "You must prepare, or have prepared, and implement a written food safety plan.",
+    "source_title": "21 CFR 507.31 — Food safety plan",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.31(a)",
+    "location": "21 CFR 507.31(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.31",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Food safety plan is the governing obligation"
+   },
+   {
+    "quote": "The hazard analysis must be written regardless of its outcome.",
+    "source_title": "21 CFR 507.33 — Hazard analysis",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.33(a)(2)",
+    "location": "21 CFR 507.33(a)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.33",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J element 1"
+   },
+   {
+    "quote": "Preventive controls must be written.",
+    "source_title": "21 CFR 507.34 — Preventive controls",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.34(b)",
+    "location": "21 CFR 507.34(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.34",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J element 2"
+   },
+   {
+    "quote": "the preventive controls required under § 507.34 are subject to the following preventive control management components",
+    "source_title": "21 CFR 507.39 — Preventive control management components",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.39(a)",
+    "location": "21 CFR 507.39(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.39",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Management components in J are imposed by 507.39, not cited in G"
+   },
+   {
+    "quote": "Establish a written recall plan for the animal food; and",
+    "source_title": "21 CFR 507.38 — Recall plan",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.38(a)(1)",
+    "location": "21 CFR 507.38(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.38",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Recall plan requirement omitted"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partially unfair — G omits 507.31 and 507.39, which J's own elements depend on."
+ },
+ {
+  "question_id": "A-003",
+  "question_interpretation": "What the Part 507 Subpart E supply-chain program must contain, and when the receiving facility must have one.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "The question asks when the receiving facility is responsible. J never states the trigger: the receiving facility must have a program for raw materials and other ingredients for which it has identified a hazard requiring a supply-chain-applied control, i.e., a hazard controlled before receipt (507.105(a)(1); definitions in 507.3)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "J does not mention the receiving facility's non-delegable duty to approve suppliers, or the limits on what other entities and the supplier may do (507.115). It also omits the annual onsite audit default for SAHCODHA hazards (507.130(b)) and the named exceptions: 507.105(a)(2) (FSVP importer), 507.105(a)(3) (research/evaluation food) and the qualified-facility exemption (507.5(d))."
+   }
+  ],
+  "explanation": "G (507.105-507.175) correctly spans Subpart E. J's elements (written program, supplier approval and verification, non-applicability) are supported in general terms, but J does not answer the 'when' part of the question. That trigger is the identification of a hazard requiring a supply-chain-applied control, and J also leaves out the receiving facility's responsibilities in 507.115.",
+  "proposed_corrected_answer": "A receiving facility (a facility subject to subparts C and E that manufactures/processes a raw material or other ingredient it receives from a supplier) must establish and implement a written, risk-based supply-chain program when its hazard analysis identifies a hazard requiring a supply-chain-applied control, i.e., a hazard controlled before receipt (507.105(a)(1), (b); 507.3). The program includes: using approved suppliers; determining and conducting appropriate supplier verification activities (onsite audits, sampling/testing, record review, other); and documentation (507.110-507.175). The receiving facility must approve suppliers. Other entities may determine or conduct verification only if the receiving facility reviews and documents their work, and the supplier may not verify itself (507.115). For SAHCODHA hazards, an initial and at least annual onsite audit is the default (507.130(b)). The requirement does not apply where an FSVP-compliant importer holds 1.506(e) documentation (507.105(a)(2)), to research or evaluation animal food (507.105(a)(3)), or to qualified facilities (507.5(d)).",
+  "proposed_sections": "21 CFR 507.105-507.175 (esp. 507.105(a), 507.110, 507.115, 507.130(b)); 507.3 definitions",
+  "evidence": [
+   {
+    "quote": "the receiving facility must establish and implement a risk-based supply-chain program for those raw materials and other ingredients for which the receiving facility has identified a hazard requiring a supply-chain-applied control.",
+    "source_title": "21 CFR 507.105 — Requirement to establish and implement a supply-chain program",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.105(a)(1)",
+    "location": "21 CFR 507.105(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.105",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Trigger for the receiving facility's responsibility"
+   },
+   {
+    "quote": "Supply-chain-applied control means a preventive control for a hazard in a raw material or other ingredient when the hazard in the raw material or other ingredient is controlled before its receipt.",
+    "source_title": "21 CFR 507.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.3",
+    "location": "21 CFR 507.3",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.3",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Defines the trigger"
+   },
+   {
+    "quote": "Receiving facility means a facility that is subject to subparts C and E of this part and that manufactures/processes a raw material or other ingredient that it receives from a supplier.",
+    "source_title": "21 CFR 507.3 — Definitions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.3",
+    "location": "21 CFR 507.3",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.3",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Who the receiving facility is"
+   },
+   {
+    "quote": "The receiving facility must approve suppliers.",
+    "source_title": "21 CFR 507.115 — Responsibilities of the receiving facility",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.115(a)(1)",
+    "location": "21 CFR 507.115(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.115",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Receiving facility responsibilities omitted from J"
+   },
+   {
+    "quote": "The supply-chain program must be written.",
+    "source_title": "21 CFR 507.105",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.105(b)",
+    "location": "21 CFR 507.105(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.105",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supports J element 'written program'"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partially unfair — J lacks the 'when' trigger, so an answer that omits it could still score full completeness."
+ },
+ {
+  "question_id": "A-004",
+  "question_interpretation": "What requirements govern (1) manufacture of medicated feeds and (2) feeds containing veterinary feed directive (VFD) drugs.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The medicated feed mill license requirement (558.4(a): a license is needed to make Type B or Type C feed from a Category II Type A article) is omitted. This is a threshold requirement for medicated feed manufacturing, and it also decides which set of Part 225 CGMPs applies (225.1(b)(2): 225.10-225.115 for licensed mills, 225.120-225.202 for unlicensed)."
+   },
+   {
+    "type": "precision",
+    "detail": "J gives no specifics, such as the VFD 2-year retention for all parties (558.6(a)(4)), the default 6-month VFD expiration (558.6(b)(3)(v)), the distributor's one-time notification to FDA (558.6(c)(5)), or the 1-year VFD feed manufacturing records kept under Part 225 (558.6(c)(4))."
+   }
+  ],
+  "explanation": "Part 225 and 558.6 are the right core citations, and J's two elements are correct at a high level. However, the key omits the 558.4 license requirement and the licensed/unlicensed split in 225.1(b)(2), which determine which manufacturing requirements apply. J is also too generic to score substance.",
+  "proposed_corrected_answer": "Medicated feed manufacture: CGMP in Part 225. Sections 225.10-225.115 apply to mills that need a medicated feed mill license, and 225.120-225.202 to mills making only feeds that need no license (225.1(b)(2)). A license is required to make Type B or Type C medicated feed from a Category II Type A medicated article (558.4(a)). VFD drugs (558.6): feed may be fed only by or upon a lawful VFD issued by a licensed veterinarian within a VCPR, with the required content (558.6(b)(3)). VFD expiration defaults to no more than 6 months unless the approval specifies otherwise, and extralabel use is not permitted. The veterinarian sends a copy to the distributor and the client, and all parties keep the VFD for 2 years (558.6(a)(4)). Distributors fill only complete VFDs, keep receipt and distribution records for 2 years, keep manufacturing records for 1 year under Part 225, notify FDA before first distribution, and obtain acknowledgment letters (558.6(c)).",
+  "proposed_sections": "21 CFR Part 225 (esp. 225.1(b)(2)); 21 CFR 558.4; 21 CFR 558.6",
+  "evidence": [
+   {
+    "quote": "The regulations in §§ 225.10 through 225.115 apply to facilities manufacturing one or more medicated feeds for which an approved medicated feed mill license is required. The regulations in §§ 225.120 through 225.202 apply to facilities manufacturing solely medicated feeds for which an approved license is not required.",
+    "source_title": "21 CFR 225.1 — Current good manufacturing practice",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 225.1(b)(2)",
+    "location": "21 CFR 225.1(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/part-225/section-225.1",
+    "local_source_file": "ecfr_2026-10-14/part-225.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Which CGMP set applies depends on licensure"
+   },
+   {
+    "quote": "A feed manufacturing facility must possess a medicated feed mill license in order to manufacture a Type B or Type C medicated feed from a Category II, Type A medicated article.",
+    "source_title": "21 CFR 558.4 — Requirement of a medicated feed mill license",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 558.4(a)",
+    "location": "21 CFR 558.4(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-558/section-558.4",
+    "local_source_file": "ecfr_2026-10-14/part-558.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "License requirement omitted from key"
+   },
+   {
+    "quote": "All involved parties (the veterinarian, the distributor, and the client) must retain a copy of the VFD for 2 years.",
+    "source_title": "21 CFR 558.6 — Veterinary feed directive drugs",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 558.6(a)(4)",
+    "location": "21 CFR 558.6(a)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/part-558/section-558.6",
+    "local_source_file": "ecfr_2026-10-14/part-558.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "VFD recordkeeping specifics"
+   },
+   {
+    "quote": "the distributor must also keep VFD feed manufacturing records for 1 year in accordance with part 225 of this chapter.",
+    "source_title": "21 CFR 558.6",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 558.6(c)(4)",
+    "location": "21 CFR 558.6(c)(4)",
+    "url": "https://www.ecfr.gov/current/title-21/part-558/section-558.6",
+    "local_source_file": "ecfr_2026-10-14/part-558.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Cross-link between VFD and Part 225"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Materiality of the 558.4 omission is a judgment; the cited provisions are correct.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair for citation, but J is too generic to separate a correct substantive answer from a vague one."
+ },
+ {
+  "question_id": "Z-001",
+  "question_interpretation": "What a mammography facility needs in order to operate lawfully: FDA certification, accreditation, and personnel qualifications.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "900.11(a) conditions certification on meeting all quality standards in 900.12, not only the personnel standards in 900.12(a). Provisional certificates (900.11(b)(2): up to 6 months plus one 90-day extension) and certification by approved State certification agencies (Subpart C) are optional enrichments. The VA is excluded (900.10)."
+   }
+  ],
+  "explanation": "900.11(a) requires an FDA certificate for lawful operation, conditioned on meeting the 900.12 quality standards and on accreditation by an approved body. 900.12(a) sets the personnel qualifications. J's three elements are all supported.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "After October 1, 1994, a certificate issued by FDA is required for lawful operation of all mammography facilities subject to the provisions of this subpart. To obtain a certificate from FDA, facilities are required to meet the quality standards in § 900.12 and to be accredited by an approved accreditation body or other entity as designated by FDA.",
+    "source_title": "21 CFR 900.11 — Requirements for certification",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.11(a)",
+    "location": "21 CFR 900.11(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.11",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Certificate required; accreditation; 900.12 standards"
+   },
+   {
+    "quote": "The following requirements apply to all personnel involved in any aspect of mammography",
+    "source_title": "21 CFR 900.12 — Quality standards",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(a)",
+    "location": "21 CFR 900.12(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Personnel qualification requirements"
+   },
+   {
+    "quote": "A provisional certificate shall be effective for up to 6 months from the date of issuance.",
+    "source_title": "21 CFR 900.11",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.11(b)(2)(ii)",
+    "location": "21 CFR 900.11(b)(2)(ii)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.11",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Provisional certificate detail (optional enrichment)"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct, well-cited answer would score correctly."
+ },
+ {
+  "question_id": "Z-002",
+  "question_interpretation": "What MQSA quality standards cover equipment QA, medical records and mammography reports.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Pinpoints would help: equipment 900.12(b); medical records and reports 900.12(c); QA general 900.12(d); equipment QC 900.12(e); outcomes audit 900.12(f); complaints 900.12(h). The 2023 amendments (88 FR 15168) added breast density reporting in 900.12(c); an answer may mention it."
+   }
+  ],
+  "explanation": "All of J's elements appear in 900.12: equipment (b), records and reports (c), the QA program (d), QC tests (e), the medical outcomes audit (f) and the consumer complaint mechanism (h). The section-level citation is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "21 CFR 900.12(b)-(f), (h)",
+  "evidence": [
+   {
+    "quote": "Each facility shall prepare a written report of the results of each mammographic examination performed under its certificate.",
+    "source_title": "21 CFR 900.12 — Quality standards",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(c)(1)",
+    "location": "21 CFR 900.12(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Mammography reports"
+   },
+   {
+    "quote": "Each facility shall establish and maintain a quality assurance program to ensure the safety, reliability, clarity, and accuracy of mammography services performed at the facility.",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(d)",
+    "location": "21 CFR 900.12(d)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QA program"
+   },
+   {
+    "quote": "Each facility shall establish and maintain a mammography medical outcomes audit program to followup positive mammographic assessments",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(f)",
+    "location": "21 CFR 900.12(f)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Medical outcomes audit"
+   },
+   {
+    "quote": "(h) Consumer complaint mechanism. Each facility shall:",
+    "source_title": "21 CFR 900.12",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 900.12(h)",
+    "location": "21 CFR 900.12(h)",
+    "url": "https://www.ecfr.gov/current/title-21/part-900/section-900.12",
+    "local_source_file": "ecfr_2026-10-14/part-900.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Consumer complaint mechanism"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair."
+ },
+ {
+  "question_id": "Z-003",
+  "question_interpretation": "Which reports a manufacturer of a listed electronic product must submit and which records it must keep under Part 1002.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The key omits supplemental reports (1002.11), annual reports (1002.13, due September 1 for the 12 months ending June 30), and accidental radiation occurrence reports, which apply to all electronic product manufacturers (1002.20; 1002.1(a))."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "The key omits the 5-year record retention period and FDA inspection access (1002.31)."
+   },
+   {
+    "type": "precision",
+    "detail": "Which reports and records apply depends on the product's row in Table 1 to 1002.1, not simply on being 'subject to a performance standard'. Exclusions and exemptions are in 1002.1(c), 1002.50 and 1002.51."
+   }
+  ],
+  "explanation": "1002.10, 1002.12 and 1002.30 exist and say what J claims. However, the question asks for the reports and records generally, and the key leaves out the supplemental and annual reports, accidental radiation occurrence reporting, and the 5-year retention. These are material parts of the Part 1002 obligations.",
+  "proposed_corrected_answer": "As applicable per Table 1 to 1002.1, a manufacturer must submit: product reports before introduction into commerce (1002.10) or abbreviated reports (1002.12); supplemental reports for new or modified models affecting emissions or compliance (1002.11); and annual reports due September 1 (1002.13). All manufacturers must report accidental radiation occurrences (1002.20). Records required: quality control procedures, radiation safety test results, durability/stability testing, radiation-safety communications and distribution records (1002.30). Records are kept for 5 years and made available for inspection (1002.31). Exclusions and exemptions: 1002.1(c), 1002.50, 1002.51.",
+  "proposed_sections": "21 CFR 1002.1 (Table 1); 1002.10; 1002.11; 1002.12; 1002.13; 1002.20; 1002.30; 1002.31",
+  "evidence": [
+   {
+    "quote": "Every manufacturer of products requiring an annual report as specified in table 1 of § 1002.1 shall submit an annual report summarizing the contents of the records required to be maintained by § 1002.30(a)",
+    "source_title": "21 CFR 1002.13 — Annual reports",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1002.13(a)",
+    "location": "21 CFR 1002.13(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1002/section-1002.13",
+    "local_source_file": "ecfr_2026-10-14/part-1002.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Annual reports omitted from key"
+   },
+   {
+    "quote": "each manufacturer shall submit a report with respect to such new or modified model describing any changes in the information previously submitted in the product report.",
+    "source_title": "21 CFR 1002.11 — Supplemental reports",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1002.11",
+    "location": "21 CFR 1002.11",
+    "url": "https://www.ecfr.gov/current/title-21/part-1002/section-1002.11",
+    "local_source_file": "ecfr_2026-10-14/part-1002.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Supplemental reports omitted"
+   },
+   {
+    "quote": "Manufacturers of electronic products shall, where reasonable grounds for suspecting that such an incident has occurred, report to the Director, Center for Devices and Radiological Health, all accidental radiation occurrences",
+    "source_title": "21 CFR 1002.20 — Reporting of accidental radiation occurrences",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1002.20(a)",
+    "location": "21 CFR 1002.20(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1002/section-1002.20",
+    "local_source_file": "ecfr_2026-10-14/part-1002.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "ARO reporting omitted"
+   },
+   {
+    "quote": "shall preserve such records for a period of 5 years from the date of the record.",
+    "source_title": "21 CFR 1002.31 — Preservation and inspection of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1002.31(a)",
+    "location": "21 CFR 1002.31(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1002/section-1002.31",
+    "local_source_file": "ecfr_2026-10-14/part-1002.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Retention period omitted"
+   },
+   {
+    "quote": "shall submit a product report to the Food and Drug Administration",
+    "source_title": "21 CFR 1002.10 — Product reports",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1002.10",
+    "location": "21 CFR 1002.10",
+    "url": "https://www.ecfr.gov/current/title-21/part-1002/section-1002.10",
+    "local_source_file": "ecfr_2026-10-14/part-1002.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Cited product report section exists as claimed"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partially unfair — a complete answer surfacing 1002.11/1002.13/1002.20/1002.31 exceeds G, and the key cannot score completeness correctly."
+ },
+ {
+  "question_id": "Z-004",
+  "question_interpretation": "What a manufacturer must do on discovering that an electronic product has a radiation-safety defect or fails to comply with a federal performance standard.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Part-level citations. Pinpoints: 1003.10 (immediate notice to FDA; notice to dealers, distributors and purchasers with reasonable promptness), 1003.20 and 1003.21 (content), 1003.30 (exemption) and 1004.1 (repair, replace or refund under an approved plan; 1004.2-1004.4, 1004.6). J says 'repurchase'; the regulation's term is 'refund'."
+   }
+  ],
+  "explanation": "1003.10 requires immediate notification to FDA and notification to dealers, distributors and purchasers. 1004.1 requires repair, replacement or refund under a plan approved under 1004.6. J matches the text.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "21 CFR 1003.10; 1003.20; 1003.21; 1004.1-1004.6",
+  "evidence": [
+   {
+    "quote": "(a) Immediately notify the Secretary in accordance with § 1003.20, and",
+    "source_title": "21 CFR 1003.10 — Discovery of defect or failure of compliance by manufacturer",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1003.10(a)",
+    "location": "21 CFR 1003.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1003/section-1003.10",
+    "local_source_file": "ecfr_2026-10-14/part-1003.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Notification to FDA"
+   },
+   {
+    "quote": "furnish notification with reasonable promptness to the following persons:",
+    "source_title": "21 CFR 1003.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1003.10(b)",
+    "location": "21 CFR 1003.10(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1003/section-1003.10",
+    "local_source_file": "ecfr_2026-10-14/part-1003.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Notification to affected persons"
+   },
+   {
+    "quote": "The manufacturer shall take the action required by this section in accordance with a plan approved by the Secretary pursuant to § 1004.6.",
+    "source_title": "21 CFR 1004.1 — Manufacturer's obligation to repair, replace, or refund",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1004.1(b)",
+    "location": "21 CFR 1004.1(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1004/section-1004.1",
+    "local_source_file": "ecfr_2026-10-14/part-1004.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Repair/replace/refund under approved plan"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — part-level citations accept correct section pinpoints."
+ },
+ {
+  "question_id": "Z-005",
+  "question_interpretation": "Which federal performance standard covers laser products, and which class-based requirements it imposes.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "1040.10 also imposes informational requirements (h) and modification rules (i). J does not list these, but the omission is not material to the question."
+   }
+  ],
+  "explanation": "1040.10 is the laser product standard: classification into Classes I, IIa, II, IIIa, IIIb and IV (c), emission limits (d), performance requirements (f) and labeling (g). 1040.11 covers specific-purpose (medical, surveying/leveling/alignment, demonstration) laser products. Both sections exist with the numbering claimed.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Each laser product shall be classified in Class I, IIa, II, IIIa, IIIb, or IV in accordance with definitions set forth in paragraphs (b) (5) through (11) of this section.",
+    "source_title": "21 CFR 1040.10 — Laser products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.10(c)(1)",
+    "location": "21 CFR 1040.10(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.10",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Classification"
+   },
+   {
+    "quote": "In addition to the requirements of §§ 1010.2 and 1010.3, each laser product shall be subject to the applicable labeling requirements of this paragraph.",
+    "source_title": "21 CFR 1040.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.10(g)",
+    "location": "21 CFR 1040.10(g)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.10",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Labeling"
+   },
+   {
+    "quote": "Each medical laser product shall comply with all of the applicable requirements of § 1040.10 for laser products of its class.",
+    "source_title": "21 CFR 1040.11 — Specific purpose laser products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.11(a)",
+    "location": "21 CFR 1040.11(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.11",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Specific-purpose products"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair."
+ },
+ {
+  "question_id": "Z-006",
+  "question_interpretation": "What performance standard applies to sunlamp products and ultraviolet lamps intended for them.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J omits the manual termination control (c)(3), lamp compatibility (c)(5), and user instructions (e). These are minor additions."
+   }
+  ],
+  "explanation": "1040.20 exists with this title. It imposes the irradiance ratio limit (c)(1), the timer (c)(2), protective eyewear (c)(4), the warning label (d)(1)(i) and the exposure schedule (d)(1)(iv), exactly as J states.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "the ratio of the irradiance within the wavelength range of greater than 200 nanometers through 260 nanometers to the irradiance within the wavelength range of greater than 260 nanometers through 320 nanometers may not exceed 0.003",
+    "source_title": "21 CFR 1040.20 — Sunlamp products and ultraviolet lamps",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.20(c)(1)",
+    "location": "21 CFR 1040.20(c)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.20",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Irradiance ratio"
+   },
+   {
+    "quote": "Each sunlamp product shall incorporate a timer system with multiple timer settings",
+    "source_title": "21 CFR 1040.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.20(c)(2)(i)",
+    "location": "21 CFR 1040.20(c)(2)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.20",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Timer"
+   },
+   {
+    "quote": "Each sunlamp product shall be accompanied by the number of sets of protective eyewear",
+    "source_title": "21 CFR 1040.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.20(c)(4)(i)",
+    "location": "21 CFR 1040.20(c)(4)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.20",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Protective eyewear"
+   },
+   {
+    "quote": "A recommended exposure schedule including duration and spacing of sequential exposures and maximum exposure time(s) in minutes.",
+    "source_title": "21 CFR 1040.20",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1040.20(d)(1)(iv)",
+    "location": "21 CFR 1040.20(d)(1)(iv)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1040/section-1040.20",
+    "local_source_file": "ecfr_2026-10-14/part-1040.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Exposure schedule on label"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair."
+ },
+ {
+  "question_id": "PB-001",
+  "question_interpretation": "Trap: asks what 21 CFR requires for greenhouse gas emissions reporting at a manufacturing facility. Title 21 does not address the subject.",
+  "question_clarity": "out_of_scope",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "outside_scope",
+  "citation_assessment": "not_applicable",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "rubric_fairness",
+    "detail": "The required response ('not covered in 21 CFR') is factually supported. The ban on redirection is qualified by 'as though it supplied the requirement', so a scorer should not penalise an answer that only notes the subject is outside Title 21 without presenting any other source as the requirement. 21 CFR Part 25 (FDA's own NEPA procedures) does not impose facility GHG reporting."
+   }
+  ],
+  "explanation": "An eCFR full-text search of all of Title 21 for 'greenhouse', '\"greenhouse\"', 'greenhouse gas', 'climate' and 'carbon footprint' returns 0 sections. The same search in Title 40 returns thousands of hits, which confirms the search works. The required flat statement that the subject is not covered in 21 CFR is therefore correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "{\"meta\":{\"total_count\":0,\"description\":\"Changes to sections matching 'greenhouse' in Title 21\"}}",
+    "source_title": "eCFR Search API — Title 21 full-text count for 'greenhouse'",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "eCFR search API, Title 21",
+    "location": "all of Title 21",
+    "url": "https://www.ecfr.gov/api/search/v1/count?query=greenhouse&hierarchy[title]=21",
+    "local_source_file": "",
+    "date": "queried 2026-10-19 (current eCFR)",
+    "check_level": "webfetch",
+    "supports": "No Title 21 section contains 'greenhouse'"
+   },
+   {
+    "quote": "{\"meta\":{\"total_count\":0,\"description\":\"Changes to sections matching 'climate' in Title 21\"}}",
+    "source_title": "eCFR Search API — Title 21 count for 'climate'",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "eCFR search API, Title 21",
+    "location": "all of Title 21",
+    "url": "https://www.ecfr.gov/api/search/v1/count?query=climate&hierarchy[title]=21",
+    "local_source_file": "",
+    "date": "queried 2026-10-19",
+    "check_level": "webfetch",
+    "supports": "No Title 21 section mentions climate"
+   }
+  ],
+  "search_performed": "eCFR search API (current) over all of Title 21: 'greenhouse' = 0, '\"greenhouse\"' = 0, 'greenhouse gas' = 0, 'climate' = 0, 'carbon footprint' = 0. Control query 'greenhouse' in Title 40 = 3387. Also grepped the cached Title 21 parts (none mention greenhouse gas).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the expected statement is accurate. Scorers should apply the 'as though it supplied the requirement' qualifier literally."
+ },
+ {
+  "question_id": "PB-002",
+  "question_interpretation": "What HPHC data must be submitted for a tobacco product. The row tests whether the first-tier answer cites the binding source rather than the analyte list.",
+  "question_clarity": "ambiguous",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "The general, product-by-product HPHC reporting obligation for tobacco products is statutory: FD&C Act 904(a)(3) (21 U.S.C. 387d(a)(3)), with 904(c)(1) requiring it at least 90 days before marketing products not on the market on June 22, 2009. No Title 21 CFR section implements 904(a)(3)."
+   },
+   {
+    "type": "wrong_citation",
+    "detail": "21 CFR 1114.7 is the PMTA content section (Part 1114 scope: premarket tobacco product applications). Its HPHC content is at 1114.7(i)(1)(v), with testing details in 1114.7(i)(4). It is the source only for PMTA submissions. SE reports have their own HPHC comparison requirement at 1107.19(d)(1). The bare section citation is therefore imprecise and context-limited."
+   },
+   {
+    "type": "ambiguity",
+    "detail": "The question does not say whether it means 904(a)(3) reporting, a PMTA or an SE report, and each has a different governing provision."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "'Primary answer cites the regulation' would penalise a correct answer that cites the statutory requirement, 904(a)(3), and the key gives that answer no credit."
+   }
+  ],
+  "explanation": "1114.7 does require HPHC data, but only in a PMTA (1114.7(i)(1)(v)). The general HPHC reporting duty for each tobacco product comes from FD&C Act 904(a)(3), not from a regulation. The key's behavioural rule (do not present the analyte list as the source of the requirement) is sound, but its single-source citation is incomplete and could misgrade correct answers.",
+  "proposed_corrected_answer": "First tier: Manufacturers and importers must report the quantities of the HPHCs FDA has identified, by brand and subbrand, in each tobacco product and, as applicable, its smoke (FD&C Act 904(a)(3), 21 U.S.C. 387d(a)(3)). For products not on the market on June 22, 2009, this is due at least 90 days before introduction (904(c)(1)). In a PMTA, constituent and HPHC data are required content under 21 CFR 1114.7(i)(1)(v), with the method, laboratory and testing details in 1114.7(i)(4). In an SE report, HPHC comparison is required under 21 CFR 1107.19(d)(1). The established HPHC list (section 904(e)) and FDA's reporting guidance are second-tier elaboration.",
+  "proposed_sections": "FD&C Act 904(a)(3), 904(c)(1) (21 U.S.C. 387d); 21 CFR 1114.7(i)(1)(v), (i)(4) [PMTA]; 21 CFR 1107.19(d)(1) [SE]",
+  "evidence": [
+   {
+    "quote": "a listing of all constituents, including smoke constituents as applicable, identified by the Secretary as harmful or potentially harmful to health in each tobacco product, and as applicable in the smoke of each tobacco product, by brand and by quantity in each brand and subbrand.",
+    "source_title": "FD&C Act 904 — Submission of health information to the Secretary",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 387d(a)(3)",
+    "location": "21 U.S.C. 387d(a)(3)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapIX-sec387d.htm",
+    "local_source_file": "usc_title21/21usc387d.txt",
+    "date": "U.S. Code 2024 edition",
+    "check_level": "official_cached",
+    "supports": "Statutory HPHC reporting requirement applies to each tobacco product"
+   },
+   {
+    "quote": "This part sets forth the procedures and requirements for submitting a premarket tobacco product application (PMTA)",
+    "source_title": "21 CFR 1114.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1114.1(a)",
+    "location": "21 CFR 1114.1(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1114/section-1114.1",
+    "local_source_file": "ecfr_2026-10-14/part-1114.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 1114 (incl. 1114.7) is limited to PMTAs"
+   },
+   {
+    "quote": "Constituents, including HPHCs and other constituents, contained within, or emitted from (including its smoke or aerosol), the product, including any reaction product from leaching or aging, by providing:",
+    "source_title": "21 CFR 1114.7 — Required content and format",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1114.7(i)(1)(v)",
+    "location": "21 CFR 1114.7(i)(1)(v)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1114/section-1114.7",
+    "local_source_file": "ecfr_2026-10-14/part-1114.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "1114.7 HPHC content requirement (PMTA) and correct pinpoint"
+   },
+   {
+    "quote": "(1) Constituents. HPHCs and other constituents, as appropriate, to demonstrate that:",
+    "source_title": "21 CFR 1107.19 — Comparison information",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1107.19(d)(1)",
+    "location": "21 CFR 1107.19(d)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1107/section-1107.19",
+    "local_source_file": "ecfr_2026-10-14/part-1107.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Separate HPHC requirement for SE reports"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair as written — a correct answer citing FD&C Act 904(a)(3) would fail 'cites the regulation', and 1114.7 is right only in the PMTA context."
+ },
+ {
+  "question_id": "PB-003",
+  "question_interpretation": "Asks for the specific list of HPHCs FDA expects to be tested. The row tests second-tier (non-binding) elaboration with proper source identification.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "false_premise_key",
+    "detail": "The key assumes the list is a guidance document. The established HPHC list is not guidance: FDA establishes it under FD&C Act 904(e) by Federal Register notice. The original list of 93 was 77 FR 20034 (April 3, 2012). FDA added 18 constituents by notice 91 FR 21824 (April 23, 2026), so the list now has 111, and three more are proposed. A notice carries no 'Contains Nonbinding Recommendations' disclaimer, so 'must carry FDA's own disclaimer language' cannot be met when the list itself is cited."
+   },
+   {
+    "type": "precision",
+    "detail": "The guidance-tier source for what FDA expects to be tested and reported is the draft guidance 'Reporting Harmful and Potentially Harmful Constituents in Tobacco Products and Tobacco Smoke Under Section 904(a)(3) of the Federal Food, Drug, and Cosmetic Act' (draft, April 2012, docket FDA-2012-D-0049). It identifies an abbreviated list of 20 HPHCs and carries 'Contains Nonbinding Recommendations' / 'Not for implementation' language. The separate final guidance on the meaning of HPHC under 904(e) (Jan 2011, revised Aug 2016) does not list analytes."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "'Established from the regulation' should read 'statute or regulation'. The requirement is FD&C Act 904(a)(3) (and 1114.7 for PMTAs); see PB-002."
+   }
+  ],
+  "explanation": "The key's principle is consistent with the sources: guidance is non-binding elaboration and must be identified by title, status and date. However, the specific list is primarily the 904(e) established list, published by Federal Register notice and updated on 2026-04-23 to 111 constituents, not a guidance document. A rigid disclaimer requirement would therefore mis-score a correct answer that cites it. The abbreviated list of 20 is in a 2012 draft guidance that is still listed as draft. Guidance facts were read via WebFetch/WebSearch and the Federal Register API, so confidence is Medium.",
+  "proposed_corrected_answer": "First establish the requirement: FD&C Act 904(a)(3) (and 21 CFR 1114.7(i)(1)(v) for PMTAs). Then elaborate: (1) the HPHC established list maintained under FD&C Act 904(e). It was first published at 77 FR 20034 (April 3, 2012, 93 constituents) and expanded by 91 FR 21824 (April 23, 2026, +18 constituents, 111 total; 3 more proposed). This is an FDA list or notice, not guidance, and creates no requirement by itself. (2) The draft guidance 'Reporting Harmful and Potentially Harmful Constituents in Tobacco Products and Tobacco Smoke Under Section 904(a)(3) of the FD&C Act' (draft, April 2012). It states FDA's enforcement policy of accepting reporting on an abbreviated list of 20 HPHCs. Cite it with its draft status and its nonbinding-recommendations disclaimer.",
+  "proposed_sections": "FD&C Act 904(a)(3), 904(e); 77 FR 20034 (2012-04-03); 91 FR 21824 (2026-04-23); FDA draft guidance FDA-2012-D-0049 (April 2012)",
+  "evidence": [
+   {
+    "quote": "Not later than 24 months after June 22, 2009, the Secretary shall establish, and periodically revise as appropriate, a list of harmful and potentially harmful constituents, including smoke constituents, to health in each tobacco product by brand and by quantity in each brand and subbrand.",
+    "source_title": "FD&C Act 904(e) — Data collection",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 387d(e)",
+    "location": "21 U.S.C. 387d(e)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapIX-sec387d.htm",
+    "local_source_file": "usc_title21/21usc387d.txt",
+    "date": "U.S. Code 2024 edition",
+    "check_level": "official_cached",
+    "supports": "The HPHC list is a statutory list, not a guidance document"
+   },
+   {
+    "quote": "FDA is adding 18 new constituents to the established list consistent with the requirement in section 904(e) of the FD&C Act to periodically revise, as appropriate, the established HPHC list (Table 1).",
+    "source_title": "Harmful and Potentially Harmful Constituents in Tobacco Products and Tobacco Smoke; Established List Additions and Request for Comments",
+    "issuing_authority": "Federal Register",
+    "identifier": "91 FR 21824 (FR Doc. 2026-07910)",
+    "location": "Section I, Introduction",
+    "url": "https://www.federalregister.gov/documents/2026/04/23/2026-07910/harmful-and-potentially-harmful-constituents-in-tobacco-products-and-tobacco-smoke-established-list",
+    "local_source_file": "",
+    "date": "published 2026-04-23",
+    "check_level": "webfetch",
+    "supports": "Current list status (2026 update); list is a 904(e) notice"
+   },
+   {
+    "quote": "The draft guidance explains that FDA does not intend, at this time, to enforce reporting on the entire established HPHC list where a manufacturer or importer completes testing and reporting for an abbreviated list of HPHCs within the timeframes specified in the guidance.",
+    "source_title": "Draft Guidance for Industry: Reporting HPHCs ... Under the FD&C Act; Availability (notice abstract)",
+    "issuing_authority": "Federal Register",
+    "identifier": "77 FR 20030 (FR Doc. 2012-7766)",
+    "location": "abstract",
+    "url": "https://www.federalregister.gov/documents/2012/04/03/2012-7766",
+    "local_source_file": "",
+    "date": "published 2012-04-03",
+    "check_level": "webfetch",
+    "supports": "Abbreviated-list guidance is a draft (April 2012)"
+   },
+   {
+    "quote": "Not for implementation. Contains non-binding recommendations.",
+    "source_title": "FDA guidance page — Reporting Harmful and Potentially Harmful Constituents in Tobacco Products and Tobacco Smoke Under Section 904(a)(3) of the FD&C Act",
+    "issuing_authority": "FDA",
+    "identifier": "Docket FDA-2012-D-0049",
+    "location": "guidance page",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/reporting-harmful-and-potentially-harmful-constituents-tobacco-products-and-tobacco-smoke-under",
+    "local_source_file": "",
+    "date": "draft, April 2012 (page read 2026-10-19)",
+    "check_level": "webfetch",
+    "supports": "Status draft (April 2012); disclaimer language; abbreviated list of 20 HPHCs"
+   }
+  ],
+  "search_performed": "Federal Register API: all FDA documents matching 'harmful and potentially harmful constituents' (47 results, 2010-2026). Read the 2026-07910 and 2025-18613 full text and the 2012-7727 and 2012-7766 abstracts. Ran WebFetch on the FDA guidance page for the 904(a)(3) reporting guidance, and WebSearch on fda.gov.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Guidance status and disclaimer were read via WebFetch, which is not machine-verifiable. The 2026 FR notice was read from the official FR raw text, which is not in the cached sources.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "unfair as written — a correct answer citing the 904(e) established list (a FR notice) cannot 'carry FDA's disclaimer language', and the key does not reflect the April 2026 update."
+ },
+ {
+  "question_id": "PB-004",
+  "question_interpretation": "Whether FDA guidance on dietary supplement shelf-life testing exists and what it requires. The row tests the guidance/regulation distinction.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "not_applicable",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "The key does not answer either part of the question. Facts: Part 111 does not require expiration or shelf-life dating; it refers to shelf life only conditionally, 'if shelf life dating is used', for reserve sample and record retention (111.83(b)(3), 111.465(b), 111.605(a)). FDA's final guidance 'Small Entity Compliance Guide: Current Good Manufacturing Practice in Manufacturing, Packaging, Labeling, or Holding Operations for Dietary Supplements' (December 2010) says the rule does not require an expiration date but that a firm should have data to support any date it puts on a label. No dedicated FDA shelf-life or stability testing guidance for dietary supplements was found."
+   },
+   {
+    "type": "mandatory_vs_guidance",
+    "detail": "The key's behavioural rule is correct: the SECG 'should have data' is a non-binding recommendation, so an answer saying guidance 'requires' stability data would be wrong."
+   }
+  ],
+  "explanation": "The behavioural rule matches the sources. Part 111 imposes no shelf-life testing or dating requirement, and FDA's only located statement is non-binding SECG text. However, the key does not set out these facts, so a scorer cannot check whether an answer correctly says the regulation does not require expiration dating or correctly identifies the SECG as final (Dec 2010). The SECG facts were read via WebFetch.",
+  "proposed_corrected_answer": "Part 111 does not require dietary supplements to bear an expiration or shelf-life date or to undergo shelf-life testing. It refers to shelf life only 'if shelf life dating is used', when setting reserve-sample and record retention (111.83(b)(3), 111.465(b), 111.605(a)). FDA has no dedicated shelf-life testing guidance for dietary supplements. Its final Small Entity Compliance Guide for the DS CGMP rule (December 2010) states that the rule does not require an expiration date but that a firm should have data to support any date it places on a label. That guidance is a nonbinding recommendation and does not create a requirement.",
+  "proposed_sections": "21 CFR 111.83(b)(3); 111.465(b); 111.605(a); FDA Small Entity Compliance Guide (final, Dec 2010) — elaboration only",
+  "evidence": [
+   {
+    "quote": "You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records.",
+    "source_title": "21 CFR 111.605 — What requirements apply to the records that you make and keep?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(a)",
+    "location": "21 CFR 111.605(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Shelf-life dating is optional ('if ... used') in Part 111"
+   },
+   {
+    "quote": "Be retained for 1 year past the shelf life date (if shelf life dating is used)",
+    "source_title": "21 CFR 111.83 — What are the requirements for reserve samples?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.83(b)(3)",
+    "location": "21 CFR 111.83(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.83",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Same conditional wording"
+   },
+   {
+    "quote": "Although the DS CGMP rule does not require you to establish an “expiration date”",
+    "source_title": "FDA — Small Entity Compliance Guide: CGMP in Manufacturing, Packaging, Labeling, or Holding Operations for Dietary Supplements",
+    "issuing_authority": "FDA",
+    "identifier": "FDA guidance (final, December 2010)",
+    "location": "Q&A on expiration dating",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/small-entity-compliance-guide-current-good-manufacturing-practice-manufacturing-packaging-labeling",
+    "local_source_file": "",
+    "date": "final, December 2010 (read 2026-10-19)",
+    "check_level": "webfetch",
+    "supports": "FDA states no expiration date is required; 'should have data to support any such date' is a recommendation"
+   }
+  ],
+  "search_performed": "Grepped cached Part 111 for 'expiration', 'shelf', 'stability' and 'best if used': only the three conditional retention provisions. Ran WebSearch on fda.gov, federalregister.gov and govinfo.gov for dietary supplement shelf-life/stability guidance (no dedicated guidance found; drug stability guidance and CPG 480.100 do not apply). Ran WebFetch on the DS CGMP Small Entity Compliance Guide (first 100k characters).",
+  "confidence": "Medium",
+  "uncertainty_reason": "Absence of any FDA shelf-life guidance for dietary supplements rests on a web search, and the SECG text was read via WebFetch, which is not machine-verifiable.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partially fair — the behaviour rule is right, but without stated facts the key cannot separate a correct answer from a wrong one."
+ },
+ {
+  "question_id": "PB-005",
+  "question_interpretation": "False-premise question: asks which FDA guidance requires device supplier qualification. Guidance cannot impose requirements; the obligation comes from the QMSR.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "FDA text identifies Clause 7.4 as 'Purchasing' (21 CFR 4.4(b)(1)(iii)) and as requiring supplier evaluation (QMSR preamble). The title of subclause 7.4.1, 'Purchasing process', is not stated in FDA text and is general knowledge only."
+   }
+  ],
+  "explanation": "Since 2026-02-02, 820.10(a) requires a QMS that complies with ISO 13485, which is incorporated by reference at 820.7(b). The QMSR preamble states that Clause 7.4 requires supplier evaluation and monitoring. Former 820.50 was removed. The premise that a guidance 'requires' supplier qualification is unsupported, so the key's correction and routing are right.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "21 CFR 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Binding source of the obligation"
+   },
+   {
+    "quote": "Clause 7.4 of ISO 13485 specifies that an organization must evaluate suppliers of purchased products in terms of ability and performance of the supplier",
+    "source_title": "QMSR final rule preamble (Comment/Response on 'critical supplier')",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (2024-01709)",
+    "location": "preamble, response on critical supplier",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA identifies Clause 7.4 as the supplier evaluation requirement"
+   },
+   {
+    "quote": "(iii) Purchasing. Clause 7.4. and its subclauses of ISO 13485;",
+    "source_title": "21 CFR 4.4 — Current good manufacturing practice requirements for combination products",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(iii)",
+    "location": "21 CFR 4.4(b)(1)(iii)",
+    "url": "https://www.ecfr.gov/current/title-21/part-4/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA text names Clause 7.4 'Purchasing'"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — a correct premise correction routed to 820.10(a)/ISO 13485 clause 7.4 would score correctly."
+ },
+ {
+  "question_id": "PB-006",
+  "question_interpretation": "Asks what 21 CFR says about the content of an ISO 14971 risk management file. Boundary test: ISO 14971 is not part of Title 21.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "iso_clause",
+    "detail": "The QMSR preamble lists Clause 7.1 among the ISO 13485 clauses that embed risk management, along with 4.1, 7.3, 7.4, 7.5, 7.6 and 8.2. This corroborates 7.1 as a relevant clause. The title 'Planning of product realization' is not stated in FDA text and is general knowledge only."
+   },
+   {
+    "type": "rubric_fairness",
+    "detail": "H lists only 7.1. FDA names several risk-management clauses, so an answer citing 4.1.2 or 7.3 alongside or instead of 7.1 should not be scored as an ISO discordance."
+   }
+  ],
+  "explanation": "820.7 incorporates only ISO 9000 Clause 3 and ISO 13485. The QMSR preamble expressly states that FDA does not incorporate ISO 14971. Title 21 therefore prescribes no ISO 14971 risk management file content, and risk management obligations come through 820.10(a) and ISO 13485. The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "ISO 13485:2016(E) (“ISO 13485”), Medical devices—Quality management systems—Requirements for regulatory purposes, Third edition, March 1, 2016; IBR approved for §§ 820.1, 820.3, 820.10, 820.35, and 820.45.",
+    "source_title": "21 CFR 820.7 — Incorporation by reference",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.7(b)",
+    "location": "21 CFR 820.7(b)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.7",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The standards incorporated by reference (ISO 14971 absent)"
+   },
+   {
+    "quote": "FDA does not, in this rulemaking, incorporate ISO 14971 or any other standards referenced by, or listed as a source in, ISO 13485",
+    "source_title": "QMSR final rule preamble, Response to Comment 9",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (2024-01709)",
+    "location": "preamble, Comment 9",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "ISO 14971 expressly not incorporated"
+   },
+   {
+    "quote": "(see e.g., Clauses 4.1, 7.1, 7.3, 7.4, 7.5, 7.6, and 8.2 and certain subclauses therein of ISO 13485)",
+    "source_title": "QMSR final rule preamble, Response to Comment 19",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (2024-01709)",
+    "location": "preamble, Comment 19",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Clause 7.1 among risk-management clauses"
+   }
+  ],
+  "search_performed": "Read 820.7 in full (only ISO 9000 Clause 3 and ISO 13485 incorporated) and grepped the cached Part 820 for '14971' (no hits). The QMSR preamble's mentions of 14971 are a reference list entry and the statement in Comment 9 that it is not incorporated.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair, provided ISO concordance accepts the other risk-management clauses FDA names."
+ },
+ {
+  "question_id": "PB-007",
+  "question_interpretation": "Unqualified question about 'record retention requirements'. The row tests whether the platform asks which part or sector applies.",
+  "question_clarity": "ambiguous",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "rubric_fairness",
+    "detail": "An answer that asks for the sector and also gives a short, clearly labelled overview of several parts' retention periods should not be treated as 'selecting a single part'."
+   }
+  ],
+  "explanation": "Retention periods really do differ by part. For example: animal food 2 years from preparation (507.208(a)(1)); drug batch records 1 year after expiry (211.180(a)); dietary supplements 1 year past shelf life or 2 years after distribution (111.605(a)); radiological products 5 years (1002.31(a)); VFDs 2 years (558.6(a)(4)). The ambiguity is the tested behaviour, and the key correctly expects a clarification request.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "All records required by this part must be retained at the plant or facility for at least 2 years after the date they were prepared.",
+    "source_title": "21 CFR 507.208 — Requirements for record retention",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 507.208(a)(1)",
+    "location": "21 CFR 507.208(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/part-507/section-507.208",
+    "local_source_file": "ecfr_2026-10-14/part-507.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 507 period"
+   },
+   {
+    "quote": "shall be retained for at least 1 year after the expiration date of the batch",
+    "source_title": "21 CFR 211.180 — General requirements",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 211.180(a)",
+    "location": "21 CFR 211.180(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-211/section-211.180",
+    "local_source_file": "ecfr_2026-10-14/part-211.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 211 period differs"
+   },
+   {
+    "quote": "You must keep written records required by this part for 1 year past the shelf life date, if shelf life dating is used, or 2 years beyond the date of distribution of the last batch of dietary supplements associated with those records.",
+    "source_title": "21 CFR 111.605",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 111.605(a)",
+    "location": "21 CFR 111.605(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-111/section-111.605",
+    "local_source_file": "ecfr_2026-10-14/part-111.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 111 period differs"
+   },
+   {
+    "quote": "shall preserve such records for a period of 5 years from the date of the record.",
+    "source_title": "21 CFR 1002.31",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 1002.31(a)",
+    "location": "21 CFR 1002.31(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-1002/section-1002.31",
+    "local_source_file": "ecfr_2026-10-14/part-1002.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 1002 period differs"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair, with the caveat above."
+ },
+ {
+  "question_id": "PB-008",
+  "question_interpretation": "The user asks for confirmation that QS regulation Subparts C-O still apply. This is a false premise: the QMSR removed them effective 2026-02-02.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "premise_unsupported",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The eCFR shows 'Subparts C-O [Reserved]'. The preamble says Subparts C through O were 'removed and reserved', so '[Reserved]' is accurate here. eCFR point-in-time serves the new text from 2026-02-04, but the legal effective date is 2026-02-02."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "820.7(b) corroborates the standard's identity and title. 'Clauses 1 through 8' as the range is general knowledge; FDA text refers to 'the applicable requirements of ISO 13485' (820.10(a))."
+   }
+  ],
+  "explanation": "The current Part 820 has only Subparts A and B, and Subparts C-O are reserved. The QMSR (effective February 2, 2026) removed them and now requires a QMS complying with ISO 13485 via 820.10(a). The premise is false, and the key's behaviour (correct the premise, do not say no action is needed, do not guarantee compliance) is consistent with the regulation.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Subparts C-O [Reserved]",
+    "source_title": "21 CFR Part 820 — subpart structure",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR Part 820, Subparts C-O",
+    "location": "21 CFR Part 820, Subparts C-O",
+    "url": "https://www.ecfr.gov/current/title-21/part-820",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Subparts C-O are reserved in current Part 820"
+   },
+   {
+    "quote": "Subparts C through O of the QS regulation have been removed and reserved.",
+    "source_title": "QMSR final rule preamble, Response to Comment 15",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (2024-01709)",
+    "location": "preamble",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Subparts removed"
+   },
+   {
+    "quote": "DATES: This rule is effective February 2, 2026.",
+    "source_title": "QMSR final rule — DATES",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7496 (2024-01709)",
+    "location": "DATES",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Effective date"
+   },
+   {
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "source_title": "21 CFR 820.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "21 CFR 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Current requirement replacing the old subparts"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair."
+ },
+ {
+  "question_id": "PB-009",
+  "question_interpretation": "Plain-English explanation of why a device manufacturer must investigate complaints and which provision requires it. The row tests that the citation is attached.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "corroborated_fda_text",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "820.35(a) is a records provision, 'in addition to Clause 8.2.2'. It requires records of the review, evaluation and investigation of complaints involving possible failure to meet specifications, and allows a documented justification where a similar complaint was already investigated. The complaint-handling obligation itself, including investigation, reaches the manufacturer through 820.10(a), which incorporates ISO 13485 Clause 8.2.2. G should cite 820.10(a) as well as 820.35(a)."
+   },
+   {
+    "type": "missing_provision",
+    "detail": "Optional: 820.10(b)(3) links complaints to MDR reporting under Part 803."
+   }
+  ],
+  "explanation": "H (8.2.2 Complaint handling) is corroborated by the text of 820.35(a). However, G cites only the records paragraph. The question 'what requires it' is best answered by 820.10(a) plus ISO 13485 8.2.2, supplemented by 820.35(a), so a key citing only 820.35(a) is incomplete.",
+  "proposed_corrected_answer": "Plain English: complaints are signals that a device may not meet its specifications or may be unsafe. The QMSR requires a documented complaint-handling process, including investigation (21 CFR 820.10(a), incorporating ISO 13485 Clause 8.2.2). 820.35(a) requires records of the review, evaluation and investigation of complaints involving possible failure of the device, labeling or packaging to meet specifications. If a similar complaint was already investigated, a documented justification can replace a new investigation. Reportable complaints go to FDA under Part 803 (820.10(b)(3)).",
+  "proposed_sections": "21 CFR 820.10(a) (ISO 13485 cl. 8.2.2); 21 CFR 820.35(a); 820.10(b)(3)",
+  "evidence": [
+   {
+    "quote": "In addition to Clause 8.2.2 in ISO 13485, Complaint Handling, the manufacturer shall maintain records of the review, evaluation, and investigation for any complaints involving the possible failure of a device, labeling, or packaging to meet any of its specifications.",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35(a)",
+    "location": "21 CFR 820.35(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.35",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.35(a) is a records requirement supplementing Clause 8.2.2 (Complaint Handling)"
+   },
+   {
+    "quote": "Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part",
+    "source_title": "21 CFR 820.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "21 CFR 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Route by which Clause 8.2.2 binds the manufacturer"
+   },
+   {
+    "quote": "For Clause 8.2.3 in ISO 13485, Reporting to regulatory authorities, the manufacturer must notify FDA of complaints that meet the reporting criteria of part 803 of this chapter.",
+    "source_title": "21 CFR 820.10",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)(3)",
+    "location": "21 CFR 820.10(b)(3)",
+    "url": "https://www.ecfr.gov/current/title-21/part-820/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Complaint/MDR link"
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "It is a judgment whether a scorer would treat 820.35(a) alone as a complete citation. The investigation duty is implicit in 820.35(a) but explicit only via ISO 8.2.2.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "partially fair — answers citing 820.10(a) + 8.2.2 + 820.35(a) are correct; the key should accept 820.10(a)."
+ }
+]

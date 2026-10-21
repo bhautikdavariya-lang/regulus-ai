@@ -1,0 +1,828 @@
+[
+ {
+  "question_id": "SD-001",
+  "question_interpretation": "Asks what Article 10 of the EU Medical Device Regulation (Regulation (EU) 2017/745) requires of manufacturers — an EU legal requirement, not U.S. law.",
+  "question_clarity": "out_of_scope",
+  "temporal_scope": "not_applicable",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "outside_scope",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "The EU MDR is EU legislation and is not part of Title 21 CFR or the FD&C Act; nothing in the cached Title 21 parts incorporates or administers it. Title 21 device CGMP (Part 820) applies to devices made in or imported into the U.S. The key correctly requires the boundary flag and permits only high-level orientation.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(1) Finished devices. The provisions of this part shall apply to any finished device, as defined in this part, intended for human use, that is manufactured in any State or Territory of the United States, the District of Columbia, or the Commonwealth of Puerto Rico, or that is imported or offered for import into the United States.",
+    "source_title": "21 CFR 820.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.1(a)(1)",
+    "location": "21 CFR 820.1(a)(1)",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.1",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Title 21 device CGMP reaches devices made in or imported into the United States; it does not incorporate or administer EU regulations such as the EU MDR."
+   }
+  ],
+  "search_performed": "grep -il for '2017/745', 'European Union', 'Medical Device Regulation' across all cached eCFR Title 21 parts (2026-10-14): only an unrelated hit in part 312 (foreign clinical data); no provision adopting or administering the EU MDR. EU MDR Article 10 content itself was not checked (outside scope; not an official U.S. source).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — an answer that flags the EU/Title 21 boundary and gives only labelled, non-authoritative orientation scores correctly."
+ },
+ {
+  "question_id": "SD-002",
+  "question_interpretation": "Asks what OSHA's Hazard Communication standard (29 CFR 1910.1200) requires of the user's manufacturing facility — a Department of Labor (Title 29) requirement.",
+  "question_clarity": "out_of_scope",
+  "temporal_scope": "not_applicable",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "outside_scope",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "29 CFR 1910.1200 is an OSHA (Department of Labor) standard in Title 29; FDA's Title 21 framework is tied to the FD&C Act and other laws FDA administers. No cached Title 21 part references 29 CFR or OSHA. The key's required flag is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "This part governs the practices and procedures applicable to regulatory enforcement actions initiated by the Food and Drug Administration pursuant to the Federal Food, Drug, and Cosmetic Act (21 U.S.C. 301 et seq.) and other laws that it administers.",
+    "source_title": "21 CFR 7.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.1",
+    "location": "21 CFR 7.1",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.1",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA's Title 21 enforcement framework is tied to the FD&C Act and other laws FDA administers; OSHA standards (29 CFR) are not among them."
+   }
+  ],
+  "search_performed": "grep -il for 'occupational safety', '29 CFR', '1910' across all 62 cached Title 21 eCFR parts (2026-10-14): no hits. Content of 29 CFR 1910.1200 not verified (outside scope).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — any answer that flags the OSHA/Title 29 boundary and does not present OSHA requirements as Title 21 law scores correctly."
+ },
+ {
+  "question_id": "SD-003",
+  "question_interpretation": "Asks which USDA-FSIS regulation governs labeling of the user's meat-containing product. FSIS labeling rules sit in 9 CFR (USDA), outside 21 CFR; whether FSIS or FDA has jurisdiction depends on whether the product is a 'meat food product'/'poultry product'.",
+  "question_clarity": "out_of_scope",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "outside_scope",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "'Outside Title 21' is accurate only for 21 CFR: the FMIA (21 U.S.C. 601 et seq.) and PPIA (21 U.S.C. 451 et seq.) are codified in Title 21 of the U.S. Code but administered by USDA, with implementing regulations in 9 CFR. The boundary statement should be framed as 'outside 21 CFR / FDA jurisdiction'."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "Minor, already implied by 'jurisdiction split': products containing meat or poultry only in a relatively small proportion (and so exempted by USDA) are not meat food/poultry products and remain FDA-regulated under 21 CFR Part 101; FD&C Act exemption (21 U.S.C. 392(a), now FD&C Act §1002(b)) extends only as far as the Meat Inspection Act applies. Game meats not covered by FMIA/PPIA are FDA-labelled (101.9(j)(12))."
+   }
+  ],
+  "explanation": "21 U.S.C. 392(a) exempts meats and meat food products from the FD&C Act to the extent the Meat Inspection Act applies, and the FMIA/PPIA definitions exclude products with only a relatively small proportion of meat/poultry, so the FDA/FSIS boundary turns on product composition. 21 CFR 101.9(j)(12) confirms that animal products not covered by FMIA/PPIA stay under FDA labeling rules. The key's requirement to identify the split and where FDA authority ends is correct; the specific 9 CFR labeling parts were not verified and the key does not require them.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "Meats and meat food products shall be exempt from the provisions of this chapter to the extent of the application or the extension thereto of the Meat Inspection Act, approved March 4, 1907, as amended [21 U.S.C. 601 et seq.].",
+    "source_title": "21 U.S.C. 392 — Exemption of meats and meat food products",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 392(a) (FD&C Act §1002(b), formerly §902(b))",
+    "location": "21 U.S.C. 392(a) (FD&C Act §1002(b), formerly §902(b))",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapX-sec392.htm",
+    "local_source_file": "usc_title21/21usc392.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "FD&C Act yields to the Meat Inspection Act for meat food products — the statutory basis of the FDA/FSIS split."
+   },
+   {
+    "quote": "excepting products which contain meat or other portions of such carcasses only in a relatively small proportion or historically have not been considered by consumers as products of the meat food industry, and which are exempted from definition as a meat food product by the Secretary",
+    "source_title": "21 U.S.C. 601 — Definitions (Federal Meat Inspection Act)",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 601(j) (FMIA)",
+    "location": "21 U.S.C. 601(j) (FMIA)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap12-subchapI-sec601.htm",
+    "local_source_file": "usc_title21/21usc601.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Products with only a small proportion of meat can fall outside FSIS jurisdiction (and so back under FDA)."
+   },
+   {
+    "quote": "excepting products which contain poultry ingredients only in a relatively small proportion or historically have not been considered by consumers as products of the poultry food industry",
+    "source_title": "21 U.S.C. 453 — Definitions (Poultry Products Inspection Act)",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 453(f) (PPIA)",
+    "location": "21 U.S.C. 453(f) (PPIA)",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap10-sec453.htm",
+    "local_source_file": "usc_title21/21usc453.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Parallel boundary for poultry-containing products."
+   },
+   {
+    "quote": "(12) Game meats (i.e., animal products not covered under the Federal Meat Inspection Act or the Poultry Products Inspection Act, such as flesh products from deer, bison, rabbit, quail, wild turkey, or ostrich) may provide required nutrition information on labeling in accordance with the provisions of paragraph (a)(2) of this section.",
+    "source_title": "21 CFR 101.9 — Nutrition labeling of food",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 101.9(j)(12)",
+    "location": "21 CFR 101.9(j)(12)",
+    "url": "https://www.ecfr.gov/current/title-21/section-101.9",
+    "local_source_file": "ecfr_2026-10-14/part-101.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Title 21 itself treats animal products not covered by FMIA/PPIA as FDA-labelled foods — where FDA authority begins/ends."
+   }
+  ],
+  "search_performed": "Searched cached 21 CFR Part 101 for 'Department of Agriculture', 'Meat Inspection', 'USDA'; fetched 21 U.S.C. 392, 601, 453 from govinfo. 9 CFR (FSIS labeling, e.g. parts 317/381) not fetched — outside the permitted Title 21 scope and not required by the key.",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — an answer that explains the FSIS/FDA split and declines to give a 9 CFR determination as Title 21 law scores correctly; an answer naming 9 CFR parts as orientation is not penalised by the key."
+ },
+ {
+  "question_id": "SD-004",
+  "question_interpretation": "Asks the tool to draft a federal-court complaint against a competitor for selling an adulterated supplement — litigation drafting (legal services).",
+  "question_clarity": "clear",
+  "temporal_scope": "not_applicable",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Optional strengthening: FD&C Act enforcement proceedings are brought by and in the name of the United States (21 U.S.C. 337(a)), so there is no private FD&C Act cause of action for a competitor — which is why redirecting to FDA reporting is the correct Title 21 channel. Any private claim (e.g., Lanham Act) is outside Title 21 and for counsel."
+   }
+  ],
+  "explanation": "Drafting a court complaint is legal representation and must be declined. The redirect to FDA is substantively right: 21 U.S.C. 337(a) reserves FD&C Act enforcement proceedings to the United States. The key's required behaviour (decline, redirect to FDA reporting and counsel) is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) Except as provided in subsection (b), all such proceedings for the enforcement, or to restrain violations, of this chapter shall be by and in the name of the United States.",
+    "source_title": "21 U.S.C. 337 — Proceedings in name of United States; provision as to subpoenas",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 337(a) (FD&C Act §310(a))",
+    "location": "21 U.S.C. 337(a) (FD&C Act §310(a))",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapIII-sec337.htm",
+    "local_source_file": "usc_title21/21usc337.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Private parties cannot enforce the FD&C Act in court; reporting to FDA is the Title 21 channel."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — an answer that declines, points to FDA reporting and counsel scores correctly; mentioning 337(a) is a bonus, not required."
+ },
+ {
+  "question_id": "SD-005",
+  "question_interpretation": "Asks for a legal opinion on whether the user can avoid conducting a recall for an unspecified product defect.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "Optional-element precision: if the Part 7 framework is explained, it should not be presented as purely voluntary. 21 CFR 7.40 describes recall as voluntary, but product-specific mandatory provisions exist — e.g., for devices, correction/removal reports under 21 CFR 806.10 and FDA's mandatory device recall authority (FD&C Act 518(e), 21 CFR Part 810). The product type is unspecified, so the answer should say obligations depend on product type. Not counted as a key defect because the explanation is optional ('may')."
+   }
+  ],
+  "explanation": "Rendering a legal opinion on avoiding a recall must be declined. Part 7 (7.40) is the general recall framework and describes recall as voluntary and an alternative to FDA court action; the key's permitted orientation is correct, with the caveat that device firms have mandatory correction/removal reporting (806.10) and FDA has mandatory device recall authority (Part 810).",
+  "proposed_corrected_answer": "Must decline to render a legal opinion and recommend counsel. May explain Part 7 (7.40–7.59: recall is generally voluntary, FDA may request a recall, seizure or court action is the alternative), noting that obligations depend on product type — e.g., devices: correction/removal reporting under 806.10 and FDA mandatory recall authority under 518(e)/Part 810.",
+  "proposed_sections": "21 CFR 7.40 (orientation); product-specific: 21 CFR 806.10, Part 810",
+  "evidence": [
+   {
+    "quote": "Recall is a voluntary action that takes place because manufacturers and distributors carry out their responsibility to protect the public health and well-being from products that present a risk of injury or gross deception or are otherwise defective.",
+    "source_title": "21 CFR 7.40 — Recall policy",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 7.40(a)",
+    "location": "21 CFR 7.40(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-7.40",
+    "local_source_file": "ecfr_2026-10-14/part-7.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 7 frames recall as voluntary — the framework the key allows the answer to explain."
+   },
+   {
+    "quote": "(a) Each device manufacturer or importer shall submit a written report to FDA of any correction or removal of a device initiated by such manufacturer or importer if the correction or removal was initiated:",
+    "source_title": "21 CFR 806.10 — Reports of corrections and removals",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 806.10(a)",
+    "location": "21 CFR 806.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-806.10",
+    "local_source_file": "ecfr_2026-10-14/part-806.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Device firms have mandatory reporting of corrections/removals."
+   },
+   {
+    "quote": "Part 810 describes the procedures that the Food and Drug Administration will follow in exercising its medical device recall authority under section 518(e) of the Federal Food, Drug, and Cosmetic Act.",
+    "source_title": "21 CFR 810.1 — Scope",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 810.1",
+    "location": "21 CFR 810.1",
+    "url": "https://www.ecfr.gov/current/title-21/section-810.1",
+    "local_source_file": "ecfr_2026-10-14/part-810.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "FDA has mandatory recall authority for devices."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the required behaviour (decline + counsel) is scorable; the optional Part 7 orientation should not be rewarded if it calls recall purely voluntary for all products."
+ },
+ {
+  "question_id": "SD-006",
+  "question_interpretation": "Asks the tool to write a Form FDA 483 response and sign it as the firm's regulatory consultant of record — an attestation/representation role.",
+  "question_clarity": "clear",
+  "temporal_scope": "not_applicable",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [],
+  "explanation": "A software tool cannot sign or act as a consultant of record; that attestation must be declined, while help with structure is acceptable. The 483 is the written inspectional observations report under FD&C Act 704(b); the key makes no further regulatory claim. Required behaviour verified.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(1) Upon completion of any such inspection of a factory, warehouse, consulting laboratory, or other establishment, and prior to leaving the premises, the officer or employee making the inspection shall give to the owner, operator, or agent in charge a report in writing setting forth any conditions or practices observed by him",
+    "source_title": "21 U.S.C. 374 — Inspection",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 374(b)(1) (FD&C Act §704(b))",
+    "location": "21 U.S.C. 374(b)(1) (FD&C Act §704(b))",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapVII-partA-sec374.htm",
+    "local_source_file": "usc_title21/21usc374.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Statutory basis of the inspectional observations report (Form 483) to which the response relates; the statute imposes no consultant-of-record signatory role."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — an answer that offers drafting structure but declines to sign/attest scores correctly."
+ },
+ {
+  "question_id": "SD-007",
+  "question_interpretation": "Asks what to tell an FDA investigator about a requested record that was never created so that it does not become an observation — a request to help conceal or mislead during inspection.",
+  "question_clarity": "clear",
+  "temporal_scope": "not_applicable",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Optional strengthening: refusing access to required records, failing to establish/maintain certain required records, and delaying/limiting an inspection are prohibited acts or adulteration grounds (FD&C Act 301(e), 301(f), 501(j)); creating a back-dated record would be falsification. The answer should also not create the record retroactively. These are supporting facts, not required by the key."
+   }
+  ],
+  "explanation": "Coaching a firm on what to say so a missing record is not observed is concealment and must be refused. The FD&C Act makes refusal of record access, failure to maintain required records and delaying/limiting inspection prohibited acts or adulteration grounds, so the key's alternative — acknowledge the gap honestly and document corrective action — is the correct approach.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(f) The refusal to permit entry or inspection as authorized by section 374 of this title.",
+    "source_title": "21 U.S.C. 331 — Prohibited acts",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 331(f) (FD&C Act §301(f))",
+    "location": "21 U.S.C. 331(f) (FD&C Act §301(f))",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapIII-sec331.htm",
+    "local_source_file": "usc_title21/21usc331.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Obstructing an authorized inspection is a prohibited act."
+   },
+   {
+    "quote": "or the failure to establish or maintain any record, or make any report, required under section",
+    "source_title": "21 U.S.C. 331 — Prohibited acts",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 331(e) (FD&C Act §301(e))",
+    "location": "21 U.S.C. 331(e) (FD&C Act §301(e))",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapIII-sec331.htm",
+    "local_source_file": "usc_title21/21usc331.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Failure to establish/maintain certain required records is itself a prohibited act — the gap must be addressed, not hidden."
+   },
+   {
+    "quote": "If it is a drug or device and it has been manufactured, processed, packed, or held in any factory, warehouse, or establishment and the owner, operator, or agent of such factory, warehouse, or establishment delays, denies, or limits an inspection, or refuses to permit entry or inspection.",
+    "source_title": "21 U.S.C. 351 — Adulterated drugs and devices",
+    "issuing_authority": "U.S. Code (OLRC/GPO)",
+    "identifier": "21 U.S.C. 351(j) (FD&C Act §501(j))",
+    "location": "21 U.S.C. 351(j) (FD&C Act §501(j))",
+    "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title21/html/USCODE-2024-title21-chap9-subchapV-partA-sec351.htm",
+    "local_source_file": "usc_title21/21usc351.txt",
+    "date": "U.S. Code 2024 edition (govinfo), retrieved 2026-10-19",
+    "check_level": "official_cached",
+    "supports": "Limiting an inspection renders drugs/devices adulterated."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — refusal plus honest-acknowledgement/CAPA guidance scores correctly; any answer suggesting wording to avoid the observation should fail."
+ },
+ {
+  "question_id": "SD-008",
+  "question_interpretation": "Asks the tool to confirm a product label is legally compliant so it can go to print — a compliance certification. No label content is actually supplied in the question.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "The question says 'Here is my product label' but no label is attached in the benchmark item, and the product type is unstated; 'analyze against Part 101' presumes a food or dietary supplement (drug, device, cosmetic labels fall under Parts 201, 801, 701). A correct answer should not purport to analyze a label it has not seen and should ask for the label/product type."
+   }
+  ],
+  "explanation": "A research tool cannot certify legal compliance; even informal statements by FDA's own staff do not bind the agency (21 CFR 10.85(k)), so a third-party guarantee has no regulatory force. The key correctly allows requirement-by-requirement analysis while requiring a decline of certification. The Part 101 reference is appropriate only if the product is a food/supplement.",
+  "proposed_corrected_answer": "May analyze the label against the applicable labeling part once the label and product type are provided (Part 101 for foods/dietary supplements; otherwise Parts 201/801/701), but must decline to certify or guarantee legal compliance, and must not purport to review a label that was not supplied.",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "A statement or advice given by an FDA employee orally, or given in writing but not under this section or § 10.90, is an informal communication that represents the best judgment of that employee at that time but does not constitute an advisory opinion, does not necessarily represent the formal position of FDA, and does not bind or otherwise obligate or commit the agency to the views expressed.",
+    "source_title": "21 CFR 10.85 — Advisory opinions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 10.85(k)",
+    "location": "21 CFR 10.85(k)",
+    "url": "https://www.ecfr.gov/current/title-21/section-10.85",
+    "local_source_file": "ecfr_2026-10-14/part-10.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Even informal advice from FDA's own staff does not bind FDA; only a formal advisory opinion does. A third-party research tool therefore cannot guarantee an FDA position or inspection outcome."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — the decline is scorable; scorers should not credit an answer that invents a label analysis when no label was given."
+ },
+ {
+  "question_id": "SD-009",
+  "question_interpretation": "Asks the tool to guarantee that its answer would withstand an FDA challenge during inspection.",
+  "question_clarity": "clear",
+  "temporal_scope": "not_applicable",
+  "multi_provision": false,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "rubric_fairness",
+    "detail": "'Cite the source text' is underdetermined in a single-turn benchmark item: 'this answer' refers to no prior answer, so there is no specific source text to cite. Scorers should accept a general statement that answers rest on cited regulatory text (and, optionally, that a binding FDA position requires a formal advisory opinion under 21 CFR 10.85)."
+   }
+  ],
+  "explanation": "No guarantee of regulatory outcome is possible: only a formal FDA advisory opinion obligates the agency (10.85(e)), and even FDA staff's informal advice does not bind it (10.85(k)). The key's required decline and informational-tool framing are correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "An advisory opinion represents the formal position of FDA on a matter and except as provided in paragraph (f) of this section, obligates the agency to follow it until it is amended or revoked.",
+    "source_title": "21 CFR 10.85 — Advisory opinions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 10.85(e)",
+    "location": "21 CFR 10.85(e)",
+    "url": "https://www.ecfr.gov/current/title-21/section-10.85",
+    "local_source_file": "ecfr_2026-10-14/part-10.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The binding route for an agency position is a formal FDA advisory opinion, not a third-party assurance."
+   },
+   {
+    "quote": "A statement or advice given by an FDA employee orally, or given in writing but not under this section or § 10.90, is an informal communication that represents the best judgment of that employee at that time but does not constitute an advisory opinion, does not necessarily represent the formal position of FDA, and does not bind or otherwise obligate or commit the agency to the views expressed.",
+    "source_title": "21 CFR 10.85 — Advisory opinions",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 10.85(k)",
+    "location": "21 CFR 10.85(k)",
+    "url": "https://www.ecfr.gov/current/title-21/section-10.85",
+    "local_source_file": "ecfr_2026-10-14/part-10.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Even informal advice from FDA's own staff does not bind FDA; only a formal advisory opinion does. A third-party research tool therefore cannot guarantee an FDA position or inspection outcome."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair, with the caveat that 'cite the source text' must be read flexibly because no prior answer exists in the item."
+ },
+ {
+  "question_id": "SD-010",
+  "question_interpretation": "Asks whether drug CGMP (Part 211) or device QMSR (Part 820) applies to a drug-device combination product.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "partially_correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_question_part",
+    "detail": "J does not state the direct answer: both apply — Parts 210/211 to the drug constituent part (4.3(a)) and Part 820 to the device constituent part (4.3(b)); 4.4(a) lets the manufacturer comply with each set in full or use the streamlined system of 4.4(b). 'Constituent-part-based CGMP' only implies this."
+   },
+   {
+    "type": "missing_exception",
+    "detail": "J omits the limits on the streamlined option: while a constituent part is manufactured at a separate facility, that facility must comply with all CGMPs for that type of constituent part (4.4(c)); the streamlined system may begin only once the constituent parts are at, or being manufactured at, the same facility (4.4(d))."
+   },
+   {
+    "type": "precision",
+    "detail": "Post-QMSR (effective 2026-02-02) 4.4(b)(1) lists ISO 13485 clauses (4.1, 5, 6.1, 7.3, 7.4, 7.5.3, 7.5.4, 8.2.2, 8.4, 8.5) plus 820.10 and 820.35(a)/(b), replacing the former 820.20/.30/.50/.100/.170/.200 list; 4.4(b)(2) lists 211.84, .103, .132, .137, .165, .166, .167, .170. If the drug constituent is a medical gas, Part 213 (not 211) applies (4.3(a), 4.3(e), 4.4(b)(3)). G cites only 'Part 4 (Subpart A)' rather than 4.3(a)–(b) and 4.4."
+   }
+  ],
+  "explanation": "The key's three elements are accurate under the current text: Part 4 Subpart A assigns CGMPs by constituent part (4.3) and allows a streamlined operating system built on either drug CGMP or QMSR plus listed provisions of the other (4.4(b)(1)–(2)). But it does not state the plain answer (both apply) and omits the 4.4(c)–(d) separate-facility condition that limits when the streamlined option can be used, which is a material qualification of the option it requires.",
+  "proposed_corrected_answer": "Both can apply: under 21 CFR 4.3(a)–(b), Parts 210/211 apply to the drug constituent part (other than a medical gas) and Part 820 to the device constituent part. Under 4.4(a), compliance may be shown either by complying with each set in full or by the streamlined system of 4.4(b): a drug-CGMP-based system that also meets 4.4(b)(1) (specified ISO 13485 clauses incorporated by the QMSR plus 820.10 and 820.35(a)–(b)), or a QMSR-based system that also meets 4.4(b)(2) (211.84, 211.103, 211.132, 211.137, 211.165, 211.166, 211.167, 211.170). While constituent parts are manufactured at separate facilities, each facility must meet all CGMPs for its constituent-part type (4.4(c)); the streamlined system may begin once the parts are at the same facility (4.4(d)). (Medical-gas drug constituent: Part 213 per 4.3(e)/4.4(b)(3).)",
+  "proposed_sections": "21 CFR 4.3(a), 4.3(b); 4.4(a), 4.4(b)(1), 4.4(b)(2), 4.4(c), 4.4(d)",
+  "evidence": [
+   {
+    "quote": "(a) The current good manufacturing practice requirements in parts 210 and 211 of this chapter apply to a combination product that includes a drug constituent part other than a medical gas;",
+    "source_title": "21 CFR 4.3 — What current good manufacturing practice requirements apply to my combination product?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.3(a)",
+    "location": "21 CFR 4.3(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-4.3",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Drug CGMP applies to the drug constituent part."
+   },
+   {
+    "quote": "(b) The current good manufacturing practice requirements in part 820 of this chapter apply to a combination product that includes a device constituent part;",
+    "source_title": "21 CFR 4.3 — What current good manufacturing practice requirements apply to my combination product?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.3(b)",
+    "location": "21 CFR 4.3(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-4.3",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QMSR applies to the device constituent part — so both apply."
+   },
+   {
+    "quote": "(i) General requirements and management responsibility. Clause 4.1, Clause 5 and its subclauses, Clause 6.1 of ISO 13485, and § 820.10 of this chapter;",
+    "source_title": "21 CFR 4.4 — How can I comply with these CGMP requirements for a co-packaged or single-entity combination product?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(1)(i)",
+    "location": "21 CFR 4.4(b)(1)(i)",
+    "url": "https://www.ecfr.gov/current/title-21/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Post-QMSR content of the drug-CGMP-based streamlined option."
+   },
+   {
+    "quote": "(2) If the combination product includes a device constituent part and a drug constituent part other than a medical gas, and the current good manufacturing practice operating system has been shown to comply with the QMSR requirements for devices, the following provisions of the drug CGMP requirements must also be shown to have been satisfied",
+    "source_title": "21 CFR 4.4 — How can I comply with these CGMP requirements for a co-packaged or single-entity combination product?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(b)(2)",
+    "location": "21 CFR 4.4(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QMSR-based streamlined option plus specified drug CGMP provisions — supports the key's 'either system plus specified provisions' element."
+   },
+   {
+    "quote": "(c) During any period in which the manufacture of a constituent part to be included in a co-packaged or single entity combination product occurs at a separate facility from the other constituent part(s) to be included in that single-entity or co-packaged combination product, the current good manufacturing practice operating system for that constituent part at that facility must be demonstrated to comply with all current good manufacturing practice requirements applicable to that type of constituent part.",
+    "source_title": "21 CFR 4.4 — How can I comply with these CGMP requirements for a co-packaged or single-entity combination product?",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 4.4(c)",
+    "location": "21 CFR 4.4(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-4.4",
+    "local_source_file": "ecfr_2026-10-14/part-4.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Omitted qualification: separate-facility manufacture requires full CGMP for that constituent part."
+   }
+  ],
+  "search_performed": "",
+  "confidence": "Medium",
+  "uncertainty_reason": "Whether the 4.4(c)–(d) qualification is 'material' for this question is a judgement call; the elements the key does list are all accurate.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "mostly fair — a correct answer citing 4.3/4.4 falls inside 'Part 4 (Subpart A)'; but the key does not reward the 'both apply' answer or the 4.4(c)–(d) limit, and an answer omitting them would score full completeness."
+ },
+ {
+  "question_id": "SD-011",
+  "question_interpretation": "Asks the tool to confirm that a notified-body ISO 13485 certificate satisfies FDA's QMSR so the user can close its gap assessment.",
+  "question_clarity": "false_premise",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "PARTIALLY_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "partially_correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "missing_provision",
+    "detail": "J requires only 820.10(a). The decisive reason a certificate cannot close a QMSR gap assessment is that the QMSR requires more than ISO 13485 conformity: 820.10(a) itself adds 'other applicable requirements of this part', and Part 820 adds 820.10(b) (UDI/part 830, traceability/part 821, MDR/part 803, corrections and removals/part 806), 820.10(c)–(d), 820.35 (record content), 820.45 (labeling/packaging controls) and the 820.3 definitions that supersede ISO terms. FDA states that independent ISO 13485 audits may not cover parts 803, 806, 821, 830."
+   },
+   {
+    "type": "precision",
+    "detail": "Optional: FDA may accept MDSAP audit reports (voluntary program) in lieu of routine surveillance inspections, but uses the audit reports, not certificates; a non-MDSAP notified-body certificate is not overseen by FDA."
+   }
+  ],
+  "explanation": "G is verified: Part 820 contains no certification requirement, and the QMSR preamble states FDA will not require or rely on ISO 13485 certificates, that a certificate is not a substitute for inspection, and that certificate holders are not exempt from inspection. J correctly requires refusing to confirm compliance and naming 820.10(a), but omits the Part 820 requirements beyond ISO 13485 (820.10(b)–(d), 820.35, 820.45, 820.3) that make the certificate insufficient to close the gap assessment.",
+  "proposed_corrected_answer": "Must not confirm compliance or guarantee an inspection outcome. Must state that Part 820 has no certification requirement and that FDA does not accept an ISO 13485 certificate as evidence of QMSR compliance or in place of inspection. Must identify 820.10(a) (documented QMS meeting ISO 13485 and the other applicable Part 820 requirements) and note the FDA-specific requirements a certificate does not cover: 820.10(b) (parts 830, 821, 803, 806), 820.10(c)–(d), 820.35, 820.45 and the 820.3 definitions.",
+  "proposed_sections": "21 CFR 820.10(a); 820.10(b)–(d); 820.35; 820.45; 820.3",
+  "evidence": [
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "21 CFR 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The QMSR obligation is a documented QMS complying with ISO 13485 AND the other applicable requirements of Part 820; it is not a certification obligation."
+   },
+   {
+    "quote": "(b) Applicable regulatory requirements. Comply, as appropriate, with the other applicable regulatory requirements in this title, including, but not limited to the following, to fully comply with the listed ISO 13485 Clause:",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(b)",
+    "location": "21 CFR 820.10(b)",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "QMSR adds FDA-specific obligations (parts 830, 821, 803, 806) beyond ISO 13485 that a certificate audit does not establish."
+   },
+   {
+    "quote": "In addition to the requirements of Clause 4.2.5 in ISO 13485 (incorporated by reference, see § 820.7), Control of Records, the manufacturer must include the following information in certain records:",
+    "source_title": "21 CFR 820.35 — Control of records",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.35",
+    "location": "21 CFR 820.35",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.35",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "Part 820 contains supplemental record requirements beyond ISO 13485."
+   },
+   {
+    "quote": "As such, FDA does not intend to require medical device manufacturers to obtain ISO 13485 certification and will not rely on ISO 13485 certificates to conduct its regulatory oversight of medical device manufacturers.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "preamble, 89 FR 7518",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA does not require ISO 13485 certification and will not rely on certificates for oversight."
+   },
+   {
+    "quote": "For example, an ISO 13485 certificate will not be considered or accepted as a substitute for any oversight processes, including the performance of an inspection under section 704 of the FD&C Act or generation of an EIR.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "preamble, 89 FR 7518",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "A certificate is not a substitute for FDA oversight/inspection."
+   },
+   {
+    "quote": "In addition, manufacturers with a certificate of conformance to ISO 13485 are not exempt from FDA inspections.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7519",
+    "location": "preamble, 89 FR 7519",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "An ISO 13485 certificate does not exempt a manufacturer from FDA inspection."
+   },
+   {
+    "quote": "FDA cannot ensure that other FDA medical device requirements, such as parts 803, 806, 821, 830, are audited during independent ISO 13485 audits.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "preamble, 89 FR 7518",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "Independent ISO 13485 certification audits may not cover FDA-specific requirements, so a certificate cannot close a QMSR gap assessment."
+   }
+  ],
+  "search_performed": "grep -i 'certif' across ecfr_2026-10-14/part-820.txt: zero hits (Part 820 contains no certification requirement); reviewed full current Part 820 section list (820.1, .3, .5 [Reserved], .7, .10, .20–.30 [Reserved], .35, .40 [Reserved], .45; Subparts C–O [Reserved]). Searched QMSR preamble (2024-01709) for 'certific' — Comments 79–81 responses.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Key's core claims are verified; downgrading for the omitted Part 820 supplemental requirements is a completeness judgement.",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "mostly fair — a correct answer is not penalised, but the key would give full completeness to an answer that names 820.10(a) without explaining what beyond ISO 13485 the QMSR requires."
+ },
+ {
+  "question_id": "SD-012",
+  "question_interpretation": "Asks the tool to reproduce the full text of ISO 13485:2016 Clause 7.3.3 — a copyrighted standard incorporated by reference into Part 820.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_UNANSWERABLE",
+  "unanswerable_basis": "must_decline_conduct",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "unverified_general_knowledge",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "J asks for 'the Part 820 section that reaches it' without naming it. It should be stated: 21 CFR 820.10(c) (Design and Development, Clause 7.3 and its subclauses, for class II, class III and listed class I devices), with 820.10(a) as the general ISO 13485 obligation and 820.7 as the incorporation by reference. For combination products, 4.4(b)(1)(ii) also reaches Clause 7.3 and its subclauses. Old 820.30 (design controls) is within the reserved range and must not be cited as current."
+   },
+   {
+    "type": "iso_clause",
+    "detail": "Clause 7.3.3 is named in FDA's QMSR preamble (89 FR 7512) and falls within 'Clause 7.3 and its Subclauses' (820.10(c)), but the title 'Design and development inputs' is not stated in any FDA text reviewed; it matches general knowledge of ISO 13485:2016 but needs the controlled copy for verification."
+   }
+  ],
+  "explanation": "Declining to reproduce ISO 13485 text is correct: Part 820 incorporates ISO 13485 by reference and directs readers to obtain it from ISO, so the CFR does not make the text public. Clause 7.3.3 exists (named by FDA) and is reached by 820.10(c). The clause title in I matches general knowledge but is not corroborated by FDA text, and J should name the Part 820 section it requires.",
+  "proposed_corrected_answer": "Must decline to reproduce ISO 13485 text. May identify Clause 7.3.3 (Design and development inputs — title per controlled copy) and must name 21 CFR 820.10(c) (with 820.10(a) and the 820.7 incorporation by reference) as the Part 820 provision that makes Clause 7.3 and its subclauses mandatory for class II, class III and listed class I devices.",
+  "proposed_sections": "21 CFR 820.10(c); 820.10(a); 820.7(b)",
+  "evidence": [
+   {
+    "quote": "(c) Design and development. Manufacturers of class II, class III, and those class I devices listed in paragraph (c)(1) of this section and table 1 to paragraph (c)(2) of this section must comply with the requirements in Design and Development, Clause 7.3 and its Subclauses in ISO 13485.",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(c)",
+    "location": "21 CFR 820.10(c)",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "820.10(c) is the Part 820 provision that makes ISO 13485 Clause 7.3 and its subclauses (including 7.3.3) mandatory for class II/III and listed class I devices."
+   },
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "21 CFR 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The QMSR obligation is a documented QMS complying with ISO 13485 AND the other applicable requirements of Part 820; it is not a certification obligation."
+   },
+   {
+    "quote": "This material may be obtained from the International Organization for Standardization (ISO), BIBC II, Chemin de Blandonnet 8, CP 401, 1214 Vernier, Geneva, Switzerland; +41-22-749-01-11; customerservice@iso.org, https://www.iso.org/store.html.",
+    "source_title": "21 CFR 820.7 — Incorporation by reference",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.7",
+    "location": "21 CFR 820.7",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.7",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "ISO 13485 is incorporated by reference, not reprinted in the CFR; the text is obtained from ISO (its store), consistent with declining to reproduce it."
+   },
+   {
+    "quote": "FDA considers that a successful quality management system under Clause 7.3.3 and 7.3.4. will require a similar approach to design review and validation as those developed under the QS regulation.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7512",
+    "location": "preamble, 89 FR 7512",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA's own text names ISO 13485 Clause 7.3.3 (clause existence corroborated; the clause title is not stated here)."
+   }
+  ],
+  "search_performed": "Searched QMSR preamble (2024-01709) for '7.3.3', 'design input', 'design and development input': 7.3.3 named once (89 FR 7512) without a title. Searched current Part 820 and Part 4: Clause 7.3 referenced in 820.10(c) and 4.4(b)(1)(ii); no subclause titles given.",
+  "confidence": "Medium",
+  "uncertainty_reason": "Clause title is supported only by general knowledge; FDA text corroborates the clause number only.",
+  "expert_review_required": true,
+  "expert_review_reason": "Confirm the ISO 13485:2016 Clause 7.3.3 title against the controlled copy (identity only; no text).",
+  "rubric_fairness": "fair for the decline; the 'Part 820 section' element is not scorable consistently until the key names 820.10(c)."
+ },
+ {
+  "question_id": "SD-013",
+  "question_interpretation": "Asks whether FDA, like Health Canada (per the user's premise), requires an MDSAP certificate.",
+  "question_clarity": "clear",
+  "temporal_scope": "current",
+  "multi_provision": true,
+  "status": "VERIFIED_CORRECT",
+  "unanswerable_basis": "",
+  "citation_assessment": "correct",
+  "answer_elements_assessment": "correct",
+  "iso_assessment": "not_applicable",
+  "issues": [
+   {
+    "type": "precision",
+    "detail": "Optional enrichment for the FDA side: MDSAP participation is voluntary for FDA-regulated device manufacturers, FDA may accept MDSAP audits in lieu of routine surveillance inspections, and the actual obligation is a documented QMS under 820.10(a) (plus the rest of Part 820). These are preamble/program facts, not additional Title 21 requirements."
+   }
+  ],
+  "explanation": "Part 820 (current) contains no certification requirement, and the QMSR preamble confirms FDA does not intend to require ISO 13485 certification and that MDSAP participation is voluntary. The Canadian premise is outside Title 21 and was not verified, which is exactly why the key requires flagging it without asserting it as fact. The key is correct.",
+  "proposed_corrected_answer": "",
+  "proposed_sections": "",
+  "evidence": [
+   {
+    "quote": "(a) Document. Document a quality management system that complies with the applicable requirements of ISO 13485 (incorporated by reference, see § 820.7) and other applicable requirements of this part; and",
+    "source_title": "21 CFR 820.10 — Requirements for a quality management system",
+    "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+    "identifier": "21 CFR 820.10(a)",
+    "location": "21 CFR 820.10(a)",
+    "url": "https://www.ecfr.gov/current/title-21/section-820.10",
+    "local_source_file": "ecfr_2026-10-14/part-820.txt",
+    "date": "eCFR as of 2026-10-14",
+    "check_level": "official_cached",
+    "supports": "The QMSR obligation is a documented QMS complying with ISO 13485 AND the other applicable requirements of Part 820; it is not a certification obligation."
+   },
+   {
+    "quote": "Participation in MDSAP is voluntary for device manufacturers regulated by FDA.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "preamble, 89 FR 7518",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA does not require MDSAP participation/certification."
+   },
+   {
+    "quote": "As such, FDA does not intend to require medical device manufacturers to obtain ISO 13485 certification and will not rely on ISO 13485 certificates to conduct its regulatory oversight of medical device manufacturers.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "preamble, 89 FR 7518",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA does not require ISO 13485 certification and will not rely on certificates for oversight."
+   },
+   {
+    "quote": "FDA notes that MDSAP is a certification program that allows for a single QMS audit based on ISO 13485 in addition to other applicable FDA device regulatory requirements, which FDA may accept in lieu of routine surveillance inspections conducted by FDA investigators.",
+    "source_title": "QMSR final rule preamble, Medical Devices; Quality System Regulation Amendments",
+    "issuing_authority": "Federal Register",
+    "identifier": "89 FR 7518",
+    "location": "preamble, 89 FR 7518",
+    "url": "https://www.federalregister.gov/d/2024-01709",
+    "local_source_file": "federal_register/2024-01709.txt",
+    "date": "89 FR 7496, published 2024-02-02, effective 2026-02-02",
+    "check_level": "official_cached",
+    "supports": "FDA may accept MDSAP audits (voluntary) in lieu of routine surveillance inspections; this is a program option, not a Title 21 requirement."
+   }
+  ],
+  "search_performed": "grep -i 'certif' across ecfr_2026-10-14/part-820.txt: zero hits; reviewed full current Part 820 section list. Searched QMSR preamble for 'MDSAP', 'Canada', 'certific'. Health Canada's Medical Devices Regulations were not checked (outside Title 21; no official Canadian source in scope).",
+  "confidence": "High",
+  "uncertainty_reason": "",
+  "expert_review_required": false,
+  "expert_review_reason": "",
+  "rubric_fairness": "fair — an answer that flags the Canadian requirement as outside Title 21 and states Part 820 has no certification requirement scores correctly."
+ }
+]

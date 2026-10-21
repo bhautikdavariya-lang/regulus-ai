@@ -1,0 +1,1665 @@
+[
+  {
+    "question_id": "E-001",
+    "question_interpretation": "Asks what Part 11 covers (scope) and which records it applies to — i.e., 11.1 and 11.2, including the records that are excluded.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_exception",
+        "detail": "J omits the express exclusions in 11.1: Part 11 does not apply to paper records transmitted by electronic means (11.1(b)), and does not apply to records required by Part 1 subparts J, L, M, O and R, parts 112, 117, 121 and 507, and to e-signatures under 101.11(d)/101.8(d) (11.1(f)-(p)), unless those records are also required under other provisions. The question asks 'to which records does it apply', so the exclusions are part of the answer."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits that Part 11 also applies to electronic records submitted to FDA under the FD&C Act and PHS Act even if not specifically identified in agency regulations (11.1(b), second sentence), and the 11.1(a) purpose (criteria for trustworthiness and equivalence) and 11.1(e) inspection availability of systems."
+      },
+      {
+        "type": "precision",
+        "detail": "'Predicate rules' is guidance terminology; the regulation says 'under any records requirements set forth in agency regulations'. Acceptable shorthand."
+      }
+    ],
+    "explanation": "11.1 and 11.2 are the right sections and J's core element (electronic records created, modified, maintained, archived, retrieved or transmitted under agency records requirements; e-signatures; use in lieu of paper per 11.2) is supported. But J leaves out the coverage of records submitted to FDA and the exclusions in 11.1(b) and 11.1(f)-(p), which directly answer 'to which records does it apply'.",
+    "proposed_corrected_answer": "Part 11 sets the criteria under which FDA considers electronic records and electronic signatures (and handwritten signatures executed to electronic records) trustworthy, reliable and generally equivalent to paper records and handwritten signatures (11.1(a)). It applies to records in electronic form that are created, modified, maintained, archived, retrieved or transmitted under any records requirement in FDA regulations (predicate rules), and to electronic records submitted to FDA under the FD&C Act or PHS Act even if not specifically identified in regulations (11.1(b)). It does not apply to paper records that are transmitted electronically (11.1(b)), and it excludes records required solely by Part 1 subparts J, L, M, O and R and by parts 112, 117, 121 and 507, plus e-signatures under 101.11(d) and 101.8(d) (11.1(f)-(p)); such records remain subject to Part 11 if also required under other provisions. Compliant e-signatures are treated as equivalent to handwritten signatures (11.1(c)); compliant electronic records may be used in lieu of paper per 11.2 unless paper is specifically required (11.1(d)); for submissions, the document type must be listed in public docket 92S-0251 (11.2(b)). Systems, controls and documentation must be available for FDA inspection (11.1(e)).",
+    "proposed_sections": "21 CFR 11.1(a)-(p); 11.2(a)-(b)",
+    "evidence": [
+      {
+        "quote": "This part applies to records in electronic form that are created, modified, maintained, archived, retrieved, or transmitted, under any records requirements set forth in agency regulations. This part also applies to electronic records submitted to the agency under requirements of the Federal Food, Drug, and Cosmetic Act and the Public Health Service Act, even if such records are not specifically identified in agency regulations. However, this part does not apply to paper records that are, or have been, transmitted by electronic means.",
+        "source_title": "21 CFR 11.1 — Scope",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.1(b)",
+        "location": "§ 11.1(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.1",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Coverage of maintained and submitted records, and the exclusion of paper records transmitted electronically"
+      },
+      {
+        "quote": "This part does not apply to records required to be established or maintained by part 117 of this chapter.",
+        "source_title": "21 CFR 11.1 — Scope",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.1(i)",
+        "location": "§ 11.1(i)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.1",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Example of the express carve-outs in 11.1(f)-(p) that J omits"
+      },
+      {
+        "quote": "(a) For records required to be maintained but not submitted to the agency, persons may use electronic records in lieu of paper records or electronic signatures in lieu of traditional signatures, in whole or in part, provided that the requirements of this part are met.",
+        "source_title": "21 CFR 11.2 — Implementation",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.2(a)",
+        "location": "§ 11.2(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.2",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Permitted use element of J"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — a complete answer citing 11.1 and 11.2 would score correctly; the key just under-specifies what completeness requires."
+  },
+  {
+    "question_id": "E-002",
+    "question_interpretation": "Asks for the Part 11 definitions of open and closed systems and the distinguishing factor.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "The pinpoints are 11.3(b)(4) (closed system) and 11.3(b)(9) (open system); G's 11.3(b) is correct but not pinpointed."
+      }
+    ],
+    "explanation": "11.3(b)(4) and (b)(9) define closed and open systems; the sole distinguishing criterion is whether system access is controlled by the persons responsible for the content of the electronic records on the system. J states exactly that.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "21 CFR 11.3(b)(4), (b)(9)",
+    "evidence": [
+      {
+        "quote": "(4) Closed system means an environment in which system access is controlled by persons who are responsible for the content of electronic records that are on the system.",
+        "source_title": "21 CFR 11.3 — Definitions",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.3(b)(4)",
+        "location": "§ 11.3(b)(4)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.3",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Closed system definition"
+      },
+      {
+        "quote": "(9) Open system means an environment in which system access is not controlled by persons who are responsible for the content of electronic records that are on the system.",
+        "source_title": "21 CFR 11.3 — Definitions",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.3(b)(9)",
+        "location": "§ 11.3(b)(9)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.3",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Open system definition"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — the distinguishing element is unambiguous."
+  },
+  {
+    "question_id": "E-003",
+    "question_interpretation": "Asks for the procedures and controls 11.10 requires of persons who use closed systems.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J lists validation, copies, protection, access limits, audit trails, operational and authority checks, training, written policies and documentation controls, but omits 11.10(h) device (e.g., terminal) checks, one of the eleven enumerated controls."
+      },
+      {
+        "type": "precision",
+        "detail": "J omits the general performance standard in the 11.10 introductory text (authenticity, integrity, confidentiality when appropriate, and non-repudiation of signed records)."
+      }
+    ],
+    "explanation": "11.10 is the governing section and every element J lists is supported. J leaves out the 11.10(h) device check requirement and the overarching purpose in the introductory text; an answer key for 'what controls are required' should enumerate all of 11.10(a)-(k).",
+    "proposed_corrected_answer": "Persons using closed systems must employ procedures and controls designed to ensure the authenticity, integrity and (when appropriate) confidentiality of electronic records and that the signer cannot readily repudiate the signed record, including: (a) system validation; (b) ability to generate accurate and complete copies in human-readable and electronic form; (c) record protection for accurate and ready retrieval throughout the retention period; (d) limiting system access to authorized individuals; (e) secure, computer-generated, time-stamped audit trails; (f) operational system checks; (g) authority checks; (h) device (terminal) checks; (i) education, training and experience of persons who develop, maintain or use the systems; (j) written policies holding individuals accountable for actions under their e-signatures; (k) controls over systems documentation (distribution/access/use, and revision and change control).",
+    "proposed_sections": "21 CFR 11.10(a)-(k)",
+    "evidence": [
+      {
+        "quote": "(h) Use of device (e.g., terminal) checks to determine, as appropriate, the validity of the source of data input or operational instruction.",
+        "source_title": "21 CFR 11.10 — Controls for closed systems",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.10(h)",
+        "location": "§ 11.10(h)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.10",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Device-check control omitted from J"
+      },
+      {
+        "quote": "Persons who use closed systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, when appropriate, the confidentiality of electronic records, and to ensure that the signer cannot readily repudiate the signed record as not genuine.",
+        "source_title": "21 CFR 11.10 — Controls for closed systems",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.10",
+        "location": "§ 11.10 introductory text",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.10",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "General standard for closed-system controls"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — a correct answer citing 11.10 scores correctly; the key would not penalize omitting device checks, which is a completeness gap in the key."
+  },
+  {
+    "question_id": "E-004",
+    "question_interpretation": "Asks what Part 11 requires of audit trails.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "J could state that audit trails record the date and time of operator entries and actions that create, modify or delete electronic records. 11.10(k)(2) (change-control audit trail for systems documentation) is a related but separate requirement."
+      }
+    ],
+    "explanation": "11.10(e) requires secure, computer-generated, time-stamped audit trails that independently record operator entries and actions that create, modify or delete records; changes must not obscure prior information; audit trail documentation must be retained at least as long as the subject records and be available for FDA review and copying. J matches each element.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "(e) Use of secure, computer-generated, time-stamped audit trails to independently record the date and time of operator entries and actions that create, modify, or delete electronic records. Record changes shall not obscure previously recorded information. Such audit trail documentation shall be retained for a period at least as long as that required for the subject electronic records and shall be available for agency review and copying.",
+        "source_title": "21 CFR 11.10 — Controls for closed systems",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.10(e)",
+        "location": "§ 11.10(e)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.10",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Every element of J"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — G and J match the governing paragraph."
+  },
+  {
+    "question_id": "E-005",
+    "question_interpretation": "Asks what controls 11.30 requires for open systems beyond closed-system controls.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "11.30 incorporates the 11.10 controls 'as appropriate', not unconditionally, and the controls must protect records 'from the point of their creation to the point of their receipt'; J's 'All closed-system controls' slightly overstates."
+      }
+    ],
+    "explanation": "11.30 requires open-system users to employ controls to ensure authenticity, integrity and, as appropriate, confidentiality from creation to receipt, including the 11.10 controls as appropriate plus additional measures such as document encryption and appropriate digital signature standards. J is substantively correct.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "Such procedures and controls shall include those identified in § 11.10, as appropriate, and additional measures such as document encryption and use of appropriate digital signature standards to ensure, as necessary under the circumstances, record authenticity, integrity, and confidentiality.",
+        "source_title": "21 CFR 11.30 — Controls for open systems",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.30",
+        "location": "§ 11.30",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.30",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Closed-system controls (as appropriate) plus encryption and digital signature standards"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "E-006",
+    "question_interpretation": "Asks what information a signed electronic record must show about the signature (signature manifestation).",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [],
+    "explanation": "11.50(a) requires the printed name of the signer, the date and time of signing, and the meaning of the signature; 11.50(b) subjects these items to the same controls as electronic records and requires them in any human-readable form (display or printout). J matches.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "(3) The meaning (such as review, approval, responsibility, or authorship) associated with the signature.",
+        "source_title": "21 CFR 11.50 — Signature manifestations",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.50(a)(3)",
+        "location": "§ 11.50(a)(3)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.50",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Meaning element"
+      },
+      {
+        "quote": "(b) The items identified in paragraphs (a)(1), (a)(2), and (a)(3) of this section shall be subject to the same controls as for electronic records and shall be included as part of any human readable form of the electronic record (such as electronic display or printout).",
+        "source_title": "21 CFR 11.50 — Signature manifestations",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.50(b)",
+        "location": "§ 11.50(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.50",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Same controls; included in display/printout"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "E-007",
+    "question_interpretation": "Asks what 11.70 requires for linking signatures to records.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "11.70 covers both electronic signatures and handwritten signatures executed to electronic records, and the standard is 'by ordinary means'; J omits both qualifiers."
+      }
+    ],
+    "explanation": "11.70 requires electronic and handwritten signatures executed to electronic records to be linked to their records so they cannot be excised, copied or otherwise transferred to falsify an electronic record by ordinary means. J is correct.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "Electronic signatures and handwritten signatures executed to electronic records shall be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary means.",
+        "source_title": "21 CFR 11.70 — Signature/record linking",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.70",
+        "location": "§ 11.70",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.70",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Every element of J"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "E-008",
+    "question_interpretation": "Asks for the 11.100 requirements: uniqueness, identity verification and certification to FDA.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "J could add that the certification must be signed with a traditional handwritten signature and submitted in electronic or paper form (11.100(c)(1)), and that additional certification/testimony must be given on FDA request (11.100(c)(2)). The certification states that signatures used on or after August 20, 1997 are 'intended to be' the legally binding equivalent."
+      }
+    ],
+    "explanation": "11.100(a)-(c) require that each e-signature be unique to one individual and not reused or reassigned, that the organization verify identity before establishing or certifying it, and that users certify to FDA that their e-signatures are intended to be the legally binding equivalent of handwritten signatures. J covers all three.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "(a) Each electronic signature shall be unique to one individual and shall not be reused by, or reassigned to, anyone else.",
+        "source_title": "21 CFR 11.100 — General requirements",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.100(a)",
+        "location": "§ 11.100(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.100",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Uniqueness"
+      },
+      {
+        "quote": "(c) Persons using electronic signatures shall, prior to or at the time of such use, certify to the agency that the electronic signatures in their system, used on or after August 20, 1997, are intended to be the legally binding equivalent of traditional handwritten signatures.",
+        "source_title": "21 CFR 11.100 — General requirements",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.100(c)",
+        "location": "§ 11.100(c)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.100",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Certification to FDA"
+      },
+      {
+        "quote": "(1) The certification shall be signed with a traditional handwritten signature and submitted in electronic or paper form.",
+        "source_title": "21 CFR 11.100 — General requirements",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.100(c)(1)",
+        "location": "§ 11.100(c)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.100",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Form of the certification (detail J omits)"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "E-009",
+    "question_interpretation": "Asks what controls apply to electronic signatures that use an identification code plus password.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "11.200(a) also governs these signatures. It applies to all non-biometric e-signatures, i.e., ID-code/password signatures: at least two distinct identification components; all components for the first signing in a continuous session and at least one owner-only component for later signings; all components for each signing outside a continuous session; use only by the genuine owner; and administration such that misuse requires collaboration of two or more individuals. G and J cite only 11.300."
+      },
+      {
+        "type": "precision",
+        "detail": "11.300(b) requires periodic checking, recall or revision of ID code/password issuances; 'password aging' is given only as an example."
+      }
+    ],
+    "explanation": "J's five elements map correctly onto 11.300(a)-(e). However, the question asks what controls apply to ID-code/password signatures, and 11.200(a) sets the component and execution controls for exactly these non-biometric signatures. A complete key should cite 11.200(a) alongside 11.300.",
+    "proposed_corrected_answer": "Under 11.300, persons using ID-code/password e-signatures must: (a) keep each combined ID code and password unique; (b) periodically check, recall or revise issuances (e.g., password aging); (c) follow loss-management procedures to deauthorize lost, stolen or compromised tokens/cards/devices and issue replacements under rigorous controls; (d) use transaction safeguards to prevent unauthorized use and to detect and report attempts urgently to the system security unit and, as appropriate, management; (e) test token/card devices initially and periodically. Under 11.200(a), such non-biometric signatures must use at least two distinct components (e.g., ID code and password), with all components at the first signing of a continuous session and at least one owner-only component thereafter (all components for each signing outside a continuous session); they must be used only by their genuine owners and administered so that misuse requires collaboration of two or more individuals.",
+    "proposed_sections": "21 CFR 11.300(a)-(e); 11.200(a)",
+    "evidence": [
+      {
+        "quote": "(b) Ensuring that identification code and password issuances are periodically checked, recalled, or revised (e.g., to cover such events as password aging).",
+        "source_title": "21 CFR 11.300 — Controls for identification codes/passwords",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.300(b)",
+        "location": "§ 11.300(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.300",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Periodic check/recall/revision element"
+      },
+      {
+        "quote": "(1) Employ at least two distinct identification components such as an identification code and password.",
+        "source_title": "21 CFR 11.200 — Electronic signature components and controls",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.200(a)(1)",
+        "location": "§ 11.200(a)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.200",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Additional controls on non-biometric (ID/password) signatures missing from G and J"
+      },
+      {
+        "quote": "(3) Be administered and executed to ensure that attempted use of an individual's electronic signature by anyone other than its genuine owner requires collaboration of two or more individuals.",
+        "source_title": "21 CFR 11.200 — Electronic signature components and controls",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.200(a)(3)",
+        "location": "§ 11.200(a)(3)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.200",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Collaboration requirement missing from J"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "Whether 11.200(a) counts as a 'governing section' for this question is a judgment call: the question's wording mirrors the 11.300 heading, but 11.200(a) applies directly to ID/password signatures.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair to a complete answer only if citation-exact penalizes citing 11.200(a), which G does not list; otherwise fair."
+  },
+  {
+    "question_id": "E-010",
+    "question_interpretation": "A regulated firm uses a cloud-hosted LIMS. Asks which Part 11 provisions apply to the vendor-hosted controls and how FDA's 2003 Scope and Application guidance affects enforcement discretion.",
+    "question_clarity": "ambiguous",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "wrong_number",
+        "detail": "J lists enforcement discretion on 'validation, audit trails, legacy systems, and record copies' but omits record retention. The guidance names validation, audit trail, record retention and record copying, plus all Part 11 requirements for qualifying legacy systems."
+      },
+      {
+        "type": "missing_question_part",
+        "detail": "J does not answer the 'vendor's controls' part. Part 11 obligations fall on the persons who use the system to create, modify, maintain or transmit records (11.10/11.30 introductory text), i.e., the regulated firm, not the vendor. Whether 11.10 (closed) or 11.30 (open) applies depends on whether system access is controlled by the persons responsible for the record content (11.3(b)(4), (b)(9)). The 2003 guidance does not address vendors or hosting."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits that FDA still enforces the other Part 11 provisions: 11.10 access limits, operational/authority/device checks, training, accountability policies and documentation controls; 11.30; and the signature requirements in 11.50, 11.70, 11.100, 11.200 and 11.300. It also omits the guidance's narrowed definition of a Part 11 record."
+      },
+      {
+        "type": "mandatory_vs_guidance",
+        "detail": "The guidance is nonbinding ('Contains Nonbinding Recommendations'). Enforcement discretion does not change the regulation's text, and predicate-rule requirements remain fully enforced. J says the latter but should label the guidance as nonbinding."
+      },
+      {
+        "type": "ambiguity",
+        "detail": "The question presupposes that Part 11 provisions apply to 'the vendor's controls'; the correct answer reframes this as the firm's responsibility for controls it relies on the vendor to implement."
+      }
+    ],
+    "explanation": "11.10 and 11.30 are the right regulatory anchors, and 11.3(b)(4)/(9) decides which one applies. J's description of the 2003 guidance (narrow scope, enforcement discretion, predicate rules still enforced) is broadly right but drops record retention from the discretion list. It does not say that FDA continues to enforce the remaining 11.10 controls and the signature provisions. It also never answers who bears the Part 11 obligation for vendor-operated controls. The guidance text could only be read via WebFetch, so confidence is Medium.",
+    "proposed_corrected_answer": "Part 11 binds the regulated firm (the persons who use the system to create, modify, maintain or transmit the records), not the cloud vendor. The firm remains responsible for ensuring that controls implemented by the vendor meet Part 11 and the predicate rules. Whether 11.10 (closed system) or 11.30 (open system: 11.10 controls as appropriate plus measures such as encryption and digital signature standards) applies depends on whether system access is controlled by the persons responsible for the record content (11.3(b)(4), (b)(9)). If the LIMS uses electronic signatures, 11.50, 11.70, 11.100, 11.200 and 11.300 also apply. FDA's nonbinding 2003 guidance 'Part 11, Electronic Records; Electronic Signatures — Scope and Application' interprets Part 11 scope narrowly. Part 11 records are predicate-rule records maintained electronically in place of paper, or maintained electronically in addition to paper and relied on to perform regulated activities. FDA states it will exercise enforcement discretion for the validation, audit trail, record retention and record copying requirements (applying a justified, documented, risk-based approach) and for all Part 11 requirements for qualifying legacy systems (operational before Aug 20, 1997). FDA continues to enforce all other Part 11 provisions (e.g., 11.10(d), (f)-(k); 11.30; signature requirements) and all predicate-rule requirements, including record and recordkeeping requirements.",
+    "proposed_sections": "21 CFR 11.3(b)(4), (b)(9); 11.10; 11.30; 11.50; 11.70; 11.100; 11.200; 11.300; FDA guidance 'Part 11, Electronic Records; Electronic Signatures — Scope and Application' (Aug./Sept. 2003, nonbinding)",
+    "evidence": [
+      {
+        "quote": "Persons who use closed systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, when appropriate, the confidentiality of electronic records, and to ensure that the signer cannot readily repudiate the signed record as not genuine.",
+        "source_title": "21 CFR 11.10 — Controls for closed systems",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.10",
+        "location": "§ 11.10 introductory text",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.10",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Obligation runs to the persons who use the system (the regulated firm)"
+      },
+      {
+        "quote": "(4) Closed system means an environment in which system access is controlled by persons who are responsible for the content of electronic records that are on the system.",
+        "source_title": "21 CFR 11.3 — Definitions",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 11.3(b)(4)",
+        "location": "§ 11.3(b)(4)",
+        "url": "https://www.ecfr.gov/current/title-21/section-11.3",
+        "local_source_file": "ecfr_2026-10-14/part-11.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Open vs closed classification of a hosted system turns on who controls access"
+      },
+      {
+        "quote": "we do not intend to take enforcement action to enforce compliance with the validation, audit trail, record retention, and record copying requirements of part 11 as explained in this guidance.",
+        "source_title": "Part 11, Electronic Records; Electronic Signatures - Scope and Application (FDA guidance)",
+        "issuing_authority": "FDA",
+        "identifier": "FDA Guidance for Industry, Part 11, Electronic Records; Electronic Signatures — Scope and Application (Sept. 2003)",
+        "location": "guidance text",
+        "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application",
+        "local_source_file": "",
+        "date": "Guidance issued September 2003 (page content current as of 2018-08-24); read 2026-10-19",
+        "check_level": "webfetch",
+        "supports": "The four areas of enforcement discretion include record retention, which J omits (WebFetch rendering, not machine-verifiable)"
+      },
+      {
+        "quote": "We intend to enforce all other provisions of part 11 including, but not limited to, certain controls for closed systems in § 11.10.",
+        "source_title": "Part 11, Electronic Records; Electronic Signatures - Scope and Application (FDA guidance)",
+        "issuing_authority": "FDA",
+        "identifier": "FDA Guidance for Industry, Part 11, Electronic Records; Electronic Signatures — Scope and Application (Sept. 2003)",
+        "location": "guidance text",
+        "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application",
+        "local_source_file": "",
+        "date": "Guidance issued September 2003 (page content current as of 2018-08-24); read 2026-10-19",
+        "check_level": "webfetch",
+        "supports": "FDA continues to enforce the remaining 11.10 controls, 11.30 and the signature provisions (WebFetch rendering)"
+      },
+      {
+        "quote": "We will enforce all predicate rule requirements, including predicate rule record and recordkeeping requirements.",
+        "source_title": "Part 11, Electronic Records; Electronic Signatures - Scope and Application (FDA guidance)",
+        "issuing_authority": "FDA",
+        "identifier": "FDA Guidance for Industry, Part 11, Electronic Records; Electronic Signatures — Scope and Application (Sept. 2003)",
+        "location": "guidance text",
+        "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application",
+        "local_source_file": "",
+        "date": "Guidance issued September 2003 (page content current as of 2018-08-24); read 2026-10-19",
+        "check_level": "webfetch",
+        "supports": "Predicate rules remain in effect (J element)"
+      },
+      {
+        "quote": "Contains Nonbinding Recommendations",
+        "source_title": "Part 11, Electronic Records; Electronic Signatures - Scope and Application (FDA guidance)",
+        "issuing_authority": "FDA",
+        "identifier": "FDA Guidance for Industry, Part 11, Electronic Records; Electronic Signatures — Scope and Application (Sept. 2003)",
+        "location": "guidance text",
+        "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application",
+        "local_source_file": "",
+        "date": "Guidance issued September 2003 (page content current as of 2018-08-24); read 2026-10-19",
+        "check_level": "webfetch",
+        "supports": "Guidance is nonbinding"
+      }
+    ],
+    "search_performed": "WebFetch of the official FDA guidance page (two passes) to read the enforcement-discretion list, the 'enforce all other provisions' list, legacy-system criteria and Part 11 record definition; the page does not mention vendors, hosting or third parties.",
+    "confidence": "Medium",
+    "uncertainty_reason": "The guidance text was read only through WebFetch, which is not machine-verifiable. How Part 11 allocates responsibility for vendor-hosted controls is interpretive; the regulation places the obligation on the user and the 2003 guidance is silent on vendors.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "partly unfair — an answer that correctly names record retention and says the vendor is not directly bound would earn nothing extra, and the key cannot judge the vendor part of the question."
+  },
+  {
+    "question_id": "V-001",
+    "question_interpretation": "Asks who is subject to FSVP and how 'importer' is defined.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "The U.S. agent or representative is the importer only 'as confirmed in a signed statement of consent to serve as the importer'. The foreign owner/consignee must designate that agent before import (1.509(b)). J omits both."
+      },
+      {
+        "type": "precision",
+        "detail": "J's 'applicability and exemptions' does not name the exemptions in 1.501(b)-(h): juice/seafood under parts 120/123, research/evaluation, personal consumption, certain alcoholic beverages, transshipment/import for export, U.S. food returned, USDA meat/poultry/egg products. It also omits the 1.502(b) LACF and 1.502(c) receiving-facility provisions."
+      }
+    ],
+    "explanation": "1.500 defines importer as the U.S. owner or consignee at the time of entry or, if none, the U.S. agent or representative of the foreign owner or consignee; 1.501(a) applies the subpart to all imported food and its importers, subject to listed exemptions; 1.502 requires an FSVP for each food. J is correct but thin on the consent condition and the specific exemptions.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "Importer means the U.S. owner or consignee of an article of food that is being offered for import into the United States. If there is no U.S. owner or consignee of an article of food at the time of U.S. entry, the importer is the U.S. agent or representative of the foreign owner or consignee at the time of entry, as confirmed in a signed statement of consent to serve as the importer under this subpart.",
+        "source_title": "21 CFR 1.500 — What definitions apply to this subpart? (FSVP)",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.500",
+        "location": "§ 1.500, definition of Importer",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.500",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Importer definition"
+      },
+      {
+        "quote": "U.S. owner or consignee means the person in the United States who, at the time of U.S. entry, either owns the food, has purchased the food, or has agreed in writing to purchase the food.",
+        "source_title": "21 CFR 1.500 — What definitions apply to this subpart? (FSVP)",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.500",
+        "location": "§ 1.500, definition of U.S. owner or consignee",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.500",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "U.S. owner or consignee at time of entry"
+      },
+      {
+        "quote": "(a) General. Except as specified otherwise in this section, the requirements in this subpart apply to all food imported or offered for import into the United States and to the importers of such food.",
+        "source_title": "21 CFR 1.501 — To what foods do the requirements in this subpart apply?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.501(a)",
+        "location": "§ 1.501(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.501",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Applicability"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "J's 'applicability and exemptions' element is too vague to check; the omitted consent-statement condition is a precision gap rather than an error.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair — G covers the governing sections; a grader needs the 1.501(b)-(h) list to apply 'exemptions'."
+  },
+  {
+    "question_id": "V-002",
+    "question_interpretation": "Asks what the FSVP hazard analysis must cover.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J omits the requirement that the hazard analysis be written regardless of outcome (1.504(a)), the hazard types and sources that must be considered (biological, chemical incl. radiological, physical; natural, unintentional, or intentionally introduced for economic gain — 1.504(b)), and the probability/severity and factor-based evaluation (1.504(c))."
+      },
+      {
+        "type": "missing_exception",
+        "detail": "J omits 1.504(e) (biological hazards in covered produce need not be analyzed because they require a control) and 1.504(f) (no hazards requiring a control → no 1.505 evaluation or 1.506 verification, except for covered produce). It also omits that reliance on another entity requires documenting that a qualified individual did the analysis (1.504(d))."
+      }
+    ],
+    "explanation": "1.504 is the correct section and J's three elements are supported. But the written-analysis requirement is a core obligation, and the produce and no-hazard consequences are material. J's skeletal list would credit an answer that misses them.",
+    "proposed_corrected_answer": "The importer must conduct a written hazard analysis (written regardless of outcome) for each type of food imported, identifying and evaluating known or reasonably foreseeable hazards to determine whether any require a control. It must cover biological, chemical (incl. radiological, pesticide/drug residues, allergens, etc.) and physical hazards, whether naturally occurring, unintentionally introduced, or intentionally introduced for economic gain. It must evaluate the probability and severity of each hazard, considering the food's formulation, the supplier's establishment, raw materials, transportation, processing, packaging and labeling, storage and distribution, intended use, sanitation and other factors, and must evaluate environmental pathogens for exposed RTE foods. The importer may instead review and assess another entity's hazard analysis, documenting that review and that a qualified individual performed it. For covered produce, biological hazards are deemed to require a control. If no hazards require a control, 1.505 evaluation and 1.506 verification are not required (except for covered produce).",
+    "proposed_sections": "21 CFR 1.504(a)-(f)",
+    "evidence": [
+      {
+        "quote": "you must conduct a hazard analysis to identify and evaluate, based on experience, illness data, scientific reports, and other information, known or reasonably foreseeable hazards for each type of food you import to determine whether there are any hazards requiring a control. Your hazard analysis must be written regardless of its outcome.",
+        "source_title": "21 CFR 1.504 — What hazard analysis must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.504(a)",
+        "location": "§ 1.504(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.504",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Identification/evaluation and the written requirement J omits"
+      },
+      {
+        "quote": "You must document your review and assessment of that hazard analysis, including documenting that the hazard analysis was conducted by a qualified individual.",
+        "source_title": "21 CFR 1.504 — What hazard analysis must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.504(d)",
+        "location": "§ 1.504(d)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.504",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Reliance on another entity's analysis"
+      },
+      {
+        "quote": "If you evaluate the known and reasonably foreseeable hazards in a food and determine that there are no hazards requiring a control, you are not required to conduct an evaluation for foreign supplier approval and verification under § 1.505 and you are not required to conduct foreign supplier verification activities under § 1.506.",
+        "source_title": "21 CFR 1.504 — What hazard analysis must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.504(f)",
+        "location": "§ 1.504(f)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.504",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Consequence of a no-hazard outcome (omitted)"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "Whether these omissions are material enough for PARTIALLY_CORRECT rather than VERIFIED_CORRECT is a judgment; nothing in J is wrong.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair for citation; lenient for completeness."
+  },
+  {
+    "question_id": "V-003",
+    "question_interpretation": "Asks what the importer must consider when evaluating a foreign supplier for approval and verification, including reevaluation.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "J could add the supplier's food safety history (testing results, audit results, responsiveness), other factors such as storage and transportation, documentation of the evaluation and of approval (1.505(a)(2), (b)), and reliance on another entity's evaluation (1.505(d)). 'Every three years' means reevaluation at least at the end of any 3-year period without one."
+      }
+    ],
+    "explanation": "1.505(a)(1) requires consideration of the hazard analysis, the entity controlling hazards, and supplier performance (procedures, FDA compliance incl. warning letters and import alerts, food safety history); 1.505(c) requires prompt reevaluation on new information and at least every 3 years. J's elements are all supported.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "Applicable FDA food safety regulations and information relevant to the foreign supplier's compliance with those regulations, including whether the foreign supplier is the subject of an FDA warning letter, import alert, or other FDA compliance action related to food safety",
+        "source_title": "21 CFR 1.505 — What evaluation for foreign supplier approval and verification must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.505(a)(1)(iii)(B)",
+        "location": "§ 1.505(a)(1)(iii)(B)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.505",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Compliance history element"
+      },
+      {
+        "quote": "(2) If at the end of any 3-year period you have not reevaluated the concerns associated with the factors in paragraph (a)(1) of this section in accordance with paragraph (c)(1) of this section, you must reevaluate those concerns and take other appropriate actions, if necessary, in accordance with paragraph (c)(1).",
+        "source_title": "21 CFR 1.505 — What evaluation for foreign supplier approval and verification must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.505(c)(2)",
+        "location": "§ 1.505(c)(2)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.505",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "3-year reevaluation"
+      },
+      {
+        "quote": "you must promptly reevaluate the concerns associated with the factors in paragraph (a)(1) of this section when you become aware of new information about these factors, and the reevaluation must be documented.",
+        "source_title": "21 CFR 1.505 — What evaluation for foreign supplier approval and verification must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.505(c)(1)",
+        "location": "§ 1.505(c)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.505",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Reevaluation upon new information"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "V-004",
+    "question_interpretation": "Asks which supplier verification activities FSVP requires and how the importer determines which activity (and frequency) is appropriate.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_question_part",
+        "detail": "The question asks how the activity is determined. J does not say that, before importing, the importer must determine and document the activity or activities and their frequency based on the 1.505 evaluation of the food and supplier (1.506(d)(1)(i)), or that it may rely on another entity's determination after review (1.506(d)(3))."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits 'other appropriate supplier verification activities' (1.506(d)(1)(ii)(D), (e)(1)(iv)), written procedures to import only from approved suppliers (1.506(a)), and the bar on relying on the supplier itself except for sampling and testing (1.506(e)(2)(ii)). It also omits prompt review of results (1.506(e)(3)) and independence (1.506(e)(4))."
+      },
+      {
+        "type": "precision",
+        "detail": "The default onsite-audit rule applies when a SAHCODHA hazard 'will be controlled by the foreign supplier'. It requires an audit before initially importing and at least annually thereafter, unless an adequate written determination supports other activities or less frequent auditing."
+      }
+    ],
+    "explanation": "1.506 is correct and J's elements (written procedures, SAHCODHA annual onsite audit unless a written determination supports an alternative, sampling/testing, records review) are supported. J does not explain the determination process the question asks about and omits the fourth category of activity and the restriction on supplier self-verification.",
+    "proposed_corrected_answer": "The importer must establish and follow written procedures to import only from approved foreign suppliers (or temporarily from unapproved suppliers whose food is verified first), and adequate written verification procedures. Verification must provide assurance that hazards requiring a control are significantly minimized or prevented. Before importing, the importer must determine and document which activities and at what frequency are needed, based on the 1.505 evaluation and addressing the entity that controls the hazard. Options are onsite audits by a qualified auditor, sampling and testing, review of the supplier's food safety records, or other appropriate activities. For a hazard controlled by the foreign supplier with a reasonable probability of serious adverse health consequences or death (SAHCODHA), an onsite audit is required before first import and at least annually, unless an adequate written determination supports other activities or less frequent audits. The importer may rely on another entity's determination or activities after review and assessment, but not on the foreign supplier itself except for sampling and testing. Results must be promptly reviewed and documented, with corrective action under 1.508(a) as needed, and without financial conflicts of interest.",
+    "proposed_sections": "21 CFR 1.506(a)-(e)",
+    "evidence": [
+      {
+        "quote": "The determination of appropriate supplier verification activities must be based on the evaluation of the food and foreign supplier conducted under § 1.505.",
+        "source_title": "21 CFR 1.506 — What foreign supplier verification and related activities must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.506(d)(1)(i)",
+        "location": "§ 1.506(d)(1)(i)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.506",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "How the activity is determined (omitted from J)"
+      },
+      {
+        "quote": "When a hazard in a food will be controlled by the foreign supplier and is one for which there is a reasonable probability that exposure to the hazard will result in serious adverse health consequences or death to humans or animals, you must conduct or obtain documentation of an onsite audit of the foreign supplier before initially importing the food and at least annually thereafter",
+        "source_title": "21 CFR 1.506 — What foreign supplier verification and related activities must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.506(d)(2)",
+        "location": "§ 1.506(d)(2)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.506",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "SAHCODHA annual onsite audit element"
+      },
+      {
+        "quote": "(ii) You may not rely on the foreign supplier itself or employees of the foreign supplier to perform supplier verification activities, except with respect to sampling and testing of food in accordance with paragraph (e)(1)(ii) of this section.",
+        "source_title": "21 CFR 1.506 — What foreign supplier verification and related activities must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.506(e)(2)(ii)",
+        "location": "§ 1.506(e)(2)(ii)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.506",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Restriction on supplier self-verification (omitted)"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair for citation; incomplete for the 'how determined' part."
+  },
+  {
+    "question_id": "V-005",
+    "question_interpretation": "Scenario: the importer learns a foreign supplier failed to control a hazard. Asks what FSVP requires.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J omits the documentation duty: corrective actions under 1.508(a), and investigations, corrective actions and FSVP changes under 1.508(b), must be documented. It also omits the example of discontinuing use of the supplier until the cause is addressed."
+      },
+      {
+        "type": "missing_exception",
+        "detail": "The duty to investigate whether the FSVP is adequate, and to modify it, arises under 1.508(b) when the noncompliance is learned by means other than the 1.506/1.511(c) verification activities or a 1.505(c)/(d) reevaluation. J presents it unconditionally."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "The new information also triggers prompt documented reevaluation of the supplier and food under 1.505(c)(1), including whether to keep importing and whether to change verification activities. 1.508(c) preserves other obligations such as recalls. G cites only 1.508."
+      }
+    ],
+    "explanation": "1.508 is the core section and J's elements are supported. But J omits the mandatory documentation and the recall caveat, and does not state when the investigation duty applies. The 1.505(c) reevaluation obligation, triggered by the same new information, is also missing.",
+    "proposed_corrected_answer": "Under 1.508(a), the importer must promptly take appropriate corrective action, which could include discontinuing use of the supplier until the cause is adequately addressed, and must document it. If the noncompliance was learned other than through verification activities or a reevaluation, 1.508(b) requires a prompt investigation into whether the FSVP is adequate, modification as appropriate, and documentation of investigations, corrective actions and FSVP changes. Under 1.505(c)(1), the importer must promptly reevaluate the supplier/food risk on the new information and decide, and document, whether to continue importing and whether to change verification activities. If verification results show inadequate assurance, 1.506(e)(3) also requires action under 1.508(a). Other obligations, such as recalls, still apply (1.508(c)).",
+    "proposed_sections": "21 CFR 1.508(a)-(c); 1.505(c)(1); 1.506(e)(3)",
+    "evidence": [
+      {
+        "quote": "The appropriate corrective actions will depend on the circumstances but could include discontinuing use of the foreign supplier until the cause or causes of noncompliance, adulteration, or misbranding have been adequately addressed. You must document any corrective actions you take in accordance with this paragraph.",
+        "source_title": "21 CFR 1.508 — What corrective actions must I take under my FSVP?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.508(a)",
+        "location": "§ 1.508(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.508",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Corrective action and documentation"
+      },
+      {
+        "quote": "you must promptly investigate to determine whether your FSVP is adequate and, when appropriate, modify your FSVP. You must document any investigations, corrective actions, and changes to your FSVP that you undertake in accordance with this paragraph.",
+        "source_title": "21 CFR 1.508 — What corrective actions must I take under my FSVP?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.508(b)",
+        "location": "§ 1.508(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.508",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Investigation/modification and documentation"
+      },
+      {
+        "quote": "If you determine that the concerns associated with importing a food from a foreign supplier have changed, you must promptly determine (and document) whether it is appropriate to continue to import the food from the foreign supplier and whether the supplier verification activities conducted under § 1.506 or § 1.511(c) need to be changed.",
+        "source_title": "21 CFR 1.505 — What evaluation for foreign supplier approval and verification must I conduct?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.505(c)(1)",
+        "location": "§ 1.505(c)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.505",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Reevaluation obligation triggered by new information"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "Medium",
+    "uncertainty_reason": "Whether 1.505(c) must be cited for this scenario is partly a judgment; the documentation omission is clear.",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "mostly fair — an answer adding 1.505(c) could be penalized by citation-exact scoring if G is applied strictly."
+  },
+  {
+    "question_id": "V-006",
+    "question_interpretation": "Asks what importer identification must be provided at entry.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "The regulation says 'each line entry', and the information must be provided electronically when filing entry with CBP. 1.509(b) also requires a foreign owner/consignee with no U.S. owner/consignee to designate a U.S. agent as importer before import."
+      }
+    ],
+    "explanation": "1.509(a) requires the importer's name, email address and an FDA-acceptable unique facility identifier for each line entry, provided electronically when filing entry with CBP. J matches.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "(a) You must ensure that, for each line entry of food product offered for importation into the United States, your name, electronic mail address, and unique facility identifier recognized as acceptable by FDA, identifying you as the importer of the food, are provided electronically when filing entry with U.S. Customs and Border Protection.",
+        "source_title": "21 CFR 1.509 — How must the importer be identified at entry?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.509(a)",
+        "location": "§ 1.509(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.509",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Every element of J"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "V-007",
+    "question_interpretation": "Asks for the FSVP recordkeeping requirements, including how long records must be kept.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": false,
+    "status": "VERIFIED_INCORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "incorrect",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "unsupported_element",
+        "detail": "J's 'English language' element is wrong. 1.510 does not require FSVP records to be in English; FDA can only require an English translation within a reasonable time on request (1.510(b)(1))."
+      },
+      {
+        "type": "precision",
+        "detail": "'Availability for FDA inspection within 24 hours' conflates two rules. Records must be available promptly on request (1.510(b)(1)), and offsite storage is allowed only if records can be retrieved and provided onsite within 24 hours (1.510(b)(2)). FDA may also require records to be sent electronically on written request (1.510(b)(3))."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "Retention is 2 years after records are created or obtained, but records of processes and procedures (including evaluations and determinations) must be kept 2 years after their use is discontinued (1.510(c)(2)). J also omits legibility/storage (1.510(a)(3)), the Part 11 exemption (1.510(d)), use of existing records (1.510(e)) and public disclosure under part 20 (1.510(f))."
+      }
+    ],
+    "explanation": "1.510 is the correct section, and 'signed and dated', '2 years' and 'electronic records permitted' are supported. But J requires English-language records, which the regulation does not: it requires only an English translation on FDA request. J also misstates the 24-hour rule and omits the discontinued-use retention period.",
+    "proposed_corrected_answer": "FSVP records may be original records, true copies or electronic records. FSVP records must be signed and dated on initial completion and on any modification, and must be legible and stored to prevent deterioration or loss. All records must be made available promptly to an authorized FDA representative on request for inspection and copying. Records may be in any language, but an English translation must be provided within a reasonable time on FDA request. Offsite storage (including records held by other entities) is permitted if records can be retrieved and provided onsite within 24 hours; electronic records accessible onsite count as onsite. On written FDA request, records must be sent electronically or by other prompt means. Retention is at least 2 years after records are created or obtained. Records of processes and procedures, including evaluations and determinations, must be kept for at least 2 years after their use is discontinued. FSVP-only electronic records are exempt from Part 11. Existing records may be used or supplemented, and records obtained by FDA are subject to part 20.",
+    "proposed_sections": "21 CFR 1.510(a)-(f)",
+    "evidence": [
+      {
+        "quote": "Upon FDA request, you must provide within a reasonable time an English translation of records maintained in a language other than English.",
+        "source_title": "21 CFR 1.510 — How must I maintain records of my FSVP?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.510(b)(1)",
+        "location": "§ 1.510(b)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.510",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Records may be in another language; only a translation on request is required — contradicts 'English language'"
+      },
+      {
+        "quote": "(2) Offsite storage of records, including records maintained by other entities in accordance with § 1.504, § 1.505, or § 1.506, is permitted if such records can be retrieved and provided onsite within 24 hours of request for official review.",
+        "source_title": "21 CFR 1.510 — How must I maintain records of my FSVP?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.510(b)(2)",
+        "location": "§ 1.510(b)(2)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.510",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "The 24-hour rule applies to offsite-stored records"
+      },
+      {
+        "quote": "(2) You must retain records that relate to your processes and procedures, including the results of evaluations and determinations you conduct, for at least 2 years after their use is discontinued",
+        "source_title": "21 CFR 1.510 — How must I maintain records of my FSVP?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.510(c)(2)",
+        "location": "§ 1.510(c)(2)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.510",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Second retention period omitted by J"
+      },
+      {
+        "quote": "(c) Record retention. (1) Except as specified in paragraph (c)(2) of this section, you must retain records referenced in this subpart until at least 2 years after you created or obtained the records.",
+        "source_title": "21 CFR 1.510 — How must I maintain records of my FSVP?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.510(c)(1)",
+        "location": "§ 1.510(c)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.510",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "2-year retention"
+      }
+    ],
+    "search_performed": "grep -i 'english' over ecfr_2026-10-14/part-1.txt: within Subpart L the only hits are the translation-on-request sentences in 1.510(b)(1) and the parallel records paragraph in 1.512 (very small importers); no provision requires FSVP records to be kept in English.",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — an answer that correctly says records need not be in English would conflict with J's 'English language' element."
+  },
+  {
+    "question_id": "H-001",
+    "question_interpretation": "Asks which facilities must register under Subpart H and how often registration is renewed.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "G and J omit 1.226, the exemptions that define which facilities need not register: foreign facilities whose food is further processed abroad (beyond de minimis labeling), farms, retail food establishments, restaurants, nonprofit food establishments, certain fishing vessels, and facilities regulated exclusively by USDA. 1.226 directly governs 'which facilities must register'."
+      },
+      {
+        "type": "precision",
+        "detail": "The renewal is due every other year during October 1–December 31 of each even-numbered year (1.230(b)). The duty falls on the owner, operator or agent in charge; domestic facilities must register whether or not the food enters interstate commerce (1.225(b)). Electronic submission has been required since January 4, 2020 unless waived (1.231). J says only 'biennial'."
+      }
+    ],
+    "explanation": "1.225 (who registers), 1.230 (timing/renewal) and 1.231 (how) are correct, and 'biennial' is right. But the question asks which facilities must register, and the exemptions in 1.226 are an essential part of that answer. J also omits the even-year October–December renewal window.",
+    "proposed_corrected_answer": "The owner, operator or agent in charge of any domestic or foreign facility that manufactures/processes, packs or holds food for consumption in the United States must register before beginning those activities (domestic facilities regardless of interstate commerce), unless exempt under 1.226. Exempt are foreign facilities whose food is further manufactured/processed (including packaged) by another foreign facility other than de minimis labeling, farms, retail food establishments, restaurants, nonprofit food establishments, fishing vessels not otherwise engaged in processing, and facilities regulated exclusively by USDA. Registration must be renewed every other year, between October 1 and December 31 of each even-numbered year (an abbreviated renewal is available if nothing has changed), electronically unless FDA grants a waiver.",
+    "proposed_sections": "21 CFR 1.225; 1.226; 1.227 (definitions); 1.230(a)-(c); 1.231",
+    "evidence": [
+      {
+        "quote": "(a) You must register your facility under this subpart if you are the owner, operator, or agent in charge of either a domestic or foreign facility, as defined in this subpart, and your facility is engaged in the manufacturing/processing, packing, or holding of food for consumption in the United States, unless your facility qualifies for one of the exemptions in § 1.226.",
+        "source_title": "21 CFR 1.225 — Who must register under this subpart?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.225(a)",
+        "location": "§ 1.225(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.225",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Who must register; cross-reference to 1.226 exemptions"
+      },
+      {
+        "quote": "(a) A foreign facility, if food from such facility undergoes further manufacturing/processing (including packaging) by another facility outside the United States.",
+        "source_title": "21 CFR 1.226 — Who does not have to register under this subpart?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.226(a)",
+        "location": "§ 1.226(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.226",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Exemptions omitted from G/J"
+      },
+      {
+        "quote": "You must submit a registration renewal containing the information required under § 1.232 every other year, during the period beginning on October 1 and ending on December 31 of each even-numbered year.",
+        "source_title": "21 CFR 1.230 — When must you register or renew your registration?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.230(b)",
+        "location": "§ 1.230(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.230",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Biennial renewal and window"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "partly unfair — a complete answer citing 1.226 would not match G under strict citation-exact scoring."
+  },
+  {
+    "question_id": "H-002",
+    "question_interpretation": "Asks who must keep Subpart J (Bioterrorism Act records access) records and what those records must contain.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "J says 'nonexclusive prior source and subsequent recipient information'. The regulatory term is nontransporter (and transporter) immediate previous source and immediate subsequent recipient ('one-up/one-down'); 'nonexclusive' does not appear in the regulation and is misleading."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J lists 'retention periods' but G omits 1.360, which sets them (6 months, 1 year or 2 years for nontransporters depending on spoilage risk; 1 year for animal food; 6 months/1 year for transporters). G also omits 1.352 (transporter records) and 1.327 (exclusions, e.g., farms, restaurants, foreign persons other than those transporting in the U.S.)."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits the contents of the records: firm name, address and phone; food description incl. brand and variety; dates received or released; lot code where it exists for manufacturers, processors and packers; quantity and packaging; transporter identity. It also omits the 1.345(b) ingredient-source linkage and 24-hour availability under 1.361."
+      }
+    ],
+    "explanation": "1.326, 1.337 and 1.345 are correct for the covered persons and nontransporter content. But J garbles the key term and does not list contents. G also leaves out 1.352 and 1.360, even though J itself asks for retention periods, so a correct answer would cite sections the key does not list.",
+    "proposed_corrected_answer": "Persons who manufacture, process, pack, transport, distribute, receive, hold or import food in the United States are subject to Subpart J, whether or not the food enters interstate commerce, unless excluded under 1.327 (e.g., farms, restaurants, foreign persons other than those transporting food in the U.S.; some exclusions retain 1.361/1.363). Nontransporters must keep records of the immediate previous source (1.337) and immediate subsequent recipient (1.345), for both nontransporter and transporter. The records must include the firm name, address and telephone (and fax/email if available), an adequate food description including brand and variety, the date received or released, the lot or code number where it exists (for manufacturers, processors and packers), and the quantity and packaging. Manufacturers must also be able to link ingredient sources to each finished lot to the extent reasonably available (1.345(b)). Transporters keep the 1.352 records. Retention under 1.360 is 6 months, 1 year or 2 years for nontransporters depending on when there is a significant risk of spoilage or loss of value, 1 year for animal food, and 6 months or 1 year for transporters. Records must be made available within 24 hours of an official request when 1.361 applies.",
+    "proposed_sections": "21 CFR 1.326; 1.327; 1.337; 1.345; 1.352; 1.360; 1.361",
+    "evidence": [
+      {
+        "quote": "(a) Persons who manufacture, process, pack, transport, distribute, receive, hold, or import food in the United States are subject to the regulations in this subpart, unless you qualify for one of the exclusions in § 1.327.",
+        "source_title": "21 CFR 1.326 — Who is subject to this subpart?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.326(a)",
+        "location": "§ 1.326(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.326",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Who is subject"
+      },
+      {
+        "quote": "(1) The name of the firm, address, telephone number and, if available, the fax number and e-mail address of the nontransporter immediate previous source, whether domestic or foreign;",
+        "source_title": "21 CFR 1.337 — Nontransporter records identifying immediate previous sources",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.337(a)(1)",
+        "location": "§ 1.337(a)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.337",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Correct term is nontransporter immediate previous source"
+      },
+      {
+        "quote": "(d) If you are a nontransporter, you must retain for 2 years after the dates you receive and release the food all required records for any food for which a significant risk of spoilage, loss of value, or loss of palatability does not occur sooner than 6 months after the date you receive or release the food, including foods preserved by freezing, dehydrating, or being placed in a hermetically sealed container.",
+        "source_title": "21 CFR 1.360 — What are the record retention requirements?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.360(d)",
+        "location": "§ 1.360(d)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.360",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Retention periods are in 1.360, not in G"
+      },
+      {
+        "quote": "If you are a transporter, you must establish and maintain the following records for each food you transport in the United States.",
+        "source_title": "21 CFR 1.352 — What information must transporters establish and maintain?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.352",
+        "location": "§ 1.352 introductory text",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.352",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Transporter records omitted from G"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "partly unfair — the key expects retention periods but G omits 1.360, so a correct answer citing it could be marked as extra or unmatched."
+  },
+  {
+    "question_id": "H-003",
+    "question_interpretation": "Asks what prior notice is required for imported food, who submits it, the deadlines by mode of transport, and the required content.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "J requires 'who must submit', but G omits 1.278. Under 1.278, any person with knowledge of the required information may submit (the submitter) and may use a transmitter. G also omits 1.277, the scope: which food is covered, with exclusions such as personal-use food accompanying travelers, homemade gifts, food exported without leaving the port, USDA-exclusive meat/poultry/egg products, and diplomatic bags."
+      },
+      {
+        "type": "precision",
+        "detail": "J does not state the deadlines, so the rubric cannot check them. 1.279(a): road ≥2 h, rail ≥4 h, air ≥4 h, water ≥8 h before arrival. Also: not more than 30 days ahead via ABI/ACE or 15 days via PNSI, before sending for international mail, timed from FDA confirmation."
+      }
+    ],
+    "explanation": "1.279, 1.280 and 1.281 correctly govern timing, method and content. But J's 'who must submit' element is answered by 1.278, which G leaves out, and J gives no deadline values, making the key too vague to score timing accuracy.",
+    "proposed_corrected_answer": "Prior notice is required for all human and animal food imported or offered for import, including gifts, samples, transshipments, food for export and FTZ food, subject to the 1.277(b) exclusions. Any person with knowledge of the required information may submit it, alone or through a transmitter (1.278). It must be submitted electronically, in English with Latin characters, via ABI/ACE/ITDS or FDA PNSI (1.280), and FDA must confirm it no less than 2 hours before arrival by road, 4 hours by rail, 4 hours by air, and 8 hours by water. It may be submitted no more than 30 days ahead via ABI/ACE or 15 days ahead via PNSI; for international mail it must be submitted before the food is sent, and the PN confirmation number must accompany the package (1.279). Content under 1.281 includes the submitter and transmitter; entry type and CBP identifier; product identity (FDA product code, common name, quantity, lot codes where required); manufacturer and registration number (or grower for food in its natural state); country of production; shipper and country of shipment; anticipated port, date and time of arrival; importer, owner and ultimate consignee; carrier; and refusal history.",
+    "proposed_sections": "21 CFR 1.277; 1.278; 1.279; 1.280; 1.281",
+    "evidence": [
+      {
+        "quote": "A prior notice for an article of food may be submitted by any person with knowledge of the required information. This person is the submitter.",
+        "source_title": "21 CFR 1.278 — Who is authorized to submit prior notice?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.278",
+        "location": "§ 1.278",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.278",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Who submits (section missing from G)"
+      },
+      {
+        "quote": "(1) If the article of food is arriving by land by road, no less than 2 hours before arriving at the port of arrival;",
+        "source_title": "21 CFR 1.279 — When must prior notice be submitted to FDA?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.279(a)(1)",
+        "location": "§ 1.279(a)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.279",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Road deadline"
+      },
+      {
+        "quote": "(4) If the article of food is arriving by water, no less than 8 hours before arriving at the port of arrival.",
+        "source_title": "21 CFR 1.279 — When must prior notice be submitted to FDA?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.279(a)(4)",
+        "location": "§ 1.279(a)(4)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.279",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Water deadline"
+      },
+      {
+        "quote": "For each article of food that is imported or offered for import into the United States, except by international mail, you must submit the information for the article that is required in paragraphs (a)(1) through (18) of this section:",
+        "source_title": "21 CFR 1.281 — What information must be in a prior notice?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.281(a)",
+        "location": "§ 1.281(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.281",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Information elements"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "partly unfair — an answer citing 1.278 for 'who submits' falls outside G."
+  },
+  {
+    "question_id": "H-004",
+    "question_interpretation": "Asks what Subpart O requires for vehicles/transportation equipment and for transportation operations.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "VERIFIED_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "precision",
+        "detail": "J could add the 1.906(c)-(d) requirements for temperature-control capability and pest-free storage, and the 1.908(a) general requirements: competent supervisory personnel, conditions preventing food from becoming unsafe, written reassignment of duties, and handling of temperature-control failures. 1.900 (who is covered, incl. non-covered businesses under $500,000) and 1.904 (definitions) give context."
+      }
+    ],
+    "explanation": "1.906 requires vehicles and equipment to be suitably designed, cleanable, kept sanitary, capable of temperature control where needed, and stored to prevent pests and contamination. 1.908 sets general requirements and specific duties of shippers, loaders, receivers and carriers. G and J match.",
+    "proposed_corrected_answer": "",
+    "proposed_sections": "",
+    "evidence": [
+      {
+        "quote": "(a) Vehicles and transportation equipment used in transportation operations must be so designed and of such material and workmanship as to be suitable and adequately cleanable for their intended use to prevent the food they transport from becoming unsafe",
+        "source_title": "21 CFR 1.906 — What requirements apply to vehicles and transportation equipment?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.906(a)",
+        "location": "§ 1.906(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.906",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Design element"
+      },
+      {
+        "quote": "(b) Vehicles and transportation equipment must be maintained in such a sanitary condition for their intended use as to prevent the food they transport from becoming unsafe during transportation operations.",
+        "source_title": "21 CFR 1.906 — What requirements apply to vehicles and transportation equipment?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.906(b)",
+        "location": "§ 1.906(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.906",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Maintenance element"
+      },
+      {
+        "quote": "Unless stated otherwise in this section, the requirements of this section apply to all shippers, carriers, loaders, and receivers engaged in transportation operations.",
+        "source_title": "21 CFR 1.908 — What requirements apply to transportation operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.908(a)(1)",
+        "location": "§ 1.908(a)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.908",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Responsibilities of shippers, loaders, carriers, receivers"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair"
+  },
+  {
+    "question_id": "H-005",
+    "question_interpretation": "Asks what training and recordkeeping requirements Subpart O imposes on carriers.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_question_part",
+        "detail": "J says only 'record retention periods' without values. Under 1.912, carriers keep training records for 12 months beyond when the trained person stops performing the duties (1.912(c)), and 1.908(e)(6) written procedures for 12 months beyond when they are in use (1.912(b)). Written agreements are kept 12 months after termination (1.912(d))."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits the training content and timing (awareness of potential food safety problems, basic sanitary transportation practices, the carrier's responsibilities; upon hiring and as needed) and the training-record contents (date, type, persons trained) under 1.910. It also omits the general records rules in 1.912(f)-(i): prompt availability, original/true copy/electronic form, Part 11 exemption, 24-hour offsite retrieval, and the 1.908(e)(6)(i) procedures kept onsite."
+      },
+      {
+        "type": "precision",
+        "detail": "The trigger is a written contract under which the carrier is responsible, in whole or in part, for sanitary conditions. J says 'agree'."
+      }
+    ],
+    "explanation": "1.910 and 1.912 are the correct sections and J's trigger condition is right. But J gives no retention periods even though the question asks about records, and it omits training content, timing and record contents. The key is too skeletal to judge a numerically accurate answer.",
+    "proposed_corrected_answer": "When the carrier and shipper have agreed in a written contract that the carrier is responsible, in whole or in part, for sanitary conditions, the carrier must train personnel engaged in transportation operations. Training covers potential food safety problems, basic sanitary transportation practices, and the carrier's responsibilities, and is given upon hiring and as needed thereafter (1.910(a)). Carriers must document training (date, type, persons trained) (1.910(b)) and keep training records for 12 months beyond when the person stops performing the duties (1.912(c)). Carriers keep their 1.908(e)(6) written procedures for 12 months beyond when they are in use (1.912(b)), with the cleaning/inspection procedures kept onsite while in use (1.912(i)). Written agreements assigning tasks are kept 12 months beyond termination (1.912(d)). All records must be made available promptly on request; may be original, true copies or electronic (exempt from Part 11 if only required by Subpart O); and may be stored offsite if retrievable within 24 hours.",
+    "proposed_sections": "21 CFR 1.910(a)-(b); 1.912(b)-(d), (f)-(i); 1.908(e)(6)",
+    "evidence": [
+      {
+        "quote": "The training must be provided upon hiring and as needed thereafter.",
+        "source_title": "21 CFR 1.910 — What training requirements apply to carriers engaged in transportation operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.910(a)",
+        "location": "§ 1.910(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.910",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Training timing"
+      },
+      {
+        "quote": "Such records must include the date of the training, the type of training, and the person(s) trained.",
+        "source_title": "21 CFR 1.910 — What training requirements apply to carriers engaged in transportation operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.910(b)",
+        "location": "§ 1.910(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.910",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Training record contents"
+      },
+      {
+        "quote": "(c) Carriers must retain training records required by § 1.910(b) for a period of 12 months beyond when the person identified in any such records stops performing the duties for which the training was provided.",
+        "source_title": "21 CFR 1.912 — What record retention and other records requirements apply to shippers, receivers, loaders, and carriers engaged in transportation operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.912(c)",
+        "location": "§ 1.912(c)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.912",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Training record retention period"
+      },
+      {
+        "quote": "(b) Carriers must retain records of the written procedures required by § 1.908(e)(6) for a period of 12 months beyond when the agreements and procedures are in use in their transportation operations.",
+        "source_title": "21 CFR 1.912 — What record retention and other records requirements apply to shippers, receivers, loaders, and carriers engaged in transportation operations?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.912(b)",
+        "location": "§ 1.912(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.912",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Procedure record retention period"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair for citation; the key cannot check retention values."
+  },
+  {
+    "question_id": "H-006",
+    "question_interpretation": "Asks which foods are subject to the Subpart S additional traceability records and what must be recorded.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "partially_correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_provision",
+        "detail": "'What must be recorded' is governed by 1.1325–1.1350, the key data elements for each critical tracking event (harvesting/cooling, initial packing, first land-based receiving, shipping, receiving, transformation), and by 1.1320 (when traceability lot codes are assigned). G cites only 1.1300, the definitions in 1.1310, and the traceability plan in 1.1315."
+      },
+      {
+        "type": "missing_exception",
+        "detail": "J omits the 1.1305 exemptions (e.g., small produce farms, certain small producers, foods receiving a kill step, retail/restaurants below thresholds) and that the FTL includes foods containing a listed food as an ingredient in the same form (1.1310 definition)."
+      },
+      {
+        "type": "temporal",
+        "detail": "The rule is codified and current, but the original January 20, 2026 compliance date did not take effect for enforcement. FDA proposed extending it to July 20, 2028 (90 FR 38084), and Pub. L. 119-37 directed FDA not to enforce the rule before July 20, 2028 (91 FR 64656, Oct. 9, 2026). An answer should note this."
+      }
+    ],
+    "explanation": "J's elements (FTL foods; CTEs and KDEs; traceability lot codes) are correct, and 1.1300/1.1310 support the 'which foods' part. But the provisions that say what must be recorded (1.1325–1.1350) and when TLCs are assigned (1.1320) are missing from G. 1.1315 concerns the traceability plan, not CTE records. A correct answer would cite sections the key omits.",
+    "proposed_corrected_answer": "Subpart S applies to persons who manufacture, process, pack or hold foods on FDA's Food Traceability List (FTL), including foods that contain a listed food as an ingredient in the same form, subject to the 1.1305 exemptions. Covered persons must keep a traceability plan (1.1315). They must assign traceability lot codes at initial packing of RACs, first land-based receiving of seafood, and transformation, and must not assign new codes at other events (1.1320). They must keep records of key data elements linked to the traceability lot code for each critical tracking event: harvesting and cooling (1.1325), initial packing (1.1330), first land-based receiving (1.1335), shipping (1.1340), receiving (1.1345) and transformation (1.1350). These include the TLC, quantity and unit of measure, product description, location descriptions of the source, recipient and TLC source (or a TLC source reference), dates, and reference document type and number. Records are kept 2 years and provided to FDA within 24 hours, as an electronic sortable spreadsheet in outbreak situations (1.1455). FDA will not enforce the rule before July 20, 2028 under the Congressional directive in Pub. L. 119-37.",
+    "proposed_sections": "21 CFR 1.1300; 1.1305; 1.1310; 1.1315; 1.1320; 1.1325–1.1350; 1.1455",
+    "evidence": [
+      {
+        "quote": "Except as otherwise specified in this subpart, the requirements in this subpart apply to persons who manufacture, process, pack, or hold foods that appear on the list of foods for which additional traceability records are required in accordance with section 204(d)(2) of the FDA Food Safety Modernization Act (Food Traceability List).",
+        "source_title": "21 CFR 1.1300 — Who is subject to this subpart?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1300",
+        "location": "§ 1.1300",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1300",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Which foods/persons are covered"
+      },
+      {
+        "quote": "Critical tracking event means an event in the supply chain of a food involving the harvesting, cooling (before initial packing), initial packing of a raw agricultural commodity other than a food obtained from a fishing vessel, first land-based receiving of a food obtained from a fishing vessel, shipping, receiving, or transformation of the food.",
+        "source_title": "21 CFR 1.1310 — What definitions apply to this subpart?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1310",
+        "location": "§ 1.1310, definition of Critical tracking event",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1310",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "CTE definition"
+      },
+      {
+        "quote": "(a) For each traceability lot of a food on the Food Traceability List you ship, you must maintain records containing the following information and linking this information to the traceability lot:",
+        "source_title": "21 CFR 1.1340 — What records must I keep and provide when I ship a food on the Food Traceability List?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1340(a)",
+        "location": "§ 1.1340(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1340",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Example of the CTE record sections (1.1325–1.1350) that G omits"
+      },
+      {
+        "quote": "(a) You must assign a traceability lot code when you do any of the following: Initially pack a raw agricultural commodity other than a food obtained from a fishing vessel; perform the first land-based receiving of a food obtained from a fishing vessel; or transform a food.",
+        "source_title": "21 CFR 1.1320 — When must I assign traceability lot codes to foods on the Food Traceability List?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1320(a)",
+        "location": "§ 1.1320(a)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1320",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "When TLCs are assigned (omitted from G)"
+      },
+      {
+        "quote": "The original compliance date for all persons subject to the recordkeeping requirements of the Food Traceability Rule was January 20, 2026. FDA proposed to extend the compliance date for the rule by 30 months to July 20, 2028 (90 FR 38084, August 7, 2025). Subsequently, the Continuing Appropriations, Agriculture, Legislative Branch, Military Construction and Veterans Affairs, and Extensions Act of 2026 (Pub. L. 119-37) (Continuing Appropriations Act) directed FDA not to enforce the Food Traceability Rule prior to that same date of July 20, 2028.",
+        "source_title": "Challenges and Solutions in Lot-Level Food Traceability; Public Meeting (FDA notice)",
+        "issuing_authority": "Federal Register",
+        "identifier": "91 FR 64656 (FR Doc. 2026-20720), Oct. 9, 2026",
+        "location": "guidance text",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/10/09/2026-20720.txt",
+        "local_source_file": "",
+        "date": "Published 2026-10-09",
+        "check_level": "webfetch",
+        "supports": "Compliance/enforcement status: the rule is in the CFR but FDA will not enforce it before July 20, 2028 (text retrieved verbatim by curl from federalregister.gov full text; not in the local cache)"
+      }
+    ],
+    "search_performed": "Federal Register API searches (agency FDA; terms 'Requirements for Additional Traceability Records for Certain Foods', 'compliance date', 'July 20, 2028') found the 2025-08-07 proposed extension (90 FR 38084) and no final compliance-date rule. The 2026-10-09 notice (91 FR 64656) states the Congressional non-enforcement directive. The eCFR Subpart S text (2026-10-14) contains no compliance-date section.",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "unfair — a correct answer citing 1.1320 and 1.1325–1.1350 for 'what must be recorded' would fall outside G under citation-exact scoring."
+  },
+  {
+    "question_id": "H-007",
+    "question_interpretation": "Asks what a Subpart S traceability plan must contain and how long traceability records must be retained.",
+    "question_clarity": "clear",
+    "temporal_scope": "current",
+    "multi_provision": true,
+    "status": "PARTIALLY_CORRECT",
+    "unanswerable_basis": "",
+    "citation_assessment": "correct",
+    "answer_elements_assessment": "partially_correct",
+    "iso_assessment": "not_applicable",
+    "issues": [
+      {
+        "type": "missing_question_part",
+        "detail": "The question asks 'how long', but J says only 'record retention' without the period. Records must be kept 2 years from creation or receipt (1.1455(d)), and the previous traceability plan for 2 years after an update (1.1315(b))."
+      },
+      {
+        "type": "missing_provision",
+        "detail": "J omits the plan elements: a statement identifying a point of contact (1.1315(a)(4)), the procedures for identifying FTL foods (1.1315(a)(2)), the format and location of records (1.1315(a)(1)), and the duty to update the plan (1.1315(b)). The farm map applies only to growers or raisers of FTL foods other than eggs and must include geographic coordinates (aquaculture: containers)."
+      },
+      {
+        "type": "precision",
+        "detail": "Availability means within 24 hours of request (or a reasonable time FDA agrees to), with information needed to understand the records. An electronic sortable spreadsheet is required in outbreak, recall or threat situations unless the entity is below a size threshold (1.1455(c)). J's 'availability to FDA' gives no time limit."
+      },
+      {
+        "type": "temporal",
+        "detail": "FDA will not enforce Subpart S before July 20, 2028 (Pub. L. 119-37; 91 FR 64656)."
+      }
+    ],
+    "explanation": "G is correct: 1.1315 governs the plan and 1.1455 governs retention and availability. J's listed plan elements are supported. But J does not give the retention period the question asks for, omits the required point of contact, and gives no 24-hour availability standard.",
+    "proposed_corrected_answer": "The traceability plan must describe: the procedures used to maintain Subpart S records, including their format and location; the procedures used to identify FTL foods handled; and how traceability lot codes are assigned under 1.1320, if applicable. It must also include a statement identifying a point of contact and, for anyone who grows or raises an FTL food other than eggs, a farm map showing each field or growing area (or aquaculture container) with geographic coordinates (1.1315(a)). The plan must be updated as needed, and the previous plan retained for 2 years after an update (1.1315(b)). Traceability records must be kept as original, true copies or electronic records for 2 years from the date created or obtained (1.1455(d)). They must be made available to FDA within 24 hours of request, or a reasonable time FDA agrees to, with information needed to understand them. In outbreak, recall or public-health threat situations, information must be provided as an electronic sortable spreadsheet unless the entity is below the size thresholds. An English translation must be given on request, and offsite storage is allowed if records can be retrieved within 24 hours (1.1455(c)). FDA will not enforce the rule before July 20, 2028 under Pub. L. 119-37.",
+    "proposed_sections": "21 CFR 1.1315(a)-(b); 1.1455(a)-(d)",
+    "evidence": [
+      {
+        "quote": "(4) A statement identifying a point of contact for questions regarding your traceability plan and records; and",
+        "source_title": "21 CFR 1.1315 — What traceability plan must I have for foods on the Food Traceability List that I manufacture, process, pack, or hold?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1315(a)(4)",
+        "location": "§ 1.1315(a)(4)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1315",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Point-of-contact element omitted by J"
+      },
+      {
+        "quote": "You must retain your previous traceability plan for 2 years after you update the plan.",
+        "source_title": "21 CFR 1.1315 — What traceability plan must I have for foods on the Food Traceability List that I manufacture, process, pack, or hold?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1315(b)",
+        "location": "§ 1.1315(b)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1315",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "Plan retention period"
+      },
+      {
+        "quote": "(d) Record retention. Except as specified otherwise in this subpart, you must maintain records containing the information required by this subpart for 2 years from the date you created or obtained the records.",
+        "source_title": "21 CFR 1.1455 — How must records required by this subpart be maintained and made available?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1455(d)",
+        "location": "§ 1.1455(d)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1455",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "2-year retention period (answer to 'how long')"
+      },
+      {
+        "quote": "(1) You must make all records required under this subpart available to an authorized FDA representative, upon request, within 24 hours (or within some reasonable time to which FDA has agreed) after the request",
+        "source_title": "21 CFR 1.1455 — How must records required by this subpart be maintained and made available?",
+        "issuing_authority": "eCFR / Office of the Federal Register & GPO",
+        "identifier": "21 CFR 1.1455(c)(1)",
+        "location": "§ 1.1455(c)(1)",
+        "url": "https://www.ecfr.gov/current/title-21/section-1.1455",
+        "local_source_file": "ecfr_2026-10-14/part-1.txt",
+        "date": "eCFR as of 2026-10-14",
+        "check_level": "official_cached",
+        "supports": "24-hour availability"
+      },
+      {
+        "quote": "The original compliance date for all persons subject to the recordkeeping requirements of the Food Traceability Rule was January 20, 2026. FDA proposed to extend the compliance date for the rule by 30 months to July 20, 2028 (90 FR 38084, August 7, 2025). Subsequently, the Continuing Appropriations, Agriculture, Legislative Branch, Military Construction and Veterans Affairs, and Extensions Act of 2026 (Pub. L. 119-37) (Continuing Appropriations Act) directed FDA not to enforce the Food Traceability Rule prior to that same date of July 20, 2028.",
+        "source_title": "Challenges and Solutions in Lot-Level Food Traceability; Public Meeting (FDA notice)",
+        "issuing_authority": "Federal Register",
+        "identifier": "91 FR 64656 (FR Doc. 2026-20720), Oct. 9, 2026",
+        "location": "guidance text",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/10/09/2026-20720.txt",
+        "local_source_file": "",
+        "date": "Published 2026-10-09",
+        "check_level": "webfetch",
+        "supports": "Compliance/enforcement status: the rule is in the CFR but FDA will not enforce it before July 20, 2028 (text retrieved verbatim by curl from federalregister.gov full text; not in the local cache)"
+      }
+    ],
+    "search_performed": "",
+    "confidence": "High",
+    "uncertainty_reason": "",
+    "expert_review_required": false,
+    "expert_review_reason": "",
+    "rubric_fairness": "fair for citation; the key cannot check the retention period the question asks for."
+  }
+]
