@@ -49,12 +49,27 @@ class ModelConfig:
     # models) at `endpoint`. The API key, when needed, is read from REGULUS_MODEL_API_KEY only.
     backend: str = "transformers"
     endpoint: str | None = None
+    # "mlx" (opt-in, Apple Silicon): generation runs in a separate worker process under the MLX runtime
+    # (regulus.rag.mlx_generator). The worker's interpreter (an environment with mlx-lm installed, kept
+    # apart from this one) and the MLX model directory are explicit; `id`/`cache_dir` still name the
+    # tokenizer and chat template, which stay in this process. `mlx_revision` records which checkpoint
+    # revision the directory holds. `mlx_min_available_mb` is the memory preflight: the worker is not
+    # started when less memory is available (0 disables the check).
+    mlx_python: Path | None = None
+    mlx_model_path: Path | None = None
+    mlx_revision: str | None = None
+    mlx_min_available_mb: int = 2000
 
     def validate(self) -> None:
-        if self.backend not in ("transformers", "openai_compatible"):
-            raise ConfigError(f"Invalid backend {self.backend!r}; use transformers or openai_compatible")
+        if self.backend not in ("transformers", "openai_compatible", "mlx"):
+            raise ConfigError(f"Invalid backend {self.backend!r}; use transformers, openai_compatible or mlx")
         if self.backend == "openai_compatible" and not self.endpoint:
             raise ConfigError("backend openai_compatible needs model.endpoint (or REGULUS_MODEL_ENDPOINT)")
+        if self.backend == "mlx" and (self.mlx_python is None or self.mlx_model_path is None):
+            raise ConfigError("backend mlx needs model.mlx_python and model.mlx_model_path "
+                              "(or REGULUS_MLX_PYTHON and REGULUS_MLX_MODEL_PATH)")
+        if self.mlx_min_available_mb < 0:
+            raise ConfigError("model.mlx_min_available_mb must be >= 0")
         if not _MODEL_ID_RE.match(self.id):
             raise ConfigError(
                 f"Invalid model id {self.id!r}; expected '<org>/<name>' (e.g. Qwen/Qwen3-0.6B)"
@@ -145,6 +160,10 @@ def _resolve_path(raw: str | Path) -> Path:
     return path if path.is_absolute() else (PROJECT_ROOT / path).resolve()
 
 
+def _optional_path(raw: Any) -> Path | None:
+    return None if raw in (None, "") else _resolve_path(raw)
+
+
 def _adapter_path(raw: Any) -> Path | None:
     if raw is None:
         return None
@@ -173,6 +192,11 @@ def load_settings(config_path: str | Path | None = None, *, use_dotenv: bool = T
                               else model_data.get("adapter")),
         backend=(_env("MODEL_BACKEND") or str(model_data.get("backend", "transformers"))).lower(),
         endpoint=_env("MODEL_ENDPOINT") or model_data.get("endpoint"),
+        mlx_python=_optional_path(_env("MLX_PYTHON") or model_data.get("mlx_python")),
+        mlx_model_path=_optional_path(_env("MLX_MODEL_PATH") or model_data.get("mlx_model_path")),
+        mlx_revision=_env("MLX_REVISION") or model_data.get("mlx_revision"),
+        mlx_min_available_mb=int(_env("MLX_MIN_AVAILABLE_MB") or model_data.get("mlx_min_available_mb",
+                                                                               ModelConfig.mlx_min_available_mb)),
     )
     model.validate()
 

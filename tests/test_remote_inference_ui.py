@@ -1,50 +1,37 @@
-"""The UI against a remote GPU inference server (OpenAI-compatible), and the server's exposure safeguards.
+"""Remote GPU inference (OpenAI-compatible), the answering UI's refusal of it, and the server's exposure safeguards.
 
-A fake OpenAI-compatible server on loopback stands in for the GPU host (no model, no GPU). Pinned: in remote
-mode the UI loads no tokenizer and no weights; answers are generated remotely and recorded with the backend
-and a hashed endpoint; connection failures, timeouts, HTTP errors and malformed responses become categorised
-inference failures recorded as pipeline_error, with neither the endpoint URL nor the API key in the page's
-error, the logs, the chat history or the measurement files; local mode is unchanged; the acceptance runner's
-load_generator is untouched; and a non-loopback bind is refused unless explicitly acknowledged.
+A fake OpenAI-compatible server on loopback stands in for the GPU host (no model, no GPU). Pinned: the remote
+generator streams, and categorises connection failures, timeouts, HTTP errors and malformed responses without
+the endpoint URL or the API key; the acceptance runner's load_generator is untouched; the answering UI, which
+answers with Qwen3-1.7B MLX 4-bit only, refuses a remote backend at start-up without contacting it and has no
+backend override; and a non-loopback bind is refused unless explicitly acknowledged.
 """
 
 from __future__ import annotations
 
 import importlib.util
 import json
+import sys
 import threading
 import time
-import urllib.request
-import uuid
 from dataclasses import replace
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
 import regulus.model as MODEL
-from regulus.accuracy.alignment import LexicalAligner
 from regulus.config import PROJECT_ROOT, load_settings
-from regulus.conversations import ConversationStore
-from regulus.evaluation import offline_evaluation as O
-from regulus.evaluation.ui_sessions import evaluate_ui_session
-from regulus.rag import RagPipeline
 from regulus.rag.remote_generator import (GuardedRemoteGenerator, InferenceError, OpenAICompatibleGenerator,
                                           load_generator)
-from regulus.retrieval import LexicalRetriever
-from regulus.traceability import measurement as M
-from regulus.traceability.ui_session import UISession
-from tests.test_accuracy_evaluation import TABLE
 from tests.test_accuracy_observer import CASES
-from tests.test_retrieval_plan import TableDatabase
 
 _spec = importlib.util.spec_from_file_location("serve_ui_remote_test", PROJECT_ROOT / "scripts" / "serve_ui.py")
 UI = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(UI)
 
 API_KEY = "sk-test-SECRET-9c1e"
-CLEAN_Q, MISSING_Q = CASES[0][0], CASES[3][0]
+CLEAN_Q = CASES[0][0]
 RESPONSES = {CLEAN_Q: CASES[0][1]}
 
 
@@ -124,24 +111,6 @@ def remote_settings(endpoint):
     return s
 
 
-def remote_engine(endpoint, monkeypatch, *, timeout=None):
-    def forbidden(*a, **k):
-        raise AssertionError("remote mode loaded local model files")
-
-    monkeypatch.setattr(MODEL, "load_model", forbidden)
-    monkeypatch.setattr(MODEL, "load_tokenizer", forbidden)
-    e = object.__new__(UI.Engine)
-    e.settings = remote_settings(endpoint)
-    UI.Engine._init_inference(e, offline=True, inference_timeout=timeout)
-    e.db, e.snapshot = None, "2026-01-01"
-    e._models, e._adapter_info = {}, {"": {}}
-    e._retrieval = (LexicalRetriever(TableDatabase(TABLE)), None)
-    e.accuracy, e.accuracy_alignment, e._aligner = True, "lexical", LexicalAligner()
-    e._identifier_index = SimpleNamespace(section_status=lambda s: (True, True), part_status=lambda p: (True, True))
-    e.answer_shape = None
-    return e
-
-
 def guarded(endpoint, timeout=600.0):
     return GuardedRemoteGenerator(OpenAICompatibleGenerator(endpoint, "Qwen/Qwen3-0.6B", timeout=timeout))
 
@@ -216,138 +185,30 @@ def test_the_acceptance_runner_keeps_the_unguarded_generator(gpu):
     assert type(load_generator(remote_settings(gpu.endpoint))) is OpenAICompatibleGenerator
 
 
-# ------------------------------------------------------------------ the engine in remote mode
+# ------------------------------------------------------------------ the answering UI refuses remote inference
 
 
-def test_remote_mode_loads_no_local_model_and_refuses_local_adapters(gpu, monkeypatch, tmp_path):
-    e = remote_engine(gpu.endpoint, monkeypatch)
-    assert e.remote is not None and e.tokenizer is None and e.base_model is None
-    assert e.available_adapters() == [{"id": "", "label": "Remote: Qwen/Qwen3-0.6B"}]
-    with pytest.raises(ValueError):
-        e.model_for("stage13_v1")
-    s = remote_settings(gpu.endpoint)
-    s.model = replace(s.model, adapter=tmp_path)
-    e2 = object.__new__(UI.Engine)
-    e2.settings = s
-    with pytest.raises(SystemExit):
-        UI.Engine._init_inference(e2, offline=True)
-
-
-def test_local_mode_still_loads_the_configured_model(monkeypatch):
-    calls = []
-    fake = SimpleNamespace(device="cpu", dtype="torch.float32")
-    monkeypatch.setattr(MODEL, "load_tokenizer", lambda cfg, local_files_only: calls.append("tokenizer") or object())
-    monkeypatch.setattr(MODEL, "load_model", lambda cfg, local_files_only: calls.append("model") or fake)
-    e = object.__new__(UI.Engine)
-    s = load_settings()
-    s.model = replace(s.model, backend="transformers", adapter=None)
-    e.settings = s
-    UI.Engine._init_inference(e, offline=True)
-    assert calls == ["tokenizer", "model"] and e.remote is None and e.base_model is fake
-
-
-# ------------------------------------------------------------------ end to end through the UI
-
-
-@pytest.fixture
-def remote_ui(gpu, monkeypatch, tmp_path, capsys):
-    logs = []
-    eng = remote_engine(gpu.endpoint, monkeypatch, timeout=1.0)
-
-    class H(UI.Handler):
-        pass
-
-    H.engine, H.store = eng, ConversationStore(tmp_path / "chat.sqlite3")
-    H.measure = UISession(tmp_path / "ui_measurements", UI.measurement_run(eng.settings, eng), log=logs.append)
-    monkeypatch.setattr(UI.Handler, "engine", eng)                  # safe_error reads the configured endpoint here
-    httpd = ThreadingHTTPServer(("127.0.0.1", 0), H)
-    threading.Thread(target=httpd.serve_forever, daemon=True).start()
-    yield SimpleNamespace(base=f"http://127.0.0.1:{httpd.server_address[1]}", H=H, gpu=gpu, logs=logs,
-                          tmp=tmp_path, capsys=capsys)
-    httpd.shutdown()
-    httpd.server_close()
-
-
-def post(base, path, body):
-    req = urllib.request.Request(base + path, data=json.dumps(body).encode(), method="POST",
-                                 headers={"Content-Type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return r.status, r.read().decode()
-    except urllib.error.HTTPError as e:
-        return e.code, e.read().decode()
-
-
-def wait_written(H, n):
-    deadline = time.monotonic() + 10
-    while H.measure.written + H.measure.write_failures < n and time.monotonic() < deadline:
-        time.sleep(0.01)
-
-
-def everything_written(ctx):
-    files = "".join(p.read_text(errors="replace") for p in ctx.tmp.rglob("*") if p.is_file() and p.suffix != ".sqlite3")
-    chat = (ctx.tmp / "chat.sqlite3").read_bytes().decode("latin-1")
-    return files + chat + "\n".join(ctx.logs) + ctx.capsys.readouterr().out
-
-
-def test_a_remote_answer_is_delivered_and_recorded_with_its_backend(remote_ui):
-    cid = json.loads(post(remote_ui.base, "/api/conversations", {})[1])["conversation"]["id"]
-    status, text = post(remote_ui.base, "/api/ask/stream", {"question": CLEAN_Q, "conversation_id": cid,
-                                                            "turn_id": str(uuid.uuid4())})
-    final = json.loads(text.splitlines()[-1])
-    assert final["type"] == "final" and final["result"]["answer"] and remote_ui.gpu.calls == 1
-    [rec] = [json.loads(l) for l in (remote_ui.H.measure.dir / M.MEASUREMENT_FILE).read_text().splitlines()]
-    assert rec["status"] == M.STATUS_CAPTURED and M.verify_record(rec) == []
-    assert rec["origin"]["live"]["inference_backend"] == "openai_compatible"
-    assert rec["run"]["model"]["backend"] == "openai_compatible" and rec["run"]["model"]["model_revision"] is None
-    assert rec["run"]["model"]["served_models"]["configured_id_served"] is True
-    assert rec["run"]["database"]["snapshot_date"] == "2026-01-01"
-    assert rec["origin"]["live"]["aligner_used"] == "lexical"
-    assert isinstance(rec["origin"]["live"]["identifier_lookups"], list)
-    written = everything_written(remote_ui)
-    assert remote_ui.gpu.endpoint not in written and API_KEY not in written
-
-
-@pytest.mark.parametrize("mode", ["down", "bad_json", "empty", "http_500", "slow"])
-def test_a_remote_failure_is_an_error_record_with_nothing_secret_anywhere(remote_ui, mode):
-    if mode == "down":
-        remote_ui.gpu.httpd.shutdown()
-        remote_ui.gpu.httpd.server_close()
-        remote_ui.gpu.httpd = SimpleNamespace(shutdown=lambda: None, server_close=lambda: None)
-    else:
-        remote_ui.gpu.mode = mode
-    status, text = post(remote_ui.base, "/api/ask", {"question": CLEAN_Q})
-    wait_written(remote_ui.H, 1)
-    assert status == 500 and "remote inference failed" in json.loads(text)["error"]
-    [rec] = [json.loads(l) for l in (remote_ui.H.measure.dir / M.MEASUREMENT_FILE).read_text().splitlines()]
-    assert rec["status"] == M.STATUS_PIPELINE_ERROR and not rec["complete"] and "remote inference failed" in rec["error"]
-    written = everything_written(remote_ui) + text
-    assert remote_ui.gpu.endpoint not in written and API_KEY not in written and "secret-path" not in written
-
-
-def test_a_remote_session_is_evaluated_offline_without_model_or_database(remote_ui, monkeypatch):
-    post(remote_ui.base, "/api/ask", {"question": CLEAN_Q})
-    post(remote_ui.base, "/api/ask", {"question": MISSING_Q})
-    wait_written(remote_ui.H, 2)
-    remote_ui.gpu.close()                                           # the GPU server is gone
-    remote_ui.gpu.httpd = SimpleNamespace(shutdown=lambda: None, server_close=lambda: None)
-
+def test_the_answering_ui_refuses_a_remote_backend_before_contacting_it(gpu, monkeypatch):
+    """The application answers with Qwen3-1.7B MLX 4-bit only (tests/test_ui_model_selector.py). A remote server
+    would answer with whatever model it serves, so start-up stops instead: nothing is loaded locally, nothing is
+    sent to the server, and neither the endpoint nor the key is in the message."""
     def forbidden(*a, **k):
-        raise AssertionError("offline evaluation reached inference")
+        raise AssertionError("a model was loaded although start-up was refused")
 
-    monkeypatch.setattr(RagPipeline, "answer", forbidden)
-    monkeypatch.setattr(GuardedRemoteGenerator, "generate", forbidden)
-    summary = evaluate_ui_session(remote_ui.H.measure.dir, root=PROJECT_ROOT)
-    outcomes = [json.loads(l)["result"]["outcome"] for l in Path(summary["output"]).read_text().splitlines()]
-    assert outcomes == [O.EVALUATED, O.EVALUATED] and summary["session_state"] == "running"
+    monkeypatch.setattr(MODEL, "load_model", forbidden)
+    monkeypatch.setattr(MODEL, "load_tokenizer", forbidden)
+    e = object.__new__(UI.Engine)
+    e.settings = remote_settings(gpu.endpoint)
+    with pytest.raises(SystemExit, match="openai_compatible") as stop:
+        UI.Engine._init_inference(e, offline=True)
+    assert gpu.calls == 0 and gpu.endpoint not in str(stop.value) and API_KEY not in str(stop.value)
 
 
-def test_config_reports_the_backend_and_measurement_health(remote_ui):
-    with urllib.request.urlopen(remote_ui.base + "/api/config", timeout=10) as r:
-        cfg = json.loads(r.read())
-    assert cfg["inference_backend"] == "openai_compatible" and cfg["device"] == "remote"
-    assert cfg["measurement"]["enabled"] is True and cfg["measurement"]["state"] == "open"
-    assert remote_ui.gpu.endpoint not in json.dumps(cfg) and API_KEY not in json.dumps(cfg)
+def test_the_ui_has_no_backend_override(monkeypatch, capsys):
+    monkeypatch.setattr(sys, "argv", ["serve_ui.py", "--backend", "openai_compatible"])
+    with pytest.raises(SystemExit) as stop:
+        UI.main()
+    assert stop.value.code == 2 and "--backend" in capsys.readouterr().err
 
 
 # ------------------------------------------------------------------ exposure

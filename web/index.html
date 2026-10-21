@@ -764,7 +764,7 @@ function render(r, asked) {
         ${gateRows(r)}
         ${shapeRows(r)}
         ${timingRows(r)}
-        <tr><td>Model</td><td>${esc(r.adapter.id || "base Qwen3-0.6B")}</td></tr>
+        <tr><td>Model</td><td>${esc((r.model && r.model.label) || r.adapter.id || "base Qwen3-0.6B")}${r.adapter && r.adapter.id ? " · adapter " + esc(r.adapter.id) : ""}</td></tr>
       </table>
       ${r.notes && r.notes.length ? `<p class="sub">Note: ${esc(r.notes.join(" "))}</p>` : ""}
       <details style="margin-top:10px"><summary>Raw response</summary><pre>${esc(JSON.stringify(r, null, 2))}</pre></details>

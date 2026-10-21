@@ -22,7 +22,6 @@ from pathlib import Path
 
 import pytest
 
-import regulus.rag as RAG
 from regulus.accuracy.alignment import LexicalAligner
 from regulus.config import PROJECT_ROOT, load_settings
 from regulus.conversations import ConversationStore
@@ -53,10 +52,22 @@ class Index:
         return (True, True)
 
 
+FAKE_MLX = {"model_id": "Qwen/Qwen3-1.7B", "model_revision": "rev-1.7b", "backend": "mlx", "device": "mlx-gpu",
+            "dtype": "mlx-4bit-g128", "quantization": {"bits": 4, "group_size": 128}, "runtime_versions": {"mlx": "fake"},
+            "generation": {"do_sample": False}}
+
+
+class FakeMlx(Scripted):
+    """Stands in for the MLX worker, the application's one generator."""
+
+    def describe(self):
+        return dict(FAKE_MLX)
+
+
 def engine():
     e = object.__new__(UI.Engine)
-    e.settings, e.tokenizer, e.default_info, e.snapshot, e.db = load_settings(), None, {}, "2026-01-01", None
-    e._models, e._adapter_info = {"": object()}, {"": {}}
+    e.settings, e.tokenizer, e.snapshot, e.db = load_settings(), None, "2026-01-01", None
+    e._mlx, e._tokenizer_sha256 = FakeMlx(""), "fake-tokenizer-sha"
     e._retrieval = (LexicalRetriever(TableDatabase(TABLE)), None)
     e.accuracy, e.accuracy_alignment, e._aligner, e._identifier_index = True, "lexical", LexicalAligner(), Index()
     e.answer_shape = None
@@ -68,19 +79,17 @@ def engine():
 def ui(tmp_path, monkeypatch):
     eng = engine()
 
-    def generator(model, tokenizer, gen, model_id):
-        class G(Scripted):
-            def generate(self, messages, max_new_tokens=None):
-                if eng.raise_in_generation is not None:
-                    raise eng.raise_in_generation
-                prompt = messages[-1]["content"]
-                matches = [r for q, r in RESPONSES.items() if q in prompt]
-                assert len(matches) == 1
-                self.response = matches[0]
-                return super().generate(messages, max_new_tokens)
-        return G("")
+    class G(FakeMlx):
+        def generate(self, messages, max_new_tokens=None):
+            if eng.raise_in_generation is not None:
+                raise eng.raise_in_generation
+            prompt = messages[-1]["content"]
+            matches = [r for q, r in RESPONSES.items() if q in prompt]
+            assert len(matches) == 1
+            self.response = matches[0]
+            return super().generate(messages, max_new_tokens)
 
-    monkeypatch.setattr(RAG, "QwenGenerator", generator)
+    eng._mlx = G("")
 
     class H(UI.Handler):
         pass

@@ -93,6 +93,13 @@ def load_generator(settings, *, local_files_only: bool = False):
     """The configured Generator: in-process transformers (default) or an OpenAI-compatible server."""
     if settings.model.backend == "openai_compatible":
         return OpenAICompatibleGenerator(settings.model.endpoint, settings.model.id)
+    if settings.model.backend == "mlx":
+        if settings.model.adapter is not None:
+            raise ValueError("model.adapter is set, but adapters are merged into transformers weights and cannot "
+                             "apply to the mlx backend: unset it (REGULUS_ADAPTER=none)")
+        from regulus.rag.mlx_generator import load_mlx_generator
+
+        return load_mlx_generator(settings, local_files_only=local_files_only)
     from regulus.rag.generator import load_qwen_generator
 
     return load_qwen_generator(settings, local_files_only=local_files_only)

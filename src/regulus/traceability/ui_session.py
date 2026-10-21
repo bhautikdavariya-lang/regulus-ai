@@ -313,7 +313,13 @@ class Turn:
         self._out = None
         self._evaluation = self._review = None
         self._live: dict[str, Any] | None = None
+        self._model: dict[str, Any] | None = None
         self._done = False
+
+    def use_model(self, model: dict[str, Any] | None) -> None:
+        """This turn was answered by another model than the one the session started with (the page's model
+        selector): its record's run.model names that model. None keeps the session's own."""
+        self._model = model
 
     def answered(self, out: Any, *, evaluation: dict[str, Any] | None, review: dict[str, Any] | None,
                  live: dict[str, Any] | None = None) -> None:
@@ -339,7 +345,8 @@ class Turn:
     # -- writing ----------------------------------------------------------------
 
     def _ident(self) -> dict[str, Any]:
-        return dict(question_id=self.question_id, ordinal=0, question=self.question, run=self.session.run,
+        run = self.session.run if self._model is None else {**self.session.run, "model": self._model}
+        return dict(question_id=self.question_id, ordinal=0, question=self.question, run=run,
                     captured_utc=_now())
 
     def _write_answer(self) -> None:

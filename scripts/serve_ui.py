@@ -1,11 +1,11 @@
 """Local web UI for testing the Regulus RAG pipeline by hand.
 
 Runs entirely on this machine: it needs the read-only PostgreSQL database and
-the local Qwen weights, so it cannot be a hosted page. Standard library only,
-no new dependencies.
+the application's one model, Qwen3-1.7B 4-bit, run by the MLX worker, so it
+cannot be a hosted page. Standard library only, no new dependencies.
 
-    python scripts/serve_ui.py
-    python scripts/serve_ui.py --port 8000 --adapter models/qwen3-0.6b-lora/stage13_v1/adapter
+    REGULUS_MLX_PYTHON=<python with mlx-lm> REGULUS_MLX_MODEL_PATH=<Qwen3-1.7B-MLX-4bit snapshot> \
+        python scripts/serve_ui.py --port 8000
 
 Then open http://127.0.0.1:8000 in a browser.
 
@@ -56,6 +56,32 @@ from regulus.traceability.ui_session import DELIVERED, NOT_DELIVERED, UISession,
 WEB_DIR = PROJECT_ROOT / "web"
 ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
 
+# The application answers with ONE model: Qwen3-1.7B quantized to 4 bits, run by the MLX worker
+# (regulus.rag.mlx_generator). There is no selector and no fallback: the worker's interpreter and model directory
+# come from model.mlx_python / model.mlx_model_path (REGULUS_MLX_PYTHON / REGULUS_MLX_MODEL_PATH), every check runs
+# before the server listens, and a failed check stops the server with what to fix. Nothing else is ever loaded in
+# its place: no in-process Qwen3-0.6B, no adapter, no remote server. A request may name the model; any other name
+# is refused rather than answered by this one.
+MODEL_MLX = "qwen3-1.7b"
+MLX_MODEL_ID = "Qwen/Qwen3-1.7B"
+MLX_LABEL = "Qwen3-1.7B (MLX 4-bit)"
+# config.json values that identify Qwen3-1.7B (Qwen3-0.6B is 1024 wide; Qwen3-4B is 2560 wide with 36 layers),
+# and the quantization the application is validated with
+MLX_EXPECTED_CONFIG = {"model_type": "qwen3", "hidden_size": 2048, "num_hidden_layers": 28, "intermediate_size": 6144}
+MLX_EXPECTED_BITS = 4
+
+
+def check_model(model: str | None) -> None:
+    """A request may name the model it expects; anything but this server's one model is refused."""
+    if model not in (None, "", MODEL_MLX):
+        raise ValueError(f"unknown model {model!r}: this server answers with {MLX_LABEL} ({MODEL_MLX!r}) only")
+
+
+def _sha256(path: Path) -> str:
+    import hashlib
+
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
 # one inference at a time: the model is not safe to share across threads and
 # this machine cannot run two anyway
 _LOCK = threading.Lock()
@@ -65,18 +91,16 @@ _CONVERSATION_PATH = re.compile(r"/api/conversations/([A-Za-z0-9-]{1,64})")
 class Engine:
     """Holds the loaded model and database, and answers one question at a time."""
 
-    def __init__(self, settings, offline: bool, *, inference_timeout: float | None = None) -> None:
+    def __init__(self, settings, offline: bool) -> None:
         from regulus.retrieval import Database
 
         self.settings = settings
-        self._init_inference(offline, inference_timeout=inference_timeout)
+        self._init_inference(offline)
         self.db = Database.from_env()
         self.db.connect()
         status = self.db.status()
         print(f"Database {status['database']} read-only={status['default_transaction_read_only']}", flush=True)
         self.snapshot = self.db.query("SELECT max(snapshot_date)::text AS d FROM cfr_records WHERE removed_on IS NULL")[0]["d"]
-        self._models: dict[str, object] = {"": self.base_model} if self.remote is None else {}
-        self._adapter_info: dict[str, dict] = {"": self.default_info}
         self._adapter_records: dict[str, dict] = {}
         # The accuracy evaluator's optional existence check reuses the Stage 13
         # identifier index (read-only, one indexed lookup per unaccounted-for
@@ -89,55 +113,64 @@ class Engine:
         self._identifier_index = None
         self._aligner = None
 
-    def _init_inference(self, offline: bool, *, inference_timeout: float | None = None) -> None:
-        """Where generation runs, from model.backend (configs/model.yaml / REGULUS_MODEL_BACKEND), as for the
-        acceptance runner (regulus.rag.remote_generator.load_generator):
+    def _init_inference(self, offline: bool) -> None:
+        """Start the application's one model, Qwen3-1.7B 4-bit in the MLX worker, or stop with what to fix.
 
-          transformers       in-process: the tokenizer and weights are loaded here (and the configured adapter
-                             merged), exactly as before.
-          openai_compatible  the GPU server at model.endpoint / REGULUS_MODEL_ENDPOINT (API key, if any, from
-                             REGULUS_MODEL_API_KEY only). NOTHING is loaded on this host: no tokenizer, no
-                             weights. Local adapters cannot apply to a remote model, so one configured here
-                             is refused rather than silently ignored."""
-        settings = self.settings
-        self.remote = None
-        self.default_info: dict = {}
-        if settings.model.backend == "openai_compatible":
-            from regulus.rag.remote_generator import GuardedRemoteGenerator, load_generator
+        Checked in order, each before anything is loaded that a failure would waste: no remote backend and no
+        adapter configured; the worker's interpreter and model directory exist; the directory's config.json is
+        Qwen3-1.7B quantized to 4 bits; its tokenizer.json is byte-identical to the tokenizer loaded here
+        (prompts are tokenized in this process); the memory preflight; the worker starts. There is no fallback:
+        any failure raises SystemExit and the server does not start."""
+        from regulus.model import load_tokenizer
+        from regulus.rag.mlx_generator import MlxGenerator, memory_preflight
+        from regulus.system_identity import configured_generation_config
 
-            if settings.model.adapter is not None:
-                raise SystemExit("model.adapter is set, but adapters are merged locally and cannot apply to a "
-                                 "remote model: unset it (REGULUS_ADAPTER=none) or serve the adapted model remotely")
-            inner = load_generator(settings)
-            if inference_timeout:
-                inner.timeout = float(inference_timeout)
-            self.remote = GuardedRemoteGenerator(inner, passthrough=(ClientDisconnected,))
-            self.tokenizer = self.base_model = None
-            served = self.remote.served_models()
-            self.remote_models = served
-            print(f"Inference: remote OpenAI-compatible server ({self.remote.describe()['endpoint_scheme']}), model "
-                  f"{settings.model.id}; served list "
-                  f"{'checked' if served['checked'] else 'unavailable (' + served['category'] + ')'}"
-                  f"{'' if not served['checked'] else ', configured model ' + ('served' if served['configured_id_served'] else 'NOT listed')}",
-                  flush=True)
-            if self.remote.describe()["endpoint_scheme"] == "http" and not self.remote.describe()["endpoint_is_loopback"]:
-                print("  WARNING: inference traffic is plain HTTP; use a private network (or HTTPS) between this "
-                      "host and the GPU server", flush=True)
-            return
-        from regulus.model import load_model, load_tokenizer
+        m = self.settings.model
 
-        print("Loading tokenizer and model ...", flush=True)
-        t0 = time.perf_counter()
-        self.tokenizer = load_tokenizer(settings.model, local_files_only=offline)
-        self.base_model = load_model(settings.model, local_files_only=offline)
-        # The default selection ("") is the configured model: the base model,
-        # or the adapter configured in configs/model.yaml / REGULUS_ADAPTER.
-        if settings.model.adapter is not None:
-            from regulus.finetune import attach_saved_adapter
+        def refuse(problem: str):
+            raise SystemExit(f"{MLX_LABEL} cannot start: {problem}. The application answers with this model only "
+                             f"and never substitutes another.")
 
-            print(f"Merging configured adapter {settings.model.adapter} ...", flush=True)
-            self.base_model, self.default_info = attach_saved_adapter(self.base_model, settings.model.adapter, merge=True)
-        print(f"Model ready in {time.perf_counter() - t0:.1f}s on {self.base_model.device} ({self.base_model.dtype})", flush=True)
+        if m.backend == "openai_compatible":
+            refuse("model.backend is 'openai_compatible' (REGULUS_MODEL_BACKEND), which would answer with the remote "
+                   "server's model; unset it")
+        if m.adapter is not None:
+            refuse("model.adapter is set (configs/model.yaml or REGULUS_ADAPTER), but adapters are Qwen3-0.6B LoRA "
+                   "weights; unset it (REGULUS_ADAPTER=none)")
+        if m.mlx_python is None or m.mlx_model_path is None:
+            refuse("the MLX worker is not configured; set REGULUS_MLX_PYTHON (a Python with mlx-lm installed) and "
+                   "REGULUS_MLX_MODEL_PATH (the Qwen3-1.7B-MLX-4bit snapshot directory)")
+        path = Path(m.mlx_model_path)
+        if not Path(m.mlx_python).is_file():
+            refuse(f"REGULUS_MLX_PYTHON does not name a file ({m.mlx_python})")
+        if not (path / "config.json").is_file() or not (path / "tokenizer.json").is_file():
+            refuse("REGULUS_MLX_MODEL_PATH has no config.json and tokenizer.json")
+        cfg = json.loads((path / "config.json").read_text(encoding="utf-8"))
+        wrong = {k: cfg.get(k) for k, v in MLX_EXPECTED_CONFIG.items() if cfg.get(k) != v}
+        bits = (cfg.get("quantization") or {}).get("bits")
+        if wrong or bits != MLX_EXPECTED_BITS:
+            refuse(f"REGULUS_MLX_MODEL_PATH is not Qwen3-1.7B quantized to {MLX_EXPECTED_BITS} bits "
+                   f"(config.json: {wrong or ''}{'' if bits == MLX_EXPECTED_BITS else f' quantization bits {bits}'})")
+        self.tokenizer = load_tokenizer(m, local_files_only=offline)
+        mine = self._tokenizer_file()
+        if mine is None or _sha256(mine) != _sha256(path / "tokenizer.json"):
+            refuse(f"the tokenizer loaded from {m.id} (REGULUS_MODEL_ID / REGULUS_MODEL_CACHE_DIR) is not "
+                   f"byte-identical to the MLX model's tokenizer.json")
+        self._tokenizer_sha256 = _sha256(mine)
+        # an HF cache snapshot directory is named by its commit; an explicit REGULUS_MLX_REVISION wins
+        revision = m.mlx_revision or (path.name if path.parent.name == "snapshots" else None)
+        try:
+            memory_preflight(m.mlx_min_available_mb)
+            print(f"Starting {MLX_LABEL} in the MLX worker ...", flush=True)
+            t0 = time.perf_counter()
+            self._mlx = MlxGenerator(self.tokenizer, configured_generation_config(self.settings), model_id=MLX_MODEL_ID,
+                                     model_path=path, python=m.mlx_python, revision=revision)
+        except Exception as exc:  # noqa: BLE001 - every start-up failure stops the server, explained
+            refuse(f"{type(exc).__name__}: {exc}")
+        d = self._mlx.describe()
+        print(f"Answering model: {d['model_id']} {d['dtype']} revision {d['model_revision'] or 'not recorded'}, "
+              f"MLX worker {d.get('runtime_versions')}, tokenizer.json sha256 {self._tokenizer_sha256[:12]}, "
+              f"ready in {time.perf_counter() - t0:.1f}s", flush=True)
 
     def adapter_record(self, adapter_id: str) -> dict | None:
         """What a measurement record keeps about the adapter a request used: its name and training metadata,
@@ -212,41 +245,40 @@ class Engine:
     # -- adapters ---------------------------------------------------------
 
     def available_adapters(self) -> list[dict]:
-        if getattr(self, "remote", None) is not None:
-            return [{"id": "", "label": f"Remote: {self.settings.model.id}"}]
-        return self._local_adapters()
+        """Adapters are Qwen3-0.6B LoRA weights and never apply to the application's model."""
+        return [{"id": "", "label": "No adapter"}]
 
-    def _local_adapters(self) -> list[dict]:
-        default = (f"Configured: {self.default_info.get('adapter_name')} adapter" if self.default_info
-                   else "Base Qwen3-0.6B (no adapter)")
-        out = [{"id": "", "label": default}]
-        if ADAPTER_ROOT.is_dir():
-            for d in sorted(ADAPTER_ROOT.iterdir()):
-                # smoke_tmp holds a one-step throwaway adapter; never offer it
-                if d.name.startswith("smoke"):
-                    continue
-                cfg = d / "adapter" / "adapter_config.json"
-                if cfg.is_file():
-                    out.append({"id": d.name, "label": f"{d.name} adapter"})
-        return out
+    # -- the one model --------------------------------------------------------
 
-    def model_for(self, adapter_id: str):
-        """Load and cache a merged adapter model. Each costs ~2.4 GB, so only
-        the ones actually asked for are kept."""
-        if getattr(self, "remote", None) is not None:
-            if adapter_id:
-                raise ValueError("adapters are not available with remote inference")
-            return None, {}
-        if adapter_id in self._models:
-            return self._models[adapter_id], self._adapter_info[adapter_id]
-        from regulus.finetune import load_adapter_model
+    def active_model(self) -> str:
+        return MODEL_MLX
 
-        path = ADAPTER_ROOT / adapter_id / "adapter"
-        print(f"Loading adapter {adapter_id} ...", flush=True)
-        model, info = load_adapter_model(self.settings.model, path, merge=True, local_files_only=True)
-        self._models[adapter_id] = model
-        self._adapter_info[adapter_id] = info
-        return model, info
+    def available_models(self) -> list[dict]:
+        """The one model this server answers with (/api/config keeps the list shape for its readers)."""
+        return [{"id": MODEL_MLX, "label": MLX_LABEL, "available": True}]
+
+    def _tokenizer_file(self) -> Path | None:
+        from regulus.system_identity import cached_revision
+
+        m = self.settings.model
+        try:
+            revision, _ = cached_revision(m.id, Path(m.cache_dir))
+        except Exception:  # noqa: BLE001
+            return None
+        path = Path(m.cache_dir) / f"models--{m.id.replace('/', '--')}" / "snapshots" / str(revision) / "tokenizer.json"
+        return path if revision and path.is_file() else None
+
+    def model_identity(self) -> dict:
+        """What answers, as the start-up log, /api/config, every response and every measurement record name it.
+        Never the local paths."""
+        d = self._mlx.describe()
+        return {"backend": "mlx", "model_id": d.get("model_id"), "model_revision": d.get("model_revision"),
+                "device": d.get("device"), "dtype": d.get("dtype"), "quantization": d.get("quantization"),
+                "runtime_versions": d.get("runtime_versions"), "adapter": None,
+                "decoding": d.get("generation"),   # what the worker does (greedy), not the configured sampling
+                "tokenizer": {"loaded_from": self.settings.model.id,
+                              "tokenizer_json_sha256": getattr(self, "_tokenizer_sha256", None),
+                              "identical_to_mlx_model": True}}
 
     # -- answering --------------------------------------------------------
 
@@ -264,16 +296,19 @@ class Engine:
 
     def _ask(self, question: str, *, adapter: str = "", grounding: bool = False,
              top_k: int = 8, max_new_tokens: int | None = None, on_event=None,
-             accuracy: bool | None = None, turn=None) -> dict:
+             accuracy: bool | None = None, turn=None, model: str | None = None) -> dict:
         """Answer one question. `on_event` (streaming) is passed to the pipeline
         unchanged; the returned dict is the same with or without it."""
         from dataclasses import replace
-        from regulus.rag import QwenGenerator, RagPipeline
+        from regulus.rag import RagPipeline
         from regulus.retrieval import LexicalRetriever
         from regulus.system_identity import configured_generation_config, configured_rag_config
 
         t_setup = time.perf_counter()
-        model, adapter_info = self.model_for(adapter)
+        check_model(model)
+        if adapter:
+            raise ValueError(f"adapters are Qwen3-0.6B LoRA weights and do not apply to {MLX_LABEL}")
+        adapter_info: dict = {}
         # The configured pipeline (the same definition the dashboard and Stage 5
         # use), with the page's two controls applied on top. The page's token
         # control is the hard safety ceiling, not a target length; the pipeline
@@ -296,11 +331,10 @@ class Engine:
 
             self._retrieval = build_retriever(self.db, config, lexical=LexicalRetriever(self.db))
         retriever, scope = self._retrieval
-        generator = (self.remote if getattr(self, "remote", None) is not None
-                     else QwenGenerator(model, self.tokenizer, gen, self.settings.model.id))
+        self._mlx.gen = gen   # the configured decoding settings; the worker decodes greedily, thinking off
         pipeline = RagPipeline(
             retriever,
-            generator,
+            self._mlx,
             replace(config, top_k=top_k, generation_budget=budget),
             grounding=gate,
             scope_policy=scope,
@@ -369,6 +403,8 @@ class Engine:
             "input_tokens": out.input_tokens,
             "output_tokens": out.output_tokens,
             "adapter": {"id": adapter, "name": adapter_info.get("adapter_name"), "r": adapter_info.get("r"), "dataset_hash": adapter_info.get("dataset_hash")},
+            "model": {"id": MODEL_MLX, "label": MLX_LABEL,
+                      **{k: v for k, v in self.model_identity().items() if k in ("backend", "model_id", "model_revision", "dtype")}},
             "snapshot_date": self.snapshot,
             # the exact evidence placed in the prompt, with its fingerprint (regulus.traceability)
             "evidence_snapshot": out.evidence_snapshot.to_dict() if out.evidence_snapshot is not None else None,
@@ -416,7 +452,7 @@ class Engine:
             "identifier_lookups": lookups,
             "grounding": out.metadata.get("grounding"),       # the grounding gate's decision; None when off
             "adapter": self.adapter_record(adapter),
-            "inference_backend": "openai_compatible" if getattr(self, "remote", None) is not None else "transformers",
+            "inference_backend": "mlx",
         }
 
     def accuracy_payload(self, out, *, lookups: list | None = None) -> dict:
@@ -504,12 +540,16 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, page.read_bytes(), "text/html; charset=utf-8")
             return
         if path == "/api/config":
+            identity = self.engine.model_identity()
             self._json(200, {
                 "adapters": self.engine.available_adapters(),
-                "model_id": self.engine.settings.model.id,
-                "device": "remote" if self.engine.base_model is None else str(self.engine.base_model.device),
-                "dtype": None if self.engine.base_model is None else str(self.engine.base_model.dtype).replace("torch.", ""),
-                "inference_backend": self.engine.settings.model.backend,
+                "models": self.engine.available_models(),
+                "active_model": self.engine.active_model(),
+                "model_id": identity["model_id"],
+                "model_revision": identity["model_revision"],
+                "device": identity["device"],
+                "dtype": identity["dtype"],
+                "inference_backend": "mlx",
                 # ids and counters only: whether records are being written, and the last failure category
                 "measurement": self.measure.status() if self.measure is not None else {"enabled": False},
                 "snapshot_date": self.engine.snapshot,
@@ -587,6 +627,9 @@ class Handler(BaseHTTPRequestHandler):
         # the feature existed. The regression harness sends false for Run A.
         if "accuracy" in body:
             out["accuracy"] = bool(body["accuracy"])
+        if "model" in body:   # a client may name the model it expects; any other than the one served is refused
+            out["model"] = str(body.get("model") or "")
+            check_model(out["model"])
         return out
 
     def do_POST(self) -> None:
@@ -908,28 +951,16 @@ def measurement_run(settings, engine) -> dict:
 
     from regulus.accuracy.rubric import RUBRIC_VERSION
     from regulus.rag.generation import GROUNDED_SYSTEM_PROMPT
-    from regulus.system_identity import (cached_revision, configured_generation_config, configured_rag_config,
-                                         decoding_config, pipeline_config)
+    from regulus.system_identity import (configured_generation_config, configured_rag_config, decoding_config,
+                                         pipeline_config)
     from regulus.traceability.measurement import sha256_json
 
     config = configured_rag_config(settings)
     if getattr(engine, "answer_shape", None):
         config = replace(config, answer_shape=engine.answer_shape)
-    if getattr(engine, "remote", None) is not None:
-        # the remote server's own description, endpoint hashed; no revision is claimed that was not reported
-        model = {**engine.remote.describe(), "served_models": getattr(engine, "remote_models", None)}
-    else:
-        try:
-            revision, why = cached_revision(settings.model.id, Path(settings.model.cache_dir))
-        except Exception as exc:  # noqa: BLE001
-            revision, why = None, type(exc).__name__
-        model = {"backend": "transformers", "model_id": settings.model.id, "model_revision": revision,
-                 "model_revision_source": "local HF cache refs/main (what the loader loads)" if revision else why,
-                 "device": settings.model.device, "dtype": settings.model.dtype,
-                 "adapter": engine.adapter_record("") if hasattr(engine, "adapter_record") else None}
     return {
         "source": "ui",
-        "model": model,
+        "model": engine.model_identity(),
         # the regulatory database as this server saw it at start (max snapshot_date of live eCFR rows)
         "database": {"snapshot_date": getattr(engine, "snapshot", None), "observed": "at server start"},
         "generation_config": json.loads(json.dumps(decoding_config(configured_generation_config(settings)), default=str)),
@@ -953,16 +984,7 @@ def main() -> int:
     p.add_argument("--allow-remote-clients", action="store_true",
                    help="allow a non-loopback --host. Only behind a private network AND an authenticated HTTPS "
                         "reverse proxy: this server has no authentication and serves chat history")
-    p.add_argument("--backend", choices=("transformers", "openai_compatible"), default=None,
-                   help="override model.backend: transformers = in-process (default); openai_compatible = the GPU "
-                        "server at REGULUS_MODEL_ENDPOINT (API key in REGULUS_MODEL_API_KEY), nothing loaded here")
-    p.add_argument("--inference-timeout", type=float, default=None,
-                   help="seconds to wait for the remote inference server (default 600)")
-    p.add_argument("--offline", action="store_true", help="fail instead of downloading the model")
-    p.add_argument("--device", choices=("auto", "cpu", "mps"), default=None,
-                   help="override model.device (configs/model.yaml / REGULUS_DEVICE); mps = Apple GPU, opt-in")
-    p.add_argument("--dtype", choices=("auto", "float32", "float16", "bfloat16"), default=None,
-                   help="override model.dtype (configs/model.yaml / REGULUS_DTYPE)")
+    p.add_argument("--offline", action="store_true", help="fail instead of downloading the tokenizer")
     p.add_argument("--no-accuracy", action="store_true",
                    help="do not assess answer accuracy; the answer, citations and evidence are unchanged either way")
     p.add_argument("--accuracy-alignment", choices=("semantic", "lexical"), default="semantic",
@@ -980,18 +1002,7 @@ def main() -> int:
 
     check_bind(args.host, args.allow_remote_clients)
     settings = load_settings()
-    if args.backend:
-        from dataclasses import replace as _replace
-
-        settings.model = _replace(settings.model, backend=args.backend)
-        settings.model.validate()
-    if args.device or args.dtype:
-        from dataclasses import replace as _replace
-
-        settings.model = _replace(settings.model, device=args.device or settings.model.device,
-                                  dtype=args.dtype or settings.model.dtype)
-        settings.model.validate()
-    Handler.engine = Engine(settings, offline=args.offline, inference_timeout=args.inference_timeout)
+    Handler.engine = Engine(settings, offline=args.offline)
     try:
         Handler.store = ConversationStore()
         print(f"Conversation history: {Handler.store.path}", flush=True)

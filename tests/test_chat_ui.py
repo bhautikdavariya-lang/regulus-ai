@@ -83,7 +83,7 @@ def test_a_second_send_while_one_is_in_flight_is_ignored():
 # ------------------------------------------------------------- live answer streaming (Phase 1.2)
 
 
-SETTINGS_FIELDS = ("adapter", "top_k", "max_new_tokens", "grounding")
+SETTINGS_FIELDS = ("adapter", "top_k", "max_new_tokens", "grounding", "model")
 
 
 def test_the_bubble_shows_progress_and_never_the_draft_text():
@@ -138,8 +138,9 @@ def test_the_page_sends_no_model_or_tuning_fields(scenario, key):
 
 def test_the_page_has_no_settings_or_model_controls():
     html = (PROJECT_ROOT / "web" / "index.html").read_text(encoding="utf-8")
+    # the application answers with Qwen3-1.7B MLX 4-bit only: there is no model to choose
     for gone in ('id="adapter"', 'id="topk"', 'id="tokens"', 'id="grounding"', 'class="settings', "<select",
-                 'type="number"', '$("adapter")', '$("topk")', '$("tokens")', '$("grounding")'):
+                 'type="number"', '$("adapter")', '$("topk")', '$("tokens")', '$("grounding")', '$("model")'):
         assert gone not in html, gone
     assert ">Settings<" not in html and "Settings</summary>" not in html
 
