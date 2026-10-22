@@ -1,0 +1,57 @@
+{
+ "run_id": "holdout100_20261022",
+ "run_window": "2026-10-22 15:56 → 17:00 IST (local)",
+ "wall_seconds": 3833.511,
+ "timeout_s": null,
+ "bank_file": "Regulus_QBank_Cosmetics_REV01.xlsx",
+ "base_model_short": "Qwen3-4B-Instruct-2507 (MLX 4-bit)",
+ "base_model_cell": "mlx-community/Qwen3-4B-Instruct-2507-4bit (rev 50d42775)",
+ "embedding_model_cell": "BAAI/bge-small-en-v1.5 (dense section candidates for promotion)",
+ "baseline_label": "1.7B, 22 Oct (different 100 questions)",
+ "new_label": "4B-2507 holdout, 22 Oct",
+ "comparison_note": "Not the same questions as the earlier runs: this is the frozen holdout (100 of the 177 questions never used in development).",
+ "model_config_lines": [
+  [
+   "Base language model",
+   "Qwen3-4B-Instruct-2507, MLX 4-bit (mlx-community/Qwen3-4B-Instruct-2507-4bit revision 50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b); no adapter; thinking off."
+  ],
+  [
+   "Provider / runtime",
+   "Local MLX worker on the Apple GPU through scripts/run_cosmetics_eval.py (the production RagPipeline without the web UI). No external API."
+  ],
+  [
+   "Decoding",
+   "Greedy; repetition penalty 1.1; the pipeline's adaptive token allowance."
+  ],
+  [
+   "Retrieval / index",
+   "Lexical PostgreSQL retrieval over the read-only database (eCFR snapshot 2026-09-03, 65,408 rows after the 22 Oct source-text repair) plus FDA guidance; section promotion with the LLM picker over lexical + dense candidates; FD&C Act statute corpus (govinfo USCODE-2024, 528 paragraphs); deterministic color-listing composer; answer style apply."
+  ],
+  [
+   "Deployment scope",
+   "cosmetics"
+  ],
+  [
+   "Evaluator",
+   "Question-bank rubric against the verified key, scored blind by two independent AI scorers (a plain and a skeptical lens) with a third adjudicating where they disagreed on PASS; the recorded verdict is the stricter scorer's. AI-assisted, not SME-signed. The Regulus live evaluator was not run in this offline runner (its columns are blank)."
+  ]
+ ],
+ "metadata_lines": [
+  [
+   "Holdout",
+   "100 questions drawn (seed 20261022) from the 177 bank questions never used in development; frozen before any result (selection.json sha256 a378d0bdb496…)."
+  ],
+  [
+   "Code",
+   "git fbd2e60 + uncommitted working tree (diff sha256 f51e606a0057…); per-file sha256 in run_provenance.json."
+  ],
+  [
+   "Database",
+   "{\"rows\": 65408, \"sections\": 7829, \"first_snapshot\": \"2026-09-03\", \"last_snapshot\": \"2026-09-03\", \"sha256\": \"75fb6482775a124bbe11dc84cd7d8908204c4ba4f8bfd5c361ac5ff790616106\"}"
+  ],
+  [
+   "Run directory",
+   "artifacts/cosmetics_benchmark/holdout100_20261022/ (answers.jsonl, run.log, run_provenance.json, wb_run/)"
+  ]
+ ]
+}
