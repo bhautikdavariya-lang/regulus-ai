@@ -24,11 +24,12 @@ from regulus.planning.intent import SCOPE_MIXED, SCOPE_OUT, TYPE_CITATION, Quest
 from regulus.planning.shape import MODE_COMPARISON, MODE_ENUMERATION, MODE_FOCUSED, AnswerShape, analyze_shape
 from regulus.rag import answerability as gate
 from regulus.rag.citation_repair import repoint_citations
-from regulus.rag.answer_quality import mixed_scope_note, normalize_answer, out_of_scope_answer, quality_flags
+from regulus.rag.answer_quality import mixed_scope_note, normalize_answer, out_of_scope_answer, quality_flags, strip_plan_labels
 from regulus.rag.context import ContextBundle, ContextPolicy, build_context, render_selection
 from regulus.rag.citations import ROLE_CONTEXT, RagCitation, build_answer_citations, citation_support
 from regulus.rag.coverage import STATE_INCOMPLETE, CoverageReport, check_coverage
 from regulus.rag.generation import (
+    APPLY_RETRY_SYSTEM_PROMPT,
     UNVALIDATED_GENERAL,
     UNVALIDATED_PREFIX,
     GenerationBudget,
@@ -41,6 +42,7 @@ from regulus.rag.generation import (
     verbatim_requested,
 )
 from regulus.rag.fallback import (
+    FB_COMPOSED_LISTING,
     FB_DEFINITIONS_QUOTED,
     FB_PREMISE_NOT_ESTABLISHED,
     FB_UNVALIDATED,
@@ -147,6 +149,13 @@ class RagConfig:
     # Stage 8 (docs/generation_control_stage8.md): "on" = drop content-free [Reserved] rows and duplicate passages
     # before the prompt (regulus.rag.selection.consolidate_evidence); "off" = previous behaviour.
     evidence_consolidation: str = "on"
+    # 22 Oct 2026 (regulus.rag.section_promotion): a question that names no provision is answered as if it named the
+    # section that answers it. "picker" = the answering model chooses among the top-ranked sections; "lexical" = the
+    # top-ranked section, no model call; "off" = previous behaviour (the library default; production turns it on).
+    section_promotion: str = "off"
+    # 22 Oct 2026: "apply" = the ANSWER FORMAT line asks for the answer to the question first, applied to its facts,
+    # then the supporting provision wording (regulus.rag.answer_plan.APPLY_FORMAT); "restate" = previous lines.
+    answer_style: str = "restate"
 
     def __post_init__(self) -> None:
         if self.top_k <= 0:
@@ -169,6 +178,10 @@ class RagConfig:
             raise ValueError("evidence_consolidation must be 'on' or 'off'")
         if self.semantic_fallback not in ("on", "off"):
             raise ValueError("semantic_fallback must be 'on' or 'off'")
+        if self.section_promotion not in ("off", "lexical", "picker"):
+            raise ValueError("section_promotion must be 'off', 'lexical' or 'picker'")
+        if self.answer_style not in ("restate", "apply"):
+            raise ValueError("answer_style must be 'restate' or 'apply'")
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -188,6 +201,9 @@ class RagConfig:
             "semantic_fallback": self.semantic_fallback,
             "evidence_consolidation": self.evidence_consolidation,
             "context": self.context.to_dict(),
+            # recorded only when on, so the fingerprints of earlier configurations are unchanged
+            **({"section_promotion": self.section_promotion} if self.section_promotion != "off" else {}),
+            **({"answer_style": self.answer_style} if self.answer_style != "restate" else {}),
         }
 
 
@@ -258,7 +274,105 @@ class RagGenerationResult(GenerationResult):
     citations: list[dict[str, Any]] = field(default_factory=list)
 
 
-# the model's whole answer is the system prompt's decline sentence (rule 9), once or repeated
+def _statute_notes(promotion) -> tuple[str, ...]:
+    """The prompt's NOTE when only part of a resolved FD&C Act section fits the evidence (the general search's notes
+    are about evidence the statute replaced)."""
+    if not promotion.statute_left_out:
+        return ()
+    return (f"Only part of FD&C Act § {', '.join(promotion.statute)} is supplied below ({len(promotion.statute_left_out)} "
+            "subsection(s) left out); do not state what the left-out text requires.",)
+
+
+def may_promote(question: str, plan: QueryPlan) -> str | None:
+    """Whether section promotion may run for this question: None (no), "named_statute" (only an FD&C Act section the
+    question itself names may be resolved) or "any". Never when a deterministic refusal decided from the question
+    itself would otherwise apply (code review, 22 Oct): a named non-U.S. framework or a mixed-scope question, a
+    provision pointed at without being identified ("paragraph (b)", "this section"), a request for FDA guidance or a
+    docket, another CFR title ("16 CFR", "40 CFR"). A plan with requirements is promoted only when every requirement
+    is a whole 21 CFR part of the color-additive and cosmetic programme (Parts 70-82, 700-740) and the question is not
+    a citation lookup: "Under Part 82, what specifications ..." is narrowed to the section; "What does Part 11 require?"
+    is not."""
+    from regulus.rag.answerability import _AMBIGUOUS_RE
+    from regulus.retrieval.section_index import COSMETIC_PARTS
+
+    if plan.docket is not None or plan.guidance_requested or _OTHER_CFR_TITLE.search(question):
+        return None
+    analysis = analyze_question(plan)
+    if analysis.scope_status in (SCOPE_OUT, SCOPE_MIXED):
+        return None
+    statute_named = bool(_FDCA_CUE.search(question) or re.search(r"§\s*\d{3}(?!\d|\.\d)", question))
+    if plan.requirements:
+        if analysis.question_type == TYPE_CITATION or not all(r.reference.section is None and r.reference.title == "21"
+                                                               for r in plan.requirements):
+            return None
+        if all(r.reference.part in COSMETIC_PARTS for r in plan.requirements):
+            return "any"
+        # "FD&C Act § 607" / "21 U.S.C. § 364a" are read as CFR parts: only the statute check may run
+        return "named_statute" if statute_named and all((r.raw or "").lstrip().startswith("§") for r in plan.requirements) else None
+    if _AMBIGUOUS_RE.search(question):
+        # "what does subsection (b) of section 605 require": identified only if the question names the section itself
+        return "named_statute" if statute_named else None
+    return "any"
+
+
+_OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
+_FDCA_CUE = re.compile(r"\bFD&C\s+Act\b|\bFDCA\b|\bFederal\s+Food,\s+Drug,?\s+and\s+Cosmetic\s+Act\b|\b21\s+U\.?S\.?C\b", re.I)
+
+
+_NOTE_BY_CODE = {
+    "unsupported_figure": "{detail}. Give only periods, amounts and numbers that the EVIDENCE states, in its words; do not add or combine them.",
+    "unsupported_claim": "This sentence is not supported by the EVIDENCE: \"{sentence}\". Remove it, or state only what a source says.",
+    "requirement_not_addressed": "{detail}. Answer the question from that provision.",
+    "refusal_with_evidence": "The draft declined, but the EVIDENCE contains the provision the question is about. Answer from it.",
+    "invented_condition": "{detail}: \"{sentence}\". Keep only conditions a source states.",
+    "condition_not_in_cited_source": "{detail}: \"{sentence}\". Cite the source that states the condition.",
+    "provision_citation_mismatch": "{detail}: \"{sentence}\". Cite the source whose Citation is the provision named.",
+    "citation_mismatch": "{detail}. Cite the EXACT source of the provision named.",
+    "paragraph_misattribution": "{detail}. Attribute each statement to the paragraph it comes from.",
+    "invalid_citation": "{detail}. Use only the source numbers shown in the EVIDENCE.",
+    "enumeration_incomplete": "{detail}. Include it, briefly, where it bears on the question.",
+    "truncated": "The draft ran too long and was cut off. Answer concisely: each point once.",
+    "degenerate_output": "The draft repeated itself ({detail}). Say each point once.",
+    "unsupported_premise": "{detail}. Do not affirm what no source states.",
+}
+
+
+def correction_notes(report: ValidationReport, package: GenerationPackage, limit: int = 6) -> list[str]:
+    """The validator's error-level findings, worded for the model (its own detail text, never a new claim)."""
+    out: list[str] = []
+    for p in report.problems:
+        if p.severity != "error":
+            continue
+        tmpl = _NOTE_BY_CODE.get(p.code, "{detail}.")
+        note = tmpl.format(detail=(p.detail or "").rstrip("."), sentence=" ".join((p.sentence or "").split())[:220])
+        if note not in out:
+            out.append(note)
+    return out[:limit]
+
+
+def _COSMETIC_PARTS():
+    from regulus.retrieval.section_index import COSMETIC_PARTS
+
+    return COSMETIC_PARTS
+
+
+def _without_part_requirements(plan: QueryPlan, keep_none: bool = False) -> QueryPlan:
+    """The plan without its part-level requirements (renumbered), when sections were resolved inside those parts.
+    `keep_none`: the result may have no requirements left (the part was a misread statute section)."""
+    from regulus.planning.plan import Requirement, _plan_kind
+
+    kept = [r for r in plan.requirements if r.reference.section is not None]
+    if len(kept) == len(plan.requirements) or (not kept and not keep_none):
+        return plan
+    reqs = tuple(Requirement(id=f"r{i}", order=i, reference=r.reference, raw=r.raw, origin=r.origin, mention=r.mention)
+                 for i, r in enumerate(kept, start=1))
+    return replace(plan, requirements=reqs, kind=_plan_kind(plan.query_type, reqs, plan.scan))
+
+
+# the model's whole answer is the system prompt's decline sentence (rule 9), once or repeated (see _BARE_REFUSAL_RE)
+REFUSAL_RETRY_NOTE = ("\n\nNOTE: The EVIDENCE above was retrieved for this question and contains the provision it is about. "
+                      "Answer from it as the ANSWER FORMAT says. Where the provision does not settle a point, say so for "
+                      "that point only.")
 _BARE_REFUSAL_RE = re.compile(r"^(?:\s*The available regulatory sources do not provide enough information to answer "
                               r"this(?: question)?\.\s*)+$")
 
@@ -281,6 +395,21 @@ class RagPipeline:
         self.premise_check = premise_check
         # experimental (2026-10-21): regulus.retrieval.advanced.AdvancedRetrieval; None = off, the pipeline unchanged
         self.advanced = advanced
+        self._promoter = None   # regulus.rag.section_promotion.SectionPromoter, built on first use
+
+    def section_promoter(self):
+        """The section promoter of config.section_promotion, or None when off or without a database."""
+        if self.config.section_promotion == "off":
+            return None
+        if self._promoter is None:
+            db = getattr(self.retriever, "db", None)
+            if db is None:
+                return None
+            from regulus.rag.section_promotion import SectionPromoter
+
+            self._promoter = SectionPromoter(db, self.generator, mode=self.config.section_promotion)
+        self._promoter.generator = self.generator
+        return self._promoter
 
     # -- steps ---------------------------------------------------------------
 
@@ -373,7 +502,8 @@ class RagPipeline:
         """A child paragraph of a requested provision: part of what was asked for."""
         return evidence.tier == TIER_STRUCTURAL and REL_CHILD in evidence.relations.values()
 
-    def select(self, registry: EvidenceRegistry, shape: AnswerShape | None = None, question: str | None = None) -> Selection:
+    def select(self, registry: EvidenceRegistry, shape: AnswerShape | None = None, question: str | None = None,
+               promotion=None) -> Selection:
         """Stage 3 selection; with a Stage 12 shape, children of requested
         provisions are kept like required evidence instead of competing for the
         soft budget. Stage 5 calls this too, so it measures what the pipeline uses.
@@ -387,16 +517,49 @@ class RagPipeline:
             from regulus.rag.selection import _block_chars, _clean, _truncate
             selection, _ = self.advanced.extend(selection, registry, question or registry.plan.question, self.config.context,
                                                 block_chars=_block_chars, clean=_clean, truncate=_truncate)
+        if promotion is not None and promotion.statute_rows:
+            selection = self.statute_selection(promotion, selection)
         return selection
 
+    def statute_selection(self, promotion, selection: Selection) -> Selection:
+        """A question resolved to FD&C Act section(s): their text, verbatim, grouped by subsection and in document order,
+        is the evidence (the general search's guidance and eCFR passages are not about the provision the question asks).
+        Blocks the budget kept out are recorded as dropped required evidence, so the answer carries the gap notice."""
+        from regulus.rag.selection import DROP_HARD_CEILING_CHARS, DroppedEvidence, SelectedEvidence, _block_chars, _clean, _truncate
+        from regulus.retrieval.evidence import TIER_SUPPORTING
+        from regulus.retrieval.statute import statute_index
+
+        st = statute_index(self.retriever.db)
+        # statute only: its text is the evidence. With a promoted regulation as well: the Act text follows the
+        # regulation's evidence (co-promotion), which is kept
+        keep = list(selection.selected) if promotion.citations else []
+        chosen, dropped, used = list(keep), [], (selection.total_chars if keep else 0)
+        for n, rows in enumerate(promotion.statute_blocks, start=1):
+            result = st.block_result(list(rows))
+            evidence = Evidence(f"s{n}", result, TIER_SUPPORTING)
+            text, truncated = _truncate(_clean(result.text), self.config.context.required_max_chars_per_result)
+            chars = _block_chars(evidence, text, len(chosen) + 1, truncated)
+            if used + 2 + chars > self.config.context.hard_max_total_chars:
+                dropped.append(DroppedEvidence(evidence, DROP_HARD_CEILING_CHARS, required=True))
+                continue
+            used += 2 + chars
+            chosen.append(SelectedEvidence(len(chosen) + 1, evidence, text, truncated, True, "statute_promotion", chars))
+        for k, rows in enumerate(promotion.statute_left_out, start=1):
+            dropped.append(DroppedEvidence(Evidence(f"x{k}", st.block_result(list(rows)), TIER_SUPPORTING),
+                                           DROP_HARD_CEILING_CHARS, required=True))
+        if len(chosen) == len(keep):
+            return selection
+        return Selection(tuple(chosen), tuple(selection.dropped if keep else ()) + tuple(dropped), selection.policy, used,
+                         {**selection.diagnostics, "statute_promotion": list(promotion.statute)})
+
     def build_bundle(self, response: SearchResponse, registry: EvidenceRegistry | None, shape: AnswerShape | None = None,
-                     question: str | None = None) -> tuple[ContextBundle, CoverageReport | None, Selection | None]:
+                     question: str | None = None, promotion=None) -> tuple[ContextBundle, CoverageReport | None, Selection | None]:
         """Stage 3: coverage -> selection -> rendering when a registry exists;
         the legacy filter + build_context otherwise."""
         if registry is None:
             return build_context(self.select_useful(response.results), self.config.context, notes=response.notes), None, None
         coverage = check_coverage(registry)
-        selection = self.select(registry, shape, question)
+        selection = self.select(registry, shape, question, promotion=promotion)
         if (self.config.optional_context == "incomplete_only" and coverage.explicit and coverage.complete
                 and not (shape is not None and shape.mode == MODE_COMPARISON)
                 and all(is_complete_sentence(s.text) or completed_by_protected_children(s, selection)
@@ -463,6 +626,36 @@ class RagPipeline:
             coverage_explicit=bool(coverage.explicit) if coverage is not None else False)
 
     # -- Stage 4: generation contract, validation, repair --------------------
+
+    def correction_pass(self, messages, draft: str, package: GenerationPackage, report: ValidationReport, question: str,
+                        analysis) -> tuple[tuple[str, Any, ValidationReport] | None, dict[str, Any]]:
+        """answer_style "apply": a draft the validator rejected is returned to the model ONCE with what was wrong, as a
+        reviewer would hand it back ("the figure 270 appears in no source", "the answer does not address 21 CFR
+        70.50"). The corrected text goes through the same post-processing and the same validation, and is used only
+        if it validates; otherwise the original draft and the normal repair path (verbatim quote or withheld) stand."""
+        notes = correction_notes(report, package)
+        if not notes:
+            return None, {"attempted": False}
+        # rule 9 says the EVIDENCE contains the provision only when one was supplied (requested or resolved)
+        system = APPLY_RETRY_SYSTEM_PROMPT if (package.satisfied_ids or package.resolved) else messages[0]["content"]
+        user = (messages[-1]["content"] + "\n\nYOUR DRAFT ANSWER:\n" + (draft or "(empty)") + "\n\nPROBLEMS FOUND IN THE DRAFT:\n"
+                + "\n".join(f"- {n}" for n in notes) + "\n\nWrite the corrected answer to the QUESTION now, from the EVIDENCE only, "
+                "following the ANSWER FORMAT. Output only the answer.")
+        msgs = [{"role": "system", "content": system}] + list(messages[1:-1]) + [{**messages[-1], "content": user}]
+        t0 = time.perf_counter()
+        gen2 = self._generate(msgs, package.max_new_tokens, None)
+        text = (gen2.response or "").strip()
+        if not repeated_sentence(text):
+            text, _ = drop_duplicate_sentences(text)
+        text, _ = strip_plan_labels(text)
+        if analysis is not None:
+            text, _ = normalize_answer(text, question)
+        text, _ = repoint_citations(text, [(s.index, s.text) for s in package.sources])
+        report2 = validate_answer(text, package, gen2)
+        # problem codes only: the notes quote rejected draft sentences, which must not reach the page or the history
+        info = {"attempted": True, "codes_before": list(dict.fromkeys(p.code for p in report.problems if p.severity == "error")),
+                "accepted": report2.ok, "seconds": round(time.perf_counter() - t0, 2), "codes_after": list(report2.codes())}
+        return ((text, gen2, report2) if report2.ok else None), info
 
     def _generate(self, messages, max_new_tokens: int | None, on_text=None):
         """Call the generator with the per-question budget when it accepts one,
@@ -630,8 +823,67 @@ class RagPipeline:
         timings: dict[str, float] = {}
         t0 = time.perf_counter()
         plan = plan_query(question)  # Stage 1: the one and only parse of the question
+        own_plan = plan   # the question's own plan: every scope decision is made on it, never on a promoted one
+        promotion = None
+        promotion_error = None
+        named_companions_added: list[str] = []
+        allowed = may_promote(question, plan)
+        promoter = self.section_promoter() if allowed else None
+        if not allowed:
+            promoter = None
+        if promoter is not None and promoter.mode == "picker" and getattr(self.generator, "retrieval_only", False):
+            promoter, promotion_error = None, "skipped: no model to pick with (retrieval-only harness)"
+        if promoter is not None and allowed == "any" and self.scope_policy is not None \
+                and not self.scope_policy.vocabulary.domain_terms(question):
+            promoter = None   # no word of the regulatory vocabulary ("What is the capital of France?"): never promoted
+        if promoter is not None:
+            # the section(s) that answer a question naming none - or naming only a 21 CFR part of the cosmetics
+            # programme ("Under Part 82, ...") - are resolved, and the plan is rebuilt as if the question cited them
+            part_only = bool(plan.requirements)
+            parts = tuple(dict.fromkeys(r.reference.part for r in plan.requirements)) if part_only else None
+            try:
+                promotion = promoter.resolve(question, parts=parts, named_only=allowed == "named_statute")
+            except Exception as exc:  # noqa: BLE001 - promotion is an aid: on any failure the question is answered as before
+                promotion = None
+                promotion_error = f"{type(exc).__name__}: {exc}"[:300]
+            if promotion is not None and promotion.citations:
+                promoted = plan_query(question + promotion.suffix)
+                if part_only:
+                    promoted = _without_part_requirements(promoted)
+                if promoted.requirements:
+                    plan = promoted
+                else:
+                    promotion = None
+            elif promotion is not None and promotion.statute_rows:
+                if part_only and not all((r.raw or "").lstrip().startswith("§") for r in plan.requirements):
+                    promotion = None   # a real 21 CFR part is asked for as well: not replaced by the statute (code review)
+                else:
+                    # "FD&C Act § 607" is read by the CFR parser as "21 CFR part 607": the statute section replaces it
+                    plan = _without_part_requirements(plan, keep_none=True) if part_only else plan
+            elif promotion is not None:
+                promotion = None
+        elif (self.config.section_promotion != "off" and plan.requirements and plan.docket is None
+              and all(r.reference.section is not None and r.reference.title == "21" and r.reference.part in _COSMETIC_PARTS()
+                      for r in plan.requirements)
+              and analyze_question(plan).scope_status not in (SCOPE_OUT, SCOPE_MIXED)):
+            # the question names cosmetics-programme sections itself: their companions are added as for a promoted section
+            named_promoter = self.section_promoter()
+            if named_promoter is not None:
+                try:
+                    named = [r.reference.section for r in plan.requirements]
+                    comps = named_promoter.named_companions(named, question)
+                    if comps:
+                        widened = plan_query(question + " (21 CFR " + ", ".join(comps) + ")")
+                        if len(widened.requirements) > len(plan.requirements):
+                            plan = widened
+                            promotion_error = None
+                            promotion = None
+                            named_companions_added = comps
+                except Exception as exc:  # noqa: BLE001 - an aid only
+                    promotion_error = f"named companions: {type(exc).__name__}: {exc}"[:300]
+        timings["promotion_ms"] = round((time.perf_counter() - t0) * 1000, 2)
         plan = self.complete_plan(plan)  # ... and the one and only corpus lookup it needs
-        original_plan = plan
+        original_plan = plan if promotion is None else self.complete_plan(own_plan)
         plan, reference_targets = self.reference_lookup_plan(plan)
         # Stage 12 shape + Stage 3 question analysis (None unless "structured"), decided in one place
         shape, analysis = self.question_view(plan)
@@ -643,7 +895,7 @@ class RagPipeline:
         timings["retrieval_ms"] = round((time.perf_counter() - t0) * 1000, 2)
 
         t1 = time.perf_counter()
-        bundle, coverage, selection = self.build_bundle(response, registry, shape, question)
+        bundle, coverage, selection = self.build_bundle(response, registry, shape, question, promotion=promotion)
         timings["context_ms"] = round((time.perf_counter() - t1) * 1000, 2)
         emit("context", {"no_context": bundle.is_empty, "sources": [
             {"index": s.index, "citation": s.result.citation.label, "corpus": s.result.corpus, "url": s.result.source_url,
@@ -669,9 +921,18 @@ class RagPipeline:
         # describe a provision it was not given); with some supported the model
         # answers from those and the unresolved ones are stated afterwards.
         t_pkg = time.perf_counter()
-        package = (build_package(plan, coverage, selection, notes=bundle.notes, budget=self.config.generation_budget, answer_shape=shape,
+        package = (build_package(plan, coverage, selection,
+                                 notes=(_statute_notes(promotion) if (promotion is not None and promotion.statute) else bundle.notes), budget=self.config.generation_budget, answer_shape=shape,
                                  question_analysis=analysis)
                    if coverage is not None and selection is not None else None)
+        if package is not None and self.config.answer_style != "restate":
+            package = replace(package, answer_style=self.config.answer_style)
+        if package is not None and promotion is not None and promotion.statute:
+            from regulus.retrieval.statute import statute_index
+
+            st = statute_index(self.retriever.db)
+            package = replace(package, resolved=tuple(f"FD&C Act § {s} [21 U.S.C. {st.usc(s)}] {st.heading(s)}"
+                                                      for s in promotion.statute))
         normalization: dict[str, Any] | None = None
         # Failure observatory: the stages of the text, kept separately so that a
         # later step can never hide what an earlier one produced. None when no model call.
@@ -694,6 +955,7 @@ class RagPipeline:
         gate_on = self.config.answerability == "gate"
         gate_analysis = analysis if analysis is not None else analyze_question(plan)
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
+                               resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
                                general_knowledge=(scope_decision.reason if scope_decision is not None and scope_decision.status == GENERAL_KNOWLEDGE else None))
         conditions = decision.blocking_conditions
         block = gate_on and decision.blocked and not (
@@ -703,6 +965,17 @@ class RagPipeline:
         fallback_reason: str | None = None
         prompt_sent: str | None = None  # the user message actually sent to the model, for evidence capture
         timings["answerability_ms"] = round((time.perf_counter() - t_gate) * 1000, 2)
+        composed = composed_report = None
+        if (package is not None and package.answer_style == "apply" and not block and package.sources
+                and not (grounding_decision is not None and grounding_decision.refused)):
+            from regulus.rag.color_listing import compose as compose_listing
+
+            text = compose_listing(package, question)
+            if text:
+                report = validate_answer(text, package, None)
+                generation_info["listing_composer"] = {"composed": True, "valid": report.ok, "codes": list(report.codes())}
+                if report.ok:
+                    composed, composed_report = (text, FB_COMPOSED_LISTING), report
         if grounding_decision is not None and grounding_decision.refused:
             answer_text = grounding_decision.answer
             timings["generation_ms"] = 0.0
@@ -734,6 +1007,14 @@ class RagPipeline:
             if bundle.notes:
                 answer_text += " " + " ".join(bundle.notes)
             timings["generation_ms"] = 0.0
+        elif composed is not None:
+            # a color-additive listing question: answered from the listing's own paragraphs (rag.color_listing), validated
+            answer_text, fallback_type = composed
+            validation_initial = validation_final = composed_report
+            fallback_reason = ("color additive listing: per-product use decided from the listing's uses paragraph, "
+                               "21 CFR 70.3(s)/(v) and 70.5(a); every paragraph quoted")
+            coverage_action = "answer"
+            timings["generation_ms"] = 0.0
         else:
             t2 = time.perf_counter()
             messages = build_grounded_messages(package) if package is not None else build_messages(question, bundle.text)
@@ -743,6 +1024,15 @@ class RagPipeline:
             on_text = (lambda text: emit("delta", {"text": text})) if on_event is not None else None
             t2 = time.perf_counter()
             gen = self._generate(messages, package.max_new_tokens if package is not None else None, on_text)
+            if (package is not None and package.answer_style == "apply" and (package.satisfied_ids or package.resolved)
+                    and package.sources and _BARE_REFUSAL_RE.match(gen.response or "")):
+                # a bare decline although the provision the question is about was supplied (20 of 29 general questions
+                # on Qwen3-4B-Instruct-2507 before promotion, 2 of 12 after): ask once more, saying so
+                messages = ([{"role": "system", "content": APPLY_RETRY_SYSTEM_PROMPT}] + messages[1:-1]
+                            + [{**messages[-1], "content": messages[-1]["content"] + REFUSAL_RETRY_NOTE}])
+                prompt_sent = messages[-1]["content"]
+                gen = self._generate(messages, package.max_new_tokens, on_text)
+                generation_info["refusal_retry"] = True
             timings["generation_ms"] = round((time.perf_counter() - t2) * 1000, 2)
             emit("generation_finished", {"generated_tokens": gen.generated_tokens, "finished": gen.finished})
             # Model-internal breakdown, when the generator measured it (None-safe for fakes)
@@ -762,6 +1052,8 @@ class RagPipeline:
             duplicates_removed = 0
             if not repeated_sentence(answer_text):
                 answer_text, duplicates_removed = drop_duplicate_sentences(answer_text)
+            # requirement-id labels ("r1:") and empty list items copied from the prompt's layout: presentation only
+            answer_text, plan_labels_removed = strip_plan_labels(answer_text)
             if analysis is not None:
                 # Stage 3: presentation fixes before validation (markers onto their sentence, no echoed question)
                 answer_text, normalization = normalize_answer(answer_text, question)
@@ -772,7 +1064,7 @@ class RagPipeline:
                 answer_text, repointed = repoint_citations(answer_text, [(s.index, s.text) for s in package.sources])
             model_called = True
             input_tokens, output_tokens = gen.prompt_tokens, gen.generated_tokens
-            generation_info = {"generated_tokens": gen.generated_tokens, "finished": gen.finished, "prompt_tokens": gen.prompt_tokens,
+            generation_info = {**generation_info, "generated_tokens": gen.generated_tokens, "finished": gen.finished, "prompt_tokens": gen.prompt_tokens,
                                "stop_reason": getattr(gen, "stop_reason", None)}
             if getattr(gen, "first_token_seconds", None) is not None:
                 generation_info["tokens_per_second"] = round(gen.tokens_per_second, 3)
@@ -780,13 +1072,32 @@ class RagPipeline:
                                                                 if gen.decode_tokens_per_second is not None else None)
             if duplicates_removed:
                 generation_info["duplicate_sentences_removed"] = duplicates_removed
+            if plan_labels_removed:
+                generation_info["plan_labels_removed"] = plan_labels_removed
             if repointed:
                 generation_info["citations_repointed"] = [r.to_dict() for r in repointed]
             if package is not None and self.config.validation_behavior != "off":
                 t3 = time.perf_counter()
                 validation_initial = validate_answer(answer_text, package, gen)
                 validation_final = validation_initial
-                if self.config.validation_behavior == "repair" and not validation_initial.ok:
+                if (self.config.validation_behavior == "repair" and not validation_initial.ok
+                        and package.answer_style == "apply"):
+                    corrected, info = self.correction_pass(messages, answer_text, package, validation_initial, question, analysis)
+                    generation_info["correction_pass"] = info
+                    if corrected is not None:
+                        # delivered: the corrected draft, and every count below describes it. The first draft is kept as
+                        # raw_model_output (never sent to the page) and by its problem codes; validation.initial is the
+                        # corrected draft's report, so the accuracy evaluator never reads draft-1 sentences as text that
+                        # post-processing removed from the delivered answer (code review)
+                        answer_text, gen2, validation_initial = corrected
+                        validation_final = validation_initial
+                        info.update(first_draft_tokens=gen.generated_tokens, first_draft_finished=gen.finished)
+                        generation_info.update(generated_tokens=gen2.generated_tokens, finished=gen2.finished,
+                                               prompt_tokens=gen2.prompt_tokens, stop_reason=getattr(gen2, "stop_reason", None))
+                        input_tokens, output_tokens = gen2.prompt_tokens, gen2.generated_tokens
+                        gen = gen2
+                if (self.config.validation_behavior == "repair" and not validation_final.ok
+                        and not (generation_info.get("correction_pass") or {}).get("accepted")):
                     repair_input = answer_text
                     r = self.repair_with_fallback(answer_text, package, validation_initial, gen, question=question, plan=plan,
                                                   shape=shape, analysis=gate_analysis, sources=bundle.sources)
@@ -824,12 +1135,15 @@ class RagPipeline:
         # P1 (2026-10-20): paragraphs of a requested provision that the hard ceiling kept out of the prompt are named
         # in the delivered answer and recorded; the prompt and the model's text are unchanged.
         evidence_gap = None
-        cut = [d for d in selection.dropped if d.required and d.evidence.corpus == "ecfr"] if (package is not None and selection is not None) else []
+        cut = ([d for d in selection.dropped if d.required and d.evidence.corpus in ("ecfr", "usc")]
+               if (package is not None and selection is not None) else [])
         if premise is not None and premise.unsupported:
             cut = []   # that answer comes from the whole part in the database, not from the evidence the ceiling cut
         if cut:
             requested = dict(package.requirements)
-            left_out = Counter(next((requested[r] for r in d.evidence.satisfies if r in requested), d.evidence.citation) for d in cut)
+            left_out = Counter(next((requested[r] for r in d.evidence.satisfies if r in requested),
+                                    (f"FD&C Act § {d.evidence.result.metadata.get('fdca_section')}" if d.evidence.corpus == "usc"
+                                     else d.evidence.citation)) for d in cut)
             evidence_gap = {"reason": "hard_ceiling", "left_out": dict(left_out), "withheld": [d.evidence.citation for d in cut],
                             "notice_appended": bool(answer_text)}
             if answer_text:
@@ -914,6 +1228,9 @@ class RagPipeline:
                 "retrieval_counts": response.counts,
                 "retrieval_timings_ms": response.timings_ms,
                 "retrieval": dict(response.diagnostics),
+                "section_promotion": (promotion.to_dict() if promotion is not None
+                                      else ({"error": promotion_error} if promotion_error else
+                                            ({"named_companions": named_companions_added} if named_companions_added else None))),
                 "config": self.config.to_dict(),
             },
         )

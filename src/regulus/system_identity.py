@@ -52,9 +52,25 @@ EVALUATION_VALIDATION_BEHAVIOR = "annotate"
 # ------------------------------------------------------- pipeline configuration
 
 
+def _env_choice(name: str, default: str, allowed: tuple[str, ...]) -> str:
+    """A string switch read like settings._env: stripped, lower-cased, empty = unset; anything else stops start-up."""
+    import os
+
+    value = (os.environ.get(name) or "").strip().lower() or default
+    if value not in allowed:
+        raise ValueError(f"{name}={value!r} is not one of {', '.join(allowed)}")
+    return value
+
+
 def configured_rag_config(settings: Settings) -> RagConfig:
-    """The RAG configuration the answering pipeline runs with."""
-    return RagConfig(generation_budget=GenerationBudget.from_config(settings.answer_length))
+    """The RAG configuration the answering pipeline runs with.
+
+    Section promotion and the answer-first format are on (22 Oct 2026, regulus.rag.section_promotion and
+    answer_plan.APPLY_FORMAT); REGULUS_SECTION_PROMOTION (off|lexical|picker) and REGULUS_ANSWER_STYLE
+    (restate|apply) override them. An invalid value raises ValueError (serve_ui checks this before it listens)."""
+    return RagConfig(generation_budget=GenerationBudget.from_config(settings.answer_length),
+                     section_promotion=_env_choice("REGULUS_SECTION_PROMOTION", "picker", ("off", "lexical", "picker")),
+                     answer_style=_env_choice("REGULUS_ANSWER_STYLE", "apply", ("restate", "apply")))
 
 
 def configured_generation_config(settings: Settings) -> GenerationConfig:
@@ -64,8 +80,19 @@ def configured_generation_config(settings: Settings) -> GenerationConfig:
     its own per-question allowance on every call, so the value is never the
     one that decides.
     """
+    import os
+
     budget = GenerationBudget.from_config(settings.answer_length)
-    return replace(settings.generation, max_new_tokens=budget.hard_max_tokens, do_sample=False, enable_thinking=False)
+    # REGULUS_REPETITION_PENALTY (22 Oct 2026; the Qwen3-4B-Instruct-2507 profile sets 1.1): unset/empty = configured value
+    raw = (os.environ.get("REGULUS_REPETITION_PENALTY") or "").strip()
+    try:
+        penalty = float(raw) if raw else float(settings.generation.repetition_penalty)
+    except ValueError:
+        raise ValueError(f"REGULUS_REPETITION_PENALTY={raw!r} is not a number") from None
+    if not (1.0 <= penalty <= 2.0):
+        raise ValueError(f"REGULUS_REPETITION_PENALTY={penalty} must be between 1.0 and 2.0")
+    return replace(settings.generation, max_new_tokens=budget.hard_max_tokens, do_sample=False, enable_thinking=False,
+                   repetition_penalty=penalty)
 
 
 def evaluation_rag_config(settings: Settings) -> RagConfig:
@@ -78,8 +105,8 @@ def pipeline_config(config: RagConfig) -> dict[str, Any]:
     rag = config.to_dict()
     retrieval = {k: rag.get(k) for k in ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback")}
     if retrieval_lexical.ECFR_LITERAL_OR_ENABLED:
-        # REGULUS_ECFR_LITERAL_OR=1 changes general questions' eCFR all-words search; recorded only when on, so the
-        # fingerprint of every run without it is unchanged
+        # general questions' eCFR all-words search without the "or" operator (default on since 22 Oct; =0 turns it
+        # off and restores the earlier fingerprint)
         retrieval["ecfr_literal_or"] = True
     return {
         "retrieval": retrieval,
@@ -93,7 +120,26 @@ def pipeline_config(config: RagConfig) -> dict[str, Any]:
         "prompt": {"system_prompt_sha256": hashlib.sha256(GROUNDED_SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
                    # Stage 12: whether the user turn carries the answer shape and evidence plan
                    "answer_shape": rag.get("answer_shape")},
+        # 22 Oct 2026: recorded only when on, so the fingerprints of earlier configurations are unchanged
+        **({"promotion": {"section_promotion": config.section_promotion, "statute_store_sha256": _statute_store_sha()}}
+           if config.section_promotion != "off" else {}),
+        **({"answer_style": {"answer_style": config.answer_style,
+                             "apply_format_sha256": hashlib.sha256(_apply_format().encode("utf-8")).hexdigest()}}
+           if config.answer_style != "restate" else {}),
     }
+
+
+def _statute_store_sha() -> str | None:
+    from regulus.retrieval.statute import STORE
+
+    return hashlib.sha256(STORE.read_bytes()).hexdigest() if STORE.exists() else None
+
+
+def _apply_format() -> str:
+    from regulus.rag.answer_plan import APPLY_FORMAT
+    from regulus.rag.generation import APPLY_RETRY_SYSTEM_PROMPT
+
+    return APPLY_FORMAT + "\n" + APPLY_RETRY_SYSTEM_PROMPT
 
 
 def decoding_config(generation: GenerationConfig) -> dict[str, Any]:

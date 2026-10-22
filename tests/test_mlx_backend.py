@@ -65,7 +65,7 @@ class CharTokenizer:
         self.template_calls.append({"enable_thinking": enable_thinking, "add_generation_prompt": add_generation_prompt})
         return "".join(f"<{m['role']}>{m['content']}" for m in messages) + "<assistant>"
 
-    def __call__(self, text):
+    def __call__(self, text, **kw):
         return {"input_ids": [ord(c) for c in text]}
 
     def decode(self, ids, skip_special_tokens=True):
@@ -174,6 +174,30 @@ def test_generation_round_trip_uses_the_production_template_with_thinking_off(tm
         assert (d["backend"], d["model_id"], d["model_revision"], d["dtype"]) == ("mlx", "Qwen/Qwen3-1.7B", "rev-abc",
                                                                                  "mlx-4bit-g128")
         assert d["generation"]["enable_thinking"] is False and d["generation"]["do_sample"] is False
+    finally:
+        g.close()
+
+
+def test_a_thinking_models_reasoning_is_never_returned(tmp_path):
+    g = make(tmp_path, "echo", reply="weigh (a) against (b)</think>\n\n21 CFR 71.2")
+    g._thinking = True
+    try:
+        r = g.generate(MSGS, max_new_tokens=16)
+        assert r.response == "21 CFR 71.2" and r.stop_reason is None
+        assert len([e for e in worker_log(tmp_path) if e.get("got") == "generate"]) == 1
+    finally:
+        g.close()
+
+
+def test_a_zero_reasoning_budget_closes_the_block_and_answers_in_one_pass(tmp_path):
+    g = make(tmp_path, "echo", reply="21 CFR 71.2")
+    g._thinking = True
+    try:
+        r = g.generate(MSGS, max_new_tokens=16, think_budget=0)
+        assert r.response == "21 CFR 71.2" and r.stop_reason is None and r.finished is True
+        sent = [e for e in worker_log(tmp_path) if e.get("got") == "generate"]
+        assert len(sent) == 1 and sent[0]["max_new_tokens"] == 16
+        assert sent[0]["n_prompt"] == len(CharTokenizer().apply_chat_template(MSGS)) + len("\n</think>\n\n")
     finally:
         g.close()
 

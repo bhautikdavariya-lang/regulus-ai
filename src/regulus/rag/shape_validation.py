@@ -82,7 +82,9 @@ _STOP = {
 _ECHO_RE = re.compile(
     r"\bSOURCES? \d{1,2}\b|\bGROUP [A-Z]\b|\bSIDE \d\b|\bTier: (?:EXACT|STRUCTURAL|SUPPORTING|DISCOVERY)\b"
     r"|\bANSWER (?:FORMAT|PLAN|SHAPE)\b|^\s*[-*]?\s*(?:Lead-in|Context only|Related material)\s*:|\bREQUESTED PROVISIONS\b"
-    r"|do not repeat these instructions",
+    r"|do not repeat these instructions"
+    # the REQUESTED PROVISIONS label of a general question, copied as the "answer" ("None (general question) [1]")
+    r"|(?i:\bnone \(general question\))",
     re.MULTILINE)
 NEAR_DUPLICATE = 0.8
 # repetition compares ordinary wording, so only function words are ignored

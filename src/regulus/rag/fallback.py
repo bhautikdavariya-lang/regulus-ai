@@ -35,6 +35,7 @@ FB_NO_EVIDENCE = "no_evidence"
 FB_VALUE_NOT_ESTABLISHED = "value_not_established"
 FB_VERBATIM_PROVISION = "verbatim_requested_provision"   # the repair quoted the requested provision (allowed)
 FB_UNVALIDATED = "unvalidated_answer_withheld"           # generated answer withheld, nothing quoted
+FB_COMPOSED_LISTING = "composed_from_listing"   # a color-additive listing question answered from the listing text (rag.color_listing)
 FB_DEFINITIONS_QUOTED = "definitions_quoted"   # a general question the model declined: its terms' CFR definitions, verbatim
 FB_PREMISE_NOT_ESTABLISHED = "premise_not_established"  # Stage 7: a yes/no premise the identified provision does not state
 FALLBACK_TYPES = (FB_OUT_OF_SCOPE, FB_UNSUPPORTED_REQUEST, FB_AMBIGUOUS, FB_WRONG_PROVISION, FB_PROVISION_NOT_FOUND,

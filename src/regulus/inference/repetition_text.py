@@ -10,12 +10,34 @@ from __future__ import annotations
 import re
 from collections import Counter
 
-from regulus.evaluation.grounding_eval import split_sentences
+from regulus.evaluation.grounding_eval import _ABBREVIATIONS, split_sentences
 
 SENTENCE_REPEATS = 3        # the validator's threshold (rag.validation._DEGENERATE_SENTENCE_REPEATS)
 MIN_SENTENCE_CHARS = 20     # the validator's minimum sentence length
 
 _MARKS = re.compile(r"\[\s*\d{1,3}\s*\]|\*{0,2}\bsources?\s+\d{1,3}\b\*{0,2}", re.I)
+
+
+def _ends_on_abbreviation(piece: str) -> bool:
+    """True when a split piece ends on an abbreviation or initial ("FD&C Green No.", "the U.S.", "J."), whose period
+    does not end the sentence: the same rule as split_sentences."""
+    words = piece.rstrip().split()
+    last = words[-1].rstrip(".").lower() if words else ""
+    return last in _ABBREVIATIONS or (len(last) == 1 and last.isalpha())
+
+
+def _merge_abbreviations(pieces: list[str]) -> list[str]:
+    """`pieces` alternate sentence, separator, sentence, ... (re.split with one capturing group). A sentence that
+    ends on an abbreviation is joined with its separator and the next sentence when the separator is inline
+    (not a line break), so "The use of FD&C Green No. 3 in a blush" stays one sentence."""
+    out = list(pieces)
+    i = 0
+    while i + 2 < len(out):
+        if "\n" not in out[i + 1] and _ends_on_abbreviation(out[i]) and not re.search(r"\[\s*\d", out[i + 1]):
+            out[i:i + 3] = [out[i] + out[i + 1] + out[i + 2]]
+            continue
+        i += 2
+    return out
 
 
 def normalise_sentence(sentence: str) -> str:
@@ -37,7 +59,7 @@ def repeated_sentence(text: str) -> tuple[str, int] | None:
 def trim_repetition(text: str) -> tuple[str, int]:
     """(text up to the end of the first occurrence of any sentence that is later repeated, number of
     repeated sentences removed). Unchanged text and 0 when nothing repeats."""
-    pieces = re.split(r"(?<=[.!?])(\s+(?:\[\s*\d{1,3}\s*\]\s*)*)", text or "")
+    pieces = _merge_abbreviations(re.split(r"(?<=[.!?])(\s+(?:\[\s*\d{1,3}\s*\]\s*)*)", text or ""))
     # pieces alternate: sentence, separator (which may carry a trailing citation marker), sentence, ...
     seen: set[str] = set()
     kept: list[str] = []
@@ -61,7 +83,7 @@ def drop_duplicate_sentences(text: str) -> tuple[str, int]:
     markers, list bullets, case and spacing are ignored (>= 20 characters). Nothing is lost: the first copy
     stays. Near-identical sentences are NOT touched: measured in Stage 8, their overlap does not separate
     restatements (0.84) from distinct requirements worded alike (0.83)."""
-    parts = re.split(r"((?<=[.!?])[ \t]+(?:\[\s*\d{1,3}\s*\][ \t]*)*|\n+)", text or "")
+    parts = _merge_abbreviations(re.split(r"((?<=[.!?])[ \t]+(?:\[\s*\d{1,3}\s*\][ \t]*)*|\n+)", text or ""))
     seen: set[str] = set()
     out: list[str] = []
     removed = 0

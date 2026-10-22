@@ -271,6 +271,33 @@ def _supplied_figures(text: str) -> set[str]:
             | {_NUMBER_WORDS[m.group(1).lower()] for m in _WORD_PERIOD_RE.finditer(text or "")})
 
 
+_UNIT_AFTER = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*-?\s*(%|percent|ppm|parts per million|mg|g|kg|ml|fl\.? oz|oz|ounces?|"
+                         r"square inches|inches|business days?|calendar days?|working days?|days?|weeks?|months?|years?|"
+                         r"hours?|minutes?)(?![A-Za-z])", re.I)
+
+
+def _question_figures(question: str, source_texts) -> set[str]:
+    """Figures of the question that an answer may repeat as facts: every figure of the question except one written
+    with a unit that a source states with a different number."""
+    src_units: dict[str, set[str]] = {}
+    for text in source_texts:
+        for num, unit in _UNIT_AFTER.findall(text or ""):
+            src_units.setdefault(_unit_key(unit), set()).add(_normalise_figure(num))
+    out = set()
+    for f in _supplied_figures(question):
+        units = {_unit_key(u) for n, u in _UNIT_AFTER.findall(question or "") if _normalise_figure(n) == f}
+        if any(src_units.get(u) and f not in src_units[u] for u in units):
+            continue
+        out.add(f)
+    return out
+
+
+def _unit_key(unit: str) -> str:
+    u = unit.lower().rstrip("s").replace(".", "")
+    return {"%": "percent", "parts per million": "ppm", "ounce": "oz", "fl oz": "fl oz", "business day": "day",
+            "calendar day": "day", "working day": "day", "square inche": "square inch", "inche": "inch"}.get(u, u)
+
+
 def _content_words(text: str) -> set[str]:
     return {w.lower() for w in _WORD_RE.findall(text)} - _STOPWORDS
 
@@ -432,6 +459,11 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
             supplied |= _supplied_figures(src.text) | _supplied_figures(src.citation)
         for rid, label in package.requirements:
             supplied |= _supplied_figures(label)
+        if package.answer_style == "apply" and package.question:
+            # the question's own figures ("section 721", "80 days", "12 fl oz") are facts it states - unless a source
+            # states a different number in the same unit: "up to 10 percent" in the question is not supplied when
+            # the source says "not more than 0.6 percent" (code review: that false number used to validate)
+            supplied |= _question_figures(package.question, [s.text for s in package.sources]) - supplied
         stray = sorted((_figures(text) | _periods(text)) - supplied
                        - {f for f in _figures(text) | _periods(text)
                           if any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3)})

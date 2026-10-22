@@ -431,8 +431,8 @@ def test_g_the_fingerprint_is_deterministic_and_order_independent():
     # version 4 since Stage 6 added coverage.optional_context; version 5 since Stage 7 added
     # retrieval.semantic_fallback and coverage.scope_policy
     # version 6 since Stage 8 added coverage.evidence_consolidation
-    # version 7 since RC2 added context.binding_reserve_chars
-    assert a.version == 7 and a.algorithm == "sha256" and len(a.value) == 64
+    # version 7 since RC2 added context.binding_reserve_chars; 8 since ecfr_literal_or, promotion and answer_style
+    assert a.version == 8 and a.algorithm == "sha256" and len(a.value) == 64
 
 
 @pytest.mark.parametrize("section,field,value", [

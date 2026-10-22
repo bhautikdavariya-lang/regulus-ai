@@ -32,7 +32,7 @@ from typing import Any
 
 from regulus.retrieval.models import RetrievalResult
 
-CORPUS_LABEL = {"ecfr": "eCFR", "fda_guidance": "FDA Guidance"}
+CORPUS_LABEL = {"ecfr": "eCFR", "fda_guidance": "FDA Guidance", "usc": "FD&C Act (statute, binding)"}
 TRUNCATION_MARK = " [... truncated]"
 ORDER_TIER = "tier"
 ORDER_BINDING_FIRST = "binding_first"

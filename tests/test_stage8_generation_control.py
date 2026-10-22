@@ -286,3 +286,12 @@ def test_evidence_order_is_deterministic():
     a = _ctx("What does 21 CFR Part 820 require?", TABLE + [row("820.5", "", 0, part="820", text="[Reserved]")])
     b = _ctx("What does 21 CFR Part 820 require?", TABLE + [row("820.5", "", 0, part="820", text="[Reserved]")])
     assert a == b
+
+
+def test_duplicate_removal_keeps_sentences_that_share_an_abbreviated_color_name():
+    """'FD&C Green No.' is not a sentence: two answers that both begin 'The use of FD&C Green No. 3' kept whole."""
+    from regulus.inference.repetition_text import drop_duplicate_sentences
+
+    text = ("The use of FD&C Green No. 3 in a cream blush is permitted [1]. "
+            "The use of FD&C Green No. 3 in a matching eye shadow is not permitted [5].")
+    assert drop_duplicate_sentences(text) == (text, 0)

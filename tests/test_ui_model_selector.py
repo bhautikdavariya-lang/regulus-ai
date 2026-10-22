@@ -206,3 +206,17 @@ def test_a_worker_that_cannot_start_stops_start_up_without_a_fallback(start, mon
     monkeypatch.setattr(MG, "MlxGenerator", broken)
     with pytest.raises(SystemExit, match="MlxWorkerError: the MLX worker exited"):
         start()
+
+
+def test_qwen3_4b_instruct_2507_is_identified_and_the_hybrid_4b_is_not():
+    """22 Oct: the 2507 release has the hybrid Qwen3-4B's widths; its context and rope base tell them apart."""
+    import importlib.util, sys
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    spec = importlib.util.spec_from_file_location("serve_ui_ident", root / "scripts" / "serve_ui.py")
+    mod = importlib.util.module_from_spec(spec); sys.modules["serve_ui_ident"] = mod; spec.loader.exec_module(mod)
+    base = {"model_type": "qwen3", "hidden_size": 2560, "num_hidden_layers": 36, "intermediate_size": 9728}
+    assert mod.identify_mlx_model({**base, "max_position_embeddings": 262144, "rope_theta": 5000000}) == "qwen3-4b-2507"
+    assert mod.identify_mlx_model({**base, "max_position_embeddings": 40960, "rope_theta": 1000000}) is None
+    assert mod.identify_mlx_model({"model_type": "qwen3", "hidden_size": 2048, "num_hidden_layers": 28,
+                                   "intermediate_size": 6144}) == "qwen3-1.7b"

@@ -55,6 +55,7 @@ SEVERITY = {
 MISATTRIBUTION_OWN_MAX = 0.25     # at most this share of the statement's word 3-grams in the named provision
 MISATTRIBUTION_OTHER_MIN = 0.60   # and at least this share in one other, unrelated supplied provision
 UNSUPPORTED_MIN_WORDS = 5
+_OBLIGATION = re.compile(r"\b(?:must|shall|required?|requires|need(?:s)? to|has to|have to|prohibited|may not|obligat\w*)\b", re.I)
 UNSUPPORTED_MAX_SUPPORT = 0.30    # share of content words found in any supplied source
 
 _MARK = re.compile(r"(?<![A-Za-z0-9])\[(\d{1,2})\]")
@@ -124,6 +125,9 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
     identities = {i: identity(s) for i, s in by_index.items()} if identity else {}
     findings: list[ClaimFinding] = []
     all_words = set().union(*(_words(s.text) for s in package.sources)) if package.sources else set()
+    # answer_style "apply": the answer applies the provisions to the facts the question states ("a colorant in a lip
+    # product caused tumors in rats"), so the question's own words are given, not claims the sources must support
+    given = _words(question) if question and getattr(package, "answer_style", "restate") == "apply" else set()
 
     for sentence in sentences:
         marks = [int(m) for m in _MARK.findall(sentence) if int(m) in by_index]
@@ -167,8 +171,13 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
 
         # -- statements whose content no supplied source supports
         words = _words(content)
-        if len(words) >= UNSUPPORTED_MIN_WORDS and all_words:
-            support = len(words & all_words) / len(words)
+        # apply style: words only the question contains are facts the answer restates - they are taken out of the
+        # count, not counted as support, so whatever the sentence adds must still come from a source (code review)
+        own = words - (given - all_words)
+        if not own and _OBLIGATION.search(content):
+            own = words   # an obligation stated only in the question's words ("you must recall the batch") is still a claim
+        if len(words) >= UNSUPPORTED_MIN_WORDS and all_words and own:
+            support = len(own & all_words) / len(own)
             if support <= UNSUPPORTED_MAX_SUPPORT:
                 findings.append(ClaimFinding(UNSUPPORTED_CLAIM, SEVERITY[UNSUPPORTED_CLAIM],
                                              f"only {support:.0%} of its content words appear in any supplied source",

@@ -88,10 +88,11 @@ def legs(question, monkeypatch, enabled):
     return r, plan.normalized_question or plan.question
 
 
-def test_the_switch_is_off_unless_set():
-    if os.environ.get("REGULUS_ECFR_LITERAL_OR") == "1":
-        pytest.skip("REGULUS_ECFR_LITERAL_OR=1 is set in this environment")
-    assert L.ECFR_LITERAL_OR_ENABLED is False
+def test_the_switch_is_on_unless_set_to_0():
+    # default on since 22 Oct (artifacts/cosmetics_benchmark/q17_fix_20261022); REGULUS_ECFR_LITERAL_OR=0 turns it off
+    if os.environ.get("REGULUS_ECFR_LITERAL_OR") == "0":
+        pytest.skip("REGULUS_ECFR_LITERAL_OR=0 is set in this environment")
+    assert L.ECFR_LITERAL_OR_ENABLED is True
 
 
 def test_off_the_general_question_is_searched_as_asked(monkeypatch):

@@ -83,11 +83,12 @@ ALGORITHM = "sha256"
 # 6: coverage gained evidence_consolidation (Stage 8; docs/generation_control_stage8.md).
 # 7: context gained binding_reserve_chars (RC2: part of the optional budget offered to eCFR first
 #    for a question that names no provision; regulus.rag.context.ContextPolicy).
-FINGERPRINT_VERSION = 7
+FINGERPRINT_VERSION = 8   # 8 (22 Oct 2026): retrieval.ecfr_literal_or, promotion, answer_style
 QUESTION_SET_VERSION = 1
 
 FINGERPRINT_FIELDS: dict[str, tuple[str, ...]] = {
-    "retrieval": ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback"),
+    "retrieval": ("retriever", "top_k", "corpus", "min_trigram_similarity", "exclude_contextual_only", "semantic_fallback",
+                  "ecfr_literal_or"),
     "coverage": ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation"),
     "context": (
         "max_results", "max_chars_per_result", "max_total_chars",
@@ -104,6 +105,8 @@ FINGERPRINT_FIELDS: dict[str, tuple[str, ...]] = {
     "validation": ("validation_behavior",),
     "repair": ("mode",),
     "prompt": ("system_prompt_sha256", "answer_shape"),
+    "promotion": ("section_promotion", "statute_store_sha256"),
+    "answer_style": ("answer_style", "apply_format_sha256"),
 }
 
 # Sampling parameters that greedy decoding ignores.

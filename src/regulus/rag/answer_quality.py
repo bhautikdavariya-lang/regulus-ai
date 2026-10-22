@@ -61,6 +61,20 @@ def _norm(text: str) -> str:
     return " ".join(_WORD_RE.findall(MARK_RE.sub("", text.lower())))
 
 
+# Prompt scaffolding the model copies into the answer's layout: the requirement ids of REQUESTED PROVISIONS ("r1:")
+# at the start of a line, and numbered list items left empty ("2." alone on a line).
+_PLAN_LABEL_RE = re.compile(r"(?m)^([ \t]*)r\d{1,2}[ \t]*:[ \t]*(?=\S)")
+_EMPTY_ITEM_RE = re.compile(r"(?m)^[ \t]*\d{1,2}[.)][ \t]*(?:\n|$)")
+
+
+def strip_plan_labels(text: str) -> tuple[str, int]:
+    """Remove echoed requirement-id labels and empty numbered list items. Presentation only: no words of the answer
+    are added, removed or reordered. Returns (text, number of removals)."""
+    out, labels = _PLAN_LABEL_RE.subn(r"\1", text)
+    out, empty = _EMPTY_ITEM_RE.subn("", out)
+    return out.strip(), labels + empty
+
+
 def normalize_answer(text: str, question: str) -> tuple[str, dict[str, Any]]:
     """Presentation fixes only (see module docstring). Returns (text, what changed)."""
     lines = text.split("\n")

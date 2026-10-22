@@ -91,12 +91,15 @@ if TYPE_CHECKING:
 
 log = logging.getLogger("regulus.retrieval")
 
-# Off unless REGULUS_ECFR_LITERAL_OR=1. A general question's own eCFR all-words search reads a standalone "or" as
+# On unless REGULUS_ECFR_LITERAL_OR=0. A general question's own eCFR all-words search reads a standalone "or" as
 # websearch_to_tsquery's OR operator: "...certification or labeling apply?" then matches any row holding "labeling"
 # and "apply", the search fills, and section coverage (RC1) never runs. With the switch on, that one search gets the
 # question without the operator (query.literal_or). Questions that name a provision or a docket, exact citation, the
 # guidance search, every other leg and the question the model sees are unchanged.
-ECFR_LITERAL_OR_ENABLED = os.environ.get("REGULUS_ECFR_LITERAL_OR", "") == "1"
+# Default on since 22 Oct (artifacts/cosmetics_benchmark/q17_fix_20261022): cosmetics key section in context 29 -> 33
+# of 80 with 0 lost, 21 CFR 1271.90 (HCT/P donors) in 9 -> 0 colour-additive contexts; 352-row baseline targets
+# 264 -> 267 (one question, L-011, trades 101.54 for 101.13 where its "or" names real alternatives).
+ECFR_LITERAL_OR_ENABLED = os.environ.get("REGULUS_ECFR_LITERAL_OR", "") != "0"
 
 DEFAULT_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_DEFINITION)
 PRIMARY_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_DEFINITION)

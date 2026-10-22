@@ -62,13 +62,27 @@ ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
 # before the server listens, and a failed check stops the server with what to fix. Nothing else is ever loaded in
 # its place: no in-process Qwen3-0.6B, no adapter, no remote server. A request may name the model; any other name
 # is refused rather than answered by this one.
+#
+# 22 Oct 2026: which model that is follows from the configured directory. Two are supported, each identified by its
+# config.json: Qwen3-1.7B, and Qwen3-4B-Instruct-2507 - the model the cosmetics benchmark was fixed with (it applies a
+# provision to the question's facts; 1.7B and Qwen3-4B restate it). The server still serves exactly one of them,
+# fixed at start-up, and refuses a request that names the other.
+from regulus.rag.mlx_models import SUPPORTED_MLX_MODELS, identify_mlx_model, opens_reasoning  # noqa: E402
+
 MODEL_MLX = "qwen3-1.7b"
-MLX_MODEL_ID = "Qwen/Qwen3-1.7B"
-MLX_LABEL = "Qwen3-1.7B (MLX 4-bit)"
-# config.json values that identify Qwen3-1.7B (Qwen3-0.6B is 1024 wide; Qwen3-4B is 2560 wide with 36 layers),
-# and the quantization the application is validated with
-MLX_EXPECTED_CONFIG = {"model_type": "qwen3", "hidden_size": 2048, "num_hidden_layers": 28, "intermediate_size": 6144}
+MLX_MODEL_ID = SUPPORTED_MLX_MODELS[MODEL_MLX]["model_id"]
+MLX_LABEL = SUPPORTED_MLX_MODELS[MODEL_MLX]["label"]
+# config.json values that identify the default model (Qwen3-0.6B is 1024 wide), and the quantization the application
+# is validated with
+MLX_EXPECTED_CONFIG = SUPPORTED_MLX_MODELS[MODEL_MLX]["config"]
 MLX_EXPECTED_BITS = 4
+
+
+def activate_mlx_model(key: str) -> None:
+    """Fix this process's one model (the module constants every handler reads)."""
+    global MODEL_MLX, MLX_MODEL_ID, MLX_LABEL, MLX_EXPECTED_CONFIG
+    spec = SUPPORTED_MLX_MODELS[key]
+    MODEL_MLX, MLX_MODEL_ID, MLX_LABEL, MLX_EXPECTED_CONFIG = key, spec["model_id"], spec["label"], spec["config"]
 
 
 def check_model(model: str | None) -> None:
@@ -131,6 +145,13 @@ class Engine:
             raise SystemExit(f"{MLX_LABEL} cannot start: {problem}. The application answers with this model only "
                              f"and never substitutes another.")
 
+        try:   # the pipeline's switches (REGULUS_SECTION_PROMOTION, _ANSWER_STYLE, _REPETITION_PENALTY) before anything loads
+            from regulus.system_identity import configured_rag_config
+
+            configured_rag_config(self.settings)
+            configured_generation_config(self.settings)
+        except ValueError as exc:
+            raise SystemExit(f"Regulus cannot start: {exc}") from None
         if m.backend == "openai_compatible":
             refuse("model.backend is 'openai_compatible' (REGULUS_MODEL_BACKEND), which would answer with the remote "
                    "server's model; unset it")
@@ -146,11 +167,14 @@ class Engine:
         if not (path / "config.json").is_file() or not (path / "tokenizer.json").is_file():
             refuse("REGULUS_MLX_MODEL_PATH has no config.json and tokenizer.json")
         cfg = json.loads((path / "config.json").read_text(encoding="utf-8"))
-        wrong = {k: cfg.get(k) for k, v in MLX_EXPECTED_CONFIG.items() if cfg.get(k) != v}
+        key = identify_mlx_model(cfg)
         bits = (cfg.get("quantization") or {}).get("bits")
-        if wrong or bits != MLX_EXPECTED_BITS:
-            refuse(f"REGULUS_MLX_MODEL_PATH is not Qwen3-1.7B quantized to {MLX_EXPECTED_BITS} bits "
+        if key is None or bits != MLX_EXPECTED_BITS:
+            wrong = {k: cfg.get(k) for k, v in MLX_EXPECTED_CONFIG.items() if cfg.get(k) != v} if key is None else {}
+            names = " or ".join(s["label"].split(" (")[0] for s in SUPPORTED_MLX_MODELS.values())
+            refuse(f"REGULUS_MLX_MODEL_PATH is not {names} quantized to {MLX_EXPECTED_BITS} bits "
                    f"(config.json: {wrong or ''}{'' if bits == MLX_EXPECTED_BITS else f' quantization bits {bits}'})")
+        activate_mlx_model(key)
         self.tokenizer = load_tokenizer(m, local_files_only=offline)
         mine = self._tokenizer_file()
         if mine is None or _sha256(mine) != _sha256(path / "tokenizer.json"):
@@ -167,6 +191,11 @@ class Engine:
                                      model_path=path, python=m.mlx_python, revision=revision)
         except Exception as exc:  # noqa: BLE001 - every start-up failure stops the server, explained
             refuse(f"{type(exc).__name__}: {exc}")
+        prefix = getattr(self._mlx, "generation_prefix", lambda: "")()
+        if opens_reasoning(prefix):
+            self._mlx.close()
+            refuse(f"the model's chat template starts a reasoning block ({prefix.strip()[:20]!r}) after the assistant header: "
+                   f"this is a thinking model, not {MLX_LABEL}")
         d = self._mlx.describe()
         print(f"Answering model: {d['model_id']} {d['dtype']} revision {d['model_revision'] or 'not recorded'}, "
               f"MLX worker {d.get('runtime_versions')}, tokenizer.json sha256 {self._tokenizer_sha256[:12]}, "
@@ -278,7 +307,9 @@ class Engine:
                 "decoding": d.get("generation"),   # what the worker does (greedy), not the configured sampling
                 "tokenizer": {"loaded_from": self.settings.model.id,
                               "tokenizer_json_sha256": getattr(self, "_tokenizer_sha256", None),
-                              "identical_to_mlx_model": True}}
+                              "identical_to_mlx_model": True,   # tokenizer.json; the chat template is recorded apart
+                              "chat_template": (self._mlx.describe().get("chat_template")
+                                                if getattr(self, "_mlx", None) is not None else None)}}
 
     # -- answering --------------------------------------------------------
 

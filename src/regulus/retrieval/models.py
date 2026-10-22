@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
-CORPORA = ("ecfr", "fda_guidance")
+CORPORA = ("ecfr", "fda_guidance", "usc")   # usc: FD&C Act paragraphs (regulus.retrieval.statute)
 
 METHOD_EXACT_CFR = "exact_cfr"
 METHOD_EXACT_DOCKET = "exact_docket"
@@ -20,8 +20,9 @@ METHOD_TRIGRAM = "trigram"
 METHOD_DEFINITION = "definition"  # the CFR's own definition of a term a definitional question asks about
 METHOD_SEMANTIC = "semantic"  # Stage 8 experiment; never used by LexicalRetriever
 METHOD_CROSS_REFERENCE = "cross_reference"  # a provision a retrieved provision explicitly cites (cfr_cross_references)
+METHOD_STATUTE = "statute"  # an FD&C Act paragraph chosen by section promotion (regulus.retrieval.statute)
 METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_SEMANTIC,
-           METHOD_DEFINITION, METHOD_CROSS_REFERENCE)
+           METHOD_DEFINITION, METHOD_CROSS_REFERENCE, METHOD_STATUTE)
 
 
 @dataclass(frozen=True)

@@ -97,7 +97,8 @@ def reference_targets(plan) -> list[str]:
     return out
 
 
-def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool, general_knowledge: str | None = None) -> AnswerabilityDecision:
+def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool, general_knowledge: str | None = None,
+           resolved_statute: tuple[str, ...] = ()) -> AnswerabilityDecision:
     """The answerability of one question. `sources` are the context sources that would be placed
     in the prompt (anything with .text, and .result.key or .evidence_id to identify it)."""
     texts = [s.text for s in sources]
@@ -119,7 +120,8 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
     if _DETERMINATION_RE.search(question):
         return d(UNSUPPORTED_REQUEST, "the question asks for a determination about a particular case or a prediction, "
                  "which regulatory text cannot establish", PROBABLE, ("determination_request",))
-    if not plan.requirements and not plan.docket and _AMBIGUOUS_RE.search(question):
+    # `resolved_statute`: FD&C Act section(s) the question itself names ("subsection (e) of section 605"): identified
+    if not plan.requirements and not plan.docket and not resolved_statute and _AMBIGUOUS_RE.search(question):
         return d(AMBIGUOUS, "the question points at a provision without identifying it (no CFR part or section)",
                  PROBABLE, ("unidentified_provision",))
     # 3. evidence that exists at all

@@ -272,8 +272,10 @@ def _required_order(required: list[Evidence], question: str | None) -> list[Evid
     """
     keys = _match_keys(question or "")
     kind = selection_value_kind(question or "")
-    if (not keys and kind is None) or len(required) < 2 or not _one_section(required):
+    if (not keys and kind is None) or len(required) < 2:
         return required
+    if not _one_section(required):
+        return _per_section_order(required, question)
     own = [_relevance(e.text, keys) for e in required]
     states = [1 if kind and evidence_has_value(kind, [e.text]) else 0 for e in required]
     paths = [_paragraph_of(e)[1] for e in required]  # one section: _one_section checked it
@@ -312,6 +314,29 @@ def _required_order(required: list[Evidence], question: str | None) -> list[Evid
     if not any(best) and not any(has):
         return required
     return [e for _, _, _, e in sorted(((-has[i], -best[i], i, e) for i, e in enumerate(required)))]
+
+
+def _per_section_order(required: list[Evidence], question: str | None) -> list[Evidence]:
+    """Several named sections - a promoted section with its companions ("21 CFR 701.3" with 701.30): each section's
+    paragraphs compete in relevance order (as one section's would), and the sections keep the order they came in.
+
+    Nothing is ranked ACROSS sections, so part-level evidence (one row per section, already ranked by the retriever,
+    see _one_section) is unchanged. Measured 22 Oct 2026: on the 352-question retrieval baseline every record is
+    identical; on the 277-question cosmetics bank 13 prompts change, one gains its key paragraphs (701.3(m) and (r),
+    which document order left behind 701.3(a)-(c)(3)) and none loses one. A section whose rows arrive in more than
+    one run is left as it is."""
+    ids = [_paragraph_of(e) for e in required]
+    if any(i is None for i in ids):
+        return required
+    groups: list[tuple[str, list[Evidence]]] = []
+    for e, i in zip(required, ids):
+        if groups and groups[-1][0] == i[0]:
+            groups[-1][1].append(e)
+        else:
+            groups.append((i[0], [e]))
+    if len({g[0] for g in groups}) != len(groups):
+        return required
+    return [e for _, g in groups for e in (_required_order(g, question) if len(g) > 1 else g)]
 
 
 def select_evidence(
@@ -521,7 +546,11 @@ def is_complete_sentence(text: str) -> bool:
 def _identity(evidence) -> tuple[str, str] | None:
     """(section, paragraph path) of an eCFR row, from its citation label ("21 CFR 830.20(b)(1)")."""
     m = re.match(r"^\d+ CFR (\d{1,4}\.\d{1,4}[a-z]?)((?:\([a-z0-9]{1,4}\))*)$", evidence.citation or "")
-    return (m.group(1), m.group(2)) if m else None
+    if m:
+        return (m.group(1), m.group(2))
+    # an FD&C Act passage ("FD&C Act § 201(v)(1) [21 U.S.C. 321(v)(1)]") is a provision too: never merged as a near-duplicate
+    m = re.match(r"^FD&C Act § (\d+[A-Za-z]*(?:-\d+)?)((?:\([A-Za-z0-9]{1,6}\))*) \[", evidence.citation or "")
+    return ("FDCA " + m.group(1), m.group(2)) if m else None
 
 
 def completed_by_protected_children(item, selection: Selection) -> bool:

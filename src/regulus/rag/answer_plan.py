@@ -637,7 +637,7 @@ _KEEP = ('Keep every condition such as "if applicable" or "as appropriate", and 
          'persons a requirement applies to, with the requirement it limits; never make a conditional requirement unconditional.')
 
 
-def plan_lines(plan: AnswerPlan, texts: dict[int, str] | None = None) -> list[str]:
+def plan_lines(plan: AnswerPlan, texts: dict[int, str] | None = None, focus: bool = True) -> list[str]:
     """The plan as indented lines under REQUESTED PROVISIONS, near the top of the
     prompt. Lists live here, never in the final instruction: the 0.6B model
     reproduces a list that sits in the last line it reads."""
@@ -647,7 +647,7 @@ def plan_lines(plan: AnswerPlan, texts: dict[int, str] | None = None) -> list[st
              MODE_ENUMERATION: "every item, listed separately (exhaustive)", MODE_COMPARISON: "comparison",
              MODE_DIRECT: "direct answer"}[mode]
     lines = [f"  answer shape: {title}"]
-    if plan.shape.focus_terms and mode == MODE_FOCUSED:
+    if focus and plan.shape.focus_terms and mode == MODE_FOCUSED:
         lines.append(f"  focus: {', '.join(plan.shape.focus_terms)}")
     if plan.values:
         lines.append("  periods stated, each with the reports it applies to and when it runs from: "
@@ -706,16 +706,37 @@ _FORMAT_BY_MODE = {
 }
 
 
-def format_line(plan: AnswerPlan, profile: str | None = None) -> str:
+# RagConfig.answer_style="apply" (22 Oct 2026). The restating lines above ask for "plain sentences stating what the
+# requested provision requires", and both Qwen3 models do exactly that: the provision is copied paragraph by paragraph
+# and the question is never answered ("Is FD&C Green No. 3 permitted in the eye shadow?" - not said). Asked to answer
+# first and apply the provisions to the facts, Qwen3-4B-Instruct-2507 states "permitted in the blush, not permitted in
+# the eye shadow under 70.5(a), all batches certified" from the same evidence. Prose only, no list to copy.
+APPLY_FORMAT = (
+    "ANSWER FORMAT: First answer the QUESTION itself, applying the provisions to the facts it describes: for each thing "
+    "it asks about, say whether it is permitted or not, required or not, or give the period, amount or place, and which "
+    "provision decides it. Where a provision makes the outcome depend on a condition, a determination or an exception, "
+    "say what it depends on instead of giving a flat yes or no. When the question asks about a limit, restriction or "
+    "requirement that the provisions supplied do not impose, say that these provisions impose none; never say that FDA "
+    "lacks an authority or that no regulation anywhere requires something. If the provisions settle only part of "
+    "the question, answer that part and say which part they leave open, instead of declining. Then go through the "
+    "requested provisions paragraph by paragraph and state, in one sentence each, every requirement they set that bears "
+    "on the question, such as identity and specifications, uses and restrictions, labeling and certification, each with "
+    "its own paragraph citation. Say each point once. End every sentence with its source number in brackets. Keep every "
+    "condition and exception with the requirement it limits; never make a conditional requirement unconditional."
+)
+
+
+def format_line(plan: AnswerPlan, profile: str | None = None, focus: bool = True) -> str:
     """The shape-specific ANSWER FORMAT line: short, list-free, no length.
     `profile` (answer-quality Stage 3) is a lead instruction for the question type,
-    placed first; without it the line is exactly the Stage 12 line."""
+    placed first; without it the line is exactly the Stage 12 line. `focus=False`
+    drops the topic restriction of a focused question (generation.short_requested_provision)."""
     if plan.values:
         line = ("ANSWER FORMAT: the question asks for a time period, and the requested provision states more than one. In "
                 "plain sentences, give each period listed under \"periods stated\" in the words given there, with the "
                 "reports it applies to and when it runs from, each sentence ending with that period's own source number in "
                 "brackets. Do not give a period for any other reports, and do not describe the rest of the provision. " + _KEEP)
-    elif plan.mode == MODE_FOCUSED and plan.shape.focus_terms:
+    elif focus and plan.mode == MODE_FOCUSED and plan.shape.focus_terms:
         line = ("ANSWER FORMAT: plain sentences stating only what the requested provision says about the focus, each "
                 "ending with the source number in brackets. Do not describe the rest of the provision. " + _KEEP)
     else:

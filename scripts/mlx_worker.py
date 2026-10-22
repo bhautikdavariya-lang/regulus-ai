@@ -84,7 +84,15 @@ def generate(model, req: dict) -> None:
     n = 0
     finished = False
     stopped = None
-    for token, _ in generate_step(mx.array(ids), model, max_tokens=max_new, sampler=greedy):
+    # optional repetition penalty (22 Oct 2026): greedy Qwen3-4B-Instruct-2507 repeats a sentence three times in about a
+    # quarter of long answers; absent from the request = no penalty, exactly as before
+    processors = None
+    if req.get("repetition_penalty") not in (None, 1.0):
+        from mlx_lm.sample_utils import make_logits_processors
+
+        processors = make_logits_processors(repetition_penalty=float(req["repetition_penalty"]),
+                                            repetition_context_size=int(req.get("repetition_context_size", 64)))
+    for token, _ in generate_step(mx.array(ids), model, max_tokens=max_new, sampler=greedy, logits_processors=processors):
         tok = int(token)
         if first is None:
             first = time.perf_counter() - start

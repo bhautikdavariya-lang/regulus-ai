@@ -344,7 +344,7 @@
     <div class="column">
       <section class="empty" id="empty" aria-labelledby="emptytitle">
         <h2 id="emptytitle">Ask a regulatory question</h2>
-        <p>Answers come from the controlled eCFR and FDA guidance corpus, with their citations, the evidence they were
+        <p>Answers come from the controlled eCFR, FD&amp;C Act and FDA guidance corpus, with their citations, the evidence they were
           drawn from, and an evidence-based evaluation. Generation runs locally on CPU and takes roughly 30 to 90 seconds.</p>
         <div class="examples" id="examples"></div>
       </section>
@@ -731,7 +731,7 @@ function render(r, asked) {
   const sources = r.sources.length ? r.sources.map(s => `
     <div class="src">
       <h4><span class="num">${s.index}</span> ${esc(s.citation)}
-        ${pill(s.corpus === "ecfr" ? "eCFR" : "FDA guidance", s.corpus === "ecfr" ? "ecfr" : "guid")}
+        ${pill(s.corpus === "ecfr" ? "eCFR" : s.corpus === "usc" ? "FD&C Act (statute)" : "FDA guidance", s.corpus === "ecfr" || s.corpus === "usc" ? "ecfr" : "guid")}
         ${pill(s.method, "mut")} ${pill("score " + s.score, "mut")}</h4>
       ${s.heading ? `<div class="sub">${esc(s.heading)}</div>` : ""}
       <p>${esc(s.text)}${s.truncated ? " …" : ""}</p>

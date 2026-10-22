@@ -257,7 +257,10 @@ def heading_overlap(question: str, heading: str | None) -> int | None:
 # ---------------------------------------------------------------- the pipeline, without a model
 
 class NoGenerator:
-    """Stands in for the model: counts generation requests and returns no text. Qwen is never loaded."""
+    """Stands in for the model: counts generation requests and returns no text. Qwen is never loaded.
+    `retrieval_only`: section promotion's picker (a model call) is skipped, not counted as a generation request."""
+
+    retrieval_only = True
 
     def __init__(self) -> None:
         self.calls = 0
@@ -273,7 +276,8 @@ class NoGenerator:
 def production_pipeline(db, *, semantic: str = "production", top_k: int = 8, general_evidence_order: str | None = None,
                         min_trigram_similarity: float | None = None):
     """The answering pipeline as scripts/serve_ui.py builds it for a default request (grounding off, no adapter,
-    top_k 8), with NoGenerator. semantic="off" disables the semantic fallback (a diagnostic, not production).
+    top_k 8), with NoGenerator. Section promotion's picker needs the model, so with NoGenerator it is skipped (recorded
+    as metadata["section_promotion"] = {"error": "skipped: ..."}): this measures production retrieval without it. semantic="off" disables the semantic fallback (a diagnostic, not production).
     general_evidence_order (ContextPolicy) is the one experimental switch; None keeps the configured value."""
     from regulus.config import load_settings
     from regulus.rag.pipeline import RagPipeline
