@@ -1,0 +1,692 @@
+{
+ "id": "COS-80.10-Q1",
+ "question": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+ "key_citation": "21 CFR 80.10(a), (c), (d)",
+ "required": {
+  "80.10": [
+   "a",
+   "c",
+   "d"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "submitting batch straight color certification fee pay",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "certification",
+   "submitting",
+   "000-pound",
+   "straight",
+   "batch",
+   "color",
+   "fee",
+   "pay"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+   "tsquery": "'re' & 'submit' & '2' <-> '000' <-> 'pound' & 'batch' & 'straight' & 'color' & 'certif' & 'fee' & 'pay' & 'must' & 'pay'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+   "tsquery": "'re' & 'submit' & '2' <-> '000' <-> 'pound' & 'batch' & 'straight' & 'color' & 'certif' & 'fee' & 'pay' & 'must' & 'pay'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "submitting batch straight color certification fee pay",
+   "tsquery": "'submit' & 'batch' & 'straight' & 'color' & 'certif' & 'fee' & 'pay'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 80.10(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.852,
+     "chars": 313,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.5408,
+      "paragraph_coverage": 0.7704
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 80.10(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.3253,
+     "chars": 255,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.5408,
+      "paragraph_coverage": 0.4544
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 80.21(f)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.1732,
+     "chars": 491,
+     "metadata": {
+      "ordinal": 6,
+      "section_coverage": 1.3372,
+      "paragraph_coverage": 0.5668
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 80.21(j)(1)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.0908,
+     "chars": 68,
+     "metadata": {
+      "ordinal": 17,
+      "section_coverage": 1.3372,
+      "paragraph_coverage": 0.5173
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "certification or submitting or 000-pound or straight or batch or color or fee or pay",
+   "tsquery": "'certif' | 'submit' | '000' <-> 'pound' | 'straight' | 'batch' | 'color' | 'fee' | 'pay'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2315,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 1.9703759
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1837,
+     "chars": 1490,
+     "metadata": {
+      "ts_rank_cd": 1.8939005
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.171,
+     "chars": 1469,
+     "metadata": {
+      "ts_rank_cd": 1.873523
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1158,
+     "chars": 1444,
+     "metadata": {
+      "ts_rank_cd": 1.7852668
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Assessing User Fees Under the Biosimilar User Fee Amendments of 2022: Guidance for Industry (final, 2023-07-31, Docket FDA-2017-D-6209)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0536,
+     "chars": 1451,
+     "metadata": {
+      "ts_rank_cd": 1.6857089
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Assessing User Fees Under the Prescription Drug User Fee Amendments of 2022 (final, 2023-05-01, Docket FDA-2017-D-6821)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0492,
+     "chars": 1417,
+     "metadata": {
+      "ts_rank_cd": 1.678675
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0464,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 1.674214
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0383,
+     "chars": 1415,
+     "metadata": {
+      "ts_rank_cd": 1.6613116
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2315,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1837,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.171,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1158,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Assessing User Fees Under the Biosimilar User Fee Amendments of 2022: Guidance for Industry (final, 2023-07-31, Docket FDA-2017-D-6209)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0536,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Assessing User Fees Under the Prescription Drug User Fee Amendments of 2022 (final, 2023-05-01, Docket FDA-2017-D-6821)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0492,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0464,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0383,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 80.10(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.852,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 80.10(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.3253,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 80.21(f)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.1732,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 80.21(j)(1)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.0908,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+  "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+  "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+  "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+  "21 CFR 80.10(a)",
+  "21 CFR 80.10(b)",
+  "21 CFR 80.21(f)",
+  "21 CFR 80.21(j)(1)"
+ ],
+ "selection": {
+  "total_chars": 3599,
+  "dropped": [
+   [
+    "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Assessing User Fees Under the Biosimilar User Fee Amendments of 2022: Guidance for Industry (final, 2023-07-31, Docket FDA-2017-D-6209)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Assessing User Fees Under the Prescription Drug User Fee Amendments of 2022 (final, 2023-05-01, Docket FDA-2017-D-6821)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 80.21(f)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10",
+    "e12"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 5
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 80.10(a)",
+    "tier": "discovery",
+    "block_chars": 497,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 80.10(b)",
+    "tier": "discovery",
+    "block_chars": 439,
+    "used_before": 497,
+    "reserve_spent_before": 497,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 80.21(f)",
+    "tier": "discovery",
+    "block_chars": 669,
+    "used_before": 938,
+    "reserve_spent_before": 936,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 80.21(j)(1)",
+    "tier": "discovery",
+    "block_chars": 249,
+    "used_before": 938,
+    "reserve_spent_before": 936,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+    "tier": "discovery",
+    "used_before": 1189,
+    "block_chars": 1590,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+    "tier": "discovery",
+    "used_before": 2781,
+    "block_chars": 816,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1590,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1590,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Assessing User Fees Under the Biosimilar User Fee Amendments of 2022: Guidance for Industry (final, 2023-07-31, Docket FDA-2017-D-6209)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1536,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Assessing User Fees Under the Prescription Drug User Fee Amendments of 2022 (final, 2023-05-01, Docket FDA-2017-D-6821)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1526,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1517,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1517,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 80.21(f)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 669,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 499,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 80.10(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 313,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 80.10(b)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 255,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 5,
+   "citation": "21 CFR 80.21(j)(1)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 68,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "80.10": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 313,
+     "tail": " per pound of the batch covered by such requests, but no such fee shall be less than $288.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 255,
+     "tail": "ach request for certification submitted in accordance with § 80.21(j)(3) and (4) shall be:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(b)(1)",
+     "ordinal": 2,
+     "chars": 27,
+     "tail": "(1) 100 pounds or less—$45.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(2)",
+     "ordinal": 3,
+     "chars": 92,
+     "tail": ") Over 100 pounds but not over 1,000 pounds—$45 plus $0.08 for each pound over 100 pounds.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(3)",
+     "ordinal": 4,
+     "chars": 71,
+     "tail": "(3) Over 1,000 pounds—$114 plus $0.03 for each pound over 1,000 pounds.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 5,
+     "chars": 165,
+     "tail": "s may deposit funds in advance of requests as prepayment of fees required by this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 6,
+     "chars": 657,
+     "tail": "nd Expenses, Certification, Inspection, and Other Services, Food and Drug Administration.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 7,
+     "chars": 607,
+     "tail": "shall be made where the computed ratable amount for the elapsed period is less than $5.00.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Fees for certification services."
+  }
+ },
+ "required_status": {
+  "21 CFR 80.10(a)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 80.10(c)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 80.10(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

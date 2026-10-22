@@ -1,0 +1,592 @@
+{
+ "id": "COS-FDCA603-Q1",
+ "question": "We ship bulk lotion in drums to another company's plant, where it is filled and labeled. Do the drums need full consumer labeling?",
+ "key_citation": "FD&C Act 603 [21 U.S.C. 363]",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We ship bulk lotion in drums to another company's plant, where it is filled and labeled. Do the drums need full consumer labeling?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "ship bulk lotion drums company plant filled labeled full consumer labeling",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "consumer",
+   "labeling",
+   "company",
+   "labeled",
+   "lotion",
+   "filled",
+   "drums",
+   "plant"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We ship bulk lotion in drums to another company's plant, where it is filled and labeled. Do the drums need full consumer labeling?",
+   "tsquery": "'ship' & 'bulk' & 'lotion' & 'drum' & 'anoth' & 'compani' & 'plant' & 'fill' & 'label' & 'drum' & 'need' & 'full' & 'consum' & 'label'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We ship bulk lotion in drums to another company's plant, where it is filled and labeled. Do the drums need full consumer labeling?",
+   "tsquery": "'ship' & 'bulk' & 'lotion' & 'drum' & 'anoth' & 'compani' & 'plant' & 'fill' & 'label' & 'drum' & 'need' & 'full' & 'consum' & 'label'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We ship bulk lotion in drums to another company's plant, where it is filled and labeled. Do the drums need full consumer labeling?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "ship bulk lotion drums company plant filled labeled full consumer labeling",
+   "tsquery": "'ship' & 'bulk' & 'lotion' & 'drum' & 'compani' & 'plant' & 'fill' & 'label' & 'full' & 'consum' & 'label'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 507.25(b)(1)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.3916,
+     "chars": 227,
+     "metadata": {
+      "ordinal": 11,
+      "section_coverage": 0.9829,
+      "paragraph_coverage": 0.4521
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 101.9(j)(9)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9694,
+     "chars": 265,
+     "metadata": {
+      "ordinal": 221,
+      "section_coverage": 0.8726,
+      "paragraph_coverage": 0.309
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 507.25(c)(5)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9233,
+     "chars": 189,
+     "metadata": {
+      "ordinal": 21,
+      "section_coverage": 0.9829,
+      "paragraph_coverage": 0.1711
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 117.95(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8535,
+     "chars": 485,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.7525,
+      "paragraph_coverage": 0.3597
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "consumer or labeling or company or labeled or lotion or filled or drums or plant",
+   "tsquery": "'consum' | 'label' | 'compani' | 'label' | 'lotion' | 'fill' | 'drum' | 'plant'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2776,
+     "chars": 1472,
+     "metadata": {
+      "ts_rank_cd": 2.0441873
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.23,
+     "chars": 1442,
+     "metadata": {
+      "ts_rank_cd": 1.9679599
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2159,
+     "chars": 1438,
+     "metadata": {
+      "ts_rank_cd": 1.9454962
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2156,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.9448959
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1837,
+     "chars": 1454,
+     "metadata": {
+      "ts_rank_cd": 1.8939005
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0891,
+     "chars": 1485,
+     "metadata": {
+      "ts_rank_cd": 1.7426239
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0564,
+     "chars": 1481,
+     "metadata": {
+      "ts_rank_cd": 1.6902044
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0329,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.6525729
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2776,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.23,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2159,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2156,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1837,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0891,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0564,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0329,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 507.25(b)(1)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.3916,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 101.9(j)(9)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9694,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 507.25(c)(5)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9233,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 117.95(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8535,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+  "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+  "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+  "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+  "21 CFR 507.25(b)(1)(i)",
+  "21 CFR 101.9(j)(9)",
+  "21 CFR 507.25(c)(5)",
+  "21 CFR 117.95(c)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 507.25(c)(5)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 117.95(c)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 507.25(b)(1)(i)",
+    "tier": "discovery",
+    "block_chars": 405,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.9(j)(9)",
+    "tier": "discovery",
+    "block_chars": 448,
+    "used_before": 405,
+    "reserve_spent_before": 405,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 507.25(c)(5)",
+    "tier": "discovery",
+    "block_chars": 364,
+    "used_before": 855,
+    "reserve_spent_before": 853,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 117.95(c)",
+    "tier": "discovery",
+    "block_chars": 714,
+    "used_before": 855,
+    "reserve_spent_before": 853,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+    "tier": "discovery",
+    "used_before": 855,
+    "block_chars": 1551,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+    "tier": "discovery",
+    "used_before": 2408,
+    "block_chars": 1190,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1610,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1584,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1551,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1584,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1484,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1590,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 507.25(c)(5)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 364,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 117.95(c)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 714,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Alternatives to Animal-Derived Foods (draft, 2025-01-06, Docket FDA-2022-D-1102)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 806,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 507.25(b)(1)(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 227,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 101.9(j)(9)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 265,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

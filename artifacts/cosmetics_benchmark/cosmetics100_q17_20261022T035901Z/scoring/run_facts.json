@@ -1,0 +1,133 @@
+{
+ "run_id": "cosmetics100_q17_20261022T035901Z",
+ "run_window": "2026-10-22 04:00:34.470 → 04:07:58.383 UTC",
+ "wall_seconds": 443.913,
+ "timeout_s": 1800,
+ "bank_file": "Regulus_QBank_Cosmetics_REV01.xlsx",
+ "base_model_short": "Qwen/Qwen3-1.7B (MLX 4-bit)",
+ "base_model_cell": "Qwen/Qwen3-1.7B (MLX 4-bit g128, rev 21457c6f)",
+ "embedding_model_cell": "BAAI/bge-small-en-v1.5 (evaluator aligner; semantic retrieval not invoked)",
+ "baseline_label": "0.6B, 20 Oct",
+ "new_label": "1.7B, 22 Oct",
+ "comparison_note": "Same 100 questions (selection.json sha256 0e632288…), same rubric, category mapping and fabrication rule, same single AI-assisted scorer. Differences between the runs: model (Qwen3-0.6B transformers CPU float32 → Qwen3-1.7B MLX 4-bit on the Apple GPU), code (6f94938 + uncommitted tree → fbd2e60, which committed that work plus later changes; pipeline fingerprint 6cd19913 in both) and database (16 eCFR rows restored on 21 Oct: 65,264 → 65,280 rows). Durations are on the same Mac but different inference runtimes. Not comparable with the 21 Oct Step 6 1.7B scoring (blind multi-scorer).",
+ "model_config_lines": [
+  [
+   "Base language model",
+   "Qwen/Qwen3-1.7B, MLX 4-bit (group size 128) snapshot Qwen/Qwen3-1.7B-MLX-4bit revision 21457c6f51ed54a7c16e988c0844db973815c137; no adapter. Runtime-verified: all 100 responses and all 101 measurement records report this model."
+  ],
+  [
+   "Provider / runtime",
+   "Local MLX worker process (mlx 0.32.3, mlx-metal 0.32.3, mlx-lm 0.32.0) on the Apple GPU, started by scripts/serve_ui.py, which since 21 Oct serves only this model. Tokenizer loaded from the Qwen3-0.6B cache, verified byte-identical (tokenizer.json sha256 aeb13307…). No external API."
+  ],
+  [
+   "Decoding",
+   "Greedy (do_sample false), thinking off; adaptive per-question token allowance with a 2,048-token hard ceiling."
+  ],
+  [
+   "Embedding model",
+   "BAAI/bge-small-en-v1.5, revision 5c38ec7c405ec4b44b94cc5a9bb96e735b38267a, 384 dimensions, CLS pooling, normalized (runtime-verified in the measurement records)."
+  ],
+  [
+   "Embedding model — role in this run",
+   "Used by the live evaluator to align claims with evidence on all 100 answers. Semantic-fallback retrieval (semantic_expanded_v1, same model) was invoked on 0 of 100 questions, so all evidence came from lexical retrieval."
+  ],
+  [
+   "Retrieval / index",
+   "Lexical PostgreSQL retrieval over the read-only regulatory database: eCFR snapshot 2026-09-03 (65,280 live rows after the 21 Oct source-text repair) plus FDA guidance; top_k 8; grounding gate off. No FD&C Act (statute) text in the corpus."
+  ],
+  [
+   "Evaluator",
+   "Category = question-bank rubric (main benchmark Scoring Rubric) against the bank's verified key, AI-assisted (Claude), not SME-signed — the same scorer, rubric and mapping as the 20 Oct baseline. Recorded alongside: Regulus live evaluator regulus_live_evidence_assessment_v2 2.0.0."
+  ],
+  [
+   "Unresolved uncertainty",
+   "Rubric scores await SME confirmation. The semantic index predates the 21 Oct row repair (not used: 0 invocations). The database's text-embedding-3-large vectors are not queried by the answering pipeline."
+  ]
+ ],
+ "metadata_lines": [
+  [
+   "Run ID",
+   "cosmetics100_q17_20261022T035901Z (results directory artifacts/cosmetics_benchmark/cosmetics100_q17_20261022T035901Z/). UI measurement session ui_20261022T040014Z_aeeb1927. Baseline for the comparison sheet: cosmetics100_20261020T124217Z."
+  ],
+  [
+   "Date and time (UTC)",
+   "First server start 04:00 refused by the app's memory preflight (1,830 MB free < 2,000 MB; log kept as serve_ui_attempt1_preflight_refused.log); after the user closed applications the server started 04:00:14; warm-up 11.7 s (excluded); benchmark 04:00:34.470 → 04:07:58.383 on 2026-10-22 (443.913 s wall clock)."
+  ],
+  [
+   "Source question bank",
+   "Regulus_QBank_Cosmetics_REV01.xlsx (project root), Excel 2007+ workbook; sheet 'Questions' (277 main questions, all 'Key Verified = Y'). The 'Follow-Ups' sheet (1,385 rows) was not used, per the user's instruction: main questions only. Opened read-only; sha256 c7d4e02635898ffebdd49d670be33f3aada31c633c43e0d0627ad22c56f262fd before and after selection (unchanged)."
+  ],
+  [
+   "Eligibility and exclusions",
+   "277 rows; 277 unique IDs; 277 unique question texts (whitespace/case-normalised); 0 blank. No exclusions."
+  ],
+  [
+   "Selection method and seed",
+   "Identical 100 questions to the 20 Oct baseline: selection.json copied byte-for-byte (sha256 0e63228864bc3b67d7ae7022662100babd05b7b701da87a3e52c1742da9e15c4). stratified random sampling by Part (column B; blank Part = own stratum), proportional largest-remainder allocation (ties: larger stratum, then label), random.Random(f'{seed}:{stratum}').sample within stratum; run in bank order. Seed 20261020. Allocation (selected/bank): 70: 7/18; 700: 6/18; 701: 7/20; 71: 6/17; 710: 3/9; 720: 4/11; 73: 10/29; 74: 13/36; 740: 4/11; 80: 4/10; 81: 1/3; 82: 14/39; FDCA: 12/32; UC-COS (Part blank): 9/24. The first draw was kept; seeds were not re-drawn to improve balance."
+  ],
+  [
+   "Representativeness check",
+   "Difficulty: Advanced 19 selected / 52 in bank; Intermediate 37 selected / 119 in bank; Basic 44 selected / 106 in bank. Question Type: Applicability 43 selected / 114 in bank; Specific Requirement 26 selected / 89 in bank; How to Comply 17 selected / 31 in bank; Records/Evidence 3 selected / 16 in bank; Exemption 11 selected / 26 in bank; Application Scenario 0 selected / 1 in bank. Basic and How-to-Comply are over-represented and Specific Requirement and Records/Evidence under-represented relative to the bank; strata were by Part only."
+  ],
+  [
+   "Selected question IDs (run order)",
+   "COS-70.3-Q1, COS-70.3-Q3, COS-70.19-Q2, COS-70.50-Q1, COS-70.50-Q2, COS-70.51-Q1, COS-70.55-Q1, COS-71.1-Q2, COS-71.6-Q1, COS-71.15-Q2, COS-71.25-Q1, COS-71.26-Q1, COS-71.27-Q1, COS-73.2085-Q1, COS-73.2095-Q1, COS-73.2180-Q1, COS-73.2250-Q1, COS-73.2298-Q1, COS-73.2575-Q1, COS-73.2645-Q1, COS-73.2646-Q1, COS-73.2647-Q1, COS-73.2725-Q1, COS-74.2052-Q1, COS-74.2203-Q1, COS-74.2208-Q1, COS-74.2254-Q1, COS-74.2304-Q1, COS-74.2317-Q1, COS-74.2322-Q1, COS-74.2327-Q1, COS-74.2340-Q1, COS-74.2602a-Q1, COS-74.2708-Q1, COS-74.2710-Q1, COS-74.2711-Q1, COS-80.10-Q1, COS-80.31-Q1, COS-80.37-Q1, COS-80.38-Q1, COS-81.30-Q1, COS-82.6-Q1, COS-82.50-Q1, COS-82.101-Q1, COS-82.203-Q1, COS-82.304-Q1, COS-82.1104-Q1, COS-82.1205-Q1, COS-82.1206-Q1, COS-82.1254-Q1, COS-82.1307-Q1, COS-82.1317-Q1, COS-82.1321-Q1, COS-82.1327-Q1, COS-82.2050-Q1, COS-700.13-Q2, COS-700.14-Q1, COS-700.15-Q1, COS-700.18-Q1, COS-700.25-Q2, COS-700.35-Q1, COS-701.3-Q1, COS-701.3-Q4, COS-701.9-Q1, COS-701.12-Q2, COS-701.13-G1, COS-701.13-Q1, COS-701.13-Q3, COS-710.2-Q1, COS-710.4-Q1, COS-710.5-Q1, COS-720.3-Q1, COS-720.4-Q3, COS-720.7-Q1, COS-720.8-Q1, COS-740.11-Q1, COS-740.11-Q2, COS-740.12-Q1, COS-740.19-Q1, COS-FDCA201(i)-Q1, COS-FDCA601-Q3, COS-FDCA603-Q1, COS-FDCA605-Q1, COS-FDCA605-Q3, COS-FDCA606-Q2, COS-FDCA607-Q2, COS-FDCA607-Q3, COS-FDCA609-Q1, COS-FDCA609-Q2, COS-FDCA613-Q2, COS-FDCA614-Q2, UC-COS-006, UC-COS-009, UC-COS-011, UC-COS-013, UC-COS-015, UC-COS-016, UC-COS-017, UC-COS-020, UC-COS-021"
+  ],
+  [
+   "Git commit and branch",
+   "main @ fbd2e60e0558e1362d9bca0e83c6a1ba492f19ec ('Retrieval root cause: report, integrity check and alternatives analysis')."
+  ],
+  [
+   "Working-tree status",
+   "No tracked application file modified except artifacts/retrieval_rootcause_20261021/REPORT.md; untracked: retrieval-investigation artifact directories, src/regulus/ingestion/, scripts/repair_dropped_source_text.py and its tests (repair tooling, not imported by the answering path). Tracked diff sha256 12c2fc80aa08c85f40ba604b85a399b886f35cf99871aedaac078ef66198a1f8; the diff hash and every changed/untracked file hash were identical at run start and finish. The benchmark modified no project code or configuration."
+  ],
+  [
+   "Base model",
+   "Qwen/Qwen3-1.7B MLX 4-bit g128, revision 21457c6f51ed54a7c16e988c0844db973815c137, MLX worker (mlx 0.32.3 / mlx-lm 0.32.0) on the Apple GPU; interpreter ~/regulus_eval_runs/q17_feasibility/mlx_venv; supplied via REGULUS_MLX_PYTHON and REGULUS_MLX_MODEL_PATH (process environment only; required by serve_ui, not stored in .env or configs)."
+  ],
+  [
+   "Embedding model",
+   "BAAI/bge-small-en-v1.5, revision 5c38ec7c405ec4b44b94cc5a9bb96e735b38267a, 384-d, CLS pooling, normalized; live-evaluator aligner on every answer; semantic-fallback retrieval invoked on 0/100."
+  ],
+  [
+   "Retrieval configuration",
+   "configured_rag_config(settings) as served by scripts/serve_ui.py; pipeline_config_sha256 6cd19913cc7b83b4302d1bffdfb439fc2384ab7ca51a8af4adc84cbd2627796c (identical to the baseline); system_prompt_sha256 d39dc7bb9778d1a632a4863bd12718871f8653154853b0f180d1cf774afe8b79; top_k 8; grounding gate off; database read-only, eCFR snapshot 2026-09-03 with 16 rows restored on 21 Oct (65,280 live rows)."
+  ],
+  [
+   "Evaluation configuration",
+   "(1) Reporting category: the same question-bank rubric, category mapping and fabrication rule as the baseline, scored by the same AI-assisted scorer against the verified key; not SME-signed. The 80 answers that are only the standard decline sentence were scored with one rule (Substantive 0 / Completeness 0 → FAIL, tools/score_declines.py) whose explanation records whether the key's section was in the evidence; the other 20 were read and scored individually. (2) Regulus live evaluator regulus_live_evidence_assessment_v2 2.0.0, semantic aligner — recorded, not deciding. (3) All 13 CFR sections named in delivered answer text exist in the database."
+  ],
+  [
+   "Inference settings affecting reproducibility",
+   "Greedy decoding, thinking off, adaptive allowance (ceiling 2,048), one request at a time. 0 repetition stops; 0 generations reported unfinished."
+  ],
+  [
+   "Execution commands",
+   "Server: REGULUS_MLX_PYTHON=… REGULUS_MLX_MODEL_PATH=… .venv/bin/python scripts/serve_ui.py --port 8765 --offline --measure-dir artifacts/cosmetics_benchmark/<run>/ui_measurements. Client: .venv/bin/python artifacts/cosmetics_benchmark/<run>/tools/run_benchmark.py <run> --url http://127.0.0.1:8765 --timeout 1800 --warmup \"What does 21 CFR 11.10 require for closed systems?\". Scoring: tools/score_declines.py + scoring/batch_individual.json → tools/merge_verdicts.py; workbook: tools/build_workbook.py <run> <xlsx> <baseline run>."
+  ],
+  [
+   "Why the HTTP path",
+   "scripts/run_acceptance_test.py hard-codes the REV02 300-question workbook, so it could not take this bank without editing it. The benchmark instead POSTs each question verbatim to the application's own /api/ask endpoint ({\"question\": ...}, every control at its default), the stateless path the UI serves; no application file was changed."
+  ],
+  [
+   "Token accounting",
+   "Input Tokens = prompt tokens of the one answer-generation call (the chat-templated prompt tokenized in the server process, as reported by the MLX generator). Output Tokens = tokens the MLX worker generated for that call, including text later removed or replaced by validation (4 withheld answers). No other generative call; the evaluator's embedder is not counted. All 100 questions report both counts."
+  ],
+  [
+   "Timing methodology",
+   "Duration = client-side time.perf_counter() (monotonic) round trip from sending the HTTP request to receiving the complete response, in seconds (3 dp). /api/ask returns after the live evaluation, so Duration includes it (a fraction of a second) and HTTP/serialization overhead. Component times are the server's own timings_ms/server_timings_ms. Questions ran strictly sequentially; one warm-up question was sent first and excluded from every statistic; no other benchmark or test process was running."
+  ],
+  [
+   "Errors, retries, skips",
+   "0 execution errors, 0 timeouts, 0 retries, 0 skipped; each question asked exactly once. The only failure was the first server start, refused by the app's own memory preflight before any question was sent; it was not worked around (no threshold change) — memory was freed and the server restarted unchanged."
+  ],
+  [
+   "Deviations and limitations",
+   "(a) AI-assisted rubric scoring, not SME-signed. (b) 'Generated Answer' is the delivered answer exactly as returned (80 are the standard decline sentence; 4 are withholding notices; 2 are definitions-quoted fallbacks). (c) 22 selected questions cite the FD&C Act, which is not in the corpus. (d) ISO concordance not scored. (e) This workbook replaces the 20 Oct contents of the same file; the 20 Oct results are on the 'Comparison vs Baseline' sheet and the original 20 Oct workbook is preserved in its run directory."
+  ],
+  [
+   "Missing or unverified information",
+   "No missing duration or token telemetry. Unverified: SME confirmation of rubric categories; MLX weight-file hashes (snapshot revision recorded)."
+  ]
+ ]
+}

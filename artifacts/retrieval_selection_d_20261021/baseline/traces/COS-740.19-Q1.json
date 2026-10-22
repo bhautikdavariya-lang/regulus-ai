@@ -1,0 +1,618 @@
+{
+ "id": "COS-740.19-Q1",
+ "question": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+ "key_citation": "21 CFR 740.19",
+ "required": {
+  "740.19": []
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "sell tanning oil spf dha self-tanning lotion either warning sun exposure",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "self-tanning",
+   "exposure",
+   "tanning",
+   "warning",
+   "lotion",
+   "either",
+   "sell",
+   "oil"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+   "tsquery": "'sell' & 'tan' & 'oil' & 'spf' & 'dha' & 'self-tan' <-> 'self' <-> 'tan' & 'lotion' & 'either' & 'need' & 'warn' & 'sun' & 'exposur'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+   "tsquery": "'sell' & 'tan' & 'oil' & 'spf' & 'dha' & 'self-tan' <-> 'self' <-> 'tan' & 'lotion' & 'either' & 'need' & 'warn' & 'sun' & 'exposur'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "sell tanning oil spf dha self-tanning lotion either warning sun exposure",
+   "tsquery": "'sell' & 'tan' & 'oil' & 'spf' & 'dha' & 'self-tan' <-> 'self' <-> 'tan' & 'lotion' & 'either' & 'warn' & 'sun' & 'exposur'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 352.52(e)(1)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8159,
+     "chars": 172,
+     "metadata": {
+      "ordinal": 24,
+      "section_coverage": 0.8615,
+      "paragraph_coverage": 0.228
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 352.52(e)(1)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8159,
+     "chars": 129,
+     "metadata": {
+      "ordinal": 25,
+      "section_coverage": 0.8615,
+      "paragraph_coverage": 0.228
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 352.72(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8156,
+     "chars": 1179,
+     "metadata": {
+      "ordinal": 8,
+      "section_coverage": 0.8001,
+      "paragraph_coverage": 0.2892
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 1040.20(d)(1)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7944,
+     "chars": 699,
+     "metadata": {
+      "ordinal": 32,
+      "section_coverage": 0.7324,
+      "paragraph_coverage": 0.3443
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "self-tanning or exposure or tanning or warning or lotion or either or sell or oil",
+   "tsquery": "'self-tan' <-> 'self' <-> 'tan' | 'exposur' | 'tan' | 'warn' | 'lotion' | 'either' | 'sell' | 'oil'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9157,
+     "chars": 1453,
+     "metadata": {
+      "ts_rank_cd": 1.4650925
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9062,
+     "chars": 1500,
+     "metadata": {
+      "ts_rank_cd": 1.4498984
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9044,
+     "chars": 1490,
+     "metadata": {
+      "ts_rank_cd": 1.4469925
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8438,
+     "chars": 1491,
+     "metadata": {
+      "ts_rank_cd": 1.3501556
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8266,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.3225306
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8222,
+     "chars": 1470,
+     "metadata": {
+      "ts_rank_cd": 1.3154539
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Public Warning-Notification of Recalls Under 21 CFR Part 7, Subpart C : Guidance for Industry and FDA Staff (final, 2019-02-08, Docket FDA-2016-D-3548)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8211,
+     "chars": 1397,
+     "metadata": {
+      "ts_rank_cd": 1.3137255
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.82,
+     "chars": 1441,
+     "metadata": {
+      "ts_rank_cd": 1.312013
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9157,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9062,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9044,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8438,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8266,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8222,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Public Warning-Notification of Recalls Under 21 CFR Part 7, Subpart C : Guidance for Industry and FDA Staff (final, 2019-02-08, Docket FDA-2016-D-3548)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8211,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.82,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 352.52(e)(1)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8159,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 352.52(e)(1)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8159,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 352.72(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8156,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 1040.20(d)(1)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7944,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+  "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+  "21 CFR 352.52(e)(1)(i)",
+  "21 CFR 352.52(e)(1)(ii)",
+  "21 CFR 352.72(e)",
+  "21 CFR 1040.20(d)(1)(i)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Public Warning-Notification of Recalls Under 21 CFR Part 7, Subpart C : Guidance for Industry and FDA Staff (final, 2019-02-08, Docket FDA-2016-D-3548)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 352.72(e)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1040.20(d)(1)(i)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 352.52(e)(1)(i)",
+    "tier": "discovery",
+    "block_chars": 369,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 352.52(e)(1)(ii)",
+    "tier": "discovery",
+    "block_chars": 327,
+    "used_before": 369,
+    "reserve_spent_before": 369,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 352.72(e)",
+    "tier": "discovery",
+    "block_chars": 1361,
+    "used_before": 698,
+    "reserve_spent_before": 696,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1040.20(d)(1)(i)",
+    "tier": "discovery",
+    "block_chars": 939,
+    "used_before": 698,
+    "reserve_spent_before": 696,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+    "tier": "discovery",
+    "used_before": 698,
+    "block_chars": 1537,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+    "tier": "discovery",
+    "used_before": 2237,
+    "block_chars": 1361,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1536,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1551,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Warning Plans for Cigars: Guidance for Industry (final, 2018-08-09, Docket FDA-2016-D-2495)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1476,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Public Warning-Notification of Recalls Under 21 CFR Part 7, Subpart C : Guidance for Industry and FDA Staff (final, 2019-02-08, Docket FDA-2016-D-3548)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1556,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Warning Plans for Cigarettes and Smokeless Tobacco Products: Draft Guidance for Industry (draft, 2011-09-09, Docket FDA-2011-D-0480)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1552,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 352.72(e)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1361,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1040.20(d)(1)(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 939,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1066,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 352.52(e)(1)(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 172,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 352.52(e)(1)(ii)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 129,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "740.19": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 1010,
+     "tail": " sun protection or otherwise intended to affect the structure or any function of the body.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Suntanning preparations."
+  }
+ },
+ "required_status": {
+  "21 CFR 740.19": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

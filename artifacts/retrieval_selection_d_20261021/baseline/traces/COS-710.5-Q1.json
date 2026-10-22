@@ -1,0 +1,163 @@
+{
+ "id": "COS-710.5-Q1",
+ "question": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+ "key_citation": "21 CFR 710.5",
+ "required": {
+  "710.5": []
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR 710.5"
+  ],
+  "docket": null,
+  "normalized_question": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "establishment",
+   "registration",
+   "amending",
+   "changed",
+   "address",
+   "710.5"
+  ],
+  "primary_result_count": 1,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 710.5",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 334,
+     "metadata": {
+      "ordinal": 0
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+   "tsquery": "'chang' & 'establish' & 'address' & '710.5' & 'say' & 'amend' & 'registr'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+   "tsquery": "'chang' & 'establish' & 'address' & '710.5' & 'say' & 'amend' & 'registr'",
+   "limit": 16,
+   "rows": []
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 710.5",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": true
+  }
+ ],
+ "topk": [
+  "21 CFR 710.5"
+ ],
+ "selection": {
+  "total_chars": 511,
+  "dropped": [],
+  "diagnostics": {
+   "required_count": 1,
+   "required_chars": 511,
+   "required_dropped": [],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 1,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 710.5",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 334,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "710.5": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 334,
+     "tail": "stablishment has changed its name and no longer conducts business under the original name.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Amendments to registration."
+  }
+ },
+ "required_status": {
+  "21 CFR 710.5": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

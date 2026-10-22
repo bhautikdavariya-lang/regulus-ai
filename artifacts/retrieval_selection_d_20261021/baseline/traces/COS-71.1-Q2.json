@@ -1,0 +1,713 @@
+{
+ "id": "COS-71.1-Q2",
+ "question": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+ "key_citation": "21 CFR 71.1(c)",
+ "required": {
+  "71.1": [
+   "c"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "have toxicology data eyeshadow pigment haven prepared analytical methods exposure estimates technical content color additive petition contain",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "toxicology",
+   "analytical",
+   "eyeshadow",
+   "estimates",
+   "technical",
+   "prepared",
+   "exposure",
+   "additive"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+   "tsquery": "'toxicolog' & 'data' & 'new' & 'eyeshadow' & 'pigment' & 'haven' & 'prepar' & 'analyt' & 'method' | 'exposur' & 'estim' & 'technic' & 'content' & 'must' & 'color' & 'addit' & 'petit' & 'contain'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+   "tsquery": "'toxicolog' & 'data' & 'new' & 'eyeshadow' & 'pigment' & 'haven' & 'prepar' & 'analyt' & 'method' | 'exposur' & 'estim' & 'technic' & 'content' & 'must' & 'color' & 'addit' & 'petit' & 'contain'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "have toxicology data eyeshadow pigment haven prepared analytical methods exposure estimates technical content color additive petition contain",
+   "tsquery": "'toxicolog' & 'data' & 'eyeshadow' & 'pigment' & 'haven' & 'prepar' & 'analyt' & 'method' & 'exposur' & 'estim' & 'technic' & 'content' & 'color' & 'addit' & 'petit' & 'contain'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 170.39(h)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9888,
+     "chars": 693,
+     "metadata": {
+      "ordinal": 23,
+      "section_coverage": 0.9081,
+      "paragraph_coverage": 0.2852
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 1114.7(k)(1)(i)(B)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9002,
+     "chars": 770,
+     "metadata": {
+      "ordinal": 158,
+      "section_coverage": 0.8646,
+      "paragraph_coverage": 0.2755
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 170.39(c)(4)(iii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8908,
+     "chars": 680,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 0.9081,
+      "paragraph_coverage": 0.2264
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 312.23(a)(7)(iv)(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.8611,
+     "chars": 623,
+     "metadata": {
+      "ordinal": 45,
+      "section_coverage": 0.8282,
+      "paragraph_coverage": 0.2885
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "toxicology or analytical or eyeshadow or estimates or technical or prepared or exposure or additive",
+   "tsquery": "'toxicolog' | 'analyt' | 'eyeshadow' | 'estim' | 'technic' | 'prepar' | 'exposur' | 'addit'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0719,
+     "chars": 1421,
+     "metadata": {
+      "ts_rank_cd": 1.7150419
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Toxicology Recommendations) (final, 2021-10-20, Docket FDA-1999-D-0062)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0549,
+     "chars": 1484,
+     "metadata": {
+      "ts_rank_cd": 1.687854
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9598,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 1.5357383
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9518,
+     "chars": 1470,
+     "metadata": {
+      "ts_rank_cd": 1.522914
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Administrative) (final, 2021-10-18, Docket FDA-2000-D-0138)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.872,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 1.3951783
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8416,
+     "chars": 1495,
+     "metadata": {
+      "ts_rank_cd": 1.3465431
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8266,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.3225292
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: CVM GFI #278 Human User Safety in New and Abbreviated New Animal Drug Applications (final, 2024-06-21, Docket FDA-2023-D-0592)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7853,
+     "chars": 1486,
+     "metadata": {
+      "ts_rank_cd": 1.2564417
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0719,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Toxicology Recommendations) (final, 2021-10-20, Docket FDA-1999-D-0062)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0549,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9598,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9518,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Administrative) (final, 2021-10-18, Docket FDA-2000-D-0138)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.872,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8416,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8266,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: CVM GFI #278 Human User Safety in New and Abbreviated New Animal Drug Applications (final, 2024-06-21, Docket FDA-2023-D-0592)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7853,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 170.39(h)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9888,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 1114.7(k)(1)(i)(B)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9002,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 170.39(c)(4)(iii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8908,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 312.23(a)(7)(iv)(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8611,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+  "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Toxicology Recommendations) (final, 2021-10-20, Docket FDA-1999-D-0062)",
+  "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+  "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+  "21 CFR 170.39(h)",
+  "21 CFR 1114.7(k)(1)(i)(B)",
+  "21 CFR 170.39(c)(4)(iii)",
+  "21 CFR 312.23(a)(7)(iv)(a)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Administrative) (final, 2021-10-18, Docket FDA-2000-D-0138)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #278 Human User Safety in New and Abbreviated New Animal Drug Applications (final, 2024-06-21, Docket FDA-2023-D-0592)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1114.7(k)(1)(i)(B)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 170.39(c)(4)(iii)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 312.23(a)(7)(iv)(a)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 170.39(h)",
+    "tier": "discovery",
+    "block_chars": 917,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1114.7(k)(1)(i)(B)",
+    "tier": "discovery",
+    "block_chars": 963,
+    "used_before": 917,
+    "reserve_spent_before": 917,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 170.39(c)(4)(iii)",
+    "tier": "discovery",
+    "block_chars": 912,
+    "used_before": 917,
+    "reserve_spent_before": 917,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 312.23(a)(7)(iv)(a)",
+    "tier": "discovery",
+    "block_chars": 811,
+    "used_before": 917,
+    "reserve_spent_before": 917,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 917,
+    "block_chars": 1562,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Toxicology Recommendations) (final, 2021-10-20, Docket FDA-1999-D-0062)",
+    "tier": "discovery",
+    "used_before": 2481,
+    "block_chars": 1117,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Administrative) (final, 2021-10-18, Docket FDA-2000-D-0138)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1556,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1535,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #278 Human User Safety in New and Abbreviated New Animal Drug Applications (final, 2024-06-21, Docket FDA-2023-D-0592)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1544,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1114.7(k)(1)(i)(B)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 963,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 170.39(c)(4)(iii)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 912,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 312.23(a)(7)(iv)(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 811,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Toxicology Recommendations) (final, 2021-10-20, Docket FDA-1999-D-0062)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 737,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 170.39(h)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 693,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "71.1": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 707,
+     "tail": "tices or orders issued or objections filed pursuant to section 721 of the act may be sent.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 629,
+     "tail": "itive petition should be accompanied by reprints or photostatic copies of such references.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 86,
+     "tail": "(c) Petitions shall include the following data and be submitted in the following form:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 475,
+     "tail": "en submitted. The petitioner will be notified in what respects his petition is incomplete.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 129,
+     "tail": "petitioner or by his attorney or authorized agent, who is a resident of the United States.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 5,
+     "chars": 294,
+     "tail": "on, the present petition may incorporate it by specific reference to the earlier petition.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 6,
+     "chars": 474,
+     "tail": "n compliance with such regulations, a brief statement of the reason for the noncompliance.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 7,
+     "chars": 14,
+     "tail": "(h) [Reserved]",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 8,
+     "chars": 562,
+     "tail": "ompliance with the requirements for informed consent set forth in part 50 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(1)",
+     "ordinal": 9,
+     "chars": 510,
+     "tail": "Food Safety and Inspection Service, USDA, for simultaneous review under the PPIA and FMIA.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(2)",
+     "ordinal": 10,
+     "chars": 244,
+     "tail": " permitted in products under USDA jurisdiction under specified conditions or restrictions.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Petitions."
+  }
+ },
+ "required_status": {
+  "21 CFR 71.1(c)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

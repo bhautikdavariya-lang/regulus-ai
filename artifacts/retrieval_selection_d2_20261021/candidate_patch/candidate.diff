@@ -1,0 +1,120 @@
+diff --git a/scripts/retrieval_baseline.py b/scripts/retrieval_baseline.py
+index 34bc2e2..41f9b94 100644
+--- a/scripts/retrieval_baseline.py
++++ b/scripts/retrieval_baseline.py
+@@ -253,7 +253,7 @@ def main() -> int:
+     r.add_argument("--semantic", choices=("production", "off"), default="production",
+                    help="production = the configured semantic fallback; off = lexical only (diagnostic)")
+     r.add_argument("--ids", nargs="*", default=None)
+-    r.add_argument("--general-evidence-order", choices=("tier", "binding_first"), default=None,
++    r.add_argument("--general-evidence-order", choices=("tier", "binding_first", "ecfr_discovery_first_guidance_floor"), default=None,
+                    help="Phase 2 experiment switch (ContextPolicy.general_evidence_order); default: as configured (tier)")
+     r.add_argument("--min-trigram-similarity", type=float, default=None,
+                    help="Phase 4 experiment: override RagConfig.min_trigram_similarity for this run (default: as configured, 0.4)")
+diff --git a/src/regulus/rag/context.py b/src/regulus/rag/context.py
+index 4e81493..d97cff5 100644
+--- a/src/regulus/rag/context.py
++++ b/src/regulus/rag/context.py
+@@ -36,7 +36,8 @@ CORPUS_LABEL = {"ecfr": "eCFR", "fda_guidance": "FDA Guidance"}
+ TRUNCATION_MARK = " [... truncated]"
+ ORDER_TIER = "tier"
+ ORDER_BINDING_FIRST = "binding_first"
+-GENERAL_EVIDENCE_ORDERS = (ORDER_TIER, ORDER_BINDING_FIRST)
++ORDER_GUIDANCE_FLOOR = "ecfr_discovery_first_guidance_floor"
++GENERAL_EVIDENCE_ORDERS = (ORDER_TIER, ORDER_BINDING_FIRST, ORDER_GUIDANCE_FLOOR)
+ 
+ 
+ @dataclass(frozen=True)
+@@ -78,6 +79,12 @@ class ContextPolicy:
+     # ahead of every guidance passage, and orders the eCFR discovery passages by their own score instead of by
+     # retrieval leg, so a section-coverage row is no longer behind every OR/trigram hit; the RC2 reserve is then
+     # redundant and is not applied. Limits, filters and the presented order (registry order) are unchanged.
++    # "ecfr_discovery_first_guidance_floor" (retrieval repair D, experiment 2, 2026-10-21; OFF by default) is "tier"
++    # with one change in the discovery tier: the highest-ranked guidance passage competes first, then every eCFR
++    # passage, then the remaining guidance, each in registry order. The section-coverage rows are discovery evidence
++    # the registry puts behind everything, so up to eight broad OR-fallback guidance chunks spent the budget before
++    # them; putting all eCFR first (experiment 1) lost the top-ranked guidance passage where it mattered. Supporting
++    # evidence, the RC2 reserve, every limit and the presented order are unchanged.
+     general_evidence_order: str = "tier"
+ 
+     def __post_init__(self) -> None:
+diff --git a/src/regulus/rag/selection.py b/src/regulus/rag/selection.py
+index 7ee3bdc..c51c167 100644
+--- a/src/regulus/rag/selection.py
++++ b/src/regulus/rag/selection.py
+@@ -35,7 +35,7 @@ import re
+ from dataclasses import dataclass, field, replace
+ from typing import Any, Callable
+ 
+-from regulus.rag.context import ORDER_BINDING_FIRST, ContextPolicy, ContextSource, TRUNCATION_MARK, render_source
++from regulus.rag.context import ORDER_BINDING_FIRST, ORDER_GUIDANCE_FLOOR, ContextPolicy, ContextSource, TRUNCATION_MARK, render_source
+ from regulus.rag.evidence_values import evidence_has_value, selection_value_kind
+ from regulus.retrieval.evidence import TIER_DISCOVERY, TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, Evidence, EvidenceRegistry
+ from regulus.retrieval.models import METHOD_EXACT_DOCKET, RetrievalResult
+@@ -398,6 +398,7 @@ def select_evidence(
+     reserved_ids: list[str] = []
+     reserve = min(policy.binding_reserve_chars, policy.max_total_chars)
+     binding_first = policy.general_evidence_order == ORDER_BINDING_FIRST and _binding_reserve_applies(registry)
++    guidance_floor = policy.general_evidence_order == ORDER_GUIDANCE_FLOOR and _binding_reserve_applies(registry)
+     if reserve > 0 and _binding_reserve_applies(registry) and not binding_first:
+         limit = min(policy.max_total_chars, policy.hard_max_total_chars)
+         spent = 0
+@@ -421,7 +422,7 @@ def select_evidence(
+                 handled.add(e.evidence_id)
+ 
+     # Phases 2-4: optional evidence within the soft budget, never displacing the above
+-    for e in _optional_order(registry, binding_first):
++    for e in _optional_order(registry, binding_first, guidance_floor):
+         if is_required(e) or e.evidence_id in handled:
+             continue
+         # structural evidence is identity-based (a parent or child of a requested
+@@ -449,7 +450,7 @@ def select_evidence(
+         used += gap() + chars
+         selected.append(SelectedEvidence(index, e, text, truncated, False, _reason(e), chars))
+ 
+-    if reserved_ids or binding_first:
++    if reserved_ids or binding_first or guidance_floor:
+         # registry order, as without the reserve; a block's length depends on its index only through
+         # its "SOURCE n" line and the indices stay 1..n, so the total charged is unchanged
+         position = {e.evidence_id: i for i, e in enumerate(registry.evidence)}
+@@ -472,6 +473,7 @@ def select_evidence(
+         **({"required_order": "relevance"} if required_by_relevance else {}),
+         **({"binding_reserved": reserved_ids} if reserved_ids else {}),
+         **({"general_evidence_order": ORDER_BINDING_FIRST} if binding_first else {}),
++        **({"general_evidence_order": ORDER_GUIDANCE_FLOOR} if guidance_floor else {}),
+         "tier_counts": {t: sum(1 for s in selected if s.evidence.tier == t) for t in (TIER_EXACT, TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY)},
+     }
+     return Selection(tuple(selected), tuple(dropped), policy, used, diagnostics)
+@@ -480,7 +482,7 @@ def select_evidence(
+ _SENTENCE_END = (".", '."', ".)", "?", "!")
+ 
+ 
+-def _optional_order(registry: EvidenceRegistry, binding_first: bool) -> list[Evidence]:
++def _optional_order(registry: EvidenceRegistry, binding_first: bool, guidance_floor: bool = False) -> list[Evidence]:
+     """The order in which optional evidence competes for the soft budget.
+ 
+     Default: tier by tier (structural, supporting, discovery), registry order within a tier - so every
+@@ -492,10 +494,21 @@ def _optional_order(registry: EvidenceRegistry, binding_first: bool) -> list[Evi
+     discovery passages by their own score, highest first (ties keep registry order). Discovery scores share
+     one 0-5 band (full_text_or, trigram, section coverage), so this ranks a section that covers the question's
+     weight (D-016's 211.125 at 5.0) ahead of a heading that merely resembles it. Guidance keeps its own order
+-    after the eCFR. Nothing is added or removed here: the same candidates, filter and limits."""
++    after the eCFR. Nothing is added or removed here: the same candidates, filter and limits.
++
++    guidance_floor (ContextPolicy.general_evidence_order "ecfr_discovery_first_guidance_floor", a question that names
++    nothing): the default order, except within the discovery tier - the highest-ranked guidance passage (the first in
++    registry order, which orders discovery evidence by score), then every eCFR passage, then the remaining guidance,
++    each in registry order. Structural and supporting evidence, guidance included, keep their place."""
+     tiers = (TIER_STRUCTURAL, TIER_SUPPORTING, TIER_DISCOVERY)
+     if not binding_first:
+-        return [e for tier in tiers for e in registry.evidence if e.tier == tier]
++        ordered = [e for tier in tiers for e in registry.evidence if e.tier == tier]
++        if guidance_floor:
++            discovery = [e for e in ordered if e.tier == TIER_DISCOVERY]
++            guidance = [e for e in discovery if e.result.corpus != "ecfr"]
++            ordered = ([e for e in ordered if e.tier != TIER_DISCOVERY] + guidance[:1]
++                       + [e for e in discovery if e.result.corpus == "ecfr"] + guidance[1:])
++        return ordered
+     ecfr = [e for e in registry.evidence if e.result.corpus == "ecfr"]
+     other = [e for e in registry.evidence if e.result.corpus != "ecfr"]
+     return ([e for e in ecfr if e.tier == TIER_STRUCTURAL] + [e for e in ecfr if e.tier == TIER_SUPPORTING]

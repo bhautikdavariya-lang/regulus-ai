@@ -1,0 +1,615 @@
+{
+ "id": "COS-720.3-Q1",
+ "question": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+ "key_citation": "21 CFR 720.3",
+ "required": {
+  "720.3": []
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "get form send completed",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "completed",
+   "form",
+   "2512",
+   "send",
+   "get"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+   "tsquery": "'get' & 'form' & 'fda' & '2512' & 'send' & 'complet'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+   "tsquery": "'get' & 'form' & 'fda' & '2512' & 'send' & 'complet'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "get form send completed",
+   "tsquery": "'get' & 'form' & 'send' & 'complet'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 101.11(d)(4)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.0354,
+     "chars": 196,
+     "metadata": {
+      "ordinal": 140,
+      "section_coverage": 1.2142,
+      "paragraph_coverage": 0.6071
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 101.8(d)(3)(v)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.0354,
+     "chars": 599,
+     "metadata": {
+      "ordinal": 36,
+      "section_coverage": 1.2142,
+      "paragraph_coverage": 0.6071
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 314.110(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.0354,
+     "chars": 275,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.2142,
+      "paragraph_coverage": 0.6071
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 600.14(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.0354,
+     "chars": 317,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 1.2142,
+      "paragraph_coverage": 0.6071
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "completed or form or 2512 or send or get",
+   "tsquery": "'complet' | 'form' | '2512' | 'send' | 'get'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5757,
+     "chars": 1494,
+     "metadata": {
+      "ts_rank_cd": 1.575709
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5341,
+     "chars": 1460,
+     "metadata": {
+      "ts_rank_cd": 1.5340554
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2933,
+     "chars": 1413,
+     "metadata": {
+      "ts_rank_cd": 1.2932533
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2793,
+     "chars": 1495,
+     "metadata": {
+      "ts_rank_cd": 1.279304
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2773,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.2772832
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Calorie Labeling of Articles of Food in Vending Machines (draft, 2016-08-16, Docket FDA-2011-F-0171)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2626,
+     "chars": 1493,
+     "metadata": {
+      "ts_rank_cd": 1.2626003
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Non-Clinical and Clinical Investigation of Devices Used for the Treatment of Benign Prostatic Hyperplasia (BPH): Guidance for Industry and Food and Drug Administration Staff (final, 2021-12-27, Docket FDA-2020-D-1118)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1912,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 1.1911964
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1737,
+     "chars": 1455,
+     "metadata": {
+      "ts_rank_cd": 1.1737118
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5757,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5341,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2933,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2793,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2773,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Calorie Labeling of Articles of Food in Vending Machines (draft, 2016-08-16, Docket FDA-2011-F-0171)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2626,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Non-Clinical and Clinical Investigation of Devices Used for the Treatment of Benign Prostatic Hyperplasia (BPH): Guidance for Industry and Food and Drug Administration Staff (final, 2021-12-27, Docket FDA-2020-D-1118)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1912,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1737,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 101.11(d)(4)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.0354,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 101.8(d)(3)(v)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.0354,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 314.110(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.0354,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 600.14(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.0354,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+  "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+  "21 CFR 101.11(d)(4)(i)",
+  "21 CFR 101.8(d)(3)(v)",
+  "21 CFR 314.110(a)",
+  "21 CFR 600.14(e)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Calorie Labeling of Articles of Food in Vending Machines (draft, 2016-08-16, Docket FDA-2011-F-0171)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Non-Clinical and Clinical Investigation of Devices Used for the Treatment of Benign Prostatic Hyperplasia (BPH): Guidance for Industry and Food and Drug Administration Staff (final, 2021-12-27, Docket FDA-2020-D-1118)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 314.110(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 600.14(e)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.11(d)(4)(i)",
+    "tier": "discovery",
+    "block_chars": 425,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.8(d)(3)(v)",
+    "tier": "discovery",
+    "block_chars": 775,
+    "used_before": 425,
+    "reserve_spent_before": 425,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 314.110(a)",
+    "tier": "discovery",
+    "block_chars": 474,
+    "used_before": 1202,
+    "reserve_spent_before": 1200,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 600.14(e)",
+    "tier": "discovery",
+    "block_chars": 541,
+    "used_before": 1202,
+    "reserve_spent_before": 1200,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+    "tier": "discovery",
+    "used_before": 1202,
+    "block_chars": 1662,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 2866,
+    "block_chars": 732,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1606,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1662,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1505,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Calorie Labeling of Articles of Food in Vending Machines (draft, 2016-08-16, Docket FDA-2011-F-0171)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1540,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Non-Clinical and Clinical Investigation of Devices Used for the Treatment of Benign Prostatic Hyperplasia (BPH): Guidance for Industry and Food and Drug Administration Staff (final, 2021-12-27, Docket FDA-2020-D-1118)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1652,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #108 Registering with CVM’s Electronic Submission System (final, 2023-04-26, Docket FDA-1992-S-0039)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1505,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 314.110(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 474,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 600.14(e)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 541,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 369,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 101.11(d)(4)(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 196,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 101.8(d)(3)(v)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 599,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "720.3": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 474,
+     "tail": "Campus Dr., College Park, MD 20740, according to the instructions provided with the forms.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "How and where to file."
+  }
+ },
+ "required_status": {
+  "21 CFR 720.3": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

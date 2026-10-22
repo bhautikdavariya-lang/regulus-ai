@@ -1,0 +1,589 @@
+{
+ "id": "COS-FDCA601-Q3",
+ "question": "We're a small nail polish brand using a contract manufacturer. We haven't compiled safety data. Which newer adulteration provisions should we worry about?",
+ "key_citation": "FD&C Act 601(e), (f), (g) [21 U.S.C. 361(e)-(g)]",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We're a small nail polish brand using a contract manufacturer. We haven't compiled safety data. Which newer adulteration provisions should we worry about?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "small nail polish brand using contract manufacturer haven compiled safety data newer adulteration worry",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "manufacturer",
+   "adulteration",
+   "contract",
+   "compiled",
+   "polish",
+   "safety",
+   "small",
+   "brand"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We're a small nail polish brand using a contract manufacturer. We haven't compiled safety data. Which newer adulteration provisions should we worry about?",
+   "tsquery": "'re' & 'small' & 'nail' & 'polish' & 'brand' & 'use' & 'contract' & 'manufactur' & 'haven' & 'compil' & 'safeti' & 'data' & 'newer' & 'adulter' & 'provis' & 'worri'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We're a small nail polish brand using a contract manufacturer. We haven't compiled safety data. Which newer adulteration provisions should we worry about?",
+   "tsquery": "'re' & 'small' & 'nail' & 'polish' & 'brand' & 'use' & 'contract' & 'manufactur' & 'haven' & 'compil' & 'safeti' & 'data' & 'newer' & 'adulter' & 'provis' & 'worri'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We're a small nail polish brand using a contract manufacturer. We haven't compiled safety data. Which newer adulteration provisions should we worry about?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "small nail polish brand using contract manufacturer haven compiled safety data newer adulteration worry",
+   "tsquery": "'small' & 'nail' & 'polish' & 'brand' & 'use' & 'contract' & 'manufactur' & 'haven' & 'compil' & 'safeti' & 'data' & 'newer' & 'adulter' & 'worri'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 720.4(c)(8)(v)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9778,
+     "chars": 27,
+     "metadata": {
+      "ordinal": 69,
+      "section_coverage": 0.8623,
+      "paragraph_coverage": 0.3244
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 720.4(c)(8)(vi)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9778,
+     "chars": 37,
+     "metadata": {
+      "ordinal": 70,
+      "section_coverage": 0.8623,
+      "paragraph_coverage": 0.3244
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 73.2995(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7156,
+     "chars": 273,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 0.6967,
+      "paragraph_coverage": 0.3327
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 20.111(c)(3)(ii)(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3373,
+     "chars": 161,
+     "metadata": {
+      "ordinal": 10,
+      "section_coverage": 0.5972,
+      "paragraph_coverage": 0.2052
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "manufacturer or adulteration or contract or compiled or polish or safety or small or brand",
+   "tsquery": "'manufactur' | 'adulter' | 'contract' | 'compil' | 'polish' | 'safeti' | 'small' | 'brand'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3744,
+     "chars": 1449,
+     "metadata": {
+      "ts_rank_cd": 2.1990416
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3118,
+     "chars": 1439,
+     "metadata": {
+      "ts_rank_cd": 2.0988464
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2544,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 2.0070443
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2177,
+     "chars": 1462,
+     "metadata": {
+      "ts_rank_cd": 1.9483471
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1959,
+     "chars": 1466,
+     "metadata": {
+      "ts_rank_cd": 1.9134257
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Guidance for Industry: Current Good Manufacturing Practice and Preventive Controls, Foreign Supplier Verification Programs, Intentional Adulteration, and Produce Safety Regulations: Enforcement Policy Regarding Certain Provisions (final, 2022-03-11, Docket FDA-2021-D-0563)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1899,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.9038389
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0104,
+     "chars": 1488,
+     "metadata": {
+      "ts_rank_cd": 1.6165667
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Notifying FDA of a Permanent Discontinuance in the Manufacture or an Interruption of the Manufacture of an Infant Formula (draft, 2024-12-02, Docket FDA-2024-D-1334)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0104,
+     "chars": 1482,
+     "metadata": {
+      "ts_rank_cd": 1.6165667
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3744,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3118,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2544,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2177,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1959,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Current Good Manufacturing Practice and Preventive Controls, Foreign Supplier Verification Programs, Intentional Adulteration, and Produce Safety Regulations: Enforcement Policy Regarding Certain Provisions (final, 2022-03-11, Docket FDA-2021-D-0563)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1899,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0104,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Notifying FDA of a Permanent Discontinuance in the Manufacture or an Interruption of the Manufacture of an Infant Formula (draft, 2024-12-02, Docket FDA-2024-D-1334)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0104,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 720.4(c)(8)(v)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9778,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 720.4(c)(8)(vi)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9778,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 73.2995(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7156,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 20.111(c)(3)(ii)(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3373,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+  "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+  "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+  "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+  "21 CFR 720.4(c)(8)(v)",
+  "21 CFR 720.4(c)(8)(vi)",
+  "21 CFR 73.2995(c)",
+  "21 CFR 20.111(c)(3)(ii)(c)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Current Good Manufacturing Practice and Preventive Controls, Foreign Supplier Verification Programs, Intentional Adulteration, and Produce Safety Regulations: Enforcement Policy Regarding Certain Provisions (final, 2022-03-11, Docket FDA-2021-D-0563)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Notifying FDA of a Permanent Discontinuance in the Manufacture or an Interruption of the Manufacture of an Infant Formula (draft, 2024-12-02, Docket FDA-2024-D-1334)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 20.111(c)(3)(ii)(c)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 5
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(c)(8)(v)",
+    "tier": "discovery",
+    "block_chars": 232,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(c)(8)(vi)",
+    "tier": "discovery",
+    "block_chars": 243,
+    "used_before": 232,
+    "reserve_spent_before": 232,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.2995(c)",
+    "tier": "discovery",
+    "block_chars": 454,
+    "used_before": 477,
+    "reserve_spent_before": 475,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 20.111(c)(3)(ii)(c)",
+    "tier": "discovery",
+    "block_chars": 404,
+    "used_before": 933,
+    "reserve_spent_before": 929,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "tier": "discovery",
+    "used_before": 933,
+    "block_chars": 1524,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "tier": "discovery",
+    "used_before": 2459,
+    "block_chars": 1139,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1607,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1572,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1524,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Current Good Manufacturing Practice and Preventive Controls, Foreign Supplier Verification Programs, Intentional Adulteration, and Produce Safety Regulations: Enforcement Policy Regarding Certain Provisions (final, 2022-03-11, Docket FDA-2021-D-0563)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1706,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1572,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Notifying FDA of a Permanent Discontinuance in the Manufacture or an Interruption of the Manufacture of an Infant Formula (draft, 2024-12-02, Docket FDA-2024-D-1334)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1624,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 20.111(c)(3)(ii)(c)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 404,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 814,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 720.4(c)(8)(v)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 27,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 720.4(c)(8)(vi)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 37,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 5,
+   "citation": "21 CFR 73.2995(c)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 273,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

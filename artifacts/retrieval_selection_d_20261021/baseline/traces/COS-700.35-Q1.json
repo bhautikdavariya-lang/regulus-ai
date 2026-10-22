@@ -1,0 +1,638 @@
+{
+ "id": "COS-700.35-Q1",
+ "question": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+ "key_citation": "21 CFR 700.35(a), (b)",
+ "required": {
+  "700.35": [
+   "a",
+   "b"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "tinted moisturizer contains filter protect formula color label sunscreen keep cosmetic",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "moisturizer",
+   "sunscreen",
+   "contains",
+   "cosmetic",
+   "protect",
+   "formula",
+   "tinted",
+   "filter"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+   "tsquery": "'tint' & 'moistur' & 'contain' & 'uv' & 'filter' & 'protect' & 'formula' & 'color' & 'label' & 'say' & 'sunscreen' & 'keep' & 'cosmet'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+   "tsquery": "'tint' & 'moistur' & 'contain' & 'uv' & 'filter' & 'protect' & 'formula' & 'color' & 'label' & 'say' & 'sunscreen' & 'keep' & 'cosmet'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "tinted moisturizer contains filter protect formula color label sunscreen keep cosmetic",
+   "tsquery": "'tint' & 'moistur' & 'contain' & 'filter' & 'protect' & 'formula' & 'color' & 'label' & 'sunscreen' & 'keep' & 'cosmet'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 740.19",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.5294,
+     "chars": 1010,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.0118,
+      "paragraph_coverage": 0.5059
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 201.327(i)(1)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.0149,
+     "chars": 286,
+     "metadata": {
+      "ordinal": 34,
+      "section_coverage": 0.912,
+      "paragraph_coverage": 0.297
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 201.327(i)(1)(iv)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.0149,
+     "chars": 1164,
+     "metadata": {
+      "ordinal": 45,
+      "section_coverage": 0.912,
+      "paragraph_coverage": 0.297
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 352.60(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.0126,
+     "chars": 566,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.8235,
+      "paragraph_coverage": 0.384
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "moisturizer or sunscreen or contains or cosmetic or protect or formula or tinted or filter",
+   "tsquery": "'moistur' | 'sunscreen' | 'contain' | 'cosmet' | 'protect' | 'formula' | 'tint' | 'filter'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.89,
+     "chars": 1406,
+     "metadata": {
+      "ts_rank_cd": 1.4239814
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8867,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 1.4186707
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8564,
+     "chars": 1416,
+     "metadata": {
+      "ts_rank_cd": 1.3701819
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8384,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 1.3415128
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8232,
+     "chars": 1491,
+     "metadata": {
+      "ts_rank_cd": 1.3171983
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Coronary and Carotid Embolic Protection Devices - Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2008-02-15, Docket FDA-2020-D-0957)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.82,
+     "chars": 1411,
+     "metadata": {
+      "ts_rank_cd": 1.312013
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: Infant Formula Enforcement Discretion Policy (final, 2022-05-01, Docket FDA-2022-D-0814)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7775,
+     "chars": 1463,
+     "metadata": {
+      "ts_rank_cd": 1.244079
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Infant Formula Transition Plan for Exercise of Enforcement Discretion (final, 2022-09-29, Docket FDA-2022-D-0814)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7545,
+     "chars": 1463,
+     "metadata": {
+      "ts_rank_cd": 1.2072124
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.89,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8867,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8564,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8384,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8232,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Coronary and Carotid Embolic Protection Devices - Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2008-02-15, Docket FDA-2020-D-0957)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.82,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: Infant Formula Enforcement Discretion Policy (final, 2022-05-01, Docket FDA-2022-D-0814)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7775,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: Infant Formula Transition Plan for Exercise of Enforcement Discretion (final, 2022-09-29, Docket FDA-2022-D-0814)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7545,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 740.19",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.5294,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 201.327(i)(1)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.0149,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 201.327(i)(1)(iv)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.0149,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 352.60(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.0126,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "21 CFR 740.19",
+  "21 CFR 201.327(i)(1)(i)",
+  "21 CFR 201.327(i)(1)(iv)",
+  "21 CFR 352.60(c)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Coronary and Carotid Embolic Protection Devices - Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2008-02-15, Docket FDA-2020-D-0957)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Infant Formula Enforcement Discretion Policy (final, 2022-05-01, Docket FDA-2022-D-0814)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Infant Formula Transition Plan for Exercise of Enforcement Discretion (final, 2022-09-29, Docket FDA-2022-D-0814)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 201.327(i)(1)(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 201.327(i)(1)(iv)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 352.60(c)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 740.19",
+    "tier": "discovery",
+    "block_chars": 1186,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 201.327(i)(1)(i)",
+    "tier": "discovery",
+    "block_chars": 540,
+    "used_before": 1186,
+    "reserve_spent_before": 1186,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 201.327(i)(1)(iv)",
+    "tier": "discovery",
+    "block_chars": 1419,
+    "used_before": 1186,
+    "reserve_spent_before": 1186,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 352.60(c)",
+    "tier": "discovery",
+    "block_chars": 778,
+    "used_before": 1186,
+    "reserve_spent_before": 1186,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 1186,
+    "block_chars": 1596,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 2784,
+    "block_chars": 814,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1597,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1474,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Coronary and Carotid Embolic Protection Devices - Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2008-02-15, Docket FDA-2020-D-0957)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1602,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Infant Formula Enforcement Discretion Policy (final, 2022-05-01, Docket FDA-2022-D-0814)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1512,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Infant Formula Transition Plan for Exercise of Enforcement Discretion (final, 2022-09-29, Docket FDA-2022-D-0814)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1556,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 201.327(i)(1)(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 540,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 201.327(i)(1)(iv)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1419,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 352.60(c)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 778,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 417,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 740.19",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1010,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "700.35": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 1642,
+     "tail": "must be qualified by describing the cosmetic benefit provided by the sunscreen ingredient.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 317,
+     "tail": "nology used in the labeling. For example: “Contains a sunscreen—to protect product color.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Cosmetics containing sunscreen ingredients."
+  }
+ },
+ "required_status": {
+  "21 CFR 700.35(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 700.35(b)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

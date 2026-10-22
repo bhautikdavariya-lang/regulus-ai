@@ -1,0 +1,1559 @@
+{
+ "question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+ "answer": "The available regulatory sources do not provide enough information to answer this.",
+ "model_called": true,
+ "no_context": false,
+ "citations": [],
+ "sources": [
+  {
+   "index": 1,
+   "citation": "21 CFR 80.35(a)",
+   "corpus": "ecfr",
+   "heading": "Color additive mixtures; certification and exemption from certification.",
+   "method": "trigram",
+   "score": 2.018,
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-80/section-80.35",
+   "text": "(a) Color additive mixtures to be certified. Any color additive mixture that contains one or more straight colors listed in part 74 of this chapter, together with any diluents listed in such subparts for use with such straight colors, shall be certified if intended for use in foods, drugs, or cosmetics, or in coloring the human body, as the case may be, subject to any restriction prescribed in parts 70 and 71 of this chapter.",
+   "truncated": false,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "corpus": "fda_guidance",
+   "heading": "Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry",
+   "method": "full_text_or",
+   "score": 1.975,
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products",
+   "text": "43 When selecting a replacement color additive, manufacturers and applicants should review the144 color additive regulations. They must ensure that the color additive regulations list the proposed145 color for use in drugs and that the proposed level and use conform to the regulations.38 Certain146 color additive regulations restrict the allowable levels of color additives. For example, 21 CFR147 73.1200(c) restricts the total amount of elemental iron per day. Manufacturers and applicants that148 remove or replace a color additive should also ensure that drug product strengths remain149 distinguishable to help prevent medication errors (e.g., when drug products such as tablets are150 marketed in multiple strengths).151 152 Manufacturers and applicants can check the Inactive Ingredient Database (IID)39 for additional153 information, including the levels of color additives that have been used in FDA-approved drug154 products. Although this information can be useful, color additives and levels of color additives155 that are not listed in the IID can be acceptable if the color additive is listed in the regulations and156 is used within the regulation’s restrictions.157 [... truncated]",
+   "truncated": true,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  },
+  {
+   "index": 3,
+   "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "corpus": "fda_guidance",
+   "heading": "CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods",
+   "method": "full_text_or",
+   "score": 1.961,
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods",
+   "text": "the regulations regarding the declaration of certified color additives on the labels of human food. The rule also suggests appropriate terminology for the declaration of noncertified color additives on the labels of animal food. The FDA enforces the laws governing color additives used in foods. These laws include the FD&C Act, the Fair Packaging and Labeling Act, as well as the Public Health Security and Bioterrorism Preparedness and Response Act, and the FDA Food Safety Modernization Act. These statutes, among o [... truncated]",
+   "truncated": true,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 81.30(b)(2)",
+   "corpus": "ecfr",
+   "heading": "Cancellation of certificates.",
+   "method": "full_text_or",
+   "score": 2.409,
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-81/section-81.30",
+   "text": "(2) The Commissioner finds that no action needs to be taken to remove foods, drugs, and cosmetics containing this color additive from the market on the basis of the scientific evidence before him, taking into account that the additive is not an acute toxic substance and that it is only used in small amounts in foods, drugs, and cosmetics.",
+   "truncated": false,
+   "tier": "discovery",
+   "requirement_ids": [],
+   "protected": false,
+   "selection_reason": "discovery"
+  }
+ ],
+ "dropped_sources": 12,
+ "notes": [],
+ "grounding": null,
+ "retrieval": {
+  "primary_result_count": 0,
+  "fallback_used": true,
+  "fallback_terms": [
+   "certification",
+   "exemption",
+   "eyeliner",
+   "additive",
+   "exempt",
+   "color",
+   "uses",
+   "take"
+  ],
+  "fallback_candidate_count": 12,
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "final_result_count": 8,
+  "retrieval_mode": "fallback",
+  "plan": {
+   "kind": "general",
+   "requirement_count": 0,
+   "requirement_ids": [],
+   "exact_attempts": 0,
+   "resolved": [],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 16
+   },
+   "method_counts": {
+    "trigram": 4,
+    "full_text_or": 12
+   },
+   "candidate_count": 16,
+   "evidence_count": 16,
+   "protected_count": 0,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": true,
+   "requirements": {},
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  },
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  }
+ },
+ "query_type": "GENERAL_REGULATORY_SEARCH",
+ "plan": {
+  "question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+  "normalized_question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "kind": "general",
+  "requirements": [],
+  "docket": null,
+  "guidance_requested": false,
+  "scan": {
+   "text": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+   "mentions": [],
+   "ranges": [],
+   "references": [],
+   "notes": []
+  },
+  "notes": []
+ },
+ "evidence": {
+  "plan_kind": "general",
+  "requirements": [],
+  "evidence": [
+   {
+    "evidence_id": "e1",
+    "key": "ecfr:80.35:(a):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 80.35(a)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "trigram",
+    "methods": [
+     "trigram"
+    ],
+    "score": 2.0183,
+    "chars": 429
+   },
+   {
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#13",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.9753,
+    "chars": 1485
+   },
+   {
+    "evidence_id": "e3",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#4",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.9608,
+    "chars": 1496
+   },
+   {
+    "evidence_id": "e4",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#3",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.9236,
+    "chars": 1495
+   },
+   {
+    "evidence_id": "e5",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#7",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.8226,
+    "chars": 1479
+   },
+   {
+    "evidence_id": "e6",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-assessing-effects-significant-manufacturing-process-changes-including-emerging#62",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.8181,
+    "chars": 1492
+   },
+   {
+    "evidence_id": "e7",
+    "key": "ecfr:73.1::1",
+    "corpus": "ecfr",
+    "citation": "21 CFR 73.1",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "trigram",
+    "methods": [
+     "trigram"
+    ],
+    "score": 1.7857,
+    "chars": 501
+   },
+   {
+    "evidence_id": "e8",
+    "key": "ecfr:73.1001::1",
+    "corpus": "ecfr",
+    "citation": "21 CFR 73.1001",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "trigram",
+    "methods": [
+     "trigram"
+    ],
+    "score": 1.7717,
+    "chars": 723
+   },
+   {
+    "evidence_id": "e9",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#5",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.6987,
+    "chars": 1453
+   },
+   {
+    "evidence_id": "e10",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#6",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.6728,
+    "chars": 1487
+   },
+   {
+    "evidence_id": "e11",
+    "key": "ecfr:71.27::1",
+    "corpus": "ecfr",
+    "citation": "21 CFR 71.27",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "trigram",
+    "methods": [
+     "trigram"
+    ],
+    "score": 1.6142,
+    "chars": 374
+   },
+   {
+    "evidence_id": "e12",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-assessing-effects-significant-manufacturing-process-changes-including-emerging#17",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 1.4877,
+    "chars": 1493
+   },
+   {
+    "evidence_id": "e13",
+    "key": "ecfr:81.30:(b)(2):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 81.30(b)(2)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 2.4091,
+    "chars": 340
+   },
+   {
+    "evidence_id": "e14",
+    "key": "ecfr:81.30:(c):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 81.30(c)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 2.2184,
+    "chars": 684
+   },
+   {
+    "evidence_id": "e15",
+    "key": "ecfr:74.2052:(c):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 74.2052(c)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 2.1346,
+    "chars": 278
+   },
+   {
+    "evidence_id": "e16",
+    "key": "ecfr:74.2053:(c):0",
+    "corpus": "ecfr",
+    "citation": "21 CFR 74.2053(c)",
+    "tier": "discovery",
+    "satisfies": [],
+    "structural_for": [],
+    "discovered_for": [],
+    "relations": {},
+    "retrieval_method": "full_text_or",
+    "methods": [
+     "full_text_or"
+    ],
+    "score": 2.1346,
+    "chars": 355
+   }
+  ],
+  "requirement_state": {},
+  "resolved": [],
+  "unresolved": [],
+  "diagnostics": {
+   "kind": "general",
+   "requirement_count": 0,
+   "requirement_ids": [],
+   "exact_attempts": 0,
+   "resolved": [],
+   "unresolved": [],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 16
+   },
+   "method_counts": {
+    "trigram": 4,
+    "full_text_or": 12
+   },
+   "candidate_count": 16,
+   "evidence_count": 16,
+   "protected_count": 0,
+   "docket_requested": null,
+   "docket_hits": 0,
+   "question_fallback_used": true,
+   "requirements": {},
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null
+   }
+  }
+ },
+ "coverage": {
+  "state": "NO_EXPLICIT_REQUIREMENTS",
+  "complete": true,
+  "missing": [],
+  "missing_labels": [],
+  "total_requirements": 0,
+  "exact_requirements": 0,
+  "structural_only_requirements": 0,
+  "supporting_only_requirements": 0,
+  "discovery_only_requirements": 0,
+  "unresolved_requirements": 0,
+  "requirements": [],
+  "evidence_complete": true
+ },
+ "coverage_action": "answer",
+ "selection": {
+  "selected": [
+   {
+    "index": 1,
+    "evidence_id": "e1",
+    "key": "ecfr:80.35:(a):0",
+    "citation": "21 CFR 80.35(a)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 429,
+    "block_chars": 653,
+    "truncated": false
+   },
+   {
+    "index": 2,
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#13",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 1199,
+    "block_chars": 1535,
+    "truncated": true
+   },
+   {
+    "index": 3,
+    "evidence_id": "e3",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#4",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 534,
+    "block_chars": 882,
+    "truncated": true
+   },
+   {
+    "index": 4,
+    "evidence_id": "e13",
+    "key": "ecfr:81.30:(b)(2):0",
+    "citation": "21 CFR 81.30(b)(2)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "reason": "discovery",
+    "chars": 340,
+    "block_chars": 524,
+    "truncated": false
+   }
+  ],
+  "dropped": [
+   {
+    "evidence_id": "e4",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e5",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e6",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e7",
+    "citation": "21 CFR 73.1",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "filtered",
+    "required": false
+   },
+   {
+    "evidence_id": "e8",
+    "citation": "21 CFR 73.1001",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "filtered",
+    "required": false
+   },
+   {
+    "evidence_id": "e9",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e10",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e11",
+    "citation": "21 CFR 71.27",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "filtered",
+    "required": false
+   },
+   {
+    "evidence_id": "e12",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e14",
+    "citation": "21 CFR 81.30(c)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e15",
+    "citation": "21 CFR 74.2052(c)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   },
+   {
+    "evidence_id": "e16",
+    "citation": "21 CFR 74.2053(c)",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "reason": "soft_budget",
+    "required": false
+   }
+  ],
+  "policy": {
+   "max_results": 8,
+   "max_chars_per_result": 1200,
+   "max_total_chars": 3600,
+   "hard_max_results": 24,
+   "hard_max_total_chars": 9000,
+   "required_max_chars_per_result": 4000,
+   "binding_reserve_chars": 1200
+  },
+  "total_chars": 3600,
+  "overflow": false,
+  "required_count": 0,
+  "required_chars": 0,
+  "optional_count": 4,
+  "material_selected": [],
+  "required_dropped": [],
+  "required_truncated": [],
+  "optional_dropped": [
+   "e4",
+   "e5",
+   "e6",
+   "e7",
+   "e8",
+   "e9",
+   "e10",
+   "e11",
+   "e12",
+   "e14",
+   "e15",
+   "e16"
+  ],
+  "soft_budget_exceeded_by_required": false,
+  "binding_reserved": [
+   "e1",
+   "e13"
+  ],
+  "tier_counts": {
+   "exact": 0,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 4
+  }
+ },
+ "answer_shape": {
+  "mode": "synthesis",
+  "scope": "topic",
+  "exhaustive": false,
+  "requested_units": [],
+  "focus_terms": [],
+  "signals": [],
+  "rationale": "a general question: synthesize the relevant material"
+ },
+ "question_analysis": null,
+ "quality_flags": null,
+ "normalization": null,
+ "generation": {
+  "contract": "grounded_v1",
+  "shape": "general",
+  "max_new_tokens": 384,
+  "budget": {
+   "policy": "adaptive",
+   "base_tokens": 96,
+   "per_unit_tokens": 160,
+   "range_bonus_tokens": 64,
+   "general_tokens": 384,
+   "max_units": 10,
+   "min_tokens": 256,
+   "evidence_multiple": 1.4,
+   "evidence_cap_fraction": 0.75,
+   "hard_max_tokens": 2048
+  },
+  "coverage_state": "NO_EXPLICIT_REQUIREMENTS",
+  "requirements": [],
+  "satisfied_ids": [],
+  "missing_labels": [],
+  "sources": [
+   {
+    "index": 1,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "ecfr",
+    "citation": "21 CFR 80.35(a)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-80/section-80.35",
+    "chars": 429,
+    "truncated": false,
+    "evidence_id": "e1",
+    "key": "ecfr:80.35:(a):0",
+    "is_docket": false
+   },
+   {
+    "index": 2,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products",
+    "chars": 1199,
+    "truncated": true,
+    "evidence_id": "e2",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#13",
+    "is_docket": false
+   },
+   {
+    "index": 3,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods",
+    "chars": 534,
+    "truncated": true,
+    "evidence_id": "e3",
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#4",
+    "is_docket": false
+   },
+   {
+    "index": 4,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "corpus": "ecfr",
+    "citation": "21 CFR 81.30(b)(2)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-81/section-81.30",
+    "chars": 340,
+    "truncated": false,
+    "evidence_id": "e13",
+    "key": "ecfr:81.30:(b)(2):0",
+    "is_docket": false
+   }
+  ],
+  "notes": [],
+  "answer_shape": {
+   "mode": "synthesis",
+   "scope": "topic",
+   "exhaustive": false,
+   "requested_units": [],
+   "focus_terms": [],
+   "signals": [],
+   "rationale": "a general question: synthesize the relevant material"
+  },
+  "answer_plan": {
+   "shape": {
+    "mode": "synthesis",
+    "scope": "topic",
+    "exhaustive": false,
+    "requested_units": [],
+    "focus_terms": [],
+    "signals": [],
+    "rationale": "a general question: synthesize the relevant material"
+   },
+   "mode": "synthesis",
+   "lead_in": [],
+   "groups": [
+    {
+     "key": "doc:21 CFR 80.35(a)",
+     "label": "21 CFR 80.35(a)",
+     "heading": null,
+     "kind": "document",
+     "head": 1,
+     "members": [
+      1
+     ],
+     "items": [],
+     "requirement_ids": []
+    },
+    {
+     "key": "doc:FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "label": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "heading": null,
+     "kind": "document",
+     "head": 2,
+     "members": [
+      2
+     ],
+     "items": [],
+     "requirement_ids": []
+    },
+    {
+     "key": "doc:FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "label": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "heading": null,
+     "kind": "document",
+     "head": 3,
+     "members": [
+      3
+     ],
+     "items": [],
+     "requirement_ids": []
+    },
+    {
+     "key": "doc:21 CFR 81.30(b)(2)",
+     "label": "21 CFR 81.30(b)(2)",
+     "heading": null,
+     "kind": "document",
+     "head": 4,
+     "members": [
+      4
+     ],
+     "items": [],
+     "requirement_ids": []
+    }
+   ],
+   "context": [],
+   "related": [],
+   "sources": [
+    {
+     "index": 1,
+     "citation": "21 CFR 80.35(a)",
+     "tier": "discovery",
+     "role": "related",
+     "section": "80.35",
+     "paragraph": "(a)",
+     "heading": "Color additive mixtures to be certified",
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [
+      "part 74",
+      "parts 70"
+     ],
+     "requirement_ids": []
+    },
+    {
+     "index": 2,
+     "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "tier": "discovery",
+     "role": "related",
+     "section": null,
+     "paragraph": "",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    },
+    {
+     "index": 3,
+     "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "tier": "discovery",
+     "role": "related",
+     "section": null,
+     "paragraph": "",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    },
+    {
+     "index": 4,
+     "citation": "21 CFR 81.30(b)(2)",
+     "tier": "discovery",
+     "role": "related",
+     "section": "81.30",
+     "paragraph": "(b)(2)",
+     "heading": null,
+     "qualifiers": [],
+     "applicability": null,
+     "cross_references": [],
+     "requirement_ids": []
+    }
+   ],
+   "notes": []
+  },
+  "generated_tokens": 27,
+  "finished": true,
+  "prompt_tokens": 1393,
+  "stop_reason": null,
+  "tokens_per_second": 10.252,
+  "decode_tokens_per_second": 65.873,
+  "duplicate_sentences_removed": 1,
+  "prompt_chars": 4357
+ },
+ "validation": {
+  "initial": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [],
+   "unaddressed": [],
+   "cited": [],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 27,
+   "max_new_tokens": 384,
+   "answer_class": "refusal",
+   "n_sources": 4,
+   "explicit": false,
+   "cited_tiers": {},
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "synthesis",
+    "shape": {
+     "mode": "synthesis",
+     "scope": "topic",
+     "exhaustive": false,
+     "requested_units": [],
+     "focus_terms": [],
+     "signals": [],
+     "rationale": "a general question: synthesize the relevant material"
+    },
+    "groups": 4,
+    "groups_covered": 0,
+    "uncovered_groups": [],
+    "material_items": 0,
+    "material_items_covered": 0,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "final": {
+   "status": "valid",
+   "ok": true,
+   "codes": [],
+   "problems": [],
+   "addressed": [],
+   "unaddressed": [],
+   "cited": [],
+   "invalid_citations": [],
+   "truncated": false,
+   "finished": true,
+   "generated_tokens": 27,
+   "max_new_tokens": 384,
+   "answer_class": "refusal",
+   "n_sources": 4,
+   "explicit": false,
+   "cited_tiers": {},
+   "warnings": 0,
+   "errors": 0,
+   "shape": {
+    "mode": "synthesis",
+    "shape": {
+     "mode": "synthesis",
+     "scope": "topic",
+     "exhaustive": false,
+     "requested_units": [],
+     "focus_terms": [],
+     "signals": [],
+     "rationale": "a general question: synthesize the relevant material"
+    },
+    "groups": 4,
+    "groups_covered": 0,
+    "uncovered_groups": [],
+    "material_items": 0,
+    "material_items_covered": 0,
+    "uncovered_items": [],
+    "provision_led_blocks": [],
+    "out_of_scope_named": [],
+    "citation_gaps": 0,
+    "repeated_pairs": 0,
+    "prompt_echo": false,
+    "codes": []
+   }
+  },
+  "repair": null
+ },
+ "citation_support": {
+  "markers": [],
+  "by_tier": {
+   "exact": 0,
+   "structural": 0,
+   "supporting": 0,
+   "discovery": 0,
+   "invalid": 0
+  },
+  "exact_source_cited_for": {}
+ },
+ "answerability": {
+  "state": "UNKNOWN",
+  "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+  "signals": {
+   "question_type": "exception_condition",
+   "scope": "in_scope",
+   "requested_provisions": [],
+   "sources": 4,
+   "weak_evidence": true
+  },
+  "confidence": "UNDETERMINED",
+  "evidence_ids": [
+   "ecfr:80.35:(a):0",
+   "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#13",
+   "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#4",
+   "ecfr:81.30:(b)(2):0"
+  ],
+  "blocking_conditions": [],
+  "blocked": false,
+  "limitation": null,
+  "acted_on": true
+ },
+ "generation_called": true,
+ "generation_blocked": false,
+ "block_reason": null,
+ "fallback_type": null,
+ "fallback_reason": null,
+ "scope_policy": {
+  "status": "potentially_related",
+  "reason": "regulatory terms present, but no passage matched every term",
+  "domain_terms": [
+   "additive",
+   "certification",
+   "color",
+   "exempt",
+   "exemption",
+   "fda",
+   "find",
+   "out",
+   "take",
+   "uses"
+  ]
+ },
+ "semantic_fallback": {
+  "invoked": false,
+  "lexical_insufficient": null,
+  "config": {
+   "semantic_top_n": 8,
+   "similarity_floor": 0.75,
+   "merge_policy": "interleave",
+   "general_questions": false
+  },
+  "lexical_mode": "fallback",
+  "skipped": null
+ },
+ "reference_lookup": null,
+ "timings_ms": {
+  "plan_ms": 0.27,
+  "retrieval_ms": 3146.67,
+  "context_ms": 0.62,
+  "package_ms": 0.53,
+  "answerability_ms": 0.12,
+  "prompt_ms": 0.01,
+  "generation_ms": 2646.43,
+  "model_prepare_ms": 12.44,
+  "model_first_token_ms": 2239.0,
+  "model_detokenize_ms": 0.07,
+  "model_decode_ms": 394.7,
+  "validation_ms": 2.09,
+  "citations_ms": 0.02,
+  "total_ms": 5797.01,
+  "metadata_ms": 0.76
+ },
+ "input_tokens": 1393,
+ "output_tokens": 27,
+ "adapter": {
+  "id": "",
+  "name": null,
+  "r": null,
+  "dataset_hash": null
+ },
+ "model": {
+  "id": "qwen3-1.7b",
+  "label": "Qwen3-1.7B (MLX 4-bit)",
+  "backend": "mlx",
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "21457c6f51ed54a7c16e988c0844db973815c137",
+  "dtype": "mlx-4bit-g128"
+ },
+ "snapshot_date": "2026-09-03",
+ "evidence_snapshot": {
+  "schema": "regulus_evidence_snapshot_v1",
+  "fingerprint": "4b7d485b1290147c69228f864453ec70edb236bf21e746d252f87945a4b95a5b",
+  "capture_point": "generation_package",
+  "model_called": true,
+  "prompt_sha256": "ee3a14890d89755de77aa35111a80b2965be6339192c16b575e36a38b42296e3",
+  "prompt_verified": true,
+  "question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+  "requirements": [],
+  "satisfied_ids": [],
+  "missing_labels": [],
+  "coverage_explicit": false,
+  "items": [
+   {
+    "order": 0,
+    "index": 1,
+    "evidence_id": "e1",
+    "source_type": "ecfr",
+    "corpus": "ecfr",
+    "citation": "21 CFR 80.35(a)",
+    "document": null,
+    "part": "80",
+    "section": "80.35",
+    "paragraph": "(a)",
+    "heading": "Color additive mixtures; certification and exemption from certification.",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "ecfr:80.35:(a):0",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-80/section-80.35",
+    "is_docket": false,
+    "truncated": false,
+    "chars": 429,
+    "text": "(a) Color additive mixtures to be certified. Any color additive mixture that contains one or more straight colors listed in part 74 of this chapter, together with any diluents listed in such subparts for use with such straight colors, shall be certified if intended for use in foods, drugs, or cosmetics, or in coloring the human body, as the case may be, subject to any restriction prescribed in parts 70 and 71 of this chapter.",
+    "citation_fields": {
+     "corpus": "ecfr",
+     "label": "21 CFR 80.35(a)",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-80/section-80.35",
+     "title": "21",
+     "part": "80",
+     "section": "80.35",
+     "paragraph": "(a)",
+     "heading": "Color additive mixtures; certification and exemption from certification.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    }
+   },
+   {
+    "order": 1,
+    "index": 2,
+    "evidence_id": "e2",
+    "source_type": "guidance",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "document": "Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry",
+    "part": null,
+    "section": null,
+    "paragraph": null,
+    "heading": null,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products#13",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products",
+    "is_docket": false,
+    "truncated": true,
+    "chars": 1199,
+    "text": "43 When selecting a replacement color additive, manufacturers and applicants should review the144 color additive regulations. They must ensure that the color additive regulations list the proposed145 color for use in drugs and that the proposed level and use conform to the regulations.38 Certain146 color additive regulations restrict the allowable levels of color additives. For example, 21 CFR147 73.1200(c) restricts the total amount of elemental iron per day. Manufacturers and applicants that148 remove or replace a color additive should also ensure that drug product strengths remain149 distinguishable to help prevent medication errors (e.g., when drug products such as tablets are150 marketed in multiple strengths).151 152 Manufacturers and applicants can check the Inactive Ingredient Database (IID)39 for additional153 information, including the levels of color additives that have been used in FDA-approved drug154 products. Although this information can be useful, color additives and levels of color additives155 that are not listed in the IID can be acceptable if the color additive is listed in the regulations and156 is used within the regulation’s restrictions.157 [... truncated]",
+    "citation_fields": {
+     "corpus": "fda_guidance",
+     "label": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/replacing-color-additives-approved-or-marketed-drug-products",
+     "title": null,
+     "part": null,
+     "section": null,
+     "paragraph": null,
+     "heading": null,
+     "document_title": "Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry",
+     "docket_number": "FDA-2025-D-0507",
+     "status": "draft",
+     "issued_on": "2025-05-29",
+     "center": "CDER"
+    }
+   },
+   {
+    "order": 2,
+    "index": 3,
+    "evidence_id": "e3",
+    "source_type": "guidance",
+    "corpus": "fda_guidance",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "document": "CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods",
+    "part": null,
+    "section": null,
+    "paragraph": null,
+    "heading": null,
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "fda_guidance:https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods#4",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods",
+    "is_docket": false,
+    "truncated": true,
+    "chars": 534,
+    "text": "the regulations regarding the declaration of certified color additives on the labels of human food. The rule also suggests appropriate terminology for the declaration of noncertified color additives on the labels of animal food. The FDA enforces the laws governing color additives used in foods. These laws include the FD&C Act, the Fair Packaging and Labeling Act, as well as the Public Health Security and Bioterrorism Preparedness and Response Act, and the FDA Food Safety Modernization Act. These statutes, among o [... truncated]",
+    "citation_fields": {
+     "corpus": "fda_guidance",
+     "label": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cvm-gfi-223-small-entity-compliance-guide-declaring-color-additives-animal-foods",
+     "title": null,
+     "part": null,
+     "section": null,
+     "paragraph": null,
+     "heading": null,
+     "document_title": "CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods",
+     "docket_number": "FDA-2013-D-1088",
+     "status": "final",
+     "issued_on": "2013-09-27",
+     "center": "CVM"
+    }
+   },
+   {
+    "order": 3,
+    "index": 4,
+    "evidence_id": "e13",
+    "source_type": "ecfr",
+    "corpus": "ecfr",
+    "citation": "21 CFR 81.30(b)(2)",
+    "document": null,
+    "part": "81",
+    "section": "81.30",
+    "paragraph": "(b)(2)",
+    "heading": "Cancellation of certificates.",
+    "tier": "discovery",
+    "requirement_ids": [],
+    "protected": false,
+    "key": "ecfr:81.30:(b)(2):0",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-81/section-81.30",
+    "is_docket": false,
+    "truncated": false,
+    "chars": 340,
+    "text": "(2) The Commissioner finds that no action needs to be taken to remove foods, drugs, and cosmetics containing this color additive from the market on the basis of the scientific evidence before him, taking into account that the additive is not an acute toxic substance and that it is only used in small amounts in foods, drugs, and cosmetics.",
+    "citation_fields": {
+     "corpus": "ecfr",
+     "label": "21 CFR 81.30(b)(2)",
+     "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-81/section-81.30",
+     "title": "21",
+     "part": "81",
+     "section": "81.30",
+     "paragraph": "(b)(2)",
+     "heading": "Cancellation of certificates.",
+     "document_title": null,
+     "docket_number": null,
+     "status": null,
+     "issued_on": null,
+     "center": null
+    }
+   }
+  ]
+ },
+ "server_timings_ms": {
+  "engine_setup_ms": 0.04,
+  "pipeline_answer_ms": 5797.78,
+  "response_build_ms": 0.12,
+  "accuracy_ms": 2.28,
+  "request_parse_ms": 0.05,
+  "lock_wait_ms": 0.0
+ },
+ "accuracy": {
+  "status": "evaluated",
+  "accuracy": 0,
+  "reason": "Incorrect refusal: the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))",
+  "rubric_id": "regulus_live_evidence_assessment_v2",
+  "rubric": {
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "version": "2.0.0",
+   "frozen": "2026-10-08",
+   "dimensions": [
+    "question_relevance",
+    "substantive_correctness",
+    "evidence_support",
+    "citation_correctness",
+    "fabrication_free",
+    "completeness",
+    "scope_correct"
+   ],
+   "absolute": [
+    "fabrication_free",
+    "substantive_correctness",
+    "question_relevance"
+   ],
+   "deductions": {
+    "fabrication_free:fail": 100,
+    "substantive_correctness:fail": 100,
+    "question_relevance:fail": 100,
+    "substantive_correctness:partial": 45,
+    "citation_correctness:fail": 40,
+    "scope_correct:fail": 40,
+    "evidence_support:fail": 35,
+    "completeness:fail": 25,
+    "completeness:partial": 10,
+    "evidence_support:not_established": 15,
+    "fabrication_free:not_established": 10,
+    "citation_correctness:not_established": 10,
+    "completeness:not_established": 5,
+    "scope_correct:not_established": 5
+   },
+   "formula": "score = max(0, 100 - sum(deductions)); no score unless substantive_correctness is decided",
+   "is_acceptance_rubric": false
+  },
+  "basis": "Based on the authoritative regulatory evidence retrieved for this answer.",
+  "not_the_benchmark": "An evidence-based assessment of this one answer. It is not the 300-question acceptance-test score and does not mean this answer passed that rubric.",
+  "answer_verdict": {
+   "verdict": "abstention_incorrect",
+   "reason": "the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))",
+   "counts": {},
+   "elements_covered": [],
+   "elements_missing": [],
+   "elements_unverified": []
+  },
+  "dimensions": [
+   {
+    "dimension": "question_relevance",
+    "label": "Answers the question",
+    "state": "not_applicable",
+    "glyph": "–",
+    "detail": "a refusal states no requirement to relate to the question",
+    "evidence": [],
+    "claim": "the answer's statements answer what was asked: the regulation each one corresponds to is about the question's subject, from the right product domain and part"
+   },
+   {
+    "dimension": "substantive_correctness",
+    "label": "Substantive correctness",
+    "state": "fail",
+    "glyph": "✗",
+    "detail": "the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))",
+    "evidence": [],
+    "claim": "every requirement the answer states is borne out by the evidence retrieved for the question - verbatim, or as a paraphrase whose regulatory operators (strength, polarity, duty-holder, quantities, dates, conditions) all agree with it"
+   },
+   {
+    "dimension": "evidence_support",
+    "label": "Evidence support",
+    "state": "not_applicable",
+    "glyph": "–",
+    "detail": "no statement that answers the question to support",
+    "evidence": [],
+    "claim": "every material claim is a verbatim passage of an authoritative source retrieved for this question"
+   },
+   {
+    "dimension": "citation_correctness",
+    "label": "Citation correctness",
+    "state": "not_applicable",
+    "glyph": "–",
+    "detail": "a refusal attaches no citation to any requirement",
+    "evidence": [],
+    "claim": "every citation resolves to a supplied source, and to the provision the sentence it is attached to is about"
+   },
+   {
+    "dimension": "fabrication_free",
+    "label": "Unsupported claims",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "every figure, condition and identifier in the answer appears in the supplied evidence",
+    "evidence": [],
+    "claim": "the answer names no section, clause, condition or figure that the authoritative evidence does not contain"
+   },
+   {
+    "dimension": "completeness",
+    "label": "Completeness",
+    "state": "not_applicable",
+    "glyph": "–",
+    "detail": "a refusal is judged on whether declining was right",
+    "evidence": [],
+    "claim": "every provision the question requested has authoritative text and is addressed in the answer"
+   },
+   {
+    "dimension": "scope_correct",
+    "label": "Scope",
+    "state": "pass",
+    "glyph": "✓",
+    "detail": "the answer stays within Title 21 and the provisions asked about, renders no advice and guarantees no outcome",
+    "evidence": [],
+    "claim": "the answer stays within Title 21 and the provisions asked about, renders no legal advice and guarantees no compliance outcome"
+   }
+  ],
+  "deductions": [
+   {
+    "dimension": "substantive_correctness",
+    "state": "fail",
+    "points": 100
+   }
+  ],
+  "checked": {
+   "question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+   "intent": {
+    "kind": "application",
+    "provisions": [],
+    "sections": [],
+    "parts": [],
+    "topic": [
+     "eyelin",
+     "color",
+     "additiv",
+     "exempt",
+     "certific",
+     "take",
+     "away",
+     "find",
+     "out"
+    ],
+    "domains": [],
+    "domain_names": [],
+    "elements": [
+     {
+      "label": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away",
+      "terms": [
+       "eyelin",
+       "color",
+       "additiv",
+       "exempt",
+       "certific",
+       "take",
+       "away"
+      ]
+     },
+     {
+      "label": "how would we find out",
+      "terms": [
+       "find",
+       "out"
+      ]
+     }
+    ],
+    "signals": [
+     "kind:application"
+    ],
+    "planner_type": "exception_condition"
+   },
+   "answer_verdict": {
+    "verdict": "abstention_incorrect",
+    "reason": "the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))",
+    "counts": {},
+    "elements_covered": [],
+    "elements_missing": [],
+    "elements_unverified": []
+   },
+   "sources": 4,
+   "evidence_passages": 13,
+   "evidence_excluded_domain": [],
+   "citations": 0,
+   "sentences": 1,
+   "material_claims": 0,
+   "claims_answering_question": 0,
+   "sentence_origins": {
+    "model_claim": 0,
+    "inserted_quotation": 0,
+    "pipeline_sentence": 1,
+    "citation_label": 0,
+    "question_echo": 0,
+    "too_short": 0,
+    "heading_fragment": 0,
+    "pointer_sentence": 0,
+    "question_restatement": 0,
+    "meta_statement": 0,
+    "uncertain": 0
+   },
+   "claim_status": {
+    "supported": 0,
+    "supported_with_citation_defect": 0,
+    "partially_supported": 0,
+    "contradicted": 0,
+    "irrelevant": 0,
+    "unverifiable": 0
+   },
+   "aligner": "semantic",
+   "identifiers_named": 0,
+   "identifiers_verified_absent": 0,
+   "identifier_index_used": true,
+   "validation_status": "valid",
+   "validation_error_codes": [],
+   "abstention": {
+    "declined": true,
+    "outcome": "incorrect_abstention",
+    "reason": "the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))",
+    "evidence": [
+     "retrieved_evidence_on_topic"
+    ]
+   },
+   "fallback_type": null,
+   "claims": [],
+   "excluded_sentences": [
+    {
+     "text": "The available regulatory sources do not provide enough information to answer this.",
+     "origin": "pipeline_sentence",
+     "reason": "a fixed or templated sentence the pipeline wrote, not a claim about the evidence",
+     "claim_status": "non_claim",
+     "paragraph": 0
+    }
+   ],
+   "claim_candidates": [
+    {
+     "sentence_index": 0,
+     "text": "The available regulatory sources do not provide enough information to answer this.",
+     "origin": "pipeline_sentence",
+     "reason": "a fixed or templated sentence the pipeline wrote, not a claim about the evidence",
+     "claim_status": "non_claim",
+     "paragraph": 0
+    }
+   ],
+   "claim_status_counts": {
+    "claim": 0,
+    "non_claim": 1,
+    "uncertain": 0
+   },
+   "evidence_provenance": "exact"
+  },
+  "elapsed_ms": 1.947,
+  "evidence_provenance": "exact",
+  "evidence": {
+   "provenance": "exact",
+   "fingerprint": "4b7d485b1290147c69228f864453ec70edb236bf21e746d252f87945a4b95a5b",
+   "items": 4,
+   "guidance_items": 2,
+   "capture_point": "generation_package",
+   "model_called": true,
+   "prompt_sha256": "ee3a14890d89755de77aa35111a80b2965be6339192c16b575e36a38b42296e3",
+   "prompt_verified": true,
+   "schema": "regulus_evidence_snapshot_v1",
+   "package_matches_snapshot": true
+  },
+  "question_relevance": null,
+  "substantive_correctness": false,
+  "evidence_support": null,
+  "citation_correctness": null,
+  "fabrication_free": true,
+  "completeness": null,
+  "scope_correct": true,
+  "question_review": {
+   "question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+   "status": "fail",
+   "label": "FAIL",
+   "substantive_correctness": {
+    "state": "fail",
+    "label": "Fail",
+    "detail": "the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))"
+   },
+   "citation_correctness": {
+    "state": "not_applicable",
+    "label": "Not applicable",
+    "detail": "a refusal attaches no citation to any requirement"
+   },
+   "explanation": "Incorrect refusal: the answer declines, but the retrieved evidence covers what was asked (21 CFR 81.30(b)(2))",
+   "live_check_score": 0,
+   "rubric_id": "regulus_live_evidence_assessment_v2",
+   "basis": "Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for it. No reference answer is used, and this is not the 300-question acceptance-test result."
+  }
+ },
+ "wall_seconds": 5.8
+}

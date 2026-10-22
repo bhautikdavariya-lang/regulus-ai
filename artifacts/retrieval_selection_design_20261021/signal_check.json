@@ -1,0 +1,1710 @@
+{
+ "summary": {
+  "coverage_text | guidance (exp D)": {
+   "n": 138,
+   "R2": 1,
+   "auc_R2_vs_rest": 1.0,
+   "auc_R1+_vs_R0": 0.613,
+   "median_R2": 0.737,
+   "median_R1": 0.138,
+   "median_R0": 0.105
+  },
+  "coverage_text | ecfr (F2)": {
+   "n": 27,
+   "R2": 4,
+   "auc_R2_vs_rest": 0.576,
+   "auc_R1+_vs_R0": 0.55,
+   "median_R2": 0.383,
+   "median_R1": 0.26,
+   "median_R0": 0.259
+  },
+  "coverage_text | all": {
+   "n": 165,
+   "R2": 5,
+   "auc_R2_vs_rest": 0.806,
+   "auc_R1+_vs_R0": 0.617,
+   "median_R2": 0.383,
+   "median_R1": 0.158,
+   "median_R0": 0.113
+  },
+  "coverage_with_title | guidance (exp D)": {
+   "n": 138,
+   "R2": 1,
+   "auc_R2_vs_rest": 1.0,
+   "auc_R1+_vs_R0": 0.638,
+   "median_R2": 0.737,
+   "median_R1": 0.158,
+   "median_R0": 0.113
+  },
+  "coverage_with_title | ecfr (F2)": {
+   "n": 27,
+   "R2": 4,
+   "auc_R2_vs_rest": 0.576,
+   "auc_R1+_vs_R0": 0.55,
+   "median_R2": 0.383,
+   "median_R1": 0.26,
+   "median_R0": 0.259
+  },
+  "coverage_with_title | all": {
+   "n": 165,
+   "R2": 5,
+   "auc_R2_vs_rest": 0.799,
+   "auc_R1+_vs_R0": 0.637,
+   "median_R2": 0.383,
+   "median_R1": 0.171,
+   "median_R0": 0.116
+  }
+ },
+ "items": [
+  {
+   "source": "guidance (exp D)",
+   "item": "G001",
+   "question": "We want guaiazulene to give a blue tint to a facial serum and a lip balm. Is that allowed, and what applies?",
+   "extra": "FDA Guidance: Electromagnetic Compatibility (EMC) of Medical Devices: Guidance for Industry and Food and Drug Administration Staff (final, 2022-06-06, Docket FDA-2015-D-3787)",
+   "label": "R0",
+   "coverage_text": 0.0675,
+   "coverage_with_title": 0.0675,
+   "chars": 1021
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G002",
+   "question": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+   "extra": "FDA Guidance: Enforcement Priorities for Electronic Nicotine Delivery System (ENDS) and Other Deemed Products on the Market Without Premarket Authorization: Guidance for Industry (final, 2020-04-29, Docket FDA-2019-D-0661)",
+   "label": "R0",
+   "coverage_text": 0.0665,
+   "coverage_with_title": 0.0665,
+   "chars": 462
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G003",
+   "question": "We plan an eye shadow using FD&C Red No. 40 Calcium Lake and a lip gloss using the straight color. Are both permitted?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.0565,
+   "coverage_with_title": 0.0565,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G004",
+   "question": "We make both a cosmetic face cream and an SPF 30 moisturizer on the same kettle. Are equipment cleaning and calibration requirements the same for both products?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Control of Listeria monocytogenes in Ready-To-Eat Foods (draft, 2017-01-17, Docket FDA-2008-D-0096)",
+   "label": "R1",
+   "coverage_text": 0.2444,
+   "coverage_with_title": 0.2444,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G005",
+   "question": "Our serum uses a proprietary peptide we don't want disclosed. If we file Form 2512, how do we ask FDA to keep that ingredient's identity confidential?",
+   "extra": "FDA Guidance: CVM GFI #240 Proprietary Names for New Animal Drugs (final, 2020-06-01, Docket FDA-2018-D-0626)",
+   "label": "R0",
+   "coverage_text": 0.0609,
+   "coverage_with_title": 0.1802,
+   "chars": 587
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G006",
+   "question": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.0845,
+   "coverage_with_title": 0.0845,
+   "chars": 457
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G007",
+   "question": "Our eyeliner uses a color additive that is exempt from certification. Can FDA take that exemption away, and how would we find out?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.1583,
+   "coverage_with_title": 0.1583,
+   "chars": 534
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G008",
+   "question": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+   "extra": "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)",
+   "label": "R1",
+   "coverage_text": 0.1674,
+   "coverage_with_title": 0.1674,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G009",
+   "question": "We're a small brand formulating a bath oil. Can we use D&C Red No. 17 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: Small Entity Compliance Guide: Revocation of Uses of Partially Hydrogenated Oils in Foods (final, 2024-04-29, Docket FDA-2024-D-1669)",
+   "label": "R0",
+   "coverage_text": 0.1389,
+   "coverage_with_title": 0.2656,
+   "chars": 734
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G010",
+   "question": "We plan an eye shadow using FD&C Red No. 40 Calcium Lake and a lip gloss using the straight color. Are both permitted?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.0565,
+   "coverage_with_title": 0.0565,
+   "chars": 585
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G011",
+   "question": "We're the brand owner launching 12 shades of one lipstick formula that differ only in colors. What listing do we file, and when?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R0",
+   "coverage_text": 0.1055,
+   "coverage_with_title": 0.1055,
+   "chars": 771
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G012",
+   "question": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R1",
+   "coverage_text": 0.1148,
+   "coverage_with_title": 0.1148,
+   "chars": 777
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G013",
+   "question": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+   "extra": "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+   "label": "R0",
+   "coverage_text": 0.1215,
+   "coverage_with_title": 0.1215,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G014",
+   "question": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+   "extra": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "label": "R0",
+   "coverage_text": 0.0589,
+   "coverage_with_title": 0.0589,
+   "chars": 466
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G015",
+   "question": "A retailer wants proof our talc powder 'was stored per FDA regulations'. What records actually demonstrate compliance with federal storage requirements?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2018-10-22, Docket FDA-2018-D-3631)",
+   "label": "R0",
+   "coverage_text": 0.307,
+   "coverage_with_title": 0.307,
+   "chars": 954
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G016",
+   "question": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+   "extra": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+   "label": "R0",
+   "coverage_text": 0.074,
+   "coverage_with_title": 0.074,
+   "chars": 731
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G017",
+   "question": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+   "extra": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "label": "R0",
+   "coverage_text": 0.0502,
+   "coverage_with_title": 0.0502,
+   "chars": 770
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G018",
+   "question": "Can a certified FD&C (subpart B) straight color batch be used in cosmetics, and what must it meet?",
+   "extra": "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+   "label": "R0",
+   "coverage_text": 0.1039,
+   "coverage_with_title": 0.1039,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G019",
+   "question": "We've been notified that our batch is certified. What must we do with it next?",
+   "extra": "FDA Guidance: CVM GFI #188 Data Elements for Submission of Veterinary Adverse Event Reports to the Center for Veterinary Medicine (final, 2024-01-31, Docket FDA-2010-D-0241)",
+   "label": "R0",
+   "coverage_text": 0.2096,
+   "coverage_with_title": 0.2096,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G020",
+   "question": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+   "extra": "FDA Guidance: Formal Dispute Resolution: Sponsor Appeals Above the Division Level Guidance for Industry and Review Staff (final, 2019-05-30, Docket FDA-2013-D-0221)",
+   "label": "R1",
+   "coverage_text": 0.584,
+   "coverage_with_title": 0.584,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G021",
+   "question": "We're a small brand formulating a toothpaste. Can we use D&C Orange No. 4 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.1087,
+   "coverage_with_title": 0.1087,
+   "chars": 785
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G022",
+   "question": "An older study suggests a colorant in our lip product (which may be ingested) caused tumors when fed to rats. How does FDA apply the cancer provision of section 721?",
+   "extra": "FDA Guidance: Study Data Technical Conformance Guide - Technical Specifications Document (final, 2026-06-01, Docket FDA-2014-D-0092)",
+   "label": "R0",
+   "coverage_text": 0.0563,
+   "coverage_with_title": 0.0563,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G023",
+   "question": "Our small color-cosmetics brand is launching a lip gloss and a matching mascara, both colored with D&C Red No. 22. Is D&C Red No. 22 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.0918,
+   "coverage_with_title": 0.1512,
+   "chars": 1037
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G024",
+   "question": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.1931,
+   "coverage_with_title": 0.1931,
+   "chars": 976
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G025",
+   "question": "We're launching an all-over body deodorant spray marketed to women for 'everywhere freshness.' Does it need a special caution?",
+   "extra": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+   "label": "R0",
+   "coverage_text": 0.0665,
+   "coverage_with_title": 0.1144,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G026",
+   "question": "Our indie startup is launching a lip gloss and a matching mascara, both colored with D&C Yellow No. 10. Is D&C Yellow No. 10 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.0392,
+   "coverage_with_title": 0.0392,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G027",
+   "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+   "extra": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "label": "R1",
+   "coverage_text": 0.2445,
+   "coverage_with_title": 0.2445,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G028",
+   "question": "FDA wrote asking which fragrance ingredients in our perfume may have caused a serious adverse event. Must we answer, how fast, and will it be public?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "label": "R1",
+   "coverage_text": 0.2093,
+   "coverage_with_title": 0.3222,
+   "chars": 229
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G029",
+   "question": "We're a small skincare brand formulating a tinted nail enamel. Our supplier offers Ext. D&C Violet No. 2. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.0719,
+   "coverage_with_title": 0.0719,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G030",
+   "question": "A retailer wants proof our talc powder 'was stored per FDA regulations'. What records actually demonstrate compliance with federal storage requirements?",
+   "extra": "FDA Guidance: Determination of the Period Covered by a No-Tobacco-Sale Order and Compliance With an Order: Guidance for Tobacco Retailers (final, 2023-03-17, Docket FDA-2015-D-0404)",
+   "label": "R0",
+   "coverage_text": 0.2552,
+   "coverage_with_title": 0.2552,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G031",
+   "question": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "extra": "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+   "label": "R0",
+   "coverage_text": 0.0087,
+   "coverage_with_title": 0.0087,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G032",
+   "question": "Our antimicrobial deodorant bar formula includes tribromsalan (TBS) at 0.25%. Can we sell it?",
+   "extra": "FDA Guidance: Guidance for Industry: Labeling of Infant Formula (final, 2023-03-06, Docket FDA-2013-S-0610)",
+   "label": "R0",
+   "coverage_text": 0.1132,
+   "coverage_with_title": 0.1132,
+   "chars": 903
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G033",
+   "question": "Our salon brand is launching a cream blush and a matching eye shadow, both colored with FD&C Green No. 3. Is FD&C Green No. 3 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.1128,
+   "coverage_with_title": 0.1128,
+   "chars": 927
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G034",
+   "question": "FDA wrote asking which fragrance ingredients in our perfume may have caused a serious adverse event. Must we answer, how fast, and will it be public?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "label": "R1",
+   "coverage_text": 0.2526,
+   "coverage_with_title": 0.3656,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G035",
+   "question": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)",
+   "label": "R0",
+   "coverage_text": 0.0,
+   "coverage_with_title": 0.0,
+   "chars": 223
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G036",
+   "question": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "label": "R1",
+   "coverage_text": 0.1877,
+   "coverage_with_title": 0.1877,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G037",
+   "question": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+   "extra": "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+   "label": "R0",
+   "coverage_text": 0.2013,
+   "coverage_with_title": 0.2013,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G038",
+   "question": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+   "extra": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+   "label": "R0",
+   "coverage_text": 0.1249,
+   "coverage_with_title": 0.1249,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G039",
+   "question": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+   "extra": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "label": "R1",
+   "coverage_text": 0.2325,
+   "coverage_with_title": 0.2325,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G040",
+   "question": "We're a small nail polish brand using a contract manufacturer. We haven't compiled safety data. Which newer adulteration provisions should we worry about?",
+   "extra": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "label": "R1",
+   "coverage_text": 0.1403,
+   "coverage_with_title": 0.1403,
+   "chars": 814
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G041",
+   "question": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+   "extra": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+   "label": "R0",
+   "coverage_text": 0.0793,
+   "coverage_with_title": 0.0793,
+   "chars": 503
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G042",
+   "question": "We're an in-house R&D lab formulating a tinted body scrub. Our supplier offers D&C Green No. 8. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.073,
+   "coverage_with_title": 0.073,
+   "chars": 913
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G043",
+   "question": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+   "extra": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "label": "R1",
+   "coverage_text": 0.0502,
+   "coverage_with_title": 0.0502,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G044",
+   "question": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R0",
+   "coverage_text": 0.0844,
+   "coverage_with_title": 0.0844,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G045",
+   "question": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+   "label": "R0",
+   "coverage_text": 0.0699,
+   "coverage_with_title": 0.0699,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G046",
+   "question": "We use chloroform as an extraction solvent for a botanical extract, and traces remain in our cream. Is the cream adulterated under the chloroform rule?",
+   "extra": "FDA Guidance: Saline, Silicone Gel, and Alternative Breast Implants: Guidance for Industry and FDA Staff (final, 2020-09-29, Docket FDA-2004-D-0124)",
+   "label": "R0",
+   "coverage_text": 0.2073,
+   "coverage_with_title": 0.2073,
+   "chars": 1057
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G047",
+   "question": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+   "extra": "FDA Guidance: Guidance for Industry: A Labeling Guide for Restaurants and Retail Establishments Selling Away-From-Home Foods - Part II (final, 2016-05-05, Docket FDA-2011-F-0172)",
+   "label": "R0",
+   "coverage_text": 0.3266,
+   "coverage_with_title": 0.3266,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G048",
+   "question": "We ship bulk lotion in drums to another company's plant, where it is filled and labeled. Do the drums need full consumer labeling?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Labeling of Plant-Based Milk Alternatives and Voluntary Nutrient Statements (draft, 2023-02-10, Docket FDA-2023-D-0451)",
+   "label": "R0",
+   "coverage_text": 0.0924,
+   "coverage_with_title": 0.1255,
+   "chars": 806
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G049",
+   "question": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "label": "R1",
+   "coverage_text": 0.1592,
+   "coverage_with_title": 0.2639,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G050",
+   "question": "We're designing a 4 oz lotion bottle. What must our ingredient list look like in terms of order and type size?",
+   "extra": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+   "label": "R0",
+   "coverage_text": 0.1256,
+   "coverage_with_title": 0.1256,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G051",
+   "question": "We're a small skincare brand formulating a tinted nail enamel. Our supplier offers Ext. D&C Violet No. 2. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.0719,
+   "coverage_with_title": 0.0719,
+   "chars": 588
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G052",
+   "question": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?",
+   "extra": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+   "label": "R1",
+   "coverage_text": 0.1264,
+   "coverage_with_title": 0.1264,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G053",
+   "question": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R0",
+   "coverage_text": 0.148,
+   "coverage_with_title": 0.148,
+   "chars": 557
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G054",
+   "question": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+   "extra": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+   "label": "R1",
+   "coverage_text": 0.3198,
+   "coverage_with_title": 0.3198,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G055",
+   "question": "We make an aqueous mixture of certified FD&C straight colors preserved with sodium benzoate. Can it be certified for food, drug and cosmetic use?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.2427,
+   "coverage_with_title": 0.2427,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G056",
+   "question": "We use chloroform as an extraction solvent for a botanical extract, and traces remain in our cream. Is the cream adulterated under the chloroform rule?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+   "label": "R0",
+   "coverage_text": 0.2923,
+   "coverage_with_title": 0.2923,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G057",
+   "question": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.0946,
+   "coverage_with_title": 0.0946,
+   "chars": 465
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G058",
+   "question": "Our distributor's warehouse holds our shampoos. An inspector saw rodent droppings near pallets. Is the distributor covered by any FDA requirement even though it doesn't manufacture?",
+   "extra": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "label": "R0",
+   "coverage_text": 0.0629,
+   "coverage_with_title": 0.0629,
+   "chars": 588
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G059",
+   "question": "What must FDA determine before it certifies our batch, and what does the certificate show?",
+   "extra": "FDA Guidance: CVM GFI #169 Drug Substance Chemistry, Manufacturing, and Controls Information (final, 2010-08-06, Docket FDA-2003-D-0243)",
+   "label": "R0",
+   "coverage_text": 0.2112,
+   "coverage_with_title": 0.2112,
+   "chars": 502
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G060",
+   "question": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.0927,
+   "coverage_with_title": 0.0927,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G061",
+   "question": "We're a small skincare brand formulating a tinted body butter. Our supplier offers D&C Orange No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.0946,
+   "coverage_with_title": 0.0946,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G062",
+   "question": "We're a 12-person contract filler formulating a tinted nail enamel. Our supplier offers D&C Yellow No. 11. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.0802,
+   "coverage_with_title": 0.0802,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G063",
+   "question": "Which parts of our color additive petition stay non-public: our manufacturing process, sales figures, and formula?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.1295,
+   "coverage_with_title": 0.1295,
+   "chars": 353
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G064",
+   "question": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+   "extra": "FDA Guidance: Small Entity Compliance Guide: What You Need to Know About Establishment and Maintenance of Records (final, 2014-04-04, Docket FDA-2013-N-1421)",
+   "label": "R1",
+   "coverage_text": 0.423,
+   "coverage_with_title": 0.423,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G065",
+   "question": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.0589,
+   "coverage_with_title": 0.0589,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G066",
+   "question": "We're a small brand formulating a tinted lip balm. Can we use D&C Blue No. 4 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.0705,
+   "coverage_with_title": 0.0705,
+   "chars": 705
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G067",
+   "question": "Our 12-person contract filler is launching a cream blush and a matching eye shadow, both colored with D&C Red No. 27. Is D&C Red No. 27 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.0497,
+   "coverage_with_title": 0.0497,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G068",
+   "question": "We're an in-house R&D lab formulating a tinted body lotion. Our supplier offers D&C Yellow No. 8. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.0743,
+   "coverage_with_title": 0.0743,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G069",
+   "question": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+   "extra": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+   "label": "R0",
+   "coverage_text": 0.0749,
+   "coverage_with_title": 0.0749,
+   "chars": 489
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G070",
+   "question": "Our tinted moisturizer contains a UV filter only to protect the formula's color, and the label says 'with sunscreen.' How do we keep it a cosmetic?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R0",
+   "coverage_text": 0.0555,
+   "coverage_with_title": 0.0555,
+   "chars": 417
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G071",
+   "question": "We sell lipstick in a decorative compact-style case and a 0.15 oz lip balm. Where must the net quantity declaration go, and do the small containers give us any alternatives?",
+   "extra": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+   "label": "R1",
+   "coverage_text": 0.1828,
+   "coverage_with_title": 0.1828,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G072",
+   "question": "Our facility makes OTC antiperspirants and also non-drug body sprays. Do registration and GMP provisions apply to us?",
+   "extra": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "label": "R1",
+   "coverage_text": 0.1355,
+   "coverage_with_title": 0.1355,
+   "chars": 570
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G073",
+   "question": "Our 12-person contract filler is launching a cream blush and a matching eye shadow, both colored with D&C Red No. 27. Is D&C Red No. 27 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.103,
+   "coverage_with_title": 0.103,
+   "chars": 701
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G074",
+   "question": "We're a 12-person contract filler formulating a tinted nail enamel. Our supplier offers D&C Yellow No. 11. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.1671,
+   "coverage_with_title": 0.1671,
+   "chars": 695
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G075",
+   "question": "We need to amend a listing to add a cosmetic use and list a new diluent. What fees apply, how do we pay, and can a small company get relief?",
+   "extra": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+   "label": "R0",
+   "coverage_text": 0.4997,
+   "coverage_with_title": 0.5722,
+   "chars": 955
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G076",
+   "question": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?",
+   "extra": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+   "label": "R1",
+   "coverage_text": 0.3083,
+   "coverage_with_title": 0.3083,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G077",
+   "question": "Our distributor's warehouse holds our shampoos. An inspector saw rodent droppings near pallets. Is the distributor covered by any FDA requirement even though it doesn't manufacture?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Notifying FDA of a Permanent Discontinuance in the Manufacture or an Interruption of the Manufacture of an Infant Formula (draft, 2024-12-02, Docket FDA-2024-D-1334)",
+   "label": "R0",
+   "coverage_text": 0.0623,
+   "coverage_with_title": 0.0623,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G078",
+   "question": "We're designing a 4 oz lotion bottle. What must our ingredient list look like in terms of order and type size?",
+   "extra": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+   "label": "R1",
+   "coverage_text": 0.1213,
+   "coverage_with_title": 0.1213,
+   "chars": 780
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G079",
+   "question": "FDA reviewed our petition and won't exempt our new pigment from certification. What does that mean for the listing and for using batches that aren't certified?",
+   "extra": "FDA Guidance: Citizen Petitions and Petitions for Stay of Action Subject to Section 505(q) of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry (final, 2019-09-19, Docket FDA-2009-D-0008)",
+   "label": "R0",
+   "coverage_text": 0.3493,
+   "coverage_with_title": 0.3493,
+   "chars": 568
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G080",
+   "question": "Our facility makes OTC antiperspirants and also non-drug body sprays. Do registration and GMP provisions apply to us?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "label": "R1",
+   "coverage_text": 0.1355,
+   "coverage_with_title": 0.1355,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G081",
+   "question": "FDA notified us it intends to suspend our facility registration. On what grounds can it, and what chance do we get to respond?",
+   "extra": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "label": "R1",
+   "coverage_text": 0.1877,
+   "coverage_with_title": 0.1877,
+   "chars": 535
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G082",
+   "question": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+   "extra": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "label": "R0",
+   "coverage_text": 0.2087,
+   "coverage_with_title": 0.2087,
+   "chars": 531
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G083",
+   "question": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.1163,
+   "coverage_with_title": 0.1163,
+   "chars": 702
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G084",
+   "question": "We're a color-cosmetics contract manufacturer. Can D&C Black No. 2 go into our mascara, our lipstick and a tinted hair gel, and is there a use limit?",
+   "extra": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "label": "R0",
+   "coverage_text": 0.1155,
+   "coverage_with_title": 0.1155,
+   "chars": 574
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G085",
+   "question": "We're an in-house R&D lab formulating a tinted body lotion. Our supplier offers D&C Yellow No. 8. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.0743,
+   "coverage_with_title": 0.0743,
+   "chars": 689
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G086",
+   "question": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "extra": "FDA Guidance: Guidance for Industry: The Use of an Alternate Name for Potassium Chloride in Food Labeling (final, 2020-12-17, Docket FDA-2019-D-0892)",
+   "label": "R0",
+   "coverage_text": 0.1102,
+   "coverage_with_title": 0.1102,
+   "chars": 959
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G087",
+   "question": "We're a 4-person handmade cosmetics company. How must FDA's GMP rules account for businesses our size?",
+   "extra": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "label": "R1",
+   "coverage_text": 0.1899,
+   "coverage_with_title": 0.1899,
+   "chars": 510
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G088",
+   "question": "We're the brand owner launching 12 shades of one lipstick formula that differ only in colors. What listing do we file, and when?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R0",
+   "coverage_text": 0.1055,
+   "coverage_with_title": 0.1055,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G089",
+   "question": "We make an aqueous mixture of certified FD&C straight colors preserved with sodium benzoate. Can it be certified for food, drug and cosmetic use?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R1",
+   "coverage_text": 0.1377,
+   "coverage_with_title": 0.1377,
+   "chars": 597
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G090",
+   "question": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+   "extra": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+   "label": "R1",
+   "coverage_text": 0.584,
+   "coverage_with_title": 0.584,
+   "chars": 787
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G091",
+   "question": "We sell lipstick in a decorative compact-style case and a 0.15 oz lip balm. Where must the net quantity declaration go, and do the small containers give us any alternatives?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.0171,
+   "coverage_with_title": 0.0171,
+   "chars": 933
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G092",
+   "question": "We're a small brand formulating a hair pomade. Can we use D&C Green No. 6 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.1176,
+   "coverage_with_title": 0.1176,
+   "chars": 756
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G093",
+   "question": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+   "extra": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "label": "R0",
+   "coverage_text": 0.1486,
+   "coverage_with_title": 0.1486,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G094",
+   "question": "We ship unlabeled bulk shampoo to an unaffiliated contract filler who labels and packs it. Must the bulk drums carry full consumer labeling?",
+   "extra": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "label": "R0",
+   "coverage_text": 0.0249,
+   "coverage_with_title": 0.0249,
+   "chars": 776
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G095",
+   "question": "How do we get Form FDA 2512 and where do we send it once it's completed?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "label": "R0",
+   "coverage_text": 0.1486,
+   "coverage_with_title": 0.1486,
+   "chars": 369
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G096",
+   "question": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+   "extra": "FDA Guidance: Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments: Guidance for Industry (final, 2016-11-22, Docket FDA-2012-D-0880)",
+   "label": "R0",
+   "coverage_text": 0.4827,
+   "coverage_with_title": 0.4827,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G097",
+   "question": "Can a certified FD&C (subpart B) straight color batch be used in cosmetics, and what must it meet?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.336,
+   "coverage_with_title": 0.336,
+   "chars": 453
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G098",
+   "question": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.124,
+   "coverage_with_title": 0.124,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G099",
+   "question": "Our indie startup is launching a lip gloss and a matching mascara, both colored with D&C Yellow No. 10. Is D&C Yellow No. 10 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.0814,
+   "coverage_with_title": 0.0814,
+   "chars": 580
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G100",
+   "question": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+   "extra": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "label": "R1",
+   "coverage_text": 0.0526,
+   "coverage_with_title": 0.1568,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G101",
+   "question": "We're a small brand formulating a hair pomade. Can we use D&C Green No. 6 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.1176,
+   "coverage_with_title": 0.2576,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G102",
+   "question": "We plan to import a skin-lightening cream containing mercury that is marketed for freckles and age spots. How does FDA treat it?",
+   "extra": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "label": "R0",
+   "coverage_text": 0.0611,
+   "coverage_with_title": 0.0611,
+   "chars": 533
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G103",
+   "question": "FDA believes our lash adhesive likely caused serious injuries. If we refuse to stop distribution, what can FDA do, and what records can it see about the affected lots?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Establishment and Maintenance of Records By Persons Who Manufacture, Process, Pack, Transport, Distribute, Receive, Hold, or Import Food (Edition 5) (final, 2012-01-31, Docket FDA-2011-D-0598)",
+   "label": "R1",
+   "coverage_text": 0.0929,
+   "coverage_with_title": 0.0929,
+   "chars": 676
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G104",
+   "question": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+   "extra": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+   "label": "R1",
+   "coverage_text": 0.0539,
+   "coverage_with_title": 0.0539,
+   "chars": 1066
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G105",
+   "question": "We're submitting a 2,000-pound batch of a straight color for certification. What fee do we pay, and how must we pay it?",
+   "extra": "FDA Guidance: Assessing User Fees Under the Generic Drug User Fee Amendments of 2022 (final, 2023-06-09, Docket FDA-2012-D-0880)",
+   "label": "R0",
+   "coverage_text": 0.2531,
+   "coverage_with_title": 0.2531,
+   "chars": 499
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G106",
+   "question": "We sell a scented body oil marketed 'to soften and beautify skin.' Is it a cosmetic under the FD&C Act definition?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "label": "R0",
+   "coverage_text": 0.2112,
+   "coverage_with_title": 0.2112,
+   "chars": 595
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G107",
+   "question": "Our contract manufacturer rejected a batch of eye shadow for microbial contamination. Can we rework it, and does any FDA rule govern the reprocessing?",
+   "extra": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "label": "R0",
+   "coverage_text": 0.1226,
+   "coverage_with_title": 0.1226,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G108",
+   "question": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+   "extra": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "label": "R1",
+   "coverage_text": 0.1581,
+   "coverage_with_title": 0.1581,
+   "chars": 521
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G109",
+   "question": "We have toxicology data for a new eyeshadow pigment but haven't prepared analytical methods or exposure estimates. What technical content must a color additive petition contain?",
+   "extra": "FDA Guidance: Guidance for Industry: Preparation of Food Contact Substance Notifications (Toxicology Recommendations) (final, 2021-10-20, Docket FDA-1999-D-0062)",
+   "label": "R1",
+   "coverage_text": 0.2943,
+   "coverage_with_title": 0.2943,
+   "chars": 737
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G110",
+   "question": "We're a small brand formulating a tinted lip balm. Can we use D&C Blue No. 4 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.1879,
+   "coverage_with_title": 0.2718,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G111",
+   "question": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R0",
+   "coverage_text": 0.148,
+   "coverage_with_title": 0.148,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G112",
+   "question": "Our contract manufacturer rejected a batch of eye shadow for microbial contamination. Can we rework it, and does any FDA rule govern the reprocessing?",
+   "extra": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "label": "R0",
+   "coverage_text": 0.1226,
+   "coverage_with_title": 0.1226,
+   "chars": 582
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G113",
+   "question": "We sell one permanent hair dye in 12 shades and one lipstick in 8 shades where only the color additive amounts differ. How many Form 2512 statements, and how should ingredients be listed?",
+   "extra": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+   "label": "R1",
+   "coverage_text": 0.1686,
+   "coverage_with_title": 0.1686,
+   "chars": 592
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G114",
+   "question": "Can we leave our street address off the label and show only city, state and ZIP?",
+   "extra": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "label": "R1",
+   "coverage_text": 0.0423,
+   "coverage_with_title": 0.0423,
+   "chars": 810
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G115",
+   "question": "We need to amend a listing to add a cosmetic use and list a new diluent. What fees apply, how do we pay, and can a small company get relief?",
+   "extra": "FDA Guidance: Guidance for Industry: Determining the Number of Employees for Purposes of the “Small Business” Definition in Parts 117 and 507 (final, 2019-06-19, Docket FDA-2018-D-0671)",
+   "label": "R0",
+   "coverage_text": 0.1128,
+   "coverage_with_title": 0.1923,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G116",
+   "question": "We've been notified that our batch is certified. What must we do with it next?",
+   "extra": "FDA Guidance: CVM GFI #169 Drug Substance Chemistry, Manufacturing, and Controls Information (final, 2010-08-06, Docket FDA-2003-D-0243)",
+   "label": "R0",
+   "coverage_text": 0.2096,
+   "coverage_with_title": 0.2096,
+   "chars": 524
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G117",
+   "question": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+   "extra": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "label": "R0",
+   "coverage_text": 0.2087,
+   "coverage_with_title": 0.2087,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G118",
+   "question": "We make both a cosmetic face cream and an SPF 30 moisturizer on the same kettle. Are equipment cleaning and calibration requirements the same for both products?",
+   "extra": "FDA Guidance: CVM GFI #253 Current Good Manufacturing Practice for Animal Cells, Tissues, and Cell- and Tissue-Based Products (final, 2022-10-20, Docket FDA-2021-D-0399)",
+   "label": "R1",
+   "coverage_text": 0.1711,
+   "coverage_with_title": 0.1711,
+   "chars": 812
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G119",
+   "question": "We're a private-label manufacturer formulating a tinted nail enamel. Our supplier offers FD&C Red No. 4. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: Guidance for Industry: Supply-Chain Program Requirements and Co-Manufacturer Supplier Approval and Verification for Human Food and Animal Food (final, 2017-11-06, Docket FDA-2017-D-5996)",
+   "label": "R0",
+   "coverage_text": 0.1009,
+   "coverage_with_title": 0.1009,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G120",
+   "question": "Our salon brand is launching a cream blush and a matching eye shadow, both colored with FD&C Green No. 3. Is FD&C Green No. 3 permitted in both, and does it need certification?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.0544,
+   "coverage_with_title": 0.0544,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G121",
+   "question": "We're the brand owner. A U.S. consumer reported an eye infection after using our eye cream. What must we submit to FDA, and by when?",
+   "extra": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+   "label": "R1",
+   "coverage_text": 0.1485,
+   "coverage_with_title": 0.1485,
+   "chars": 779
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G122",
+   "question": "Our antimicrobial deodorant bar formula includes tribromsalan (TBS) at 0.25%. Can we sell it?",
+   "extra": "FDA Guidance: Guidance for Industry: Infant Formula Transition Plan for Exercise of Enforcement Discretion (final, 2022-09-29, Docket FDA-2022-D-0814)",
+   "label": "R0",
+   "coverage_text": 0.1132,
+   "coverage_with_title": 0.1132,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G123",
+   "question": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+   "extra": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+   "label": "R0",
+   "coverage_text": 0.2789,
+   "coverage_with_title": 0.2789,
+   "chars": 840
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G124",
+   "question": "We're an in-house R&D lab formulating a tinted body scrub. Our supplier offers D&C Green No. 8. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "label": "R0",
+   "coverage_text": 0.073,
+   "coverage_with_title": 0.073,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G125",
+   "question": "Our warehouse for lipsticks and creams isn't air-conditioned. Is there an FDA-required temperature or humidity range for storing cosmetics?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R0",
+   "coverage_text": 0.0937,
+   "coverage_with_title": 0.0937,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G126",
+   "question": "We're a distributor whose name is on the label; the product is made by a contract manufacturer. A user was hospitalized after using our hair-straightening cream. Who reports, by when, and what goes in the report?",
+   "extra": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+   "label": "R0",
+   "coverage_text": 0.1759,
+   "coverage_with_title": 0.1759,
+   "chars": 532
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G127",
+   "question": "We're launching an aerosol dry shampoo. What warning must the can carry?",
+   "extra": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+   "label": "R0",
+   "coverage_text": 0.0977,
+   "coverage_with_title": 0.0977,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G128",
+   "question": "Our 8 fl oz shampoo bottle has a 12-square-inch principal display panel. How must we declare net contents, and in what type size and position?",
+   "extra": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding the Final Rule, Prevention of Salmonella Enteritidis in Shell Eggs During Production, Storage, and Transportation (final, 2015-07-01, Docket FDA-2011-D-0398)",
+   "label": "R0",
+   "coverage_text": 0.081,
+   "coverage_with_title": 0.081,
+   "chars": 585
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G129",
+   "question": "Can we leave our street address off the label and show only city, state and ZIP?",
+   "extra": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+   "label": "R2",
+   "coverage_text": 0.7369,
+   "coverage_with_title": 0.7369,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G130",
+   "question": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+   "extra": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "label": "R0",
+   "coverage_text": 0.2389,
+   "coverage_with_title": 0.2389,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G131",
+   "question": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+   "extra": "FDA Guidance: Submission of Plans for Cigarette Packages and Cigarette Advertisements (Revised) (final, 2024-09-12, Docket FDA-2019-D-5364)",
+   "label": "R0",
+   "coverage_text": 0.0539,
+   "coverage_with_title": 0.0539,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G132",
+   "question": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+   "extra": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+   "label": "R0",
+   "coverage_text": 0.0862,
+   "coverage_with_title": 0.0862,
+   "chars": 505
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G133",
+   "question": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+   "extra": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "label": "R1",
+   "coverage_text": 0.1752,
+   "coverage_with_title": 0.1752,
+   "chars": 797
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G134",
+   "question": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+   "extra": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+   "label": "R1",
+   "coverage_text": 0.3044,
+   "coverage_with_title": 0.3044,
+   "chars": 1199
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G135",
+   "question": "We're launching an aerosol dry shampoo. What warning must the can carry?",
+   "extra": "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+   "label": "R1",
+   "coverage_text": 0.0977,
+   "coverage_with_title": 0.0977,
+   "chars": 584
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G136",
+   "question": "We're a small brand formulating a bath oil. Can we use D&C Red No. 17 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.1065,
+   "coverage_with_title": 0.2332,
+   "chars": 1200
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G137",
+   "question": "An older study suggests a colorant in our lip product (which may be ingested) caused tumors when fed to rats. How does FDA apply the cancer provision of section 721?",
+   "extra": "FDA Guidance: Pediatric Study Plans: Content of and Process for Submitting Initial Pediatric Study Plans and Amended Initial Pediatric Study Plans (final, 2020-07-31, Docket FDA-2013-D-0814)",
+   "label": "R0",
+   "coverage_text": 0.2006,
+   "coverage_with_title": 0.2006,
+   "chars": 665
+  },
+  {
+   "source": "guidance (exp D)",
+   "item": "G138",
+   "question": "We're a small brand formulating a toothpaste. Can we use D&C Orange No. 4 in it, and what does the regulation require of the color itself?",
+   "extra": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "label": "R1",
+   "coverage_text": 0.1087,
+   "coverage_with_title": 0.238,
+   "chars": 1200
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R001",
+   "question": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+   "extra": "21 CFR 112.150(b)(3)",
+   "label": "R0",
+   "coverage_text": 0.2594,
+   "coverage_with_title": 0.2594,
+   "chars": 128
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R002",
+   "question": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+   "extra": "21 CFR 70.3(f)",
+   "label": "R2",
+   "coverage_text": 0.09,
+   "coverage_with_title": 0.09,
+   "chars": 1200
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R003",
+   "question": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+   "extra": "21 CFR 720.4(c)(4)(v)",
+   "label": "R0",
+   "coverage_text": 0.2567,
+   "coverage_with_title": 0.2567,
+   "chars": 33
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R004",
+   "question": "We supply FD&C Red No. 4 to cosmetic makers. Under Part 82, what specifications must a batch meet for certification, and is its use restricted?",
+   "extra": "21 CFR 82.1306(a)",
+   "label": "R1",
+   "coverage_text": 0.2297,
+   "coverage_with_title": 0.2297,
+   "chars": 146
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R005",
+   "question": "No one has petitioned for a color we'd like to use in body lotion. Can FDA list it, or exempt it from certification, on its own?",
+   "extra": "21 CFR 73.1001",
+   "label": "R1",
+   "coverage_text": 0.3183,
+   "coverage_with_title": 0.3183,
+   "chars": 366
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R006",
+   "question": "Can a certified FD&C (subpart B) straight color batch be used in cosmetics, and what must it meet?",
+   "extra": "21 CFR 82.2050",
+   "label": "R1",
+   "coverage_text": 0.8961,
+   "coverage_with_title": 0.8961,
+   "chars": 288
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R007",
+   "question": "Can a certified FD&C (subpart B) straight color batch be used in cosmetics, and what must it meet?",
+   "extra": "21 CFR 82.6(a)",
+   "label": "R1",
+   "coverage_text": 0.8961,
+   "coverage_with_title": 0.8961,
+   "chars": 141
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R008",
+   "question": "We supply FD&C Red No. 4 to cosmetic makers. Under Part 82, what specifications must a batch meet for certification, and is its use restricted?",
+   "extra": "21 CFR 82.1255(a)",
+   "label": "R1",
+   "coverage_text": 0.1771,
+   "coverage_with_title": 0.1771,
+   "chars": 218
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R009",
+   "question": "An older study suggests a colorant in our lip product (which may be ingested) caused tumors when fed to rats. How does FDA apply the cancer provision of section 721?",
+   "extra": "21 CFR 81.10(q)(1)",
+   "label": "R2",
+   "coverage_text": 0.3828,
+   "coverage_with_title": 0.3828,
+   "chars": 314
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R010",
+   "question": "Our 12-person contract filler is launching a cream blush and a matching eye shadow, both colored with D&C Red No. 27. Is D&C Red No. 27 permitted in both, and does it need certification?",
+   "extra": "21 CFR 161.190(a)(4)(ii)",
+   "label": "R0",
+   "coverage_text": 0.0497,
+   "coverage_with_title": 0.0497,
+   "chars": 87
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R011",
+   "question": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+   "extra": "21 CFR 82.3(a)(i)",
+   "label": "R1",
+   "coverage_text": 0.0893,
+   "coverage_with_title": 0.0893,
+   "chars": 110
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R012",
+   "question": "Our facility makes OTC antiperspirants and also non-drug body sprays. Do registration and GMP provisions apply to us?",
+   "extra": "21 CFR 890.5525(b)(1)",
+   "label": "R0",
+   "coverage_text": 0.3063,
+   "coverage_with_title": 0.3063,
+   "chars": 441
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R013",
+   "question": "We're a color-cosmetics contract manufacturer. Can D&C Black No. 2 go into our mascara, our lipstick and a tinted hair gel, and is there a use limit?",
+   "extra": "21 CFR 720.4(c)(6)(ii)",
+   "label": "R0",
+   "coverage_text": 0.2553,
+   "coverage_with_title": 0.2553,
+   "chars": 16
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R014",
+   "question": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "extra": "21 CFR 720.4(c)(5)(ii)",
+   "label": "R0",
+   "coverage_text": 0.4093,
+   "coverage_with_title": 0.4093,
+   "chars": 37
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R015",
+   "question": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+   "extra": "21 CFR 329.100(b)(5)(i)",
+   "label": "R0",
+   "coverage_text": 0.4802,
+   "coverage_with_title": 0.4802,
+   "chars": 36
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R016",
+   "question": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "21 CFR 170.3(n)(12)",
+   "label": "R0",
+   "coverage_text": 0.1092,
+   "coverage_with_title": 0.1092,
+   "chars": 112
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R017",
+   "question": "We sell a tanning oil with no SPF and a DHA self-tanning lotion. Do either need a warning about sun exposure?",
+   "extra": "21 CFR 352.52(e)(1)(iii)",
+   "label": "R1",
+   "coverage_text": 0.228,
+   "coverage_with_title": 0.228,
+   "chars": 123
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R018",
+   "question": "We're a small skincare brand formulating a tinted nail enamel. Our supplier offers Ext. D&C Violet No. 2. Can we use it, is there a use limit, and does the color need FDA certification?",
+   "extra": "21 CFR 81.30(i)",
+   "label": "R2",
+   "coverage_text": 0.3042,
+   "coverage_with_title": 0.3042,
+   "chars": 399
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R019",
+   "question": "Can a certified FD&C (subpart B) straight color batch be used in cosmetics, and what must it meet?",
+   "extra": "21 CFR 82.1050",
+   "label": "R1",
+   "coverage_text": 0.8961,
+   "coverage_with_title": 0.8961,
+   "chars": 274
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R020",
+   "question": "We're a small brand formulating a hair pomade. Can we use D&C Green No. 6 in it, and what does the regulation require of the color itself?",
+   "extra": "21 CFR 720.4(c)(6)",
+   "label": "R0",
+   "coverage_text": 0.3135,
+   "coverage_with_title": 0.3135,
+   "chars": 31
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R021",
+   "question": "We're the brand owner launching 12 shades of one lipstick formula that differ only in colors. What listing do we file, and when?",
+   "extra": "21 CFR 720.4(a)(3)",
+   "label": "R1",
+   "coverage_text": 0.1049,
+   "coverage_with_title": 0.1049,
+   "chars": 52
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R022",
+   "question": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?",
+   "extra": "21 CFR 740.11(b)(1)",
+   "label": "R2",
+   "coverage_text": 0.5358,
+   "coverage_with_title": 0.5358,
+   "chars": 129
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R023",
+   "question": "Our 12-person contract filler is launching a cream blush and a matching eye shadow, both colored with D&C Red No. 27. Is D&C Red No. 27 permitted in both, and does it need certification?",
+   "extra": "21 CFR 74.2052(c)",
+   "label": "R1",
+   "coverage_text": 0.2602,
+   "coverage_with_title": 0.2602,
+   "chars": 278
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R024",
+   "question": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+   "extra": "21 CFR 350.50(c)(2)",
+   "label": "R0",
+   "coverage_text": 0.1095,
+   "coverage_with_title": 0.1095,
+   "chars": 44
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R025",
+   "question": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "extra": "21 CFR 720.4(c)(6)(v)",
+   "label": "R0",
+   "coverage_text": 0.4093,
+   "coverage_with_title": 0.4093,
+   "chars": 32
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R026",
+   "question": "We plan an eye shadow using FD&C Red No. 40 Calcium Lake and a lip gloss using the straight color. Are both permitted?",
+   "extra": "21 CFR 82.1051(b)",
+   "label": "R1",
+   "coverage_text": 0.2654,
+   "coverage_with_title": 0.2654,
+   "chars": 176
+  },
+  {
+   "source": "ecfr (F2)",
+   "item": "R027",
+   "question": "Our salon brand is launching a cream blush and a matching eye shadow, both colored with FD&C Green No. 3. Is FD&C Green No. 3 permitted in both, and does it need certification?",
+   "extra": "21 CFR 720.4(c)(3)(iii)",
+   "label": "R0",
+   "coverage_text": 0.2305,
+   "coverage_with_title": 0.2305,
+   "chars": 17
+  }
+ ]
+}

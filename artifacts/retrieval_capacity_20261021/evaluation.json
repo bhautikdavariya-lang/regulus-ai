@@ -1,0 +1,6656 @@
+{
+ "T4800": {
+  "K1_required": {
+   "gained": [
+    "COS-71.15-Q2 21 CFR 71.15(b)"
+   ],
+   "lost": [],
+   "pass": true
+  },
+  "K2_352": {
+   "targets_gained": [
+    [
+     "S-019",
+     "21 CFR 111.205"
+    ],
+    [
+     "L-008",
+     "21 CFR 101.9(b)"
+    ]
+   ],
+   "targets_lost": [
+    [
+     "X-001",
+     "21 CFR 4.1"
+    ]
+   ],
+   "summary": {
+    "dataset_rows": 352,
+    "errors": [],
+    "rows_by_kind": {
+     "section_scored": 276,
+     "negative_control": 37,
+     "part_only_key": 12,
+     "no_cfr_key": 19,
+     "docket_targets": 14
+    },
+    "sme_verified_rows": 0,
+    "metrics": {
+     "all": {
+      "section_level": {
+       "n": 276,
+       "key_status": {
+        "developer_keyed_not_sme": 29,
+        "draft_unverified": 247
+       },
+       "any_expected_exists_in_db": {
+        "count": 275,
+        "rate": 0.9964
+       },
+       "any_in_candidates": {
+        "count": 234,
+        "rate": 0.8478
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 107,
+         "rate": 0.3877
+        },
+        "3": {
+         "count": 123,
+         "rate": 0.4457
+        },
+        "5": {
+         "count": 143,
+         "rate": 0.5181
+        },
+        "8": {
+         "count": 159,
+         "rate": 0.5761
+        },
+        "10": {
+         "count": 178,
+         "rate": 0.6449
+        },
+        "20": {
+         "count": 217,
+         "rate": 0.7862
+        }
+       },
+       "mrr_candidates": 0.4579,
+       "any_in_topk": {
+        "count": 211,
+        "rate": 0.7645
+       },
+       "any_in_context": {
+        "count": 198,
+        "rate": 0.7174
+       },
+       "all_in_context": {
+        "count": 150,
+        "rate": 0.5435
+       },
+       "any_reaches_prompt": {
+        "count": 198,
+        "rate": 0.7174
+       },
+       "retrieved_but_not_in_context": {
+        "count": 36,
+        "rate": 0.1304
+       },
+       "model_would_be_called": {
+        "count": 267,
+        "rate": 0.9674
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "UNKNOWN": 157,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800.0,
+        "total_chars_mean": 5935.7,
+        "near_full_soft_budget": {
+         "count": 253,
+         "rate": 0.9167
+        },
+        "over_soft_budget": {
+         "count": 104,
+         "rate": 0.3768
+        },
+        "guidance_share_of_context_chars": 0.336,
+        "sources_median": 6.0
+       }
+      },
+      "provision_level": {
+       "n": 276,
+       "key_status": {
+        "developer_keyed_not_sme": 29,
+        "draft_unverified": 247
+       },
+       "any_expected_exists_in_db": {
+        "count": 275,
+        "rate": 0.9964
+       },
+       "any_in_candidates": {
+        "count": 209,
+        "rate": 0.7572
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 92,
+         "rate": 0.3333
+        },
+        "3": {
+         "count": 112,
+         "rate": 0.4058
+        },
+        "5": {
+         "count": 131,
+         "rate": 0.4746
+        },
+        "8": {
+         "count": 141,
+         "rate": 0.5109
+        },
+        "10": {
+         "count": 158,
+         "rate": 0.5725
+        },
+        "20": {
+         "count": 191,
+         "rate": 0.692
+        }
+       },
+       "mrr_candidates": 0.4043,
+       "any_in_topk": {
+        "count": 188,
+        "rate": 0.6812
+       },
+       "any_in_context": {
+        "count": 175,
+        "rate": 0.6341
+       },
+       "all_in_context": {
+        "count": 125,
+        "rate": 0.4529
+       },
+       "any_reaches_prompt": {
+        "count": 175,
+        "rate": 0.6341
+       },
+       "retrieved_but_not_in_context": {
+        "count": 34,
+        "rate": 0.1232
+       },
+       "model_would_be_called": {
+        "count": 267,
+        "rate": 0.9674
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "UNKNOWN": 157,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800.0,
+        "total_chars_mean": 5935.7,
+        "near_full_soft_budget": {
+         "count": 253,
+         "rate": 0.9167
+        },
+        "over_soft_budget": {
+         "count": 104,
+         "rate": 0.3768
+        },
+        "guidance_share_of_context_chars": 0.336,
+        "sources_median": 6.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 430,
+       "stages": {
+        "corpus_gap": 13,
+        "not_retrieved": 104,
+        "candidate_unattributed": 0,
+        "dropped": 69,
+        "in_context_model_not_called": 0,
+        "in_prompt": 244
+       },
+       "drop_reasons": {
+        "max_results": 3,
+        "soft_budget": 31,
+        "filtered": 23,
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 430,
+       "stages": {
+        "corpus_gap": 13,
+        "not_retrieved": 140,
+        "candidate_unattributed": 0,
+        "dropped": 66,
+        "in_context_model_not_called": 0,
+        "in_prompt": 211
+       },
+       "drop_reasons": {
+        "max_results": 3,
+        "soft_budget": 29,
+        "filtered": 22,
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "identifier": {
+      "section_level": {
+       "n": 119,
+       "key_status": {
+        "developer_keyed_not_sme": 7,
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 118,
+        "rate": 0.9916
+       },
+       "any_in_candidates": {
+        "count": 113,
+        "rate": 0.9496
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 65,
+         "rate": 0.5462
+        },
+        "3": {
+         "count": 72,
+         "rate": 0.605
+        },
+        "5": {
+         "count": 82,
+         "rate": 0.6891
+        },
+        "8": {
+         "count": 91,
+         "rate": 0.7647
+        },
+        "10": {
+         "count": 96,
+         "rate": 0.8067
+        },
+        "20": {
+         "count": 109,
+         "rate": 0.916
+        }
+       },
+       "mrr_candidates": 0.6186,
+       "any_in_topk": {
+        "count": 111,
+        "rate": 0.9328
+       },
+       "any_in_context": {
+        "count": 107,
+        "rate": 0.8992
+       },
+       "all_in_context": {
+        "count": 94,
+        "rate": 0.7899
+       },
+       "any_reaches_prompt": {
+        "count": 107,
+        "rate": 0.8992
+       },
+       "retrieved_but_not_in_context": {
+        "count": 6,
+        "rate": 0.0504
+       },
+       "model_would_be_called": {
+        "count": 110,
+        "rate": 0.9244
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 8797,
+        "total_chars_mean": 7593.9,
+        "near_full_soft_budget": {
+         "count": 114,
+         "rate": 0.958
+        },
+        "over_soft_budget": {
+         "count": 104,
+         "rate": 0.8739
+        },
+        "guidance_share_of_context_chars": 0.0383,
+        "sources_median": 16
+       }
+      },
+      "provision_level": {
+       "n": 119,
+       "key_status": {
+        "developer_keyed_not_sme": 7,
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 118,
+        "rate": 0.9916
+       },
+       "any_in_candidates": {
+        "count": 89,
+        "rate": 0.7479
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 51,
+         "rate": 0.4286
+        },
+        "3": {
+         "count": 62,
+         "rate": 0.521
+        },
+        "5": {
+         "count": 71,
+         "rate": 0.5966
+        },
+        "8": {
+         "count": 75,
+         "rate": 0.6303
+        },
+        "10": {
+         "count": 78,
+         "rate": 0.6555
+        },
+        "20": {
+         "count": 85,
+         "rate": 0.7143
+        }
+       },
+       "mrr_candidates": 0.5036,
+       "any_in_topk": {
+        "count": 89,
+        "rate": 0.7479
+       },
+       "any_in_context": {
+        "count": 87,
+        "rate": 0.7311
+       },
+       "all_in_context": {
+        "count": 72,
+        "rate": 0.605
+       },
+       "any_reaches_prompt": {
+        "count": 87,
+        "rate": 0.7311
+       },
+       "retrieved_but_not_in_context": {
+        "count": 2,
+        "rate": 0.0168
+       },
+       "model_would_be_called": {
+        "count": 110,
+        "rate": 0.9244
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 8797,
+        "total_chars_mean": 7593.9,
+        "near_full_soft_budget": {
+         "count": 114,
+         "rate": 0.958
+        },
+        "over_soft_budget": {
+         "count": 104,
+         "rate": 0.8739
+        },
+        "guidance_share_of_context_chars": 0.0383,
+        "sources_median": 16
+       }
+      },
+      "targets_section_level": {
+       "targets": 185,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 7,
+        "candidate_unattributed": 0,
+        "dropped": 21,
+        "in_context_model_not_called": 0,
+        "in_prompt": 145
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "soft_budget": 3,
+        "filtered": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 185,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 39,
+        "candidate_unattributed": 0,
+        "dropped": 17,
+        "in_context_model_not_called": 0,
+        "in_prompt": 117
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "identifier/retrieval_v2": {
+      "section_level": {
+       "n": 7,
+       "key_status": {
+        "developer_keyed_not_sme": 7
+       },
+       "any_expected_exists_in_db": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "3": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "5": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "8": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "10": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "20": {
+         "count": 7,
+         "rate": 1.0
+        }
+       },
+       "mrr_candidates": 1.0,
+       "any_in_topk": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "all_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_reaches_prompt": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "retrieved_but_not_in_context": {
+        "count": 0,
+        "rate": 0.0
+       },
+       "model_would_be_called": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "ANSWERABLE": 7
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4806,
+        "total_chars_mean": 5151.4,
+        "near_full_soft_budget": {
+         "count": 6,
+         "rate": 0.8571
+        },
+        "over_soft_budget": {
+         "count": 5,
+         "rate": 0.7143
+        },
+        "guidance_share_of_context_chars": 0.0826,
+        "sources_median": 12
+       }
+      },
+      "provision_level": {
+       "n": 7,
+       "key_status": {
+        "developer_keyed_not_sme": 7
+       },
+       "any_expected_exists_in_db": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "3": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "5": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "8": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "10": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "20": {
+         "count": 7,
+         "rate": 1.0
+        }
+       },
+       "mrr_candidates": 1.0,
+       "any_in_topk": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "all_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_reaches_prompt": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "retrieved_but_not_in_context": {
+        "count": 0,
+        "rate": 0.0
+       },
+       "model_would_be_called": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "ANSWERABLE": 7
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4806,
+        "total_chars_mean": 5151.4,
+        "near_full_soft_budget": {
+         "count": 6,
+         "rate": 0.8571
+        },
+        "over_soft_budget": {
+         "count": 5,
+         "rate": 0.7143
+        },
+        "guidance_share_of_context_chars": 0.0826,
+        "sources_median": 12
+       }
+      },
+      "targets_section_level": {
+       "targets": 7,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 0,
+        "candidate_unattributed": 0,
+        "dropped": 0,
+        "in_context_model_not_called": 0,
+        "in_prompt": 7
+       },
+       "drop_reasons": {}
+      },
+      "targets_provision_level": {
+       "targets": 7,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 0,
+        "candidate_unattributed": 0,
+        "dropped": 0,
+        "in_context_model_not_called": 0,
+        "in_prompt": 7
+       },
+       "drop_reasons": {}
+      }
+     },
+     "identifier/benchmark_rev02": {
+      "section_level": {
+       "n": 112,
+       "key_status": {
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 111,
+        "rate": 0.9911
+       },
+       "any_in_candidates": {
+        "count": 106,
+        "rate": 0.9464
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 58,
+         "rate": 0.5179
+        },
+        "3": {
+         "count": 65,
+         "rate": 0.5804
+        },
+        "5": {
+         "count": 75,
+         "rate": 0.6696
+        },
+        "8": {
+         "count": 84,
+         "rate": 0.75
+        },
+        "10": {
+         "count": 89,
+         "rate": 0.7946
+        },
+        "20": {
+         "count": 102,
+         "rate": 0.9107
+        }
+       },
+       "mrr_candidates": 0.5947,
+       "any_in_topk": {
+        "count": 104,
+        "rate": 0.9286
+       },
+       "any_in_context": {
+        "count": 100,
+        "rate": 0.8929
+       },
+       "all_in_context": {
+        "count": 87,
+        "rate": 0.7768
+       },
+       "any_reaches_prompt": {
+        "count": 100,
+        "rate": 0.8929
+       },
+       "retrieved_but_not_in_context": {
+        "count": 6,
+        "rate": 0.0536
+       },
+       "model_would_be_called": {
+        "count": 103,
+        "rate": 0.9196
+       },
+       "gate_states": {
+        "ANSWERABLE": 102,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 8819.5,
+        "total_chars_mean": 7746.5,
+        "near_full_soft_budget": {
+         "count": 108,
+         "rate": 0.9643
+        },
+        "over_soft_budget": {
+         "count": 99,
+         "rate": 0.8839
+        },
+        "guidance_share_of_context_chars": 0.0364,
+        "sources_median": 16.0
+       }
+      },
+      "provision_level": {
+       "n": 112,
+       "key_status": {
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 111,
+        "rate": 0.9911
+       },
+       "any_in_candidates": {
+        "count": 82,
+        "rate": 0.7321
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 44,
+         "rate": 0.3929
+        },
+        "3": {
+         "count": 55,
+         "rate": 0.4911
+        },
+        "5": {
+         "count": 64,
+         "rate": 0.5714
+        },
+        "8": {
+         "count": 68,
+         "rate": 0.6071
+        },
+        "10": {
+         "count": 71,
+         "rate": 0.6339
+        },
+        "20": {
+         "count": 78,
+         "rate": 0.6964
+        }
+       },
+       "mrr_candidates": 0.4726,
+       "any_in_topk": {
+        "count": 82,
+        "rate": 0.7321
+       },
+       "any_in_context": {
+        "count": 80,
+        "rate": 0.7143
+       },
+       "all_in_context": {
+        "count": 65,
+        "rate": 0.5804
+       },
+       "any_reaches_prompt": {
+        "count": 80,
+        "rate": 0.7143
+       },
+       "retrieved_but_not_in_context": {
+        "count": 2,
+        "rate": 0.0179
+       },
+       "model_would_be_called": {
+        "count": 103,
+        "rate": 0.9196
+       },
+       "gate_states": {
+        "ANSWERABLE": 102,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 8819.5,
+        "total_chars_mean": 7746.5,
+        "near_full_soft_budget": {
+         "count": 108,
+         "rate": 0.9643
+        },
+        "over_soft_budget": {
+         "count": 99,
+         "rate": 0.8839
+        },
+        "guidance_share_of_context_chars": 0.0364,
+        "sources_median": 16.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 178,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 7,
+        "candidate_unattributed": 0,
+        "dropped": 21,
+        "in_context_model_not_called": 0,
+        "in_prompt": 138
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "soft_budget": 3,
+        "filtered": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 178,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 39,
+        "candidate_unattributed": 0,
+        "dropped": 17,
+        "in_context_model_not_called": 0,
+        "in_prompt": 110
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "plain_language": {
+      "section_level": {
+       "n": 157,
+       "key_status": {
+        "developer_keyed_not_sme": 22,
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 121,
+        "rate": 0.7707
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 42,
+         "rate": 0.2675
+        },
+        "3": {
+         "count": 51,
+         "rate": 0.3248
+        },
+        "5": {
+         "count": 61,
+         "rate": 0.3885
+        },
+        "8": {
+         "count": 68,
+         "rate": 0.4331
+        },
+        "10": {
+         "count": 82,
+         "rate": 0.5223
+        },
+        "20": {
+         "count": 108,
+         "rate": 0.6879
+        }
+       },
+       "mrr_candidates": 0.3361,
+       "any_in_topk": {
+        "count": 100,
+        "rate": 0.6369
+       },
+       "any_in_context": {
+        "count": 91,
+        "rate": 0.5796
+       },
+       "all_in_context": {
+        "count": 56,
+        "rate": 0.3567
+       },
+       "any_reaches_prompt": {
+        "count": 91,
+        "rate": 0.5796
+       },
+       "retrieved_but_not_in_context": {
+        "count": 30,
+        "rate": 0.1911
+       },
+       "model_would_be_called": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 157
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800,
+        "total_chars_mean": 4678.8,
+        "near_full_soft_budget": {
+         "count": 139,
+         "rate": 0.8854
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7023,
+        "sources_median": 5
+       }
+      },
+      "provision_level": {
+       "n": 157,
+       "key_status": {
+        "developer_keyed_not_sme": 22,
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 120,
+        "rate": 0.7643
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 41,
+         "rate": 0.2611
+        },
+        "3": {
+         "count": 50,
+         "rate": 0.3185
+        },
+        "5": {
+         "count": 60,
+         "rate": 0.3822
+        },
+        "8": {
+         "count": 66,
+         "rate": 0.4204
+        },
+        "10": {
+         "count": 80,
+         "rate": 0.5096
+        },
+        "20": {
+         "count": 106,
+         "rate": 0.6752
+        }
+       },
+       "mrr_candidates": 0.3291,
+       "any_in_topk": {
+        "count": 99,
+        "rate": 0.6306
+       },
+       "any_in_context": {
+        "count": 88,
+        "rate": 0.5605
+       },
+       "all_in_context": {
+        "count": 53,
+        "rate": 0.3376
+       },
+       "any_reaches_prompt": {
+        "count": 88,
+        "rate": 0.5605
+       },
+       "retrieved_but_not_in_context": {
+        "count": 32,
+        "rate": 0.2038
+       },
+       "model_would_be_called": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 157
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800,
+        "total_chars_mean": 4678.8,
+        "near_full_soft_budget": {
+         "count": 139,
+         "rate": 0.8854
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7023,
+        "sources_median": 5
+       }
+      },
+      "targets_section_level": {
+       "targets": 245,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 97,
+        "candidate_unattributed": 0,
+        "dropped": 48,
+        "in_context_model_not_called": 0,
+        "in_prompt": 99
+       },
+       "drop_reasons": {
+        "max_results": 3,
+        "soft_budget": 28,
+        "filtered": 22
+       }
+      },
+      "targets_provision_level": {
+       "targets": 245,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 101,
+        "candidate_unattributed": 0,
+        "dropped": 49,
+        "in_context_model_not_called": 0,
+        "in_prompt": 94
+       },
+       "drop_reasons": {
+        "max_results": 3,
+        "soft_budget": 29,
+        "filtered": 22
+       }
+      }
+     },
+     "plain_language/retrieval_v2": {
+      "section_level": {
+       "n": 22,
+       "key_status": {
+        "developer_keyed_not_sme": 22
+       },
+       "any_expected_exists_in_db": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 16,
+        "rate": 0.7273
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "3": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "5": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "8": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "10": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "20": {
+         "count": 14,
+         "rate": 0.6364
+        }
+       },
+       "mrr_candidates": 0.4872,
+       "any_in_topk": {
+        "count": 14,
+        "rate": 0.6364
+       },
+       "any_in_context": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "all_in_context": {
+        "count": 10,
+        "rate": 0.4545
+       },
+       "any_reaches_prompt": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "retrieved_but_not_in_context": {
+        "count": 4,
+        "rate": 0.1818
+       },
+       "model_would_be_called": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 22
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800.0,
+        "total_chars_mean": 4296.6,
+        "near_full_soft_budget": {
+         "count": 16,
+         "rate": 0.7273
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.603,
+        "sources_median": 5.0
+       }
+      },
+      "provision_level": {
+       "n": 22,
+       "key_status": {
+        "developer_keyed_not_sme": 22
+       },
+       "any_expected_exists_in_db": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 16,
+        "rate": 0.7273
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "3": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "5": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "8": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "10": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "20": {
+         "count": 14,
+         "rate": 0.6364
+        }
+       },
+       "mrr_candidates": 0.4872,
+       "any_in_topk": {
+        "count": 14,
+        "rate": 0.6364
+       },
+       "any_in_context": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "all_in_context": {
+        "count": 10,
+        "rate": 0.4545
+       },
+       "any_reaches_prompt": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "retrieved_but_not_in_context": {
+        "count": 4,
+        "rate": 0.1818
+       },
+       "model_would_be_called": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 22
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800.0,
+        "total_chars_mean": 4296.6,
+        "near_full_soft_budget": {
+         "count": 16,
+         "rate": 0.7273
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.603,
+        "sources_median": 5.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 28,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 9,
+        "candidate_unattributed": 0,
+        "dropped": 6,
+        "in_context_model_not_called": 0,
+        "in_prompt": 13
+       },
+       "drop_reasons": {
+        "max_results": 1,
+        "soft_budget": 3,
+        "filtered": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 28,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 9,
+        "candidate_unattributed": 0,
+        "dropped": 6,
+        "in_context_model_not_called": 0,
+        "in_prompt": 13
+       },
+       "drop_reasons": {
+        "max_results": 1,
+        "soft_budget": 3,
+        "filtered": 2
+       }
+      }
+     },
+     "plain_language/benchmark_rev02": {
+      "section_level": {
+       "n": 135,
+       "key_status": {
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 105,
+        "rate": 0.7778
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 32,
+         "rate": 0.237
+        },
+        "3": {
+         "count": 41,
+         "rate": 0.3037
+        },
+        "5": {
+         "count": 49,
+         "rate": 0.363
+        },
+        "8": {
+         "count": 56,
+         "rate": 0.4148
+        },
+        "10": {
+         "count": 69,
+         "rate": 0.5111
+        },
+        "20": {
+         "count": 94,
+         "rate": 0.6963
+        }
+       },
+       "mrr_candidates": 0.3115,
+       "any_in_topk": {
+        "count": 86,
+        "rate": 0.637
+       },
+       "any_in_context": {
+        "count": 79,
+        "rate": 0.5852
+       },
+       "all_in_context": {
+        "count": 46,
+        "rate": 0.3407
+       },
+       "any_reaches_prompt": {
+        "count": 79,
+        "rate": 0.5852
+       },
+       "retrieved_but_not_in_context": {
+        "count": 26,
+        "rate": 0.1926
+       },
+       "model_would_be_called": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 135
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800,
+        "total_chars_mean": 4741.1,
+        "near_full_soft_budget": {
+         "count": 123,
+         "rate": 0.9111
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7169,
+        "sources_median": 5
+       }
+      },
+      "provision_level": {
+       "n": 135,
+       "key_status": {
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 104,
+        "rate": 0.7704
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 31,
+         "rate": 0.2296
+        },
+        "3": {
+         "count": 40,
+         "rate": 0.2963
+        },
+        "5": {
+         "count": 48,
+         "rate": 0.3556
+        },
+        "8": {
+         "count": 54,
+         "rate": 0.4
+        },
+        "10": {
+         "count": 67,
+         "rate": 0.4963
+        },
+        "20": {
+         "count": 92,
+         "rate": 0.6815
+        }
+       },
+       "mrr_candidates": 0.3033,
+       "any_in_topk": {
+        "count": 85,
+        "rate": 0.6296
+       },
+       "any_in_context": {
+        "count": 76,
+        "rate": 0.563
+       },
+       "all_in_context": {
+        "count": 43,
+        "rate": 0.3185
+       },
+       "any_reaches_prompt": {
+        "count": 76,
+        "rate": 0.563
+       },
+       "retrieved_but_not_in_context": {
+        "count": 28,
+        "rate": 0.2074
+       },
+       "model_would_be_called": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 135
+       },
+       "context_budget": {
+        "soft_budget_chars": 4800,
+        "total_chars_median": 4800,
+        "total_chars_mean": 4741.1,
+        "near_full_soft_budget": {
+         "count": 123,
+         "rate": 0.9111
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7169,
+        "sources_median": 5
+       }
+      },
+      "targets_section_level": {
+       "targets": 217,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 88,
+        "candidate_unattributed": 0,
+        "dropped": 42,
+        "in_context_model_not_called": 0,
+        "in_prompt": 86
+       },
+       "drop_reasons": {
+        "soft_budget": 25,
+        "filtered": 20,
+        "max_results": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 217,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 92,
+        "candidate_unattributed": 0,
+        "dropped": 43,
+        "in_context_model_not_called": 0,
+        "in_prompt": 81
+       },
+       "drop_reasons": {
+        "soft_budget": 26,
+        "filtered": 20,
+        "max_results": 2
+       }
+      }
+     }
+    },
+    "negative_controls": {
+     "rows": [
+      {
+       "id": "retrieval-008",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30(b)(1)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-035",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-040",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 314.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-041",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-042",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 11.75",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-043",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 1400",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-044",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-045",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "no_evidence"
+      },
+      {
+       "id": "retrieval-046",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-047",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-048",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.50",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-049",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 201.327(z)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 1,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-050",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "potentially_related",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "value_not_established"
+      },
+      {
+       "id": "retrieval-051",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 9,
+       "exact_cfr_in_topk_excluding_parent_rows": 9,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-052",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-001",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 111.900",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-002",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 117.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-003",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 9,
+       "exact_cfr_in_topk_excluding_parent_rows": 9,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-004",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 211",
+         "exists": true,
+         "live_rows": 290
+        }
+       ],
+       "exact_cfr_in_topk": 64,
+       "exact_cfr_in_topk_excluding_parent_rows": 64,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-005",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.20",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-006",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-007",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 111",
+         "exists": true,
+         "live_rows": 594
+        }
+       ],
+       "exact_cfr_in_topk": 88,
+       "exact_cfr_in_topk_excluding_parent_rows": 88,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-008",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-009",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "potentially_related",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "value_not_established"
+      },
+      {
+       "id": "NC-010",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 11",
+         "exists": true,
+         "live_rows": 70
+        }
+       ],
+       "exact_cfr_in_topk": 14,
+       "exact_cfr_in_topk_excluding_parent_rows": 14,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-011",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-012",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-013",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 1250",
+         "exists": true,
+         "live_rows": 141
+        }
+       ],
+       "exact_cfr_in_topk": 48,
+       "exact_cfr_in_topk_excluding_parent_rows": 48,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-014",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 101.9(k)(5)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 1,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-015",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-016",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30(j)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-017",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.15",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-018",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 830",
+         "exists": true,
+         "live_rows": 156
+        }
+       ],
+       "exact_cfr_in_topk": 20,
+       "exact_cfr_in_topk_excluding_parent_rows": 20,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-019",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-020",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 4",
+         "exists": true,
+         "live_rows": 120
+        }
+       ],
+       "exact_cfr_in_topk": 14,
+       "exact_cfr_in_topk_excluding_parent_rows": 14,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-021",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 15,
+       "exact_cfr_in_topk_excluding_parent_rows": 15,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-022",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      }
+     ],
+     "retrieval_v2_rule_passed": 13,
+     "retrieval_v2_rule_passed_excluding_parent_rows": 14,
+     "retrieval_v2_total": 15,
+     "benchmark_gate_blocked": 8,
+     "benchmark_model_would_be_called": 14,
+     "benchmark_total": 22
+    }
+   },
+   "pass": false
+  },
+  "K3_guidance_removed": {
+   "removed": [],
+   "pass": true
+  },
+  "K4_superset_same_order": {
+   "violations": [],
+   "pass": true
+  },
+  "K5_cost": {
+   "budget_chars_growth_median": 1200.0,
+   "max": 2256,
+   "est_added_prefill_s_max": 1.22,
+   "pass": true
+  },
+  "added_sources_100": {
+   "ecfr": 14,
+   "guidance": 65
+  },
+  "eligible": false
+ },
+ "T6000": {
+  "K1_required": {
+   "gained": [],
+   "lost": [],
+   "pass": true
+  },
+  "K2_352": {
+   "targets_gained": [
+    [
+     "S-019",
+     "21 CFR 111.205"
+    ],
+    [
+     "M-021",
+     "21 CFR 820.35(a)"
+    ],
+    [
+     "Y-007",
+     "21 CFR 120.8"
+    ]
+   ],
+   "targets_lost": [
+    [
+     "X-001",
+     "21 CFR 4.1"
+    ]
+   ],
+   "summary": {
+    "dataset_rows": 352,
+    "errors": [],
+    "rows_by_kind": {
+     "section_scored": 276,
+     "negative_control": 37,
+     "part_only_key": 12,
+     "no_cfr_key": 19,
+     "docket_targets": 14
+    },
+    "sme_verified_rows": 0,
+    "metrics": {
+     "all": {
+      "section_level": {
+       "n": 276,
+       "key_status": {
+        "developer_keyed_not_sme": 29,
+        "draft_unverified": 247
+       },
+       "any_expected_exists_in_db": {
+        "count": 275,
+        "rate": 0.9964
+       },
+       "any_in_candidates": {
+        "count": 234,
+        "rate": 0.8478
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 107,
+         "rate": 0.3877
+        },
+        "3": {
+         "count": 123,
+         "rate": 0.4457
+        },
+        "5": {
+         "count": 143,
+         "rate": 0.5181
+        },
+        "8": {
+         "count": 159,
+         "rate": 0.5761
+        },
+        "10": {
+         "count": 178,
+         "rate": 0.6449
+        },
+        "20": {
+         "count": 217,
+         "rate": 0.7862
+        }
+       },
+       "mrr_candidates": 0.4579,
+       "any_in_topk": {
+        "count": 211,
+        "rate": 0.7645
+       },
+       "any_in_context": {
+        "count": 199,
+        "rate": 0.721
+       },
+       "all_in_context": {
+        "count": 151,
+        "rate": 0.5471
+       },
+       "any_reaches_prompt": {
+        "count": 199,
+        "rate": 0.721
+       },
+       "retrieved_but_not_in_context": {
+        "count": 35,
+        "rate": 0.1268
+       },
+       "model_would_be_called": {
+        "count": 267,
+        "rate": 0.9674
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "UNKNOWN": 157,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 6000.0,
+        "total_chars_mean": 6570.8,
+        "near_full_soft_budget": {
+         "count": 237,
+         "rate": 0.8587
+        },
+        "over_soft_budget": {
+         "count": 91,
+         "rate": 0.3297
+        },
+        "guidance_share_of_context_chars": 0.3973,
+        "sources_median": 6.0
+       }
+      },
+      "provision_level": {
+       "n": 276,
+       "key_status": {
+        "developer_keyed_not_sme": 29,
+        "draft_unverified": 247
+       },
+       "any_expected_exists_in_db": {
+        "count": 275,
+        "rate": 0.9964
+       },
+       "any_in_candidates": {
+        "count": 209,
+        "rate": 0.7572
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 92,
+         "rate": 0.3333
+        },
+        "3": {
+         "count": 112,
+         "rate": 0.4058
+        },
+        "5": {
+         "count": 131,
+         "rate": 0.4746
+        },
+        "8": {
+         "count": 141,
+         "rate": 0.5109
+        },
+        "10": {
+         "count": 158,
+         "rate": 0.5725
+        },
+        "20": {
+         "count": 191,
+         "rate": 0.692
+        }
+       },
+       "mrr_candidates": 0.4043,
+       "any_in_topk": {
+        "count": 188,
+        "rate": 0.6812
+       },
+       "any_in_context": {
+        "count": 176,
+        "rate": 0.6377
+       },
+       "all_in_context": {
+        "count": 126,
+        "rate": 0.4565
+       },
+       "any_reaches_prompt": {
+        "count": 176,
+        "rate": 0.6377
+       },
+       "retrieved_but_not_in_context": {
+        "count": 33,
+        "rate": 0.1196
+       },
+       "model_would_be_called": {
+        "count": 267,
+        "rate": 0.9674
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "UNKNOWN": 157,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 6000.0,
+        "total_chars_mean": 6570.8,
+        "near_full_soft_budget": {
+         "count": 237,
+         "rate": 0.8587
+        },
+        "over_soft_budget": {
+         "count": 91,
+         "rate": 0.3297
+        },
+        "guidance_share_of_context_chars": 0.3973,
+        "sources_median": 6.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 430,
+       "stages": {
+        "corpus_gap": 13,
+        "not_retrieved": 104,
+        "candidate_unattributed": 0,
+        "dropped": 68,
+        "in_context_model_not_called": 0,
+        "in_prompt": 245
+       },
+       "drop_reasons": {
+        "max_results": 5,
+        "soft_budget": 28,
+        "filtered": 23,
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 430,
+       "stages": {
+        "corpus_gap": 13,
+        "not_retrieved": 140,
+        "candidate_unattributed": 0,
+        "dropped": 65,
+        "in_context_model_not_called": 0,
+        "in_prompt": 212
+       },
+       "drop_reasons": {
+        "max_results": 5,
+        "soft_budget": 26,
+        "filtered": 22,
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "identifier": {
+      "section_level": {
+       "n": 119,
+       "key_status": {
+        "developer_keyed_not_sme": 7,
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 118,
+        "rate": 0.9916
+       },
+       "any_in_candidates": {
+        "count": 113,
+        "rate": 0.9496
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 65,
+         "rate": 0.5462
+        },
+        "3": {
+         "count": 72,
+         "rate": 0.605
+        },
+        "5": {
+         "count": 82,
+         "rate": 0.6891
+        },
+        "8": {
+         "count": 91,
+         "rate": 0.7647
+        },
+        "10": {
+         "count": 96,
+         "rate": 0.8067
+        },
+        "20": {
+         "count": 109,
+         "rate": 0.916
+        }
+       },
+       "mrr_candidates": 0.6186,
+       "any_in_topk": {
+        "count": 111,
+        "rate": 0.9328
+       },
+       "any_in_context": {
+        "count": 107,
+        "rate": 0.8992
+       },
+       "all_in_context": {
+        "count": 94,
+        "rate": 0.7899
+       },
+       "any_reaches_prompt": {
+        "count": 107,
+        "rate": 0.8992
+       },
+       "retrieved_but_not_in_context": {
+        "count": 6,
+        "rate": 0.0504
+       },
+       "model_would_be_called": {
+        "count": 110,
+        "rate": 0.9244
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 8797,
+        "total_chars_mean": 7691.7,
+        "near_full_soft_budget": {
+         "count": 107,
+         "rate": 0.8992
+        },
+        "over_soft_budget": {
+         "count": 91,
+         "rate": 0.7647
+        },
+        "guidance_share_of_context_chars": 0.0461,
+        "sources_median": 16
+       }
+      },
+      "provision_level": {
+       "n": 119,
+       "key_status": {
+        "developer_keyed_not_sme": 7,
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 118,
+        "rate": 0.9916
+       },
+       "any_in_candidates": {
+        "count": 89,
+        "rate": 0.7479
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 51,
+         "rate": 0.4286
+        },
+        "3": {
+         "count": 62,
+         "rate": 0.521
+        },
+        "5": {
+         "count": 71,
+         "rate": 0.5966
+        },
+        "8": {
+         "count": 75,
+         "rate": 0.6303
+        },
+        "10": {
+         "count": 78,
+         "rate": 0.6555
+        },
+        "20": {
+         "count": 85,
+         "rate": 0.7143
+        }
+       },
+       "mrr_candidates": 0.5036,
+       "any_in_topk": {
+        "count": 89,
+        "rate": 0.7479
+       },
+       "any_in_context": {
+        "count": 87,
+        "rate": 0.7311
+       },
+       "all_in_context": {
+        "count": 72,
+        "rate": 0.605
+       },
+       "any_reaches_prompt": {
+        "count": 87,
+        "rate": 0.7311
+       },
+       "retrieved_but_not_in_context": {
+        "count": 2,
+        "rate": 0.0168
+       },
+       "model_would_be_called": {
+        "count": 110,
+        "rate": 0.9244
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 8797,
+        "total_chars_mean": 7691.7,
+        "near_full_soft_budget": {
+         "count": 107,
+         "rate": 0.8992
+        },
+        "over_soft_budget": {
+         "count": 91,
+         "rate": 0.7647
+        },
+        "guidance_share_of_context_chars": 0.0461,
+        "sources_median": 16
+       }
+      },
+      "targets_section_level": {
+       "targets": 185,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 7,
+        "candidate_unattributed": 0,
+        "dropped": 21,
+        "in_context_model_not_called": 0,
+        "in_prompt": 145
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "soft_budget": 3,
+        "filtered": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 185,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 39,
+        "candidate_unattributed": 0,
+        "dropped": 17,
+        "in_context_model_not_called": 0,
+        "in_prompt": 117
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "identifier/retrieval_v2": {
+      "section_level": {
+       "n": 7,
+       "key_status": {
+        "developer_keyed_not_sme": 7
+       },
+       "any_expected_exists_in_db": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "3": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "5": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "8": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "10": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "20": {
+         "count": 7,
+         "rate": 1.0
+        }
+       },
+       "mrr_candidates": 1.0,
+       "any_in_topk": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "all_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_reaches_prompt": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "retrieved_but_not_in_context": {
+        "count": 0,
+        "rate": 0.0
+       },
+       "model_would_be_called": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "ANSWERABLE": 7
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 4925,
+        "total_chars_mean": 5169.3,
+        "near_full_soft_budget": {
+         "count": 2,
+         "rate": 0.2857
+        },
+        "over_soft_budget": {
+         "count": 2,
+         "rate": 0.2857
+        },
+        "guidance_share_of_context_chars": 0.0861,
+        "sources_median": 12
+       }
+      },
+      "provision_level": {
+       "n": 7,
+       "key_status": {
+        "developer_keyed_not_sme": 7
+       },
+       "any_expected_exists_in_db": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "3": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "5": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "8": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "10": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "20": {
+         "count": 7,
+         "rate": 1.0
+        }
+       },
+       "mrr_candidates": 1.0,
+       "any_in_topk": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "all_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_reaches_prompt": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "retrieved_but_not_in_context": {
+        "count": 0,
+        "rate": 0.0
+       },
+       "model_would_be_called": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "ANSWERABLE": 7
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 4925,
+        "total_chars_mean": 5169.3,
+        "near_full_soft_budget": {
+         "count": 2,
+         "rate": 0.2857
+        },
+        "over_soft_budget": {
+         "count": 2,
+         "rate": 0.2857
+        },
+        "guidance_share_of_context_chars": 0.0861,
+        "sources_median": 12
+       }
+      },
+      "targets_section_level": {
+       "targets": 7,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 0,
+        "candidate_unattributed": 0,
+        "dropped": 0,
+        "in_context_model_not_called": 0,
+        "in_prompt": 7
+       },
+       "drop_reasons": {}
+      },
+      "targets_provision_level": {
+       "targets": 7,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 0,
+        "candidate_unattributed": 0,
+        "dropped": 0,
+        "in_context_model_not_called": 0,
+        "in_prompt": 7
+       },
+       "drop_reasons": {}
+      }
+     },
+     "identifier/benchmark_rev02": {
+      "section_level": {
+       "n": 112,
+       "key_status": {
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 111,
+        "rate": 0.9911
+       },
+       "any_in_candidates": {
+        "count": 106,
+        "rate": 0.9464
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 58,
+         "rate": 0.5179
+        },
+        "3": {
+         "count": 65,
+         "rate": 0.5804
+        },
+        "5": {
+         "count": 75,
+         "rate": 0.6696
+        },
+        "8": {
+         "count": 84,
+         "rate": 0.75
+        },
+        "10": {
+         "count": 89,
+         "rate": 0.7946
+        },
+        "20": {
+         "count": 102,
+         "rate": 0.9107
+        }
+       },
+       "mrr_candidates": 0.5947,
+       "any_in_topk": {
+        "count": 104,
+        "rate": 0.9286
+       },
+       "any_in_context": {
+        "count": 100,
+        "rate": 0.8929
+       },
+       "all_in_context": {
+        "count": 87,
+        "rate": 0.7768
+       },
+       "any_reaches_prompt": {
+        "count": 100,
+        "rate": 0.8929
+       },
+       "retrieved_but_not_in_context": {
+        "count": 6,
+        "rate": 0.0536
+       },
+       "model_would_be_called": {
+        "count": 103,
+        "rate": 0.9196
+       },
+       "gate_states": {
+        "ANSWERABLE": 102,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 8819.5,
+        "total_chars_mean": 7849.3,
+        "near_full_soft_budget": {
+         "count": 105,
+         "rate": 0.9375
+        },
+        "over_soft_budget": {
+         "count": 89,
+         "rate": 0.7946
+        },
+        "guidance_share_of_context_chars": 0.0445,
+        "sources_median": 16.0
+       }
+      },
+      "provision_level": {
+       "n": 112,
+       "key_status": {
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 111,
+        "rate": 0.9911
+       },
+       "any_in_candidates": {
+        "count": 82,
+        "rate": 0.7321
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 44,
+         "rate": 0.3929
+        },
+        "3": {
+         "count": 55,
+         "rate": 0.4911
+        },
+        "5": {
+         "count": 64,
+         "rate": 0.5714
+        },
+        "8": {
+         "count": 68,
+         "rate": 0.6071
+        },
+        "10": {
+         "count": 71,
+         "rate": 0.6339
+        },
+        "20": {
+         "count": 78,
+         "rate": 0.6964
+        }
+       },
+       "mrr_candidates": 0.4726,
+       "any_in_topk": {
+        "count": 82,
+        "rate": 0.7321
+       },
+       "any_in_context": {
+        "count": 80,
+        "rate": 0.7143
+       },
+       "all_in_context": {
+        "count": 65,
+        "rate": 0.5804
+       },
+       "any_reaches_prompt": {
+        "count": 80,
+        "rate": 0.7143
+       },
+       "retrieved_but_not_in_context": {
+        "count": 2,
+        "rate": 0.0179
+       },
+       "model_would_be_called": {
+        "count": 103,
+        "rate": 0.9196
+       },
+       "gate_states": {
+        "ANSWERABLE": 102,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 8819.5,
+        "total_chars_mean": 7849.3,
+        "near_full_soft_budget": {
+         "count": 105,
+         "rate": 0.9375
+        },
+        "over_soft_budget": {
+         "count": 89,
+         "rate": 0.7946
+        },
+        "guidance_share_of_context_chars": 0.0445,
+        "sources_median": 16.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 178,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 7,
+        "candidate_unattributed": 0,
+        "dropped": 21,
+        "in_context_model_not_called": 0,
+        "in_prompt": 138
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "soft_budget": 3,
+        "filtered": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 178,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 39,
+        "candidate_unattributed": 0,
+        "dropped": 17,
+        "in_context_model_not_called": 0,
+        "in_prompt": 110
+       },
+       "drop_reasons": {
+        "hard_ceiling_chars": 14,
+        "hard_ceiling_count": 1,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "plain_language": {
+      "section_level": {
+       "n": 157,
+       "key_status": {
+        "developer_keyed_not_sme": 22,
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 121,
+        "rate": 0.7707
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 42,
+         "rate": 0.2675
+        },
+        "3": {
+         "count": 51,
+         "rate": 0.3248
+        },
+        "5": {
+         "count": 61,
+         "rate": 0.3885
+        },
+        "8": {
+         "count": 68,
+         "rate": 0.4331
+        },
+        "10": {
+         "count": 82,
+         "rate": 0.5223
+        },
+        "20": {
+         "count": 108,
+         "rate": 0.6879
+        }
+       },
+       "mrr_candidates": 0.3361,
+       "any_in_topk": {
+        "count": 100,
+        "rate": 0.6369
+       },
+       "any_in_context": {
+        "count": 92,
+        "rate": 0.586
+       },
+       "all_in_context": {
+        "count": 57,
+        "rate": 0.3631
+       },
+       "any_reaches_prompt": {
+        "count": 92,
+        "rate": 0.586
+       },
+       "retrieved_but_not_in_context": {
+        "count": 29,
+        "rate": 0.1847
+       },
+       "model_would_be_called": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 157
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 5915,
+        "total_chars_mean": 5721.2,
+        "near_full_soft_budget": {
+         "count": 130,
+         "rate": 0.828
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7551,
+        "sources_median": 5
+       }
+      },
+      "provision_level": {
+       "n": 157,
+       "key_status": {
+        "developer_keyed_not_sme": 22,
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 120,
+        "rate": 0.7643
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 41,
+         "rate": 0.2611
+        },
+        "3": {
+         "count": 50,
+         "rate": 0.3185
+        },
+        "5": {
+         "count": 60,
+         "rate": 0.3822
+        },
+        "8": {
+         "count": 66,
+         "rate": 0.4204
+        },
+        "10": {
+         "count": 80,
+         "rate": 0.5096
+        },
+        "20": {
+         "count": 106,
+         "rate": 0.6752
+        }
+       },
+       "mrr_candidates": 0.3291,
+       "any_in_topk": {
+        "count": 99,
+        "rate": 0.6306
+       },
+       "any_in_context": {
+        "count": 89,
+        "rate": 0.5669
+       },
+       "all_in_context": {
+        "count": 54,
+        "rate": 0.3439
+       },
+       "any_reaches_prompt": {
+        "count": 89,
+        "rate": 0.5669
+       },
+       "retrieved_but_not_in_context": {
+        "count": 31,
+        "rate": 0.1975
+       },
+       "model_would_be_called": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 157
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 5915,
+        "total_chars_mean": 5721.2,
+        "near_full_soft_budget": {
+         "count": 130,
+         "rate": 0.828
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7551,
+        "sources_median": 5
+       }
+      },
+      "targets_section_level": {
+       "targets": 245,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 97,
+        "candidate_unattributed": 0,
+        "dropped": 47,
+        "in_context_model_not_called": 0,
+        "in_prompt": 100
+       },
+       "drop_reasons": {
+        "max_results": 5,
+        "soft_budget": 25,
+        "filtered": 22
+       }
+      },
+      "targets_provision_level": {
+       "targets": 245,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 101,
+        "candidate_unattributed": 0,
+        "dropped": 48,
+        "in_context_model_not_called": 0,
+        "in_prompt": 95
+       },
+       "drop_reasons": {
+        "max_results": 5,
+        "soft_budget": 26,
+        "filtered": 22
+       }
+      }
+     },
+     "plain_language/retrieval_v2": {
+      "section_level": {
+       "n": 22,
+       "key_status": {
+        "developer_keyed_not_sme": 22
+       },
+       "any_expected_exists_in_db": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 16,
+        "rate": 0.7273
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "3": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "5": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "8": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "10": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "20": {
+         "count": 14,
+         "rate": 0.6364
+        }
+       },
+       "mrr_candidates": 0.4872,
+       "any_in_topk": {
+        "count": 14,
+        "rate": 0.6364
+       },
+       "any_in_context": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "all_in_context": {
+        "count": 10,
+        "rate": 0.4545
+       },
+       "any_reaches_prompt": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "retrieved_but_not_in_context": {
+        "count": 4,
+        "rate": 0.1818
+       },
+       "model_would_be_called": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 22
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 5806.5,
+        "total_chars_mean": 5080.1,
+        "near_full_soft_budget": {
+         "count": 15,
+         "rate": 0.6818
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.655,
+        "sources_median": 6.0
+       }
+      },
+      "provision_level": {
+       "n": 22,
+       "key_status": {
+        "developer_keyed_not_sme": 22
+       },
+       "any_expected_exists_in_db": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 16,
+        "rate": 0.7273
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "3": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "5": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "8": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "10": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "20": {
+         "count": 14,
+         "rate": 0.6364
+        }
+       },
+       "mrr_candidates": 0.4872,
+       "any_in_topk": {
+        "count": 14,
+        "rate": 0.6364
+       },
+       "any_in_context": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "all_in_context": {
+        "count": 10,
+        "rate": 0.4545
+       },
+       "any_reaches_prompt": {
+        "count": 12,
+        "rate": 0.5455
+       },
+       "retrieved_but_not_in_context": {
+        "count": 4,
+        "rate": 0.1818
+       },
+       "model_would_be_called": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 22
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 5806.5,
+        "total_chars_mean": 5080.1,
+        "near_full_soft_budget": {
+         "count": 15,
+         "rate": 0.6818
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.655,
+        "sources_median": 6.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 28,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 9,
+        "candidate_unattributed": 0,
+        "dropped": 6,
+        "in_context_model_not_called": 0,
+        "in_prompt": 13
+       },
+       "drop_reasons": {
+        "max_results": 1,
+        "soft_budget": 3,
+        "filtered": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 28,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 9,
+        "candidate_unattributed": 0,
+        "dropped": 6,
+        "in_context_model_not_called": 0,
+        "in_prompt": 13
+       },
+       "drop_reasons": {
+        "max_results": 1,
+        "soft_budget": 3,
+        "filtered": 2
+       }
+      }
+     },
+     "plain_language/benchmark_rev02": {
+      "section_level": {
+       "n": 135,
+       "key_status": {
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 105,
+        "rate": 0.7778
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 32,
+         "rate": 0.237
+        },
+        "3": {
+         "count": 41,
+         "rate": 0.3037
+        },
+        "5": {
+         "count": 49,
+         "rate": 0.363
+        },
+        "8": {
+         "count": 56,
+         "rate": 0.4148
+        },
+        "10": {
+         "count": 69,
+         "rate": 0.5111
+        },
+        "20": {
+         "count": 94,
+         "rate": 0.6963
+        }
+       },
+       "mrr_candidates": 0.3115,
+       "any_in_topk": {
+        "count": 86,
+        "rate": 0.637
+       },
+       "any_in_context": {
+        "count": 80,
+        "rate": 0.5926
+       },
+       "all_in_context": {
+        "count": 47,
+        "rate": 0.3481
+       },
+       "any_reaches_prompt": {
+        "count": 80,
+        "rate": 0.5926
+       },
+       "retrieved_but_not_in_context": {
+        "count": 25,
+        "rate": 0.1852
+       },
+       "model_would_be_called": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 135
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 5937,
+        "total_chars_mean": 5825.7,
+        "near_full_soft_budget": {
+         "count": 115,
+         "rate": 0.8519
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7693,
+        "sources_median": 5
+       }
+      },
+      "provision_level": {
+       "n": 135,
+       "key_status": {
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 104,
+        "rate": 0.7704
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 31,
+         "rate": 0.2296
+        },
+        "3": {
+         "count": 40,
+         "rate": 0.2963
+        },
+        "5": {
+         "count": 48,
+         "rate": 0.3556
+        },
+        "8": {
+         "count": 54,
+         "rate": 0.4
+        },
+        "10": {
+         "count": 67,
+         "rate": 0.4963
+        },
+        "20": {
+         "count": 92,
+         "rate": 0.6815
+        }
+       },
+       "mrr_candidates": 0.3033,
+       "any_in_topk": {
+        "count": 85,
+        "rate": 0.6296
+       },
+       "any_in_context": {
+        "count": 77,
+        "rate": 0.5704
+       },
+       "all_in_context": {
+        "count": 44,
+        "rate": 0.3259
+       },
+       "any_reaches_prompt": {
+        "count": 77,
+        "rate": 0.5704
+       },
+       "retrieved_but_not_in_context": {
+        "count": 27,
+        "rate": 0.2
+       },
+       "model_would_be_called": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 135
+       },
+       "context_budget": {
+        "soft_budget_chars": 6000,
+        "total_chars_median": 5937,
+        "total_chars_mean": 5825.7,
+        "near_full_soft_budget": {
+         "count": 115,
+         "rate": 0.8519
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.7693,
+        "sources_median": 5
+       }
+      },
+      "targets_section_level": {
+       "targets": 217,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 88,
+        "candidate_unattributed": 0,
+        "dropped": 41,
+        "in_context_model_not_called": 0,
+        "in_prompt": 87
+       },
+       "drop_reasons": {
+        "max_results": 4,
+        "filtered": 20,
+        "soft_budget": 22
+       }
+      },
+      "targets_provision_level": {
+       "targets": 217,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 92,
+        "candidate_unattributed": 0,
+        "dropped": 42,
+        "in_context_model_not_called": 0,
+        "in_prompt": 82
+       },
+       "drop_reasons": {
+        "max_results": 4,
+        "filtered": 20,
+        "soft_budget": 23
+       }
+      }
+     }
+    },
+    "negative_controls": {
+     "rows": [
+      {
+       "id": "retrieval-008",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30(b)(1)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-035",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-040",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 314.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-041",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-042",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 11.75",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-043",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 1400",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-044",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-045",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "no_evidence"
+      },
+      {
+       "id": "retrieval-046",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-047",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-048",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.50",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-049",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 201.327(z)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 1,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-050",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "potentially_related",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "value_not_established"
+      },
+      {
+       "id": "retrieval-051",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 9,
+       "exact_cfr_in_topk_excluding_parent_rows": 9,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-052",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-001",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 111.900",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-002",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 117.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-003",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 9,
+       "exact_cfr_in_topk_excluding_parent_rows": 9,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-004",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 211",
+         "exists": true,
+         "live_rows": 290
+        }
+       ],
+       "exact_cfr_in_topk": 64,
+       "exact_cfr_in_topk_excluding_parent_rows": 64,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-005",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.20",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-006",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-007",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 111",
+         "exists": true,
+         "live_rows": 594
+        }
+       ],
+       "exact_cfr_in_topk": 88,
+       "exact_cfr_in_topk_excluding_parent_rows": 88,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-008",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-009",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "potentially_related",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "value_not_established"
+      },
+      {
+       "id": "NC-010",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 11",
+         "exists": true,
+         "live_rows": 70
+        }
+       ],
+       "exact_cfr_in_topk": 14,
+       "exact_cfr_in_topk_excluding_parent_rows": 14,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-011",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-012",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-013",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 1250",
+         "exists": true,
+         "live_rows": 141
+        }
+       ],
+       "exact_cfr_in_topk": 48,
+       "exact_cfr_in_topk_excluding_parent_rows": 48,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-014",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 101.9(k)(5)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 1,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-015",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-016",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30(j)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-017",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.15",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-018",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 830",
+         "exists": true,
+         "live_rows": 156
+        }
+       ],
+       "exact_cfr_in_topk": 20,
+       "exact_cfr_in_topk_excluding_parent_rows": 20,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-019",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-020",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 4",
+         "exists": true,
+         "live_rows": 120
+        }
+       ],
+       "exact_cfr_in_topk": 14,
+       "exact_cfr_in_topk_excluding_parent_rows": 14,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-021",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 15,
+       "exact_cfr_in_topk_excluding_parent_rows": 15,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-022",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      }
+     ],
+     "retrieval_v2_rule_passed": 13,
+     "retrieval_v2_rule_passed_excluding_parent_rows": 14,
+     "retrieval_v2_total": 15,
+     "benchmark_gate_blocked": 8,
+     "benchmark_model_would_be_called": 14,
+     "benchmark_total": 22
+    }
+   },
+   "pass": false
+  },
+  "K3_guidance_removed": {
+   "removed": [],
+   "pass": true
+  },
+  "K4_superset_same_order": {
+   "violations": [],
+   "pass": true
+  },
+  "K5_cost": {
+   "budget_chars_growth_median": 2205.5,
+   "max": 3302,
+   "est_added_prefill_s_max": 1.78,
+   "pass": false
+  },
+  "added_sources_100": {
+   "ecfr": 15,
+   "guidance": 91
+  },
+  "eligible": false
+ },
+ "H3600": {
+  "K1_required": {
+   "gained": [
+    "COS-71.15-Q2 21 CFR 71.15(b)"
+   ],
+   "lost": [],
+   "pass": true
+  },
+  "K2_352": {
+   "targets_gained": [
+    [
+     "retrieval-025",
+     "21 CFR 820.10"
+    ],
+    [
+     "S-019",
+     "21 CFR 111.205"
+    ],
+    [
+     "L-004",
+     "21 CFR 101.5"
+    ],
+    [
+     "L-013",
+     "21 CFR 101.36"
+    ],
+    [
+     "L-016",
+     "21 CFR 101.11"
+    ],
+    [
+     "V-003",
+     "21 CFR 1.505"
+    ],
+    [
+     "P-007",
+     "21 CFR part 860"
+    ],
+    [
+     "R-002",
+     "21 CFR 803.50"
+    ],
+    [
+     "K-009",
+     "21 CFR 312.23"
+    ],
+    [
+     "Y-004",
+     "21 CFR 108.35"
+    ],
+    [
+     "Y-005",
+     "21 CFR 113.81"
+    ],
+    [
+     "Y-007",
+     "21 CFR 120.8"
+    ],
+    [
+     "Z-004",
+     "21 CFR part 1004"
+    ],
+    [
+     "X-004",
+     "21 CFR 4.100"
+    ],
+    [
+     "PB-006",
+     "21 CFR part 820"
+    ]
+   ],
+   "targets_lost": [
+    [
+     "retrieval-026",
+     "21 CFR 50.25"
+    ],
+    [
+     "G-005",
+     "21 CFR 201.62"
+    ],
+    [
+     "K-001",
+     "21 CFR 50.25"
+    ],
+    [
+     "X-001",
+     "21 CFR 4.1"
+    ]
+   ],
+   "summary": {
+    "dataset_rows": 352,
+    "errors": [],
+    "rows_by_kind": {
+     "section_scored": 276,
+     "negative_control": 37,
+     "part_only_key": 12,
+     "no_cfr_key": 19,
+     "docket_targets": 14
+    },
+    "sme_verified_rows": 0,
+    "metrics": {
+     "all": {
+      "section_level": {
+       "n": 276,
+       "key_status": {
+        "developer_keyed_not_sme": 29,
+        "draft_unverified": 247
+       },
+       "any_expected_exists_in_db": {
+        "count": 275,
+        "rate": 0.9964
+       },
+       "any_in_candidates": {
+        "count": 234,
+        "rate": 0.8478
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 107,
+         "rate": 0.3877
+        },
+        "3": {
+         "count": 123,
+         "rate": 0.4457
+        },
+        "5": {
+         "count": 143,
+         "rate": 0.5181
+        },
+        "8": {
+         "count": 159,
+         "rate": 0.5761
+        },
+        "10": {
+         "count": 178,
+         "rate": 0.6449
+        },
+        "20": {
+         "count": 217,
+         "rate": 0.7862
+        }
+       },
+       "mrr_candidates": 0.4579,
+       "any_in_topk": {
+        "count": 211,
+        "rate": 0.7645
+       },
+       "any_in_context": {
+        "count": 205,
+        "rate": 0.7428
+       },
+       "all_in_context": {
+        "count": 154,
+        "rate": 0.558
+       },
+       "any_reaches_prompt": {
+        "count": 205,
+        "rate": 0.7428
+       },
+       "retrieved_but_not_in_context": {
+        "count": 29,
+        "rate": 0.1051
+       },
+       "model_would_be_called": {
+        "count": 267,
+        "rate": 0.9674
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "UNKNOWN": 157,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3600.0,
+        "total_chars_mean": 4434.3,
+        "near_full_soft_budget": {
+         "count": 251,
+         "rate": 0.9094
+        },
+        "over_soft_budget": {
+         "count": 100,
+         "rate": 0.3623
+        },
+        "guidance_share_of_context_chars": 0.3159,
+        "sources_median": 7.0
+       }
+      },
+      "provision_level": {
+       "n": 276,
+       "key_status": {
+        "developer_keyed_not_sme": 29,
+        "draft_unverified": 247
+       },
+       "any_expected_exists_in_db": {
+        "count": 275,
+        "rate": 0.9964
+       },
+       "any_in_candidates": {
+        "count": 209,
+        "rate": 0.7572
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 92,
+         "rate": 0.3333
+        },
+        "3": {
+         "count": 112,
+         "rate": 0.4058
+        },
+        "5": {
+         "count": 131,
+         "rate": 0.4746
+        },
+        "8": {
+         "count": 141,
+         "rate": 0.5109
+        },
+        "10": {
+         "count": 158,
+         "rate": 0.5725
+        },
+        "20": {
+         "count": 191,
+         "rate": 0.692
+        }
+       },
+       "mrr_candidates": 0.4043,
+       "any_in_topk": {
+        "count": 188,
+        "rate": 0.6812
+       },
+       "any_in_context": {
+        "count": 182,
+        "rate": 0.6594
+       },
+       "all_in_context": {
+        "count": 129,
+        "rate": 0.4674
+       },
+       "any_reaches_prompt": {
+        "count": 182,
+        "rate": 0.6594
+       },
+       "retrieved_but_not_in_context": {
+        "count": 27,
+        "rate": 0.0978
+       },
+       "model_would_be_called": {
+        "count": 267,
+        "rate": 0.9674
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "UNKNOWN": 157,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3600.0,
+        "total_chars_mean": 4434.3,
+        "near_full_soft_budget": {
+         "count": 251,
+         "rate": 0.9094
+        },
+        "over_soft_budget": {
+         "count": 100,
+         "rate": 0.3623
+        },
+        "guidance_share_of_context_chars": 0.3159,
+        "sources_median": 7.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 430,
+       "stages": {
+        "corpus_gap": 13,
+        "not_retrieved": 104,
+        "candidate_unattributed": 0,
+        "dropped": 62,
+        "in_context_model_not_called": 0,
+        "in_prompt": 251
+       },
+       "drop_reasons": {
+        "max_results": 6,
+        "soft_budget": 23,
+        "filtered": 20,
+        "hard_ceiling_count": 9,
+        "hard_ceiling_chars": 4,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 430,
+       "stages": {
+        "corpus_gap": 13,
+        "not_retrieved": 140,
+        "candidate_unattributed": 0,
+        "dropped": 59,
+        "in_context_model_not_called": 0,
+        "in_prompt": 218
+       },
+       "drop_reasons": {
+        "max_results": 6,
+        "soft_budget": 21,
+        "filtered": 19,
+        "hard_ceiling_count": 9,
+        "hard_ceiling_chars": 4,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "identifier": {
+      "section_level": {
+       "n": 119,
+       "key_status": {
+        "developer_keyed_not_sme": 7,
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 118,
+        "rate": 0.9916
+       },
+       "any_in_candidates": {
+        "count": 113,
+        "rate": 0.9496
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 65,
+         "rate": 0.5462
+        },
+        "3": {
+         "count": 72,
+         "rate": 0.605
+        },
+        "5": {
+         "count": 82,
+         "rate": 0.6891
+        },
+        "8": {
+         "count": 91,
+         "rate": 0.7647
+        },
+        "10": {
+         "count": 96,
+         "rate": 0.8067
+        },
+        "20": {
+         "count": 109,
+         "rate": 0.916
+        }
+       },
+       "mrr_candidates": 0.6186,
+       "any_in_topk": {
+        "count": 111,
+        "rate": 0.9328
+       },
+       "any_in_context": {
+        "count": 108,
+        "rate": 0.9076
+       },
+       "all_in_context": {
+        "count": 95,
+        "rate": 0.7983
+       },
+       "any_reaches_prompt": {
+        "count": 108,
+        "rate": 0.9076
+       },
+       "retrieved_but_not_in_context": {
+        "count": 5,
+        "rate": 0.042
+       },
+       "model_would_be_called": {
+        "count": 110,
+        "rate": 0.9244
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 5497,
+        "total_chars_mean": 5731.5,
+        "near_full_soft_budget": {
+         "count": 109,
+         "rate": 0.916
+        },
+        "over_soft_budget": {
+         "count": 100,
+         "rate": 0.8403
+        },
+        "guidance_share_of_context_chars": 0.0403,
+        "sources_median": 21
+       }
+      },
+      "provision_level": {
+       "n": 119,
+       "key_status": {
+        "developer_keyed_not_sme": 7,
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 118,
+        "rate": 0.9916
+       },
+       "any_in_candidates": {
+        "count": 89,
+        "rate": 0.7479
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 51,
+         "rate": 0.4286
+        },
+        "3": {
+         "count": 62,
+         "rate": 0.521
+        },
+        "5": {
+         "count": 71,
+         "rate": 0.5966
+        },
+        "8": {
+         "count": 75,
+         "rate": 0.6303
+        },
+        "10": {
+         "count": 78,
+         "rate": 0.6555
+        },
+        "20": {
+         "count": 85,
+         "rate": 0.7143
+        }
+       },
+       "mrr_candidates": 0.5036,
+       "any_in_topk": {
+        "count": 89,
+        "rate": 0.7479
+       },
+       "any_in_context": {
+        "count": 88,
+        "rate": 0.7395
+       },
+       "all_in_context": {
+        "count": 73,
+        "rate": 0.6134
+       },
+       "any_reaches_prompt": {
+        "count": 88,
+        "rate": 0.7395
+       },
+       "retrieved_but_not_in_context": {
+        "count": 1,
+        "rate": 0.0084
+       },
+       "model_would_be_called": {
+        "count": 110,
+        "rate": 0.9244
+       },
+       "gate_states": {
+        "ANSWERABLE": 109,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 5497,
+        "total_chars_mean": 5731.5,
+        "near_full_soft_budget": {
+         "count": 109,
+         "rate": 0.916
+        },
+        "over_soft_budget": {
+         "count": 100,
+         "rate": 0.8403
+        },
+        "guidance_share_of_context_chars": 0.0403,
+        "sources_median": 21
+       }
+      },
+      "targets_section_level": {
+       "targets": 185,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 7,
+        "candidate_unattributed": 0,
+        "dropped": 19,
+        "in_context_model_not_called": 0,
+        "in_prompt": 147
+       },
+       "drop_reasons": {
+        "hard_ceiling_count": 9,
+        "hard_ceiling_chars": 4,
+        "soft_budget": 3,
+        "filtered": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 185,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 39,
+        "candidate_unattributed": 0,
+        "dropped": 15,
+        "in_context_model_not_called": 0,
+        "in_prompt": 119
+       },
+       "drop_reasons": {
+        "hard_ceiling_count": 9,
+        "hard_ceiling_chars": 4,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "identifier/retrieval_v2": {
+      "section_level": {
+       "n": 7,
+       "key_status": {
+        "developer_keyed_not_sme": 7
+       },
+       "any_expected_exists_in_db": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "3": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "5": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "8": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "10": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "20": {
+         "count": 7,
+         "rate": 1.0
+        }
+       },
+       "mrr_candidates": 1.0,
+       "any_in_topk": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "all_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_reaches_prompt": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "retrieved_but_not_in_context": {
+        "count": 0,
+        "rate": 0.0
+       },
+       "model_would_be_called": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "ANSWERABLE": 7
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3133,
+        "total_chars_mean": 3358.0,
+        "near_full_soft_budget": {
+         "count": 3,
+         "rate": 0.4286
+        },
+        "over_soft_budget": {
+         "count": 2,
+         "rate": 0.2857
+        },
+        "guidance_share_of_context_chars": 0.1044,
+        "sources_median": 12
+       }
+      },
+      "provision_level": {
+       "n": 7,
+       "key_status": {
+        "developer_keyed_not_sme": 7
+       },
+       "any_expected_exists_in_db": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "3": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "5": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "8": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "10": {
+         "count": 7,
+         "rate": 1.0
+        },
+        "20": {
+         "count": 7,
+         "rate": 1.0
+        }
+       },
+       "mrr_candidates": 1.0,
+       "any_in_topk": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "all_in_context": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "any_reaches_prompt": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "retrieved_but_not_in_context": {
+        "count": 0,
+        "rate": 0.0
+       },
+       "model_would_be_called": {
+        "count": 7,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "ANSWERABLE": 7
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3133,
+        "total_chars_mean": 3358.0,
+        "near_full_soft_budget": {
+         "count": 3,
+         "rate": 0.4286
+        },
+        "over_soft_budget": {
+         "count": 2,
+         "rate": 0.2857
+        },
+        "guidance_share_of_context_chars": 0.1044,
+        "sources_median": 12
+       }
+      },
+      "targets_section_level": {
+       "targets": 7,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 0,
+        "candidate_unattributed": 0,
+        "dropped": 0,
+        "in_context_model_not_called": 0,
+        "in_prompt": 7
+       },
+       "drop_reasons": {}
+      },
+      "targets_provision_level": {
+       "targets": 7,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 0,
+        "candidate_unattributed": 0,
+        "dropped": 0,
+        "in_context_model_not_called": 0,
+        "in_prompt": 7
+       },
+       "drop_reasons": {}
+      }
+     },
+     "identifier/benchmark_rev02": {
+      "section_level": {
+       "n": 112,
+       "key_status": {
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 111,
+        "rate": 0.9911
+       },
+       "any_in_candidates": {
+        "count": 106,
+        "rate": 0.9464
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 58,
+         "rate": 0.5179
+        },
+        "3": {
+         "count": 65,
+         "rate": 0.5804
+        },
+        "5": {
+         "count": 75,
+         "rate": 0.6696
+        },
+        "8": {
+         "count": 84,
+         "rate": 0.75
+        },
+        "10": {
+         "count": 89,
+         "rate": 0.7946
+        },
+        "20": {
+         "count": 102,
+         "rate": 0.9107
+        }
+       },
+       "mrr_candidates": 0.5947,
+       "any_in_topk": {
+        "count": 104,
+        "rate": 0.9286
+       },
+       "any_in_context": {
+        "count": 101,
+        "rate": 0.9018
+       },
+       "all_in_context": {
+        "count": 88,
+        "rate": 0.7857
+       },
+       "any_reaches_prompt": {
+        "count": 101,
+        "rate": 0.9018
+       },
+       "retrieved_but_not_in_context": {
+        "count": 5,
+        "rate": 0.0446
+       },
+       "model_would_be_called": {
+        "count": 103,
+        "rate": 0.9196
+       },
+       "gate_states": {
+        "ANSWERABLE": 102,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 5497.0,
+        "total_chars_mean": 5879.9,
+        "near_full_soft_budget": {
+         "count": 106,
+         "rate": 0.9464
+        },
+        "over_soft_budget": {
+         "count": 98,
+         "rate": 0.875
+        },
+        "guidance_share_of_context_chars": 0.038,
+        "sources_median": 22.0
+       }
+      },
+      "provision_level": {
+       "n": 112,
+       "key_status": {
+        "draft_unverified": 112
+       },
+       "any_expected_exists_in_db": {
+        "count": 111,
+        "rate": 0.9911
+       },
+       "any_in_candidates": {
+        "count": 82,
+        "rate": 0.7321
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 44,
+         "rate": 0.3929
+        },
+        "3": {
+         "count": 55,
+         "rate": 0.4911
+        },
+        "5": {
+         "count": 64,
+         "rate": 0.5714
+        },
+        "8": {
+         "count": 68,
+         "rate": 0.6071
+        },
+        "10": {
+         "count": 71,
+         "rate": 0.6339
+        },
+        "20": {
+         "count": 78,
+         "rate": 0.6964
+        }
+       },
+       "mrr_candidates": 0.4726,
+       "any_in_topk": {
+        "count": 82,
+        "rate": 0.7321
+       },
+       "any_in_context": {
+        "count": 81,
+        "rate": 0.7232
+       },
+       "all_in_context": {
+        "count": 66,
+        "rate": 0.5893
+       },
+       "any_reaches_prompt": {
+        "count": 81,
+        "rate": 0.7232
+       },
+       "retrieved_but_not_in_context": {
+        "count": 1,
+        "rate": 0.0089
+       },
+       "model_would_be_called": {
+        "count": 103,
+        "rate": 0.9196
+       },
+       "gate_states": {
+        "ANSWERABLE": 102,
+        "PARTIALLY_ANSWERABLE": 1,
+        "INSUFFICIENT_EVIDENCE": 9
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 5497.0,
+        "total_chars_mean": 5879.9,
+        "near_full_soft_budget": {
+         "count": 106,
+         "rate": 0.9464
+        },
+        "over_soft_budget": {
+         "count": 98,
+         "rate": 0.875
+        },
+        "guidance_share_of_context_chars": 0.038,
+        "sources_median": 22.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 178,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 7,
+        "candidate_unattributed": 0,
+        "dropped": 19,
+        "in_context_model_not_called": 0,
+        "in_prompt": 140
+       },
+       "drop_reasons": {
+        "hard_ceiling_count": 9,
+        "hard_ceiling_chars": 4,
+        "soft_budget": 3,
+        "filtered": 1,
+        "consolidated_reserved": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 178,
+       "stages": {
+        "corpus_gap": 12,
+        "not_retrieved": 39,
+        "candidate_unattributed": 0,
+        "dropped": 15,
+        "in_context_model_not_called": 0,
+        "in_prompt": 112
+       },
+       "drop_reasons": {
+        "hard_ceiling_count": 9,
+        "hard_ceiling_chars": 4,
+        "consolidated_reserved": 2
+       }
+      }
+     },
+     "plain_language": {
+      "section_level": {
+       "n": 157,
+       "key_status": {
+        "developer_keyed_not_sme": 22,
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 121,
+        "rate": 0.7707
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 42,
+         "rate": 0.2675
+        },
+        "3": {
+         "count": 51,
+         "rate": 0.3248
+        },
+        "5": {
+         "count": 61,
+         "rate": 0.3885
+        },
+        "8": {
+         "count": 68,
+         "rate": 0.4331
+        },
+        "10": {
+         "count": 82,
+         "rate": 0.5223
+        },
+        "20": {
+         "count": 108,
+         "rate": 0.6879
+        }
+       },
+       "mrr_candidates": 0.3361,
+       "any_in_topk": {
+        "count": 100,
+        "rate": 0.6369
+       },
+       "any_in_context": {
+        "count": 97,
+        "rate": 0.6178
+       },
+       "all_in_context": {
+        "count": 59,
+        "rate": 0.3758
+       },
+       "any_reaches_prompt": {
+        "count": 97,
+        "rate": 0.6178
+       },
+       "retrieved_but_not_in_context": {
+        "count": 24,
+        "rate": 0.1529
+       },
+       "model_would_be_called": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 157
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3600,
+        "total_chars_mean": 3451.1,
+        "near_full_soft_budget": {
+         "count": 142,
+         "rate": 0.9045
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.6629,
+        "sources_median": 5
+       }
+      },
+      "provision_level": {
+       "n": 157,
+       "key_status": {
+        "developer_keyed_not_sme": 22,
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 120,
+        "rate": 0.7643
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 41,
+         "rate": 0.2611
+        },
+        "3": {
+         "count": 50,
+         "rate": 0.3185
+        },
+        "5": {
+         "count": 60,
+         "rate": 0.3822
+        },
+        "8": {
+         "count": 66,
+         "rate": 0.4204
+        },
+        "10": {
+         "count": 80,
+         "rate": 0.5096
+        },
+        "20": {
+         "count": 106,
+         "rate": 0.6752
+        }
+       },
+       "mrr_candidates": 0.3291,
+       "any_in_topk": {
+        "count": 99,
+        "rate": 0.6306
+       },
+       "any_in_context": {
+        "count": 94,
+        "rate": 0.5987
+       },
+       "all_in_context": {
+        "count": 56,
+        "rate": 0.3567
+       },
+       "any_reaches_prompt": {
+        "count": 94,
+        "rate": 0.5987
+       },
+       "retrieved_but_not_in_context": {
+        "count": 26,
+        "rate": 0.1656
+       },
+       "model_would_be_called": {
+        "count": 157,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 157
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3600,
+        "total_chars_mean": 3451.1,
+        "near_full_soft_budget": {
+         "count": 142,
+         "rate": 0.9045
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.6629,
+        "sources_median": 5
+       }
+      },
+      "targets_section_level": {
+       "targets": 245,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 97,
+        "candidate_unattributed": 0,
+        "dropped": 43,
+        "in_context_model_not_called": 0,
+        "in_prompt": 104
+       },
+       "drop_reasons": {
+        "max_results": 6,
+        "soft_budget": 20,
+        "filtered": 19
+       }
+      },
+      "targets_provision_level": {
+       "targets": 245,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 101,
+        "candidate_unattributed": 0,
+        "dropped": 44,
+        "in_context_model_not_called": 0,
+        "in_prompt": 99
+       },
+       "drop_reasons": {
+        "max_results": 6,
+        "soft_budget": 21,
+        "filtered": 19
+       }
+      }
+     },
+     "plain_language/retrieval_v2": {
+      "section_level": {
+       "n": 22,
+       "key_status": {
+        "developer_keyed_not_sme": 22
+       },
+       "any_expected_exists_in_db": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 16,
+        "rate": 0.7273
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "3": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "5": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "8": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "10": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "20": {
+         "count": 14,
+         "rate": 0.6364
+        }
+       },
+       "mrr_candidates": 0.4872,
+       "any_in_topk": {
+        "count": 14,
+        "rate": 0.6364
+       },
+       "any_in_context": {
+        "count": 13,
+        "rate": 0.5909
+       },
+       "all_in_context": {
+        "count": 10,
+        "rate": 0.4545
+       },
+       "any_reaches_prompt": {
+        "count": 13,
+        "rate": 0.5909
+       },
+       "retrieved_but_not_in_context": {
+        "count": 3,
+        "rate": 0.1364
+       },
+       "model_would_be_called": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 22
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3599.0,
+        "total_chars_mean": 2956.1,
+        "near_full_soft_budget": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.5915,
+        "sources_median": 6.0
+       }
+      },
+      "provision_level": {
+       "n": 22,
+       "key_status": {
+        "developer_keyed_not_sme": 22
+       },
+       "any_expected_exists_in_db": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 16,
+        "rate": 0.7273
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "3": {
+         "count": 10,
+         "rate": 0.4545
+        },
+        "5": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "8": {
+         "count": 12,
+         "rate": 0.5455
+        },
+        "10": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "20": {
+         "count": 14,
+         "rate": 0.6364
+        }
+       },
+       "mrr_candidates": 0.4872,
+       "any_in_topk": {
+        "count": 14,
+        "rate": 0.6364
+       },
+       "any_in_context": {
+        "count": 13,
+        "rate": 0.5909
+       },
+       "all_in_context": {
+        "count": 10,
+        "rate": 0.4545
+       },
+       "any_reaches_prompt": {
+        "count": 13,
+        "rate": 0.5909
+       },
+       "retrieved_but_not_in_context": {
+        "count": 3,
+        "rate": 0.1364
+       },
+       "model_would_be_called": {
+        "count": 22,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 22
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3599.0,
+        "total_chars_mean": 2956.1,
+        "near_full_soft_budget": {
+         "count": 13,
+         "rate": 0.5909
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.5915,
+        "sources_median": 6.0
+       }
+      },
+      "targets_section_level": {
+       "targets": 28,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 9,
+        "candidate_unattributed": 0,
+        "dropped": 6,
+        "in_context_model_not_called": 0,
+        "in_prompt": 13
+       },
+       "drop_reasons": {
+        "max_results": 1,
+        "soft_budget": 3,
+        "filtered": 2
+       }
+      },
+      "targets_provision_level": {
+       "targets": 28,
+       "stages": {
+        "corpus_gap": 0,
+        "not_retrieved": 9,
+        "candidate_unattributed": 0,
+        "dropped": 6,
+        "in_context_model_not_called": 0,
+        "in_prompt": 13
+       },
+       "drop_reasons": {
+        "max_results": 1,
+        "soft_budget": 3,
+        "filtered": 2
+       }
+      }
+     },
+     "plain_language/benchmark_rev02": {
+      "section_level": {
+       "n": 135,
+       "key_status": {
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 105,
+        "rate": 0.7778
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 32,
+         "rate": 0.237
+        },
+        "3": {
+         "count": 41,
+         "rate": 0.3037
+        },
+        "5": {
+         "count": 49,
+         "rate": 0.363
+        },
+        "8": {
+         "count": 56,
+         "rate": 0.4148
+        },
+        "10": {
+         "count": 69,
+         "rate": 0.5111
+        },
+        "20": {
+         "count": 94,
+         "rate": 0.6963
+        }
+       },
+       "mrr_candidates": 0.3115,
+       "any_in_topk": {
+        "count": 86,
+        "rate": 0.637
+       },
+       "any_in_context": {
+        "count": 84,
+        "rate": 0.6222
+       },
+       "all_in_context": {
+        "count": 49,
+        "rate": 0.363
+       },
+       "any_reaches_prompt": {
+        "count": 84,
+        "rate": 0.6222
+       },
+       "retrieved_but_not_in_context": {
+        "count": 21,
+        "rate": 0.1556
+       },
+       "model_would_be_called": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 135
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3600,
+        "total_chars_mean": 3531.7,
+        "near_full_soft_budget": {
+         "count": 129,
+         "rate": 0.9556
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.6726,
+        "sources_median": 5
+       }
+      },
+      "provision_level": {
+       "n": 135,
+       "key_status": {
+        "draft_unverified": 135
+       },
+       "any_expected_exists_in_db": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "any_in_candidates": {
+        "count": 104,
+        "rate": 0.7704
+       },
+       "recall_at_candidate_rank": {
+        "1": {
+         "count": 31,
+         "rate": 0.2296
+        },
+        "3": {
+         "count": 40,
+         "rate": 0.2963
+        },
+        "5": {
+         "count": 48,
+         "rate": 0.3556
+        },
+        "8": {
+         "count": 54,
+         "rate": 0.4
+        },
+        "10": {
+         "count": 67,
+         "rate": 0.4963
+        },
+        "20": {
+         "count": 92,
+         "rate": 0.6815
+        }
+       },
+       "mrr_candidates": 0.3033,
+       "any_in_topk": {
+        "count": 85,
+        "rate": 0.6296
+       },
+       "any_in_context": {
+        "count": 81,
+        "rate": 0.6
+       },
+       "all_in_context": {
+        "count": 46,
+        "rate": 0.3407
+       },
+       "any_reaches_prompt": {
+        "count": 81,
+        "rate": 0.6
+       },
+       "retrieved_but_not_in_context": {
+        "count": 23,
+        "rate": 0.1704
+       },
+       "model_would_be_called": {
+        "count": 135,
+        "rate": 1.0
+       },
+       "gate_states": {
+        "UNKNOWN": 135
+       },
+       "context_budget": {
+        "soft_budget_chars": 3600,
+        "total_chars_median": 3600,
+        "total_chars_mean": 3531.7,
+        "near_full_soft_budget": {
+         "count": 129,
+         "rate": 0.9556
+        },
+        "over_soft_budget": {
+         "count": 0,
+         "rate": 0.0
+        },
+        "guidance_share_of_context_chars": 0.6726,
+        "sources_median": 5
+       }
+      },
+      "targets_section_level": {
+       "targets": 217,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 88,
+        "candidate_unattributed": 0,
+        "dropped": 37,
+        "in_context_model_not_called": 0,
+        "in_prompt": 91
+       },
+       "drop_reasons": {
+        "max_results": 5,
+        "filtered": 17,
+        "soft_budget": 17
+       }
+      },
+      "targets_provision_level": {
+       "targets": 217,
+       "stages": {
+        "corpus_gap": 1,
+        "not_retrieved": 92,
+        "candidate_unattributed": 0,
+        "dropped": 38,
+        "in_context_model_not_called": 0,
+        "in_prompt": 86
+       },
+       "drop_reasons": {
+        "max_results": 5,
+        "filtered": 17,
+        "soft_budget": 18
+       }
+      }
+     }
+    },
+    "negative_controls": {
+     "rows": [
+      {
+       "id": "retrieval-008",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30(b)(1)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-035",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-040",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 314.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-041",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-042",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 11.75",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-043",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 1400",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-044",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-045",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "no_evidence"
+      },
+      {
+       "id": "retrieval-046",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-047",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-048",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.50",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-049",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 201.327(z)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 1,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "retrieval-050",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "potentially_related",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "value_not_established"
+      },
+      {
+       "id": "retrieval-051",
+       "source": "retrieval_v2",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 9,
+       "exact_cfr_in_topk_excluding_parent_rows": 9,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "retrieval-052",
+       "source": "retrieval_v2",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-001",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 111.900",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-002",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 117.999",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-003",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 9,
+       "exact_cfr_in_topk_excluding_parent_rows": 9,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-004",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 211",
+         "exists": true,
+         "live_rows": 290
+        }
+       ],
+       "exact_cfr_in_topk": 64,
+       "exact_cfr_in_topk_excluding_parent_rows": 64,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-005",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.20",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-006",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-007",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 111",
+         "exists": true,
+         "live_rows": 594
+        }
+       ],
+       "exact_cfr_in_topk": 88,
+       "exact_cfr_in_topk_excluding_parent_rows": 88,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-008",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-009",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "potentially_related",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "value_not_established"
+      },
+      {
+       "id": "NC-010",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 11",
+         "exists": true,
+         "live_rows": 70
+        }
+       ],
+       "exact_cfr_in_topk": 14,
+       "exact_cfr_in_topk_excluding_parent_rows": 14,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-011",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-012",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-013",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 1250",
+         "exists": true,
+         "live_rows": 141
+        }
+       ],
+       "exact_cfr_in_topk": 48,
+       "exact_cfr_in_topk_excluding_parent_rows": 48,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-014",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 101.9(k)(5)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 1,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-015",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-016",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.30(j)",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-017",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR 820.15",
+         "exists": false,
+         "live_rows": 0
+        }
+       ],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "INSUFFICIENT_EVIDENCE",
+       "gate_blocked": true,
+       "scope": "in_scope",
+       "model_would_be_called": false,
+       "pre_generation_fallback": "provision_not_found"
+      },
+      {
+       "id": "NC-018",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 830",
+         "exists": true,
+         "live_rows": 156
+        }
+       ],
+       "exact_cfr_in_topk": 20,
+       "exact_cfr_in_topk_excluding_parent_rows": 20,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-019",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-020",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 4",
+         "exists": true,
+         "live_rows": 120
+        }
+       ],
+       "exact_cfr_in_topk": 14,
+       "exact_cfr_in_topk_excluding_parent_rows": 14,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-021",
+       "source": "benchmark_rev02",
+       "question_class": "identifier",
+       "named_identifiers": [
+        {
+         "target": "21 CFR part 820",
+         "exists": true,
+         "live_rows": 66
+        }
+       ],
+       "exact_cfr_in_topk": 15,
+       "exact_cfr_in_topk_excluding_parent_rows": 15,
+       "retrieval_eval_rule_passed": false,
+       "rule_passed_excluding_parent_rows": false,
+       "gate_state": "ANSWERABLE",
+       "gate_blocked": false,
+       "scope": "in_scope",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      },
+      {
+       "id": "NC-022",
+       "source": "benchmark_rev02",
+       "question_class": "plain_language",
+       "named_identifiers": [],
+       "exact_cfr_in_topk": 0,
+       "exact_cfr_in_topk_excluding_parent_rows": 0,
+       "retrieval_eval_rule_passed": true,
+       "rule_passed_excluding_parent_rows": true,
+       "gate_state": "UNKNOWN",
+       "gate_blocked": false,
+       "scope": "potentially_related",
+       "model_would_be_called": true,
+       "pre_generation_fallback": null
+      }
+     ],
+     "retrieval_v2_rule_passed": 13,
+     "retrieval_v2_rule_passed_excluding_parent_rows": 14,
+     "retrieval_v2_total": 15,
+     "benchmark_gate_blocked": 8,
+     "benchmark_model_would_be_called": 14,
+     "benchmark_total": 22
+    }
+   },
+   "pass": false
+  },
+  "K3_guidance_removed": {
+   "removed": [],
+   "pass": true
+  },
+  "K4_superset_same_order": {
+   "violations": [
+    "COS-71.6-Q1",
+    "COS-74.2052-Q1",
+    "COS-74.2340-Q1",
+    "COS-80.10-Q1",
+    "COS-80.31-Q1",
+    "COS-82.1307-Q1",
+    "COS-82.2050-Q1",
+    "COS-701.3-Q1",
+    "COS-701.13-Q3",
+    "COS-FDCA607-Q3",
+    "UC-COS-021"
+   ],
+   "pass": false
+  },
+  "K5_cost": {
+   "budget_chars_growth_median": 0.0,
+   "max": 1056,
+   "est_added_prefill_s_max": 0.57,
+   "pass": true
+  },
+  "added_sources_100": {
+   "ecfr": 61,
+   "guidance": 3
+  },
+  "eligible": false
+ }
+}

@@ -1,0 +1,910 @@
+{
+ "paragraph_counts": {
+  "B1": 22,
+  "OK": 17,
+  "C": 87,
+  "B2": 5,
+  "D1": 3,
+  "D2": 1,
+  "A": 39
+ },
+ "question_counts": {
+  "B1": 16,
+  "C": 39,
+  "B2": 3,
+  "D1": 3,
+  "D2": 1,
+  "A": 10
+ },
+ "total": 174,
+ "B1_without_lexeme": [
+  "COS-700.15-Q1 21 CFR 700.15(b)",
+  "COS-700.15-Q1 21 CFR 700.15(c)",
+  "COS-82.1206-Q1 21 CFR 70.3(v)"
+ ],
+ "B2": [
+  "COS-70.50-Q1 21 CFR 70.50(a)",
+  "COS-74.2602a-Q1 21 CFR 74.2602a(c)",
+  "COS-74.2602a-Q1 21 CFR 74.2602a(d)",
+  "COS-74.2602a-Q1 21 CFR 74.2602a(e)",
+  "COS-740.11-Q2 21 CFR 740.11(b)"
+ ],
+ "C_best_rank_per_question": {
+  "5-8": 11,
+  ">100": 8,
+  "21-100": 14,
+  "9-20": 6
+ },
+ "labels": {
+  "COS-70.19-Q2 21 CFR 70.19(i)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.19-Q2 21 CFR 70.19(j)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.19-Q2 21 CFR 70.19(p)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.19-Q2 21 CFR 70.19(q)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.19-Q2 21 CFR 70.19(r)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.3-Q1 21 CFR 70.3(f)": {
+   "class": "OK",
+   "section_rank": 6,
+   "lexeme": true
+  },
+  "COS-70.3-Q1 21 CFR 70.3(g)": {
+   "class": "C",
+   "section_rank": 6,
+   "lexeme": true
+  },
+  "COS-70.3-Q3 21 CFR 70.3(s)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.3-Q3 21 CFR 70.3(u)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.3-Q3 21 CFR 70.3(v)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-70.50-Q1 21 CFR 70.50(a)": {
+   "class": "B2",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-70.51-Q1 21 CFR 70.51": {
+   "class": "C",
+   "section_rank": 28,
+   "lexeme": true
+  },
+  "COS-70.55-Q1 21 CFR 70.55": {
+   "class": "D1",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-70.55-Q1 21 CFR 70.19(n)": {
+   "class": "C",
+   "section_rank": 36,
+   "lexeme": true
+  },
+  "COS-700.13-Q2 21 CFR 700.13(a)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-700.13-Q2 21 CFR 700.13(d)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-700.14-Q1 21 CFR 700.14(a)": {
+   "class": "D2",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-700.14-Q1 21 CFR 700.14(b)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-700.15-Q1 21 CFR 700.15(b)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": false
+  },
+  "COS-700.15-Q1 21 CFR 700.15(c)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": false
+  },
+  "COS-700.18-Q1 21 CFR 700.18(b)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-700.25-Q2 21 CFR 700.25(d)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-700.35-Q1 21 CFR 700.35(a)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-700.35-Q1 21 CFR 700.35(b)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-701.12-Q2 21 CFR 701.12(d)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-701.13-G1 21 CFR 701.13(e)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-701.13-Q1 21 CFR 701.13(a)": {
+   "class": "C",
+   "section_rank": 8,
+   "lexeme": true
+  },
+  "COS-701.13-Q1 21 CFR 701.13(f)": {
+   "class": "C",
+   "section_rank": 8,
+   "lexeme": true
+  },
+  "COS-701.13-Q1 21 CFR 701.13(i)": {
+   "class": "C",
+   "section_rank": 8,
+   "lexeme": true
+  },
+  "COS-701.13-Q1 21 CFR 701.13(j)": {
+   "class": "C",
+   "section_rank": 8,
+   "lexeme": true
+  },
+  "COS-701.13-Q3 21 CFR 701.13(g)": {
+   "class": "C",
+   "section_rank": 7,
+   "lexeme": true
+  },
+  "COS-701.3-Q1 21 CFR 701.3(a)": {
+   "class": "B1",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-701.3-Q1 21 CFR 701.3(b)": {
+   "class": "D1",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-701.3-Q1 21 CFR 701.3(f)": {
+   "class": "B1",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-701.3-Q4 21 CFR 701.3(m)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-701.3-Q4 21 CFR 701.3(r)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-701.9-Q1 21 CFR 701.9(a)": {
+   "class": "C",
+   "section_rank": 422,
+   "lexeme": true
+  },
+  "COS-71.1-Q2 21 CFR 71.1(c)": {
+   "class": "C",
+   "section_rank": 200,
+   "lexeme": true
+  },
+  "COS-71.15-Q2 21 CFR 71.15(b)": {
+   "class": "D1",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-71.15-Q2 21 CFR 71.15(c)": {
+   "class": "B1",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-71.25-Q1 21 CFR 71.25(a)": {
+   "class": "C",
+   "section_rank": 19,
+   "lexeme": true
+  },
+  "COS-71.25-Q1 21 CFR 71.25(b)": {
+   "class": "C",
+   "section_rank": 19,
+   "lexeme": true
+  },
+  "COS-71.26-Q1 21 CFR 71.26": {
+   "class": "C",
+   "section_rank": 148,
+   "lexeme": true
+  },
+  "COS-71.27-Q1 21 CFR 71.27": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-71.6-Q1 21 CFR 71.6(a)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-720.3-Q1 21 CFR 720.3": {
+   "class": "C",
+   "section_rank": 136,
+   "lexeme": true
+  },
+  "COS-720.4-Q3 21 CFR 720.4(c)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": false
+  },
+  "COS-720.4-Q3 21 CFR 720.4(d)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-720.4-Q3 21 CFR 720.4(e)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-720.7-Q1 21 CFR 720.7": {
+   "class": "C",
+   "section_rank": 1135,
+   "lexeme": true
+  },
+  "COS-720.8-Q1 21 CFR 720.8(a)": {
+   "class": "C",
+   "section_rank": 12,
+   "lexeme": true
+  },
+  "COS-720.8-Q1 21 CFR 720.8(b)": {
+   "class": "C",
+   "section_rank": 12,
+   "lexeme": true
+  },
+  "COS-720.8-Q1 21 CFR 720.8(c)": {
+   "class": "C",
+   "section_rank": 12,
+   "lexeme": true
+  },
+  "COS-73.2085-Q1 21 CFR 73.2085(a)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2085-Q1 21 CFR 73.2085(b)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2085-Q1 21 CFR 73.2085(c)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2085-Q1 21 CFR 73.2085(d)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2095-Q1 21 CFR 73.2095(a)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2095-Q1 21 CFR 73.2095(b)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2095-Q1 21 CFR 73.2095(c)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2095-Q1 21 CFR 73.2095(d)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2180-Q1 21 CFR 73.2180(a)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-73.2180-Q1 21 CFR 73.2180(b)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-73.2180-Q1 21 CFR 73.2180(c)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-73.2180-Q1 21 CFR 73.2180(d)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-73.2180-Q1 21 CFR 73.2180(e)": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-73.2250-Q1 21 CFR 73.2250(a)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2250-Q1 21 CFR 73.2250(b)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2250-Q1 21 CFR 73.2250(c)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2250-Q1 21 CFR 73.2250(d)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2250-Q1 21 CFR 73.2250(e)": {
+   "class": "A",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-73.2298-Q1 21 CFR 73.2298(a)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2298-Q1 21 CFR 73.2298(b)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2298-Q1 21 CFR 73.2298(c)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2298-Q1 21 CFR 73.2298(d)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2575-Q1 21 CFR 73.2575(a)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2575-Q1 21 CFR 73.2575(b)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2575-Q1 21 CFR 73.2575(c)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2575-Q1 21 CFR 73.2575(d)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2645-Q1 21 CFR 73.2645(a)": {
+   "class": "A",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-73.2645-Q1 21 CFR 73.2645(b)": {
+   "class": "A",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-73.2645-Q1 21 CFR 73.2645(c)": {
+   "class": "A",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-73.2645-Q1 21 CFR 73.2645(d)": {
+   "class": "A",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-73.2646-Q1 21 CFR 73.2646(a)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2646-Q1 21 CFR 73.2646(b)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2646-Q1 21 CFR 73.2646(c)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2646-Q1 21 CFR 73.2646(d)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2647-Q1 21 CFR 73.2647(a)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2647-Q1 21 CFR 73.2647(b)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2647-Q1 21 CFR 73.2647(c)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2647-Q1 21 CFR 73.2647(d)": {
+   "class": "A",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-73.2725-Q1 21 CFR 73.2725(a)": {
+   "class": "A",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-73.2725-Q1 21 CFR 73.2725(b)": {
+   "class": "A",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-73.2725-Q1 21 CFR 73.2725(c)": {
+   "class": "A",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-73.2725-Q1 21 CFR 73.2725(d)": {
+   "class": "A",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-73.2725-Q1 21 CFR 73.2725(e)": {
+   "class": "A",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-74.2052-Q1 21 CFR 74.2052(c)": {
+   "class": "OK",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-74.2052-Q1 21 CFR 74.2052(e)": {
+   "class": "B1",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-74.2203-Q1 21 CFR 74.2203(b)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-74.2203-Q1 21 CFR 74.2203(c)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-74.2203-Q1 21 CFR 74.2203(d)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-74.2203-Q1 21 CFR 70.5(a)": {
+   "class": "C",
+   "section_rank": 40,
+   "lexeme": true
+  },
+  "COS-74.2208-Q1 21 CFR 74.2208(b)": {
+   "class": "C",
+   "section_rank": 49,
+   "lexeme": true
+  },
+  "COS-74.2208-Q1 21 CFR 74.2208(c)": {
+   "class": "C",
+   "section_rank": 49,
+   "lexeme": true
+  },
+  "COS-74.2208-Q1 21 CFR 74.2208(d)": {
+   "class": "C",
+   "section_rank": 49,
+   "lexeme": true
+  },
+  "COS-74.2208-Q1 21 CFR 70.3(v)": {
+   "class": "B1",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-74.2254-Q1 21 CFR 74.2254(b)": {
+   "class": "C",
+   "section_rank": 57,
+   "lexeme": true
+  },
+  "COS-74.2254-Q1 21 CFR 74.2254(c)": {
+   "class": "C",
+   "section_rank": 57,
+   "lexeme": true
+  },
+  "COS-74.2254-Q1 21 CFR 74.2254(d)": {
+   "class": "C",
+   "section_rank": 57,
+   "lexeme": true
+  },
+  "COS-74.2254-Q1 21 CFR 70.3(v)": {
+   "class": "B1",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-74.2304-Q1 21 CFR 74.2304(b)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-74.2304-Q1 21 CFR 74.2304(c)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-74.2304-Q1 21 CFR 74.2304(d)": {
+   "class": "C",
+   "section_rank": 45,
+   "lexeme": true
+  },
+  "COS-74.2304-Q1 21 CFR 70.3(v)": {
+   "class": "C",
+   "section_rank": 6,
+   "lexeme": false
+  },
+  "COS-74.2317-Q1 21 CFR 74.2317(b)": {
+   "class": "C",
+   "section_rank": 103,
+   "lexeme": true
+  },
+  "COS-74.2317-Q1 21 CFR 74.2317(c)": {
+   "class": "C",
+   "section_rank": 103,
+   "lexeme": true
+  },
+  "COS-74.2317-Q1 21 CFR 74.2317(d)": {
+   "class": "C",
+   "section_rank": 103,
+   "lexeme": true
+  },
+  "COS-74.2317-Q1 21 CFR 70.3(v)": {
+   "class": "B1",
+   "section_rank": 2,
+   "lexeme": true
+  },
+  "COS-74.2322-Q1 21 CFR 74.2322(b)": {
+   "class": "C",
+   "section_rank": 38,
+   "lexeme": true
+  },
+  "COS-74.2322-Q1 21 CFR 74.2322(c)": {
+   "class": "C",
+   "section_rank": 38,
+   "lexeme": true
+  },
+  "COS-74.2322-Q1 21 CFR 74.2322(d)": {
+   "class": "C",
+   "section_rank": 38,
+   "lexeme": true
+  },
+  "COS-74.2322-Q1 21 CFR 70.5(a)": {
+   "class": "C",
+   "section_rank": 334,
+   "lexeme": true
+  },
+  "COS-74.2327-Q1 21 CFR 74.2327(b)": {
+   "class": "C",
+   "section_rank": 75,
+   "lexeme": true
+  },
+  "COS-74.2327-Q1 21 CFR 74.2327(c)": {
+   "class": "C",
+   "section_rank": 75,
+   "lexeme": true
+  },
+  "COS-74.2327-Q1 21 CFR 74.2327(d)": {
+   "class": "C",
+   "section_rank": 75,
+   "lexeme": true
+  },
+  "COS-74.2327-Q1 21 CFR 70.5(a)": {
+   "class": "C",
+   "section_rank": 28,
+   "lexeme": true
+  },
+  "COS-74.2340-Q1 21 CFR 74.2340(b)": {
+   "class": "C",
+   "section_rank": 11,
+   "lexeme": true
+  },
+  "COS-74.2340-Q1 21 CFR 74.2340(d)": {
+   "class": "C",
+   "section_rank": 11,
+   "lexeme": true
+  },
+  "COS-74.2602a-Q1 21 CFR 74.2602a(c)": {
+   "class": "B2",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-74.2602a-Q1 21 CFR 74.2602a(d)": {
+   "class": "B2",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-74.2602a-Q1 21 CFR 74.2602a(e)": {
+   "class": "B2",
+   "section_rank": 4,
+   "lexeme": true
+  },
+  "COS-74.2602a-Q1 21 CFR 70.3(v)": {
+   "class": "C",
+   "section_rank": 15,
+   "lexeme": false
+  },
+  "COS-74.2708-Q1 21 CFR 74.2708(b)": {
+   "class": "C",
+   "section_rank": 55,
+   "lexeme": true
+  },
+  "COS-74.2708-Q1 21 CFR 74.2708(c)": {
+   "class": "C",
+   "section_rank": 55,
+   "lexeme": true
+  },
+  "COS-74.2708-Q1 21 CFR 74.2708(d)": {
+   "class": "C",
+   "section_rank": 55,
+   "lexeme": true
+  },
+  "COS-74.2708-Q1 21 CFR 70.3(v)": {
+   "class": "C",
+   "section_rank": 6,
+   "lexeme": true
+  },
+  "COS-74.2710-Q1 21 CFR 74.2710(b)": {
+   "class": "C",
+   "section_rank": 41,
+   "lexeme": true
+  },
+  "COS-74.2710-Q1 21 CFR 74.2710(c)": {
+   "class": "C",
+   "section_rank": 41,
+   "lexeme": true
+  },
+  "COS-74.2710-Q1 21 CFR 74.2710(d)": {
+   "class": "C",
+   "section_rank": 41,
+   "lexeme": true
+  },
+  "COS-74.2710-Q1 21 CFR 70.5(a)": {
+   "class": "C",
+   "section_rank": 115,
+   "lexeme": true
+  },
+  "COS-74.2711-Q1 21 CFR 74.2711(b)": {
+   "class": "C",
+   "section_rank": 43,
+   "lexeme": true
+  },
+  "COS-74.2711-Q1 21 CFR 74.2711(c)": {
+   "class": "C",
+   "section_rank": 43,
+   "lexeme": true
+  },
+  "COS-74.2711-Q1 21 CFR 74.2711(d)": {
+   "class": "C",
+   "section_rank": 43,
+   "lexeme": true
+  },
+  "COS-74.2711-Q1 21 CFR 70.3(v)": {
+   "class": "C",
+   "section_rank": 6,
+   "lexeme": false
+  },
+  "COS-740.11-Q1 21 CFR 740.11(a)": {
+   "class": "C",
+   "section_rank": 341,
+   "lexeme": false
+  },
+  "COS-740.11-Q2 21 CFR 740.11(b)": {
+   "class": "B2",
+   "section_rank": 4,
+   "lexeme": false
+  },
+  "COS-740.12-Q1 21 CFR 740.12(a)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-740.12-Q1 21 CFR 740.12(b)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-740.19-Q1 21 CFR 740.19": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-80.10-Q1 21 CFR 80.10(a)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-80.10-Q1 21 CFR 80.10(c)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-80.10-Q1 21 CFR 80.10(d)": {
+   "class": "B1",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-80.31-Q1 21 CFR 80.31(a)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "COS-80.37-Q1 21 CFR 80.37(a)": {
+   "class": "C",
+   "section_rank": 17,
+   "lexeme": true
+  },
+  "COS-80.37-Q1 21 CFR 80.37(b)": {
+   "class": "C",
+   "section_rank": 17,
+   "lexeme": true
+  },
+  "COS-80.37-Q1 21 CFR 80.37(c)": {
+   "class": "C",
+   "section_rank": 17,
+   "lexeme": true
+  },
+  "COS-80.38-Q1 21 CFR 80.38(a)": {
+   "class": "C",
+   "section_rank": 120,
+   "lexeme": true
+  },
+  "COS-80.38-Q1 21 CFR 80.38(b)": {
+   "class": "C",
+   "section_rank": 120,
+   "lexeme": true
+  },
+  "COS-81.30-Q1 21 CFR 81.30(r)": {
+   "class": "C",
+   "section_rank": 17,
+   "lexeme": false
+  },
+  "COS-82.1104-Q1 21 CFR 82.1104": {
+   "class": "C",
+   "section_rank": 50,
+   "lexeme": true
+  },
+  "COS-82.1104-Q1 21 CFR 70.3(v)": {
+   "class": "B1",
+   "section_rank": 3,
+   "lexeme": true
+  },
+  "COS-82.1206-Q1 21 CFR 82.1206": {
+   "class": "C",
+   "section_rank": 56,
+   "lexeme": true
+  },
+  "COS-82.1206-Q1 21 CFR 70.3(v)": {
+   "class": "B1",
+   "section_rank": 3,
+   "lexeme": false
+  },
+  "COS-82.1254-Q1 21 CFR 82.1254": {
+   "class": "C",
+   "section_rank": 47,
+   "lexeme": true
+  },
+  "COS-82.1254-Q1 21 CFR 70.3(v)": {
+   "class": "C",
+   "section_rank": 27,
+   "lexeme": false
+  },
+  "COS-82.1317-Q1 21 CFR 82.1317": {
+   "class": "C",
+   "section_rank": 134,
+   "lexeme": true
+  },
+  "COS-82.1317-Q1 21 CFR 70.3(v)": {
+   "class": "C",
+   "section_rank": 89,
+   "lexeme": false
+  },
+  "COS-82.50-Q1 21 CFR 82.50": {
+   "class": "C",
+   "section_rank": 5,
+   "lexeme": true
+  },
+  "COS-82.6-Q1 21 CFR 82.6(a)": {
+   "class": "OK",
+   "section_rank": 1,
+   "lexeme": true
+  },
+  "UC-COS-006 21 CFR 700.3(b)": {
+   "class": "C",
+   "section_rank": 351,
+   "lexeme": true
+  },
+  "UC-COS-006 21 CFR 211.1(a)": {
+   "class": "C",
+   "section_rank": null,
+   "lexeme": false
+  },
+  "UC-COS-006 21 CFR 211.67": {
+   "class": "C",
+   "section_rank": 149,
+   "lexeme": false
+  },
+  "UC-COS-006 21 CFR 211.68(a)": {
+   "class": "C",
+   "section_rank": 95,
+   "lexeme": true
+  },
+  "UC-COS-006 21 CFR 211.160(b)": {
+   "class": "C",
+   "section_rank": 393,
+   "lexeme": false
+  }
+ }
+}

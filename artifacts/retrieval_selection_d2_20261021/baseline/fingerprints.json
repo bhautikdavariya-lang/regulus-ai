@@ -1,0 +1,25 @@
+{
+ "ecfr_identity": {
+  "rows": 65280,
+  "sha256": "4f0457d7d1edaaaa5531317e4162342ee6d6885286ae4e3e2877c80a464e2c19"
+ },
+ "guidance_identity": {
+  "chunks": 51238,
+  "sha256": "428b3dbd390bb3d827b36761e42bf8c00d74278f8effa6a37ee22d8251e01c82"
+ },
+ "code": {
+  "src/regulus/rag/selection.py": "2470fb2bfcb69511de41c2c73ff5fbace95ba386f444da5582c5af54332a4acb",
+  "src/regulus/rag/context.py": "0123fe6efe34da65d3625fe9ce38cee12d2477174e058b7cc4e038152515dad2",
+  "scripts/retrieval_baseline.py": "3d163b32c627c077fac75c32eb957a7a487b57f0e0c1fb7f2e8f64abeb6f24de",
+  "src/regulus/retrieval/lexical.py": "cb5f0c9cc84bae097c46013808cc3f152997766bae0327ded8b26b264e90b32a"
+ },
+ "datasets": {
+  "cosmetics_100_selection.json": "0e63228864bc3b67d7ae7022662100babd05b7b701da87a3e52c1742da9e15c4",
+  "retrieval_baseline_v1.jsonl": "b0893eb87310385026897b9d2746ff8d499f249ee537aabd8d756a200079ec2e"
+ },
+ "baseline_runs_reused_from_experiment_1": {
+  "traces_100": "artifacts/retrieval_selection_d_20261021/baseline/traces",
+  "candidates_base_condition": "artifacts/retrieval_selection_d_20261021/candidates.json (condition 'base')",
+  "run_352": "retrieval_baseline_20261021T102326Z_16fa796d"
+ }
+}

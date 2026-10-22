@@ -1,0 +1,739 @@
+{
+ "id": "COS-700.25-Q2",
+ "question": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+ "key_citation": "21 CFR 700.25(d)",
+ "required": {
+  "700.25": [
+   "d"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "vaginal container accept seal get exemption tamper-resistant",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "tamper-resistant",
+   "container",
+   "exemption",
+   "vaginal",
+   "accept",
+   "seal",
+   "get"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+   "tsquery": "'vagin' & 'product' & 'contain' & 'accept' & 'seal' & 'get' & 'exempt' & 'tamper-resist' <-> 'tamper' <-> 'resist' & 'rule'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+   "tsquery": "'vagin' & 'product' & 'contain' & 'accept' & 'seal' & 'get' & 'exempt' & 'tamper-resist' <-> 'tamper' <-> 'resist' & 'rule'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "vaginal container accept seal get exemption tamper-resistant",
+   "tsquery": "'vagin' & 'contain' & 'accept' & 'seal' & 'get' & 'exempt' & 'tamper-resist' <-> 'tamper' <-> 'resist'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 700.25(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.4035,
+     "chars": 1529,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.4106,
+      "paragraph_coverage": 0.6315
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 700.25(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.3542,
+     "chars": 983,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.4106,
+      "paragraph_coverage": 0.6019
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 800.10(a)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.999,
+     "chars": 313,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 1.1996,
+      "paragraph_coverage": 0.5998
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 200.50(a)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.999,
+     "chars": 397,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 1.1996,
+      "paragraph_coverage": 0.5998
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "tamper-resistant or container or exemption or vaginal or accept or seal or get",
+   "tsquery": "'tamper-resist' <-> 'tamper' <-> 'resist' | 'contain' | 'exempt' | 'vagin' | 'accept' | 'seal' | 'get'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0339,
+     "chars": 1260,
+     "metadata": {
+      "ts_rank_cd": 1.447393
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0006,
+     "chars": 1494,
+     "metadata": {
+      "ts_rank_cd": 1.400781
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9787,
+     "chars": 1416,
+     "metadata": {
+      "ts_rank_cd": 1.3701819
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9224,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 1.2914091
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8498,
+     "chars": 1418,
+     "metadata": {
+      "ts_rank_cd": 1.1896955
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Container and Closure System Integrity Testing in Lieu of Sterility Testing as a Component of the Stability Protocol for Sterile Products: Guidance for Industry (final, 2008-02-25, Docket FDA-2008-D-0060)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8246,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 1.1544861
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: User Labeling for Devices that Contain Natural Rubber (21 CFR 801.437); Small Entity Compliance Guide - Guidance for Industry (final, 2003-04-01, Docket FDA-2020-D-0957)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8236,
+     "chars": 1447,
+     "metadata": {
+      "ts_rank_cd": 1.1529812
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8204,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 1.1485476
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0339,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0006,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9787,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9224,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8498,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Container and Closure System Integrity Testing in Lieu of Sterility Testing as a Component of the Stability Protocol for Sterile Products: Guidance for Industry (final, 2008-02-25, Docket FDA-2008-D-0060)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8246,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: User Labeling for Devices that Contain Natural Rubber (21 CFR 801.437); Small Entity Compliance Guide - Guidance for Industry (final, 2003-04-01, Docket FDA-2020-D-0957)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8236,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8204,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 700.25(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.4035,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 700.25(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.3542,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 800.10(a)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.999,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 200.50(a)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.999,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+  "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+  "21 CFR 700.25(b)",
+  "21 CFR 700.25(a)",
+  "21 CFR 800.10(a)(3)",
+  "21 CFR 200.50(a)(3)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Container and Closure System Integrity Testing in Lieu of Sterility Testing as a Component of the Stability Protocol for Sterile Products: Guidance for Industry (final, 2008-02-25, Docket FDA-2008-D-0060)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: User Labeling for Devices that Contain Natural Rubber (21 CFR 801.437); Small Entity Compliance Guide - Guidance for Industry (final, 2003-04-01, Docket FDA-2020-D-0957)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 700.25(b)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 800.10(a)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 200.50(a)(3)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.25(b)",
+    "tier": "discovery",
+    "block_chars": 1416,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.25(a)",
+    "tier": "discovery",
+    "block_chars": 1200,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 800.10(a)(3)",
+    "tier": "discovery",
+    "block_chars": 505,
+    "used_before": 1200,
+    "reserve_spent_before": 1200,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 200.50(a)(3)",
+    "tier": "discovery",
+    "block_chars": 594,
+    "used_before": 1200,
+    "reserve_spent_before": 1200,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+    "tier": "discovery",
+    "used_before": 1200,
+    "block_chars": 1559,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "tier": "discovery",
+    "used_before": 2761,
+    "block_chars": 837,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1592,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1575,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Container and Closure System Integrity Testing in Lieu of Sterility Testing as a Component of the Stability Protocol for Sterile Products: Guidance for Industry (final, 2008-02-25, Docket FDA-2008-D-0060)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1642,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: User Labeling for Devices that Contain Natural Rubber (21 CFR 801.437); Small Entity Compliance Guide - Guidance for Industry (final, 2003-04-01, Docket FDA-2020-D-0957)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1606,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1575,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 700.25(b)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1416,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 800.10(a)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 505,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 200.50(a)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 594,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 489,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 700.25(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 983,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "700.25": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 983,
+     "tail": "lterated under section 601 of the act or misbranded under section 602 of the act, or both.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 1529,
+     "tail": " when handled in a reasonable manner during manufacture, distribution, and retail display.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 821,
+     "tail": "k band could say “For your protection, this bottle has an imprinted seal around the neck.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 457,
+     "tail": " Exemption from Tamper-resistant Rule.” The petition is required to contain the following:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(d)(1)",
+     "ordinal": 4,
+     "chars": 28,
+     "tail": "(1) The name of the product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(2)",
+     "ordinal": 5,
+     "chars": 160,
+     "tail": "t packaging or labeling requirements of this section is unnecessary or cannot be achieved.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(3)",
+     "ordinal": 6,
+     "chars": 189,
+     "tail": ", to reduce the likelihood that the product will be the subject of malicious adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(4)",
+     "ordinal": 7,
+     "chars": 46,
+     "tail": "(4) Other information justifying an exemption.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 8,
+     "chars": 277,
+     "tail": "manufacturer or packer has obtained an exemption from a packaging or labeling requirement.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(e)(1)",
+     "ordinal": 9,
+     "chars": 54,
+     "tail": "(1) Initial effective date for packaging requirements.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(e)(1)(i)",
+     "ordinal": 10,
+     "chars": 312,
+     "tail": "uirement in paragraph (b) of this section for a distinctive indicator or barrier to entry.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)(1)(ii)",
+     "ordinal": 11,
+     "chars": 190,
+     "tail": " cosmetic product that is a vaginal tablet packaged for retail sale on or after that date.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)(2)",
+     "ordinal": 12,
+     "chars": 565,
+     "tail": "6, 1984 for each affected cosmetic product packaged for retail sale on or after that date.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)(3)",
+     "ordinal": 13,
+     "chars": 571,
+     "tail": "nce with all aspects of the regulations without regard to the retail level effective date.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Tamper-resistant packaging requirements for cosmetic products."
+  }
+ },
+ "required_status": {
+  "21 CFR 700.25(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,30 @@
+{
+ "db": {
+  "database": "regulus",
+  "server_version": "18.6 (Homebrew)",
+  "default_transaction_read_only": "on"
+ },
+ "ecfr_identity": {
+  "rows": 65280,
+  "sha256": "4f0457d7d1edaaaa5531317e4162342ee6d6885286ae4e3e2877c80a464e2c19"
+ },
+ "retriever": "SemanticFallbackRetriever",
+ "lexical": "LexicalRetriever",
+ "scope_policy_obj": "ScopePolicy",
+ "config": {
+  "corpus": null,
+  "top_k": 8,
+  "scope_policy": "general_knowledge",
+  "semantic_fallback": "on",
+  "answerability": "gate",
+  "answer_shape": "adaptive"
+ },
+ "context_policy": {
+  "max_results": 8,
+  "max_chars_per_result": 1200,
+  "max_total_chars": 3600,
+  "binding_reserve_chars": 1200,
+  "general_evidence_order": "tier",
+  "hard_max_total_chars": 9000
+ }
+}

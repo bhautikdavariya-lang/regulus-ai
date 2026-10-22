@@ -1,0 +1,2031 @@
+{
+ "COS-73.2725-Q1": {
+  "question": "We're developing a blue eye shadow and want to use ultramarine blue as the colorant. May we, and what restrictions, certification or labeling apply?",
+  "key": "21 CFR 73.2725(a)-(e)",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "We're developing a blue eye shadow and want to use ultramarine blue as the colorant. May we, and what restrictions, certification or labeling apply?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "We're developing a blue eye shadow and want to use ultramarine blue as the colorant. May we, and what restrictions, certification or labeling apply?",
+     "tsquery": "'re' & 'develop' & 'blue' & 'eye' & 'shadow' & 'want' & 'use' & 'ultramarin' & 'blue' & 'color' & 'may' & 'restrict' & 'certif' | 'label' & 'appli'",
+     "limit": 16,
+     "rows": [
+      "21 CFR 1271.90(c)",
+      "21 CFR 1271.90(a)(1)",
+      "21 CFR 1271.90(c)(1)",
+      "21 CFR 1271.90(c)(3)(ii)",
+      "21 CFR 1271.90(c)(3)(ii)(A)",
+      "21 CFR 1271.90(c)(4)(i)",
+      "21 CFR 1271.90(c)(3)(i)",
+      "21 CFR 1271.90(a)(3)(ii)",
+      "21 CFR 1271.90(c)(3)(ii)(B)",
+      "21 CFR 1271.90(c)(4)(ii)",
+      "21 CFR 1271.90(a)(2)",
+      "21 CFR 1271.90(c)(3)",
+      "21 CFR 1271.90(c)(4)",
+      "21 CFR 1271.90(a)(3)(i)",
+      "21 CFR 1271.90(c)(5)",
+      "21 CFR 1271.90(c)(2)"
+     ]
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "We're developing a blue eye shadow and want to use ultramarine blue as the colorant. May we, and what restrictions, certification or labeling apply?",
+     "tsquery": "'re' & 'develop' & 'blue' & 'eye' & 'shadow' & 'want' & 'use' & 'ultramarin' & 'blue' & 'color' & 'may' & 'restrict' & 'certif' | 'label' & 'appli'",
+     "limit": 16,
+     "rows": [
+      "FDA Guidance: Eligibility Determination for Donors of Human Cells, Tissues, and Cellular and Tissue-Based Products: Guidance for Industry (final, 2007-08-08, Docket FDA-2004-D-0225)",
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+      "FDA Guidance: Draft Guidance for Industry: Mitigation Strategies to Protect Food Against Intentional Adulteration (draft, 2019-03-06, Docket FDA-2018-D-1398)",
+      "FDA Guidance: Guidance for Industry: Frequently Asked Questions About Medical Foods - Third Edition (final, 2023-03-15, Docket FDA-2013-D-0880)",
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+      "FDA Guidance: Medical Gases — Current Good Manufacturing Practice: Draft Guidance for Industry (draft, 2025-11-28, Docket FDA-2003-D-0431)",
+      "FDA Guidance: Medical Gases — Current Good Manufacturing Practice: Draft Guidance for Industry (draft, 2025-11-28, Docket FDA-2003-D-0431)",
+      "FDA Guidance: Approval of Alternate Means of Labeling for Laser Products (Laser Notice 53) (final, 2007-03-22, Docket FDA-2020-D-0957)",
+      "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+      "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+      "FDA Guidance: Clarification of Radiation Control Regulations For Manufacturers of Diagnostic X-Ray Equipment: Guidance for Industry and Food and Drug Administration Staff (final, 2024-09-27, Docket FDA-2018-D-4115)",
+      "FDA Guidance: Recommendations for Investigational and Licensed COVID-19 Convalescent Plasma: Guidance for Industry (final, 2024-07-19, Docket FDA-2024-D-2442)",
+      "FDA Guidance: Biological Product Deviation Reporting for Blood and Plasma Establishments: Guidance for Industry (final, 2020-03-12, Docket FDA-2001-D-0007)",
+      "FDA Guidance: Eligibility Determination for Donors of Human Cells, Tissues, and Cellular and Tissue-Based Products: Guidance for Industry (final, 2007-08-08, Docket FDA-2004-D-0225)",
+      "FDA Guidance: Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components (final, 2006-10-19, Docket FDA-2001-D-0008)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "primary",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "in_scope",
+    "reason": "a regulatory passage matched every term of the question",
+    "domain_terms": [
+     "apply",
+     "blue",
+     "certification",
+     "developing",
+     "eye",
+     "labeling",
+     "restrictions",
+     "ultramarine",
+     "use",
+     "want"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no CFR provision named",
+    "out_of_scope_part": null,
+    "question_type": "explanation",
+    "signals": [
+     "default"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "21 CFR 1271.90(c)",
+    "21 CFR 1271.90(a)(1)",
+    "21 CFR 1271.90(c)(1)",
+    "21 CFR 1271.90(c)(3)(ii)(A)",
+    "21 CFR 1271.90(c)(3)(ii)",
+    "21 CFR 1271.90(c)(4)(i)",
+    "21 CFR 1271.90(c)(3)(i)",
+    "21 CFR 1271.90(a)(3)(ii)"
+   ],
+   "required_status": {
+    "21 CFR 73.2725(a)": "never returned",
+    "21 CFR 73.2725(b)": "never returned",
+    "21 CFR 73.2725(c)": "never returned",
+    "21 CFR 73.2725(d)": "never returned",
+    "21 CFR 73.2725(e)": "never returned"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "primary",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "21 CFR 1271.90(c)",
+    "21 CFR 1271.90(a)(1)",
+    "21 CFR 1271.90(c)(1)",
+    "21 CFR 1271.90(c)(3)(ii)(A)",
+    "21 CFR 1271.90(c)(3)(ii)",
+    "21 CFR 1271.90(c)(4)(i)",
+    "21 CFR 1271.90(c)(3)(i)",
+    "21 CFR 1271.90(a)(3)(ii)"
+   ],
+   "required_status": {
+    "21 CFR 73.2725(a)": "never returned",
+    "21 CFR 73.2725(b)": "never returned",
+    "21 CFR 73.2725(c)": "never returned",
+    "21 CFR 73.2725(d)": "never returned",
+    "21 CFR 73.2725(e)": "never returned"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-700.25-Q2": {
+  "question": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+  "key": "21 CFR 700.25(d)",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+     "tsquery": "'vagin' & 'product' & 'contain' & 'accept' & 'seal' & 'get' & 'exempt' & 'tamper-resist' <-> 'tamper' <-> 'resist' & 'rule'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+     "tsquery": "'vagin' & 'product' & 'contain' & 'accept' & 'seal' & 'get' & 'exempt' & 'tamper-resist' <-> 'tamper' <-> 'resist' & 'rule'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "Our vaginal product's container can't accept a seal. Can we get an exemption from the tamper-resistant rule, and how?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "vaginal container accept seal get exemption tamper-resistant",
+     "tsquery": "'vagin' & 'contain' & 'accept' & 'seal' & 'get' & 'exempt' & 'tamper-resist' <-> 'tamper' <-> 'resist'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 700.25(b)",
+      "21 CFR 700.25(a)",
+      "21 CFR 200.50(a)(3)",
+      "21 CFR 800.10(a)(3)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "tamper-resistant or container or exemption or vaginal or accept or seal or get",
+     "tsquery": "'tamper-resist' <-> 'tamper' <-> 'resist' | 'contain' | 'exempt' | 'vagin' | 'accept' | 'seal' | 'get'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+      "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+      "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+      "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+      "FDA Guidance: Container and Closure System Integrity Testing in Lieu of Sterility Testing as a Component of the Stability Protocol for Sterile Products: Guidance for Industry (final, 2008-02-25, Docket FDA-2008-D-0060)",
+      "FDA Guidance: User Labeling for Devices that Contain Natural Rubber (21 CFR 801.437); Small Entity Compliance Guide - Guidance for Industry (final, 2003-04-01, Docket FDA-2020-D-0957)",
+      "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "accept",
+     "container",
+     "exemption",
+     "product",
+     "rule",
+     "tamper-resistant",
+     "vaginal"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no CFR provision named",
+    "out_of_scope_part": null,
+    "question_type": "exception_condition",
+    "signals": [
+     "exception_or_condition_wording"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+    "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "21 CFR 700.25(a)"
+   ],
+   "required_status": {
+    "21 CFR 700.25(d)": "never returned"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+    "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "21 CFR 700.25(a)"
+   ],
+   "required_status": {
+    "21 CFR 700.25(d)": "never returned"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-74.2317-Q1": {
+  "question": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+  "key": "21 CFR 74.2317(b), (c), (d); 21 CFR 70.3(v)",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+     "tsquery": "'re' & '12' <-> 'person' & 'contract' & 'filler' & 'formul' & 'tint' & 'bodi' & 'butter' & 'supplier' & 'offer' & 'd' & 'c' & 'red' & '17' & 'use' & 'use' & 'limit' & 'color' & 'need' & 'fda' & 'certif'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+     "tsquery": "'re' & '12' <-> 'person' & 'contract' & 'filler' & 'formul' & 'tint' & 'bodi' & 'butter' & 'supplier' & 'offer' & 'd' & 'c' & 'red' & '17' & 'use' & 'use' & 'limit' & 'color' & 'need' & 'fda' & 'certif'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "We're a 12-person contract filler formulating a tinted body butter. Our supplier offers D&C Red No. 17. Can we use it, is there a use limit, and does the color need FDA certification?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "contract filler formulating tinted body butter supplier offers red use limit color certification",
+     "tsquery": "'contract' & 'filler' & 'formul' & 'tint' & 'bodi' & 'butter' & 'supplier' & 'offer' & 'red' & 'use' & 'limit' & 'color' & 'certif'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 170.3(o)(14)",
+      "21 CFR 170.3(n)(12)",
+      "21 CFR 70.3(u)",
+      "21 CFR 70.3(f)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "certification or formulating or 12-person or contract or supplier or filler or tinted or butter",
+     "tsquery": "'certif' | 'formul' | '12' <-> 'person' | 'contract' | 'supplier' | 'filler' | 'tint' | 'butter'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+      "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+      "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+      "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+      "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+      "FDA Guidance: Submission of Summary Bioequivalence Data for Abbreviated New Drug Applications (final, 2011-05-06, Docket FDA-2009-D-0126)",
+      "FDA Guidance: Guidance for Industry: FDA's Voluntary Qualified Importer Program (final, 2024-11-14, Docket FDA-2011-N-0144)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "body",
+     "butter",
+     "certification",
+     "color",
+     "contract",
+     "fda",
+     "filler",
+     "limit",
+     "need",
+     "person",
+     "red",
+     "supplier",
+     "use"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no CFR provision named",
+    "out_of_scope_part": null,
+    "question_type": "explanation",
+    "signals": [
+     "default"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "21 CFR 170.3(o)(14)",
+    "21 CFR 170.3(n)(12)"
+   ],
+   "required_status": {
+    "21 CFR 74.2317(b)": "never returned",
+    "21 CFR 74.2317(c)": "never returned",
+    "21 CFR 74.2317(d)": "never returned",
+    "21 CFR 70.3(v)": "never returned"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "21 CFR 170.3(o)(14)",
+    "21 CFR 170.3(n)(12)"
+   ],
+   "required_status": {
+    "21 CFR 74.2317(b)": "never returned",
+    "21 CFR 74.2317(c)": "never returned",
+    "21 CFR 74.2317(d)": "never returned",
+    "21 CFR 70.3(v)": "never returned"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-70.55-Q1": {
+  "question": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?",
+  "key": "21 CFR 70.55; 70.19(n)",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?",
+     "tsquery": "'re' & 'small' & 'cosmet' & 'firm' & 'without' & 'lab' & 'fda' & 'run' & 'studi' & 'support' & 'color' & 'addit' & 'petit'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?",
+     "tsquery": "'re' & 'small' & 'cosmet' & 'firm' & 'without' & 'lab' & 'fda' & 'run' & 'studi' & 'support' & 'color' & 'addit' & 'petit'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "We're a small cosmetics firm without a lab. Can FDA run studies to support our color additive petition?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "small cosmetics firm without lab run studies support color additive petition",
+     "tsquery": "'small' & 'cosmet' & 'firm' & 'without' & 'lab' & 'run' & 'studi' & 'support' & 'color' & 'addit' & 'petit'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 71.6(b)",
+      "21 CFR 71.6(c)(1)",
+      "21 CFR 70.55",
+      "21 CFR 511.1(c)(ii)(2)(i)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "cosmetics or additive or petition or without or studies or support or small or color",
+     "tsquery": "'cosmet' | 'addit' | 'petit' | 'without' | 'studi' | 'support' | 'small' | 'color'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+      "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+      "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+      "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+      "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+      "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+      "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+      "FDA Guidance: Study Data Technical Conformance Guide - Technical Specifications Document (final, 2026-06-01, Docket FDA-2014-D-0092)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "additive",
+     "color",
+     "cosmetics",
+     "fda",
+     "petition",
+     "small",
+     "studies",
+     "support",
+     "without"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no CFR provision named",
+    "out_of_scope_part": null,
+    "question_type": "explanation",
+    "signals": [
+     "default"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "21 CFR 71.6(c)(1)"
+   ],
+   "required_status": {
+    "21 CFR 70.55": "returned, not in context",
+    "21 CFR 70.19(n)": "never returned"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "21 CFR 71.6(c)(1)"
+   ],
+   "required_status": {
+    "21 CFR 70.55": "returned, not in context",
+    "21 CFR 70.19(n)": "never returned"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-FDCA609-Q1": {
+  "question": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+  "key": "FD&C Act 609(a) [21 U.S.C. 364e(a)]",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+     "tsquery": "'cosmet' & 'label' & 'list' & 'shanghai' & 'offic' & 'address' & 'meet' & 'fd' & 'c' & 'act' & 'contact-inform' <-> 'contact' <-> 'inform' & 'requir'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+     "tsquery": "'cosmet' & 'label' & 'list' & 'shanghai' & 'offic' & 'address' & 'meet' & 'fd' & 'c' & 'act' & 'contact-inform' <-> 'contact' <-> 'inform' & 'requir'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "Our cosmetic labels list only our Shanghai office address. Does that meet the FD&C Act contact-information requirement?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "cosmetic labels shanghai office address meet act contact-information",
+     "tsquery": "'cosmet' & 'label' & 'shanghai' & 'offic' & 'address' & 'meet' & 'act' & 'contact-inform' <-> 'contact' <-> 'inform'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 329.100(b)(5)(i)",
+      "21 CFR 101.70(a)",
+      "21 CFR 107.50(e)(2)",
+      "21 CFR 589.2001(f)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "contact-information or cosmetic or shanghai or address or labels or office or meet or act",
+     "tsquery": "'contact-inform' <-> 'contact' <-> 'inform' | 'cosmet' | 'shanghai' | 'address' | 'label' | 'offic' | 'meet' | 'act'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+      "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+      "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+      "FDA Guidance: Meetings with the Office of Orphan Products Development: Guidance for Industry, Researchers, Patient Groups, and Food and Drug Administration Staff (final, 2015-07-09, Docket FDA-2014-D-0313)",
+      "FDA Guidance: Formal Meetings Between the FDA and Sponsors or Applicants of PDUFA Products (final, 2026-08-12, Docket FDA-2017-D-6530)",
+      "FDA Guidance: Formal Meetings Between FDA and ANDA Applicants of Complex Products Under GDUFA Guidance for Industry (final, 2022-10-05, Docket FDA-2017-D-5739)",
+      "FDA Guidance: Formal Meetings Between the FDA and Sponsors or Applicants of PDUFA Products (final, 2026-08-12, Docket FDA-2017-D-6530)",
+      "FDA Guidance: Product-Specific Guidance Meetings Between FDA and ANDA Applicants Under GDUFA: Guidance for Industry (final, 2024-08-20, Docket FDA-2023-D-0044)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "act",
+     "address",
+     "cosmetic",
+     "labels",
+     "list",
+     "meet",
+     "office",
+     "only",
+     "requirement"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no CFR provision named",
+    "out_of_scope_part": null,
+    "question_type": "requirement",
+    "signals": [
+     "requirement_wording_or_provision"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+    "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+    "21 CFR 329.100(b)(5)(i)"
+   ],
+   "required_status": {}
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+    "FDA Guidance: Formal Meetings Between the Food and Drug Administration and Sponsors or Requestors of Over-the-Counter Monograph Drugs (final, 2026-07-14, Docket FDA-2022-D-0080)",
+    "21 CFR 329.100(b)(5)(i)"
+   ],
+   "required_status": {}
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-70.3-Q3": {
+  "question": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+  "key": "21 CFR 70.3(s), (u), (v)",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+     "tsquery": "'make' & 'brow' & 'tint' & 'lip' & 'gloss' & 'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' & 'perman' & 'hair' & 'dye' & 'fda' & 'color' & 'addit' & 'definit' & 'treat' & 'area' & 'eye' & 'extern' & 'appli' & 'hair' & 'dye' & 'exempt'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+     "tsquery": "'make' & 'brow' & 'tint' & 'lip' & 'gloss' & 'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' & 'perman' & 'hair' & 'dye' & 'fda' & 'color' & 'addit' & 'definit' & 'treat' & 'area' & 'eye' & 'extern' & 'appli' & 'hair' & 'dye' & 'exempt'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "make brow tint lip gloss coal-tar-based permanent hair dye color additive definitions treat area eye externally applied exemption",
+     "tsquery": "'make' & 'brow' & 'tint' & 'lip' & 'gloss' & 'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' & 'perman' & 'hair' & 'dye' & 'color' & 'addit' & 'definit' & 'treat' & 'area' & 'eye' & 'extern' & 'appli' & 'exempt'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 70.3(u)",
+      "21 CFR 70.3(f)",
+      "21 CFR 82.3(a)(j)",
+      "21 CFR 82.3(a)(k)(n)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "coal-tar-based or definitions or externally or permanent or exemption or additive or applied or gloss",
+     "tsquery": "'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' | 'definit' | 'extern' | 'perman' | 'exempt' | 'addit' | 'appli' | 'gloss'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+      "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+      "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+      "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+      "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+      "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+      "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)"
+     ]
+    },
+    {
+     "leg": "defined_terms_ecfr",
+     "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+     "tsquery": null,
+     "limit": null,
+     "rows": [
+      "21 CFR 70.3(f)",
+      "21 CFR 70.3(s)",
+      "21 CFR 70.3(u)",
+      "21 CFR 70.3(v)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "additive",
+     "applied",
+     "area",
+     "color",
+     "definitions",
+     "dye",
+     "exemption",
+     "externally",
+     "eye",
+     "fda",
+     "hair",
+     "lip",
+     "make",
+     "permanent",
+     "treat"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no CFR provision named",
+    "out_of_scope_part": null,
+    "question_type": "scenario",
+    "signals": [
+     "describes_a_situation"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "21 CFR 70.3(s)",
+    "21 CFR 70.3(v)",
+    "21 CFR 70.3(f)",
+    "21 CFR 70.3(u)"
+   ],
+   "required_status": {
+    "21 CFR 70.3(s)": "in final context",
+    "21 CFR 70.3(u)": "in final context",
+    "21 CFR 70.3(v)": "in final context"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "21 CFR 70.3(s)",
+    "21 CFR 70.3(v)",
+    "21 CFR 70.3(f)",
+    "21 CFR 70.3(u)"
+   ],
+   "required_status": {
+    "21 CFR 70.3(s)": "in final context",
+    "21 CFR 70.3(u)": "in final context",
+    "21 CFR 70.3(v)": "in final context"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-740.11-Q2": {
+  "question": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?",
+  "key": "21 CFR 740.11(b)(1), (b)(2)(i)-(iv)",
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?",
+     "tsquery": "'hairspray' & 'use' & 'hydrocarbon' & 'propel' & 'need' & 'intent' & 'misus' & 'warn' & 'exempt'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?",
+     "tsquery": "'hairspray' & 'use' & 'hydrocarbon' & 'propel' & 'need' & 'intent' & 'misus' & 'warn' & 'exempt'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "Our hairspray uses a hydrocarbon propellant. Do we need the 'intentional misuse' warning, and are there exemptions?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "hairspray uses hydrocarbon propellant intentional misuse warning exemptions",
+     "tsquery": "'hairspray' & 'use' & 'hydrocarbon' & 'propel' & 'intent' & 'misus' & 'warn' & 'exempt'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 369.21",
+      "21 CFR 501.17(b)(1)",
+      "21 CFR 740.11(b)(1)",
+      "21 CFR 501.17(b)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "hydrocarbon or intentional or propellant or exemptions or hairspray or warning or misuse or uses",
+     "tsquery": "'hydrocarbon' | 'intent' | 'propel' | 'exempt' | 'hairspray' | 'warn' | 'misus' | 'use'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+      "FDA Guidance: Labeling OTC Human Drug Products; Small Entity Compliance Guide: Guidance for Industry (final, 2009-05-13, Docket FDA-2004-D-0122)",
+      "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+      "FDA Guidance: Labeling OTC Human Drug Products; Small Entity Compliance Guide: Guidance for Industry (final, 2009-05-13, Docket FDA-2004-D-0122)",
+      "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+      "FDA Guidance: Tobacco Products: Principles for Designing and Conducting Tobacco Product Perception and Intention Studies (final, 2022-08-23, Docket FDA-2019-D-4188)",
+      "FDA Guidance: Photobiomodulation (PBM) Devices - Premarket Notification [510(k)] Submissions: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2023-01-12, Docket FDA-2022-D-3116)",
+      "FDA Guidance: Warnings and Precautions, Contraindications, and Boxed Warning Sections of Labeling for Human Prescription Drug and Biological Products — Content and Format (final, 2011-10-12, Docket FDA-2011-D-0694)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "exemptions",
+     "intentional",
+     "need",
+     "propellant",
+     "uses",
+     "warning"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no regulatory vocabulary",
+    "out_of_scope_part": null,
+    "question_type": "exception_condition",
+    "signals": [
+     "exception_or_condition_wording",
+     "no_regulatory_vocabulary"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+    "FDA Guidance: Labeling OTC Human Drug Products; Small Entity Compliance Guide: Guidance for Industry (final, 2009-05-13, Docket FDA-2004-D-0122)",
+    "21 CFR 369.21",
+    "21 CFR 501.17(b)(1)",
+    "21 CFR 740.11(b)(1)"
+   ],
+   "required_status": {
+    "21 CFR 740.11(b)": "in final context",
+    "21 CFR 740.11(i)": "never returned"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)",
+    "FDA Guidance: Labeling OTC Human Drug Products; Small Entity Compliance Guide: Guidance for Industry (final, 2009-05-13, Docket FDA-2004-D-0122)",
+    "21 CFR 369.21",
+    "21 CFR 501.17(b)(1)",
+    "21 CFR 740.11(b)(1)"
+   ],
+   "required_status": {
+    "21 CFR 740.11(b)": "in final context",
+    "21 CFR 740.11(i)": "never returned"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "COS-710.5-Q1": {
+  "question": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+  "key": "21 CFR 710.5",
+  "production": {
+   "plan": {
+    "kind": "single_provision",
+    "requirements": [
+     "21 CFR 710.5"
+    ],
+    "docket": null,
+    "normalized_question": "We changed our establishment's address. What does § 710.5 say about amending a registration?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "exact_cfr",
+     "input": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+     "tsquery": null,
+     "limit": 100,
+     "rows": [
+      "21 CFR 710.5"
+     ]
+    },
+    {
+     "leg": "full_text_ecfr",
+     "input": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+     "tsquery": "'chang' & 'establish' & 'address' & '710.5' & 'say' & 'amend' & 'registr'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "We changed our establishment's address. What does § 710.5 say about amending a registration?",
+     "tsquery": "'chang' & 'establish' & 'address' & '710.5' & 'say' & 'amend' & 'registr'",
+     "limit": 16,
+     "rows": []
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "exact",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "in_scope",
+    "reason": "names a CFR provision or guidance docket",
+    "domain_terms": [
+     "address",
+     "amending",
+     "establishment",
+     "registration"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "names a CFR provision or FDA docket",
+    "out_of_scope_part": null,
+    "question_type": "requirement",
+    "signals": [
+     "requirement_wording_or_provision"
+    ]
+   },
+   "answerability": {
+    "state": "ANSWERABLE",
+    "reason": "every requested provision has exact evidence and nothing checkable is missing (claim-level support is checked after generation by validation)",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "21 CFR 710.5"
+   ],
+   "required_status": {
+    "21 CFR 710.5": "in final context"
+   }
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "exact",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "ANSWERABLE",
+    "reason": "every requested provision has exact evidence and nothing checkable is missing (claim-level support is checked after generation by validation)",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "21 CFR 710.5"
+   ],
+   "required_status": {
+    "21 CFR 710.5": "in final context"
+   }
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "CTRL-capital": {
+  "question": "What is the capital of France?",
+  "key": null,
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "What is the capital of France?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "What is the capital of France?",
+     "tsquery": "'capit' & 'franc'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "What is the capital of France?",
+     "tsquery": "'capit' & 'franc'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "What is the capital of France?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": [
+      "21 CFR 207.5",
+      "21 CFR 822.2",
+      "21 CFR 1.277(a)",
+      "21 CFR 4.1",
+      "21 CFR 4.100(a)",
+      "21 CFR 1.632"
+     ]
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "capital france",
+     "tsquery": "'capit' & 'franc'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 109.15(a)",
+      "21 CFR 500.45(a)",
+      "21 CFR 509.15(a)",
+      "21 CFR 101.17(f)(2)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "capital or france",
+     "tsquery": "'capit' | 'franc'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Recommendations to Reduce the Possible Risk of Transmission of Creutzfeldt-Jakob Disease and Variant Creutzfeldt-Jakob Disease by Blood and Blood Components: Guidance for Industry (final, 2022-05-23, Docket FDA-2012-D-0307)",
+      "FDA Guidance: Contents of a Complete Submission for the Evaluation of Proprietary Names (final, 2016-04-11, Docket FDA-2008-D-0592)",
+      "FDA Guidance: REMS Assessment: Planning and Reporting (draft, 2019-02-01, Docket FDA-2018-D-4628)",
+      "FDA Guidance: Recommendations to Reduce the Possible Risk of Transmission of Creutzfeldt-Jakob Disease and Variant Creutzfeldt-Jakob Disease by Blood and Blood Components: Guidance for Industry (final, 2022-05-23, Docket FDA-2012-D-0307)",
+      "FDA Guidance: REMS Assessment: Planning and Reporting (draft, 2019-02-01, Docket FDA-2018-D-4628)",
+      "FDA Guidance: Recommendations to Reduce the Possible Risk of Transmission of Creutzfeldt-Jakob Disease and Variant Creutzfeldt-Jakob Disease by Blood and Blood Components: Guidance for Industry (final, 2022-05-23, Docket FDA-2012-D-0307)",
+      "FDA Guidance: Hospital Bed System Dimensional and Assessment Guidance to Reduce Entrapment: Guidance for Industry and FDA Staff (final, 2006-03-10, Docket FDA-2004-D-0499)",
+      "FDA Guidance: Testing and Labeling Medical Devices for Safety in the Magnetic Resonance (MR) Environment: Guidance for Industry and Food and Drug Administration Staff (final, 2023-10-10, Docket FDA-2019-D-2837)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "general_knowledge",
+    "reason": "asks a general-knowledge question: it names no regulation, uses no term of the regulatory vocabulary, and no regulatory text matches it",
+    "domain_terms": []
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no regulatory vocabulary",
+    "out_of_scope_part": null,
+    "question_type": "definition",
+    "signals": [
+     "definition_wording",
+     "no_regulatory_vocabulary"
+    ]
+   },
+   "answerability": {
+    "state": "OUT_OF_SCOPE",
+    "reason": "the question asks a general-knowledge question: it names no regulation, uses no term of the regulatory vocabulary, and no regulatory text matches it",
+    "blocking_conditions": [
+     "general_knowledge"
+    ],
+    "acted_on": true
+   },
+   "generation_blocked": true,
+   "fallback_type": "out_of_scope",
+   "generator_called": false,
+   "final_context": [
+    "FDA Guidance: Recommendations to Reduce the Possible Risk of Transmission of Creutzfeldt-Jakob Disease and Variant Creutzfeldt-Jakob Disease by Blood and Blood Components: Guidance for Industry (final, 2022-05-23, Docket FDA-2012-D-0307)",
+    "FDA Guidance: Contents of a Complete Submission for the Evaluation of Proprietary Names (final, 2016-04-11, Docket FDA-2008-D-0592)",
+    "21 CFR 101.17(f)(2)"
+   ],
+   "required_status": {}
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Recommendations to Reduce the Possible Risk of Transmission of Creutzfeldt-Jakob Disease and Variant Creutzfeldt-Jakob Disease by Blood and Blood Components: Guidance for Industry (final, 2022-05-23, Docket FDA-2012-D-0307)",
+    "FDA Guidance: Contents of a Complete Submission for the Evaluation of Proprietary Names (final, 2016-04-11, Docket FDA-2008-D-0592)",
+    "21 CFR 101.17(f)(2)"
+   ],
+   "required_status": {}
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "CTRL-hamlet": {
+  "question": "Who wrote Hamlet?",
+  "key": null,
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "Who wrote Hamlet?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "Who wrote Hamlet?",
+     "tsquery": "'wrote' & 'hamlet'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "Who wrote Hamlet?",
+     "tsquery": "'wrote' & 'hamlet'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "Who wrote Hamlet?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "wrote hamlet",
+     "tsquery": "'wrote' & 'hamlet'",
+     "limit": 4,
+     "rows": []
+    },
+    {
+     "leg": "full_text_or_ecfr",
+     "input": "hamlet or wrote",
+     "tsquery": "'hamlet' | 'wrote'",
+     "limit": 8,
+     "rows": []
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "hamlet or wrote",
+     "tsquery": "'hamlet' | 'wrote'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Guidance for Industry: Acrylamide in Foods (final, 2016-03-11, Docket FDA-2013-D-0715)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "general_knowledge",
+    "reason": "asks a general-knowledge question: it names no regulation, uses no term of the regulatory vocabulary, and no regulatory text matches it",
+    "domain_terms": []
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no regulatory vocabulary",
+    "out_of_scope_part": null,
+    "question_type": "explanation",
+    "signals": [
+     "default",
+     "no_regulatory_vocabulary"
+    ]
+   },
+   "answerability": {
+    "state": "OUT_OF_SCOPE",
+    "reason": "the question asks a general-knowledge question: it names no regulation, uses no term of the regulatory vocabulary, and no regulatory text matches it",
+    "blocking_conditions": [
+     "general_knowledge"
+    ],
+    "acted_on": true
+   },
+   "generation_blocked": true,
+   "fallback_type": "out_of_scope",
+   "generator_called": false,
+   "final_context": [
+    "FDA Guidance: Guidance for Industry: Acrylamide in Foods (final, 2016-03-11, Docket FDA-2013-D-0715)"
+   ],
+   "required_status": {}
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Guidance for Industry: Acrylamide in Foods (final, 2016-03-11, Docket FDA-2013-D-0715)"
+   ],
+   "required_status": {}
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "CTRL-boiling": {
+  "question": "What is the boiling point of water in Celsius?",
+  "key": null,
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "What is the boiling point of water in Celsius?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "What is the boiling point of water in Celsius?",
+     "tsquery": "'boil' & 'point' & 'water' & 'celsius'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "What is the boiling point of water in Celsius?",
+     "tsquery": "'boil' & 'point' & 'water' & 'celsius'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "What is the boiling point of water in Celsius?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "boiling point water celsius",
+     "tsquery": "'boil' & 'point' & 'water' & 'celsius'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 175.300(b)(3)(xvii)(xix)(xx)(xxi)(xxii)(b)(xxiv)(xxv)(xxvi)(e)(4)(ix)",
+      "21 CFR 175.300(b)(3)(xvii)(xix)(xx)(xxi)(xxii)(b)(xxiv)(xxv)(xxvi)(e)(4)(x)",
+      "21 CFR 177.1980(d)(3)(ii)",
+      "21 CFR 177.2490(d)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "boiling or celsius or point or water",
+     "tsquery": "'boil' | 'celsius' | 'point' | 'water'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+      "FDA Guidance: Draft Guidance for Industry: Evaluating Alternate Curricula for the Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2019-06-03, Docket FDA-2019-D-2131)",
+      "FDA Guidance: Draft Guidance for Industry: Evaluating Alternate Curricula for the Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2019-06-03, Docket FDA-2019-D-2131)",
+      "FDA Guidance: Draft Guidance for Industry: Evaluating Alternate Curricula for the Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2019-06-03, Docket FDA-2019-D-2131)",
+      "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+      "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+      "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+      "FDA Guidance: Labeling OTC Human Drug Products -- Questions and Answers (final, 2009-01-05, Docket FDA-2004-D-0437)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "boiling",
+     "point",
+     "water"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "in_scope",
+    "scope_reason": "no regulatory vocabulary",
+    "out_of_scope_part": null,
+    "question_type": "definition",
+    "signals": [
+     "definition_wording",
+     "no_regulatory_vocabulary"
+    ]
+   },
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "FDA Guidance: Draft Guidance for Industry: Evaluating Alternate Curricula for the Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2019-06-03, Docket FDA-2019-D-2131)",
+    "21 CFR 177.2490(d)"
+   ],
+   "required_status": {}
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "UNKNOWN",
+    "reason": "a general question: whether the retrieved sources answer it cannot be decided by rule; every source came from a broad search",
+    "blocking_conditions": [],
+    "acted_on": true
+   },
+   "generation_blocked": false,
+   "fallback_type": "unvalidated_answer_withheld",
+   "generator_called": true,
+   "final_context": [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "FDA Guidance: Draft Guidance for Industry: Evaluating Alternate Curricula for the Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2019-06-03, Docket FDA-2019-D-2131)",
+    "21 CFR 177.2490(d)"
+   ],
+   "required_status": {}
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "CTRL-eu": {
+  "question": "What does EU Regulation (EC) No 1223/2009 require for a cosmetic product information file?",
+  "key": null,
+  "production": {
+   "plan": {
+    "kind": "general",
+    "requirements": [],
+    "docket": null,
+    "normalized_question": "What does EU Regulation (EC) No 1223/2009 require for a cosmetic product information file?"
+   },
+   "run_plan_args": [
+    {
+     "corpus": null,
+     "top_k": 8,
+     "methods": null,
+     "filters": {
+      "anchor_part": null,
+      "anchor_section": null,
+      "center": null,
+      "part": null,
+      "retrievable": true,
+      "section": null,
+      "sector": null,
+      "status": null,
+      "subchapter": null
+     }
+    }
+   ],
+   "legs": [
+    {
+     "leg": "full_text_ecfr",
+     "input": "What does EU Regulation (EC) No 1223/2009 require for a cosmetic product information file?",
+     "tsquery": "'eu' & 'regul' & 'ec' & '1223/2009' & 'requir' & 'cosmet' & 'product' & 'inform' & 'file'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "full_text_guidance",
+     "input": "What does EU Regulation (EC) No 1223/2009 require for a cosmetic product information file?",
+     "tsquery": "'eu' & 'regul' & 'ec' & '1223/2009' & 'requir' & 'cosmet' & 'product' & 'inform' & 'file'",
+     "limit": 16,
+     "rows": []
+    },
+    {
+     "leg": "trigram_ecfr",
+     "input": "What does EU Regulation (EC) No 1223/2009 require for a cosmetic product information file?",
+     "tsquery": null,
+     "limit": 16,
+     "rows": [
+      "21 CFR 720.4(a)",
+      "21 CFR 207.25"
+     ]
+    },
+    {
+     "leg": "section_coverage_ecfr",
+     "input": "cosmetic information file",
+     "tsquery": "'cosmet' & 'inform' & 'file'",
+     "limit": 4,
+     "rows": [
+      "21 CFR 1.72",
+      "21 CFR 1.74",
+      "21 CFR 1.980(g)(1)",
+      "21 CFR 106.120(e)"
+     ]
+    },
+    {
+     "leg": "full_text_or_guidance",
+     "input": "information or cosmetic or 1223 or 2009 or file",
+     "tsquery": "'inform' | 'cosmet' | '1223' | '2009' | 'file'",
+     "limit": 8,
+     "rows": [
+      "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notification Master Files for Dietary Supplements (draft, 2024-04-03, Docket FDA-2024-D-0706)",
+      "FDA Guidance: CVM GFI #197 Documenting Electronic Data Files and Statistical Analysis Programs (final, 2020-11-13, Docket FDA-2009-D-0052)",
+      "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notification Master Files for Dietary Supplements (draft, 2024-04-03, Docket FDA-2024-D-0706)",
+      "FDA Guidance: CVM GFI #197 Documenting Electronic Data Files and Statistical Analysis Programs (final, 2020-11-13, Docket FDA-2009-D-0052)",
+      "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notification Master Files for Dietary Supplements (draft, 2024-04-03, Docket FDA-2024-D-0706)",
+      "FDA Guidance: Acceptance and Filing Reviews for Premarket Approval Applications (PMAs): Guidance for Industry and Food and Drug Administration Staff (final, 2019-12-16, Docket FDA-2012-D-0524)",
+      "FDA Guidance: CVM GFI #197 Documenting Electronic Data Files and Statistical Analysis Programs (final, 2020-11-13, Docket FDA-2009-D-0052)",
+      "FDA Guidance: Key Information and Facilitating Understanding in Informed Consent Guidance for Sponsors, Investigators, and Institutional Review Boards (draft, 2024-03-01, Docket FDA-2022-D-2997)"
+     ]
+    }
+   ],
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": {
+    "status": "potentially_related",
+    "reason": "regulatory terms present, but no passage matched every term",
+    "domain_terms": [
+     "cosmetic",
+     "file",
+     "information",
+     "product",
+     "regulation",
+     "require"
+    ]
+   },
+   "intent_scope": {
+    "scope_status": "out_of_scope",
+    "scope_reason": "asks about a non-U.S. framework (EU)",
+    "out_of_scope_part": null,
+    "question_type": "out_of_scope",
+    "signals": [
+     "non_us_framework"
+    ]
+   },
+   "answerability": {
+    "state": "OUT_OF_SCOPE",
+    "reason": "the question asks about a non-U.S. framework (EU)",
+    "blocking_conditions": [
+     "scope"
+    ],
+    "acted_on": true
+   },
+   "generation_blocked": true,
+   "fallback_type": "out_of_scope",
+   "generator_called": false,
+   "final_context": [
+    "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notification Master Files for Dietary Supplements (draft, 2024-04-03, Docket FDA-2024-D-0706)",
+    "FDA Guidance: CVM GFI #197 Documenting Electronic Data Files and Statistical Analysis Programs (final, 2020-11-13, Docket FDA-2009-D-0052)",
+    "21 CFR 1.72",
+    "21 CFR 1.74"
+   ],
+   "required_status": {}
+  },
+  "scope_off": {
+   "semantic_fallback": {
+    "invoked": false,
+    "lexical_insufficient": null,
+    "config": {
+     "semantic_top_n": 8,
+     "similarity_floor": 0.75,
+     "merge_policy": "interleave",
+     "general_questions": false
+    },
+    "lexical_mode": "fallback",
+    "skipped": null
+   },
+   "scope_policy": null,
+   "answerability": {
+    "state": "OUT_OF_SCOPE",
+    "reason": "the question asks about a non-U.S. framework (EU)",
+    "blocking_conditions": [
+     "scope"
+    ],
+    "acted_on": true
+   },
+   "generation_blocked": true,
+   "fallback_type": "out_of_scope",
+   "generator_called": false,
+   "final_context": [
+    "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notification Master Files for Dietary Supplements (draft, 2024-04-03, Docket FDA-2024-D-0706)",
+    "FDA Guidance: CVM GFI #197 Documenting Electronic Data Files and Statistical Analysis Programs (final, 2020-11-13, Docket FDA-2009-D-0052)",
+    "21 CFR 1.72",
+    "21 CFR 1.74"
+   ],
+   "required_status": {}
+  },
+  "same_retrieval_legs": true,
+  "same_run_plan_args": true,
+  "same_final_context": true
+ },
+ "_run": {
+  "semantic_load_attempts": 0,
+  "database_unchanged": true,
+  "corpus_identity": {
+   "rows": 65280,
+   "sections": 7829,
+   "first_snapshot": "2026-09-03",
+   "last_snapshot": "2026-09-03",
+   "sha256": "4f0457d7d1edaaaa5531317e4162342ee6d6885286ae4e3e2877c80a464e2c19"
+  }
+ }
+}

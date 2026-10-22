@@ -1,0 +1,180 @@
+........................................................................ [  2%]
+........................................................................ [  5%]
+...................................................x.................... [  7%]
+........................................................................ [ 10%]
+........................................................................ [ 12%]
+........................................................................ [ 15%]
+........................................................................ [ 18%]
+........................................................................ [ 20%]
+..........................FF..............................xxx........... [ 23%]
+........................................................................ [ 25%]
+........................................................................ [ 28%]
+.......x............xx........................................FF........ [ 31%]
+...........................................F....F....................... [ 33%]
+........................................................................ [ 36%]
+................F....................................................... [ 38%]
+........................................................................ [ 41%]
+........................................................................ [ 44%]
+........................................................................ [ 46%]
+.........................s.............................................. [ 49%]
+........................................................................ [ 51%]
+....................................................................F... [ 54%]
+........................................................................ [ 57%]
+........................................................................ [ 59%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 67%]
+........................................................................ [ 70%]
+....................................................F................... [ 72%]
+........................................................................ [ 75%]
+........................................................................ [ 77%]
+...........................----------------------------------------
+.Exception occurred during processing of request from ('127.0.0.1', 58847)
+............................................ [ 80%]
+........................................................................ [ 83%]
+........................................................................ [ 85%]
+........................................................................ [ 88%]
+........................................................................ [ 90%]
+........................................................................ [ 93%]
+........................................................................ [ 96%]
+........................................................................ [ 98%]
+.....................................                                    [100%]
+=================================== FAILURES ===================================
+___ test_an_unverified_paraphrase_of_a_requirement_is_not_called_an_omission ___
+
+    def test_an_unverified_paraphrase_of_a_requirement_is_not_called_an_omission():
+        v, d, _ = production(FOCUSED, f"Each person making drugs needs suitable schooling and experience for the job [1]. {C} [3]", S211)
+        assert v["status"] != PASS
+        # (a) is addressed - by a paraphrase the evaluator cannot verify - so it is not called omitted;
+        # (b), which nothing addresses, is
+>       assert completeness(d)["state"] == "fail"
+E       AssertionError: assert 'not_applicable' == 'fail'
+E         
+E         - fail
+E         + not_applicable
+
+tests/test_accuracy_pass_integrity.py:108: AssertionError
+_ test_a_group_addressed_only_by_an_unverifiable_paraphrase_is_not_established _
+
+    def test_a_group_addressed_only_by_an_unverifiable_paraphrase_is_not_established():
+        v, d, _ = production(FOCUSED, f"Each person making drugs needs suitable schooling and experience for the job [1]. {B} [2] {C} [3]", S211)
+        assert v["status"] != PASS
+>       assert completeness(d)["state"] == "not_established" and "211.25(a)" in completeness(d)["detail"]
+E       AssertionError: assert ('not_applicable' == 'not_established'
+E         
+E         - not_established
+E         + not_applicable)
+
+tests/test_accuracy_pass_integrity.py:115: AssertionError
+___________ test_e_a_truncated_answer_is_never_presented_as_complete ___________
+
+    def test_e_a_truncated_answer_is_never_presented_as_complete():
+        g = ScriptedGenerator("21 CFR 820.10(b)(2): traceability [1]. 21 CFR 820.10(b)(4): advis", finished=False)
+        out = RagPipeline(LexicalRetriever(TableDatabase()), g).answer(MULTI)
+>       assert "Incomplete: generation stopped at the token limit" in out.answer
+E       AssertionError: assert 'Incomplete: generation stopped at the token limit' in 'The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the reque...ng, verbatim): 820.10(b)(2) body text [1].\n21 CFR 820.10(b)(4) (eCFR, binding, verbatim): 820.10(b)(4) body text [2].'
+E        +  where 'The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the reque...ng, verbatim): 820.10(b)(2) body text [1].\n21 CFR 820.10(b)(4) (eCFR, binding, verbatim): 820.10(b)(4) body text [2].' = RagAnswer(question='What do 820.10(b)(2) and 820.10(b)(4) require?', answer='The generated answer could not be validat...)(4)')), satisfied_ids=('r1', 'r2'), missing_labels=(), coverage_explicit=True, schema='regulus_evidence_snapshot_v1')).answer
+
+tests/test_answer_length_policy.py:209: AssertionError
+____________ test_e_truncation_handling_does_not_duplicate_content _____________
+
+    def test_e_truncation_handling_does_not_duplicate_content():
+        """The repair completes a cut answer from the exact sources; it must never
+        append a second copy of what the model already said."""
+        g = ScriptedGenerator("21 CFR 820.10(b)(2): traceability [1]. 21 CFR 820.10(b)(4): advis", finished=False)
+        out = RagPipeline(LexicalRetriever(TableDatabase()), g).answer(MULTI)
+>       assert out.answer.count("21 CFR 820.10(b)(2): traceability [1].") == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = <built-in method count of str object at 0x1171f9fd0>('21 CFR 820.10(b)(2): traceability [1].')
+E        +    where <built-in method count of str object at 0x1171f9fd0> = 'The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the reque...ng, verbatim): 820.10(b)(2) body text [1].\n21 CFR 820.10(b)(4) (eCFR, binding, verbatim): 820.10(b)(4) body text [2].'.count
+E        +      where 'The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the reque...ng, verbatim): 820.10(b)(2) body text [1].\n21 CFR 820.10(b)(4) (eCFR, binding, verbatim): 820.10(b)(4) body text [2].' = RagAnswer(question='What do 820.10(b)(2) and 820.10(b)(4) require?', answer='The generated answer could not be validat...)(4)')), satisfied_ids=('r1', 'r2'), missing_labels=(), coverage_explicit=True, schema='regulus_evidence_snapshot_v1')).answer
+
+tests/test_answer_length_policy.py:219: AssertionError
+______ test_normalisation_happens_before_validation_and_fixes_attribution ______
+
+    def test_normalisation_happens_before_validation_and_fixes_attribution():
+        # line-leading markers, as the model writes them: the validator would attach [2] to the (c) sentence
+        answer = "[1] 21 CFR 820.10(c) requires design and development controls for class II devices.\n[2] 21 CFR 820.10(d) applies to devices that support or sustain life, as appropriate."
+        p, _ = pipe(answer)
+        out = p.answer("Compare 21 CFR 820.10(c) and 820.10(d).")
+>       assert out.answer.startswith("21 CFR 820.10(c) requires design and development controls for class II devices [1].")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x1164eb330>('21 CFR 820.10(c) requires design and development controls for class II devices [1].')
+E        +    where <built-in method startswith of str object at 0x1164eb330> = 'The generated answer could not be validated against the retrieved regulatory evidence, so it is not shown. The retrie...nswer. Sources consulted: 21 CFR 820.10(c), 21 CFR 820.10(d), 21 CFR 820.10(c)(1), 21 CFR 820.10(c)(2), 21 CFR 820.10.'.startswith
+E        +      where 'The generated answer could not be validated against the retrieved regulatory evidence, so it is not shown. The retrie...nswer. Sources consulted: 21 CFR 820.10(c), 21 CFR 820.10(d), 21 CFR 820.10(c)(1), 21 CFR 820.10(c)(2), 21 CFR 820.10.' = RagAnswer(question='Compare 21 CFR 820.10(c) and 820.10(d).', answer='The generated answer could not be validated agai...0(d)')), satisfied_ids=('r1', 'r2'), missing_labels=(), coverage_explicit=True, schema='regulus_evidence_snapshot_v1')).answer
+
+tests/test_answer_quality.py:256: AssertionError
+_____________ test_missing_citation_and_weak_structure_are_flagged _____________
+
+    def test_missing_citation_and_weak_structure_are_flagged():
+        long = ("21 CFR 820.10(b)(2) concerns traceability. Manufacturers keep written procedures describing how "
+                "products move through production. Each lot receives an identifier that links materials to finished goods. "
+                "Records show which suppliers provided components and when those components arrived. Staff review the "
+                "records during audits and correct gaps promptly. Distribution logs name the consignees that received "
+                "each shipment. When a problem appears, investigators follow the trail backward to the source. Training "
+                "ensures employees understand why accurate entries matter. Management reviews the system periodically "
+                "and approves changes before use. Electronic systems must protect entries from alteration. Paper forms "
+                "are signed and dated by the responsible person. Retention periods depend on the expected life of the "
+                "product. Retrieval must be possible within a reasonable time when regulators ask. Complaints are "
+                "linked to affected lots so recalls can be scoped. Outsourced activities remain the manufacturer's "
+                "responsibility under the quality agreement. Periodic checks confirm that labels match the records "
+                "kept for every batch shipped.")
+        flags, _ = _flags(long, "What does 21 CFR 820.10(b)(2) require?")
+>       assert {"missing_citation", "weak_structure"} <= flags
+E       AssertionError: assert {'missing_cit...ak_structure'} <= set()
+E         
+E         Extra items in the left set:
+E         'missing_citation'
+E         'weak_structure'
+
+tests/test_answer_quality.py:321: AssertionError
+_________ test_pipeline_removes_invalid_citations_and_notes_truncation _________
+
+    def test_pipeline_removes_invalid_citations_and_notes_truncation():
+        g = ScriptedGenerator("21 CFR 820.10(b)(2): traceability [9]. 21 CFR 820.10(b)(4): advisory", finished=False)
+        out = RagPipeline(LexicalRetriever(TableDatabase()), g).answer(TWO)
+        assert out.metadata["validation"]["initial"]["status"] == STATUS_CITATION_INVALID
+        assert "[9]" not in out.answer
+        # truncation is stated, not hidden, and is not dressed up as a finished answer
+>       assert "Incomplete: generation stopped at the token limit" in out.answer
+E       AssertionError: assert 'Incomplete: generation stopped at the token limit' in 'The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the reque...ng, verbatim): 820.10(b)(2) body text [1].\n21 CFR 820.10(b)(4) (eCFR, binding, verbatim): 820.10(b)(4) body text [2].'
+E        +  where 'The generated answer could not be validated against the retrieved regulatory evidence. The verified text of the reque...ng, verbatim): 820.10(b)(2) body text [1].\n21 CFR 820.10(b)(4) (eCFR, binding, verbatim): 820.10(b)(4) body text [2].' = RagAnswer(question='What do 820.10(b)(2) and 820.10(b)(4) require?', answer='The generated answer could not be validat...)(4)')), satisfied_ids=('r1', 'r2'), missing_labels=(), coverage_explicit=True, schema='regulus_evidence_snapshot_v1')).answer
+
+tests/test_answer_validation.py:345: AssertionError
+_____ test_13_evidence_not_captured_is_distinct_from_an_unsupported_claim ______
+
+    def test_13_evidence_not_captured_is_distinct_from_an_unsupported_claim():
+        out, _, _ = answer(ONE, "21 CFR 820.10(b)(2) requires an independent annual supplier audit by a notified body [1].")
+        judged = evaluate(ONE, out.answer, evidence=out.evidence_snapshot)
+        claims = judged.checked["claims"]
+        assert judged.evidence["provenance"] == TR.EXACT
+>       assert claims and all(c["support"] != "supported" for c in claims)          # unsupported, judged
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert ([])
+
+tests/test_evidence_traceability.py:316: AssertionError
+______ test_a_failure_is_distinguishable_from_a_legitimate_not_evaluated _______
+
+    def test_a_failure_is_distinguishable_from_a_legitimate_not_evaluated():
+        out = answer_one(*CASES[1])                                        # the evaluator abstains on this one
+        rec = json.loads(json.dumps(build(out)))
+        result, _ = O.evaluate_record(rec, {"question_id": "Q-1", "question": out.question, "answer": out.answer},
+                                      run_id=RUN["run_id"], ordinal=1, evaluator={})
+>       assert (result["outcome"], result["review_status"]) == (O.EVALUATED, NOT_EVALUATED)
+E       AssertionError: assert ('evaluated', 'fail') == ('evaluated', 'not_evaluated')
+E         
+E         At index 1 diff: 'fail' != 'not_evaluated'
+E         Use -v to get more diff
+
+tests/test_offline_evaluation.py:360: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_accuracy_pass_integrity.py::test_an_unverified_paraphrase_of_a_requirement_is_not_called_an_omission
+FAILED tests/test_accuracy_pass_integrity.py::test_a_group_addressed_only_by_an_unverifiable_paraphrase_is_not_established
+FAILED tests/test_answer_length_policy.py::test_e_a_truncated_answer_is_never_presented_as_complete
+FAILED tests/test_answer_length_policy.py::test_e_truncation_handling_does_not_duplicate_content
+FAILED tests/test_answer_quality.py::test_normalisation_happens_before_validation_and_fixes_attribution
+FAILED tests/test_answer_quality.py::test_missing_citation_and_weak_structure_are_flagged
+FAILED tests/test_answer_validation.py::test_pipeline_removes_invalid_citations_and_notes_truncation
+FAILED tests/test_evidence_traceability.py::test_13_evidence_not_captured_is_distinct_from_an_unsupported_claim
+FAILED tests/test_offline_evaluation.py::test_a_failure_is_distinguishable_from_a_legitimate_not_evaluated
+9 failed, 2756 passed, 1 skipped, 150 deselected, 7 xfailed in 140.76s (0:02:20)

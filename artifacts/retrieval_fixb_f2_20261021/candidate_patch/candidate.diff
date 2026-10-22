@@ -1,0 +1,52 @@
+diff --git a/src/regulus/retrieval/lexical.py b/src/regulus/retrieval/lexical.py
+index 971390b..b30ce1c 100644
+--- a/src/regulus/retrieval/lexical.py
++++ b/src/regulus/retrieval/lexical.py
+@@ -98,6 +98,15 @@ log = logging.getLogger("regulus.retrieval")
+ # guidance search, every other leg and the question the model sees are unchanged.
+ ECFR_LITERAL_OR_ENABLED = os.environ.get("REGULUS_ECFR_LITERAL_OR", "") == "1"
+ 
++# Off unless REGULUS_SECTION_COVERAGE_WIDE=1 (retrieval repair B, F2 experiment). Section coverage (RC1) keeps at most
++# SECTION_COVERAGE_ROWS_PER_SECTION rows of each of its top sections and coverage_slots rows in all, so a required
++# paragraph beyond a section's first two rows is never a candidate. With the switch on, the same top sections give up
++# to SECTION_COVERAGE_WIDE_ROWS_PER_SECTION rows each and SECTION_COVERAGE_WIDE_ROW_LIMIT rows in all. The SQL, its
++# ranking, the registry order (coverage rows last) and selection are unchanged.
++SECTION_COVERAGE_WIDE_ENABLED = os.environ.get("REGULUS_SECTION_COVERAGE_WIDE", "") == "1"
++SECTION_COVERAGE_WIDE_ROWS_PER_SECTION = 8
++SECTION_COVERAGE_WIDE_ROW_LIMIT = 16
++
+ DEFAULT_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_FULL_TEXT_OR, METHOD_TRIGRAM, METHOD_DEFINITION)
+ PRIMARY_METHODS = (METHOD_EXACT_CFR, METHOD_EXACT_DOCKET, METHOD_FULL_TEXT, METHOD_DEFINITION)
+ DEFINITION_LIMIT = 3  # the asked term's definitions kept as evidence; many parts define the same term
+@@ -1001,11 +1010,15 @@ class LexicalRetriever:
+ 
+     def section_coverage_ecfr(self, terms: str, filters: Filters, limit: int) -> list[RetrievalResult]:
+         """RC1: the paragraphs of the eCFR sections that cover most of the question's weight
+-        (sql.ECFR_SECTION_COVERAGE). OR-method evidence: scored in the fallback band, discovery tier."""
++        (sql.ECFR_SECTION_COVERAGE). OR-method evidence: scored in the fallback band, discovery tier.
++        `limit` is the number of sections; rows are capped per section and in all (wider when
++        REGULUS_SECTION_COVERAGE_WIDE=1)."""
++        wide = SECTION_COVERAGE_WIDE_ENABLED
+         rows = self.db.query(
+             sql.ECFR_SECTION_COVERAGE,
+             {**self._ecfr_filter_params(filters), "query": terms, "sections": limit,
+-             "rows_per_section": SECTION_COVERAGE_ROWS_PER_SECTION, "limit": limit},
++             "rows_per_section": SECTION_COVERAGE_WIDE_ROWS_PER_SECTION if wide else SECTION_COVERAGE_ROWS_PER_SECTION,
++             "limit": SECTION_COVERAGE_WIDE_ROW_LIMIT if wide else limit},
+         )
+         return [
+             self._ecfr_result(row, METHOD_FULL_TEXT_OR, section_coverage_score(row["section_score"], row["row_score"]),
+diff --git a/src/regulus/system_identity.py b/src/regulus/system_identity.py
+index defaf4f..7eff3fb 100644
+--- a/src/regulus/system_identity.py
++++ b/src/regulus/system_identity.py
+@@ -81,6 +81,9 @@ def pipeline_config(config: RagConfig) -> dict[str, Any]:
+         # REGULUS_ECFR_LITERAL_OR=1 changes general questions' eCFR all-words search; recorded only when on, so the
+         # fingerprint of every run without it is unchanged
+         retrieval["ecfr_literal_or"] = True
++    if retrieval_lexical.SECTION_COVERAGE_WIDE_ENABLED:
++        # REGULUS_SECTION_COVERAGE_WIDE=1 widens the section-coverage leg's row caps; recorded only when on
++        retrieval["section_coverage_wide"] = True
+     return {
+         "retrieval": retrieval,
+         "coverage": {k: rag.get(k) for k in ("no_context_behavior", "incomplete_behavior", "answerability", "optional_context", "scope_policy", "evidence_consolidation")},

@@ -1,0 +1,1631 @@
+{
+ "id": "COS-720.4-Q3",
+ "question": "We sell one permanent hair dye in 12 shades and one lipstick in 8 shades where only the color additive amounts differ. How many Form 2512 statements, and how should ingredients be listed?",
+ "key_citation": "21 CFR 720.4(c)(6), (c)(7), (d)(1)-(3), (e)",
+ "required": {
+  "720.4": [
+   "c",
+   "d",
+   "e"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We sell one permanent hair dye in 12 shades and one lipstick in 8 shades where only the color additive amounts differ. How many Form 2512 statements, and how should ingredients be listed?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "sell permanent hair dye shades lipstick color additive amounts differ form statements ingredients listed",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "ingredients",
+   "statements",
+   "permanent",
+   "lipstick",
+   "additive",
+   "amounts",
+   "shades",
+   "differ"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We sell one permanent hair dye in 12 shades and one lipstick in 8 shades where only the color additive amounts differ. How many Form 2512 statements, and how should ingredients be listed?",
+   "tsquery": "'sell' & 'one' & 'perman' & 'hair' & 'dye' & '12' & 'shade' & 'one' & 'lipstick' & '8' & 'shade' & 'color' & 'addit' & 'amount' & 'differ' & 'mani' & 'form' & '2512' & 'statement' & 'ingredi' & 'list'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We sell one permanent hair dye in 12 shades and one lipstick in 8 shades where only the color additive amounts differ. How many Form 2512 statements, and how should ingredients be listed?",
+   "tsquery": "'sell' & 'one' & 'perman' & 'hair' & 'dye' & '12' & 'shade' & 'one' & 'lipstick' & '8' & 'shade' & 'color' & 'addit' & 'amount' & 'differ' & 'mani' & 'form' & '2512' & 'statement' & 'ingredi' & 'list'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We sell one permanent hair dye in 12 shades and one lipstick in 8 shades where only the color additive amounts differ. How many Form 2512 statements, and how should ingredients be listed?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "sell permanent hair dye shades lipstick color additive amounts differ form statements ingredients listed",
+   "tsquery": "'sell' & 'perman' & 'hair' & 'dye' & 'shade' & 'lipstick' & 'color' & 'addit' & 'amount' & 'differ' & 'form' & 'statement' & 'ingredi' & 'list'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 720.4(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.4395,
+     "chars": 522,
+     "metadata": {
+      "ordinal": 111,
+      "section_coverage": 1.4821,
+      "paragraph_coverage": 0.5816
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 720.4(c)(6)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.9625,
+     "chars": 80,
+     "metadata": {
+      "ordinal": 46,
+      "section_coverage": 1.4821,
+      "paragraph_coverage": 0.2954
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 701.3(o)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.1404,
+     "chars": 766,
+     "metadata": {
+      "ordinal": 57,
+      "section_coverage": 0.9335,
+      "paragraph_coverage": 0.3508
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 701.3(o)(1)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.9952,
+     "chars": 809,
+     "metadata": {
+      "ordinal": 55,
+      "section_coverage": 0.9335,
+      "paragraph_coverage": 0.2636
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "ingredients or statements or permanent or lipstick or additive or amounts or shades or differ",
+   "tsquery": "'ingredi' | 'statement' | 'perman' | 'lipstick' | 'addit' | 'amount' | 'shade' | 'differ'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3721,
+     "chars": 1462,
+     "metadata": {
+      "ts_rank_cd": 2.1953304
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3368,
+     "chars": 1483,
+     "metadata": {
+      "ts_rank_cd": 2.1388962
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2827,
+     "chars": 1436,
+     "metadata": {
+      "ts_rank_cd": 2.052391
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers About Dietary Guidance Statements in Food Labeling (draft, 2023-03-24, Docket FDA-2023-D-1027)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1182,
+     "chars": 1475,
+     "metadata": {
+      "ts_rank_cd": 1.7891086
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0464,
+     "chars": 1421,
+     "metadata": {
+      "ts_rank_cd": 1.6742074
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0136,
+     "chars": 1436,
+     "metadata": {
+      "ts_rank_cd": 1.6217567
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0074,
+     "chars": 1492,
+     "metadata": {
+      "ts_rank_cd": 1.6117631
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9666,
+     "chars": 1494,
+     "metadata": {
+      "ts_rank_cd": 1.546568
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3721,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3368,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2827,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers About Dietary Guidance Statements in Food Labeling (draft, 2023-03-24, Docket FDA-2023-D-1027)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1182,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0464,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0136,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0074,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9666,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 720.4(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.4395,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 720.4(c)(6)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.9625,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 701.3(o)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.1404,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 701.3(o)(1)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.9952,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+  "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+  "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+  "FDA Guidance: Draft Guidance for Industry: Questions and Answers About Dietary Guidance Statements in Food Labeling (draft, 2023-03-24, Docket FDA-2023-D-1027)",
+  "21 CFR 720.4(e)",
+  "21 CFR 720.4(c)(6)(i)",
+  "21 CFR 701.3(o)(3)",
+  "21 CFR 701.3(o)(1)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Questions and Answers About Dietary Guidance Statements in Food Labeling (draft, 2023-03-24, Docket FDA-2023-D-1027)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 701.3(o)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 701.3(o)(1)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(e)",
+    "tier": "discovery",
+    "block_chars": 721,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(c)(6)(i)",
+    "tier": "discovery",
+    "block_chars": 285,
+    "used_before": 721,
+    "reserve_spent_before": 721,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 701.3(o)(3)",
+    "tier": "discovery",
+    "block_chars": 949,
+    "used_before": 1008,
+    "reserve_spent_before": 1006,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 701.3(o)(1)",
+    "tier": "discovery",
+    "block_chars": 992,
+    "used_before": 1008,
+    "reserve_spent_before": 1006,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+    "tier": "discovery",
+    "used_before": 1008,
+    "block_chars": 1598,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+    "tier": "discovery",
+    "used_before": 2608,
+    "block_chars": 990,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1598,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers About Dietary Guidance Statements in Food Labeling (draft, 2023-03-24, Docket FDA-2023-D-1027)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1578,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1740,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1740,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1547,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 701.3(o)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 949,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 701.3(o)(1)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 992,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Content and Format of Composition Statement and Corresponding Statement of Ingredients in Labeling in NDAs and ANDAs (draft, 2024-04-29, Docket FDA-2024-D-1461)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 592,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 720.4(e)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 522,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 720.4(c)(6)(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 80,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "720.4": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 42,
+     "tail": "(a) Form FDA-2512 requests information on:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(a)(1)",
+     "ordinal": 1,
+     "chars": 149,
+     "tail": " the person (manufacturer, packer, or distributor) designated on the label of the product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(a)(2)",
+     "ordinal": 2,
+     "chars": 259,
+     "tail": "t, when the manufacturer or packer submits the information requested under this paragraph.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(a)(3)",
+     "ordinal": 3,
+     "chars": 52,
+     "tail": "(3) The brand name or names of the cosmetic product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(a)(4)",
+     "ordinal": 4,
+     "chars": 48,
+     "tail": "(4) The cosmetic product category or categories.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(a)(5)",
+     "ordinal": 5,
+     "chars": 35,
+     "tail": "(5) The ingredients in the product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 6,
+     "chars": 43,
+     "tail": "(b) The person filing Form FDA-2512 should:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(b)(1)",
+     "ordinal": 7,
+     "chars": 71,
+     "tail": "(1) Provide the information requested in paragraph (a) of this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(2)",
+     "ordinal": 8,
+     "chars": 53,
+     "tail": "(2) Have the form signed by an authorized individual.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(3)",
+     "ordinal": 9,
+     "chars": 230,
+     "tail": "ion and treatment of accidental ingestion or other accidental use of the cosmetic product.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(4)",
+     "ordinal": 10,
+     "chars": 301,
+     "tail": "n the cosmetic product is the cause of the problem for which the patient is being treated.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 11,
+     "chars": 116,
+     "tail": "lowing cosmetic product categories should be cited to indicate the product's intended use.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(1)",
+     "ordinal": 12,
+     "chars": 18,
+     "tail": "(1) Baby products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(1)(i)",
+     "ordinal": 13,
+     "chars": 18,
+     "tail": "(i) Baby shampoos.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(1)(ii)",
+     "ordinal": 14,
+     "chars": 40,
+     "tail": "(ii) Lotions, oils, powders, and creams.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(1)(iii)",
+     "ordinal": 15,
+     "chars": 26,
+     "tail": "(iii) Other baby products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)",
+     "ordinal": 16,
+     "chars": 22,
+     "tail": "(2) Bath preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(2)(i)",
+     "ordinal": 17,
+     "chars": 34,
+     "tail": "(i) Bath oils, tablets, and salts.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(ii)",
+     "ordinal": 18,
+     "chars": 18,
+     "tail": "(ii) Bubble baths.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(iii)",
+     "ordinal": 19,
+     "chars": 20,
+     "tail": "(iii) Bath capsules.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(iv)",
+     "ordinal": 20,
+     "chars": 29,
+     "tail": "(iv) Other bath preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)",
+     "ordinal": 21,
+     "chars": 28,
+     "tail": "(3) Eye makeup preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(3)(i)",
+     "ordinal": 22,
+     "chars": 19,
+     "tail": "(i) Eyebrow pencil.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)(ii)",
+     "ordinal": 23,
+     "chars": 14,
+     "tail": "(ii) Eyeliner.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)(iii)",
+     "ordinal": 24,
+     "chars": 17,
+     "tail": "(iii) Eye shadow.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)(iv)",
+     "ordinal": 25,
+     "chars": 16,
+     "tail": "(iv) Eye lotion.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)(v)",
+     "ordinal": 26,
+     "chars": 23,
+     "tail": "(v) Eye makeup remover.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)(vi)",
+     "ordinal": 27,
+     "chars": 13,
+     "tail": "(vi) Mascara.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)(vii)",
+     "ordinal": 28,
+     "chars": 36,
+     "tail": "(vii) Other eye makeup preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(4)",
+     "ordinal": 29,
+     "chars": 27,
+     "tail": "(4) Fragrance preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(4)(i)",
+     "ordinal": 30,
+     "chars": 31,
+     "tail": "(i) Colognes and toilet waters.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(4)(ii)",
+     "ordinal": 31,
+     "chars": 14,
+     "tail": "(ii) Perfumes.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(4)(iii)",
+     "ordinal": 32,
+     "chars": 63,
+     "tail": "(iii) Powders (dusting and talcum) (excluding aftershave talc).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(4)(iv)",
+     "ordinal": 33,
+     "chars": 13,
+     "tail": "(iv) Sachets.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(4)(v)",
+     "ordinal": 34,
+     "chars": 33,
+     "tail": "(v) Other fragrance preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)",
+     "ordinal": 35,
+     "chars": 36,
+     "tail": "(5) Hair preparations (noncoloring).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(5)(i)",
+     "ordinal": 36,
+     "chars": 22,
+     "tail": "(i) Hair conditioners.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(ii)",
+     "ordinal": 37,
+     "chars": 37,
+     "tail": "(ii) Hair sprays (aerosol fixatives).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(iii)",
+     "ordinal": 38,
+     "chars": 25,
+     "tail": "(iii) Hair straighteners.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(iv)",
+     "ordinal": 39,
+     "chars": 21,
+     "tail": "(iv) Permanent waves.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(v)",
+     "ordinal": 40,
+     "chars": 25,
+     "tail": "(v) Rinses (noncoloring).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(vi)",
+     "ordinal": 41,
+     "chars": 28,
+     "tail": "(vi) Shampoos (noncoloring).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(vii)",
+     "ordinal": 42,
+     "chars": 54,
+     "tail": "(vii) Tonics, dressings, and other hair grooming aids.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(viii)",
+     "ordinal": 43,
+     "chars": 17,
+     "tail": "(viii) Wave sets.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(5)(ix)",
+     "ordinal": 44,
+     "chars": 29,
+     "tail": "(ix) Other hair preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)",
+     "ordinal": 45,
+     "chars": 31,
+     "tail": "(6) Hair coloring preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(6)(i)",
+     "ordinal": 46,
+     "chars": 80,
+     "tail": "(i) Hair dyes and colors (all types requiring caution statement and patch test).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(ii)",
+     "ordinal": 47,
+     "chars": 16,
+     "tail": "(ii) Hair tints.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(iii)",
+     "ordinal": 48,
+     "chars": 29,
+     "tail": "(iii) Hair rinses (coloring).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(iv)",
+     "ordinal": 49,
+     "chars": 30,
+     "tail": "(iv) Hair shampoos (coloring).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(v)",
+     "ordinal": 50,
+     "chars": 32,
+     "tail": "(v) Hair color sprays (aerosol).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(vi)",
+     "ordinal": 51,
+     "chars": 32,
+     "tail": "(vi) Hair lighteners with color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(vii)",
+     "ordinal": 52,
+     "chars": 20,
+     "tail": "(vii) Hair bleaches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(6)(viii)",
+     "ordinal": 53,
+     "chars": 40,
+     "tail": "(viii) Other hair coloring preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)",
+     "ordinal": 54,
+     "chars": 34,
+     "tail": "(7) Makeup preparations (not eye).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(7)(i)",
+     "ordinal": 55,
+     "chars": 25,
+     "tail": "(i) Blushers (all types).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(ii)",
+     "ordinal": 56,
+     "chars": 18,
+     "tail": "(ii) Face powders.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(iii)",
+     "ordinal": 57,
+     "chars": 18,
+     "tail": "(iii) Foundations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(iv)",
+     "ordinal": 58,
+     "chars": 25,
+     "tail": "(iv) Leg and body paints.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(v)",
+     "ordinal": 59,
+     "chars": 13,
+     "tail": "(v) Lipstick.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(vi)",
+     "ordinal": 60,
+     "chars": 18,
+     "tail": "(vi) Makeup bases.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(vii)",
+     "ordinal": 61,
+     "chars": 13,
+     "tail": "(vii) Rouges.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(viii)",
+     "ordinal": 62,
+     "chars": 24,
+     "tail": "(viii) Makeup fixatives.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(7)(ix)",
+     "ordinal": 63,
+     "chars": 31,
+     "tail": "(ix) Other makeup preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)",
+     "ordinal": 64,
+     "chars": 28,
+     "tail": "(8) Manicuring preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(8)(i)",
+     "ordinal": 65,
+     "chars": 29,
+     "tail": "(i) Basecoats and undercoats.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)(ii)",
+     "ordinal": 66,
+     "chars": 23,
+     "tail": "(ii) Cuticle softeners.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)(iii)",
+     "ordinal": 67,
+     "chars": 30,
+     "tail": "(iii) Nail creams and lotions.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)(iv)",
+     "ordinal": 68,
+     "chars": 20,
+     "tail": "(iv) Nail extenders.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)(v)",
+     "ordinal": 69,
+     "chars": 27,
+     "tail": "(v) Nail polish and enamel.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)(vi)",
+     "ordinal": 70,
+     "chars": 37,
+     "tail": "(vi) Nail polish and enamel removers.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(8)(vii)",
+     "ordinal": 71,
+     "chars": 36,
+     "tail": "(vii) Other manicuring preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(9)",
+     "ordinal": 72,
+     "chars": 26,
+     "tail": "(9) Oral hygiene products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(9)(i)",
+     "ordinal": 73,
+     "chars": 55,
+     "tail": "(i) Dentifrices (aerosol, liquid, pastes, and powders).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(9)(ii)",
+     "ordinal": 74,
+     "chars": 60,
+     "tail": "(ii) Mouthwashes and breath fresheners (liquids and sprays).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(9)(iii)",
+     "ordinal": 75,
+     "chars": 34,
+     "tail": "(iii) Other oral hygiene products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(10)",
+     "ordinal": 76,
+     "chars": 26,
+     "tail": "(10) Personal cleanliness.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(10)(i)",
+     "ordinal": 77,
+     "chars": 30,
+     "tail": "(i) Bath soaps and detergents.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(10)(ii)",
+     "ordinal": 78,
+     "chars": 27,
+     "tail": "(ii) Deodorants (underarm).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(10)(iii)",
+     "ordinal": 79,
+     "chars": 14,
+     "tail": "(iii) Douches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(10)(iv)",
+     "ordinal": 80,
+     "chars": 33,
+     "tail": "(iv) Feminine hygiene deodorants.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(10)(v)",
+     "ordinal": 81,
+     "chars": 40,
+     "tail": "(v) Other personal cleanliness products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)",
+     "ordinal": 82,
+     "chars": 26,
+     "tail": "(11) Shaving preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(11)(i)",
+     "ordinal": 83,
+     "chars": 23,
+     "tail": "(i) Aftershave lotions.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)(ii)",
+     "ordinal": 84,
+     "chars": 21,
+     "tail": "(ii) Beard softeners.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)(iii)",
+     "ordinal": 85,
+     "chars": 19,
+     "tail": "(iii) Men's talcum.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)(iv)",
+     "ordinal": 86,
+     "chars": 34,
+     "tail": "(iv) Preshave lotions (all types).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)(v)",
+     "ordinal": 87,
+     "chars": 51,
+     "tail": "(v) Shaving cream (aerosol, brushless, and lather).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)(vi)",
+     "ordinal": 88,
+     "chars": 40,
+     "tail": "(vi) Shaving soap (cakes, sticks, etc.).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(11)(vii)",
+     "ordinal": 89,
+     "chars": 41,
+     "tail": "(vii) Other shaving preparation products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)",
+     "ordinal": 90,
+     "chars": 67,
+     "tail": "(12) Skin care preparations, (creams, lotions, powder, and sprays).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(12)(i)",
+     "ordinal": 91,
+     "chars": 66,
+     "tail": "(i) Cleansing (cold creams, cleansing lotions, liquids, and pads).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(ii)",
+     "ordinal": 92,
+     "chars": 18,
+     "tail": "(ii) Depilatories.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(iii)",
+     "ordinal": 93,
+     "chars": 53,
+     "tail": "(iii) Face and neck (excluding shaving preparations).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(iv)",
+     "ordinal": 94,
+     "chars": 52,
+     "tail": "(iv) Body and hand (excluding shaving preparations).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(v)",
+     "ordinal": 95,
+     "chars": 28,
+     "tail": "(v) Foot powders and sprays.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(vi)",
+     "ordinal": 96,
+     "chars": 18,
+     "tail": "(vi) Moisturizing.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(vii)",
+     "ordinal": 97,
+     "chars": 12,
+     "tail": "(vii) Night.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(viii)",
+     "ordinal": 98,
+     "chars": 31,
+     "tail": "(viii) Paste masks (mud packs).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(ix)",
+     "ordinal": 99,
+     "chars": 21,
+     "tail": "(ix) Skin fresheners.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(12)(x)",
+     "ordinal": 100,
+     "chars": 33,
+     "tail": "(x) Other skin care preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(13)",
+     "ordinal": 101,
+     "chars": 25,
+     "tail": "(13) Suntan preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(13)(i)",
+     "ordinal": 102,
+     "chars": 37,
+     "tail": "(i) Suntan gels, creams, and liquids.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(13)(ii)",
+     "ordinal": 103,
+     "chars": 33,
+     "tail": "(ii) Indoor tanning preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(13)(iii)",
+     "ordinal": 104,
+     "chars": 32,
+     "tail": "(iii) Other suntan preparations.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 105,
+     "chars": 59,
+     "tail": "(d) Ingredients in the product should be listed as follows:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(d)(1)",
+     "ordinal": 106,
+     "chars": 311,
+     "tail": "ufacturer or supplier of the fragrance and/or flavor refuses to disclose ingredient data).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(2)",
+     "ordinal": 107,
+     "chars": 155,
+     "tail": "d and Drug Administration (FDA) for the ingredient pursuant to § 701.3(c) of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(3)",
+     "ordinal": 108,
+     "chars": 176,
+     "tail": "s common or usual name, if it has one, or its chemical or technical name should be listed.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(4)",
+     "ordinal": 109,
+     "chars": 439,
+     "tail": "appropriate, and by stating its FDA-assigned cosmetic product ingredient statement number.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(5)",
+     "ordinal": 110,
+     "chars": 328,
+     "tail": " manufacturer or supplier of each proprietary fragrance and/or flavor mixture is optional.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 111,
+     "chars": 522,
+     "tail": "avors and fragrances where only the amounts of the flavors and fragrances used are varied.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Information requested about cosmetic products."
+  }
+ },
+ "required_status": {
+  "21 CFR 720.4(c)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 720.4(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 720.4(e)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}
