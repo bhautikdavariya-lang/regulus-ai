@@ -1,0 +1,1205 @@
+{
+ "id": "COS-701.3-Q4",
+ "question": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+ "key_citation": "21 CFR 701.3(r), (m)",
+ "required": {
+  "701.3": [
+   "m",
+   "r"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "sell direct mail supplier shortage forces swap emollient handle ingredient declaration",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "declaration",
+   "ingredient",
+   "emollient",
+   "supplier",
+   "shortage",
+   "direct",
+   "forces",
+   "handle"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+   "tsquery": "'sell' & 'direct' & 'mail' & 'supplier' & 'shortag' & 'forc' & 'us' & 'swap' & 'emolli' & 'handl' & 'ingredi' & 'declar'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+   "tsquery": "'sell' & 'direct' & 'mail' & 'supplier' & 'shortag' & 'forc' & 'us' & 'swap' & 'emolli' & 'handl' & 'ingredi' & 'declar'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We sell only by direct mail, and a supplier shortage forces us to swap an emollient. How do we handle the ingredient declaration?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "sell direct mail supplier shortage forces swap emollient handle ingredient declaration",
+   "tsquery": "'sell' & 'direct' & 'mail' & 'supplier' & 'shortag' & 'forc' & 'swap' & 'emolli' & 'handl' & 'ingredi' & 'declar'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 701.3(m)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3462,
+     "chars": 1010,
+     "metadata": {
+      "ordinal": 49,
+      "section_coverage": 0.5767,
+      "paragraph_coverage": 0.231
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 701.3(n)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3462,
+     "chars": 643,
+     "metadata": {
+      "ordinal": 50,
+      "section_coverage": 0.5767,
+      "paragraph_coverage": 0.231
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 205.3(f)(5)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.28,
+     "chars": 300,
+     "metadata": {
+      "ordinal": 10,
+      "section_coverage": 0.5388,
+      "paragraph_coverage": 0.2292
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 1.1310",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.13,
+     "chars": 296,
+     "metadata": {
+      "ordinal": 26,
+      "section_coverage": 0.5421,
+      "paragraph_coverage": 0.1359
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "declaration or ingredient or emollient or supplier or shortage or direct or forces or handle",
+   "tsquery": "'declar' | 'ingredi' | 'emolli' | 'supplier' | 'shortag' | 'direct' | 'forc' | 'handl'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2408,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 1.9853275
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0344,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.6551157
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0015,
+     "chars": 1472,
+     "metadata": {
+      "ts_rank_cd": 1.6024541
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9901,
+     "chars": 1466,
+     "metadata": {
+      "ts_rank_cd": 1.5842036
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9816,
+     "chars": 1498,
+     "metadata": {
+      "ts_rank_cd": 1.5705521
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9747,
+     "chars": 1497,
+     "metadata": {
+      "ts_rank_cd": 1.559485
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9414,
+     "chars": 1426,
+     "metadata": {
+      "ts_rank_cd": 1.5063138
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9371,
+     "chars": 1430,
+     "metadata": {
+      "ts_rank_cd": 1.4993379
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2408,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0344,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0015,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9901,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9816,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9747,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9414,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9371,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 701.3(m)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3462,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 701.3(n)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3462,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 205.3(f)(5)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.28,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 1.1310",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.13,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+  "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+  "21 CFR 701.3(m)",
+  "21 CFR 701.3(n)",
+  "21 CFR 205.3(f)(5)",
+  "21 CFR 1.1310"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 701.3(n)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 205.3(f)(5)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 1.1310",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 701.3(m)",
+    "tier": "discovery",
+    "block_chars": 1190,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 701.3(n)",
+    "tier": "discovery",
+    "block_chars": 823,
+    "used_before": 1190,
+    "reserve_spent_before": 1190,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 205.3(f)(5)",
+    "tier": "discovery",
+    "block_chars": 468,
+    "used_before": 1190,
+    "reserve_spent_before": 1190,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 1.1310",
+    "tier": "discovery",
+    "block_chars": 485,
+    "used_before": 1190,
+    "reserve_spent_before": 1190,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "tier": "discovery",
+    "used_before": 1190,
+    "block_chars": 1586,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 2778,
+    "block_chars": 820,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1484,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1586,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1555,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1554,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Foreign Supplier Verification Programs for Importers of Food for Humans and Animals (final, 2023-01-10, Docket FDA-2017-D-5225)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1579,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1555,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 701.3(n)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 823,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 205.3(f)(5)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 468,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 1.1310",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 485,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: CVM GFI #246 Hazard Analysis and Risk-Based Preventive Controls for Food for Animals: Supply-Chain Program (draft, 2018-06-15, Docket FDA-2018-D-1861)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 457,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 701.3(m)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1010,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "701.3": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 805,
+     "tail": "y the phrase “and other ingredients” may be used at the end of the ingredient declaration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 962,
+     "tail": " as an amendment to this paragraph shall be submitted pursuant to part 10 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 83,
+     "tail": "(c) A cosmetic ingredient shall be identified in the declaration of ingredients by:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(c)(1)",
+     "ordinal": 3,
+     "chars": 180,
+     "tail": "for the purpose of cosmetic ingredient labeling pursuant to paragraph (e) of this section;",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)",
+     "ordinal": 4,
+     "chars": 206,
+     "tail": " and supplements of the following compendia, listed in order as the source to be utilized:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(c)(2)(i)",
+     "ordinal": 5,
+     "chars": 568,
+     "tail": " http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.)",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(2)(i)(a)",
+     "ordinal": 6,
+     "chars": 88,
+     "tail": "(a) The following names are not adopted for the purpose of cosmetic ingredient labeling:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(i)(b)",
+     "ordinal": 7,
+     "chars": 350,
+     "tail": "vised monographs are published in supplements to this dictionary edition by July 18, 1980.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(i)(c)",
+     "ordinal": 8,
+     "chars": 107,
+     "tail": " names are adopted for the purpose of cosmetic ingredient labeling until January 19, 1981.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(ii)",
+     "ordinal": 9,
+     "chars": 462,
+     "tail": "http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(iii)",
+     "ordinal": 10,
+     "chars": 455,
+     "tail": "http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(iv)",
+     "ordinal": 11,
+     "chars": 520,
+     "tail": ": http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)(v)",
+     "ordinal": 12,
+     "chars": 442,
+     "tail": " http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.)",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(3)",
+     "ordinal": 13,
+     "chars": 81,
+     "tail": "(3) In the absence of such a listing, the name generally recognized by consumers.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(4)",
+     "ordinal": 14,
+     "chars": 92,
+     "tail": ") In the absence of any of the above, the chemical or other technical name or description.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 15,
+     "chars": 299,
+     "tail": "l declare the cosmetic ingredients as set forth in § 201.66(c)(8) and (d) of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 16,
+     "chars": 224,
+     "tail": "t 10 of this chapter. The Commissioner may also propose such a name on his own initiative.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 17,
+     "chars": 169,
+     "tail": "nance, ingredients may be grouped and the groups listed in the following manner and order:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(f)(1)",
+     "ordinal": 18,
+     "chars": 144,
+     "tail": "t a concentration greater than 1 percent, in descending order of predominance; followed by",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)(2)",
+     "ordinal": 19,
+     "chars": 153,
+     "tail": "ntration of not more than 1 percent, without respect to order of predominance; followed by",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)(3)",
+     "ordinal": 20,
+     "chars": 241,
+     "tail": "cified in paragraph (f)(1) of this section and listed in descending order of predominance.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 21,
+     "chars": 142,
+     "tail": "edient not in the product if the ingredient is identified by the phrase “may contain” and:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(g)(1)",
+     "ordinal": 22,
+     "chars": 98,
+     "tail": "s a color additive added to some batches of the product for purposes of color matching; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)(2)(i)",
+     "ordinal": 23,
+     "chars": 242,
+     "tail": "h may be assortments of products similar in composition and intended for the same use; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)(2)(ii)",
+     "ordinal": 24,
+     "chars": 157,
+     "tail": "n the product categories identified in § 720.4 (c)(3), (7) and (8)(v) of this chapter; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)(2)(iii)",
+     "ordinal": 25,
+     "chars": 251,
+     "tail": "nd designation not common to all such products appears in the labeling of any of them; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)(2)(iv)",
+     "ordinal": 26,
+     "chars": 40,
+     "tail": "(iv) The ingredient is a color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 27,
+     "chars": 328,
+     "tail": "nner that is not misleading and that indicates that the list pertains to all the products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 28,
+     "chars": 582,
+     "tail": "ragraph is applicable only to cosmetic products meeting one of the following requirements:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(i)(1)",
+     "ordinal": 29,
+     "chars": 224,
+     "tail": " labeling bearing the declaration of ingredients shall be attached to the display unit; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(2)",
+     "ordinal": 30,
+     "chars": 628,
+     "tail": "l be designed for the primary purpose of displaying samples of the shades of the products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 31,
+     "chars": 216,
+     "tail": "l be attached to the display unit or chart and shall meet one of the following conditions:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(j)(1)",
+     "ordinal": 32,
+     "chars": 179,
+     "tail": "a purchaser facing the display unit or chart under customary conditions of retail sale; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(2)",
+     "ordinal": 33,
+     "chars": 511,
+     "tail": "equired by provisions in paragraph (k)(3) of this section, if conspicuous at all times; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(3)",
+     "ordinal": 34,
+     "chars": 441,
+     "tail": "by a purchaser facing the display unit or chart under customary conditions of retail sale.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 35,
+     "chars": 148,
+     "tail": "der the provisions of paragraph (i) of this section shall meet the following requirements:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(k)(1)",
+     "ordinal": 36,
+     "chars": 327,
+     "tail": "rt for which the ingredient declaration is made pursuant to paragraph (i) of this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(2)",
+     "ordinal": 37,
+     "chars": 126,
+     "tail": "ed for such use shall be shipped together with the labeling intended to be attached to it.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(3)",
+     "ordinal": 38,
+     "chars": 419,
+     "tail": "cuous at all times adjacent to the place where ingredient declarations are to be attached.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(4)",
+     "ordinal": 39,
+     "chars": 713,
+     "tail": "haser that the formulation has been changed and that either declaration may be applicable.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(5)",
+     "ordinal": 40,
+     "chars": 631,
+     "tail": "items to which they pertain, in a container that does not contain other cosmetic products.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(6)",
+     "ordinal": 41,
+     "chars": 155,
+     "tail": " shall promptly mail a copy of the declaration of ingredients to any person requesting it.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(7)",
+     "ordinal": 42,
+     "chars": 194,
+     "tail": "to a purchaser facing the display unit or chart under customary conditions of retail sale.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 43,
+     "chars": 274,
+     "tail": "nal effect in the cosmetic. For the purpose of this paragraph, incidental ingredients are:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(l)(1)",
+     "ordinal": 44,
+     "chars": 195,
+     "tail": "aving been incorporated into the cosmetic as an ingredient of another cosmetic ingredient.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)(2)",
+     "ordinal": 45,
+     "chars": 42,
+     "tail": "(2) Processing aids, which are as follows:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(l)(2)(i)",
+     "ordinal": 46,
+     "chars": 208,
+     "tail": "n accordance with good manufacturing practices before it is packaged in its finished form.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)(2)(ii)",
+     "ordinal": 47,
+     "chars": 275,
+     "tail": "ed ingredients, and do not significantly increase the concentration of those constituents.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)(2)(iii)",
+     "ordinal": 48,
+     "chars": 278,
+     "tail": " insignificant levels and do not have any technical or functional effect in that cosmetic.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 49,
+     "chars": 1010,
+     "tail": "ing, or in labeling other than in the declaration of ingredients required by this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 50,
+     "chars": 643,
+     "tail": "labeling, “new ingredient list inside” in letters not less than 1/16 of an inch in height.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 51,
+     "chars": 121,
+     "tail": " that are similar in composition and intended for the same use may be declared as follows:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(o)(1)",
+     "ordinal": 52,
+     "chars": 809,
+     "tail": "ation of the other ingredients without identifying the products in which they are present.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)(2)",
+     "ordinal": 53,
+     "chars": 600,
+     "tail": " of the package surface, e.g., decorative relief, make application of a label impractical.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)(3)",
+     "ordinal": 54,
+     "chars": 766,
+     "tail": "ents shall be declared in accordance with the provisions of paragraph (g) of this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)(4)",
+     "ordinal": 55,
+     "chars": 771,
+     "tail": "ents shall be declared in accordance with the provisions of paragraph (g) of this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 56,
+     "chars": 481,
+     "tail": " of the package surface, e.g., decorative relief, make application of a label impractical.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 57,
+     "chars": 382,
+     "tail": "ntended to be, and are not customarily, separated from the retail package for retail sale.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 58,
+     "chars": 550,
+     "tail": " sales catalog or brochure, provided all of the following additional requirements are met:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(r)(1)",
+     "ordinal": 59,
+     "chars": 172,
+     "tail": "rmits the consumer to identify the declaration of ingredients applicable to each cosmetic.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(2)",
+     "ordinal": 60,
+     "chars": 390,
+     "tail": "and provides the following information in letters not less than 3/16 of an inch in height:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(r)(2)(i)",
+     "ordinal": 61,
+     "chars": 128,
+     "tail": "f ingredients, e.g., in an accompanying brochure, or in a sales catalog used for ordering;",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(2)(ii)",
+     "ordinal": 62,
+     "chars": 119,
+     "tail": "of the declaration of ingredients will be mailed promptly to any person requesting it; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(2)(iii)",
+     "ordinal": 63,
+     "chars": 67,
+     "tail": "(iii) The name and place of business of the mail order distributor,",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(3)",
+     "ordinal": 64,
+     "chars": 115,
+     "tail": "butor promptly mails a copy of the declaration of ingredients to any person requesting it.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Designation of ingredients."
+  }
+ },
+ "required_status": {
+  "21 CFR 701.3(m)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 701.3(r)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

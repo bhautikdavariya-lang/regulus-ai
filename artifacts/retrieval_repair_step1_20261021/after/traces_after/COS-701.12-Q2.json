@@ -1,0 +1,659 @@
+{
+ "id": "COS-701.12-Q2",
+ "question": "Can we leave our street address off the label and show only city, state and ZIP?",
+ "key_citation": "21 CFR 701.12(d)",
+ "required": {
+  "701.12": [
+   "d"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Can we leave our street address off the label and show only city, state and ZIP?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "leave street address label show city state zip",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "address",
+   "street",
+   "leave",
+   "label",
+   "state",
+   "show",
+   "city",
+   "zip"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Can we leave our street address off the label and show only city, state and ZIP?",
+   "tsquery": "'leav' & 'street' & 'address' & 'label' & 'show' & 'citi' & 'state' & 'zip'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Can we leave our street address off the label and show only city, state and ZIP?",
+   "tsquery": "'leav' & 'street' & 'address' & 'label' & 'show' & 'citi' & 'state' & 'zip'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Can we leave our street address off the label and show only city, state and ZIP?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "leave street address label show city state zip",
+   "tsquery": "'leav' & 'street' & 'address' & 'label' & 'show' & 'citi' & 'state' & 'zip'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 101.5(d)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.6845,
+     "chars": 488,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 1.4738,
+      "paragraph_coverage": 0.7369
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 201.1(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.6845,
+     "chars": 605,
+     "metadata": {
+      "ordinal": 32,
+      "section_coverage": 1.4738,
+      "paragraph_coverage": 0.7369
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 801.1(d)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.6845,
+     "chars": 492,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 1.4738,
+      "paragraph_coverage": 0.7369
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 501.5(d)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.6845,
+     "chars": 488,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 1.4738,
+      "paragraph_coverage": 0.7369
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "address or street or leave or label or state or show or city or zip",
+   "tsquery": "'address' | 'street' | 'leav' | 'label' | 'state' | 'show' | 'citi' | 'zip'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.049,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 1.6783881
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0329,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.6525729
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0089,
+     "chars": 1458,
+     "metadata": {
+      "ts_rank_cd": 1.6142614
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1481,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9927,
+     "chars": 1500,
+     "metadata": {
+      "ts_rank_cd": 1.588262
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9606,
+     "chars": 1427,
+     "metadata": {
+      "ts_rank_cd": 1.5368932
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9525,
+     "chars": 1439,
+     "metadata": {
+      "ts_rank_cd": 1.5240347
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.049,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0329,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0089,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9927,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9606,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9525,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 101.5(d)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.6845,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 201.1(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.6845,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 801.1(d)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.6845,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 501.5(d)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.6845,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+  "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+  "21 CFR 101.5(d)",
+  "21 CFR 201.1(i)",
+  "21 CFR 801.1(d)",
+  "21 CFR 501.5(d)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 201.1(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 801.1(d)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 501.5(d)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.5(d)",
+    "tier": "discovery",
+    "block_chars": 714,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 201.1(i)",
+    "tier": "discovery",
+    "block_chars": 832,
+    "used_before": 714,
+    "reserve_spent_before": 714,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 801.1(d)",
+    "tier": "discovery",
+    "block_chars": 728,
+    "used_before": 714,
+    "reserve_spent_before": 714,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 501.5(d)",
+    "tier": "discovery",
+    "block_chars": 721,
+    "used_before": 714,
+    "reserve_spent_before": 714,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+    "tier": "discovery",
+    "used_before": 714,
+    "block_chars": 1681,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+    "tier": "discovery",
+    "used_before": 2397,
+    "block_chars": 1201,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1484,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1604,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #181 Blue Bird Medicated Feed Labels (final, 2019-07-23, Docket FDA-2008-D-0165)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1471,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1681,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 201.1(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 832,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 801.1(d)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 728,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 501.5(d)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 721,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Labeling of Nonprescription Human Drug Products Marketed Without an Approved Application as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act: Questions and Answers (final, 2009-09-01, Docket FDA-2007-D-0429)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 810,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 101.5(d)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 488,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "701.12": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 147,
+     "tail": " conspicuously the name and place of business of the manufacturer, packer, or distributor.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 490,
+     "tail": "partnership, or association, the name under which the business is conducted shall be used.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 304,
+     "tail": "ed for _______”, “Distributed by ________”, or any other wording that expresses the facts.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 492,
+     "tail": "es, the ZIP Code shall appear either on the label or the labeling (including the invoice).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 312,
+     "tail": "manufactured or packed or is to be distributed, unless such statement would be misleading.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Name and place of business of manufacturer, packer, or distributor."
+  }
+ },
+ "required_status": {
+  "21 CFR 701.12(d)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

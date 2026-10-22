@@ -1,0 +1,1043 @@
+{
+ "status_without_url": {
+  "server_version": "18.6 (Homebrew)",
+  "transaction_read_only": "on",
+  "default_transaction_read_only": "on",
+  "role": "postgres",
+  "database": "regulus"
+ },
+ "identity": {
+  "db": "regulus",
+  "role": "postgres",
+  "session_user": "postgres",
+  "server_addr": "::1/128",
+  "port": 5432,
+  "version": "PostgreSQL 18.6 (Homebrew) on aarch64-apple-darwin25.6.0, compiled by Apple clang version 21.0.0 (clang-2100.1.1.101), 64-bit",
+  "ro": "on",
+  "tx_ro": "on"
+ },
+ "role_attrs": {
+  "rolname": "postgres",
+  "rolsuper": true,
+  "rolcreaterole": false,
+  "rolcreatedb": false,
+  "rolbypassrls": false
+ },
+ "can_update_cfr_records": {
+  "upd": true,
+  "ins": true
+ },
+ "triggers": [
+  {
+   "tgname": "cfr_record_versions_immutable",
+   "def": "CREATE TRIGGER cfr_record_versions_immutable BEFORE DELETE OR UPDATE ON public.cfr_record_versions FOR EACH ROW EXECUTE FUNCTION forbid_mutation()"
+  },
+  {
+   "tgname": "cfr_records_set_updated_at",
+   "def": "CREATE TRIGGER cfr_records_set_updated_at BEFORE UPDATE ON public.cfr_records FOR EACH ROW EXECUTE FUNCTION set_updated_at()"
+  },
+  {
+   "tgname": "cfr_sections_set_updated_at",
+   "def": "CREATE TRIGGER cfr_sections_set_updated_at BEFORE UPDATE ON public.cfr_sections FOR EACH ROW EXECUTE FUNCTION set_updated_at()"
+  }
+ ],
+ "constraints": [
+  {
+   "conname": "cfr_records_source_payload_sha256_not_null",
+   "def": "NOT NULL source_payload_sha256"
+  },
+  {
+   "conname": "cfr_records_is_reserved_not_null",
+   "def": "NOT NULL is_reserved"
+  },
+  {
+   "conname": "cfr_records_created_at_not_null",
+   "def": "NOT NULL created_at"
+  },
+  {
+   "conname": "cfr_records_updated_at_not_null",
+   "def": "NOT NULL updated_at"
+  },
+  {
+   "conname": "cfr_records_embedding_model_not_null",
+   "def": "NOT NULL embedding_model"
+  },
+  {
+   "conname": "cfr_records_embedding_source_sha256_not_null",
+   "def": "NOT NULL embedding_source_sha256"
+  },
+  {
+   "conname": "cfr_records_chapter_check",
+   "def": "CHECK ((chapter = 'I'::text))"
+  },
+  {
+   "conname": "cfr_records_content_sha256_check",
+   "def": "CHECK ((content_sha256 ~ '^[0-9a-f]{64}$'::text))"
+  },
+  {
+   "conname": "cfr_records_embedding_is_attributed",
+   "def": "CHECK (((embedding IS NULL) OR ((length(btrim(embedding_model)) > 0) AND (embedded_at IS NOT NULL) AND (embedding_source_sha256 <> ''::text))))"
+  },
+  {
+   "conname": "cfr_records_paragraph_path_check",
+   "def": "CHECK (((paragraph_path = ''::text) OR (paragraph_path ~ '^(\\([A-Za-z0-9]{1,4}\\))+$'::text)))"
+  },
+  {
+   "conname": "cfr_records_path_ordinal_check",
+   "def": "CHECK ((path_ordinal >= 0))"
+  },
+  {
+   "conname": "cfr_records_title_check",
+   "def": "CHECK ((title = '21'::text))"
+  },
+  {
+   "conname": "cfr_records_id_not_null",
+   "def": "NOT NULL id"
+  },
+  {
+   "conname": "cfr_records_title_not_null",
+   "def": "NOT NULL title"
+  },
+  {
+   "conname": "cfr_records_chapter_not_null",
+   "def": "NOT NULL chapter"
+  },
+  {
+   "conname": "cfr_records_subchapter_code_not_null",
+   "def": "NOT NULL subchapter_code"
+  },
+  {
+   "conname": "cfr_records_part_number_not_null",
+   "def": "NOT NULL part_number"
+  },
+  {
+   "conname": "cfr_records_section_number_not_null",
+   "def": "NOT NULL section_number"
+  },
+  {
+   "conname": "cfr_records_paragraph_path_not_null",
+   "def": "NOT NULL paragraph_path"
+  },
+  {
+   "conname": "cfr_records_path_ordinal_not_null",
+   "def": "NOT NULL path_ordinal"
+  },
+  {
+   "conname": "cfr_records_ordinal_not_null",
+   "def": "NOT NULL ordinal"
+  },
+  {
+   "conname": "cfr_records_section_heading_not_null",
+   "def": "NOT NULL section_heading"
+  },
+  {
+   "conname": "cfr_records_parent_headings_not_null",
+   "def": "NOT NULL parent_headings"
+  },
+  {
+   "conname": "cfr_records_body_text_not_null",
+   "def": "NOT NULL body_text"
+  },
+  {
+   "conname": "cfr_records_fr_citation_not_null",
+   "def": "NOT NULL fr_citation"
+  },
+  {
+   "conname": "cfr_records_ecfr_permalink_not_null",
+   "def": "NOT NULL ecfr_permalink"
+  },
+  {
+   "conname": "cfr_records_govinfo_pdf_url_not_null",
+   "def": "NOT NULL govinfo_pdf_url"
+  },
+  {
+   "conname": "cfr_records_source_endpoint_not_null",
+   "def": "NOT NULL source_endpoint"
+  },
+  {
+   "conname": "cfr_records_retrieved_at_not_null",
+   "def": "NOT NULL retrieved_at"
+  },
+  {
+   "conname": "cfr_records_snapshot_date_not_null",
+   "def": "NOT NULL snapshot_date"
+  },
+  {
+   "conname": "cfr_records_content_sha256_not_null",
+   "def": "NOT NULL content_sha256"
+  },
+  {
+   "conname": "cfr_records_pkey",
+   "def": "PRIMARY KEY (id)"
+  },
+  {
+   "conname": "cfr_records_unique_paragraph",
+   "def": "UNIQUE (section_number, paragraph_path, path_ordinal)"
+  },
+  {
+   "conname": "cfr_records_incorporated_standard_id_fkey",
+   "def": "FOREIGN KEY (incorporated_standard_id) REFERENCES incorporated_standards(id) ON DELETE SET NULL"
+  },
+  {
+   "conname": "cfr_records_part_number_fkey",
+   "def": "FOREIGN KEY (part_number) REFERENCES cfr_parts(number) ON DELETE CASCADE"
+  },
+  {
+   "conname": "cfr_records_section_number_fkey",
+   "def": "FOREIGN KEY (section_number) REFERENCES cfr_sections(number) ON DELETE CASCADE"
+  },
+  {
+   "conname": "cfr_records_subchapter_code_fkey",
+   "def": "FOREIGN KEY (subchapter_code) REFERENCES cfr_subchapters(code) ON DELETE RESTRICT"
+  },
+  {
+   "conname": "cfr_records_subpart_id_fkey",
+   "def": "FOREIGN KEY (subpart_id) REFERENCES cfr_subparts(id) ON DELETE SET NULL"
+  }
+ ],
+ "indexes": [
+  {
+   "indexname": "cfr_records_pkey",
+   "indexdef": "CREATE UNIQUE INDEX cfr_records_pkey ON public.cfr_records USING btree (id)"
+  },
+  {
+   "indexname": "cfr_records_unique_paragraph",
+   "indexdef": "CREATE UNIQUE INDEX cfr_records_unique_paragraph ON public.cfr_records USING btree (section_number, paragraph_path, path_ordinal)"
+  },
+  {
+   "indexname": "cfr_records_embedding_idx",
+   "indexdef": "CREATE INDEX cfr_records_embedding_idx ON public.cfr_records USING hnsw (embedding halfvec_cosine_ops) WITH (m='16', ef_construction='200')"
+  },
+  {
+   "indexname": "cfr_records_heading_trgm_idx",
+   "indexdef": "CREATE INDEX cfr_records_heading_trgm_idx ON public.cfr_records USING gin (section_heading gin_trgm_ops)"
+  },
+  {
+   "indexname": "cfr_records_live_idx",
+   "indexdef": "CREATE INDEX cfr_records_live_idx ON public.cfr_records USING btree (subchapter_code, section_number, ordinal) WHERE (removed_on IS NULL)"
+  },
+  {
+   "indexname": "cfr_records_needs_embedding_idx",
+   "indexdef": "CREATE INDEX cfr_records_needs_embedding_idx ON public.cfr_records USING btree (id) WHERE ((embedding IS NULL) OR (embedding_source_sha256 <> content_sha256))"
+  },
+  {
+   "indexname": "cfr_records_number_trgm_idx",
+   "indexdef": "CREATE INDEX cfr_records_number_trgm_idx ON public.cfr_records USING gin (section_number gin_trgm_ops)"
+  },
+  {
+   "indexname": "cfr_records_part_idx",
+   "indexdef": "CREATE INDEX cfr_records_part_idx ON public.cfr_records USING btree (part_number, section_number, ordinal)"
+  },
+  {
+   "indexname": "cfr_records_search_idx",
+   "indexdef": "CREATE INDEX cfr_records_search_idx ON public.cfr_records USING gin (search_vector)"
+  },
+  {
+   "indexname": "cfr_records_section_idx",
+   "indexdef": "CREATE INDEX cfr_records_section_idx ON public.cfr_records USING btree (section_number, ordinal)"
+  },
+  {
+   "indexname": "cfr_records_subchapter_idx",
+   "indexdef": "CREATE INDEX cfr_records_subchapter_idx ON public.cfr_records USING btree (subchapter_code, part_number) WHERE (removed_on IS NULL)"
+  }
+ ],
+ "columns": [
+  {
+   "column_name": "id",
+   "data_type": "uuid",
+   "is_nullable": "NO",
+   "column_default": "regulus_id()",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "title",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "'21'::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "chapter",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "'I'::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "subchapter_code",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "part_number",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "subpart_id",
+   "data_type": "uuid",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "section_number",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "paragraph_path",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "path_ordinal",
+   "data_type": "integer",
+   "is_nullable": "NO",
+   "column_default": "0",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "ordinal",
+   "data_type": "integer",
+   "is_nullable": "NO",
+   "column_default": "0",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "section_heading",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "parent_headings",
+   "data_type": "ARRAY",
+   "is_nullable": "NO",
+   "column_default": "'{}'::text[]",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "body_text",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "effective_date",
+   "data_type": "date",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "last_amended_date",
+   "data_type": "date",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "fr_citation",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "ecfr_permalink",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "govinfo_pdf_url",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "source_endpoint",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "retrieved_at",
+   "data_type": "timestamp with time zone",
+   "is_nullable": "NO",
+   "column_default": "now()",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "snapshot_date",
+   "data_type": "date",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "content_sha256",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "source_payload_sha256",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "is_reserved",
+   "data_type": "boolean",
+   "is_nullable": "NO",
+   "column_default": "false",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "incorporated_standard_id",
+   "data_type": "uuid",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "removed_on",
+   "data_type": "date",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "created_at",
+   "data_type": "timestamp with time zone",
+   "is_nullable": "NO",
+   "column_default": "now()",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "updated_at",
+   "data_type": "timestamp with time zone",
+   "is_nullable": "NO",
+   "column_default": "now()",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "search_vector",
+   "data_type": "tsvector",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "ALWAYS",
+   "generation_expression": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+  },
+  {
+   "column_name": "embedding",
+   "data_type": "USER-DEFINED",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "embedding_model",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "embedded_at",
+   "data_type": "timestamp with time zone",
+   "is_nullable": "YES",
+   "column_default": null,
+   "is_generated": "NEVER",
+   "generation_expression": null
+  },
+  {
+   "column_name": "embedding_source_sha256",
+   "data_type": "text",
+   "is_nullable": "NO",
+   "column_default": "''::text",
+   "is_generated": "NEVER",
+   "generation_expression": null
+  }
+ ],
+ "versions_columns": [
+  {
+   "column_name": "id",
+   "data_type": "uuid"
+  },
+  {
+   "column_name": "record_id",
+   "data_type": "uuid"
+  },
+  {
+   "column_name": "body_text",
+   "data_type": "text"
+  },
+  {
+   "column_name": "section_heading",
+   "data_type": "text"
+  },
+  {
+   "column_name": "fr_citation",
+   "data_type": "text"
+  },
+  {
+   "column_name": "content_sha256",
+   "data_type": "text"
+  },
+  {
+   "column_name": "effective_range",
+   "data_type": "daterange"
+  },
+  {
+   "column_name": "snapshot_date",
+   "data_type": "date"
+  },
+  {
+   "column_name": "superseded_at",
+   "data_type": "timestamp with time zone"
+  }
+ ],
+ "content_sha_rule": {
+  "n": 65341,
+  "sha_of_body": 58284
+ },
+ "path_ordinal": [
+  {
+   "path_ordinal": 0,
+   "n": 62181
+  },
+  {
+   "path_ordinal": 1,
+   "n": 2010
+  },
+  {
+   "path_ordinal": 2,
+   "n": 155
+  },
+  {
+   "path_ordinal": 3,
+   "n": 117
+  },
+  {
+   "path_ordinal": 4,
+   "n": 106
+  },
+  {
+   "path_ordinal": 5,
+   "n": 93
+  },
+  {
+   "path_ordinal": 6,
+   "n": 80
+  },
+  {
+   "path_ordinal": 7,
+   "n": 70
+  },
+  {
+   "path_ordinal": 8,
+   "n": 55
+  },
+  {
+   "path_ordinal": 9,
+   "n": 49
+  }
+ ],
+ "path_ordinal_examples": [
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 1,
+   "t": "The definitions of terms in section 201 of the Federal Food, Drug, and Cosmetic Act apply to such terms when used in thi"
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 2,
+   "t": "Analyst means an individual who analyzes samples."
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 3,
+   "t": "Corrective action means an action taken by an accreditation body or laboratory to investigate and eliminate the cause of"
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 4,
+   "t": "Directed food laboratory order means an order issued by FDA under § 1.1108 requiring food testing to be conducted under "
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 5,
+   "t": "Food has the meaning given in section 201(f) of the Federal Food, Drug, and Cosmetic Act, except that food does not incl"
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 6,
+   "t": "Food testing and testing of food means the analysis of food product samples or environmental samples."
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 7,
+   "t": "Laboratory accreditation for analyses of foods (LAAF)-accreditation means a determination by a recognized accreditation "
+  },
+  {
+   "section_number": "1.1102",
+   "paragraph_path": "",
+   "path_ordinal": 8,
+   "t": "LAAF-accredited laboratory means a laboratory that a recognized accreditation body has determined meets the applicable r"
+  }
+ ],
+ "ingestion_runs_cfr": [
+  {
+   "kind": "cfr",
+   "state": "succeeded",
+   "snapshot_date": "2026-09-03",
+   "started_at": "2026-09-07 12:45:52.840748+05:30",
+   "finished_at": "2026-09-07 12:46:09.265959+05:30",
+   "manifest_sha256": "b82a809c5f68e8c7b9d4a528bdea6ffcda271136ccca51d8518a3ea2a4708ed5"
+  },
+  {
+   "kind": "cfr",
+   "state": "failed",
+   "snapshot_date": "2026-09-03",
+   "started_at": "2026-09-07 12:29:44.988016+05:30",
+   "finished_at": "2026-09-07 12:44:06.803649+05:30",
+   "manifest_sha256": "f2357ee92f2173a86ec5da9e4b42870687ecb3d101118fa56312705fb8484858"
+  },
+  {
+   "kind": "cfr",
+   "state": "succeeded",
+   "snapshot_date": "2026-09-03",
+   "started_at": "2026-09-07 12:27:22.989648+05:30",
+   "finished_at": "2026-09-07 12:27:30.359558+05:30",
+   "manifest_sha256": "91224cbed188b735c0f38d10289e4126f6738b638737b557e902b3064de205e4"
+  }
+ ],
+ "snapshot_dates": [
+  {
+   "snapshot_date": "2026-09-03",
+   "n": 65341
+  }
+ ],
+ "corpus_leadins_without_children": {
+  "n": 796,
+  "parts": 104
+ },
+ "rows": {
+  "740.11(a)(1)": [
+   {
+    "id": "01a07ab4-7c30-7208-a94d-61c62a3c223c",
+    "section_number": "740.11",
+    "paragraph_path": "(a)(1)",
+    "path_ordinal": 0,
+    "ordinal": 0,
+    "part_number": "740",
+    "subpart_id": "01a07ab4-7c13-7d79-9261-b613f22b874c",
+    "section_heading": "Cosmetics in self-pressurized containers.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:38.875+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=740",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-740/section-740.11",
+    "content_sha256": "31e06effe476633d8f88cfb0164750bcec8c868e4e3559744aaab004f6e89e57",
+    "source_payload_sha256": "1b33d44258aaa462d5c328358b610ee8b37361b608827d07074ae0f5bd6838fd",
+    "fr_citation": "[40 FR 8917, Mar. 3, 1975, as amended at 42 FR 22033, Apr. 29, 1977; 54 FR 39640, Sept. 27, 1989; 61 FR 20101, May 3, 1996]",
+    "chars": 165,
+    "body_text": "(a)(1) The label of a cosmetic packaged in a self-pressurized container and intended to be expelled from the package under pressure shall bear the following warning:",
+    "has_embedding": true,
+    "embedding_source_sha256": "31e06effe476633d8f88cfb0164750bcec8c868e4e3559744aaab004f6e89e57"
+   }
+  ],
+  "740.11(b)(1)": [
+   {
+    "id": "01a07ab4-7c39-7bdb-9473-d311fd1910f1",
+    "section_number": "740.11",
+    "paragraph_path": "(b)(1)",
+    "path_ordinal": 0,
+    "ordinal": 4,
+    "part_number": "740",
+    "subpart_id": "01a07ab4-7c13-7d79-9261-b613f22b874c",
+    "section_heading": "Cosmetics in self-pressurized containers.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:38.875+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=740",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-740/section-740.11",
+    "content_sha256": "ebd88ebc93a36aeb23e1b601213882d01fa7af7af3f712ee565b3df41e339377",
+    "source_payload_sha256": "1b33d44258aaa462d5c328358b610ee8b37361b608827d07074ae0f5bd6838fd",
+    "fr_citation": "[40 FR 8917, Mar. 3, 1975, as amended at 42 FR 22033, Apr. 29, 1977; 54 FR 39640, Sept. 27, 1989; 61 FR 20101, May 3, 1996]",
+    "chars": 264,
+    "body_text": "(b)(1) In addition to the warning required by paragraph (a)(1) of this section, the label of a cosmetic packaged in a self-pressurized container in which the propellant consists in whole or in part of a halocarbon or a hydrocarbon shall bear the following warning:",
+    "has_embedding": true,
+    "embedding_source_sha256": "ebd88ebc93a36aeb23e1b601213882d01fa7af7af3f712ee565b3df41e339377"
+   }
+  ],
+  "740.12(b)": [
+   {
+    "id": "01a07ab4-7c42-7f7e-b641-16d498f545cb",
+    "section_number": "740.12",
+    "paragraph_path": "(b)",
+    "path_ordinal": 0,
+    "ordinal": 1,
+    "part_number": "740",
+    "subpart_id": "01a07ab4-7c13-7d79-9261-b613f22b874c",
+    "section_heading": "Feminine deodorant sprays.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:38.875+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=740",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-740/section-740.12",
+    "content_sha256": "96339ea387294c3a45fa28542736858d7486a6586adce4a6006c392dc1cdf896",
+    "source_payload_sha256": "1b33d44258aaa462d5c328358b610ee8b37361b608827d07074ae0f5bd6838fd",
+    "fr_citation": "[40 FR 8929, Mar. 3, 1975]",
+    "chars": 79,
+    "body_text": "(b) The label of a feminine deodorant spray shall bear the following statement:",
+    "has_embedding": true,
+    "embedding_source_sha256": "96339ea387294c3a45fa28542736858d7486a6586adce4a6006c392dc1cdf896"
+   }
+  ],
+  "701.3(c)(2)(i)(a)": [
+   {
+    "id": "01a07ab4-41e1-7263-b37e-0b2b01d206c7",
+    "section_number": "701.3",
+    "paragraph_path": "(c)(2)(i)(a)",
+    "path_ordinal": 0,
+    "ordinal": 6,
+    "part_number": "701",
+    "subpart_id": "01a07ab4-41b2-7f67-a93f-a2952e824002",
+    "section_heading": "Designation of ingredients.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:23.829+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=701",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-701/section-701.3",
+    "content_sha256": "b3a8ed166ff2edca4daa54c7600de423c110c73d4fa30d5b41dedb5e87128c84",
+    "source_payload_sha256": "bce643a16d8b9ac7e42f3c6568ddccb8451fc2135e799071ce262a6bf32c9e27",
+    "fr_citation": "[39 FR 10056, Mar. 15, 1974, as amended at 40 FR 8922, Mar. 3, 1975; 40 FR 18426, Apr. 28, 1975; 42 FR 4718, Jan. 25, 1977; 42 FR 15676, Mar. 22, 1977; 42 FR 24255, May 31, 1977; 42 FR 46516, Sept. 16, 1977; 42 FR 61257, Dec. 2, 1977; 45 FR 3577, Jan. 18, 1980; 47 FR 9397, Mar. 5, 1982; 54 FR 24900, June 12, 1989; 64 FR 13297, Mar. 17, 1999; 69 FR 18803, Apr. 9, 2004; 81 FR 49897, July 29, 2016]",
+    "chars": 88,
+    "body_text": "(a) The following names are not adopted for the purpose of cosmetic ingredient labeling:",
+    "has_embedding": true,
+    "embedding_source_sha256": "b3a8ed166ff2edca4daa54c7600de423c110c73d4fa30d5b41dedb5e87128c84"
+   }
+  ],
+  "701.3(c)(2)(i)(b)": [
+   {
+    "id": "01a07ab4-41e2-7894-a68b-c6a6f7891531",
+    "section_number": "701.3",
+    "paragraph_path": "(c)(2)(i)(b)",
+    "path_ordinal": 0,
+    "ordinal": 7,
+    "part_number": "701",
+    "subpart_id": "01a07ab4-41b2-7f67-a93f-a2952e824002",
+    "section_heading": "Designation of ingredients.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:23.829+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=701",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-701/section-701.3",
+    "content_sha256": "d6c90ee82683ed961d09ac2ac762f742afc2e987daabd4b849b79975de979bea",
+    "source_payload_sha256": "bce643a16d8b9ac7e42f3c6568ddccb8451fc2135e799071ce262a6bf32c9e27",
+    "fr_citation": "[39 FR 10056, Mar. 15, 1974, as amended at 40 FR 8922, Mar. 3, 1975; 40 FR 18426, Apr. 28, 1975; 42 FR 4718, Jan. 25, 1977; 42 FR 15676, Mar. 22, 1977; 42 FR 24255, May 31, 1977; 42 FR 46516, Sept. 16, 1977; 42 FR 61257, Dec. 2, 1977; 45 FR 3577, Jan. 18, 1980; 47 FR 9397, Mar. 5, 1982; 54 FR 24900, June 12, 1989; 64 FR 13297, Mar. 17, 1999; 69 FR 18803, Apr. 9, 2004; 81 FR 49897, July 29, 2016]",
+    "chars": 350,
+    "body_text": "(b) The following names are adopted for the purpose of cosmetic ingredient labeling, provided the respective monographs are revised to describe their otherwise disclosed chemical compositions, or describe their chemical compositions more precisely, and such revised monographs are published in supplements to this dictionary edition by July 18, 1980.",
+    "has_embedding": true,
+    "embedding_source_sha256": "d6c90ee82683ed961d09ac2ac762f742afc2e987daabd4b849b79975de979bea"
+   }
+  ],
+  "701.3(c)(2)(i)(c)": [
+   {
+    "id": "01a07ab4-41e4-770e-836b-65e62f5ccef6",
+    "section_number": "701.3",
+    "paragraph_path": "(c)(2)(i)(c)",
+    "path_ordinal": 0,
+    "ordinal": 8,
+    "part_number": "701",
+    "subpart_id": "01a07ab4-41b2-7f67-a93f-a2952e824002",
+    "section_heading": "Designation of ingredients.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:23.829+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=701",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-701/section-701.3",
+    "content_sha256": "cdfdc776645adc201db02669ebe2ea4b53b53d79b28f3d7ae6a6367ae474d278",
+    "source_payload_sha256": "bce643a16d8b9ac7e42f3c6568ddccb8451fc2135e799071ce262a6bf32c9e27",
+    "fr_citation": "[39 FR 10056, Mar. 15, 1974, as amended at 40 FR 8922, Mar. 3, 1975; 40 FR 18426, Apr. 28, 1975; 42 FR 4718, Jan. 25, 1977; 42 FR 15676, Mar. 22, 1977; 42 FR 24255, May 31, 1977; 42 FR 46516, Sept. 16, 1977; 42 FR 61257, Dec. 2, 1977; 45 FR 3577, Jan. 18, 1980; 47 FR 9397, Mar. 5, 1982; 54 FR 24900, June 12, 1989; 64 FR 13297, Mar. 17, 1999; 69 FR 18803, Apr. 9, 2004; 81 FR 49897, July 29, 2016]",
+    "chars": 107,
+    "body_text": "(c) The following names are adopted for the purpose of cosmetic ingredient labeling until January 19, 1981.",
+    "has_embedding": true,
+    "embedding_source_sha256": "cdfdc776645adc201db02669ebe2ea4b53b53d79b28f3d7ae6a6367ae474d278"
+   }
+  ],
+  "701.13(n)": [
+   {
+    "id": "01a07ab4-4240-756a-9500-8df1c915bfb0",
+    "section_number": "701.13",
+    "paragraph_path": "(n)",
+    "path_ordinal": 0,
+    "ordinal": 33,
+    "part_number": "701",
+    "subpart_id": "01a07ab4-41b3-751d-affb-0b867c652f05",
+    "section_heading": "Declaration of net quantity of contents.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:40:23.829+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=701",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-G/part-701/section-701.13",
+    "content_sha256": "e13db3783885ce53eedea37baced40a45334ebbf77cc89b63121ac9ffc978961",
+    "source_payload_sha256": "bce643a16d8b9ac7e42f3c6568ddccb8451fc2135e799071ce262a6bf32c9e27",
+    "fr_citation": "",
+    "chars": 119,
+    "body_text": "(n) For quantities, the following abbreviations and none other may be employed (periods and plural forms are optional):",
+    "has_embedding": true,
+    "embedding_source_sha256": "e13db3783885ce53eedea37baced40a45334ebbf77cc89b63121ac9ffc978961"
+   }
+  ],
+  "71.1(c)": [
+   {
+    "id": "01a07aab-a489-731d-9acd-c032ea358f31",
+    "section_number": "71.1",
+    "paragraph_path": "(c)",
+    "path_ordinal": 0,
+    "ordinal": 2,
+    "part_number": "71",
+    "subpart_id": "01a07aab-a47d-726c-97de-8be4c729d281",
+    "section_heading": "Petitions.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:30:59.306+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=71",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-71/section-71.1",
+    "content_sha256": "046c06ccf3a1102ba9609bee5969970ec7e24955ca8a696518eb66ef93d10823",
+    "source_payload_sha256": "de333b8c977e9ac15a56db284ed3f6c0f9f5da0cc0faeb7d95aadc8a994eacde",
+    "fr_citation": "[42 FR 15639, Mar. 22, 1977, as amended at 43 FR 60021, Dec. 22, 1978; 46 FR 8952, Jan. 27, 1981; 50 FR 7491, Feb. 22, 1985; 50 FR 16668, Apr. 26, 1985; 54 FR 24890, June 12, 1989; 61 FR 14478, Apr. 2, 1996; 62 FR 40598, July 29, 1997; 65 FR 51762, Aug. 25, 2000; 66 FR 56035, Nov. 6, 2001; 81 FR 49895, July 29, 2016]",
+    "chars": 86,
+    "body_text": "(c) Petitions shall include the following data and be submitted in the following form:",
+    "has_embedding": true,
+    "embedding_source_sha256": "046c06ccf3a1102ba9609bee5969970ec7e24955ca8a696518eb66ef93d10823"
+   }
+  ],
+  "73.2180(a)(2)": [
+   {
+    "id": "01a07aab-bcd0-74c5-8272-584ab9102ddf",
+    "section_number": "73.2180",
+    "paragraph_path": "(a)(2)",
+    "path_ordinal": 0,
+    "ordinal": 2,
+    "part_number": "73",
+    "subpart_id": "01a07aab-baf7-7fbc-8207-22c23de94dff",
+    "section_heading": "Guaiazulene.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:04.318+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=73",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-73/section-73.2180",
+    "content_sha256": "32422e646edad15b117ec634661dc85d4c5d53737e7701b3ce8d7d3ab5be5ac3",
+    "source_payload_sha256": "02054a73f0e229f85ad886a002ac432ac547b305d0cde03eca1312b60125ae18",
+    "fr_citation": "",
+    "chars": 94,
+    "body_text": "(2) Color additive mixtures of guaiazulene for cosmetic use may contain the following diluent:",
+    "has_embedding": true,
+    "embedding_source_sha256": "32422e646edad15b117ec634661dc85d4c5d53737e7701b3ce8d7d3ab5be5ac3"
+   }
+  ],
+  "73.2250(b)": [
+   {
+    "id": "01a07aab-bcd7-7a72-bb3f-901f18b5740e",
+    "section_number": "73.2250",
+    "paragraph_path": "(b)",
+    "path_ordinal": 0,
+    "ordinal": 1,
+    "part_number": "73",
+    "subpart_id": "01a07aab-baf7-7fbc-8207-22c23de94dff",
+    "section_heading": "Iron oxides.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:04.318+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=73",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-73/section-73.2250",
+    "content_sha256": "50fe99b424ce262589eb20f8d61005ff25bf2250779ba144e29071c2aca96c5d",
+    "source_payload_sha256": "02054a73f0e229f85ad886a002ac432ac547b305d0cde03eca1312b60125ae18",
+    "fr_citation": "",
+    "chars": 103,
+    "body_text": "(b) Specifications. Iron oxides shall conform to the following specifications, all on an “as is” basis:",
+    "has_embedding": true,
+    "embedding_source_sha256": "50fe99b424ce262589eb20f8d61005ff25bf2250779ba144e29071c2aca96c5d"
+   }
+  ],
+  "74.2602a(b)": [
+   {
+    "id": "01a07aab-c2d2-74ef-8d58-34dff61ff318",
+    "section_number": "74.2602a",
+    "paragraph_path": "(b)",
+    "path_ordinal": 0,
+    "ordinal": 1,
+    "part_number": "74",
+    "subpart_id": "01a07aab-c111-73d2-be8a-848ee69aa40e",
+    "section_heading": "Ext. D&C Violet No. 2.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:10.664+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=74",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-74/section-74.2602a",
+    "content_sha256": "af0eccab72e30e18026751f155c403d2c466644f1dbb48eb38efca38fda403f5",
+    "source_payload_sha256": "defae55facf8ec4a7128d63a943677cc0fca30fb0d93770eaa4553c74f283eda",
+    "fr_citation": "",
+    "chars": 234,
+    "body_text": "(b) Specifications. Ext. D&C Violet No. 2 shall conform to the following specifications and shall be free from impurities, other than those named, to the extent that such other impurities may be avoided by good manufacturing practice:",
+    "has_embedding": true,
+    "embedding_source_sha256": "af0eccab72e30e18026751f155c403d2c466644f1dbb48eb38efca38fda403f5"
+   }
+  ],
+  "81.30(d)": [
+   {
+    "id": "01a07aab-e629-7769-b461-b4353e6f6b42",
+    "section_number": "81.30",
+    "paragraph_path": "(d)",
+    "path_ordinal": 0,
+    "ordinal": 4,
+    "part_number": "81",
+    "subpart_id": null,
+    "section_heading": "Cancellation of certificates.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:16.145+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=81",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-81/section-81.30",
+    "content_sha256": "9cad4bf87b3680a84f696b6c3a319172e8335ec60fdfeb3338a14ff4d62a711e",
+    "source_payload_sha256": "1d521b6771a8031609717ee8cefdd94f931bbb1ed9091d709341304974b11469",
+    "fr_citation": "[42 FR 15665, Mar. 22, 1977]",
+    "chars": 288,
+    "body_text": "(d) Certificates issued for the following color additives and all mixtures containing these color additives are canceled and have no effect after October 4, 1966, and use of such color additives in the manufacture of foods, drugs, or cosmetics after that date will result in adulteration:",
+    "has_embedding": true,
+    "embedding_source_sha256": "9cad4bf87b3680a84f696b6c3a319172e8335ec60fdfeb3338a14ff4d62a711e"
+   }
+  ],
+  "81.30(e)": [
+   {
+    "id": "01a07aab-e629-7f8a-bc01-168ca12cf1db",
+    "section_number": "81.30",
+    "paragraph_path": "(e)",
+    "path_ordinal": 0,
+    "ordinal": 5,
+    "part_number": "81",
+    "subpart_id": null,
+    "section_heading": "Cancellation of certificates.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:16.145+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=81",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-81/section-81.30",
+    "content_sha256": "7fce251d6bd595a8bb1b1adb870d9dae710cfd53f60f293853322d869f779ceb",
+    "source_payload_sha256": "1d521b6771a8031609717ee8cefdd94f931bbb1ed9091d709341304974b11469",
+    "fr_citation": "[42 FR 15665, Mar. 22, 1977]",
+    "chars": 277,
+    "body_text": "(e) Certificates issued for the following color additives and all mixtures containing these color additives are canceled and have no effect after July 1, 1968, and use of such color additives in the manufacture of drugs or cosmetics after that date will result in adulteration:",
+    "has_embedding": true,
+    "embedding_source_sha256": "7fce251d6bd595a8bb1b1adb870d9dae710cfd53f60f293853322d869f779ceb"
+   }
+  ],
+  "73.2725(b)": [
+   {
+    "id": "01a07aab-bd04-7423-9fea-8e516307e647",
+    "section_number": "73.2725",
+    "paragraph_path": "(b)",
+    "path_ordinal": 0,
+    "ordinal": 1,
+    "part_number": "73",
+    "subpart_id": "01a07aab-baf7-7fbc-8207-22c23de94dff",
+    "section_heading": "Ultramarines.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:04.318+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=73",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-73/section-73.2725",
+    "content_sha256": "8d2c681ffa80e28064105d500290ea30bbb03c389a3fd11842b7a308397b0a8b",
+    "source_payload_sha256": "02054a73f0e229f85ad886a002ac432ac547b305d0cde03eca1312b60125ae18",
+    "fr_citation": "",
+    "chars": 228,
+    "body_text": "(b) Specifications. The ultramarines shall conform to the following specifications and shall be free from impurities other than those named, to the extent that such other impurities may be avoided by good manufacturing practice.",
+    "has_embedding": true,
+    "embedding_source_sha256": "8d2c681ffa80e28064105d500290ea30bbb03c389a3fd11842b7a308397b0a8b"
+   }
+  ],
+  "73.2180(b)": [
+   {
+    "id": "01a07aab-bcd0-7dc3-a726-6d5471e50883",
+    "section_number": "73.2180",
+    "paragraph_path": "(b)",
+    "path_ordinal": 0,
+    "ordinal": 3,
+    "part_number": "73",
+    "subpart_id": "01a07aab-baf7-7fbc-8207-22c23de94dff",
+    "section_heading": "Guaiazulene.",
+    "effective_date": "2026-09-03",
+    "snapshot_date": "2026-09-03",
+    "retrieved_at": "2026-09-07 12:31:04.318+05:30",
+    "source_endpoint": "https://www.ecfr.gov/api/versioner/v1/full/2026-09-03/title-21.xml?chapter=I&part=73",
+    "ecfr_permalink": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-73/section-73.2180",
+    "content_sha256": "7cca87d2436fc894086a8a21273f494e5938ae2429b8449c3c36e4b7203c282d",
+    "source_payload_sha256": "02054a73f0e229f85ad886a002ac432ac547b305d0cde03eca1312b60125ae18",
+    "fr_citation": "",
+    "chars": 224,
+    "body_text": "(b) Specifications. Guaiazulene shall conform to the following specifications and shall be free from impurities, other than those named, to the extent that such other impurities may be avoided by good manufacturing practice.",
+    "has_embedding": true,
+    "embedding_source_sha256": "7cca87d2436fc894086a8a21273f494e5938ae2429b8449c3c36e4b7203c282d"
+   }
+  ]
+ },
+ "database_unchanged": true
+}

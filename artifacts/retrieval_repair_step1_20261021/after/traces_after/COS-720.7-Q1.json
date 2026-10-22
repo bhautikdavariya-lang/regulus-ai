@@ -1,0 +1,621 @@
+{
+ "id": "COS-720.7-Q1",
+ "question": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+ "key_citation": "21 CFR 720.7",
+ "required": {
+  "720.7": []
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "mailed form hand cream get back know something missing",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "something",
+   "missing",
+   "mailed",
+   "cream",
+   "form",
+   "2512",
+   "hand",
+   "back"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+   "tsquery": "'mail' & 'form' & 'fda' & '2512' & 'hand' & 'cream' & 'get' & 'back' & 'fda' & 'know' & 'someth' & 'miss'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+   "tsquery": "'mail' & 'form' & 'fda' & '2512' & 'hand' & 'cream' & 'get' & 'back' & 'fda' & 'know' & 'someth' & 'miss'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We mailed our Form FDA 2512 for a hand cream. What will we get back from FDA, and how will we know if something was missing?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "mailed form hand cream get back know something missing",
+   "tsquery": "'mail' & 'form' & 'hand' & 'cream' & 'get' & 'back' & 'know' & 'someth' & 'miss'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 358.650(d)(5)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.4554,
+     "chars": 906,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 1.0538,
+      "paragraph_coverage": 0.4195
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 358.650(d)(4)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.0847,
+     "chars": 388,
+     "metadata": {
+      "ordinal": 13,
+      "section_coverage": 1.0538,
+      "paragraph_coverage": 0.197
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 101.11(d)(4)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.6139,
+     "chars": 375,
+     "metadata": {
+      "ordinal": 141,
+      "section_coverage": 0.6829,
+      "paragraph_coverage": 0.2854
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 101.8(d)(3)(v)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.6139,
+     "chars": 599,
+     "metadata": {
+      "ordinal": 36,
+      "section_coverage": 0.6829,
+      "paragraph_coverage": 0.2854
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "something or missing or mailed or cream or form or 2512 or hand or back",
+   "tsquery": "'someth' | 'miss' | 'mail' | 'cream' | 'form' | '2512' | 'hand' | 'back'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9588,
+     "chars": 1460,
+     "metadata": {
+      "ts_rank_cd": 1.5340554
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9368,
+     "chars": 1494,
+     "metadata": {
+      "ts_rank_cd": 1.4988451
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products (draft, 2023-02-01, Docket FDA-2022-D-2983)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7484,
+     "chars": 1489,
+     "metadata": {
+      "ts_rank_cd": 1.197453
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7161,
+     "chars": 1489,
+     "metadata": {
+      "ts_rank_cd": 1.1458162
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7072,
+     "chars": 1413,
+     "metadata": {
+      "ts_rank_cd": 1.1315967
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7052,
+     "chars": 1420,
+     "metadata": {
+      "ts_rank_cd": 1.1283852
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2018-10-22, Docket FDA-2018-D-3631)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6754,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 1.080709
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Advanced Prostate Cancer: Developing Gonadotropin-Releasing Hormone Analogues Guidance for Industry: Clinical/Medical (final, 2022-05-27, Docket FDA-2019-D-2808)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6666,
+     "chars": 1413,
+     "metadata": {
+      "ts_rank_cd": 1.0666236
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9588,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9368,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products (draft, 2023-02-01, Docket FDA-2022-D-2983)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7484,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7161,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7072,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7052,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2018-10-22, Docket FDA-2018-D-3631)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6754,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Advanced Prostate Cancer: Developing Gonadotropin-Releasing Hormone Analogues Guidance for Industry: Clinical/Medical (final, 2022-05-27, Docket FDA-2019-D-2808)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6666,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 358.650(d)(5)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.4554,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 358.650(d)(4)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.0847,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 101.11(d)(4)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6139,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 101.8(d)(3)(v)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6139,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+  "FDA Guidance: Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products (draft, 2023-02-01, Docket FDA-2022-D-2983)",
+  "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+  "21 CFR 358.650(d)(5)",
+  "21 CFR 358.650(d)(4)(i)",
+  "21 CFR 101.11(d)(4)(ii)",
+  "21 CFR 101.8(d)(3)(v)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products (draft, 2023-02-01, Docket FDA-2022-D-2983)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2018-10-22, Docket FDA-2018-D-3631)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Advanced Prostate Cancer: Developing Gonadotropin-Releasing Hormone Analogues Guidance for Industry: Clinical/Medical (final, 2022-05-27, Docket FDA-2019-D-2808)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 358.650(d)(4)(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 101.11(d)(4)(ii)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 101.8(d)(3)(v)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 358.650(d)(5)",
+    "tier": "discovery",
+    "block_chars": 1105,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 358.650(d)(4)(i)",
+    "tier": "discovery",
+    "block_chars": 590,
+    "used_before": 1105,
+    "reserve_spent_before": 1105,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.11(d)(4)(ii)",
+    "tier": "discovery",
+    "block_chars": 605,
+    "used_before": 1105,
+    "reserve_spent_before": 1105,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.8(d)(3)(v)",
+    "tier": "discovery",
+    "block_chars": 775,
+    "used_before": 1105,
+    "reserve_spent_before": 1105,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 1105,
+    "block_chars": 1563,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+    "tier": "discovery",
+    "used_before": 2670,
+    "block_chars": 928,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products (draft, 2023-02-01, Docket FDA-2022-D-2983)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1581,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1622,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Clinical Investigations of Devices Indicated for the Treatment of Urinary Incontinence - Guidance for Industry and FDA Staff (final, 2011-03-07, Docket FDA-2008-D-0457)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1606,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Patient-Reported Outcome Measures: Use in Medical Product Development to Support Labeling Claims: Guidance for Industry (final, 2009-12-09, Docket FDA-2006-D-0362)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1592,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Produce for Human Consumption (draft, 2018-10-22, Docket FDA-2018-D-3631)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1603,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Advanced Prostate Cancer: Developing Gonadotropin-Releasing Hormone Analogues Guidance for Industry: Clinical/Medical (final, 2022-05-27, Docket FDA-2019-D-2808)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1595,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 358.650(d)(4)(i)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 590,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 101.11(d)(4)(ii)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 605,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 101.8(d)(3)(v)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 775,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Annual Status Report Information and Other Submissions for Postmarketing Requirements and Commitments: Using Forms FDA 3988 and FDA 3989 Guidance for Industry: Guidance for Industry (final, 2023-09-15, Docket FDA-2018-N-3771)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 466,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 358.650(d)(5)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 906,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "720.7": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 614,
+     "tail": "(b)(2), the person will be notified as to the manner in which the statement is incomplete.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Notification of person submitting cosmetic product ingredient statement."
+  }
+ },
+ "required_status": {
+  "21 CFR 720.7": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

@@ -1,0 +1,683 @@
+{
+ "id": "COS-701.9-Q1",
+ "question": "We ship unlabeled bulk shampoo to an unaffiliated contract filler who labels and packs it. Must the bulk drums carry full consumer labeling?",
+ "key_citation": "21 CFR 701.9(a)(2)",
+ "required": {
+  "701.9": [
+   "a"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We ship unlabeled bulk shampoo to an unaffiliated contract filler who labels and packs it. Must the bulk drums carry full consumer labeling?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "ship unlabeled bulk shampoo unaffiliated contract filler labels packs drums carry full consumer labeling",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "unaffiliated",
+   "unlabeled",
+   "contract",
+   "consumer",
+   "labeling",
+   "shampoo",
+   "filler",
+   "labels"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We ship unlabeled bulk shampoo to an unaffiliated contract filler who labels and packs it. Must the bulk drums carry full consumer labeling?",
+   "tsquery": "'ship' & 'unlabel' & 'bulk' & 'shampoo' & 'unaffili' & 'contract' & 'filler' & 'label' & 'pack' & 'must' & 'bulk' & 'drum' & 'carri' & 'full' & 'consum' & 'label'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We ship unlabeled bulk shampoo to an unaffiliated contract filler who labels and packs it. Must the bulk drums carry full consumer labeling?",
+   "tsquery": "'ship' & 'unlabel' & 'bulk' & 'shampoo' & 'unaffili' & 'contract' & 'filler' & 'label' & 'pack' & 'must' & 'bulk' & 'drum' & 'carri' & 'full' & 'consum' & 'label'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We ship unlabeled bulk shampoo to an unaffiliated contract filler who labels and packs it. Must the bulk drums carry full consumer labeling?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "ship unlabeled bulk shampoo unaffiliated contract filler labels packs drums carry full consumer labeling",
+   "tsquery": "'ship' & 'unlabel' & 'bulk' & 'shampoo' & 'unaffili' & 'contract' & 'filler' & 'label' & 'pack' & 'drum' & 'carri' & 'full' & 'consum' & 'label'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 101.36(h)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5506,
+     "chars": 295,
+     "metadata": {
+      "ordinal": 70,
+      "section_coverage": 0.6412,
+      "paragraph_coverage": 0.2892
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 101.9(j)(9)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5506,
+     "chars": 265,
+     "metadata": {
+      "ordinal": 221,
+      "section_coverage": 0.6412,
+      "paragraph_coverage": 0.2892
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 507.25(b)(1)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4475,
+     "chars": 227,
+     "metadata": {
+      "ordinal": 11,
+      "section_coverage": 0.5979,
+      "paragraph_coverage": 0.2706
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 101.17(d)(5)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3616,
+     "chars": 207,
+     "metadata": {
+      "ordinal": 18,
+      "section_coverage": 0.5845,
+      "paragraph_coverage": 0.2325
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "unaffiliated or unlabeled or contract or consumer or labeling or shampoo or filler or labels",
+   "tsquery": "'unaffili' | 'unlabel' | 'contract' | 'consum' | 'label' | 'shampoo' | 'filler' | 'label'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0329,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.6525729
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1481,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9927,
+     "chars": 1500,
+     "metadata": {
+      "ts_rank_cd": 1.588262
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.979,
+     "chars": 1454,
+     "metadata": {
+      "ts_rank_cd": 1.5663546
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Label Comprehension Studies for Nonprescription Drug Products (final, 2010-08-03, Docket FDA-2009-D-0181)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9782,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.5651315
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9747,
+     "chars": 1466,
+     "metadata": {
+      "ts_rank_cd": 1.559485
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9594,
+     "chars": 1415,
+     "metadata": {
+      "ts_rank_cd": 1.5350088
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0329,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9927,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.979,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Label Comprehension Studies for Nonprescription Drug Products (final, 2010-08-03, Docket FDA-2009-D-0181)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9782,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9747,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9594,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 101.36(h)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5506,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 101.9(j)(9)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5506,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 507.25(b)(1)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4475,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 101.17(d)(5)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3616,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+  "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+  "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "21 CFR 101.36(h)(3)",
+  "21 CFR 101.9(j)(9)",
+  "21 CFR 507.25(b)(1)(i)",
+  "21 CFR 101.17(d)(5)"
+ ],
+ "selection": {
+  "total_chars": 3599,
+  "dropped": [
+   [
+    "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Label Comprehension Studies for Nonprescription Drug Products (final, 2010-08-03, Docket FDA-2009-D-0181)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 507.25(b)(1)(i)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 101.17(d)(5)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.36(h)(3)",
+    "tier": "discovery",
+    "block_chars": 495,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.9(j)(9)",
+    "tier": "discovery",
+    "block_chars": 448,
+    "used_before": 495,
+    "reserve_spent_before": 495,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 507.25(b)(1)(i)",
+    "tier": "discovery",
+    "block_chars": 405,
+    "used_before": 945,
+    "reserve_spent_before": 943,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.17(d)(5)",
+    "tier": "discovery",
+    "block_chars": 425,
+    "used_before": 945,
+    "reserve_spent_before": 943,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+    "tier": "discovery",
+    "used_before": 945,
+    "block_chars": 1590,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+    "tier": "discovery",
+    "used_before": 2537,
+    "block_chars": 1060,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1604,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1671,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Label Comprehension Studies for Nonprescription Drug Products (final, 2010-08-03, Docket FDA-2009-D-0181)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1502,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Hydrogen Peroxide-Based Contact Lens Care Products: Consumer Labeling Recommendations - Premarket Notification (510(k)) Submissions: Guidance for Industry and Food and Drug Administration Staff (final, 2023-07-27, Docket FDA-2022-D-0986)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1671,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Serving Sizes of Foods That Can Reasonably Be Consumed At One Eating Occasion, Reference Amounts Customarily Consumed, Serving Size-Related Issues, Dual-Column Labeling, and Miscellaneous Topics (final, 2019-12-30, Docket FDA-2018-D-1459)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 1694,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 507.25(b)(1)(i)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 405,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 101.17(d)(5)",
+    "tier": "discovery",
+    "used_before": 3599,
+    "block_chars": 425,
+    "outcome": "dropped: soft_budget",
+    "remaining": -1
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 776,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 101.36(h)(3)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 295,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 101.9(j)(9)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 265,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "701.9": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 529,
+     "tail": "rom compliance with the labeling requirements of sections 601(a) and 602(b) of the act if:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(a)(1)",
+     "ordinal": 1,
+     "chars": 182,
+     "tail": "ator of the establishment where such cosmetic is to be processed, labeled, or repacked; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(a)(2)",
+     "ordinal": 2,
+     "chars": 854,
+     "tail": "ion at any reasonable hour to any officer or employee of the Department who requests them.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 3,
+     "chars": 379,
+     "tail": "ivery, or part is adulterated or misbranded within the meaning of the act when so removed.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 4,
+     "chars": 336,
+     "tail": "rson to make available for inspection a copy of the agreement, as required by such clause.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 5,
+     "chars": 115,
+     "tail": "pment or other delivery of a cosmetic under paragraph (a)(2) of this section shall expire:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(d)(1)",
+     "ordinal": 6,
+     "chars": 254,
+     "tail": "ry, or part is adulterated or misbranded within the meaning of the act when so removed; or",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)(2)",
+     "ordinal": 7,
+     "chars": 201,
+     "tail": "ked, to make available for inspection a copy of the agreement, as required by such clause.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Exemptions from labeling requirements."
+  }
+ },
+ "required_status": {
+  "21 CFR 701.9(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

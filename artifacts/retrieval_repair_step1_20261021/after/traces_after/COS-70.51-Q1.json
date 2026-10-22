@@ -1,0 +1,652 @@
+{
+ "id": "COS-70.51-Q1",
+ "question": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+ "key_citation": "21 CFR 70.51",
+ "required": {
+  "70.51": []
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "advisory committee review whether cancer colorant govern request",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "committee",
+   "advisory",
+   "colorant",
+   "whether",
+   "request",
+   "review",
+   "cancer",
+   "govern"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+   "tsquery": "'want' & 'advisori' & 'committe' & 'review' & 'whether' & 'cancer' & 'provis' & 'section' & '721' & 'appli' & 'color' & 'rule' & 'govern' & 'request'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+   "tsquery": "'want' & 'advisori' & 'committe' & 'review' & 'whether' & 'cancer' & 'provis' & 'section' & '721' & 'appli' & 'color' & 'rule' & 'govern' & 'request'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We want an advisory committee to review whether the cancer provision of section 721 applies to our colorant. What rules govern that request?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 14.172",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.5185,
+     "chars": 394,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.3037037
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "advisory committee review whether cancer colorant govern request",
+   "tsquery": "'advisori' & 'committe' & 'review' & 'whether' & 'cancer' & 'color' & 'govern' & 'request'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 14.100(c)(9)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.33,
+     "chars": 149,
+     "metadata": {
+      "ordinal": 51,
+      "section_coverage": 1.4084,
+      "paragraph_coverage": 0.5896
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 14.100(d)(2)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.2505,
+     "chars": 306,
+     "metadata": {
+      "ordinal": 82,
+      "section_coverage": 1.4084,
+      "paragraph_coverage": 0.542
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 14.147(a)(1)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.1671,
+     "chars": 789,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.3117,
+      "paragraph_coverage": 0.5885
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 14.147(a)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.1671,
+     "chars": 239,
+     "metadata": {
+      "ordinal": 2,
+      "section_coverage": 1.3117,
+      "paragraph_coverage": 0.5885
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "committee or advisory or colorant or whether or request or review or cancer or govern",
+   "tsquery": "'committe' | 'advisori' | 'color' | 'whether' | 'request' | 'review' | 'cancer' | 'govern'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Formal Dispute Resolution: Sponsor Appeals Above the Division Level Guidance for Industry and Review Staff (final, 2019-05-30, Docket FDA-2013-D-0221)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.6326,
+     "chars": 1433,
+     "metadata": {
+      "ts_rank_cd": 2.612155
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5966,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 2.5545664
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5289,
+     "chars": 1411,
+     "metadata": {
+      "ts_rank_cd": 2.446288
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: FDA and Industry Actions on De Novo Classification Requests: Effect on FDA Review Clock and Goals: Guidance for Industry and Food and Drug Administration Staff (final, 2022-10-03, Docket FDA-2017-D-5712)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4815,
+     "chars": 1461,
+     "metadata": {
+      "ts_rank_cd": 2.3703258
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4508,
+     "chars": 1494,
+     "metadata": {
+      "ts_rank_cd": 2.3212943
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4065,
+     "chars": 1471,
+     "metadata": {
+      "ts_rank_cd": 2.250472
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2665,
+     "chars": 1486,
+     "metadata": {
+      "ts_rank_cd": 2.026339
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2577,
+     "chars": 1419,
+     "metadata": {
+      "ts_rank_cd": 2.0122693
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Formal Dispute Resolution: Sponsor Appeals Above the Division Level Guidance for Industry and Review Staff (final, 2019-05-30, Docket FDA-2013-D-0221)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6326,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5966,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5289,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "21 CFR 14.172",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.5185,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: FDA and Industry Actions on De Novo Classification Requests: Effect on FDA Review Clock and Goals: Guidance for Industry and Food and Drug Administration Staff (final, 2022-10-03, Docket FDA-2017-D-5712)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4815,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4508,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4065,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2665,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2577,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 14.100(c)(9)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.33,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 14.100(d)(2)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.2505,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 14.147(a)(1)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.1671,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 14.147(a)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.1671,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Formal Dispute Resolution: Sponsor Appeals Above the Division Level Guidance for Industry and Review Staff (final, 2019-05-30, Docket FDA-2013-D-0221)",
+  "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+  "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+  "21 CFR 14.172",
+  "21 CFR 14.100(c)(9)(ii)",
+  "21 CFR 14.100(d)(2)(ii)",
+  "21 CFR 14.147(a)(1)",
+  "21 CFR 14.147(a)(2)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 14.172",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: FDA and Industry Actions on De Novo Classification Requests: Effect on FDA Review Clock and Goals: Guidance for Industry and Food and Drug Administration Staff (final, 2022-10-03, Docket FDA-2017-D-5712)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 14.147(a)(1)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 14.147(a)(2)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 14.100(c)(9)(ii)",
+    "tier": "discovery",
+    "block_chars": 347,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 14.100(d)(2)(ii)",
+    "tier": "discovery",
+    "block_chars": 504,
+    "used_before": 347,
+    "reserve_spent_before": 347,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 14.147(a)(1)",
+    "tier": "discovery",
+    "block_chars": 996,
+    "used_before": 853,
+    "reserve_spent_before": 851,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 14.147(a)(2)",
+    "tier": "discovery",
+    "block_chars": 446,
+    "used_before": 853,
+    "reserve_spent_before": 851,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Formal Dispute Resolution: Sponsor Appeals Above the Division Level Guidance for Industry and Review Staff (final, 2019-05-30, Docket FDA-2013-D-0221)",
+    "tier": "discovery",
+    "used_before": 853,
+    "block_chars": 1587,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+    "tier": "discovery",
+    "used_before": 2442,
+    "block_chars": 1156,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1548,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 14.172",
+    "tier": "discovery",
+    "used_before": 3600,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: FDA and Industry Actions on De Novo Classification Requests: Effect on FDA Review Clock and Goals: Guidance for Industry and Food and Drug Administration Staff (final, 2022-10-03, Docket FDA-2017-D-5712)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1632,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Acceptance Review for De Novo Classification Requests: Guidance for Industry and Food and Drug Administration Staff (final, 2021-10-05, Docket FDA-2017-D-6069)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1548,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1569,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1657,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: 510(k) Third Party Review Program and Third Party Emergency Use Authorization (EUA) Review: Guidance for Industry, Food and Drug Administration Staff, and Third Party Review Organizations (final, 2024-11-21, Docket FDA-2016-D-2565)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1657,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 14.147(a)(1)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 996,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 14.147(a)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 446,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Formal Dispute Resolution: Sponsor Appeals Above the Division Level Guidance for Industry and Review Staff (final, 2019-05-30, Docket FDA-2013-D-0221)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: CVM GFI #79 Dispute Resolution Procedures for Science-Based Decisions on Products Regulated by CVM (final, 2014-05-29, Docket FDA-2003-D-0307)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 787,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 14.100(c)(9)(ii)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 149,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 14.100(d)(2)(ii)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 306,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "70.51": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 193,
+     "tail": "ect to the provisions of part 14 of this chapter, and particularly subpart H of that part.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Advisory committee on the applicability of the anticancer clause."
+  }
+ },
+ "required_status": {
+  "21 CFR 70.51": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

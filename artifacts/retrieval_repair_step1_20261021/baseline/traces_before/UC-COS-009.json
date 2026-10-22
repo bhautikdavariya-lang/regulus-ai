@@ -1,0 +1,592 @@
+{
+ "id": "UC-COS-009",
+ "question": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+ "key_citation": "FD&C Act 601(c) (21 U.S.C. 361(c)); 607 (21 U.S.C. 364c) suspension; 604 responsible person (21 U.S.C. 364)",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "found mold standing water contract manufacturer fill room exposure create brand label facility registration suspended",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "manufacturer",
+   "registration",
+   "suspended",
+   "standing",
+   "contract",
+   "exposure",
+   "facility",
+   "create"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+   "tsquery": "'fda' & 'found' & 'mold' & 'stand' & 'water' & 'contract' & 'manufactur' & 'fill' & 'room' & 'legal' & 'exposur' & 'creat' & 'us' & 'brand' & 'label' & 'could' & 'facil' & 'registr' & 'suspend'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+   "tsquery": "'fda' & 'found' & 'mold' & 'stand' & 'water' & 'contract' & 'manufactur' & 'fill' & 'room' & 'legal' & 'exposur' & 'creat' & 'us' & 'brand' & 'label' & 'could' & 'facil' & 'registr' & 'suspend'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "FDA found mold and standing water in our contract manufacturer's fill room. What legal exposure does that create for us as the brand on the label, and could the facility's registration be suspended?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "found mold standing water contract manufacturer fill room exposure create brand label facility registration suspended",
+   "tsquery": "'found' & 'mold' & 'stand' & 'water' & 'contract' & 'manufactur' & 'fill' & 'room' & 'exposur' & 'creat' & 'brand' & 'label' & 'facil' & 'registr' & 'suspend'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 133.156(a)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.6072,
+     "chars": 1199,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 0.6593,
+      "paragraph_coverage": 0.305
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 800.20(b)(3)(ii)(B)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.6031,
+     "chars": 352,
+     "metadata": {
+      "ordinal": 17,
+      "section_coverage": 0.7727,
+      "paragraph_coverage": 0.1892
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 800.20(b)(2)(iv)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5683,
+     "chars": 274,
+     "metadata": {
+      "ordinal": 11,
+      "section_coverage": 0.7727,
+      "paragraph_coverage": 0.1683
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 801.430(f)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.5187,
+     "chars": 2032,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 0.7013,
+      "paragraph_coverage": 0.2099
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "manufacturer or registration or suspended or standing or contract or exposure or facility or create",
+   "tsquery": "'manufactur' | 'registr' | 'suspend' | 'stand' | 'contract' | 'exposur' | 'facil' | 'creat'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.6337,
+     "chars": 1449,
+     "metadata": {
+      "ts_rank_cd": 2.6139553
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.6166,
+     "chars": 1488,
+     "metadata": {
+      "ts_rank_cd": 2.5865066
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5729,
+     "chars": 1408,
+     "metadata": {
+      "ts_rank_cd": 2.516615
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.569,
+     "chars": 1439,
+     "metadata": {
+      "ts_rank_cd": 2.510385
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5386,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 2.461806
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5267,
+     "chars": 1408,
+     "metadata": {
+      "ts_rank_cd": 2.442671
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.5144,
+     "chars": 1414,
+     "metadata": {
+      "ts_rank_cd": 2.4229808
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.489,
+     "chars": 1463,
+     "metadata": {
+      "ts_rank_cd": 2.382393
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6337,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6166,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5729,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.569,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5386,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5267,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5144,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.489,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 133.156(a)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6072,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 800.20(b)(3)(ii)(B)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6031,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 800.20(b)(2)(iv)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5683,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 801.430(f)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.5187,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+  "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+  "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+  "21 CFR 133.156(a)(3)",
+  "21 CFR 800.20(b)(3)(ii)(B)",
+  "21 CFR 800.20(b)(2)(iv)",
+  "21 CFR 801.430(f)(2)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 133.156(a)(3)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 801.430(f)(2)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 133.156(a)(3)",
+    "tier": "discovery",
+    "block_chars": 1403,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 800.20(b)(3)(ii)(B)",
+    "tier": "discovery",
+    "block_chars": 629,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 800.20(b)(2)(iv)",
+    "tier": "discovery",
+    "block_chars": 548,
+    "used_before": 629,
+    "reserve_spent_before": 629,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 801.430(f)(2)",
+    "tier": "discovery",
+    "block_chars": 1396,
+    "used_before": 1179,
+    "reserve_spent_before": 1177,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "tier": "discovery",
+    "used_before": 1179,
+    "block_chars": 1524,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "tier": "discovery",
+    "used_before": 2705,
+    "block_chars": 893,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1575,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1525,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1572,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1504,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Registration of Food Facilities (final, 2018-05-29, Docket FDA-2012-D-1003)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1504,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Facility Registration (Seventh Edition) (final, 2018-08-20, Docket FDA-2012-D-1002)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1575,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 133.156(a)(3)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1403,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 801.430(f)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1396,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Cooperative Manufacturing Arrangements for Licensed Biologics: Guidance for Industry (final, 2008-11-28, Docket FDA-1999-D-0128)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Contract Manufacturing Arrangements for Drugs: Quality Agreements Guidance for Industry: Guidance for Industry (final, 2016-11-23, Docket FDA-2013-D-0558)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 521,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 800.20(b)(3)(ii)(B)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 352,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 800.20(b)(2)(iv)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 274,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

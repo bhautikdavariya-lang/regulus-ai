@@ -1,0 +1,637 @@
+{
+ "id": "COS-700.14-Q1",
+ "question": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+ "key_citation": "21 CFR 700.14(a), (b)",
+ "required": {
+  "700.14": [
+   "a",
+   "b"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "aerosol hair spray uses vinyl chloride co-propellant permitted",
+  "section_coverage": {
+   "run": true,
+   "candidates": 3,
+   "kept": 3
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "co-propellant",
+   "permitted",
+   "chloride",
+   "aerosol",
+   "spray",
+   "vinyl",
+   "hair",
+   "uses"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "tsquery": "'aerosol' & 'hair' & 'spray' & 'use' & 'vinyl' & 'chlorid' & 'co-propel' <-> 'co' <-> 'propel' & '2' & 'permit'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "tsquery": "'aerosol' & 'hair' & 'spray' & 'use' & 'vinyl' & 'chlorid' & 'co-propel' <-> 'co' <-> 'propel' & '2' & 'permit'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our aerosol hair spray uses vinyl chloride as a co-propellant at 2%. Is that permitted?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 700.14(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.8584,
+     "chars": 1181,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.37168142
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "aerosol hair spray uses vinyl chloride co-propellant permitted",
+   "tsquery": "'aerosol' & 'hair' & 'spray' & 'use' & 'vinyl' & 'chlorid' & 'co-propel' <-> 'co' <-> 'propel' & 'permit'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 700.14(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.9898,
+     "chars": 1181,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.5959,
+      "paragraph_coverage": 0.798
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 700.14(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.5443,
+     "chars": 151,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.5959,
+      "paragraph_coverage": 0.5307
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 310.502(a)(15)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.6246,
+     "chars": 85,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 1.0527,
+      "paragraph_coverage": 0.522
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 700.19(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.5958,
+     "chars": 725,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.0383,
+      "paragraph_coverage": 0.5192
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "co-propellant or permitted or chloride or aerosol or spray or vinyl or hair or uses",
+   "tsquery": "'co-propel' <-> 'co' <-> 'propel' | 'permit' | 'chlorid' | 'aerosol' | 'spray' | 'vinyl' | 'hair' | 'use'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9889,
+     "chars": 1444,
+     "metadata": {
+      "ts_rank_cd": 1.5822016
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: The Use of an Alternate Name for Potassium Chloride in Food Labeling (final, 2020-12-17, Docket FDA-2019-D-0892)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9703,
+     "chars": 1489,
+     "metadata": {
+      "ts_rank_cd": 1.5524058
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9159,
+     "chars": 1437,
+     "metadata": {
+      "ts_rank_cd": 1.4653883
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Myelodysplastic Syndromes: Developing Drug and Biological Products for Treatment: Draft Guidance for Industry (draft, 2025-07-02, Docket FDA-2025-D-0649)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.886,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.4175687
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Defining Durations of Use for Certain Medically Important Antimicrobial Drugs for Food-Producing Animals (final, 2026-02-12, Docket FDA-2023-D-2925)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8828,
+     "chars": 1497,
+     "metadata": {
+      "ts_rank_cd": 1.4124787
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8568,
+     "chars": 1469,
+     "metadata": {
+      "ts_rank_cd": 1.3709508
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Mitigating the Risk of Cross-Contamination from Valves and Accessories Used for Irrigation Through Flexible Gastrointestinal Endoscopes: Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-29, Docket FDA-2014-D-2153)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8179,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.3086345
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Selection of the Appropriate Package Type Terms and Recommendations for Labeling Injectable Medical Products Packaged in Multiple-Dose, Single-Dose, and Single-Patient-Use Containers for Human Use: Guidance for Industry (final, 2018-10-03, Docket FDA-2015-D-3438)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8167,
+     "chars": 1430,
+     "metadata": {
+      "ts_rank_cd": 1.3066854
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 700.14(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 3.9898,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9889,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: The Use of an Alternate Name for Potassium Chloride in Food Labeling (final, 2020-12-17, Docket FDA-2019-D-0892)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9703,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9159,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Myelodysplastic Syndromes: Developing Drug and Biological Products for Treatment: Draft Guidance for Industry (draft, 2025-07-02, Docket FDA-2025-D-0649)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.886,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Defining Durations of Use for Certain Medically Important Antimicrobial Drugs for Food-Producing Animals (final, 2026-02-12, Docket FDA-2023-D-2925)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8828,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8568,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Mitigating the Risk of Cross-Contamination from Valves and Accessories Used for Irrigation Through Flexible Gastrointestinal Endoscopes: Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-29, Docket FDA-2014-D-2153)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8179,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: Selection of the Appropriate Package Type Terms and Recommendations for Labeling Injectable Medical Products Packaged in Multiple-Dose, Single-Dose, and Single-Patient-Use Containers for Human Use: Guidance for Industry (final, 2018-10-03, Docket FDA-2015-D-3438)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8167,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 700.14(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.5443,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 310.502(a)(15)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.6246,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 700.19(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.5958,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 700.14(a)",
+  "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+  "FDA Guidance: Guidance for Industry: The Use of an Alternate Name for Potassium Chloride in Food Labeling (final, 2020-12-17, Docket FDA-2019-D-0892)",
+  "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+  "FDA Guidance: Myelodysplastic Syndromes: Developing Drug and Biological Products for Treatment: Draft Guidance for Industry (draft, 2025-07-02, Docket FDA-2025-D-0649)",
+  "21 CFR 700.14(b)",
+  "21 CFR 310.502(a)(15)",
+  "21 CFR 700.19(a)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "21 CFR 700.14(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Myelodysplastic Syndromes: Developing Drug and Biological Products for Treatment: Draft Guidance for Industry (draft, 2025-07-02, Docket FDA-2025-D-0649)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Defining Durations of Use for Certain Medically Important Antimicrobial Drugs for Food-Producing Animals (final, 2026-02-12, Docket FDA-2023-D-2925)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Mitigating the Risk of Cross-Contamination from Valves and Accessories Used for Irrigation Through Flexible Gastrointestinal Endoscopes: Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-29, Docket FDA-2014-D-2153)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Selection of the Appropriate Package Type Terms and Recommendations for Labeling Injectable Medical Products Packaged in Multiple-Dose, Single-Dose, and Single-Patient-Use Containers for Human Use: Guidance for Industry (final, 2018-10-03, Docket FDA-2015-D-3438)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 700.19(a)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.14(b)",
+    "tier": "discovery",
+    "block_chars": 396,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 310.502(a)(15)",
+    "tier": "discovery",
+    "block_chars": 315,
+    "used_before": 396,
+    "reserve_spent_before": 396,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.19(a)",
+    "tier": "discovery",
+    "block_chars": 944,
+    "used_before": 713,
+    "reserve_spent_before": 711,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 700.14(a)",
+    "tier": "discovery",
+    "used_before": 713,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+    "tier": "discovery",
+    "used_before": 713,
+    "block_chars": 1580,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: The Use of an Alternate Name for Potassium Chloride in Food Labeling (final, 2020-12-17, Docket FDA-2019-D-0892)",
+    "tier": "discovery",
+    "used_before": 2295,
+    "block_chars": 1303,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1622,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Myelodysplastic Syndromes: Developing Drug and Biological Products for Treatment: Draft Guidance for Industry (draft, 2025-07-02, Docket FDA-2025-D-0649)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1568,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Defining Durations of Use for Certain Medically Important Antimicrobial Drugs for Food-Producing Animals (final, 2026-02-12, Docket FDA-2023-D-2925)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1581,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #61 Special Considerations, Incentives, and Programs to Support the Approval of New Animal Drugs for Minor Uses and for Minor Species (final, 2023-12-22, Docket FDA-1997-D-0444)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1621,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Mitigating the Risk of Cross-Contamination from Valves and Accessories Used for Irrigation Through Flexible Gastrointestinal Endoscopes: Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-29, Docket FDA-2014-D-2153)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1672,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Selection of the Appropriate Package Type Terms and Recommendations for Labeling Injectable Medical Products Packaged in Multiple-Dose, Single-Dose, and Single-Patient-Use Containers for Human Use: Guidance for Industry (final, 2018-10-03, Docket FDA-2015-D-3438)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1699,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 700.19(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 944,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Marketing Clearance of Diagnostic Ultrasound Systems and Transducers : Guidance for Industry and Food and Drug Administration Staff (final, 2023-02-21, Docket FDA-2017-D-5372)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: The Use of an Alternate Name for Potassium Chloride in Food Labeling (final, 2020-12-17, Docket FDA-2019-D-0892)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 959,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 700.14(b)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 151,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 310.502(a)(15)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 85,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "700.14": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 1181,
+     "tail": "deemed to be adulterated under section 601(a) of the Federal Food, Drug, and Cosmetic Act.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 151,
+     "tail": " an ingredient shipped within the jurisdiction of the Act is subject to regulatory action.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Use of vinyl chloride as an ingredient, including propellant of cosmetic aerosol products."
+  }
+ },
+ "required_status": {
+  "21 CFR 700.14(a)": {
+   "in_store": true,
+   "stage": "dropped at selection",
+   "drop_reason": "filtered"
+  },
+  "21 CFR 700.14(b)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

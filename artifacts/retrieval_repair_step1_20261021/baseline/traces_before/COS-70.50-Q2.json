@@ -1,0 +1,247 @@
+{
+ "id": "COS-70.50-Q2",
+ "question": "Our skin-only body paint colorant caused tumors in a skin-painting study. What does 70.50 say about external cosmetic use?",
+ "key_citation": "21 CFR 70.50(b)",
+ "required": {
+  "70.50": [
+   "b"
+  ]
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR 70.50"
+  ],
+  "docket": null,
+  "normalized_question": "Our skin-only body paint colorant caused tumors in a skin-painting study. What does 70.50 say about external cosmetic use?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "skin-painting",
+   "skin-only",
+   "colorant",
+   "external",
+   "cosmetic",
+   "caused",
+   "tumors",
+   "paint"
+  ],
+  "primary_result_count": 3,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "Our skin-only body paint colorant caused tumors in a skin-painting study. What does 70.50 say about external cosmetic use?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 70.50(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 1204,
+     "metadata": {
+      "ordinal": 0
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 70.50(b)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.999,
+     "chars": 1300,
+     "metadata": {
+      "ordinal": 1
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 70.50(c)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.998,
+     "chars": 390,
+     "metadata": {
+      "ordinal": 2
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our skin-only body paint colorant caused tumors in a skin-painting study. What does 70.50 say about external cosmetic use?",
+   "tsquery": "'skin-on' <-> 'skin' & 'bodi' & 'paint' & 'color' & 'caus' & 'tumor' & 'skin-paint' <-> 'skin' <-> 'paint' & 'studi' & '70.50' & 'say' & 'extern' & 'cosmet' & 'use'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our skin-only body paint colorant caused tumors in a skin-painting study. What does 70.50 say about external cosmetic use?",
+   "tsquery": "'skin-on' <-> 'skin' & 'bodi' & 'paint' & 'color' & 'caus' & 'tumor' & 'skin-paint' <-> 'skin' <-> 'paint' & 'studi' & '70.50' & 'say' & 'extern' & 'cosmet' & 'use'",
+   "limit": 16,
+   "rows": []
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 70.50(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "21 CFR 70.50(b)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.999,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 3,
+   "citation": "21 CFR 70.50(c)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.998,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 70.50(a)",
+  "21 CFR 70.50(b)",
+  "21 CFR 70.50(c)"
+ ],
+ "selection": {
+  "total_chars": 3527,
+  "dropped": [],
+  "diagnostics": {
+   "required_count": 3,
+   "required_chars": 3531,
+   "required_dropped": [],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 3,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 70.50(a)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 1204,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "21 CFR 70.50(b)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 1300,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 70.50(c)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 390,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "70.50": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 1204,
+     "tail": "lified scientists, cancer has been induced, no regulation may issue which permits its use.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 1300,
+     "tail": "impurities, no regulation may issue which permits its use in external drugs and cosmetics.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 390,
+     "tail": "f cancer to people must satisfy the requirements of subpart E of part 500 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Application of the cancer clause of section 721 of the act."
+  }
+ },
+ "required_status": {
+  "21 CFR 70.50(b)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

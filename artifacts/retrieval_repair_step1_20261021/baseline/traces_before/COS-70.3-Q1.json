@@ -1,0 +1,939 @@
+{
+ "id": "COS-70.3-Q1",
+ "question": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+ "key_citation": "21 CFR 70.3(f), (g)",
+ "required": {
+  "70.3": [
+   "f",
+   "g"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "shimmer body lotion uses mica coated iron oxides lip scrub has cocoa powder tints brown color additives sense",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "additives",
+   "shimmer",
+   "lotion",
+   "coated",
+   "oxides",
+   "powder",
+   "scrub",
+   "cocoa"
+  ],
+  "primary_result_count": 1,
+  "defined_terms_weights": {
+   "color": 1,
+   "additives": 1,
+   "additive": 1,
+   "color additives": 3,
+   "color additive": 3,
+   "shimmer body": 2,
+   "shimmer bodys": 2,
+   "body lotion": 2,
+   "body lotions": 2,
+   "lotion uses": 2,
+   "lotion use": 2,
+   "uses mica": 2,
+   "uses micas": 2,
+   "mica coated": 2,
+   "mica coateds": 2,
+   "iron oxides": 2,
+   "iron oxide": 2,
+   "lip scrub": 2,
+   "lip scrubs": 2,
+   "scrub has": 2,
+   "scrub ha": 2,
+   "has cocoa": 2,
+   "has cocoas": 2,
+   "cocoa powder": 2,
+   "cocoa powders": 2,
+   "shimmer body lotion": 2,
+   "shimmer body lotions": 2,
+   "body lotion uses": 2,
+   "body lotion use": 2,
+   "lotion uses mica": 2,
+   "lotion uses micas": 2,
+   "uses mica coated": 2,
+   "uses mica coateds": 2,
+   "coated with iron": 2,
+   "coated with irons": 2,
+   "lip scrub has": 2,
+   "lip scrub ha": 2,
+   "scrub has cocoa": 2,
+   "scrub has cocoas": 2,
+   "has cocoa powder": 2,
+   "has cocoa powders": 2,
+   "powder that tints": 2,
+   "powder that tint": 2,
+   "tints it brown": 2,
+   "tints it browns": 2,
+   "additives in fda": 2,
+   "additives in fdas": 2,
+   "fda s sense": 2,
+   "fda s senses": 2,
+   "shimmer body lotion uses": 2,
+   "shimmer body lotion use": 2,
+   "body lotion uses mica": 2,
+   "body lotion uses micas": 2,
+   "lotion uses mica coated": 2,
+   "lotion uses mica coateds": 2,
+   "mica coated with iron": 2,
+   "mica coated with irons": 2,
+   "coated with iron oxides": 2,
+   "coated with iron oxide": 2,
+   "oxides and our lip": 2,
+   "oxides and our lips": 2,
+   "lip scrub has cocoa": 2,
+   "lip scrub has cocoas": 2,
+   "scrub has cocoa powder": 2,
+   "scrub has cocoa powders": 2,
+   "cocoa powder that tints": 2,
+   "cocoa powder that tint": 2,
+   "brown are these color": 2,
+   "brown are these colors": 2,
+   "color additives in fda": 2,
+   "color additives in fdas": 2
+  },
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance",
+   "defined_terms_ecfr"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+   "tsquery": "'shimmer' & 'bodi' & 'lotion' & 'use' & 'mica' & 'coat' & 'iron' & 'oxid' & 'lip' & 'scrub' & 'cocoa' & 'powder' & 'tint' & 'brown' & 'color' & 'addit' & 'fda' & 'sens'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+   "tsquery": "'shimmer' & 'bodi' & 'lotion' & 'use' & 'mica' & 'coat' & 'iron' & 'oxid' & 'lip' & 'scrub' & 'cocoa' & 'powder' & 'tint' & 'brown' & 'color' & 'addit' & 'fda' & 'sens'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "shimmer body lotion uses mica coated iron oxides lip scrub has cocoa powder tints brown color additives sense",
+   "tsquery": "'shimmer' & 'bodi' & 'lotion' & 'use' & 'mica' & 'coat' & 'iron' & 'oxid' & 'lip' & 'scrub' & 'cocoa' & 'powder' & 'tint' & 'brown' & 'color' & 'addit' & 'sens'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 73.1350(a)(1)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3961,
+     "chars": 347,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 0.5585,
+      "paragraph_coverage": 0.2792
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 73.3128(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3961,
+     "chars": 344,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.5585,
+      "paragraph_coverage": 0.2792
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 73.1350(c)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3599,
+     "chars": 303,
+     "metadata": {
+      "ordinal": 7,
+      "section_coverage": 0.5585,
+      "paragraph_coverage": 0.2575
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 700.13(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.201,
+     "chars": 656,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.4804,
+      "paragraph_coverage": 0.2402
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "additives or shimmer or lotion or coated or oxides or powder or scrub or cocoa",
+   "tsquery": "'addit' | 'shimmer' | 'lotion' | 'coat' | 'oxid' | 'powder' | 'scrub' | 'cocoa'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.233,
+     "chars": 1427,
+     "metadata": {
+      "ts_rank_cd": 1.972813
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0811,
+     "chars": 1467,
+     "metadata": {
+      "ts_rank_cd": 1.729697
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9758,
+     "chars": 1428,
+     "metadata": {
+      "ts_rank_cd": 1.5612912
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9443,
+     "chars": 1421,
+     "metadata": {
+      "ts_rank_cd": 1.5108702
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8335,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 1.3336675
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8266,
+     "chars": 1470,
+     "metadata": {
+      "ts_rank_cd": 1.3225306
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8266,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.3225292
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Implanted Blood Access Devices for Hemodialysis: Guidance for Industry and Food and Drug Administration Staff (final, 2016-01-21, Docket FDA-2013-D-0749)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7983,
+     "chars": 1445,
+     "metadata": {
+      "ts_rank_cd": 1.2772832
+     }
+    }
+   ]
+  },
+  {
+   "leg": "defined_terms_ecfr",
+   "input": "Our shimmer body lotion uses mica coated with iron oxides, and our lip scrub has cocoa powder that tints it brown. Are these 'color additives' in FDA's sense?",
+   "tsquery": null,
+   "limit": null,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 70.3(f)",
+     "corpus": "ecfr",
+     "method": "definition",
+     "score": 80.0,
+     "chars": 2174,
+     "metadata": {
+      "ordinal": 5
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 70.3(f)",
+   "corpus": "ecfr",
+   "method": "definition",
+   "tier": "supporting",
+   "score": 80.0,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.233,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0811,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9758,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9443,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8335,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8266,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8266,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: Implanted Blood Access Devices for Hemodialysis: Guidance for Industry and Food and Drug Administration Staff (final, 2016-01-21, Docket FDA-2013-D-0749)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7983,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 73.1350(a)(1)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3961,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 73.3128(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3961,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 73.1350(c)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3599,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 700.13(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.201,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 70.3(f)",
+  "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+  "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+  "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+  "21 CFR 73.1350(a)(1)",
+  "21 CFR 73.3128(a)",
+  "21 CFR 73.1350(c)",
+  "21 CFR 700.13(a)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Implanted Blood Access Devices for Hemodialysis: Guidance for Industry and Food and Drug Administration Staff (final, 2016-01-21, Docket FDA-2013-D-0749)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 73.1350(c)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 700.13(a)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 1,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(f)",
+    "tier": "supporting",
+    "block_chars": 1362,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.1350(a)(1)",
+    "tier": "discovery",
+    "block_chars": 538,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.3128(a)",
+    "tier": "discovery",
+    "block_chars": 532,
+    "used_before": 538,
+    "reserve_spent_before": 538,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 73.1350(c)",
+    "tier": "discovery",
+    "block_chars": 491,
+    "used_before": 1072,
+    "reserve_spent_before": 1070,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.13(a)",
+    "tier": "discovery",
+    "block_chars": 935,
+    "used_before": 1072,
+    "reserve_spent_before": 1070,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 70.3(f)",
+    "tier": "supporting",
+    "used_before": 1072,
+    "block_chars": 1362,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+    "tier": "discovery",
+    "used_before": 2436,
+    "block_chars": 1162,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1631,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1631,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Implanted Blood Access Devices for Hemodialysis: Guidance for Industry and Food and Drug Administration Staff (final, 2016-01-21, Docket FDA-2013-D-0749)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1536,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 73.1350(c)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 491,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 700.13(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 935,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 70.3(f)",
+   "tier": "supporting",
+   "method": "definition",
+   "chars": 1200,
+   "truncated": true,
+   "required": true
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Characterization of Metallic Coatings and/or Calcium Phosphate Coatings on Orthopedic Devices: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2024-01-23, Docket FDA-2023-D-5430)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 731,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 73.1350(a)(1)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 347,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 73.3128(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 344,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "70.3": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 63,
+     "tail": "(a) Secretary means the Secretary of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 65,
+     "tail": "(b) Department means the Department of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 58,
+     "tail": "(c) Commissioner means the Commissioner of Food and Drugs.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 66,
+     "tail": "(d) Act means the Federal Food, Drug, and Cosmetic Act as amended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 348,
+     "tail": "bed, and including the examination of samples of color additives subject to certification.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 5,
+     "chars": 2174,
+     "tail": "rials which do not contribute any color apparent to the naked eye are not color additives.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 6,
+     "chars": 525,
+     "tail": "nditions are such that the primary purpose of the material is other than to impart color.)",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 7,
+     "chars": 662,
+     "tail": "of this property colors the produce of the soil, it is a color additive and is not exempt.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 8,
+     "chars": 161,
+     "tail": "reasonable certainty that no harm will result from the intended use of the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 9,
+     "chars": 192,
+     "tail": " includes lakes and such substances as are permitted by the specifications for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 10,
+     "chars": 144,
+     "tail": "xing two or more straight colors, or one or more straight colors and one or more diluents.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 11,
+     "chars": 205,
+     "tail": "nation that does not include any combination of ingredients made by simple mixing process.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 12,
+     "chars": 491,
+     "tail": "zing, or may be a functional component of an article intended for coloring the human body.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 13,
+     "chars": 90,
+     "tail": "(n) The term substratum means the substance on which the pure color in a lake is extended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 14,
+     "chars": 171,
+     "tail": "of any intermediate or other component, or of any diluent or substratum contained therein.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 15,
+     "chars": 233,
+     "tail": " set apart and held as a unit for the purpose of obtaining certification of such quantity.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 16,
+     "chars": 112,
+     "tail": "ber means the number assigned to a batch by the person who requests certification thereof.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 17,
+     "chars": 118,
+     "tail": "s an identifying number or symbol assigned to a batch by the Food and Drug Administration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)",
+     "ordinal": 18,
+     "chars": 349,
+     "tail": "ll, and the soft areolar tissue that lies within the perimeter of the infra-orbital ridge.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)",
+     "ordinal": 19,
+     "chars": 617,
+     "tail": " container for such unit shall be considered to be the package as defined in this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(u)",
+     "ordinal": 20,
+     "chars": 891,
+     "tail": "r shampoo, rinse, tint, or similar dual-purpose cosmetic that alter the color of the hair.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(v)",
+     "ordinal": 21,
+     "chars": 206,
+     "tail": "rnal parts of the body and not to the lips or any body surface covered by mucous membrane.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Definitions."
+  }
+ },
+ "required_status": {
+  "21 CFR 70.3(f)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 70.3(g)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

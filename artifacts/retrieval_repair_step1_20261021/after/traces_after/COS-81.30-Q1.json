@@ -1,0 +1,1001 @@
+{
+ "id": "COS-81.30-Q1",
+ "question": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+ "key_citation": "21 CFR 81.30(r)",
+ "required": {
+  "81.30": [
+   "r"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "found old certified lots red warehouse use externally applied lotion",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "externally",
+   "certified",
+   "warehouse",
+   "applied",
+   "lotion",
+   "found",
+   "lots",
+   "old"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+   "tsquery": "'found' & 'old' & 'certifi' & 'lot' & 'd' & 'c' & 'red' & '19' & 'warehous' & 'use' & 'extern' & 'appli' & 'lotion'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+   "tsquery": "'found' & 'old' & 'certifi' & 'lot' & 'd' & 'c' & 'red' & '19' & 'warehous' & 'use' & 'extern' & 'appli' & 'lotion'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We found old certified lots of D&C Red No. 19 in our warehouse. Can we use them in an externally applied lotion?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "found old certified lots red warehouse use externally applied lotion",
+   "tsquery": "'found' & 'old' & 'certifi' & 'lot' & 'red' & 'warehous' & 'use' & 'extern' & 'appli' & 'lotion'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 358.750(c)(3)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4757,
+     "chars": 239,
+     "metadata": {
+      "ordinal": 16,
+      "section_coverage": 0.6521,
+      "paragraph_coverage": 0.2333
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 358.750(d)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4606,
+     "chars": 303,
+     "metadata": {
+      "ordinal": 21,
+      "section_coverage": 0.6521,
+      "paragraph_coverage": 0.2242
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 112.3(2)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3643,
+     "chars": 867,
+     "metadata": {
+      "ordinal": 36,
+      "section_coverage": 0.6075,
+      "paragraph_coverage": 0.2111
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 346.50(c)(6)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3469,
+     "chars": 417,
+     "metadata": {
+      "ordinal": 33,
+      "section_coverage": 0.6135,
+      "paragraph_coverage": 0.1947
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "externally or certified or warehouse or applied or lotion or found or lots or old",
+   "tsquery": "'extern' | 'certifi' | 'warehous' | 'appli' | 'lotion' | 'found' | 'lot' | 'old'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8405,
+     "chars": 1406,
+     "metadata": {
+      "ts_rank_cd": 1.3448713
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7753,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 1.2405372
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7678,
+     "chars": 1468,
+     "metadata": {
+      "ts_rank_cd": 1.2285281
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.7474,
+     "chars": 1408,
+     "metadata": {
+      "ts_rank_cd": 1.1958672
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6913,
+     "chars": 1423,
+     "metadata": {
+      "ts_rank_cd": 1.106152
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.6428,
+     "chars": 1477,
+     "metadata": {
+      "ts_rank_cd": 1.028431
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Regulation of Human Cells, Tissues, and Cellular and Tissue-Based Products (HCT/Ps) - Small Entity Compliance Guide: Guidance for Industry (final, 2022-11-01, Docket FDA-2022-D-0563)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.614,
+     "chars": 1497,
+     "metadata": {
+      "ts_rank_cd": 0.98237306
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA Regulation (final, 2023-05-18, Docket FDA-2023-D-1336)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5964,
+     "chars": 1489,
+     "metadata": {
+      "ts_rank_cd": 0.95419127
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8405,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7753,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7678,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.7474,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6913,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.6428,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Regulation of Human Cells, Tissues, and Cellular and Tissue-Based Products (HCT/Ps) - Small Entity Compliance Guide: Guidance for Industry (final, 2022-11-01, Docket FDA-2022-D-0563)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.614,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA Regulation (final, 2023-05-18, Docket FDA-2023-D-1336)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5964,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 358.750(c)(3)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4757,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 358.750(d)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4606,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 112.3(2)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3643,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 346.50(c)(6)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3469,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "21 CFR 358.750(c)(3)",
+  "21 CFR 358.750(d)(2)",
+  "21 CFR 112.3(2)(2)",
+  "21 CFR 346.50(c)(6)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Regulation of Human Cells, Tissues, and Cellular and Tissue-Based Products (HCT/Ps) - Small Entity Compliance Guide: Guidance for Industry (final, 2022-11-01, Docket FDA-2022-D-0563)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA Regulation (final, 2023-05-18, Docket FDA-2023-D-1336)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 112.3(2)(2)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 346.50(c)(6)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 358.750(c)(3)",
+    "tier": "discovery",
+    "block_chars": 490,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 358.750(d)(2)",
+    "tier": "discovery",
+    "block_chars": 554,
+    "used_before": 490,
+    "reserve_spent_before": 490,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 112.3(2)(2)",
+    "tier": "discovery",
+    "block_chars": 1059,
+    "used_before": 1046,
+    "reserve_spent_before": 1044,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 346.50(c)(6)",
+    "tier": "discovery",
+    "block_chars": 611,
+    "used_before": 1046,
+    "reserve_spent_before": 1044,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 1046,
+    "block_chars": 1596,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 2644,
+    "block_chars": 954,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1488,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1597,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1489,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Submission of Quality Metrics Data Guidance for Industry (draft, 2016-11-25, Docket FDA-2015-D-2537)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1489,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Regulation of Human Cells, Tissues, and Cellular and Tissue-Based Products (HCT/Ps) - Small Entity Compliance Guide: Guidance for Industry (final, 2022-11-01, Docket FDA-2022-D-0563)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1621,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Small Entity Compliance Guide: Requirements for Additional Traceability Records for Certain Foods: What You Need to Know About the FDA Regulation (final, 2023-05-18, Docket FDA-2023-D-1336)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1626,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 112.3(2)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1059,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 346.50(c)(6)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 611,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 557,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 358.750(c)(3)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 239,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 358.750(d)(2)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 303,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "81.30": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 252,
+     "tail": "of such color additives in drugs or cosmetics after that date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(1)",
+     "ordinal": 1,
+     "chars": 274,
+     "tail": "the manufacture of foods, drugs, or cosmetics after that date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)(2)",
+     "ordinal": 2,
+     "chars": 340,
+     "tail": " toxic substance and that it is only used in small amounts in foods, drugs, and cosmetics.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 3,
+     "chars": 684,
+     "tail": "from the market food, ingested drugs and ingested cosmetics containing the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 4,
+     "chars": 288,
+     "tail": "the manufacture of foods, drugs, or cosmetics after that date will result in adulteration:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 5,
+     "chars": 588,
+     "tail": "5. Ext. D&C Blue No. 1. Ext. D&C Blue No. 4. Ext. D&C Orange No. 1. Ext. D&C Orange No. 4.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 6,
+     "chars": 277,
+     "tail": "ives in the manufacture of drugs or cosmetics after that date will result in adulteration:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 7,
+     "chars": 64,
+     "tail": "Ext. D&C Yellow No. 3. Ext. D&C Red No. 8 Ext. D&C Orange No. 3.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 8,
+     "chars": 328,
+     "tail": "ested drugs or cosmetics subject to ingestion after that date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 9,
+     "chars": 406,
+     "tail": "ested drugs or cosmetics subject to ingestion after that date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)(1)",
+     "ordinal": 10,
+     "chars": 275,
+     "tail": "the manufacture of foods, drugs, or cosmetics after that date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)(2)",
+     "ordinal": 11,
+     "chars": 196,
+     "tail": "ng this color additive from the market on the basis of the scientific evidence before him.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 12,
+     "chars": 399,
+     "tail": "onally listed in § 81.1(b) and (c) respectively for coloring externally applied cosmetics.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(1)",
+     "ordinal": 13,
+     "chars": 273,
+     "tail": " the manufacture of food, drugs, or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(2)",
+     "ordinal": 14,
+     "chars": 194,
+     "tail": " taken to remove from the market food, drugs, and cosmetics containing the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(1)",
+     "ordinal": 15,
+     "chars": 353,
+     "tail": "vies in the manufacture of drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)(2)",
+     "ordinal": 16,
+     "chars": 196,
+     "tail": "aken to remove from the market, drug and cosmetic products containing the color additives.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)(1)",
+     "ordinal": 17,
+     "chars": 275,
+     "tail": "tive in the manufacture of drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)(2)",
+     "ordinal": 18,
+     "chars": 187,
+     "tail": "s to be taken to remove from the market drugs and cosmetics containing the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(1)",
+     "ordinal": 19,
+     "chars": 273,
+     "tail": "tive in the manufacture of drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(2)",
+     "ordinal": 20,
+     "chars": 187,
+     "tail": "s to be taken to remove from the market drugs and cosmetics containing the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)(1)",
+     "ordinal": 21,
+     "chars": 370,
+     "tail": "he manufacture of ingested drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)(2)",
+     "ordinal": 22,
+     "chars": 218,
+     "tail": "t drugs and cosmetics to which the color additives were added on or before April 28, 1981.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)(1)",
+     "ordinal": 23,
+     "chars": 407,
+     "tail": "tion. The color will continue to be certified for use in the coloring of surgical sutures.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)(2)",
+     "ordinal": 24,
+     "chars": 187,
+     "tail": "s to be taken to remove from the market drugs and cosmetics containing the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)(1)",
+     "ordinal": 25,
+     "chars": 338,
+     "tail": "he manufacture of ingested drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)(2)",
+     "ordinal": 26,
+     "chars": 189,
+     "tail": "aken to remove from the market ingested drugs and cosmetics containing the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 27,
+     "chars": 14,
+     "tail": "(q) [Reserved]",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(1)",
+     "ordinal": 28,
+     "chars": 370,
+     "tail": "he manufacture of ingested drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(2)",
+     "ordinal": 29,
+     "chars": 333,
+     "tail": "y applied drugs and cosmetics to which D&C Red No. 37 was added on or before June 6, 1986.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(3)",
+     "ordinal": 30,
+     "chars": 356,
+     "tail": "ture of externally applied drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(4)",
+     "ordinal": 31,
+     "chars": 348,
+     "tail": "ture of externally applied drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)(5)",
+     "ordinal": 32,
+     "chars": 217,
+     "tail": " applied drugs and cosmetics to which D&C Red No. 19 was added on or before July 15, 1988.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)(1)",
+     "ordinal": 33,
+     "chars": 467,
+     "tail": "ted drugs, except ingested drug lip products, after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)(2)",
+     "ordinal": 34,
+     "chars": 242,
+     "tail": ", and ingested drugs to which the color additives were added on or before January 6, 1987.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)(3)",
+     "ordinal": 35,
+     "chars": 479,
+     "tail": "and in externally applied drugs and cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)(4)",
+     "ordinal": 36,
+     "chars": 280,
+     "tail": "ed drugs and cosmetics to which the color additives were added on or before July 15, 1988.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)(1)",
+     "ordinal": 37,
+     "chars": 361,
+     "tail": "cture of ingested drugs or ingested cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)(2)",
+     "ordinal": 38,
+     "chars": 203,
+     "tail": "ket drugs and cosmetics to which the color additive was added on or before March 31, 1983.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)(3)",
+     "ordinal": 39,
+     "chars": 350,
+     "tail": "ture of externally applied drugs or cosmetics after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)(4)",
+     "ordinal": 40,
+     "chars": 220,
+     "tail": "plied drugs and cosmetics to which D&C Orange No. 17 was added on or before July 15, 1988.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(u)(1)",
+     "ordinal": 41,
+     "chars": 820,
+     "tail": " No. 3 (including the lakes of D&C Red No. 3) after this date will result in adulteration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(u)(2)",
+     "ordinal": 42,
+     "chars": 245,
+     "tail": "provisionally listed color additive or its lakes were added on or before January 29, 1990.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [
+    "(d)",
+    "(e)"
+   ],
+   "search_vector_matches_text": true,
+   "heading": "Cancellation of certificates."
+  }
+ },
+ "required_status": {
+  "21 CFR 81.30(r)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

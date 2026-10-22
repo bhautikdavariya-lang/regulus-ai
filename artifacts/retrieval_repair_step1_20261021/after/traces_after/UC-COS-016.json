@@ -1,0 +1,589 @@
+{
+ "id": "UC-COS-016",
+ "question": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+ "key_citation": "FD&C Act 605(a)–(b), (e) (21 U.S.C. 364a); 604 (21 U.S.C. 364) adverse event / serious adverse event",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "customer emailed face mask gave rash went away day have report",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "customer",
+   "emailed",
+   "report",
+   "face",
+   "mask",
+   "gave",
+   "rash",
+   "went"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+   "tsquery": "'custom' & 'email' & 'face' & 'mask' & 'gave' & 'rash' & 'went' & 'away' & 'day' & 'report' & 'fda'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+   "tsquery": "'custom' & 'email' & 'face' & 'mask' & 'gave' & 'rash' & 'went' & 'away' & 'day' & 'report' & 'fda'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "A customer emailed that our face mask gave her a rash that went away in a day. Do we have to report it to FDA?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "customer emailed face mask gave rash went away day have report",
+   "tsquery": "'custom' & 'email' & 'face' & 'mask' & 'gave' & 'rash' & 'went' & 'away' & 'day' & 'report'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 312.33",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.2944,
+     "chars": 159,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.5178,
+      "paragraph_coverage": 0.2589
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 347.50(c)(6)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.2586,
+     "chars": 92,
+     "metadata": {
+      "ordinal": 24,
+      "section_coverage": 0.5526,
+      "paragraph_coverage": 0.2026
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 350.50(c)(4)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.2586,
+     "chars": 93,
+     "metadata": {
+      "ordinal": 12,
+      "section_coverage": 0.5526,
+      "paragraph_coverage": 0.2026
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 347.50(b)(4)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.1034,
+     "chars": 312,
+     "metadata": {
+      "ordinal": 12,
+      "section_coverage": 0.5526,
+      "paragraph_coverage": 0.1095
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "customer or emailed or report or face or mask or gave or rash or went",
+   "tsquery": "'custom' | 'email' | 'report' | 'face' | 'mask' | 'gave' | 'rash' | 'went'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.378,
+     "chars": 1466,
+     "metadata": {
+      "ts_rank_cd": 2.2048225
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2576,
+     "chars": 1410,
+     "metadata": {
+      "ts_rank_cd": 2.012203
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2424,
+     "chars": 1471,
+     "metadata": {
+      "ts_rank_cd": 1.9878985
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2385,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 1.9815466
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1493,
+     "chars": 1451,
+     "metadata": {
+      "ts_rank_cd": 1.8388151
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1413,
+     "chars": 1462,
+     "metadata": {
+      "ts_rank_cd": 1.8261312
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1111,
+     "chars": 1447,
+     "metadata": {
+      "ts_rank_cd": 1.7777444
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0919,
+     "chars": 1491,
+     "metadata": {
+      "ts_rank_cd": 1.7470881
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.378,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2576,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2424,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2385,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1493,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1413,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1111,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0919,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 312.33",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2944,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 347.50(c)(6)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2586,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 350.50(c)(4)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2586,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 347.50(b)(4)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1034,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+  "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+  "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+  "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+  "21 CFR 312.33",
+  "21 CFR 347.50(c)(6)(ii)",
+  "21 CFR 350.50(c)(4)(i)",
+  "21 CFR 347.50(b)(4)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 347.50(b)(4)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 5
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 312.33",
+    "tier": "discovery",
+    "block_chars": 326,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 347.50(c)(6)(ii)",
+    "tier": "discovery",
+    "block_chars": 296,
+    "used_before": 326,
+    "reserve_spent_before": 326,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 350.50(c)(4)(i)",
+    "tier": "discovery",
+    "block_chars": 295,
+    "used_before": 624,
+    "reserve_spent_before": 622,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 347.50(b)(4)",
+    "tier": "discovery",
+    "block_chars": 512,
+    "used_before": 921,
+    "reserve_spent_before": 917,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+    "tier": "discovery",
+    "used_before": 921,
+    "block_chars": 1672,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+    "tier": "discovery",
+    "used_before": 2595,
+    "block_chars": 1003,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1605,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Medical Device Reporting for Manufacturers : Guidance for Industry and Food and Drug Administration Staff (final, 2016-11-08, Docket FDA-2013-D-0743)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1527,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1672,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Adverse Event Reporting and Recordkeeping for Dietary Supplements as Required by the Dietary Supplement and Nonprescription Drug Consumer Protection Act (final, 2013-09-01, Docket FDA-2007-D-0372)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1689,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Questions and Answers Regarding the Reportable Food Registry as Established by the Food and Drug Administration Amendments Act of 2007 (Edition 2) (draft, 2010-05-25, Docket FDA-2009-D-0260)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1656,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports (final, 2026-03-03, Docket FDA-2024-D-0803)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1605,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 347.50(b)(4)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 512,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Enforcement Policy for Face Masks and Barrier Face Coverings During the Coronavirus Disease (COVID-19) Public Health Emergency : Guidance for Industry and Food and Drug Administration Staff (final, 2023-09-05, Docket FDA-2020-D-1138)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 531,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 312.33",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 159,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 347.50(c)(6)(ii)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 92,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 5,
+   "citation": "21 CFR 350.50(c)(4)(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 93,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

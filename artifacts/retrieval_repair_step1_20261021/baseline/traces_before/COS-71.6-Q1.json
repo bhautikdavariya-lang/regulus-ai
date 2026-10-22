@@ -1,0 +1,659 @@
+{
+ "id": "COS-71.6-Q1",
+ "question": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+ "key_citation": "21 CFR 71.6(a)",
+ "required": {
+  "71.6": [
+   "a"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "color additive petition filed days ago hasn decided take longer",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "additive",
+   "petition",
+   "decided",
+   "longer",
+   "color",
+   "filed",
+   "days",
+   "hasn"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+   "tsquery": "'color' & 'addit' & 'petit' & 'file' & '80' & 'day' & 'ago' & 'fda' & 'hasn' & 'decid' & 'fda' & 'take' & 'longer' & '90' & 'day' & 'much' & 'longer'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+   "tsquery": "'color' & 'addit' & 'petit' & 'file' & '80' & 'day' & 'ago' & 'fda' & 'hasn' & 'decid' & 'fda' & 'take' & 'longer' & '90' & 'day' & 'much' & 'longer'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our color additive petition was filed 80 days ago and FDA hasn't decided. Can FDA take longer than 90 days, and how much longer?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "color additive petition filed days ago hasn decided take longer",
+   "tsquery": "'color' & 'addit' & 'petit' & 'file' & 'day' & 'ago' & 'hasn' & 'decid' & 'take' & 'longer'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 70.42(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.1157,
+     "chars": 1046,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.2463,
+      "paragraph_coverage": 0.6231
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 814.9(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.4995,
+     "chars": 483,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.0799,
+      "paragraph_coverage": 0.4198
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 10.45(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.4945,
+     "chars": 864,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.1154,
+      "paragraph_coverage": 0.3813
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 10.45(g)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.4945,
+     "chars": 303,
+     "metadata": {
+      "ordinal": 13,
+      "section_coverage": 1.1154,
+      "paragraph_coverage": 0.3813
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "additive or petition or decided or longer or color or filed or days or hasn",
+   "tsquery": "'addit' | 'petit' | 'decid' | 'longer' | 'color' | 'file' | 'day' | 'hasn'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.8181,
+     "chars": 1492,
+     "metadata": {
+      "ts_rank_cd": 2.909036
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.6832,
+     "chars": 1495,
+     "metadata": {
+      "ts_rank_cd": 2.6930861
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.679,
+     "chars": 1485,
+     "metadata": {
+      "ts_rank_cd": 2.6863694
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.527,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 2.4432662
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4968,
+     "chars": 1356,
+     "metadata": {
+      "ts_rank_cd": 2.3949058
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Biological Indicator (BI) Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2007-10-04, Docket FDA-2020-D-0957)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4942,
+     "chars": 1441,
+     "metadata": {
+      "ts_rank_cd": 2.3906717
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.4216,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 2.2745695
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.3489,
+     "chars": 1453,
+     "metadata": {
+      "ts_rank_cd": 2.1582966
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.8181,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.6832,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.679,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.527,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4968,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Biological Indicator (BI) Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2007-10-04, Docket FDA-2020-D-0957)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4942,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4216,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3489,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 70.42(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.1157,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 814.9(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.4995,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 10.45(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.4945,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 10.45(g)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.4945,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+  "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+  "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+  "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+  "21 CFR 70.42(a)",
+  "21 CFR 814.9(a)",
+  "21 CFR 10.45(b)",
+  "21 CFR 10.45(g)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Biological Indicator (BI) Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2007-10-04, Docket FDA-2020-D-0957)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 70.42(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 10.45(b)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 10.45(g)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.42(a)",
+    "tier": "discovery",
+    "block_chars": 1252,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 814.9(a)",
+    "tier": "discovery",
+    "block_chars": 723,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 10.45(b)",
+    "tier": "discovery",
+    "block_chars": 1099,
+    "used_before": 723,
+    "reserve_spent_before": 723,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 10.45(g)",
+    "tier": "discovery",
+    "block_chars": 538,
+    "used_before": 723,
+    "reserve_spent_before": 723,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+    "tier": "discovery",
+    "used_before": 723,
+    "block_chars": 1740,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "used_before": 2465,
+    "block_chars": 1133,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1535,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1535,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1548,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Biological Indicator (BI) Premarket Notification [510(k)] Submissions : Guidance for Industry and FDA Staff (final, 2007-10-04, Docket FDA-2020-D-0957)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1554,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1548,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #223 Small Entity Compliance Guide Declaring Color Additives in Animal Foods (final, 2013-09-27, Docket FDA-2013-D-1088)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1548,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 70.42(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1252,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 10.45(b)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1099,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 10.45(g)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 538,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Assessing the Effects of Significant Manufacturing Process Changes, Including Emerging Technologies, on the Safety and Regulatory Status of Food Ingredients and Food Contact Substances, Including Food Ingredients that Are Color Additives (final, 2014-06-27, Docket FDA-2011-D-0490)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Replacing Color Additives in Approved or Marketed Drug Products: Draft Guidance for Industry (draft, 2025-05-29, Docket FDA-2025-D-0507)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 797,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 814.9(a)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 483,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "71.6": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 277,
+     "tail": "oner extend the 90-day period for not more than 180 days after the filing of the petition.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 1408,
+     "tail": "ompliance with the requirements for informed consent set forth in part 50 of this chapter.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 46,
+     "tail": "(c) Withdrawal of petitions without prejudice.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": true
+    },
+    {
+     "path": "(c)(1)",
+     "ordinal": 3,
+     "chars": 557,
+     "tail": "ling. Upon refiling, the time limitation will begin to run anew from the date of refiling.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)(2)",
+     "ordinal": 4,
+     "chars": 253,
+     "tail": "t prejudice to a future filing. Upon refiling, the time limitation will begin to run anew.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Extension of time for studying petitions; substantive amendments; withdrawal of petitions without prejudice."
+  }
+ },
+ "required_status": {
+  "21 CFR 71.6(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

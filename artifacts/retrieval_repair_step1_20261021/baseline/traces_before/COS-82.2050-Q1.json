@@ -1,0 +1,2408 @@
+{
+ "id": "COS-82.2050-Q1",
+ "question": "Our supplier's batch was certified under Part 82 Subpart D. Can we use it in a lipstick, or only in certain products?",
+ "key_citation": "21 CFR 82.2050; 21 CFR 70.3(v)",
+ "required": {
+  "82.2050": [],
+  "70.3": [
+   "v"
+  ]
+ },
+ "gates": {
+  "plan_kind": "single_provision",
+  "query_type": "EXACT_CFR",
+  "requirements": [
+   "21 CFR part 82"
+  ],
+  "docket": null,
+  "normalized_question": "Our supplier's batch was certified under Part 82 Subpart D. Can we use it in a lipstick, or only in certain products?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 16,
+  "primary_min_results": 3,
+  "section_coverage_gate": false,
+  "section_coverage_terms": null,
+  "section_coverage": {
+   "run": false,
+   "candidates": 0,
+   "kept": 0
+  },
+  "or_fallback_used": false,
+  "or_fallback_terms": [
+   "certified",
+   "supplier",
+   "lipstick",
+   "certain",
+   "batch",
+   "use"
+  ],
+  "primary_result_count": 73,
+  "defined_terms_weights": null,
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "exact",
+   "skipped": null
+  },
+  "legs_called": [
+   "exact_cfr",
+   "full_text_ecfr",
+   "full_text_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "exact_cfr",
+   "input": "Our supplier's batch was certified under Part 82 Subpart D. Can we use it in a lipstick, or only in certain products?",
+   "tsquery": null,
+   "limit": 100,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 82.6(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 141,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.7611478
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 82.1050",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.999,
+     "chars": 274,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.5034528
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 82.2050",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.998,
+     "chars": 288,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.49108428
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 82.50",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.997,
+     "chars": 295,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.49108428
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "21 CFR 82.5",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.996,
+     "chars": 100,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.2823649
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "21 CFR 82.1255(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.995,
+     "chars": 218,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.120040655
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "21 CFR 82.1206",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.994,
+     "chars": 221,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11878968
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "21 CFR 82.51(a)(1)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.993,
+     "chars": 246,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11878968
+     }
+    },
+    {
+     "rank": 9,
+     "citation": "21 CFR 82.1104",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.992,
+     "chars": 221,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 10,
+     "citation": "21 CFR 82.1254",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.991,
+     "chars": 225,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 11,
+     "citation": "21 CFR 82.1260",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.99,
+     "chars": 227,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 12,
+     "citation": "21 CFR 82.1261",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.989,
+     "chars": 227,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 13,
+     "citation": "21 CFR 82.1317",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.988,
+     "chars": 222,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 14,
+     "citation": "21 CFR 82.1331",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.987,
+     "chars": 221,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 15,
+     "citation": "21 CFR 82.1707",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.986,
+     "chars": 225,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 16,
+     "citation": "21 CFR 82.1708",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.985,
+     "chars": 225,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 17,
+     "citation": "21 CFR 82.304",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.984,
+     "chars": 221,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.11760564
+     }
+    },
+    {
+     "rank": 18,
+     "citation": "21 CFR 82.2707a",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.983,
+     "chars": 237,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.114399865
+     }
+    },
+    {
+     "rank": 19,
+     "citation": "21 CFR 82.101",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.982,
+     "chars": 142,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 20,
+     "citation": "21 CFR 82.102",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.981,
+     "chars": 142,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 21,
+     "citation": "21 CFR 82.1051(a)(1)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.98,
+     "chars": 753,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 22,
+     "citation": "21 CFR 82.1205",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.979,
+     "chars": 146,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 23,
+     "citation": "21 CFR 82.1306(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.978,
+     "chars": 146,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 24,
+     "citation": "21 CFR 82.1307(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.977,
+     "chars": 146,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 25,
+     "citation": "21 CFR 82.1321",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.976,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 26,
+     "citation": "21 CFR 82.1322",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.975,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 27,
+     "citation": "21 CFR 82.1327",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.974,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 28,
+     "citation": "21 CFR 82.1328",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.973,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 29,
+     "citation": "21 CFR 82.1330",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.972,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 30,
+     "citation": "21 CFR 82.1333(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.971,
+     "chars": 148,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 31,
+     "citation": "21 CFR 82.1334",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.97,
+     "chars": 88,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 32,
+     "citation": "21 CFR 82.1336(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.969,
+     "chars": 147,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 33,
+     "citation": "21 CFR 82.1602",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.968,
+     "chars": 144,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 34,
+     "citation": "21 CFR 82.1710",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.967,
+     "chars": 145,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 35,
+     "citation": "21 CFR 82.203",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.966,
+     "chars": 143,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 36,
+     "citation": "21 CFR 82.2051(a)(1)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.965,
+     "chars": 606,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 37,
+     "citation": "21 CFR 82.3",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.964,
+     "chars": 30,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 38,
+     "citation": "21 CFR 82.705",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.963,
+     "chars": 145,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 39,
+     "citation": "21 CFR 82.706(a)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 99.962,
+     "chars": 149,
+     "metadata": {
+      "ordinal": 0,
+      "ts_rank_cd": 0.0
+     }
+    },
+    {
+     "rank": 40,
+     "citation": "21 CFR 82.6(a)(1)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 252,
+     "metadata": {
+      "ordinal": 1
+     }
+    },
+    {
+     "rank": 41,
+     "citation": "21 CFR 82.6(a)(2)",
+     "corpus": "ecfr",
+     "method": "exact_cfr",
+     "score": 100.0,
+     "chars": 87,
+     "metadata": {
+      "ordinal": 2
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our supplier's batch was certified under Part 82 Subpart D. Can we use it in a lipstick, or only in certain products?",
+   "tsquery": "'supplier' & 'batch' & 'certifi' & 'part' & '82' & 'subpart' & 'd' & 'use' & 'lipstick' | 'certain' & 'product'",
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 310.545(a)(6)(i)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 12.0225,
+     "chars": 32,
+     "metadata": {
+      "ordinal": 13,
+      "ts_rank_cd": 0.24044918
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 310.545(a)(26)(i)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 12.0225,
+     "chars": 34,
+     "metadata": {
+      "ordinal": 91,
+      "ts_rank_cd": 0.24044918
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 310.545(a)(26)(vii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 12.0225,
+     "chars": 26,
+     "metadata": {
+      "ordinal": 97,
+      "ts_rank_cd": 0.24044918
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 310.545(a)(2)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 29,
+     "metadata": {
+      "ordinal": 2,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "21 CFR 310.545(a)(3)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 32,
+     "metadata": {
+      "ordinal": 5,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "21 CFR 310.545(a)(4)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 33,
+     "metadata": {
+      "ordinal": 8,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "21 CFR 310.545(a)(6)(iii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 32,
+     "metadata": {
+      "ordinal": 20,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "21 CFR 310.545(a)(6)(iv)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 34,
+     "metadata": {
+      "ordinal": 21,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 9,
+     "citation": "21 CFR 310.545(a)(10)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 35,
+     "metadata": {
+      "ordinal": 34,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 10,
+     "citation": "21 CFR 310.545(a)(12)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 28,
+     "metadata": {
+      "ordinal": 41,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 11,
+     "citation": "21 CFR 310.545(a)(18)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 30,
+     "metadata": {
+      "ordinal": 59,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 12,
+     "citation": "21 CFR 310.545(a)(21)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 30,
+     "metadata": {
+      "ordinal": 70,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 13,
+     "citation": "21 CFR 310.545(a)(25)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 32,
+     "metadata": {
+      "ordinal": 87,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 14,
+     "citation": "21 CFR 310.545(a)(26)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 29,
+     "metadata": {
+      "ordinal": 90,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 15,
+     "citation": "21 CFR 310.545(a)(26)(ii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 30,
+     "metadata": {
+      "ordinal": 92,
+      "ts_rank_cd": 0.23530409
+     }
+    },
+    {
+     "rank": 16,
+     "citation": "21 CFR 310.545(a)(26)(iii)",
+     "corpus": "ecfr",
+     "method": "full_text",
+     "score": 11.7652,
+     "chars": 31,
+     "metadata": {
+      "ordinal": 93,
+      "ts_rank_cd": 0.23530409
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our supplier's batch was certified under Part 82 Subpart D. Can we use it in a lipstick, or only in certain products?",
+   "tsquery": "'supplier' & 'batch' & 'certifi' & 'part' & '82' & 'subpart' & 'd' & 'use' & 'lipstick' | 'certain' & 'product'",
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Certain Ophthalmic Products: Policy Regarding Compliance With 21 CFR Part 4 Guidance for Industry: Guidance for Industry (final, 2022-03-22, Docket FDA-2022-D-0192)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 13.0318,
+     "chars": 1480,
+     "metadata": {
+      "ts_rank_cd": 0.26063693
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 7, Subpart C: Guidance for Industry and FDA Staff (final, 2022-03-04, Docket FDA-2018-D-2074)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 12.0039,
+     "chars": 1469,
+     "metadata": {
+      "ts_rank_cd": 0.24007744
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 11.9967,
+     "chars": 1460,
+     "metadata": {
+      "ts_rank_cd": 0.23993424
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Container Closure System and Component Changes: Glass Vials and Stoppers (final, 2024-07-24, Docket FDA-2017-D-6821)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 11.9255,
+     "chars": 1482,
+     "metadata": {
+      "ts_rank_cd": 0.23851065
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 2021-06-21, Docket FDA-1995-D-0288)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 9.3269,
+     "chars": 1466,
+     "metadata": {
+      "ts_rank_cd": 0.18653852
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Graft-versus-Host Diseases: Developing Drugs, Biological Products, and Certain Devices for Prevention or Treatment (draft, 2023-09-28, Docket FDA-2023-D-3900)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 9.2645,
+     "chars": 1500,
+     "metadata": {
+      "ts_rank_cd": 0.18529056
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 2021-06-21, Docket FDA-1995-D-0288)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 9.164,
+     "chars": 1473,
+     "metadata": {
+      "ts_rank_cd": 0.18327917
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 9.1192,
+     "chars": 1440,
+     "metadata": {
+      "ts_rank_cd": 0.18238309
+     }
+    },
+    {
+     "rank": 9,
+     "citation": "FDA Guidance: Risk Management Plans to Mitigate the Potential for Drug Shortages (draft, 2022-05-19, Docket FDA-2022-D-0277)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 9.0644,
+     "chars": 1441,
+     "metadata": {
+      "ts_rank_cd": 0.18128759
+     }
+    },
+    {
+     "rank": 10,
+     "citation": "FDA Guidance: Medical Product Communications That Are Consistent With the FDA-Required Labeling — Questions and Answers : Guidance for Industry (final, 2018-06-13, Docket FDA-2016-D-2285)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.8945,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 0.17789057
+     }
+    },
+    {
+     "rank": 11,
+     "citation": "FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 7, Subpart C: Guidance for Industry and FDA Staff (final, 2022-03-04, Docket FDA-2018-D-2074)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.7242,
+     "chars": 1483,
+     "metadata": {
+      "ts_rank_cd": 0.1744846
+     }
+    },
+    {
+     "rank": 12,
+     "citation": "FDA Guidance: Principles of Premarket Pathways for Combination Products: Guidance for Industry and FDA Staff (final, 2022-01-26, Docket FDA-2019-D-0078)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.5307,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 0.1706137
+     }
+    },
+    {
+     "rank": 13,
+     "citation": "FDA Guidance: Principles of Premarket Pathways for Combination Products: Guidance for Industry and FDA Staff (final, 2022-01-26, Docket FDA-2019-D-0078)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.4654,
+     "chars": 1456,
+     "metadata": {
+      "ts_rank_cd": 0.16930899
+     }
+    },
+    {
+     "rank": 14,
+     "citation": "FDA Guidance: FDA Deems Certain Tobacco Products Subject to FDA Authority, Sales and Distribution Restrictions, and Health Warning Requirements for Packages and Advertisements: Guidance for Industry (final, 2023-03-17, Docket FDA-2014-N-0189)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.3229,
+     "chars": 1449,
+     "metadata": {
+      "ts_rank_cd": 0.16645776
+     }
+    },
+    {
+     "rank": 15,
+     "citation": "FDA Guidance: Container Closure System and Component Changes: Glass Vials and Stoppers (final, 2024-07-24, Docket FDA-2017-D-6821)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.1889,
+     "chars": 1478,
+     "metadata": {
+      "ts_rank_cd": 0.16377759
+     }
+    },
+    {
+     "rank": 16,
+     "citation": "FDA Guidance: Reprocessing Medical Devices in Health Care Settings: Validation Methods and Labeling : Guidance for Industry and Food and Drug Administration Staff (final, 2015-03-17, Docket FDA-2011-D-0293)",
+     "corpus": "fda_guidance",
+     "method": "full_text",
+     "score": 8.0599,
+     "chars": 1459,
+     "metadata": {
+      "ts_rank_cd": 0.16119787
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 82.6(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "21 CFR 82.6(a)(1)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "21 CFR 82.6(a)(2)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 100.0,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "21 CFR 82.1050",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.999,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "21 CFR 82.2050",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.998,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 6,
+   "citation": "21 CFR 82.50",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.997,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "21 CFR 82.5",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.996,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "21 CFR 82.1255(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.995,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 82.1206",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.994,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 82.51(a)(1)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.993,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 82.1104",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.992,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 82.1254",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.991,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 82.1260",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.99,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 14,
+   "citation": "21 CFR 82.1261",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.989,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 15,
+   "citation": "21 CFR 82.1317",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.988,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 16,
+   "citation": "21 CFR 82.1331",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.987,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 17,
+   "citation": "21 CFR 82.1707",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.986,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 18,
+   "citation": "21 CFR 82.1708",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.985,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 19,
+   "citation": "21 CFR 82.304",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.984,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 20,
+   "citation": "21 CFR 82.2707a",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.983,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 21,
+   "citation": "21 CFR 82.101",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.982,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 22,
+   "citation": "21 CFR 82.102",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.981,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 23,
+   "citation": "21 CFR 82.1051(a)(1)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.98,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 24,
+   "citation": "21 CFR 82.1205",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.979,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 25,
+   "citation": "21 CFR 82.1306(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.978,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 26,
+   "citation": "21 CFR 82.1307(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.977,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 27,
+   "citation": "21 CFR 82.1321",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.976,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 28,
+   "citation": "21 CFR 82.1322",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.975,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 29,
+   "citation": "21 CFR 82.1327",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.974,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 30,
+   "citation": "21 CFR 82.1328",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.973,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 31,
+   "citation": "21 CFR 82.1330",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.972,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 32,
+   "citation": "21 CFR 82.1333(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.971,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 33,
+   "citation": "21 CFR 82.1334",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.97,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 34,
+   "citation": "21 CFR 82.1336(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.969,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 35,
+   "citation": "21 CFR 82.1602",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.968,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 36,
+   "citation": "21 CFR 82.1710",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.967,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 37,
+   "citation": "21 CFR 82.203",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.966,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 38,
+   "citation": "21 CFR 82.2051(a)(1)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.965,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 39,
+   "citation": "21 CFR 82.3",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.964,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 40,
+   "citation": "21 CFR 82.705",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.963,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 41,
+   "citation": "21 CFR 82.706(a)",
+   "corpus": "ecfr",
+   "method": "exact_cfr",
+   "tier": "exact",
+   "score": 99.962,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 42,
+   "citation": "FDA Guidance: Certain Ophthalmic Products: Policy Regarding Compliance With 21 CFR Part 4 Guidance for Industry: Guidance for Industry (final, 2022-03-22, Docket FDA-2022-D-0192)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 13.0318,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 43,
+   "citation": "21 CFR 310.545(a)(26)(i)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 12.0225,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 44,
+   "citation": "21 CFR 310.545(a)(26)(vii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 12.0225,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 45,
+   "citation": "21 CFR 310.545(a)(6)(i)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 12.0225,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 46,
+   "citation": "FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 7, Subpart C: Guidance for Industry and FDA Staff (final, 2022-03-04, Docket FDA-2018-D-2074)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 12.0039,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 47,
+   "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.9967,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 48,
+   "citation": "FDA Guidance: Container Closure System and Component Changes: Glass Vials and Stoppers (final, 2024-07-24, Docket FDA-2017-D-6821)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.9255,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 49,
+   "citation": "21 CFR 310.545(a)(10)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 50,
+   "citation": "21 CFR 310.545(a)(12)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 51,
+   "citation": "21 CFR 310.545(a)(18)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 52,
+   "citation": "21 CFR 310.545(a)(2)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 53,
+   "citation": "21 CFR 310.545(a)(21)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 54,
+   "citation": "21 CFR 310.545(a)(25)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 55,
+   "citation": "21 CFR 310.545(a)(26)(ii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 56,
+   "citation": "21 CFR 310.545(a)(26)(iii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 57,
+   "citation": "21 CFR 310.545(a)(26)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 58,
+   "citation": "21 CFR 310.545(a)(3)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 59,
+   "citation": "21 CFR 310.545(a)(4)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 60,
+   "citation": "21 CFR 310.545(a)(6)(iii)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 61,
+   "citation": "21 CFR 310.545(a)(6)(iv)",
+   "corpus": "ecfr",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 11.7652,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 62,
+   "citation": "FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 2021-06-21, Docket FDA-1995-D-0288)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 9.3269,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 63,
+   "citation": "FDA Guidance: Graft-versus-Host Diseases: Developing Drugs, Biological Products, and Certain Devices for Prevention or Treatment (draft, 2023-09-28, Docket FDA-2023-D-3900)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 9.2645,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 64,
+   "citation": "FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 2021-06-21, Docket FDA-1995-D-0288)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 9.164,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 65,
+   "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 9.1192,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 66,
+   "citation": "FDA Guidance: Risk Management Plans to Mitigate the Potential for Drug Shortages (draft, 2022-05-19, Docket FDA-2022-D-0277)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 9.0644,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 67,
+   "citation": "FDA Guidance: Medical Product Communications That Are Consistent With the FDA-Required Labeling — Questions and Answers : Guidance for Industry (final, 2018-06-13, Docket FDA-2016-D-2285)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.8945,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 68,
+   "citation": "FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 7, Subpart C: Guidance for Industry and FDA Staff (final, 2022-03-04, Docket FDA-2018-D-2074)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.7242,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 69,
+   "citation": "FDA Guidance: Principles of Premarket Pathways for Combination Products: Guidance for Industry and FDA Staff (final, 2022-01-26, Docket FDA-2019-D-0078)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.5307,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 70,
+   "citation": "FDA Guidance: Principles of Premarket Pathways for Combination Products: Guidance for Industry and FDA Staff (final, 2022-01-26, Docket FDA-2019-D-0078)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.4654,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 71,
+   "citation": "FDA Guidance: FDA Deems Certain Tobacco Products Subject to FDA Authority, Sales and Distribution Restrictions, and Health Warning Requirements for Packages and Advertisements: Guidance for Industry (final, 2023-03-17, Docket FDA-2014-N-0189)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.3229,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 72,
+   "citation": "FDA Guidance: Container Closure System and Component Changes: Glass Vials and Stoppers (final, 2024-07-24, Docket FDA-2017-D-6821)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.1889,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 73,
+   "citation": "FDA Guidance: Reprocessing Medical Devices in Health Care Settings: Validation Methods and Labeling : Guidance for Industry and Food and Drug Administration Staff (final, 2015-03-17, Docket FDA-2011-D-0293)",
+   "corpus": "fda_guidance",
+   "method": "full_text",
+   "tier": "supporting",
+   "score": 8.0599,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 82.6(a)",
+  "21 CFR 82.6(a)(1)",
+  "21 CFR 82.6(a)(2)",
+  "21 CFR 82.1050",
+  "21 CFR 82.2050",
+  "21 CFR 82.50",
+  "21 CFR 82.5",
+  "21 CFR 82.1255(a)",
+  "21 CFR 82.1206",
+  "21 CFR 82.51(a)(1)",
+  "21 CFR 82.1104",
+  "21 CFR 82.1254",
+  "21 CFR 82.1260",
+  "21 CFR 82.1261",
+  "21 CFR 82.1317",
+  "21 CFR 82.1331",
+  "21 CFR 82.1707",
+  "21 CFR 82.1708",
+  "21 CFR 82.304",
+  "21 CFR 82.2707a",
+  "21 CFR 82.101",
+  "21 CFR 82.102",
+  "21 CFR 82.1051(a)(1)",
+  "21 CFR 82.1205",
+  "21 CFR 82.1306(a)",
+  "21 CFR 82.1307(a)",
+  "21 CFR 82.1321",
+  "21 CFR 82.1322",
+  "21 CFR 82.1327",
+  "21 CFR 82.1328",
+  "21 CFR 82.1330",
+  "21 CFR 82.1333(a)",
+  "21 CFR 82.1334",
+  "21 CFR 82.1336(a)",
+  "21 CFR 82.1602",
+  "21 CFR 82.1710",
+  "21 CFR 82.203",
+  "21 CFR 82.2051(a)(1)",
+  "21 CFR 82.3",
+  "21 CFR 82.705",
+  "21 CFR 82.706(a)"
+ ],
+ "selection": {
+  "total_chars": 8953,
+  "dropped": [
+   [
+    "21 CFR 82.1051(a)(1)",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1306(a)",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1307(a)",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1321",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1322",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1327",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1328",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1330",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1333(a)",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1334",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1336(a)",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1602",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.1710",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.203",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.2051(a)(1)",
+    "hard_ceiling_chars"
+   ],
+   [
+    "21 CFR 82.705",
+    "hard_ceiling_count"
+   ],
+   [
+    "21 CFR 82.706(a)",
+    "hard_ceiling_count"
+   ],
+   [
+    "FDA Guidance: Certain Ophthalmic Products: Policy Regarding Compliance With 21 CFR Part 4 Guidance for Industry: Guidance for Industry (final, 2022-03-22, Docket FDA-2022-D-0192)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(26)(i)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(26)(vii)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(6)(i)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 7, Subpart C: Guidance for Industry and FDA Staff (final, 2022-03-04, Docket FDA-2018-D-2074)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Container Closure System and Component Changes: Glass Vials and Stoppers (final, 2024-07-24, Docket FDA-2017-D-6821)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(10)(ii)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(12)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(18)(ii)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(2)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(21)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(25)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(26)(ii)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(26)(iii)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(26)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(3)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(4)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(6)(iii)",
+    "max_results"
+   ],
+   [
+    "21 CFR 310.545(a)(6)(iv)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 2021-06-21, Docket FDA-1995-D-0288)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Graft-versus-Host Diseases: Developing Drugs, Biological Products, and Certain Devices for Prevention or Treatment (draft, 2023-09-28, Docket FDA-2023-D-3900)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Chemistry, Manufacturing, and Controls Changes to an Approved Application: Certain Biological Products: Guidance for Industry (final, 2021-06-21, Docket FDA-1995-D-0288)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Risk Management Plans to Mitigate the Potential for Drug Shortages (draft, 2022-05-19, Docket FDA-2022-D-0277)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Medical Product Communications That Are Consistent With the FDA-Required Labeling — Questions and Answers : Guidance for Industry (final, 2018-06-13, Docket FDA-2016-D-2285)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Initiation of Voluntary Recalls Under 21 CFR Part 7, Subpart C: Guidance for Industry and FDA Staff (final, 2022-03-04, Docket FDA-2018-D-2074)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Principles of Premarket Pathways for Combination Products: Guidance for Industry and FDA Staff (final, 2022-01-26, Docket FDA-2019-D-0078)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Principles of Premarket Pathways for Combination Products: Guidance for Industry and FDA Staff (final, 2022-01-26, Docket FDA-2019-D-0078)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: FDA Deems Certain Tobacco Products Subject to FDA Authority, Sales and Distribution Restrictions, and Health Warning Requirements for Packages and Advertisements: Guidance for Industry (final, 2023-03-17, Docket FDA-2014-N-0189)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Container Closure System and Component Changes: Glass Vials and Stoppers (final, 2024-07-24, Docket FDA-2017-D-6821)",
+    "max_results"
+   ],
+   [
+    "FDA Guidance: Reprocessing Medical Devices in Health Care Settings: Validation Methods and Labeling : Guidance for Industry and Food and Drug Administration Staff (final, 2015-03-17, Docket FDA-2011-D-0293)",
+    "max_results"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 24,
+   "required_chars": 8953,
+   "required_dropped": [
+    "e23",
+    "e25",
+    "e26",
+    "e27",
+    "e28",
+    "e29",
+    "e30",
+    "e31",
+    "e32",
+    "e33",
+    "e34",
+    "e35",
+    "e36",
+    "e37",
+    "e38",
+    "e40",
+    "e41"
+   ],
+   "required_truncated": [],
+   "tier_counts": {
+    "exact": 24,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": null,
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 82.6(a)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 141,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "21 CFR 82.6(a)(1)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 252,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 82.6(a)(2)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 87,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 82.1050",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 274,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 5,
+   "citation": "21 CFR 82.2050",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 288,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 6,
+   "citation": "21 CFR 82.50",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 295,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 7,
+   "citation": "21 CFR 82.5",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 100,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 8,
+   "citation": "21 CFR 82.1255(a)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 218,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 9,
+   "citation": "21 CFR 82.1206",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 221,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 10,
+   "citation": "21 CFR 82.51(a)(1)",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 246,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 11,
+   "citation": "21 CFR 82.1104",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 221,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 12,
+   "citation": "21 CFR 82.1254",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 225,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 13,
+   "citation": "21 CFR 82.1260",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 227,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 14,
+   "citation": "21 CFR 82.1261",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 227,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 15,
+   "citation": "21 CFR 82.1317",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 222,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 16,
+   "citation": "21 CFR 82.1331",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 221,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 17,
+   "citation": "21 CFR 82.1707",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 225,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 18,
+   "citation": "21 CFR 82.1708",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 225,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 19,
+   "citation": "21 CFR 82.304",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 221,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 20,
+   "citation": "21 CFR 82.2707a",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 237,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 21,
+   "citation": "21 CFR 82.101",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 142,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 22,
+   "citation": "21 CFR 82.102",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 142,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 23,
+   "citation": "21 CFR 82.1205",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 146,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 24,
+   "citation": "21 CFR 82.3",
+   "tier": "exact",
+   "method": "exact_cfr",
+   "chars": 30,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "70.3": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 63,
+     "tail": "(a) Secretary means the Secretary of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 65,
+     "tail": "(b) Department means the Department of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 58,
+     "tail": "(c) Commissioner means the Commissioner of Food and Drugs.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 66,
+     "tail": "(d) Act means the Federal Food, Drug, and Cosmetic Act as amended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 348,
+     "tail": "bed, and including the examination of samples of color additives subject to certification.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 5,
+     "chars": 2174,
+     "tail": "rials which do not contribute any color apparent to the naked eye are not color additives.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 6,
+     "chars": 525,
+     "tail": "nditions are such that the primary purpose of the material is other than to impart color.)",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 7,
+     "chars": 662,
+     "tail": "of this property colors the produce of the soil, it is a color additive and is not exempt.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 8,
+     "chars": 161,
+     "tail": "reasonable certainty that no harm will result from the intended use of the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 9,
+     "chars": 192,
+     "tail": " includes lakes and such substances as are permitted by the specifications for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 10,
+     "chars": 144,
+     "tail": "xing two or more straight colors, or one or more straight colors and one or more diluents.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 11,
+     "chars": 205,
+     "tail": "nation that does not include any combination of ingredients made by simple mixing process.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 12,
+     "chars": 491,
+     "tail": "zing, or may be a functional component of an article intended for coloring the human body.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 13,
+     "chars": 90,
+     "tail": "(n) The term substratum means the substance on which the pure color in a lake is extended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 14,
+     "chars": 171,
+     "tail": "of any intermediate or other component, or of any diluent or substratum contained therein.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 15,
+     "chars": 233,
+     "tail": " set apart and held as a unit for the purpose of obtaining certification of such quantity.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 16,
+     "chars": 112,
+     "tail": "ber means the number assigned to a batch by the person who requests certification thereof.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 17,
+     "chars": 118,
+     "tail": "s an identifying number or symbol assigned to a batch by the Food and Drug Administration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)",
+     "ordinal": 18,
+     "chars": 349,
+     "tail": "ll, and the soft areolar tissue that lies within the perimeter of the infra-orbital ridge.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)",
+     "ordinal": 19,
+     "chars": 617,
+     "tail": " container for such unit shall be considered to be the package as defined in this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(u)",
+     "ordinal": 20,
+     "chars": 891,
+     "tail": "r shampoo, rinse, tint, or similar dual-purpose cosmetic that alter the color of the hair.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(v)",
+     "ordinal": 21,
+     "chars": 206,
+     "tail": "rnal parts of the body and not to the lips or any body surface covered by mucous membrane.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Definitions."
+  },
+  "82.2050": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 288,
+     "tail": "requirements of § 82.5 and to the specifications set forth in this subpart for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": null
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "General."
+  }
+ },
+ "required_status": {
+  "21 CFR 82.2050": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 70.3(v)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

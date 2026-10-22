@@ -1,0 +1,694 @@
+{
+ "id": "COS-80.37-Q1",
+ "question": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+ "key_citation": "21 CFR 80.37(a)-(c)",
+ "required": {
+  "80.37": [
+   "a",
+   "b",
+   "c"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "take certification sample handle batch wait",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "certification",
+   "sample",
+   "handle",
+   "batch",
+   "take",
+   "wait"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+   "tsquery": "'take' & 'certif' & 'sampl' & 'must' & 'handl' & 'batch' & 'wait' & 'fda'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+   "tsquery": "'take' & 'certif' & 'sampl' & 'must' & 'handl' & 'batch' & 'wait' & 'fda'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "After we take the certification sample, how must we handle the batch while we wait for FDA?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 80.38(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.5882,
+     "chars": 199,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.31764707
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "take certification sample handle batch wait",
+   "tsquery": "'take' & 'certif' & 'sampl' & 'handl' & 'batch' & 'wait'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 10.204(h)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.3089,
+     "chars": 631,
+     "metadata": {
+      "ordinal": 7,
+      "section_coverage": 0.9235,
+      "paragraph_coverage": 0.4618
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 201.327(i)(2)(ii)(D)(4)(iv)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2505,
+     "chars": 351,
+     "metadata": {
+      "ordinal": 89,
+      "section_coverage": 1.0358,
+      "paragraph_coverage": 0.3146
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 129.80(g)(1)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2413,
+     "chars": 487,
+     "metadata": {
+      "ordinal": 14,
+      "section_coverage": 0.9381,
+      "paragraph_coverage": 0.4067
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 129.80(g)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2413,
+     "chars": 344,
+     "metadata": {
+      "ordinal": 15,
+      "section_coverage": 0.9381,
+      "paragraph_coverage": 0.4067
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "certification or sample or handle or batch or take or wait",
+   "tsquery": "'certif' | 'sampl' | 'handl' | 'batch' | 'take' | 'wait'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2691,
+     "chars": 1446,
+     "metadata": {
+      "ts_rank_cd": 1.522914
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.264,
+     "chars": 1410,
+     "metadata": {
+      "ts_rank_cd": 1.5167737
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2623,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 1.514765
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Handling and Retention of Bioavailability BA and Bioequivalence BE Testing Samples: Draft Guidance for Industry (draft, 2024-03-27, Docket FDA-2002-D-0176)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2574,
+     "chars": 1471,
+     "metadata": {
+      "ts_rank_cd": 1.5088488
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.2542,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.5049934
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: CVM GFI #137 Analytical Methods Description for Type C Medicated Feeds (final, 2007-05-08, Docket FDA-2006-D-0231)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1975,
+     "chars": 1488,
+     "metadata": {
+      "ts_rank_cd": 1.4369435
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1927,
+     "chars": 1449,
+     "metadata": {
+      "ts_rank_cd": 1.4312869
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.1723,
+     "chars": 1475,
+     "metadata": {
+      "ts_rank_cd": 1.4068012
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 80.38(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.5882,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2691,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.264,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2623,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Handling and Retention of Bioavailability BA and Bioequivalence BE Testing Samples: Draft Guidance for Industry (draft, 2024-03-27, Docket FDA-2002-D-0176)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2574,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.2542,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #137 Analytical Methods Description for Type C Medicated Feeds (final, 2007-05-08, Docket FDA-2006-D-0231)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1975,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1927,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.1723,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 10.204(h)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.3089,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 201.327(i)(2)(ii)(D)(4)(iv)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2505,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 129.80(g)(1)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2413,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 129.80(g)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2413,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 80.38(a)",
+  "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+  "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+  "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+  "21 CFR 10.204(h)",
+  "21 CFR 201.327(i)(2)(ii)(D)(4)(iv)",
+  "21 CFR 129.80(g)(1)",
+  "21 CFR 129.80(g)(2)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "21 CFR 80.38(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Handling and Retention of Bioavailability BA and Bioequivalence BE Testing Samples: Draft Guidance for Industry (draft, 2024-03-27, Docket FDA-2002-D-0176)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #137 Analytical Methods Description for Type C Medicated Feeds (final, 2007-05-08, Docket FDA-2006-D-0231)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 201.327(i)(2)(ii)(D)(4)(iv)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 129.80(g)(1)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 129.80(g)(2)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 3
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 10.204(h)",
+    "tier": "discovery",
+    "block_chars": 793,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 201.327(i)(2)(ii)(D)(4)(iv)",
+    "tier": "discovery",
+    "block_chars": 616,
+    "used_before": 793,
+    "reserve_spent_before": 793,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 129.80(g)(1)",
+    "tier": "discovery",
+    "block_chars": 668,
+    "used_before": 793,
+    "reserve_spent_before": 793,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 129.80(g)(2)",
+    "tier": "discovery",
+    "block_chars": 525,
+    "used_before": 793,
+    "reserve_spent_before": 793,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 80.38(a)",
+    "tier": "discovery",
+    "used_before": 793,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "tier": "discovery",
+    "used_before": 793,
+    "block_chars": 1591,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+    "tier": "discovery",
+    "used_before": 2386,
+    "block_chars": 1212,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1591,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Handling and Retention of Bioavailability BA and Bioequivalence BE Testing Samples: Draft Guidance for Industry (draft, 2024-03-27, Docket FDA-2002-D-0176)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1574,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1591,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #137 Analytical Methods Description for Type C Medicated Feeds (final, 2007-05-08, Docket FDA-2006-D-0231)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1519,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1603,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (draft, 2023-09-28, Docket FDA-2017-D-0175)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1602,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 201.327(i)(2)(ii)(D)(4)(iv)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 616,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 129.80(g)(1)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 668,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 129.80(g)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 525,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Guidance for Industry: Standards for the Growing, Harvesting, Packing, and Holding of Sprouts for Human Consumption (final, 2023-09-28, Docket FDA-2017-D-0175)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Self-Monitoring Blood Glucose Test Systems for Over-the-Counter Use: Guidance for Industry and Food and Drug Administration Staff (final, 2020-09-29, Docket FDA-2013-D-1446)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 840,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 10.204(h)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 631,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "80.37": {
+   "live_rows": [
+    {
+     "path": "(section)",
+     "ordinal": 0,
+     "chars": 136,
+     "tail": "any a request for certification of a batch of color additive is taken, the batch shall be:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": null
+    },
+    {
+     "path": "(a)",
+     "ordinal": 1,
+     "chars": 74,
+     "tail": "(a) Stored in containers of such kind as to prevent change in composition.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 2,
+     "chars": 82,
+     "tail": "(b) Held under the control of the person requesting certification until certified.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 3,
+     "chars": 207,
+     "tail": "and no question that it is not to be used until the requested certificate has been issued.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Treatment of batch pending certification."
+  }
+ },
+ "required_status": {
+  "21 CFR 80.37(a)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 80.37(b)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  },
+  "21 CFR 80.37(c)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

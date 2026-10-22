@@ -1,0 +1,625 @@
+{
+ "id": "COS-FDCA614-Q2",
+ "question": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+ "key_citation": "FD&C Act 614(b) [21 U.S.C. 364j(b)]",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "state proposing ban ingredient cosmetics preemption stop",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "ingredient",
+   "preemption",
+   "proposing",
+   "cosmetics",
+   "state",
+   "stop",
+   "ban"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+   "tsquery": "'state' & 'propos' & 'ban' & 'ingredi' & 'cosmet' & 'feder' & 'preemption' & 'section' & 'stop'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+   "tsquery": "'state' & 'propos' & 'ban' & 'ingredi' & 'cosmet' & 'feder' & 'preemption' & 'section' & 'stop'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our state is proposing to ban an ingredient in cosmetics. Does the federal preemption section stop that?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 216.23(a)",
+     "corpus": "ecfr",
+     "method": "trigram",
+     "score": 1.5359,
+     "chars": 146,
+     "metadata": {
+      "ordinal": 0,
+      "similarity": 0.30718955
+     }
+    }
+   ]
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "state proposing ban ingredient cosmetics preemption stop",
+   "tsquery": "'state' & 'propos' & 'ban' & 'ingredi' & 'cosmet' & 'preemption' & 'stop'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 100.1(f)(5)(i)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2756,
+     "chars": 216,
+     "metadata": {
+      "ordinal": 27,
+      "section_coverage": 0.9373,
+      "paragraph_coverage": 0.4281
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 808.25(d)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2756,
+     "chars": 456,
+     "metadata": {
+      "ordinal": 3,
+      "section_coverage": 0.9373,
+      "paragraph_coverage": 0.4281
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 808.5(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2756,
+     "chars": 361,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.9373,
+      "paragraph_coverage": 0.4281
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 808.5(b)(2)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2756,
+     "chars": 413,
+     "metadata": {
+      "ordinal": 6,
+      "section_coverage": 0.9373,
+      "paragraph_coverage": 0.4281
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "ingredient or preemption or proposing or cosmetics or state or stop or ban",
+   "tsquery": "'ingredi' | 'preemption' | 'propos' | 'cosmet' | 'state' | 'stop' | 'ban'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.071,
+     "chars": 1452,
+     "metadata": {
+      "ts_rank_cd": 1.4993379
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0546,
+     "chars": 1457,
+     "metadata": {
+      "ts_rank_cd": 1.4764465
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0546,
+     "chars": 1481,
+     "metadata": {
+      "ts_rank_cd": 1.4764465
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0272,
+     "chars": 1472,
+     "metadata": {
+      "ts_rank_cd": 1.4380997
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 1.4085037
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9831,
+     "chars": 1455,
+     "metadata": {
+      "ts_rank_cd": 1.3763813
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: ANDA Submissions - Refuse-to-Receive Standards: Questions and Answers Guidance for Industry (draft, 2017-10-03, Docket FDA-2017-D-5846)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9733,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 1.3626074
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9631,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 1.3482901
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 216.23(a)",
+   "corpus": "ecfr",
+   "method": "trigram",
+   "tier": "discovery",
+   "score": 1.5359,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.071,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0546,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0546,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0272,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9831,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: ANDA Submissions - Refuse-to-Receive Standards: Questions and Answers Guidance for Industry (draft, 2017-10-03, Docket FDA-2017-D-5846)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9733,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9631,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 100.1(f)(5)(i)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2756,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 808.25(d)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2756,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 808.5(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2756,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 808.5(b)(2)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2756,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 216.23(a)",
+  "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+  "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+  "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+  "21 CFR 100.1(f)(5)(i)",
+  "21 CFR 808.25(d)",
+  "21 CFR 808.5(a)",
+  "21 CFR 808.5(b)(2)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "21 CFR 216.23(a)",
+    "filtered"
+   ],
+   [
+    "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: ANDA Submissions - Refuse-to-Receive Standards: Questions and Answers Guidance for Industry (draft, 2017-10-03, Docket FDA-2017-D-5846)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 808.5(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 808.5(b)(2)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10",
+    "e11"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 100.1(f)(5)(i)",
+    "tier": "discovery",
+    "block_chars": 454,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 808.25(d)",
+    "tier": "discovery",
+    "block_chars": 652,
+    "used_before": 454,
+    "reserve_spent_before": 454,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 808.5(a)",
+    "tier": "discovery",
+    "block_chars": 532,
+    "used_before": 1108,
+    "reserve_spent_before": 1106,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 808.5(b)(2)",
+    "tier": "discovery",
+    "block_chars": 587,
+    "used_before": 1108,
+    "reserve_spent_before": 1106,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 216.23(a)",
+    "tier": "discovery",
+    "used_before": 1108,
+    "outcome": "dropped: filtered"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 1108,
+    "block_chars": 1597,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+    "tier": "discovery",
+    "used_before": 2707,
+    "block_chars": 891,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1588,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1484,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: New Dietary Ingredient Notifications and Related Issues (draft, 2024-04-03, Docket FDA-2011-D-0376)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1547,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1588,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: ANDA Submissions - Refuse-to-Receive Standards: Questions and Answers Guidance for Industry (draft, 2017-10-03, Docket FDA-2017-D-5846)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1555,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1596,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 808.5(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 532,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 808.5(b)(2)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 587,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Menstrual Products - Performance Testing and Labeling Recommendations: Draft Guidance for Industry and Food and Drug Administration Staff (draft, 2025-10-28, Docket FDA-2025-D-5107)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 503,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 100.1(f)(5)(i)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 216,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 808.25(d)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 456,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

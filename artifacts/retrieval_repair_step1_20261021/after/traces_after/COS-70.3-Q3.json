@@ -1,0 +1,1021 @@
+{
+ "id": "COS-70.3-Q3",
+ "question": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+ "key_citation": "21 CFR 70.3(s), (u), (v)",
+ "required": {
+  "70.3": [
+   "s",
+   "u",
+   "v"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "make brow tint lip gloss coal-tar-based permanent hair dye color additive definitions treat area eye externally applied exemption",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "coal-tar-based",
+   "definitions",
+   "externally",
+   "permanent",
+   "exemption",
+   "additive",
+   "applied",
+   "gloss"
+  ],
+  "primary_result_count": 4,
+  "defined_terms_weights": {
+   "area": 1,
+   "eye": 1,
+   "area of the eye": 3,
+   "area of the eyes": 3,
+   "externally": 1,
+   "applied": 1,
+   "externally applied": 3,
+   "externally applieds": 3,
+   "brow tint": 2,
+   "brow tints": 2,
+   "lip gloss": 2,
+   "lip glosss": 2,
+   "coal tar": 2,
+   "coal tars": 2,
+   "tar based": 2,
+   "tar baseds": 2,
+   "based permanent": 2,
+   "based permanents": 2,
+   "permanent hair": 2,
+   "permanent hairs": 2,
+   "hair dye": 2,
+   "hair dyes": 2,
+   "color additive": 2,
+   "color additives": 2,
+   "additive definitions": 2,
+   "additive definition": 2,
+   "definitions treat": 2,
+   "definitions treats": 2,
+   "treat area": 2,
+   "treat areas": 2,
+   "eye externally": 2,
+   "eye externallys": 2,
+   "dye exemption": 2,
+   "dye exemptions": 2,
+   "make a brow": 2,
+   "make a brows": 2,
+   "tint a lip": 2,
+   "tint a lips": 2,
+   "coal tar based": 2,
+   "coal tar baseds": 2,
+   "tar based permanent": 2,
+   "tar based permanents": 2,
+   "based permanent hair": 2,
+   "based permanent hairs": 2,
+   "permanent hair dye": 2,
+   "permanent hair dyes": 2,
+   "fda s color": 2,
+   "fda s colors": 2,
+   "color additive definitions": 2,
+   "color additive definition": 2,
+   "additive definitions treat": 2,
+   "additive definitions treats": 2,
+   "definitions treat area": 2,
+   "definitions treat areas": 2,
+   "eye externally applied": 2,
+   "eye externally applieds": 2,
+   "hair dye exemption": 2,
+   "hair dye exemptions": 2,
+   "make a brow tint": 2,
+   "make a brow tints": 2,
+   "brow tint a lip": 2,
+   "brow tint a lips": 2,
+   "tint a lip gloss": 2,
+   "tint a lip glosss": 2,
+   "gloss and a coal": 2,
+   "gloss and a coals": 2,
+   "coal tar based permanent": 2,
+   "coal tar based permanents": 2,
+   "tar based permanent hair": 2,
+   "tar based permanent hairs": 2,
+   "based permanent hair dye": 2,
+   "based permanent hair dyes": 2,
+   "dye how do fda": 2,
+   "dye how do fdas": 2,
+   "fda s color additive": 2,
+   "fda s color additives": 2,
+   "color additive definitions treat": 2,
+   "color additive definitions treats": 2,
+   "additive definitions treat area": 2,
+   "additive definitions treat areas": 2,
+   "applied and the hair": 2,
+   "applied and the hairs": 2
+  },
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance",
+   "defined_terms_ecfr"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+   "tsquery": "'make' & 'brow' & 'tint' & 'lip' & 'gloss' & 'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' & 'perman' & 'hair' & 'dye' & 'fda' & 'color' & 'addit' & 'definit' & 'treat' & 'area' & 'eye' & 'extern' & 'appli' & 'hair' & 'dye' & 'exempt'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+   "tsquery": "'make' & 'brow' & 'tint' & 'lip' & 'gloss' & 'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' & 'perman' & 'hair' & 'dye' & 'fda' & 'color' & 'addit' & 'definit' & 'treat' & 'area' & 'eye' & 'extern' & 'appli' & 'hair' & 'dye' & 'exempt'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "make brow tint lip gloss coal-tar-based permanent hair dye color additive definitions treat area eye externally applied exemption",
+   "tsquery": "'make' & 'brow' & 'tint' & 'lip' & 'gloss' & 'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' & 'perman' & 'hair' & 'dye' & 'color' & 'addit' & 'definit' & 'treat' & 'area' & 'eye' & 'extern' & 'appli' & 'exempt'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 70.3(u)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.7057,
+     "chars": 891,
+     "metadata": {
+      "ordinal": 20,
+      "section_coverage": 1.1452,
+      "paragraph_coverage": 0.4783
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 70.3(f)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2818,
+     "chars": 2174,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 1.1452,
+      "paragraph_coverage": 0.2239
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 82.3(a)(j)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.4343,
+     "chars": 243,
+     "metadata": {
+      "ordinal": 5,
+      "section_coverage": 0.6476,
+      "paragraph_coverage": 0.213
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 82.3(a)(k)(n)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.3555,
+     "chars": 198,
+     "metadata": {
+      "ordinal": 7,
+      "section_coverage": 0.6476,
+      "paragraph_coverage": 0.1657
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "coal-tar-based or definitions or externally or permanent or exemption or additive or applied or gloss",
+   "tsquery": "'coal-tar-bas' <-> 'coal' <-> 'tar' <-> 'base' | 'definit' | 'extern' | 'perman' | 'exempt' | 'addit' | 'appli' | 'gloss'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9443,
+     "chars": 1421,
+     "metadata": {
+      "ts_rank_cd": 1.5108702
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9332,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 1.4931917
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9293,
+     "chars": 1473,
+     "metadata": {
+      "ts_rank_cd": 1.486919
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8548,
+     "chars": 1479,
+     "metadata": {
+      "ts_rank_cd": 1.3677235
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8529,
+     "chars": 1260,
+     "metadata": {
+      "ts_rank_cd": 1.3646847
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8405,
+     "chars": 1406,
+     "metadata": {
+      "ts_rank_cd": 1.3448713
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8335,
+     "chars": 1422,
+     "metadata": {
+      "ts_rank_cd": 1.3336675
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.8266,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 1.3225292
+     }
+    }
+   ]
+  },
+  {
+   "leg": "defined_terms_ecfr",
+   "input": "We make a brow tint, a lip gloss and a coal-tar-based permanent hair dye. How do FDA's color additive definitions treat 'area of the eye', 'externally applied' and the hair dye exemption?",
+   "tsquery": null,
+   "limit": null,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 70.3(f)",
+     "corpus": "ecfr",
+     "method": "definition",
+     "score": 80.0,
+     "chars": 2174,
+     "metadata": {
+      "ordinal": 5
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 70.3(s)",
+     "corpus": "ecfr",
+     "method": "definition",
+     "score": 79.999,
+     "chars": 349,
+     "metadata": {
+      "ordinal": 18
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 70.3(u)",
+     "corpus": "ecfr",
+     "method": "definition",
+     "score": 79.998,
+     "chars": 891,
+     "metadata": {
+      "ordinal": 20
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 70.3(v)",
+     "corpus": "ecfr",
+     "method": "definition",
+     "score": 79.997,
+     "chars": 206,
+     "metadata": {
+      "ordinal": 21
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "21 CFR 70.3(s)",
+   "corpus": "ecfr",
+   "method": "definition",
+   "tier": "supporting",
+   "score": 79.999,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 2,
+   "citation": "21 CFR 70.3(v)",
+   "corpus": "ecfr",
+   "method": "definition",
+   "tier": "supporting",
+   "score": 79.997,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9443,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9332,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9293,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8548,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8529,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8405,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8335,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.8266,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 70.3(f)",
+   "corpus": "ecfr",
+   "method": "definition",
+   "tier": "supporting",
+   "score": 80.0,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 70.3(u)",
+   "corpus": "ecfr",
+   "method": "definition",
+   "tier": "supporting",
+   "score": 79.998,
+   "heading_match": false,
+   "required": true
+  },
+  {
+   "pos": 13,
+   "citation": "21 CFR 82.3(a)(j)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.4343,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 14,
+   "citation": "21 CFR 82.3(a)(k)(n)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.3555,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "21 CFR 70.3(s)",
+  "21 CFR 70.3(v)",
+  "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+  "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+  "21 CFR 70.3(f)",
+  "21 CFR 70.3(u)",
+  "21 CFR 82.3(a)(j)",
+  "21 CFR 82.3(a)(k)(n)"
+ ],
+ "selection": {
+  "total_chars": 3300,
+  "dropped": [
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 82.3(a)(j)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 82.3(a)(k)(n)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e1",
+    "e2"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 4,
+    "discovery": 0
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(s)",
+    "tier": "supporting",
+    "block_chars": 511,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(v)",
+    "tier": "supporting",
+    "block_chars": 368,
+    "used_before": 511,
+    "reserve_spent_before": 511,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(f)",
+    "tier": "supporting",
+    "block_chars": 1362,
+    "used_before": 881,
+    "reserve_spent_before": 879,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 70.3(u)",
+    "tier": "supporting",
+    "block_chars": 1053,
+    "used_before": 881,
+    "reserve_spent_before": 879,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 82.3(a)(j)",
+    "tier": "discovery",
+    "block_chars": 408,
+    "used_before": 881,
+    "reserve_spent_before": 879,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 82.3(a)(k)(n)",
+    "tier": "discovery",
+    "block_chars": 366,
+    "used_before": 881,
+    "reserve_spent_before": 879,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 70.3(f)",
+    "tier": "supporting",
+    "used_before": 881,
+    "block_chars": 1362,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 70.3(u)",
+    "tier": "supporting",
+    "used_before": 2245,
+    "block_chars": 1053,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1592,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Questions and Answers About Requirements for Additional Traceability Records for Certain Foods: Draft Guidance for Industry (draft, 2026-02-19, Docket FDA-2025-D-2837)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1593,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Application of the “Solely Engaged” Exemptions in Parts 117 and 507 (draft, 2017-10-20, Docket FDA-2017-D-6133)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1559,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Lead in Cosmetic Lip Products and Externally Applied Cosmetics: Recommended Maximum Level (draft, 2016-12-22, Docket FDA-2014-D-2275)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1596,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #221 Recommendations for Preparation and Submission of Animal Food Additive Petitions (final, 2015-06-12, Docket FDA-2013-D-0928)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 1563,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 82.3(a)(j)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 408,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 82.3(a)(k)(n)",
+    "tier": "discovery",
+    "used_before": 3300,
+    "block_chars": 366,
+    "outcome": "dropped: soft_budget",
+    "remaining": 298
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "21 CFR 70.3(s)",
+   "tier": "supporting",
+   "method": "definition",
+   "chars": 349,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 2,
+   "citation": "21 CFR 70.3(v)",
+   "tier": "supporting",
+   "method": "definition",
+   "chars": 206,
+   "truncated": false,
+   "required": true
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 70.3(f)",
+   "tier": "supporting",
+   "method": "definition",
+   "chars": 1200,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 70.3(u)",
+   "tier": "supporting",
+   "method": "definition",
+   "chars": 891,
+   "truncated": false,
+   "required": true
+  }
+ ],
+ "source": {
+  "70.3": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 63,
+     "tail": "(a) Secretary means the Secretary of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 65,
+     "tail": "(b) Department means the Department of Health and Human Services.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 58,
+     "tail": "(c) Commissioner means the Commissioner of Food and Drugs.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 66,
+     "tail": "(d) Act means the Federal Food, Drug, and Cosmetic Act as amended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 348,
+     "tail": "bed, and including the examination of samples of color additives subject to certification.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 5,
+     "chars": 2174,
+     "tail": "rials which do not contribute any color apparent to the naked eye are not color additives.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 6,
+     "chars": 525,
+     "tail": "nditions are such that the primary purpose of the material is other than to impart color.)",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 7,
+     "chars": 662,
+     "tail": "of this property colors the produce of the soil, it is a color additive and is not exempt.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 8,
+     "chars": 161,
+     "tail": "reasonable certainty that no harm will result from the intended use of the color additive.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 9,
+     "chars": 192,
+     "tail": " includes lakes and such substances as are permitted by the specifications for such color.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 10,
+     "chars": 144,
+     "tail": "xing two or more straight colors, or one or more straight colors and one or more diluents.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 11,
+     "chars": 205,
+     "tail": "nation that does not include any combination of ingredients made by simple mixing process.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 12,
+     "chars": 491,
+     "tail": "zing, or may be a functional component of an article intended for coloring the human body.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 13,
+     "chars": 90,
+     "tail": "(n) The term substratum means the substance on which the pure color in a lake is extended.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 14,
+     "chars": 171,
+     "tail": "of any intermediate or other component, or of any diluent or substratum contained therein.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 15,
+     "chars": 233,
+     "tail": " set apart and held as a unit for the purpose of obtaining certification of such quantity.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 16,
+     "chars": 112,
+     "tail": "ber means the number assigned to a batch by the person who requests certification thereof.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 17,
+     "chars": 118,
+     "tail": "s an identifying number or symbol assigned to a batch by the Food and Drug Administration.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)",
+     "ordinal": 18,
+     "chars": 349,
+     "tail": "ll, and the soft areolar tissue that lies within the perimeter of the infra-orbital ridge.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(t)",
+     "ordinal": 19,
+     "chars": 617,
+     "tail": " container for such unit shall be considered to be the package as defined in this section.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(u)",
+     "ordinal": 20,
+     "chars": 891,
+     "tail": "r shampoo, rinse, tint, or similar dual-purpose cosmetic that alter the color of the hair.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(v)",
+     "ordinal": 21,
+     "chars": 206,
+     "tail": "rnal parts of the body and not to the lips or any body surface covered by mucous membrane.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Definitions."
+  }
+ },
+ "required_status": {
+  "21 CFR 70.3(s)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 70.3(u)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  },
+  "21 CFR 70.3(v)": {
+   "in_store": true,
+   "stage": "in final context",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

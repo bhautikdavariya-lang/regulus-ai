@@ -1,0 +1,962 @@
+{
+ "id": "COS-701.13-Q3",
+ "question": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+ "key_citation": "21 CFR 701.13(g)(1)",
+ "required": {
+  "701.13": [
+   "g"
+  ]
+ },
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "aerosol hair spray declare propellant net quantity basis",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "propellant",
+   "quantity",
+   "aerosol",
+   "declare",
+   "spray",
+   "basis",
+   "hair",
+   "net"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+   "tsquery": "'aerosol' & 'hair' & 'spray' & 'declar' & 'propel' & 'net' & 'quantiti' & 'basi'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+   "tsquery": "'aerosol' & 'hair' & 'spray' & 'declar' & 'propel' & 'net' & 'quantiti' & 'basi'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "Our aerosol hair spray: do we declare the propellant in net quantity, and on what basis?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "aerosol hair spray declare propellant net quantity basis",
+   "tsquery": "'aerosol' & 'hair' & 'spray' & 'declar' & 'propel' & 'net' & 'quantiti' & 'basi'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 700.14(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 3.0678,
+     "chars": 1181,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 1.2271,
+      "paragraph_coverage": 0.6136
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 700.14(b)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.5687,
+     "chars": 151,
+     "metadata": {
+      "ordinal": 1,
+      "section_coverage": 1.2271,
+      "paragraph_coverage": 0.3141
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 350.10",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.4125,
+     "chars": 912,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.965,
+      "paragraph_coverage": 0.4825
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 101.7(g)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.2975,
+     "chars": 453,
+     "metadata": {
+      "ordinal": 11,
+      "section_coverage": 0.919,
+      "paragraph_coverage": 0.4595
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "propellant or quantity or aerosol or declare or spray or basis or hair or net",
+   "tsquery": "'propel' | 'quantiti' | 'aerosol' | 'declar' | 'spray' | 'basi' | 'hair' | 'net'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5911,
+     "chars": 1472,
+     "metadata": {
+      "ts_rank_cd": 0.94578046
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5658,
+     "chars": 1487,
+     "metadata": {
+      "ts_rank_cd": 0.9052616
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5399,
+     "chars": 1498,
+     "metadata": {
+      "ts_rank_cd": 0.8638037
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Guidance for Industry: The Declaration of Allulose and Calories from Allulose on Nutrition and Supplement Facts Labels (final, 2020-10-16, Docket FDA-2019-D-0725)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.536,
+     "chars": 1427,
+     "metadata": {
+      "ts_rank_cd": 0.85752094
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: Product Title and Initial U.S. Approval in the Highlights of Prescribing Information for Human Prescription Drug and Biological Products — Content and Format Guidance for Industry (draft, 2018-01-19, Docket FDA-2017-D-6969)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5301,
+     "chars": 1474,
+     "metadata": {
+      "ts_rank_cd": 0.84821147
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Reporting Amount of Listed Drugs and Biological Products Technical Conformance Guide: Guidance for Industry (final, 2024-02-26, Docket FDA-2021-D-1031)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5231,
+     "chars": 1473,
+     "metadata": {
+      "ts_rank_cd": 0.8369004
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5141,
+     "chars": 1490,
+     "metadata": {
+      "ts_rank_cd": 0.8225705
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.5128,
+     "chars": 1492,
+     "metadata": {
+      "ts_rank_cd": 0.82047963
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5911,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5658,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5399,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Guidance for Industry: The Declaration of Allulose and Calories from Allulose on Nutrition and Supplement Facts Labels (final, 2020-10-16, Docket FDA-2019-D-0725)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.536,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: Product Title and Initial U.S. Approval in the Highlights of Prescribing Information for Human Prescription Drug and Biological Products — Content and Format Guidance for Industry (draft, 2018-01-19, Docket FDA-2017-D-6969)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5301,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Reporting Amount of Listed Drugs and Biological Products Technical Conformance Guide: Guidance for Industry (final, 2024-02-26, Docket FDA-2021-D-1031)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5231,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5141,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.5128,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 700.14(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 3.0678,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 700.14(b)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.5687,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 350.10",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.4125,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 101.7(g)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.2975,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+  "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+  "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+  "FDA Guidance: Guidance for Industry: The Declaration of Allulose and Calories from Allulose on Nutrition and Supplement Facts Labels (final, 2020-10-16, Docket FDA-2019-D-0725)",
+  "21 CFR 700.14(a)",
+  "21 CFR 700.14(b)",
+  "21 CFR 350.10",
+  "21 CFR 101.7(g)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: The Declaration of Allulose and Calories from Allulose on Nutrition and Supplement Facts Labels (final, 2020-10-16, Docket FDA-2019-D-0725)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Product Title and Initial U.S. Approval in the Highlights of Prescribing Information for Human Prescription Drug and Biological Products — Content and Format Guidance for Industry (draft, 2018-01-19, Docket FDA-2017-D-6969)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Reporting Amount of Listed Drugs and Biological Products Technical Conformance Guide: Guidance for Industry (final, 2024-02-26, Docket FDA-2021-D-1031)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 700.14(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 350.10",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e10",
+    "e12"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.14(a)",
+    "tier": "discovery",
+    "block_chars": 1426,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 700.14(b)",
+    "tier": "discovery",
+    "block_chars": 396,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 350.10",
+    "tier": "discovery",
+    "block_chars": 1098,
+    "used_before": 396,
+    "reserve_spent_before": 396,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 101.7(g)",
+    "tier": "discovery",
+    "block_chars": 646,
+    "used_before": 396,
+    "reserve_spent_before": 396,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+    "tier": "discovery",
+    "used_before": 1044,
+    "block_chars": 1574,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+    "tier": "discovery",
+    "used_before": 2620,
+    "block_chars": 978,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Questions and Answers Regarding Food Allergen Labeling (Edition 5) (final, 2025-01-06, Docket FDA-2022-D-0099)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1555,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: The Declaration of Allulose and Calories from Allulose on Nutrition and Supplement Facts Labels (final, 2020-10-16, Docket FDA-2019-D-0725)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1600,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Product Title and Initial U.S. Approval in the Highlights of Prescribing Information for Human Prescription Drug and Biological Products — Content and Format Guidance for Industry (draft, 2018-01-19, Docket FDA-2017-D-6969)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1663,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Reporting Amount of Listed Drugs and Biological Products Technical Conformance Guide: Guidance for Industry (final, 2024-02-26, Docket FDA-2021-D-1031)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1572,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1673,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Listing of Ingredients in Tobacco Products: Guidance for Industry (final, 2023-03-17, Docket FDA-2009-D-0524)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1485,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 700.14(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1426,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 350.10",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1098,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors (final, 2022-05-18, Docket FDA-2013-D-0401)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 505,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 700.14(b)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 151,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 101.7(g)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 453,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {
+  "701.13": {
+   "live_rows": [
+    {
+     "path": "(a)",
+     "ordinal": 0,
+     "chars": 1169,
+     "tail": " shall by regulation designate the appropriate term or terms to be used for such cosmetic.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(b)",
+     "ordinal": 1,
+     "chars": 262,
+     "tail": "int, and fluid-ounce subdivisions thereof and shall express the volume at 68 °F. (20 °C.).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(c)",
+     "ordinal": 2,
+     "chars": 355,
+     "tail": "vidual units or the total weight or measure of the cosmetic as will give such information.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(d)",
+     "ordinal": 3,
+     "chars": 639,
+     "tail": "all be deemed to permit smaller variations than one which does not include such fractions.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)",
+     "ordinal": 4,
+     "chars": 222,
+     "tail": "al display panels, it shall be duplicated on each principal display panel: Provided, That:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(e)(1)",
+     "ordinal": 5,
+     "chars": 527,
+     "tail": "of contents statement shall be governed by the dimensions of the decorative container; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(e)(2)",
+     "ordinal": 6,
+     "chars": 281,
+     "tail": "f the net quantity of content statement is governed by the dimensions of the display card.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)",
+     "ordinal": 7,
+     "chars": 898,
+     "tail": " to the base on which the package rests as it is designed to be displayed: Provided, That:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(f)(1)",
+     "ordinal": 8,
+     "chars": 278,
+     "tail": "the declaration of net quantity of contents meets the other requirements of this part; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(f)(2)",
+     "ordinal": 9,
+     "chars": 330,
+     "tail": "tents placement requirement of this section applicable to such inner containers is waived.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)",
+     "ordinal": 10,
+     "chars": 158,
+     "tail": " in the package exclusive of wrappers and other material packed therewith: Provided, That:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(g)(1)",
+     "ordinal": 11,
+     "chars": 315,
+     "tail": "he container are followed. The propellant is included in the net quantity declaration; and",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(g)(2)",
+     "ordinal": 12,
+     "chars": 417,
+     "tail": "available in the kit when the instructions for use as shown on the container are followed.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)",
+     "ordinal": 13,
+     "chars": 452,
+     "tail": "ace. Requirements of conspicuousness and legibility shall include the specifications that:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(h)(1)",
+     "ordinal": 14,
+     "chars": 147,
+     "tail": "t exceed a differential of 3 units to 1 unit (no more than 3 times as high as it is wide).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)(2)",
+     "ordinal": 15,
+     "chars": 211,
+     "tail": ", it is the lower case letter “o” or its equivalent that shall meet the minimum standards.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(h)(3)",
+     "ordinal": 16,
+     "chars": 101,
+     "tail": "actions are used, each component numeral shall meet one-half the minimum height standards.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)",
+     "ordinal": 17,
+     "chars": 275,
+     "tail": "ckages of substantially the same size by complying with the following type specifications:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(i)(1)",
+     "ordinal": 18,
+     "chars": 135,
+     "tail": "t on packages the principal display panel of which has an area of 5 square inches or less.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(2)",
+     "ordinal": 19,
+     "chars": 155,
+     "tail": "ipal display panel of which has an area of more than 5 but not more than 25 square inches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(3)",
+     "ordinal": 20,
+     "chars": 163,
+     "tail": "al display panel of which has an area of more than 25 but not more than 100 square inches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(i)(4)",
+     "ordinal": 21,
+     "chars": 225,
+     "tail": ", except not less than one-half inch in height if the area is more than 400 square inches.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)",
+     "ordinal": 22,
+     "chars": 106,
+     "tail": "containing less than 4 pounds or 1 gallon and labeled in terms of weight or fluid measure:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(j)(1)",
+     "ordinal": 23,
+     "chars": 777,
+     "tail": "hall be expressed in common or decimal fractions of the respective ounce and not in drams.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(j)(2)",
+     "ordinal": 24,
+     "chars": 439,
+     "tail": "or example, “Net wt. 6 oz.” or “6 oz. net wt.” and “Net contents 6 fl. oz.” or “6 fl. oz.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(k)",
+     "ordinal": 25,
+     "chars": 610,
+     "tail": "decimal fractions of the pint or quart (as set forth in paragraph (m)(5) of this section).",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(l)",
+     "ordinal": 26,
+     "chars": 14,
+     "tail": "(l) [Reserved]",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)",
+     "ordinal": 27,
+     "chars": 13,
+     "tail": "(m) Examples:",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": true
+    },
+    {
+     "path": "(m)(1)",
+     "ordinal": 28,
+     "chars": 155,
+     "tail": "et wt. 24 oz. (1 lb. 8 oz.)”, “Net wt. 24 oz. (1 1/2 lb.)”, or “Net wt. 24 oz. (1.5 lb.)”.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(2)",
+     "ordinal": 29,
+     "chars": 98,
+     "tail": "claration of three-fourths pound avoirdupois weight shall be expressed as “Net wt. 12 oz.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(3)",
+     "ordinal": 30,
+     "chars": 100,
+     "tail": "aration of 1 quart liquid measure shall be expressed as “Net contents 32 fl. oz. (1 qt.)”.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(4)",
+     "ordinal": 31,
+     "chars": 248,
+     "tail": "oz.)” but not in terms of quart and ounce such as “Net content 56 fl. oz. (1 qt. 24 oz.)”.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(m)(5)",
+     "ordinal": 32,
+     "chars": 144,
+     "tail": "l be expressed in the alternative as “Net contents 2 gal. 2 qt.” and not as “2 gal. 4 pt.”",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(n)",
+     "ordinal": 33,
+     "chars": 119,
+     "tail": "wing abbreviations and none other may be employed (periods and plural forms are optional):",
+     "reserved": false,
+     "ends_open": true,
+     "has_children": false
+    },
+    {
+     "path": "(o)",
+     "ordinal": 34,
+     "chars": 523,
+     "tail": "e “86 inches (2 yd. 1 ft. 2 inches)”, “90 inches (2 1/2 yd.)”, “30 inches (2.5 ft.)”, etc.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(p)",
+     "ordinal": 35,
+     "chars": 552,
+     "tail": " square foot or square yard; for example, “158 sq. inches (1 sq. ft. 14 sq. inches)”, etc.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(q)",
+     "ordinal": 36,
+     "chars": 750,
+     "tail": " supplemental net quantity statements and shall be located on the principal display panel.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(r)",
+     "ordinal": 37,
+     "chars": 306,
+     "tail": "em of weight or measure may also appear on the principal display panel or on other panels.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    },
+    {
+     "path": "(s)",
+     "ordinal": 38,
+     "chars": 389,
+     "tail": "e recognized. Variations from stated quantity of contents shall not be unreasonably large.",
+     "reserved": false,
+     "ends_open": false,
+     "has_children": false
+    }
+   ],
+   "removed_rows": 0,
+   "duplicate_live_paths": [],
+   "search_vector_matches_text": true,
+   "heading": "Declaration of net quantity of contents."
+  }
+ },
+ "required_status": {
+  "21 CFR 701.13(g)": {
+   "in_store": true,
+   "stage": "never returned by any leg",
+   "drop_reason": null
+  }
+ },
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}

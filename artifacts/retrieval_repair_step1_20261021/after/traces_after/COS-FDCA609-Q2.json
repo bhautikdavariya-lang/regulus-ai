@@ -1,0 +1,592 @@
+{
+ "id": "COS-FDCA609-Q2",
+ "question": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+ "key_citation": "FD&C Act 609(b), (c) [21 U.S.C. 364e(b), (c)]",
+ "required": {},
+ "gates": {
+  "plan_kind": "general",
+  "query_type": "GENERAL_REGULATORY_SEARCH",
+  "requirements": [],
+  "docket": null,
+  "normalized_question": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+  "definition_term": null,
+  "full_text_ran": true,
+  "ecfr_all_words_rows": 0,
+  "primary_min_results": 3,
+  "section_coverage_gate": true,
+  "section_coverage_terms": "sell fragranced hair relaxer salons add labeling",
+  "section_coverage": {
+   "run": true,
+   "candidates": 4,
+   "kept": 4
+  },
+  "or_fallback_used": true,
+  "or_fallback_terms": [
+   "fragranced",
+   "labeling",
+   "relaxer",
+   "salons",
+   "sell",
+   "hair",
+   "609",
+   "add"
+  ],
+  "primary_result_count": 0,
+  "defined_terms_weights": {},
+  "heading_corroboration": true,
+  "cross_references": false,
+  "semantic_fallback": {
+   "invoked": false,
+   "lexical_insufficient": null,
+   "config": {
+    "semantic_top_n": 8,
+    "similarity_floor": 0.75,
+    "merge_policy": "interleave",
+    "general_questions": false
+   },
+   "lexical_mode": "fallback",
+   "skipped": null
+  },
+  "legs_called": [
+   "full_text_ecfr",
+   "full_text_guidance",
+   "trigram_ecfr",
+   "section_coverage_ecfr",
+   "full_text_or_guidance"
+  ]
+ },
+ "legs": [
+  {
+   "leg": "full_text_ecfr",
+   "input": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+   "tsquery": "'sell' & 'fragranc' & 'hair' & 'relax' & 'salon' & '609' & 'add' & 'label'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "full_text_guidance",
+   "input": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+   "tsquery": "'sell' & 'fragranc' & 'hair' & 'relax' & 'salon' & '609' & 'add' & 'label'",
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "trigram_ecfr",
+   "input": "We sell a fragranced hair relaxer to salons only. What does 609 add to our labeling?",
+   "tsquery": null,
+   "limit": 16,
+   "rows": []
+  },
+  {
+   "leg": "section_coverage_ecfr",
+   "input": "sell fragranced hair relaxer salons add labeling",
+   "tsquery": "'sell' & 'fragranc' & 'hair' & 'relax' & 'salon' & 'add' & 'label'",
+   "limit": 4,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "21 CFR 720.4(e)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.3186,
+     "chars": 522,
+     "metadata": {
+      "ordinal": 111,
+      "section_coverage": 0.9442,
+      "paragraph_coverage": 0.447
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "21 CFR 720.4(c)(4)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 2.0015,
+     "chars": 27,
+     "metadata": {
+      "ordinal": 29,
+      "section_coverage": 0.9442,
+      "paragraph_coverage": 0.2567
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "21 CFR 884.5425(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7733,
+     "chars": 553,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.7093,
+      "paragraph_coverage": 0.3547
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "21 CFR 884.5435(a)",
+     "corpus": "ecfr",
+     "method": "full_text_or",
+     "score": 1.7733,
+     "chars": 426,
+     "metadata": {
+      "ordinal": 0,
+      "section_coverage": 0.7093,
+      "paragraph_coverage": 0.3547
+     }
+    }
+   ]
+  },
+  {
+   "leg": "full_text_or_guidance",
+   "input": "fragranced or labeling or relaxer or salons or sell or hair or 609 or add",
+   "tsquery": "'fragranc' | 'label' | 'relax' | 'salon' | 'sell' | 'hair' | '609' | 'add'",
+   "limit": 8,
+   "rows": [
+    {
+     "rank": 1,
+     "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0329,
+     "chars": 1496,
+     "metadata": {
+      "ts_rank_cd": 1.6525729
+     }
+    },
+    {
+     "rank": 2,
+     "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1481,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 3,
+     "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 1.0061,
+     "chars": 1464,
+     "metadata": {
+      "ts_rank_cd": 1.6097184
+     }
+    },
+    {
+     "rank": 4,
+     "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9927,
+     "chars": 1500,
+     "metadata": {
+      "ts_rank_cd": 1.588262
+     }
+    },
+    {
+     "rank": 5,
+     "citation": "FDA Guidance: BLA for Minimally Manipulated, Unrelated Allogeneic Placental/Umbilical Cord Blood Intended for Hematopoietic and Immunologic Reconstitution in Patients with Disorders Affecting the Hematopoietic System: Guidance for Industry (final, 2014-03-01, Docket FDA-2006-D-0157)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9501,
+     "chars": 1490,
+     "metadata": {
+      "ts_rank_cd": 1.5201352
+     }
+    },
+    {
+     "rank": 6,
+     "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.943,
+     "chars": 1475,
+     "metadata": {
+      "ts_rank_cd": 1.5088488
+     }
+    },
+    {
+     "rank": 7,
+     "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9414,
+     "chars": 1467,
+     "metadata": {
+      "ts_rank_cd": 1.5063138
+     }
+    },
+    {
+     "rank": 8,
+     "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+     "corpus": "fda_guidance",
+     "method": "full_text_or",
+     "score": 0.9398,
+     "chars": 1448,
+     "metadata": {
+      "ts_rank_cd": 1.5036476
+     }
+    }
+   ]
+  }
+ ],
+ "registry": [
+  {
+   "pos": 1,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0329,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 2,
+   "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 3,
+   "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.0061,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 4,
+   "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9927,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 5,
+   "citation": "FDA Guidance: BLA for Minimally Manipulated, Unrelated Allogeneic Placental/Umbilical Cord Blood Intended for Hematopoietic and Immunologic Reconstitution in Patients with Disorders Affecting the Hematopoietic System: Guidance for Industry (final, 2014-03-01, Docket FDA-2006-D-0157)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9501,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 6,
+   "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.943,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 7,
+   "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9414,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 8,
+   "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+   "corpus": "fda_guidance",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 0.9398,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 9,
+   "citation": "21 CFR 720.4(e)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.3186,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 10,
+   "citation": "21 CFR 720.4(c)(4)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 2.0015,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 11,
+   "citation": "21 CFR 884.5425(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7733,
+   "heading_match": false,
+   "required": false
+  },
+  {
+   "pos": 12,
+   "citation": "21 CFR 884.5435(a)",
+   "corpus": "ecfr",
+   "method": "full_text_or",
+   "tier": "discovery",
+   "score": 1.7733,
+   "heading_match": false,
+   "required": false
+  }
+ ],
+ "topk": [
+  "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+  "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+  "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+  "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+  "21 CFR 720.4(e)",
+  "21 CFR 720.4(c)(4)",
+  "21 CFR 884.5425(a)",
+  "21 CFR 884.5435(a)"
+ ],
+ "selection": {
+  "total_chars": 3600,
+  "dropped": [
+   [
+    "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: BLA for Minimally Manipulated, Unrelated Allogeneic Placental/Umbilical Cord Blood Intended for Hematopoietic and Immunologic Reconstitution in Patients with Disorders Affecting the Hematopoietic System: Guidance for Industry (final, 2014-03-01, Docket FDA-2006-D-0157)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+    "soft_budget"
+   ],
+   [
+    "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 884.5425(a)",
+    "soft_budget"
+   ],
+   [
+    "21 CFR 884.5435(a)",
+    "soft_budget"
+   ]
+  ],
+  "diagnostics": {
+   "required_count": 0,
+   "required_chars": 0,
+   "required_dropped": [],
+   "required_truncated": [],
+   "binding_reserved": [
+    "e9",
+    "e10"
+   ],
+   "tier_counts": {
+    "exact": 0,
+    "structural": 0,
+    "supporting": 0,
+    "discovery": 4
+   }
+  }
+ },
+ "budget_replay": {
+  "steps": [
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(e)",
+    "tier": "discovery",
+    "block_chars": 721,
+    "used_before": 0,
+    "reserve_spent_before": 0,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 720.4(c)(4)",
+    "tier": "discovery",
+    "block_chars": 229,
+    "used_before": 721,
+    "reserve_spent_before": 721,
+    "outcome": "reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 884.5425(a)",
+    "tier": "discovery",
+    "block_chars": 756,
+    "used_before": 952,
+    "reserve_spent_before": 950,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "eCFR reserve",
+    "citation": "21 CFR 884.5435(a)",
+    "tier": "discovery",
+    "block_chars": 609,
+    "used_before": 952,
+    "reserve_spent_before": 950,
+    "outcome": "not reserved"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+    "tier": "discovery",
+    "used_before": 952,
+    "block_chars": 1590,
+    "outcome": "selected"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+    "tier": "discovery",
+    "used_before": 2544,
+    "block_chars": 1054,
+    "outcome": "selected (squeezed)"
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Labeling of Certain Beers Subject to the Labeling Jurisdiction of the Food and Drug Administration (final, 2023-04-04, Docket FDA-2009-D-0268)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1604,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Draft Guidance for Industry: Hazard Analysis and Risk-Based Preventive Controls for Human Food (draft, 2024-01-30, Docket FDA-2016-D-2343)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1562,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: BLA for Minimally Manipulated, Unrelated Allogeneic Placental/Umbilical Cord Blood Intended for Hematopoietic and Immunologic Reconstitution in Patients with Disorders Affecting the Hematopoietic System: Guidance for Industry (final, 2014-03-01, Docket FDA-2006-D-0157)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1708,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Nutrition and Supplement Facts Labels Questions and Answers Related to the Compliance Date, Added Sugars, and Declaration of Quantitative Amounts of Vitamins and Minerals (final, 2019-12-16, Docket FDA-2016-D-4414)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1673,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: CVM GFI #231 Distributor Labeling for New Animal Drugs (final, 2016-04-20, Docket FDA-2015-D-3056)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1487,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "FDA Guidance: Guidance for Industry: Declaration of Added Sugars on Honey, Maple Syrup, Other Single-Ingredient Sugars and Syrups, and Certain Cranberry Products (final, 2019-06-18, Docket FDA-2018-D-0075)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 1626,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 884.5425(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 756,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   },
+   {
+    "phase": "soft budget",
+    "citation": "21 CFR 884.5435(a)",
+    "tier": "discovery",
+    "used_before": 3600,
+    "block_chars": 609,
+    "outcome": "dropped: soft_budget",
+    "remaining": -2
+   }
+  ],
+  "replay_matches_selection": true
+ },
+ "final_context": [
+  {
+   "index": 1,
+   "citation": "FDA Guidance: Labeling for Human Prescription Drug and Biological Products - Implementing the PLR Content and Format Requirements (final, 2013-02-25, Docket FDA-2005-D-0153)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 1199,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 2,
+   "citation": "FDA Guidance: Good ANDA Submission Practices Guidance for Industry (final, 2022-01-26, Docket FDA-2017-D-6854)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 770,
+   "truncated": true,
+   "required": false
+  },
+  {
+   "index": 3,
+   "citation": "21 CFR 720.4(e)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 522,
+   "truncated": false,
+   "required": false
+  },
+  {
+   "index": 4,
+   "citation": "21 CFR 720.4(c)(4)",
+   "tier": "discovery",
+   "method": "full_text_or",
+   "chars": 27,
+   "truncated": false,
+   "required": false
+  }
+ ],
+ "source": {},
+ "required_status": {},
+ "search_vector_definition": "(setweight(to_tsvector('english'::regconfig, COALESCE(section_heading, ''::text)), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(body_text, ''::text)), 'B'::\"char\"))"
+}
