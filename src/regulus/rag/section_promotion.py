@@ -37,24 +37,24 @@ CFR_CANDIDATES_WITH_STATUTE = 20
 LEXICAL_CANDIDATES = 16   # cosmetics questions: lexical candidates fused with ...
 DENSE_CANDIDATES = 12     # ... the dense top 12 (regulus.retrieval.section_dense)
 RRF_K = 10
-# a part-only question ("Under Part 710, ...") gets the dense candidates of that part as well (23 Oct, off until the
-# section-resolution and answer gates pass: REGULUS_PART_DENSE=1)
-PART_DENSE = os.environ.get("REGULUS_PART_DENSE", "0") == "1"
+# a part-only question ("Under Part 710, ...") gets the dense candidates of that part as well (on since 23 Oct, after the
+# section-resolution and blind answer gates; REGULUS_PART_DENSE=0 turns it off)
+PART_DENSE = os.environ.get("REGULUS_PART_DENSE", "1") == "1"
 # a question naming a color additive: other colors' listings vetoed, the named listing offered and, when it ranks
-# first, promoted without the picker (regulus.retrieval.entities; 23 Oct, off until the gates pass)
-ENTITY_CONSTRAINTS = os.environ.get("REGULUS_ENTITY_CONSTRAINTS", "0") == "1"
-# the offered FD&C Act sections in order of relevance instead of 201, 601 ... 614 (23 Oct, off until the gates pass)
-STATUTE_RANKING = os.environ.get("REGULUS_STATUTE_RANKING", "0") == "1"
+# first, promoted without the picker (regulus.retrieval.entities; on since 23 Oct; REGULUS_ENTITY_CONSTRAINTS=0 turns it off)
+ENTITY_CONSTRAINTS = os.environ.get("REGULUS_ENTITY_CONSTRAINTS", "1") == "1"
+# the offered FD&C Act sections in order of relevance instead of 201, 601 ... 614 (on since 23 Oct; REGULUS_STATUTE_RANKING=0)
+STATUTE_RANKING = os.environ.get("REGULUS_STATUTE_RANKING", "1") == "1"
 # a picker reply naming two FD&C Act sections promotes both (the Act budget shared); before, a second pick was kept
-# only from the other corpus (23 Oct, off until the gates pass: REGULUS_PICKER_SECOND_ACT=1)
-SECOND_ACT = os.environ.get("REGULUS_PICKER_SECOND_ACT", "0") == "1"
+# only from the other corpus (on since 23 Oct; REGULUS_PICKER_SECOND_ACT=0 turns it off)
+SECOND_ACT = os.environ.get("REGULUS_PICKER_SECOND_ACT", "1") == "1"
 # a cross-encoder (regulus.retrieval.rerank) reads each candidate's best paragraphs; a pick it scores below
-# RERANK_VETO_BELOW while another candidate scores RERANK_VETO_MARGIN higher is replaced by that one (23 Oct, off until
-# the gates pass: REGULUS_RERANKER=bge-m3)
-RERANKER = os.environ.get("REGULUS_RERANKER", "").strip() or None
+# RERANK_VETO_BELOW while another candidate scores RERANK_VETO_MARGIN higher is replaced by that one (on since 23 Oct
+# with bge-m3, 0.30 / 0.15 fitted on the dev set; REGULUS_RERANKER=off turns it off; without the model files it is off)
+RERANKER = (os.environ.get("REGULUS_RERANKER", "bge-m3").strip() or None) if os.environ.get("REGULUS_RERANKER", "bge-m3").strip().lower() not in ("off", "none", "0") else None
 RERANK_PARAGRAPHS = 3
-RERANK_VETO_BELOW = float(os.environ.get("REGULUS_RERANK_VETO_BELOW", "0.2"))
-RERANK_VETO_MARGIN = float(os.environ.get("REGULUS_RERANK_VETO_MARGIN", "0.5"))
+RERANK_VETO_BELOW = float(os.environ.get("REGULUS_RERANK_VETO_BELOW", "0.3"))
+RERANK_VETO_MARGIN = float(os.environ.get("REGULUS_RERANK_VETO_MARGIN", "0.15"))
 STATUTE_BUDGET = 6000   # rendered characters of statute evidence (source headers included)
 CO_STATUTE_BUDGET = 2500  # the same when the Act text accompanies a promoted regulation   # fewer CFR candidates when the cosmetics chapter of the Act is offered too
 # FD&C Act sections offered to the picker for a cosmetics question: chapter VI (601-614) and the 201 definitions.
@@ -80,9 +80,9 @@ _BARE_COSMETIC_SECTION = re.compile(r"(?<![\d.§])\b(60[1-9]|61[0-4])(?!\d|\.\d)
 SNIPPET_CHARS = 200
 LEADIN_CHARS = 140   # a sub-paragraph's lead-in shown before it
 # 16 tokens cut 33 of 91 holdout replies mid-citation ("21 CFR 740.18, FD&C Act §"), losing every second pick (23 Oct
-# failure analysis); greedy decoding keeps the first pick byte-identical under a larger cap. REGULUS_PICKER_MAX_TOKENS
-# raises it once the gates pass.
-PICKER_MAX_TOKENS = int(os.environ.get("REGULUS_PICKER_MAX_TOKENS", "16"))
+# failure analysis); greedy decoding keeps the first pick byte-identical under a larger cap. 48 since 23 Oct
+# (REGULUS_PICKER_MAX_TOKENS overrides).
+PICKER_MAX_TOKENS = int(os.environ.get("REGULUS_PICKER_MAX_TOKENS", "48"))
 DEFINITIONS_SECTION = "604"                                    # FD&C Act 604: "In this subchapter:" definitions
 SUBCHAPTER_DEFINED = frozenset(str(n) for n in range(605, 615))  # the sections 604's definitions govern
 GENERIC_DEFINED_TERMS = frozenset({"cosmetic product"})        # used in every section; defines nothing a question turns on
@@ -421,7 +421,10 @@ class SectionPromoter:
         else:
             ranked = self.index.rank(lex, limit=self.limit)
         if ENTITY_CONSTRAINTS:
-            ranked = self._entity_constrained(question, lex, ranked, parts)
+            try:
+                ranked = self._entity_constrained(question, lex, ranked, parts)
+            except Exception:  # noqa: BLE001 - an aid: without it the ranking stands
+                pass
         if not ranked:
             return lex, []
         rows = self.db.query(_SNIPPET_SQL, {"s": [r.section for r in ranked], "o": sorted({r.best_ordinal for r in ranked})})
@@ -822,7 +825,10 @@ class SectionPromoter:
             return prepared
         lex, cands = prepared
         raw, other, notes, second_act = None, None, (), None
-        entity = self.entity_pick(question, lex, cands, parts) if ENTITY_CONSTRAINTS else None
+        try:
+            entity = self.entity_pick(question, lex, cands, parts) if ENTITY_CONSTRAINTS else None
+        except Exception:  # noqa: BLE001 - an aid: without it the picker decides
+            entity = None
         if entity is not None:
             return self._cfr_promotion(entity, question, lex, cands, None, None, "entity", t0)
         if self.mode == "lexical":

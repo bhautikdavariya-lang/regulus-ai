@@ -1,8 +1,8 @@
 """Validator precision switches (23 Oct 2026, holdout failure analysis, fix A).
 
 Correct drafts were withheld by validator findings that are themselves false (9 of 63 non-PASS holdout answers).
-REGULUS_VALIDATOR_PRECISION lists the fixes switched on, e.g. "A1,A2,A3"; empty (the default) keeps the validator
-exactly as it was. Each fix ships only after the exact replay of the recorded answers (37 holdout PASS rows
+REGULUS_VALIDATOR_PRECISION lists the fixes switched on, e.g. "A1,A2,A3"; the default since 23 Oct is "A2,A3,A4" (the
+fixes that passed the gates); "off" keeps the validator exactly as it was before them. Each fix ships only after the exact replay of the recorded answers (37 holdout PASS rows
 unchanged or re-scored PASS, the named misleading drafts still withheld) and a blind answer A/B.
   A1  a citation whose number the evidence carries is not a figure ("§74.705(a)(1)" read as "74"). HOLD: correct in
       itself, but on the blind A/B (23 Oct) it gained one PASS (82.1602) and released one misleading draft whose only
@@ -22,7 +22,8 @@ from __future__ import annotations
 
 import os
 
-VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "").split(",") if x.strip())
+VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "A2,A3,A4").split(",")
+                                 if x.strip() and x.strip().lower() not in ("off", "none"))
 
 
 def enabled(fix: str) -> bool:

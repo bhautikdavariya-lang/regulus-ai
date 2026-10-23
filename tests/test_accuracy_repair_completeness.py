@@ -69,9 +69,25 @@ def test_removing_a_wholly_fabricated_statement_changes_nothing():
     assert v["status"] == PASS and v["live_check_score"] == 100
 
 
-def test_a_removed_statement_whose_content_the_answer_still_states_changes_nothing():
+def test_a_removed_statement_whose_content_the_answer_still_states_changes_nothing(monkeypatch):
+    # the repair path itself, with validator fix A3 off (A3 drops the duplicated sentence before repair runs)
+    from regulus.rag import validator_switches
+
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset())
     v, d, out = production(BROAD, f"{S1} [1] {with_invented(S2)} [1] {S2} [1] {S3} [1] {S4} [1]", T211)
     assert out.metadata["validation"]["repair"] == "invented_conditions_removed"
+    assert v["status"] == PASS and v["live_check_score"] == 100
+
+
+def test_fix_a3_drops_the_duplicated_invented_condition_with_the_same_outcome(monkeypatch):
+    # the production default since 23 Oct: the whole sentence that repeats S2 with an invented condition is dropped
+    # before validation fails, and the answer is judged as the repaired one was
+    from regulus.rag import validator_switches
+
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset({"A2", "A3", "A4"}))
+    v, d, out = production(BROAD, f"{S1} [1] {with_invented(S2)} [1] {S2} [1] {S3} [1] {S4} [1]", T211)
+    assert out.metadata["validation"]["repair"] is None
+    assert (out.metadata.get("generation") or {}).get("validator_precision") == {"sentences_excised": 1}
     assert v["status"] == PASS and v["live_check_score"] == 100
 
 

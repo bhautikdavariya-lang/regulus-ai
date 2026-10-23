@@ -30,8 +30,9 @@ def _unsupported(sentence):
 # ------------------------------------------------------------ switches
 
 
-def test_every_fix_is_off_by_default():
-    assert validator_switches.VALIDATOR_PRECISION == frozenset() or \
+def test_the_gated_fixes_are_on_by_default_and_a1_is_held():
+    # A2-A4 passed the exact replay and the blind A/B (23 Oct); A1 released a misleading draft and is held
+    assert validator_switches.VALIDATOR_PRECISION == frozenset({"A2", "A3", "A4"}) or \
         "REGULUS_VALIDATOR_PRECISION" in __import__("os").environ
 
 

@@ -207,8 +207,9 @@ def test_rerank_label_says_where_a_listing_sits():
     assert rerank_label({"section": "605", "statute": True}).startswith("FD&C Act § 605")
 
 
-def test_picker_reply_cap_stays_16_unless_configured():
-    assert SP.PICKER_MAX_TOKENS == 16 or "REGULUS_PICKER_MAX_TOKENS" in __import__("os").environ
+def test_picker_reply_cap_fits_two_citations_unless_configured():
+    # 16 tokens cut 33 of 91 holdout replies mid-citation ("21 CFR 740.18, FD&C Act §"); 48 since 23 Oct
+    assert SP.PICKER_MAX_TOKENS == 48 or "REGULUS_PICKER_MAX_TOKENS" in __import__("os").environ
 
 
 # ------------------------------------------------------------ intents
