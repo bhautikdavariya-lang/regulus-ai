@@ -121,6 +121,8 @@ def mlx_dir(root: Path, *, tokenizer='{"vocab": 1}', **config) -> Path:
 def start(tmp_path, monkeypatch):
     """Engine start-up with the worker, tokenizer and memory check scripted. start(**model fields) -> Engine."""
     Worker.started = []
+    for name in ("MODEL_MLX", "MLX_MODEL_ID", "MLX_LABEL", "MLX_EXPECTED_CONFIG"):
+        monkeypatch.setattr(UI, name, getattr(UI, name))   # start-up fixes the module's one model; restored after each test
     monkeypatch.setattr(MODEL, "load_model", lambda *a, **k: pytest.fail("a transformers model was loaded"))
     monkeypatch.setattr(MODEL, "load_tokenizer", lambda *a, **k: object())
     monkeypatch.setattr(MG, "memory_preflight", lambda mb: {"checked": True})
@@ -147,13 +149,22 @@ def start(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize("backend", ["transformers", "mlx"])
-def test_start_up_runs_the_1_7b_worker_and_nothing_else(start, backend):
+def test_start_up_runs_the_default_4b_worker_and_nothing_else(start, backend):
+    # Qwen3-4B-Instruct-2507 is the default since 23 Oct 2026 (the model the cosmetics benchmark is measured on)
     e = start(backend=backend)
-    assert Worker.started == [e._mlx] and e._mlx.model_id == "Qwen/Qwen3-1.7B"
+    assert Worker.started == [e._mlx] and e._mlx.model_id == "Qwen/Qwen3-4B-Instruct-2507"
     assert e._mlx.revision == "abc123"                         # the HF snapshot directory's commit
     ident = e.model_identity()
-    assert (ident["backend"], ident["model_id"], ident["model_revision"]) == ("mlx", "Qwen/Qwen3-1.7B", "abc123")
+    assert (ident["backend"], ident["model_id"], ident["model_revision"]) == ("mlx", "Qwen/Qwen3-4B-Instruct-2507", "abc123")
     assert ident["tokenizer"]["tokenizer_json_sha256"] == start.tokenizer_sha
+
+
+def test_a_1_7b_directory_still_starts_the_1_7b_worker(start):
+    from regulus.rag.mlx_models import SUPPORTED_MLX_MODELS
+
+    cfg = SUPPORTED_MLX_MODELS["qwen3-1.7b"]["config"]
+    e = start(mlx_model_path=mlx_dir(start.tmp / "q17", **cfg, max_position_embeddings=40960, rope_theta=1000000))
+    assert Worker.started == [e._mlx] and e._mlx.model_id == "Qwen/Qwen3-1.7B"
 
 
 def test_an_explicit_revision_is_recorded(start):
@@ -173,11 +184,11 @@ def test_a_configuration_that_would_answer_with_another_model_stops_start_up(sta
 
 
 @pytest.mark.parametrize("config, message", [
-    ({"hidden_size": 1024, "intermediate_size": 3072}, "not Qwen3-1.7B"),       # a Qwen3-0.6B directory
-    ({"hidden_size": 2560, "num_hidden_layers": 36}, "not Qwen3-1.7B"),         # a Qwen3-4B directory
+    ({"hidden_size": 1024, "intermediate_size": 3072}, "not Qwen3-1.7B or Qwen3-4B-Instruct-2507"),   # Qwen3-0.6B
+    ({"max_position_embeddings": 40960, "rope_theta": 1000000}, "not Qwen3-1.7B or Qwen3-4B-Instruct-2507"),  # Qwen3-4B, not -2507
     ({"quantization": {"group_size": 64, "bits": 8}}, "quantization bits 8"),
 ])
-def test_a_model_directory_that_is_not_1_7b_4bit_stops_start_up(start, config, message):
+def test_a_model_directory_that_is_not_a_supported_4bit_model_stops_start_up(start, config, message):
     with pytest.raises(SystemExit, match=message):
         start(mlx_model_path=mlx_dir(start.tmp / "other", **config))
     assert Worker.started == []

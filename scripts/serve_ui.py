@@ -1,10 +1,13 @@
 """Local web UI for testing the Regulus RAG pipeline by hand.
 
 Runs entirely on this machine: it needs the read-only PostgreSQL database and
-the application's one model, Qwen3-1.7B 4-bit, run by the MLX worker, so it
+the application's one model, Qwen3-4B-Instruct-2507 4-bit (Qwen3-1.7B 4-bit is also supported), run by the MLX
+worker, so it
 cannot be a hosted page. Standard library only, no new dependencies.
 
-    REGULUS_MLX_PYTHON=<python with mlx-lm> REGULUS_MLX_MODEL_PATH=<Qwen3-1.7B-MLX-4bit snapshot> \
+    scripts/start_ui.sh            (reads the machine's paths from configs/ui.env; see configs/ui.env.example)
+or
+    REGULUS_MLX_PYTHON=<python with mlx-lm> REGULUS_MLX_MODEL_PATH=<Qwen3-4B-Instruct-2507 MLX 4-bit snapshot> \
         python scripts/serve_ui.py --port 8000
 
 Then open http://127.0.0.1:8000 in a browser.
@@ -56,7 +59,8 @@ from regulus.traceability.ui_session import DELIVERED, NOT_DELIVERED, UISession,
 WEB_DIR = PROJECT_ROOT / "web"
 ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
 
-# The application answers with ONE model: Qwen3-1.7B quantized to 4 bits, run by the MLX worker
+# The application answers with ONE model, quantized to 4 bits and run by the MLX worker: Qwen3-4B-Instruct-2507 (the
+# default since 23 Oct 2026) or Qwen3-1.7B
 # (regulus.rag.mlx_generator). There is no selector and no fallback: the worker's interpreter and model directory
 # come from model.mlx_python / model.mlx_model_path (REGULUS_MLX_PYTHON / REGULUS_MLX_MODEL_PATH), every check runs
 # before the server listens, and a failed check stops the server with what to fix. Nothing else is ever loaded in
@@ -69,7 +73,7 @@ ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
 # fixed at start-up, and refuses a request that names the other.
 from regulus.rag.mlx_models import SUPPORTED_MLX_MODELS, identify_mlx_model, opens_reasoning  # noqa: E402
 
-MODEL_MLX = "qwen3-1.7b"
+MODEL_MLX = "qwen3-4b-2507"
 MLX_MODEL_ID = SUPPORTED_MLX_MODELS[MODEL_MLX]["model_id"]
 MLX_LABEL = SUPPORTED_MLX_MODELS[MODEL_MLX]["label"]
 # config.json values that identify the default model (Qwen3-0.6B is 1024 wide), and the quantization the application
@@ -128,11 +132,12 @@ class Engine:
         self._aligner = None
 
     def _init_inference(self, offline: bool) -> None:
-        """Start the application's one model, Qwen3-1.7B 4-bit in the MLX worker, or stop with what to fix.
+        """Start the application's one model (Qwen3-4B-Instruct-2507 or Qwen3-1.7B, 4-bit) in the MLX worker, or stop
+        with what to fix.
 
         Checked in order, each before anything is loaded that a failure would waste: no remote backend and no
         adapter configured; the worker's interpreter and model directory exist; the directory's config.json is
-        Qwen3-1.7B quantized to 4 bits; its tokenizer.json is byte-identical to the tokenizer loaded here
+        a supported model quantized to 4 bits; its tokenizer.json is byte-identical to the tokenizer loaded here
         (prompts are tokenized in this process); the memory preflight; the worker starts. There is no fallback:
         any failure raises SystemExit and the server does not start."""
         from regulus.model import load_tokenizer
@@ -160,7 +165,7 @@ class Engine:
                    "weights; unset it (REGULUS_ADAPTER=none)")
         if m.mlx_python is None or m.mlx_model_path is None:
             refuse("the MLX worker is not configured; set REGULUS_MLX_PYTHON (a Python with mlx-lm installed) and "
-                   "REGULUS_MLX_MODEL_PATH (the Qwen3-1.7B-MLX-4bit snapshot directory)")
+                   "REGULUS_MLX_MODEL_PATH (the Qwen3-4B-Instruct-2507 MLX 4-bit snapshot directory; see configs/ui.env.example)")
         path = Path(m.mlx_model_path)
         if not Path(m.mlx_python).is_file():
             refuse(f"REGULUS_MLX_PYTHON does not name a file ({m.mlx_python})")
