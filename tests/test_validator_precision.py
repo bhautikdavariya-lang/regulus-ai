@@ -287,3 +287,33 @@ def test_e1_leaves_a_duty_another_supplied_source_states():
     act = "Every person that owns or operates a facility that manufactures cosmetic products shall register each facility."
     assert strengthened_obligation(s, [voluntary])
     assert strengthened_obligation(s, [voluntary], [act]) is None
+
+
+def test_c82_a_provision_named_inside_a_verbatim_quote_of_the_cited_source_is_the_source_speaking():
+    from regulus.rag.validation import _without_cited_quotes
+    gen50 = ("A batch of a straight color listed in this subpart may be certified, in accordance with the provisions of "
+             "the regulations in this part, for use in food, drugs, and cosmetics, if such batch conforms to the "
+             "requirements of § 82.5 and to the specifications in this subpart set forth for such color.")
+    quoted = f'21 CFR 82.50 states: "{gen50}" [2].'
+    assert "82.5 " not in _without_cited_quotes(quoted, [gen50]).replace("82.50", "")
+    moved = f'21 CFR 82.50 states: "{gen50[:-1]} [2].".'           # the marker moved inside the quote
+    assert "82.5 " not in _without_cited_quotes(moved, [gen50]).replace("82.50", "")
+    paraphrase = '21 CFR 82.50 says the batch "must meet the limits of § 82.5 for lead and arsenic" [2].'
+    assert _without_cited_quotes(paraphrase, [gen50]) == paraphrase      # not the source's words: still checked
+
+
+def test_c82_an_fdc_listing_says_which_82_5_limits_govern_it():
+    from regulus.rag.color_listing import compose_certification
+    y5 = "The color additive FD&C Yellow No. 5 shall conform in identity and specifications to the requirements of § 74.705 (a)(1) and (b) of this chapter."
+    gen_b = ("A batch of a straight color listed in this subpart may be certified, in accordance with the provisions of the "
+             "regulations in this part, for use in food, drugs, and cosmetics, if such batch conforms to the requirements "
+             "of § 82.5 and to the specifications in this subpart set forth for such color.")
+    srcs = [("82.705", "", y5), ("82.50", "", gen_b), ("82.5", "(b)(1)", "In the case of a straight color listed in subpart B:"),
+            ("82.5", "(b)(1)(i)", "Lead (as Pb), not more than 0.001 percent."),
+            ("82.5", "(b)(2)", "In the case of a straight color listed in subpart C or D:")]
+    pkg = SimpleNamespace(sources=tuple(PackagedSource(**{**_src(i, sec, par, t).__dict__, "heading": "FD&C Yellow No. 5." if sec == "82.705" else None})
+                                        for i, (sec, par, t) in enumerate(srcs, 1)),
+                          requirements=(("r1", "21 CFR 82.705"), ("r2", "21 CFR 82.50"), ("r3", "21 CFR 82.5")))
+    out = compose_certification(pkg, "We supply FD&C Yellow No. 5. What specifications must a batch meet for certification?")
+    assert "FD&C Yellow No. 5 is a straight color listed in subpart B, so the subpart B limits in 21 CFR 82.5(b)(1) apply to it [3][4]." in out
+    assert '21 CFR 82.5(b)(2) states: "In the case of a straight color listed in subpart C or D:" [5].' in out

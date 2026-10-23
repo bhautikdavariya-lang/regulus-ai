@@ -26,7 +26,9 @@ Answer post-processing fixes share the switch (failure analysis fix G):
   S1  a cited provision's current status that its text does not carry (710/720 program closed, 740.18 stayed, no 606
       rule) is appended verbatim from data/reference/status_notes_v1.json (regulus.rag.status_notes)
   C82 a Part 82 certification listing that is one conformity sentence is answered from its text and the subpart's
-      general section (regulus.rag.color_listing.compose_certification)
+      general section (regulus.rag.color_listing.compose_certification); for an FD&C (subpart B) certification
+      question 82.5 joins as a companion and the answer says its 82.5(b)(1) limits govern; a provision named inside a
+      verbatim quotation of the sentence's own cited source is not read as mis-cited (82.50 quoting "§ 82.5")
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.

@@ -745,6 +745,15 @@ class SectionPromoter:
             for j, (pj, sj, hj) in enumerate(zip(ix.parts, ix.subparts, ix.headings)):
                 if pj == part and sj == subpart and (hj or "").lower().startswith("general.") and ix.sections[j] != section:
                     out.append(ix.sections[j])
+            # C82 (regulus.rag.validator_switches): a certification question about an FD&C (subpart B) listing also gets
+            # 82.5, the general specifications 82.50 makes a condition of certification (lead, arsenic, heavy metals):
+            # the 82.705 / 82.706 keys name those limits, and the composed answer can quote them only when supplied
+            from regulus.rag.validator_switches import enabled as precision_fix
+
+            if ("82.50" in out and precision_fix("C82") and re.search(r"\bcertif|\bspecification", question or "", re.I)
+                    and re.search(r"shall conform in identity and specifications to the requirements of §\s*74\.",
+                                  self._section_text(section))):
+                out.append("82.5")   # only a conformity listing, which the C82 composer answers from these texts
         return list(dict.fromkeys(out))
 
     # -- decision ---------------------------------------------------------------

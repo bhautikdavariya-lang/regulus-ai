@@ -149,6 +149,27 @@ def _strip_supplied_citations(text: str, supplied_text: str) -> str:
     return _CFR_CITE_RE.sub(drop, text)
 
 
+_QUOTED = re.compile(r"[\"\u201c]([^\"\u201c\u201d]{20,})[\"\u201d]")
+
+
+def _flat_text(text: str) -> str:
+    # markers out (attach_trailing_markers moves "[2]" inside a closing quote), spaces before punctuation closed up
+    return re.sub(r"\s+([.,;:])", r"\1", re.sub(r"\s+", " ", MARK_RE.sub(" ", text or ""))).strip().lower()
+
+
+def _without_cited_quotes(sentence: str, cited_texts: list[str]) -> str:
+    """The sentence without the quotations that are its cited sources' own words (fix C82): a provision those words name
+    ("... conforms to the requirements of § 82.5 ..." quoted from 82.50) is the source speaking, not a provision the
+    sentence attributes to the wrong source. A paraphrase, or a quotation the cited text does not contain, is kept."""
+    flat = [_flat_text(t) for t in cited_texts if t]
+
+    def drop(m: re.Match) -> str:
+        inner = _flat_text(m.group(1)).rstrip(" .")
+        return " " if any(inner in f for f in flat) else m.group(0)
+
+    return _QUOTED.sub(drop, sentence)
+
+
 @dataclass(frozen=True)
 class ValidationProblem:
     code: str
@@ -545,7 +566,9 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
             marks = [int(m) for m in MARK_RE.findall(sentence) if int(m) in by_index]
             if not marks:
                 continue
-            for ref in parse_cfr_references(sentence):
+            named_text = (_without_cited_quotes(sentence, [by_index[i].text for i in marks]) if precision_fix("C82")
+                          else sentence)
+            for ref in parse_cfr_references(named_text):
                 if ref.section is None:
                     continue
                 named = (ref.title, ref.section, ref.paragraph_path)

@@ -258,7 +258,12 @@ def compose_certification(package, question: str) -> str | None:
     # because only a uses paragraph can show that no amount limit exists
     lines.append(f"{label} states no use restriction [{c.index}].")
     lines.append(_quote(general) + ".")
-    spec = next((s for s in package.sources if s.citation == "21 CFR 82.5" or (s.citation or "").startswith("21 CFR 82.5(")), None)
-    if spec is not None:
-        lines.append(_quote(spec) + ".")
+    # 82.5, when supplied (an FD&C certification question): which of its limits govern this color, then every
+    # paragraph quoted with its own citation (the subpart C/D limits stay, labelled by their own text)
+    spec = [s for s in package.sources if s.citation == "21 CFR 82.5" or (s.citation or "").startswith("21 CFR 82.5(")]
+    own_limits = [s for s in spec if (s.citation or "").startswith("21 CFR 82.5(b)(1)")]
+    if spec and own_limits and general_label == "21 CFR 82.50":
+        lines.append(f"{m.group('name')} is a straight color listed in subpart B, so the subpart B limits in 21 CFR "
+                     f"82.5(b)(1) apply to it {''.join(f'[{s.index}]' for s in own_limits)}.")
+    lines += [_quote(s) + "." for s in spec]
     return "\n".join(re.sub(r"\.\.$", ".", ln) for ln in lines)
