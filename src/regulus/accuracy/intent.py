@@ -261,6 +261,38 @@ def _distinction_items(question: str) -> list[str]:
     return parts
 
 
+_ASKS = re.compile(r"\?\s*$|^\s*(?:can|may|must|do|does|did|is|are|was|were|should|could|would|will|what|which|how|"
+                   r"when|where|who|whom|whose|whether|why|list|name|explain|describe)\b", re.I)
+
+
+def asked_part(question: str) -> str:
+    """A scenario question's asked part: from the statement just before its first question to the end.
+
+    "We're a 12-person contract filler formulating a tinted hand cream. Our supplier offers D&C Brown No. 1. Can we
+    use it, is there a use limit, and does it need certification?" asks about D&C Brown No. 1: the firm's size and
+    role are facts the answer may apply, not things each statement must cover. Read whole, the question made correct
+    answers 'only partly address the question' and left 'We're a 12-person contract filler ...' unaddressed: 35 of the
+    37 holdout answers the blind scorers passed were shown as FAIL (23 Oct 2026). The statement right before the
+    question stays - it is what "it" and "these" refer to, and what "Which provisions could apply?" applies to. A
+    question that is one sentence, or that asks from its first sentence, is returned as it is."""
+    from regulus.evaluation.grounding_eval import split_sentences
+
+    context, asked = split_scenario(question)
+    return f"{context} {asked}".strip() if context else asked
+
+
+def split_scenario(question: str) -> tuple[str, str]:
+    """(context, asked): the statement just before a question's first question sentence, and the sentences from that
+    one on. ("", question) for a question that asks from its first sentence or has no question sentence."""
+    from regulus.evaluation.grounding_eval import split_sentences
+
+    sentences = [s for s in split_sentences((question or "").strip()) if s.strip()]
+    first = next((i for i, s in enumerate(sentences) if _ASKS.search(s)), None)
+    if first is None or first == 0:
+        return "", question
+    return sentences[first - 1], " ".join(sentences[first:])
+
+
 def analyze(question: str, *, plan=None) -> QuestionIntent:
     """The evaluator's reading of the question. Deterministic; no model."""
     from regulus.planning import plan_query
@@ -283,7 +315,11 @@ def analyze(question: str, *, plan=None) -> QuestionIntent:
         if sc:
             domains.add(sc)
 
-    topic = terms(question)
+    context, asked = split_scenario(question)
+    if context:
+        signals.append("scenario")
+    # the topic: what is asked and the statement it rests on; the elements to cover: what is asked
+    topic = terms(f"{context} {asked}".strip())
     # A definitional question about one term ("What does FDA stand for?") is
     # ABOUT that term, whatever its vocabulary: "FDA", "Act" or "drug" are
     # generic in any other question but are the whole subject here, and the
@@ -332,7 +368,7 @@ def analyze(question: str, *, plan=None) -> QuestionIntent:
     if items:
         elements = [Element(item.strip(), terms(item)) for item in items if terms(item)]
     else:
-        clauses = [c for c in _COMPOUND_RE.split(question) if c.strip()]
+        clauses = [c for c in _COMPOUND_RE.split(asked) if c.strip()]
         if len(clauses) >= 2:
             elements = [Element(c.strip(" ?,"), terms(c)) for c in clauses if terms(c)]
         if re.search(r"\brequirements?\s+and\s+(?:the\s+)?(?:exceptions?|exemptions?)\b", question, re.I):

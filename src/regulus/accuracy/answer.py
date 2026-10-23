@@ -528,15 +528,31 @@ def elements(intent: QuestionIntent, claims: Sequence[ClaimAssessment]) -> tuple
         return any(len(matched(element.terms, terms(c.relevance.content + " " + c.evidence_text, keep=keep))) >= need
                    for c in group)
 
+    def about_whole(element, group) -> bool:
+        # "the question's subject" (a question with no separate parts) is answered by the answer as a whole: its terms
+        # are looked for across the group's statements and their evidence, not in any one statement (a scenario's
+        # subject has more terms than one statement holds: 23 Oct 2026)
+        if not element.terms:
+            return bool(group)
+        found = terms(" ".join(c.relevance.content + " " + c.evidence_text for c in group))
+        return bool(group) and len(matched(element.terms, found)) >= required_hits(len(element.terms))
+
     covered, unverified, missing = [], [], []
     for element in intent.elements:
-        if about(element, verified):
+        whole = element.label == "the question's subject"
+        if (about_whole if whole else about)(element, verified):
             covered.append(element.label)
-        elif about(element, unverified_claims):
+        elif (about_whole if whole else about)(element, unverified_claims):
             unverified.append(element.label)
         else:
             missing.append(element.label)
     return covered, unverified, missing
+
+
+def _section(citation: str) -> str:
+    """'21 CFR 74.2151(c)' -> '74.2151'; 'FD&C Act § 605(e) [...]' -> '605'; anything else as it is."""
+    m = re.search(r"(\d{1,4}\.\d+[a-z]?)", citation or "") or re.search(r"§\s*(\d{3}[a-z]?)", citation or "")
+    return m.group(1) if m else (citation or "")
 
 
 @dataclass(frozen=True)
@@ -602,9 +618,18 @@ def verdict(intent: QuestionIntent, claims: Sequence[ClaimAssessment], *, decisi
         problems.append(f"{len(unverified)} statement(s) could not be verified")
     if irrelevant:
         problems.append(f"{len(irrelevant)} statement(s) answer a different question")
-    if partly_relevant:
-        problems.append(f"{len(partly_relevant)} statement(s) only partly address the question - e.g. "
-                        f"{partly_relevant[0].relevance.reason}")
+    # A statement that holds only some of the question's subject terms is normal in a complete answer to a question
+    # with several parts ("Can we use it, is there a use limit, does it need certification?": each statement answers
+    # one, from the same listing); completeness is judged across the answer by `missing`. Such a statement marks the
+    # answer partial only when it is drawn from another section than every statement squarely on the subject - the
+    # signature of content about something else (820.50 purchasing in an answer about 820.30(a) design controls).
+    # Judged per statement regardless of section, it made 32 of the 37 holdout answers the blind scorers passed
+    # 'partial' (23 Oct 2026).
+    on_subject = {_section(x) for c in answering if c.relevance.verdict == RV.RELEVANT for x in c.relevance.evidence}
+    off_subject = [c for c in partly_relevant if not ({_section(x) for x in c.relevance.evidence} & on_subject)]
+    if off_subject:   # a statement drawn from another provision than the ones squarely on the subject
+        problems.append(f"{len(off_subject)} statement(s) only partly address the question - e.g. "
+                        f"{off_subject[0].relevance.reason}")
     if missing:
         problems.append(f"the answer does not cover: {', '.join(missing)}")
     if problems:

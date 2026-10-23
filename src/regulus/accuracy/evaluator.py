@@ -410,6 +410,20 @@ def _contradictions(answer: str, package, claims) -> list[str]:
     return found
 
 
+_ACT_CITATION = re.compile(r"(?:FD&C\s+Act|FDCA|Federal\s+Food,\s+Drug,?\s+and\s+Cosmetic\s+Act)\s*(?:§+|section|sec\.)?\s*"
+                           r"\d{3}[a-z]?(?:\s*\([A-Za-z0-9]{1,6}\))*|\b21\s*U\.?S\.?C\.?\s*§*\s*\d{3}[a-z]{0,2}(?:\s*\([A-Za-z0-9]{1,6}\))*", re.I)
+_BARE_SECTION_SIGN = re.compile(r"§+\s*(\d{3}[a-z]?)(?![\d.])(?:\s*\([A-Za-z0-9]{1,6}\))*")
+
+
+def _without_statute_citations(text: str, package) -> str:
+    """The answer with its FD&C Act and U.S.C. citations taken out before CFR identifiers are read from it: "FD&C Act
+    § 605(e)" is a section of the statute, not "21 CFR part 605" (which the identifier index reports as absent - a
+    false fabrication on FDCA605-Q2, 23 Oct). A bare "§ 605" is the statute when the evidence holds that Act section."""
+    acts = set(re.findall(r"FD&C Act §\s*(\d{3}[a-z]?)", " ".join(getattr(s, "citation", "") or "" for s in package.sources)))
+    text = _ACT_CITATION.sub(" ", text or "")
+    return _BARE_SECTION_SIGN.sub(lambda m: " " if m.group(1) in acts else m.group(0), text) if acts else text
+
+
 def _named_identifiers(answer: str, package, identifier_index):
     """Every CFR provision the answer names, classified by whether the evidence
     accounts for it. Returns (accounted, absent, unverifiable).
@@ -429,7 +443,7 @@ def _named_identifiers(answer: str, package, identifier_index):
     source_text = normalise(" ".join(s.text or "" for s in package.sources) + " " +
                             " ".join(s.citation or "" for s in package.sources))
     accounted, absent, unverifiable = [], [], []
-    named = {r.canonical: r for r in parse_cfr_references(MARK_RE.sub(" ", answer))}
+    named = {r.canonical: r for r in parse_cfr_references(_without_statute_citations(MARK_RE.sub(" ", answer), package))}
     for ref, parsed in named.items():
         is_part = parsed.section is None
         identity = (parsed.title, parsed.section, parsed.paragraph_path)

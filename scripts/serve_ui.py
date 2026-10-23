@@ -258,8 +258,18 @@ class Engine:
                     from regulus.retrieval.semantic import TransformersEmbedder, load_manifest
 
                     t0 = time.perf_counter()
-                    embedder = TransformersEmbedder(load_manifest().embedding,
-                                                    cache_dir=self.settings.model.cache_dir, local_files_only=True)
+                    # the answering model's cache first, then the repository's models/ (where the pinned embedder
+                    # lives and section retrieval loads it from): with the Qwen3-4B profile the answering cache has
+                    # no embedder, and the aligner fell back to lexical alignment unseen (23 Oct 2026)
+                    embedder = None
+                    for cache in dict.fromkeys(str(c) for c in (self.settings.model.cache_dir, PROJECT_ROOT / "models") if c):
+                        try:
+                            embedder = TransformersEmbedder(load_manifest().embedding, cache_dir=cache, local_files_only=True)
+                            break
+                        except Exception:  # noqa: BLE001 - try the next cache
+                            continue
+                    if embedder is None:
+                        raise FileNotFoundError("the pinned embedding model is in neither the model cache nor models/")
                     self._aligner = SemanticAligner(embedder)
                     print(f"Accuracy aligner: {embedder.describe()['model_id']} in "
                           f"{time.perf_counter() - t0:.1f}s", flush=True)

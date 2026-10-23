@@ -76,6 +76,11 @@ WITHHOLDING_FALLBACKS = {
                                    "went unanswered - the suppression was right, the outcome is still no answer",
 }
 REFUSING_FALLBACKS = {**EVIDENCE_BASED_FALLBACKS, **WITHHOLDING_FALLBACKS}
+# Deterministic ANSWERS: the pipeline wrote them without a model call, so `model_called` is False, but they answer. The
+# color-listing composer (regulus.rag.color_listing) states each product's use and quotes the listing, cited; the
+# blind scorers passed 19 of its 21 holdout answers, and this check called 20 of the composed PASS answers declines
+# (23 Oct 2026, live evaluator vs blind verdicts).
+ANSWERING_FALLBACKS = frozenset({"composed_from_listing"})
 
 # The answerability states (regulus.rag.answerability) that ASSERT the evidence
 # could not answer. Deliberately a whitelist: UNKNOWN means the gate did not
@@ -167,7 +172,7 @@ def assess(answer: str, *, package=None, coverage=None, validation=None, model_c
     text = (answer or "").strip()
     declined = bool(text) and (
         (fallback_type in REFUSING_FALLBACKS)
-        or not model_called
+        or (not model_called and fallback_type not in ANSWERING_FALLBACKS)
         or classify_answer(text) == REFUSAL
         or not has_claims
     )
