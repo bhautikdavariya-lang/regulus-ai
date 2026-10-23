@@ -68,9 +68,10 @@ _ANSWERING = frozenset({"relevant", "partially_relevant"})
 _UNVERIFIED = "unverifiable"
 # an unverified statement is tolerated only as a paraphrase: never when it carries a quantity nothing confirmed
 # ("at least three supervisors per shift", "retained for ten years", "an annual examination")
-_QUANTITY = re.compile(r"\d|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twice|once|annual(?:ly)?|"
-                       r"daily|weekly|monthly|quarterly|yearly|hourly|every|per|each\s+(?:day|week|month|year|shift)|"
-                       r"days?|weeks?|months?|years?|hours?|percent)\b", re.I)
+# (a bare number word is not one: "21 CFR 82.1328 contains one requirement" restates the section; the invented cases carry
+# a digit, a unit of time, "per" or a frequency word - "annual", "ten years", "three supervisors per shift")
+_QUANTITY = re.compile(r"\d|\b(?:twice|annual(?:ly)?|daily|weekly|monthly|quarterly|yearly|hourly|per|"
+                       r"each\s+(?:day|week|month|year|shift)|days?|weeks?|months?|years?|hours?|percent)\b", re.I)
 # citation labels and markers are not quantities ("21 CFR 820.10(b)(2)", "§ 605(e)", "section 721", "[3]")
 _CITE = re.compile(r"(?:\b21\s*CFR\s*|§+\s*|\bsection\s+|\bpart\s+|\bFD&C Act\s*§?\s*)\d[\w.]*(?:\s*\([a-z0-9]{1,5}\))*|"
                    r"\b\d{1,4}\.\d+[a-z]?(?:\s*\([a-z0-9]{1,5}\))*|\[\d{1,2}\]|\b\d+\s*U\.S\.C\.\s*\d+\w*", re.I)
