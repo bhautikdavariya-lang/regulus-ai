@@ -65,10 +65,102 @@ def test_substantive_correctness_alone_is_not_a_pass():
     assert v["explanation"].startswith("Completeness partial") and "820.99(z)" in v["explanation"]
 
 
-def test_a_partially_correct_answer_fails_the_full_rubric():
+def test_an_answer_naming_a_provision_nothing_vouches_for_is_never_a_pass():
+    """Calibrated rule (23 Oct 2026): without an identifier index the evaluator cannot tell that 21 CFR 820.777 does
+    not exist, so the answer is not fully evaluated - never PASS - and the explanation names what was not decided."""
     _, v = review(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} [1] This duty is restated in 21 CFR 820.777.")
-    assert v["status"] == FAIL and v["substantive_correctness"]["state"] == R.PARTIAL
-    assert v["explanation"].startswith("Partially correct")
+    assert (v["status"], v["label"]) == (NOT_EVALUATED, NOT_FULLY_EVALUATED)
+    assert v["substantive_correctness"]["state"] == R.PARTIAL and "820.777" in v["explanation"]
+
+
+def test_a_section_verified_absent_from_the_snapshot_fails():
+    class Index:
+        def section_status(self, section):
+            return (False, False)      # verified absent in the snapshot
+
+    a, _ = assess(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} [1] This duty is restated in 21 CFR 820.777.", identifier_index=Index())
+    v = question_review(a.to_dict(), question=ONE)
+    assert v["status"] == FAIL and "820.777" in v["explanation"]
+
+
+def _with(d, **states):
+    d = copy.deepcopy(d)
+    for x in d["dimensions"]:
+        if x["dimension"] in states:
+            x["state"], x["detail"], x["evidence"] = states[x["dimension"]]
+    return d
+
+
+def _claims(d, finals):
+    d = copy.deepcopy(d)
+    base = d["checked"]["claims"][0]
+    d["checked"]["claims"] = [{**base, "final": f, "relevance": {**base["relevance"], "verdict": "relevant"}} for f in finals]
+    return d
+
+
+def test_uncertainty_is_not_a_failure_a_mostly_verified_answer_passes():
+    """A correct paraphrase the aligner cannot fully verify: three statements matched to evidence, one unverifiable.
+    The strict rule called such answers FAIL (35 of 37 blind-PASS holdout answers, 22 Oct)."""
+    d, _ = passing()
+    d = _claims(_with(d, substantive_correctness=(R.PARTIAL, "1 statement(s) could not be verified", []),
+                      evidence_support=(R.NOT_ESTABLISHED, "1 of 4 statement(s) that answer the question could not be checked", [])),
+                ["supported", "supported", "supported", "unverifiable"])
+    v = question_review(d, question=ONE)
+    assert v["status"] == PASS and "3 of 4" in v["explanation"] and "1 could not be checked" in v["explanation"]
+
+
+def test_too_little_verified_is_not_fully_evaluated_never_a_pass():
+    d, _ = passing()
+    d = _claims(_with(d, evidence_support=(R.NOT_ESTABLISHED, "2 of 3 statement(s) that answer the question could not be checked", [])),
+                ["supported", "unverifiable", "unverifiable"])
+    v = question_review(d, question=ONE)
+    assert (v["status"], v["label"]) == (NOT_EVALUATED, NOT_FULLY_EVALUATED) and "only 1 of 3" in v["explanation"]
+
+
+def test_a_contradicted_statement_still_fails():
+    d, _ = passing()
+    d = _with(d, substantive_correctness=(R.FAIL, "1 statement(s) that address the question are contradicted by the evidence", []))
+    assert question_review(d, question=ONE)["status"] == FAIL
+
+
+def test_the_question_subject_alone_is_neither_a_failure_nor_a_pass():
+    """'The answer does not address the question's subject' failed 14 blind-PASS holdout answers (noise there), and it
+    is also the mark of an answer built on the wrong section (G5 held-out answers): never FAIL on its own, never PASS.
+    A named element or a requested provision left out still fails."""
+    d, _ = passing()
+    subject = _with(d, completeness=(R.FAIL, "the answer does not address: the question's subject", ["the question's subject"]))
+    assert (question_review(subject, question=ONE)["status"], question_review(subject, question=ONE)["label"]) == \
+        (NOT_EVALUATED, NOT_FULLY_EVALUATED)
+    named = _with(d, completeness=(R.FAIL, "the answer does not address: how long", ["how long"]))
+    assert question_review(named, question=ONE)["status"] == FAIL
+
+
+def test_a_decline_is_never_shown_as_a_pass():
+    """A decline the retrieved evidence bears out may still be wrong: the evidence can lack the provision that answers
+    it (FDCA612-Q2, holdout 22 Oct). Blind scoring fails every decline."""
+    d, _ = passing()
+    d = copy.deepcopy(d)
+    d["answer_verdict"] = {**(d.get("answer_verdict") or {}), "verdict": "abstention_correct"}
+    v = question_review(d, question=ONE)
+    assert (v["status"], v["label"]) == (NOT_EVALUATED, NOT_FULLY_EVALUATED) and "declined" in v["explanation"]
+
+
+def test_a_verbatim_fallback_is_never_a_pass():
+    d, _ = passing()
+    d = copy.deepcopy(d)
+    d["checked"]["excluded_sentences"] = [{"origin": "pipeline_sentence",
+                                           "text": "The generated answer could not be validated against the retrieved regulatory evidence."}]
+    v = question_review(d, question=ONE)
+    assert (v["status"], v["label"]) == (NOT_EVALUATED, NOT_FULLY_EVALUATED) and "verbatim" in v["explanation"]
+
+
+def test_the_strict_rule_is_one_switch_away(monkeypatch):
+    from regulus.accuracy import review as RV
+    d, _ = passing()
+    d = _claims(_with(d, substantive_correctness=(R.PARTIAL, "1 statement(s) could not be verified", [])),
+                ["supported", "supported", "supported", "unverifiable"])
+    monkeypatch.setattr(RV, "RULE", "strict")
+    assert RV.question_review(d, question=ONE)["status"] == FAIL
 
 
 # ---------------------------------------------------- no legitimate result: never PASS

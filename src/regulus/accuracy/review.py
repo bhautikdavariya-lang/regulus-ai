@@ -1,31 +1,45 @@
 """The per-question evaluation status shown with a live answer.
 
-A reading of `AccuracyAssessment.to_dict()`, never a second judgement: every
-state here is one the evaluator already decided. What this module adds is the
-one-word status a reader sees first, and the rule for it is deliberately
-stricter than any single dimension:
+A reading of `AccuracyAssessment.to_dict()`, never a second judgement: every state here is one the evaluator already
+decided. What this module adds is the one-word status a reader sees first.
 
-    PASS            the assessment was evaluated, the answer verdict is correct
-                    (or a correct refusal), and EVERY dimension passed or did not
-                    apply. Substantive correctness alone is not a pass: a right
-                    rule under a wrong citation, or a missing requirement, fails.
-    FAIL            the assessment was evaluated and a dimension failed or was
-                    only partial, or the answer verdict is incorrect, partial,
-                    off-topic or an incorrect refusal.
-    NOT EVALUATED   everything else: no assessment, the evaluator abstained or
-                    failed, the answer states no regulatory requirement, the
-                    metadata is incomplete, or it is not this question's. When
-                    nothing failed but some checks could not be decided, it is
-                    "not fully evaluated" - never a pass.
+Calibrated rule (default since 23 Oct 2026; REGULUS_REVIEW_RULE=strict restores the earlier one):
 
-The assessment is the live evidence assessment of this one answer
-(`regulus_live_evidence_assessment_v2`): it compares the answer with the
-regulatory evidence retrieved for it. No reference answer is involved, and it
-is not the 300-question acceptance-test result.
+    FAIL            a check found a DEFECT: the answer verdict is incorrect, off-topic or a wrong refusal; a statement
+                    is contradicted by the governing text or the question went unanswered (substantive correctness
+                    failed); a fabricated identifier or figure; a citation that points to a source that does not
+                    support it; scope; a requested provision or a named element of the question left out.
+    PASS            no defect, every citation checked points to a supporting source, no figure, identifier or scope
+                    left undecided, and the answer was verified against the retrieved regulatory text: at least two
+                    statements that answer the question were matched to evidence and at most a third of its material
+                    statements could not be checked (or every one was verified). Never with a statement no evidence
+                    corresponds to, an unverified statement carrying a quantity, or completeness in doubt (a possible
+                    omission, or the question's subject not addressed - the mark of an answer built on the wrong section).
+    NOT EVALUATED   everything else, shown as "NOT FULLY EVALUATED" when no defect was found but too little could be
+                    checked; never a pass. Also: no assessment, the evaluator abstained or failed, no requirement stated,
+                    incomplete metadata, another question's result, a decline (one the evidence bears out may still be
+                    wrong: the evidence can lack the provision that answers it), and an answer replaced by verbatim
+                    provision text because the generated answer could not be validated (it does not apply them).
+
+Why: on the 22 Oct holdout (97 answers with blind two-lens verdicts) the strict rule - PASS only when every dimension
+passed - called 0 of 37 blind-PASS answers PASS and 35 of them FAIL, because statements the aligner cannot verify (a
+correct paraphrase) made dimensions "partial" and "partial" counted as failure; "partial" was in fact more common on
+blind-PASS answers (31/37) than on the rest (14/60). Uncertainty is now reported as uncertainty, and FAIL is kept for
+defects. Measured on 182 blind-scored answers (holdout 22 Oct; G5 arms, incl. 39 answers to dev questions the rule was
+not tuned on): blind-PASS answers shown FAIL 44 -> 8; PASS shown 13 times, 11 of them blind PASS and none misleading
+(the strict rule showed PASS twice, wrongly). Most correct answers are NOT FULLY EVALUATED: without a reference answer the
+evaluator can establish that an answer restates the retrieved text correctly, not that the text is the right section.
+See regulus_eval_runs/evaluator_calibration_20261023 for the measurement.
+
+The assessment is the live evidence assessment of this one answer (`regulus_live_evidence_assessment_v2`): it
+compares the answer with the regulatory evidence retrieved for it. No reference answer is involved, and it is not the
+300-question acceptance-test result.
 """
 
 from __future__ import annotations
 
+import os
+import re
 from typing import Any
 
 from regulus.accuracy import rubric as R
@@ -46,6 +60,23 @@ _FAILING_VERDICTS = frozenset({"incorrect", "partial", "off_topic", "abstention_
 BASIS = ("Live evidence assessment of this one answer: it is compared with the regulatory evidence retrieved for "
          "it. No reference answer is used, and this is not the 300-question acceptance-test result.")
 _MAX_EXPLANATION = 400
+RULE = os.environ.get("REGULUS_REVIEW_RULE", "calibrated").strip().lower()
+# dimensions whose FAIL is a defect in the answer itself (substantive correctness and completeness are read separately)
+_DEFECT_DIMENSIONS = (R.FABRICATION_FREE, R.CITATION, R.SCOPE, R.QUESTION_RELEVANCE)
+_SUBJECT_ELEMENT = "the question's subject"
+_ANSWERING = frozenset({"relevant", "partially_relevant"})
+_UNVERIFIED = "unverifiable"
+# an unverified statement is tolerated only as a paraphrase: never when it carries a quantity nothing confirmed
+# ("at least three supervisors per shift", "retained for ten years", "an annual examination")
+_QUANTITY = re.compile(r"\d|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twice|once|annual(?:ly)?|"
+                       r"daily|weekly|monthly|quarterly|yearly|hourly|every|per|each\s+(?:day|week|month|year|shift)|"
+                       r"days?|weeks?|months?|years?|hours?|percent)\b", re.I)
+# citation labels and markers are not quantities ("21 CFR 820.10(b)(2)", "§ 605(e)", "section 721", "[3]")
+_CITE = re.compile(r"(?:\b21\s*CFR\s*|§+\s*|\bsection\s+|\bpart\s+|\bFD&C Act\s*§?\s*)\d[\w.]*(?:\s*\([a-z0-9]{1,5}\))*|"
+                   r"\b\d{1,4}\.\d+[a-z]?(?:\s*\([a-z0-9]{1,5}\))*|\[\d{1,2}\]|\b\d+\s*U\.S\.C\.\s*\d+\w*", re.I)
+# completeness left undecided because content may be missing (repair removed it, or required paragraphs were not in
+# the evidence, or only unverifiable statements address a requirement): never a pass
+_POSSIBLE_OMISSION = re.compile(r"removed before delivery|were not in the evidence|states a requirement", re.I)
 
 
 def _dimension(dims: dict[str, dict], name: str) -> dict[str, Any] | None:
@@ -111,6 +142,8 @@ def question_review(assessment: Any, *, question: str) -> dict[str, Any]:
     if set(dims) != set(R.DIMENSIONS) or verdict is None or not isinstance(score, int):
         return out(NOT_EVALUATED, "The evaluation result is incomplete, so it is not shown.")
 
+    if RULE != "strict":
+        return _calibrated(assessment, dims, verdict, score, reason, out)
     failed = [d for d in R.DIMENSIONS if dims[d]["state"] in (R.FAIL, R.PARTIAL)]
     if failed or verdict in _FAILING_VERDICTS:
         # the evaluator's reason leads with the answer verdict, which can be
@@ -125,3 +158,77 @@ def question_review(assessment: Any, *, question: str) -> dict[str, Any]:
                if undecided else f"No check failed, but the answer verdict is '{verdict}'.")
         return out(NOT_EVALUATED, why, label=NOT_FULLY_EVALUATED, dims=dims, score=score)
     return out(PASS, reason, dims=dims, score=score)
+
+
+def _calibrated(assessment: dict, dims: dict[str, dict], verdict: str, score: int, reason: str, out) -> dict[str, Any]:
+    """The calibrated rule (module docstring): FAIL for a defect, PASS for a verified answer, otherwise not fully
+    evaluated."""
+    state = lambda d: dims[d]["state"]
+    detail = lambda d: str(dims[d].get("detail") or "")
+    checked = assessment.get("checked") if isinstance(assessment.get("checked"), dict) else {}
+    # the provision text shown verbatim because the generated answer could not be validated: the regulation's own words,
+    # not applied to the question - neither a pass nor, unless a check below finds a real defect in it, a failure (the
+    # evaluator reads it as a decline; blind scorers passed 82.1336's and failed 700.3-Q2's, 22 Oct holdout)
+    verbatim = any(str(x.get("origin")) == "pipeline_sentence" and "could not be validated" in str(x.get("text") or "").lower()
+                   for x in checked.get("excluded_sentences") or () if isinstance(x, dict))
+    defects = []
+    if not verbatim and (verdict in ("incorrect", "off_topic", "abstention_incorrect") or state(R.SUBSTANTIVE) == R.FAIL):
+        defects.append(R.SUBSTANTIVE)
+    defects += [d for d in _DEFECT_DIMENSIONS if state(d) == R.FAIL]
+    missing = [str(x) for x in (dims[R.COMPLETENESS].get("evidence") or ())]
+    if verbatim:
+        pass                                    # completeness of quoted text is not the answer's own omission
+    elif state(R.COMPLETENESS) == R.FAIL and any(x != _SUBJECT_ELEMENT for x in missing or ("?",)):
+        defects.append(R.COMPLETENESS)          # a named part of the question or a requested provision left out
+    elif state(R.COMPLETENESS) == R.PARTIAL and "requested provision" in detail(R.COMPLETENESS):
+        defects.append(R.COMPLETENESS)          # a requested provision had no text, said so: still not complete
+    if defects:
+        why = reason if R.SUBSTANTIVE in defects and verdict in _FAILING_VERDICTS else "; ".join(
+            f"{R.LABELS[d]} {STATE_LABEL[state(d)].lower()}: {detail(d)}".rstrip(": ") for d in defects)
+        return out(FAIL, why, dims=dims, score=score)
+
+    if verdict == "abstention_correct":
+        # a decline the retrieved evidence bears out is not shown as a pass: the evidence may lack the provision that
+        # answers it (FDCA612-Q2: 612(a) states the figure, and it was not retrieved; blind scoring fails every decline)
+        return out(NOT_EVALUATED, "The answer declined. Declining is consistent with the retrieved evidence, which does "
+                                  "not state what was asked; that does not establish that the regulation is silent.",
+                   label=NOT_FULLY_EVALUATED, dims=dims, score=score)
+    if verbatim:
+        return out(NOT_EVALUATED, "The generated answer could not be validated, so the provision text was shown "
+                                  "verbatim instead; it does not apply the provisions to the question.",
+                   label=NOT_FULLY_EVALUATED, dims=dims, score=score)
+    claims = [c for c in checked.get("claims") or () if isinstance(c, dict)]
+    answering = [c for c in claims if (c.get("relevance") or {}).get("verdict") in _ANSWERING]
+    verified = sum(1 for c in answering if c.get("final") != _UNVERIFIED)
+    # what could not be checked counts every material statement not judged off the question: an unverifiable
+    # statement the relevance check left undetermined ("It regulates all food sold worldwide") is still a claim
+    considered = [c for c in claims if (c.get("relevance") or {}).get("verdict") != "irrelevant"]
+    unverified = sum(1 for c in considered if c.get("final") == _UNVERIFIED)
+    # an identifier or figure nothing accounts for (fabrication not established), or scope not established, is never
+    # passed: "This duty is restated in 21 CFR 820.777" names a section the evidence cannot vouch for
+    vouched = all(state(d) == R.PASS for d in (R.CITATION, R.FABRICATION_FREE, R.SCOPE))
+    # a statement with no corresponding evidence at all (the invented "annual CGMP proficiency test" beside verbatim
+    # 211.25 text is "unverifiable / no_evidence", and not counted as answering), an unverified statement with a
+    # quantity, or completeness undecided for a possible omission: never a pass (tests/test_accuracy_pass_integrity)
+    invented = [c for c in claims if c.get("final") == _UNVERIFIED and c.get("support_basis") == "no_evidence"]
+    unconfirmed_quantity = [c for c in answering if c.get("final") == _UNVERIFIED and _QUANTITY.search(_CITE.sub(" ", str(c.get("claim") or "")))]
+    omission = state(R.COMPLETENESS) == R.NOT_ESTABLISHED and _POSSIBLE_OMISSION.search(detail(R.COMPLETENESS))
+    # the question's subject not addressed: noise on right-section answers (14 blind-PASS holdout answers), but the mark
+    # of an answer built on the wrong section (G5 held-out: 70.3-Q1, 71.25-Q1, FDCA606-Q2, FDCA602-Q1 restate the
+    # evidence faithfully and answer another question) - never a failure on its own, never a pass
+    omission = omission or (state(R.COMPLETENESS) in (R.FAIL, R.PARTIAL) and not defects)
+    vouched = vouched and not invented and not unconfirmed_quantity and not omission
+    enough = ((verified >= 2 and 3 * unverified <= len(considered))
+              or (verified >= 1 and unverified == 0 and state(R.EVIDENCE_SUPPORT) == R.PASS))
+    if vouched and enough:
+        why = (f"No defect found: {verified} of {len(considered)} statement(s) were checked "
+               f"against the retrieved regulatory text and their citations point to supporting sources"
+               + (f"; {unverified} could not be checked" if unverified else "") + ".")
+        return out(PASS, why, dims=dims, score=score)
+    undecided = [f"{R.LABELS[d]} ({detail(d)})" for d in R.DIMENSIONS if state(d) == R.NOT_ESTABLISHED]
+    undecided += [f"a statement no retrieved evidence corresponds to (\"{str(c.get('claim'))[:120]}\")" for c in invented[:2]]
+    undecided += [f"an unconfirmed quantity (\"{str(c.get('claim'))[:120]}\")" for c in unconfirmed_quantity[:2]]
+    why = ("No defect was found, but " + (f"only {verified} of {len(considered)} statement(s) could be checked against "
+           f"the retrieved regulatory text" if vouched else "not everything could be checked")
+           + (f"; not decided: {'; '.join(undecided)}" if undecided else "") + ".")
+    return out(NOT_EVALUATED, why, label=NOT_FULLY_EVALUATED, dims=dims, score=score)

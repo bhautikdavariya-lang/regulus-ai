@@ -112,9 +112,11 @@ def test_a_substantively_correct_but_incomplete_answer_fails_the_full_rubric(tmp
     assert ">PASS<" not in r["block"]
 
 
-def test_a_partially_correct_answer_fails(tmp_path):
+def test_a_partially_verified_answer_is_not_fully_evaluated(tmp_path):
+    # calibrated rule (23 Oct): a provision nothing vouches for (no identifier index here) is undecided, never a pass
     r = shown(tmp_path, evaluated(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} [1] This duty is restated in 21 CFR 820.777."))
-    assert ">FAIL<" in r["block"] and "Partial —" in r["block"] and "Partially correct" in r["block"]
+    assert "NOT FULLY EVALUATED" in r["block"] and "Partial —" in r["block"] and "820.777" in r["block"]
+    assert_never_a_pass(r)
 
 
 # ---------------------------------------------------- 4: no evaluation result
@@ -244,8 +246,8 @@ def test_a_score_of_zero_is_shown_as_zero_under_fail(tmp_path):
 def test_a_partial_answer_keeps_its_explanations_and_its_own_score(tmp_path):
     a = evaluated(ONE, f"21 CFR 820.10(b)(2): {PURCHASING} [1] This duty is restated in 21 CFR 820.777.")
     r = shown(tmp_path, a)
-    assert score_line(r) == f"Evaluation score {a['accuracy']}/100" and ">FAIL<" in r["block"]
-    assert "Partial —" in r["block"] and "Partially correct" in r["block"]
+    assert score_line(r) == f"Evaluation score {a['accuracy']}/100" and "NOT FULLY EVALUATED" in r["block"]
+    assert "Partial —" in r["block"] and "could not be verified" in r["block"]
 
 
 def test_no_score_without_a_legitimate_result(tmp_path):
