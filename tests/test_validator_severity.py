@@ -63,8 +63,9 @@ def test_the_three_findings_are_errors_mapped_to_unsupported():
 
 
 def test_the_fix_changes_no_other_severity_or_status():
+    # OBLIGATION_STRENGTHENED is raised only with fix E1 switched on (regulus.rag.validator_switches, 23 Oct)
     assert CV.SEVERITY == {CV.PARAGRAPH_MISATTRIBUTION: "error", CV.INVENTED_CONDITION: "error", CV.CONDITION_NOT_IN_CITED: "error",
-                           CV.UNSUPPORTED_PREMISE: "error", CV.UNSUPPORTED_CLAIM: "error"}
+                           CV.UNSUPPORTED_PREMISE: "error", CV.UNSUPPORTED_CLAIM: "error", CV.OBLIGATION_STRENGTHENED: "error"}
     assert V._CODE_STATUS[CV.INVENTED_CONDITION] == V.STATUS_EVIDENCE_MISMATCHED   # still repaired in place
     assert V.LOW_OVERLAP not in V._CODE_STATUS and QUALIFIER_DROPPED not in V._CODE_STATUS
 

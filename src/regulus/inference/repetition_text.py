@@ -78,30 +78,58 @@ def trim_repetition(text: str) -> tuple[str, int]:
 
 
 
-def drop_duplicate_sentences(text: str) -> tuple[str, int]:
+def _flat(text: str) -> str:
+    """Text for a verbatim-passage test: no citation markers or quotation marks, lower case, single spaces."""
+    s = re.sub(r"[\"'“”‘’]", "", _MARKS.sub(" ", text or "")).lower()
+    return re.sub(r"\s+([.,;:!?])", r"\1", re.sub(r"\s+", " ", s)).strip()
+
+
+def _quoted_runs(parts: list[str], drop: set[int], sources: list[str]) -> set[int]:
+    """The repeated sentences that must stay because dropping them would cut a passage a source states verbatim: a
+    run of repeats on one line, read together with the kept sentence it adjoins on that line, is source text (the
+    740.17 caution quoted in full twice lost its middle three sentences the second time; holdout failure fix G)."""
+    flat_sources = [_flat(s) for s in sources if s]
+    keep: set[int] = set()
+    i = 0
+    while i < len(parts):
+        if i not in drop:
+            i += 2
+            continue
+        j = i
+        while j + 2 < len(parts) and j + 2 in drop and "\n" not in parts[j + 1]:
+            j += 2
+        run = " ".join(parts[k] for k in range(i, j + 1, 2))
+        before = parts[i - 2] if i >= 2 and i - 2 not in drop and "\n" not in parts[i - 1] else ""
+        after = parts[j + 2] if j + 2 < len(parts) and j + 2 not in drop and "\n" not in parts[j + 1] else ""
+        joined = [_flat(x) for x in ((before + " " + run) if before else "", (run + " " + after) if after else "") if x]
+        if any(len(x) >= 2 * MIN_SENTENCE_CHARS and any(x in s for s in flat_sources) for x in joined):
+            keep.update(range(i, j + 1, 2))
+        i = j + 2
+    return keep
+
+
+def drop_duplicate_sentences(text: str, sources: list[str] | None = None) -> tuple[str, int]:
     """Remove every later copy of a sentence or list item that is IDENTICAL to an earlier one once citation
     markers, list bullets, case and spacing are ignored (>= 20 characters). Nothing is lost: the first copy
     stays. Near-identical sentences are NOT touched: measured in Stage 8, their overlap does not separate
-    restatements (0.84) from distinct requirements worded alike (0.83)."""
+    restatements (0.84) from distinct requirements worded alike (0.83). With `sources` (the supplied source texts),
+    a copy that is part of a passage quoted verbatim from a source is kept, so no quotation loses sentences."""
     parts = _merge_abbreviations(re.split(r"((?<=[.!?])[ \t]+(?:\[\s*\d{1,3}\s*\][ \t]*)*|\n+)", text or ""))
     seen: set[str] = set()
-    out: list[str] = []
-    removed = 0
-    skip_sep = False
-    for i, part in enumerate(parts):
-        if i % 2 == 1:  # separator
-            if not skip_sep:
-                out.append(part)
-            skip_sep = False
-            continue
-        key = normalise_sentence(part)
+    drop: set[int] = set()
+    for i in range(0, len(parts), 2):
+        key = normalise_sentence(parts[i])
         if len(key) >= MIN_SENTENCE_CHARS and key in seen:
-            removed += 1
-            skip_sep = True
-            continue
-        if len(key) >= MIN_SENTENCE_CHARS:
+            drop.add(i)
+        elif len(key) >= MIN_SENTENCE_CHARS:
             seen.add(key)
-        out.append(part)
-    if not removed:
+    if drop and sources:
+        drop -= _quoted_runs(parts, drop, sources)
+    if not drop:
         return text, 0
-    return re.sub(r"\n{3,}", "\n\n", "".join(out)).strip(), removed
+    out: list[str] = []
+    for i, part in enumerate(parts):
+        if i in drop or (i % 2 == 1 and i - 1 in drop):   # a dropped sentence takes its following separator along
+            continue
+        out.append(part)
+    return re.sub(r"\n{3,}", "\n\n", "".join(out)).strip(), len(drop)

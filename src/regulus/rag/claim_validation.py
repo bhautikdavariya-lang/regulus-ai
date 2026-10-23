@@ -32,7 +32,9 @@ INVENTED_CONDITION = "invented_condition"
 CONDITION_NOT_IN_CITED = "condition_not_in_cited_source"
 UNSUPPORTED_PREMISE = "unsupported_premise"
 UNSUPPORTED_CLAIM = "unsupported_claim"
-CLAIM_CODES = (PARAGRAPH_MISATTRIBUTION, INVENTED_CONDITION, CONDITION_NOT_IN_CITED, UNSUPPORTED_PREMISE, UNSUPPORTED_CLAIM)
+OBLIGATION_STRENGTHENED = "obligation_strengthened"
+CLAIM_CODES = (PARAGRAPH_MISATTRIBUTION, INVENTED_CONDITION, CONDITION_NOT_IN_CITED, UNSUPPORTED_PREMISE, UNSUPPORTED_CLAIM,
+               OBLIGATION_STRENGTHENED)
 
 # measured before being enforced (see module docstring); "warning" findings are reported, never repaired
 # Stage 7 measurement on the 63 recorded Stage 6 answers (artifacts/validation_eval/):
@@ -51,6 +53,9 @@ SEVERITY = {
     CONDITION_NOT_IN_CITED: "error",
     UNSUPPORTED_PREMISE: "error",
     UNSUPPORTED_CLAIM: "error",
+    # E1 (23 Oct): on 228 recorded answers it fired on 6, none of them a PASS answer (G2); an error, so the draft goes
+    # back to the model with the source's own word before any repair
+    OBLIGATION_STRENGTHENED: "error",
 }
 
 MISATTRIBUTION_OWN_MAX = 0.25     # at most this share of the statement's word 3-grams in the named provision
@@ -88,7 +93,7 @@ _SUPPORTED_BY = {
 # pipeline-authored and refusal sentences are not claims about the evidence
 _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough information|do(?:es)? not (?:cover|establish)|"
                           r"not found in the available|were not verified|no answer is given|verbatim\)?:|"
-                          r"sources? do(?:es)? not provide", re.I)
+                          r"sources? do(?:es)? not provide|^\s*status note \(", re.I)
 _LEAD = 45  # a provision label within the first characters of a statement names what it presents
 
 # A2 (regulus.rag.validator_switches): "These provisions set no limit on the amount of guanine" is a claim about the
@@ -159,6 +164,49 @@ class ClaimFinding:
     citation: int | None = None
     sentence: str | None = None
     requirement_id: str | None = None
+
+
+# E1 (regulus.rag.validator_switches, holdout failure fix E): a statement that makes a duty of what its source only
+# requests, recommends or permits ("is required to file" for 720.1's "is requested to file"; "must conform" for 82.50's
+# "may be certified ... if it conforms"). The source sentence it restates is the cited sentence sharing most of its
+# content words; the finding needs that sentence to carry a weak modal and no duty word of its own.
+_DUTY = re.compile(r"\b(?:must(?! not)|shall|(?:is|are)\s+(?:required|obligated|responsible\s+for)|required\s+to|requires?|"
+                   r"mandatory|obligat(?:ory|ion|ed))\b", re.I)
+_SOURCE_DUTY = re.compile(r"\b(?:must|shall|required|requires?|requirement|mandatory|prohibit\w*|may not|no person)\b", re.I)
+# "may" is left out: "may be certified only if it conforms" / "may be used in amounts consistent with GMP" state the
+# conditions of a permission, which ARE requirements (82.1050 restated as "requires" scored PASS on 82.1255, 82.1336);
+# so is a bare "request", mostly a noun ("requests for a hearing", "De Novo Request"). Measured 23 Oct on 228 recorded
+# answers: with them, 34 fires and 3 on PASS answers; without, fires only on the voluntary-program sections.
+_WEAK = re.compile(r"\b(?:should|(?:is|are)\s+requested|voluntar\w*|encourag\w*|recommend\w*)\b", re.I)
+_SOURCE_SENTENCE = re.compile(r"(?<=[.;:])\s+(?=[A-Z(])")
+
+
+def strengthened_obligation(sentence: str, cited_texts: list[str], supplied_texts: list[str] = ()) -> str | None:
+    """The weak source wording a duty statement strengthens, or None (no duty word, nothing cited, the closest cited
+    source sentence states a duty itself, or another supplied source states that duty: then the duty may be right and
+    only mis-cited - FDCA613-Q2 cited the voluntary 710.1 "is requested to register" for MoCRA's mandatory 607
+    registration, and correcting it to "requested" made a misleading answer, blind A/B 23 Oct)."""
+    body = _LABEL.sub(" ", _MARK.sub(" ", sentence))
+    duty = _DUTY.search(body)
+    if not duty or not cited_texts or _NEGATED.search(body[:duty.start()][-12:]):
+        return None
+    words = _words(body)
+    if len(words) < UNSUPPORTED_MIN_WORDS:
+        return None
+    best, score = None, 0.0
+    for text in cited_texts:
+        for piece in _SOURCE_SENTENCE.split(text or ""):
+            share = len(words & _words(piece)) / len(words)
+            if share > score:
+                best, score = piece, share
+    if best is None or score < 0.4 or _SOURCE_DUTY.search(best):
+        return None
+    for text in supplied_texts:
+        for piece in _SOURCE_SENTENCE.split(text or ""):
+            if _SOURCE_DUTY.search(piece) and not _WEAK.search(piece) and len(words & _words(piece)) / len(words) >= 0.4:
+                return None
+    weak = _WEAK.search(best)
+    return f"'{duty.group(0)}' where the source says '{weak.group(0)}'" if weak else None
 
 
 def _grams(text: str, n: int = 3) -> set[tuple[str, ...]]:
@@ -237,6 +285,14 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
                 findings.append(ClaimFinding(CONDITION_NOT_IN_CITED, SEVERITY[CONDITION_NOT_IN_CITED],
                                              f"condition '{m.group(0)}' is in a supplied source, but not in the one(s) cited",
                                              citation=marks[0], sentence=sentence))
+
+        # -- E1: a duty the cited source only requests, recommends or permits
+        if precision_fix("E1") and cited_texts:
+            weaker = strengthened_obligation(sentence, cited_texts, [t for i, t in ((s.index, s.text) for s in package.sources)
+                                                                      if i not in marks])
+            if weaker:
+                findings.append(ClaimFinding(OBLIGATION_STRENGTHENED, SEVERITY[OBLIGATION_STRENGTHENED],
+                                             f"states a duty ({weaker})", citation=marks[0], sentence=sentence))
 
         # -- statements whose content no supplied source supports
         words = _words(content)

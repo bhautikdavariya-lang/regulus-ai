@@ -337,7 +337,13 @@ _NOTE_BY_CODE = {
     "truncated": "The draft ran too long and was cut off. Answer concisely: each point once.",
     "degenerate_output": "The draft repeated itself ({detail}). Say each point once.",
     "unsupported_premise": "{detail}. Do not affirm what no source states.",
+    "obligation_strengthened": "The draft {detail}: \"{sentence}\". State it with the source's own word, not as a requirement.",
 }
+
+
+def _quote_sources(package: GenerationPackage | None) -> list[str] | None:
+    """The supplied source texts duplicate removal must not cut a verbatim quotation of (fix G1), or None."""
+    return [s.text for s in package.sources] if package is not None and precision_fix("G1") else None
 
 
 def correction_notes(report: ValidationReport, package: GenerationPackage, limit: int = 6) -> list[str]:
@@ -665,7 +671,7 @@ class RagPipeline:
         gen2 = self._generate(msgs, package.max_new_tokens, None)
         text = (gen2.response or "").strip()
         if not repeated_sentence(text):
-            text, _ = drop_duplicate_sentences(text)
+            text, _ = drop_duplicate_sentences(text, _quote_sources(package))
         text, _ = strip_plan_labels(text)
         if analysis is not None:
             text, _ = normalize_answer(text, question)
@@ -983,6 +989,10 @@ class RagPipeline:
             from regulus.rag.color_listing import compose as compose_listing
 
             text = compose_listing(package, question)
+            if not text and precision_fix("C82"):
+                from regulus.rag.color_listing import compose_certification
+
+                text = compose_certification(package, question)
             if text:
                 report = validate_answer(text, package, None)
                 generation_info["listing_composer"] = {"composed": True, "valid": report.ok, "codes": list(report.codes())}
@@ -1063,7 +1073,7 @@ class RagPipeline:
             # lexical validation could not tell. An identical sentence said twice in a non-looping answer is said once.
             duplicates_removed = 0
             if not repeated_sentence(answer_text):
-                answer_text, duplicates_removed = drop_duplicate_sentences(answer_text)
+                answer_text, duplicates_removed = drop_duplicate_sentences(answer_text, _quote_sources(package))
             # requirement-id labels ("r1:") and empty list items copied from the prompt's layout: presentation only
             answer_text, plan_labels_removed = strip_plan_labels(answer_text)
             if analysis is not None:
@@ -1172,6 +1182,15 @@ class RagPipeline:
                             "notice_appended": bool(answer_text)}
             if answer_text:
                 answer_text = answer_text.rstrip() + "\n" + withheld_evidence_statement(dict(left_out))
+        if package is not None and answer_text and fallback_type != FB_UNVALIDATED and precision_fix("S1"):
+            # S1: the dated, sourced status of a cited provision that its codified text does not carry (710/720
+            # program closed, 740.18 stayed, no 606 rule), appended verbatim after validation
+            from regulus.rag.status_notes import status_notes
+
+            notes = status_notes(answer_text, package.sources)
+            if notes:
+                answer_text = answer_text.rstrip() + "\n\n" + "\n".join(n["text"] for n in notes)
+                generation_info["status_notes"] = [n["id"] for n in notes]
         t_post = time.perf_counter()
         if package is not None and model_called:
             addressed = validation_final.addressed if validation_final is not None else ()

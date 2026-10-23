@@ -1,13 +1,14 @@
 """Validator precision switches (23 Oct 2026, holdout failure analysis, fix A).
 
 Correct drafts were withheld by validator findings that are themselves false (9 of 63 non-PASS holdout answers).
-REGULUS_VALIDATOR_PRECISION lists the fixes switched on, e.g. "A1,A2,A3"; the default since 23 Oct is "A2,A3,A4" (the
-fixes that passed the gates); "off" keeps the validator exactly as it was before them. Each fix ships only after the exact replay of the recorded answers (37 holdout PASS rows
-unchanged or re-scored PASS, the named misleading drafts still withheld) and a blind answer A/B.
-  A1  a citation whose number the evidence carries is not a figure ("§74.705(a)(1)" read as "74"). HOLD: correct in
-      itself, but on the blind A/B (23 Oct) it gained one PASS (82.1602) and released one misleading draft whose only
-      finding was this false figure (FDCA605-Q1: an invented reporting route). Ship it with the misstatement checks
-      (failure analysis fix E) that catch such drafts for the right reason.
+REGULUS_VALIDATOR_PRECISION lists the fixes switched on, e.g. "A1,A2,A3"; the default is every fix that passed the gates,
+"A1,A2,A3,A4,G1,S1,E1,C82" since the evening of 23 Oct; "off" keeps the validator exactly as it was before them. Each
+fix ships only after the exact replay of the recorded answers (holdout PASS rows unchanged or re-scored PASS, the named
+misleading drafts still withheld) and a blind answer A/B.
+  A1  a CFR citation whose number the evidence carries is not a figure ("§74.705(a)(1)" read as "74"). FD&C Act
+      section numbers are left as figures: on the blind A/B (23 Oct) A1 over both released one misleading draft whose
+      only finding was the false figure 605 (FDCA605-Q1, an invented reporting route); CFR-only keeps it withheld and
+      still gains 82.1602 (exact replay: 6 answers changed, each already blind-scored or re-scored).
   A2  a scoped absence statement ("these provisions set no limit on the amount") is checked against the cited
       text's limiting terms instead of word overlap; unscoped denials stay errors
   A3  whole sentences that carry no citation and fail support (or repeat a supported sentence) are dropped and the
@@ -17,12 +18,24 @@ unchanged or re-scored PASS, the named misleading drafts still withheld) and a b
       ("21 CFR 71.30(b) requires ... [1]" with [1] = 71.30(a) and [2] = 71.30(b)), when its words are that source's
 Blind A/B (23 Oct, 170 recorded answers replayed, two scorers + adjudicator): A2+A3+A4 gained 3 PASS (70.10, 73.2120,
 FDCA201(i)), lost none, released no misleading draft; A1 is held (above).
+Answer post-processing fixes share the switch (failure analysis fix G):
+  G1  duplicate removal keeps a repeated sentence that is part of a passage quoted verbatim from a supplied source
+      (740.17: the full caution quoted twice lost three of its five sentences the second time)
+  E1  a duty its cited source only requests or recommends ("is required to file" for 720.1's "is requested to file")
+      is an error, and the draft goes back to the model with the source's own word (regulus.rag.claim_validation)
+  S1  a cited provision's current status that its text does not carry (710/720 program closed, 740.18 stayed, no 606
+      rule) is appended verbatim from data/reference/status_notes_v1.json (regulus.rag.status_notes)
+  C82 a Part 82 certification listing that is one conformity sentence is answered from its text and the subpart's
+      general section (regulus.rag.color_listing.compose_certification)
+Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
+questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
+82.1330 C82), none lost, misleading 4 -> 2.
 """
 from __future__ import annotations
 
 import os
 
-VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "A2,A3,A4").split(",")
+VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "A1,A2,A3,A4,G1,S1,E1,C82").split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 
 

@@ -1,5 +1,5 @@
-"""Validator precision fixes A1-A4 (23 Oct 2026, regulus.rag.validator_switches): each is off unless switched on, and
-each releases only the false finding it targets. No database, no model."""
+"""Validator and answer fixes A1-A4, G1, E1, S1, C82 (23 Oct 2026, regulus.rag.validator_switches): each changes only the
+answers it targets. No database, no model."""
 from types import SimpleNamespace
 
 from regulus.rag import validator_switches
@@ -30,9 +30,9 @@ def _unsupported(sentence):
 # ------------------------------------------------------------ switches
 
 
-def test_the_gated_fixes_are_on_by_default_and_a1_is_held():
-    # A2-A4 passed the exact replay and the blind A/B (23 Oct); A1 released a misleading draft and is held
-    assert validator_switches.VALIDATOR_PRECISION == frozenset({"A2", "A3", "A4"}) or \
+def test_the_gated_fixes_are_on_by_default():
+    # every fix passed the exact replay and a blind A/B (23 Oct); A1 reads only CFR citations as citations
+    assert validator_switches.VALIDATOR_PRECISION == frozenset({"A1", "A2", "A3", "A4", "G1", "S1", "E1", "C82"}) or \
         "REGULUS_VALIDATOR_PRECISION" in __import__("os").environ
 
 
@@ -45,6 +45,14 @@ def test_a1_a_supplied_citation_is_not_a_figure_but_an_invented_one_still_is():
     assert _figures(_strip_supplied_citations("conform to §74.705(a)(1) and (b) [1].", supplied)) == set()
     assert _figures(_strip_supplied_citations("conform to § 74.799(a) [1].", supplied)) == {"74"}
     assert _figures(_strip_supplied_citations("keep records 6 years under § 605(e) [2]", supplied)) == set()
+
+
+def test_a1_reads_only_cfr_citations_as_citations():
+    # FD&C Act section numbers stay figures until the misstatement checks ship: the false figure 605 was the only
+    # finding on a misleading draft (FDCA605-Q1, blind A/B 23 Oct), which must stay withheld
+    supplied = "FD&C Act § 605(e) Each responsible person shall maintain records; § 74.1328 (a)(1)"
+    assert _figures(_strip_supplied_citations("medical records beyond what is specified in § 605.", supplied)) == {"605"}
+    assert _figures(_strip_supplied_citations("conform to §74.1328(a)(1) [1].", supplied)) == set()
 
 
 def test_a1_never_touches_amounts():
@@ -166,3 +174,116 @@ def test_a3_leaves_a_draft_whose_verdict_says_the_evidence_does_not_govern():
              "storage [1]. Records must be retained for 2 years [2]. Storage rules are not part of these records.")
     only = "Storage rules are not part of these records."
     assert excise_unsupported_sentences(draft, _report(_unsupported(only)), "What storage records prove our talc compliance?") is None
+
+
+# ------------------------------------------------------------ G1 quotations survive duplicate removal
+
+CAUTION = ("Caution—Use only as directed. Excessive use or prolonged exposure may cause irritation to skin and urinary "
+           "tract. Discontinue use if rash, redness, or itching occurs. Consult your physician if irritation persists. "
+           "Keep out of reach of children.")
+
+
+def test_g1_a_quotation_repeated_from_its_source_keeps_every_sentence():
+    from regulus.inference.repetition_text import drop_duplicate_sentences
+    draft = ('The label must include the caution: "Use only as directed. Excessive use or prolonged exposure may cause '
+             'irritation to skin and urinary tract. Discontinue use if rash, redness, or itching occurs. Consult your '
+             'physician if irritation persists." [2]\n\nThe label must bear the following caution:\n' + CAUTION[:-1] + " [3].")
+    cut, n = drop_duplicate_sentences(draft)                     # without the sources: the old behaviour
+    assert n >= 2 and "Excessive use" not in cut.split("\n")[-1]
+    kept, m = drop_duplicate_sentences(draft, [CAUTION])
+    assert m == 0 and kept == draft
+
+
+def test_g1_an_ordinary_repeat_is_still_removed():
+    from regulus.inference.repetition_text import drop_duplicate_sentences
+    text = ("Records must be kept for two years [1]. They must be available to FDA [1].\n"
+            "Records must be kept for two years [1]. Lots need no quarantine [2].")
+    assert drop_duplicate_sentences(text, [CAUTION]) == (
+        "Records must be kept for two years [1]. They must be available to FDA [1].\nLots need no quarantine [2].", 1)
+
+
+# ------------------------------------------------------------ E1 obligation strength
+
+
+def test_e1_flags_a_duty_its_source_only_requests_or_recommends():
+    from regulus.rag.claim_validation import strengthened_obligation
+    requested = "(a) The manufacturer, packer, or distributor is requested to file Form FDA 2512 for each cosmetic product."
+    assert strengthened_obligation("21 CFR 720.1 requires the manufacturer, packer, or distributor to file Form FDA 2512 "
+                                   "for each cosmetic product [1].", [requested])
+    should = "Changes in ingredients or brand name should be shown by filing an amended Form FDA 2512 within 60 days."
+    assert strengthened_obligation("An amended Form FDA 2512 must be filed within 60 days of a brand name change [1].", [should])
+
+
+def test_e1_leaves_conditions_of_a_permission_and_real_duties_alone():
+    from regulus.rag.claim_validation import strengthened_obligation
+    may_if = ("A batch of a straight color listed in this subpart may be certified for use only in drugs and cosmetics "
+              "if such batch conforms to the requirements of 82.5.")
+    assert strengthened_obligation("21 CFR 82.1050 requires that a batch conform to the requirements of 82.5 to be "
+                                   "certified for drugs and cosmetics [1].", [may_if]) is None
+    shall = "The label shall bear adequate directions for safe use and the following caution."
+    assert strengthened_obligation("The label must bear adequate directions for safe use and the caution [1].", [shall]) is None
+    assert strengthened_obligation("Objections or requests for a hearing require a filing fee of $250 [1].",
+                                   ["Objections and requests for public hearing shall be accompanied by a fee of $250."]) is None
+
+
+# ------------------------------------------------------------ S1 status notes
+
+
+def test_s1_a_note_follows_only_the_provisions_the_answer_cites():
+    from regulus.rag.status_notes import status_notes
+    srcs = (_src(1, "710.3", "", "(a) Form FD-2511 ... is obtainable on request."),
+            _src(2, "740.18", "(a)", "(a) The principal display panel ... shall bear ..."),
+            _src(3, "701.3", "(a)", "(a) The label shall bear a declaration of ingredients."))
+    assert [n["id"] for n in status_notes("Use Form FD-2511 [1].", srcs)] == ["vcrp-closed"]
+    assert [n["id"] for n in status_notes("The warning applies [2] and ingredients are declared [3].", srcs)] == ["740.18-stayed"]
+    assert status_notes("Ingredients are declared [3].", srcs) == []
+    assert status_notes("Use Form FD-2511.", srcs) == []           # nothing cited, nothing appended
+    act = SimpleNamespace(index=4, citation="FD&C Act § 606(a) [21 U.S.C. 364b(a)]", heading=None, corpus="usc")
+    assert [n["id"] for n in status_notes("FDA shall issue GMP rules [4].", (act,))] == ["fdca606-gmp-not-issued"]
+
+
+# ------------------------------------------------------------ C82 Part 82 conformity listings composed from their text
+
+RED28 = "The color additive D&C Red No. 28 shall conform in identity and specifications to the requirements of § 74.1328 (a)(1) and (b) of this chapter."
+GEN_C = ("A batch of a straight color listed in this subpart may be certified, in accordance with the provisions of this "
+         "part, for use only in drugs and cosmetics, if such batch conforms to the requirements of § 82.5 and to the "
+         "specifications set forth in this subpart for such color.")
+
+
+def _pkg82(*sources, requested=("21 CFR 82.1328", "21 CFR 82.1050")):
+    srcs = []
+    for i, (section, text) in enumerate(sources, 1):
+        s = _src(i, section, "", text)
+        srcs.append(PackagedSource(**{**s.__dict__, "heading": "D&C Red No. 28." if section == "82.1328" else "General."}))
+    return SimpleNamespace(sources=tuple(srcs), requirements=tuple((f"r{i}", r) for i, r in enumerate(requested, 1)))
+
+
+def test_c82_composes_a_conformity_listing_from_its_text():
+    from regulus.rag.color_listing import compose_certification
+    out = compose_certification(_pkg82(("82.1328", RED28), ("82.1050", GEN_C)),
+                                "We make bath bombs colored with D&C Red No. 28. What does 82.1328 require, and does it restrict use?")
+    assert out.splitlines() == [
+        "21 CFR 82.1328 contains one requirement: D&C Red No. 28 shall conform in identity and specifications to the "
+        "requirements of 21 CFR 74.1328(a)(1) and (b) [1].",
+        "21 CFR 82.1328 states no use restriction [1].",
+        f"21 CFR 82.1050 states: \"{GEN_C}\" [2]."]
+
+
+def test_c82_stays_out_of_other_questions_and_other_listings():
+    from regulus.rag.color_listing import compose_certification
+    pkg = _pkg82(("82.1328", RED28), ("82.1050", GEN_C))
+    assert compose_certification(pkg, "Can we use D&C Red No. 28 in a lipstick?") is None            # a use question
+    assert compose_certification(pkg, "What does 82.1328 require of D&C Red No. 30?") is None         # another color
+    assert compose_certification(_pkg82(("82.1328", RED28)), "What does 82.1328 require of D&C Red No. 28?") is None
+    limited = _pkg82(("82.1328", RED28), ("82.1328", "(b) It may be used only in externally applied cosmetics."), ("82.1050", GEN_C))
+    assert compose_certification(limited, "What does 82.1328 require of D&C Red No. 28?") is None    # says more
+
+
+def test_e1_leaves_a_duty_another_supplied_source_states():
+    # FDCA613-Q2: "registration is required" cited to 710.1's voluntary request, while 607 (supplied) mandates it
+    from regulus.rag.claim_validation import strengthened_obligation
+    s = "Registration is required for any owner or operator of a facility that manufactures cosmetic products [1]."
+    voluntary = "The owner or operator of a cosmetic product establishment is requested to register each such establishment."
+    act = "Every person that owns or operates a facility that manufactures cosmetic products shall register each facility."
+    assert strengthened_obligation(s, [voluntary])
+    assert strengthened_obligation(s, [voluntary], [act]) is None

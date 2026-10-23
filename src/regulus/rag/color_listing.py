@@ -208,3 +208,57 @@ def compose(package, question: str) -> str | None:
         if sec.group(1) in requested or s.citation in requested:
             lines.append(_quote(s) + ".")
     return "\n".join(re.sub(r"\.\.$", ".", ln) for ln in lines)
+
+
+# Fix C82 (23 Oct 2026, regulus.rag.validator_switches): a Part 82 certification listing that is a single conformity
+# sentence ("The color additive D&C Red No. 28 shall conform in identity and specifications to the requirements of
+# § 74.1328 (a)(1) and (b)"), with at most the lakes sentence ("All lakes of ... shall be manufactured from previously
+# certified batches"). The model restated these correctly but did not say that the section itself sets no use
+# restriction or amount limit, or turned the subpart's "may be certified ... if" into a mandate (82.1328, 82.1330,
+# 82.705 on the 22 Oct holdout). Composed only when the question is about Part 82, certification or specifications and
+# names the color, and when the subpart's general section is supplied; anything else and the model answers as before.
+_CONFORM = re.compile(r"^(?:\([a-z]\)\s*)?The color additive (?P<name>.+?) shall conform in identity and specifications to the "
+                      r"requirements of §\s*(?P<ref>74\.\d+[a-z]?)\s*\(a\)\s*\(1\) and \(b\) of this chapter\.$")
+_LAKES = re.compile(r"^(?:\([a-z]\)\s*)?All lakes\b.{0,90}? shall be manufactured from previously certified batches of the "
+                    r"straight color additive\.$")   # 82.706(b): "All lakes including current D&C external and D&C lakes of ..."
+_ASKS_CERTIFICATION = re.compile(r"\bpart 82\b|\b82\.\d{2,4}|\bcertif|\bspecification", re.I)
+# subpart B (FD&C) sections are 82.50-82.706, subpart C (D&C) 82.1050-82.1710, subpart D (Ext. D&C) 82.2050-82.2707a
+_SUBPART_GENERAL = {"1": "21 CFR 82.1050", "2": "21 CFR 82.2050"}
+
+
+def compose_certification(package, question: str) -> str | None:
+    """The answer for a question about a Part 82 conformity-only listing, or None (see _CONFORM above)."""
+    if not _ASKS_CERTIFICATION.search(question or ""):
+        return None
+    listings = [label for _, label in package.requirements if LISTING_RE.match(label) and label.startswith("21 CFR 82.")
+                and label[7:] not in GENERAL_82]
+    if len(listings) != 1:
+        return None
+    label = listings[0]
+    own = [s for s in package.sources if re.match(rf"^{re.escape(label)}(?:\(|$)", s.citation or "")]
+    conform = [s for s in own if _CONFORM.match(" ".join((s.text or "").split()))]
+    others = [s for s in own if s not in conform]
+    if len(conform) != 1 or not all(_LAKES.match(" ".join((s.text or "").split())) for s in others):
+        return None
+    if not _names_listing(question, package, label):
+        return None
+    section = label[7:]
+    number = re.match(r"82\.(\d+)", section).group(1)
+    general_label = _SUBPART_GENERAL.get(number[0], "21 CFR 82.50") if len(number) == 4 else "21 CFR 82.50"
+    general = next((s for s in package.sources if s.citation == general_label), None)
+    if general is None:
+        return None
+    c = conform[0]
+    m = _CONFORM.match(" ".join(c.text.split()))
+    conformity = (f"{m.group('name')} shall conform in identity and specifications to the requirements of "
+                  f"21 CFR {m.group('ref')}(a)(1) and (b) [{c.index}].")
+    lines = [f"{label} contains one requirement: {conformity}" if not others else f"{c.citation}: {conformity}"]
+    lines += [_quote(s) + "." for s in others]
+    # a scoped absence the validator checks against the cited text (A2 "use" kind); an amount absence is not claimed,
+    # because only a uses paragraph can show that no amount limit exists
+    lines.append(f"{label} states no use restriction [{c.index}].")
+    lines.append(_quote(general) + ".")
+    spec = next((s for s in package.sources if s.citation == "21 CFR 82.5" or (s.citation or "").startswith("21 CFR 82.5(")), None)
+    if spec is not None:
+        lines.append(_quote(spec) + ".")
+    return "\n".join(re.sub(r"\.\.$", ".", ln) for ln in lines)

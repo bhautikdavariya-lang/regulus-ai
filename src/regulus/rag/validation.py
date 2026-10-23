@@ -65,6 +65,7 @@ from regulus.inference.repetition_text import normalise_sentence  # noqa: E402
 from regulus.rag.claim_validation import (  # noqa: E402
     CONDITION_NOT_IN_CITED,
     INVENTED_CONDITION,
+    OBLIGATION_STRENGTHENED,
     PARAGRAPH_MISATTRIBUTION,
     UNSUPPORTED_CLAIM,
     UNSUPPORTED_PREMISE,
@@ -92,6 +93,7 @@ _CODE_STATUS = {
     UNSUPPORTED_PREMISE: STATUS_UNSUPPORTED,
     UNSUPPORTED_CLAIM: STATUS_UNSUPPORTED,
     CONDITION_NOT_IN_CITED: STATUS_UNSUPPORTED,
+    OBLIGATION_STRENGTHENED: STATUS_UNSUPPORTED,   # E1: a duty its source only requests or recommends
     APPLICABILITY_DROPPED: STATUS_UNSUPPORTED,  # Stage 12 shape check, an error since the 16 Oct 2026 severity experiment
 }
 
@@ -138,11 +140,13 @@ def _strip_supplied_citations(text: str, supplied_text: str) -> str:
     '§74.705(a)(1)' in a draft reads as the figure 74 (the figure pattern cannot take 74.705 before a parenthesis),
     while the source's '§ 74.705 (a)(1)' reads as 74.705, so a faithful draft was withheld for an 'unsupported figure
     74' (82.705, 82.1328 on the 22 Oct holdout). A section number the evidence does not carry is left in place, so an
-    invented citation is still caught; amounts and currency are never touched."""
+    invented citation is still caught; amounts and currency are never touched. FD&C Act section numbers ('§ 605(e)')
+    are still read as figures: on the blind A/B (23 Oct) the false figure 605 was the only finding on a misleading
+    draft (FDCA605-Q1, an invented reporting route); they wait for the misstatement checks (failure analysis fix E)."""
     def drop(m: re.Match) -> str:
         return " " if re.search(rf"(?<![\d.]){re.escape(m.group(1))}(?![\d])", supplied_text) else m.group(0)
 
-    return _ACT_CITE_RE.sub(drop, _CFR_CITE_RE.sub(drop, text))
+    return _CFR_CITE_RE.sub(drop, text)
 
 
 @dataclass(frozen=True)
