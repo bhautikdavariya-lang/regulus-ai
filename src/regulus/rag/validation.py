@@ -257,6 +257,8 @@ def attach_trailing_markers(text: str) -> str:
     return _TRAILING_MARKS_RE.sub(lambda m: " " + " ".join(re.findall(r"\[\d{1,2}\]", m.group(3))) + m.group(1) + m.group(2), text)
 
 
+_EVIDENCE_DOES_NOT_GOVERN = re.compile(r"\b(?:do(?:es)? not|cannot|can not|is not|are not)\s+(?:\w+\s+){0,3}?(?:govern|cover|address|"
+                                       r"apply|regulate|establish|reach|concern|deal with)\b|\bnot (?:governed|covered|addressed) by\b", re.I)
 # A3 (regulus.rag.validator_switches): sentence findings a whole-sentence cut can answer
 EXCISABLE_CODES = frozenset({"unsupported_claim", "invented_condition"})
 REPEAT_OVERLAP = 0.8   # share of a flagged sentence's content words an earlier passing sentence already states
@@ -279,9 +281,13 @@ def excise_unsupported_sentences(text: str, report: "ValidationReport", question
     errors = report.errors
     if not errors or any(p.code not in EXCISABLE_CODES or not p.sentence for p in errors):
         return None
+    if report.truncated or report.finished is False:
+        return None   # a cut-off draft is not trimmed into a valid one (701.13-G1: repetitive and truncated, blind A/B)
     attached = attach_trailing_markers(text)
     sentences = split_sentences(attached)
-    if not sentences:
+    if not sentences or _EVIDENCE_DOES_NOT_GOVERN.search(sentences[0]):
+        # the verdict itself says the supplied provision does not govern the question: the evidence is the wrong
+        # section, and the honest outcome is the withheld answer (UC-015: "cannot establish compliance under 700.27")
         return None
     flagged = list(dict.fromkeys(p.sentence for p in errors))
     words = lambda s: _content_words(MARK_RE.sub(" ", s))  # noqa: E731

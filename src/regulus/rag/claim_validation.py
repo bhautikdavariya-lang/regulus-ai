@@ -113,9 +113,9 @@ _ABSENT_KIND = {
                           r"how much|numeric(?:al)?\s+limits?|ppm)\b", re.I),
                re.compile(r"\b(?:not (?:more|less) than|not to exceed|not exceeding|percent|per cent|ppm|parts per million|p/m|"
                           r"mg/kg|milligrams?|maximum|minimum)\b|%|\d+(?:\.\d+)?\s*(?:percent|ppm|mg)\b", re.I)),
-    "time": (re.compile(r"\b(?:frequenc(?:y|ies)|how often|time\s+limits?|deadlines?|timeframes?|how soon|by when)\b", re.I),
-             re.compile(r"\b\d+\s*(?:calendar\s+|business\s+|working\s+)?(?:days?|weeks?|months?|years?)\b|"
-                        r"\b(?:annual(?:ly)?|biennial(?:ly)?|every|within|no later than|each year)\b", re.I)),
+    # no "time" kind: a scoped "these provisions set no timeframe" was true of the cited 812.40 and misleading, because
+    # the deadline lives in 812.46, which was not supplied (P-010, blind A/B 23 Oct). Amount and use limits of a color
+    # live in its own listing's uses paragraph; deadlines often live elsewhere.
     "use": (re.compile(r"\b(?:restrict(?:ion|ions|s|ed)?\s+(?:on\s+)?(?:its\s+|their\s+|the\s+)?use|use\s+restrictions?|"
                        r"limit(?:s|ations?)?\s+on\s+(?:its\s+|their\s+|the\s+)?use|which products|product types?)\b", re.I),
             re.compile(r"\b(?:only|restricted|restriction|may not|shall not|must not|not be used|prohibited|except|excluding|"

@@ -143,3 +143,25 @@ def test_a4_leaves_a_correct_or_uncertain_citation_alone():
     assert repoint_named_citations(right, pkg) == (right, 0)
     unrelated = "21 CFR 71.30(b) says that cosmetics must carry a warning statement about aerosols and flammability [1]."
     assert repoint_named_citations(unrelated, pkg) == (unrelated, 0)      # the words are not the named provision's
+
+
+def test_a2_does_not_vouch_for_a_missing_deadline():
+    # a deadline usually lives in another section than the one cited (P-010: 812.40 cited, 812.46 sets the timeframe)
+    s = "These provisions set no specific timeframes for monitoring the investigation."
+    assert scoped_absence(s) and not absence_supported(s, ["(a) Sponsors shall select qualified investigators."])
+
+
+def test_a3_never_trims_a_cut_off_draft():
+    filler = "The use in body washes is not addressed in any provision, so it is not permitted under current regulations."
+    rep = _report(_unsupported(filler))
+    cut = ValidationReport(**{**rep.__dict__, "truncated": True})
+    unfinished = ValidationReport(**{**rep.__dict__, "finished": False})
+    assert excise_unsupported_sentences(DRAFT, cut, QUESTION) is None
+    assert excise_unsupported_sentences(DRAFT, unfinished, QUESTION) is None
+
+
+def test_a3_leaves_a_draft_whose_verdict_says_the_evidence_does_not_govern():
+    draft = ("A retailer cannot establish compliance under 21 CFR 700.27 because this regulation does not govern talc "
+             "storage [1]. Records must be retained for 2 years [2]. Storage rules are not part of these records.")
+    only = "Storage rules are not part of these records."
+    assert excise_unsupported_sentences(draft, _report(_unsupported(only)), "What storage records prove our talc compliance?") is None
