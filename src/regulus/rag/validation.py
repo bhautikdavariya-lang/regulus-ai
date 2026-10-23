@@ -28,6 +28,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from regulus.evaluation.grounding_eval import REFUSAL, classify_answer, split_sentences
+from regulus.rag.validator_switches import enabled as precision_fix
 from regulus.inference.types import GenerationResult
 from regulus.rag.generation import GenerationPackage, SHAPE_DOCKET, SHAPE_GENERAL
 from regulus.rag.shape_validation import APPLICABILITY_DROPPED, ENUMERATION_INCOMPLETE, MATERIAL_GROUP_UNCOVERED, PROMPT_ECHO, check_shape
@@ -127,6 +128,21 @@ _STOPWORDS = {
     "ecfr", "binding", "regulation", "guidance", "clause", "clauses", "iso", "subclause",
 }
 LOW_OVERLAP_THRESHOLD = 0.4
+_CFR_CITE_RE = re.compile(r"(?:§§?\s*|\b21\s+CFR\s+(?:§\s*)?)?(?<![\d.])(\d{1,4}\.\d{1,5}[a-z]?)(?:\s*\([A-Za-z0-9]{1,6}\))*", re.I)
+_ACT_CITE_RE = re.compile(r"(?:§§?\s*|\bsection\s+|\bsec\.\s*|\bU\.?S\.?C\.?\s*§*\s*)(\d{3}[a-z]{0,2})(?:\s*\([A-Za-z0-9]{1,6}\))*", re.I)
+
+
+def _strip_supplied_citations(text: str, supplied_text: str) -> str:
+    """Citations whose number the evidence itself carries, taken out of the text the figure check reads (fix A1).
+
+    '§74.705(a)(1)' in a draft reads as the figure 74 (the figure pattern cannot take 74.705 before a parenthesis),
+    while the source's '§ 74.705 (a)(1)' reads as 74.705, so a faithful draft was withheld for an 'unsupported figure
+    74' (82.705, 82.1328 on the 22 Oct holdout). A section number the evidence does not carry is left in place, so an
+    invented citation is still caught; amounts and currency are never touched."""
+    def drop(m: re.Match) -> str:
+        return " " if re.search(rf"(?<![\d.]){re.escape(m.group(1))}(?![\d])", supplied_text) else m.group(0)
+
+    return _ACT_CITE_RE.sub(drop, _CFR_CITE_RE.sub(drop, text))
 
 
 @dataclass(frozen=True)
@@ -241,6 +257,58 @@ def attach_trailing_markers(text: str) -> str:
     return _TRAILING_MARKS_RE.sub(lambda m: " " + " ".join(re.findall(r"\[\d{1,2}\]", m.group(3))) + m.group(1) + m.group(2), text)
 
 
+# A3 (regulus.rag.validator_switches): sentence findings a whole-sentence cut can answer
+EXCISABLE_CODES = frozenset({"unsupported_claim", "invented_condition"})
+REPEAT_OVERLAP = 0.8   # share of a flagged sentence's content words an earlier passing sentence already states
+EXCISE_MAX = 2         # filler is one or two sentences; a draft with more unsupported sentences is off its evidence
+
+
+def excise_unsupported_sentences(text: str, report: "ValidationReport", question: str | None = None) -> tuple[str, int] | None:
+    """The draft without its unsupported filler, or None (fix A3).
+
+    Trimmed only when EVERY error is an unsupported_claim or invented_condition finding on a whole sentence that is not
+    the first (verdict) sentence and either carries no citation or repeats what a passing sentence says ("The use in
+    body washes is not addressed in any provision, so it is not permitted" after a cited verdict that body wash is not
+    permitted). Sentences go whole - never a clause inside one, the route that once made a conditional requirement
+    unconditional (invented_conditions_removed). Guards, from the exact replay of 170 recorded answers (23 Oct): a
+    draft whose unsupported sentences ARE its answer is a draft about the wrong section (FDCA601-Q2, UC-002, UC-009:
+    "None of these provisions address contamination by rodent droppings"), and cutting them would deliver it as valid.
+    So at most EXCISE_MAX sentences and at most a third of the substantive ones; every question word a removed
+    sentence speaks to must still be spoken to by one that stays; what stays must cite a source and must not open by
+    declining. The caller validates the rest again, completeness included, and uses it only if it validates."""
+    errors = report.errors
+    if not errors or any(p.code not in EXCISABLE_CODES or not p.sentence for p in errors):
+        return None
+    attached = attach_trailing_markers(text)
+    sentences = split_sentences(attached)
+    if not sentences:
+        return None
+    flagged = list(dict.fromkeys(p.sentence for p in errors))
+    words = lambda s: _content_words(MARK_RE.sub(" ", s))  # noqa: E731
+    substantive = [s for s in sentences if len(words(s)) >= 4]
+    if len(flagged) > EXCISE_MAX or 3 * len(flagged) > max(len(substantive), 1):
+        return None
+    kept = [s for s in sentences if s not in flagged]
+    if not kept or not any(MARK_RE.search(s) for s in kept) or classify_answer(kept[0]) == REFUSAL:
+        return None
+    kept_words = set().union(*(words(s) for s in kept))
+    asked = _content_words(question or "")
+    for s in flagged:
+        if s.strip() == sentences[0].strip() or s not in attached:
+            return None
+        w = words(s)
+        repeats = bool(w) and any(len(w & words(q)) / len(w) >= REPEAT_OVERLAP for q in kept)
+        if MARK_RE.search(s) and not repeats:
+            return None   # a cited claim the evidence does not support is a real error, not filler
+        if (w & asked) - kept_words:
+            return None   # it is the only sentence that speaks to part of the question
+    out = attached
+    for s in flagged:
+        out = out.replace(s, "", 1)
+    out = re.sub(r"\n{3,}", "\n\n", re.sub(r"[ \t]{2,}", " ", out)).strip()
+    return (out, len(flagged)) if out else None
+
+
 def _is_negated(sentence: str) -> bool:
     s = sentence.lower()
     return any(cue in s for cue in _NEGATION_CUES)
@@ -315,6 +383,52 @@ def _related_identity(named: tuple[str, str | None, str], have: tuple[str, str |
         return False
     a, b = named[2], have[2]
     return a == b or not a or not b or a.startswith(b + "(") or b.startswith(a + "(")
+
+
+REPOINT_MIN_SUPPORT = 0.4   # A4: share of the sentence's content words its section's supplied text must state ...
+REPOINT_MIN_OWN = 0.25      # ... and the named provision's own text (a one-line paragraph reads with its siblings:
+                            # 71.30(b) "The fees specified in § 70.19 of this chapter shall be applicable")
+
+
+def repoint_named_citations(text: str, package) -> tuple[str, int]:
+    """(text, markers re-pointed): fix A4 (regulus.rag.validator_switches).
+
+    A sentence that names one provision ("21 CFR 71.30(b) requires that the fees specified in § 70.19 ...") but cites a
+    source that is neither it nor its parent/child - the model numbered its citation by a neighbouring source or by the
+    paragraph label ("(a)(5)" -> [5]) - has its marker(s) replaced by the one supplied source that IS that provision,
+    when exactly one is and the sentence's content words are stated by it (REPOINT_MIN_OWN) and by its section's
+    supplied text (REPOINT_MIN_SUPPORT). Only the citation number changes; the words are the model's. Anything less
+    certain is left to provision_citation_mismatch."""
+    identities = {src.index: _source_identity(src) for src in package.sources}
+    by_index = {s.index: s for s in package.sources}
+    attached = attach_trailing_markers(text)
+    out, n = attached, 0
+    for sentence in split_sentences(attached):
+        marks = [int(m) for m in MARK_RE.findall(sentence) if int(m) in by_index]
+        if not marks:
+            continue
+        # the provision a sentence presents is the one it names first, at its start ("21 CFR 71.30(b) requires that the
+        # fees specified in § 70.19 ...": 71.30(b), not 70.19) - the same reading as claim validation's _LEAD
+        named = {(r.title, r.section, r.paragraph_path) for r in parse_cfr_references(MARK_RE.sub(" ", sentence)[:45])
+                 if r.section is not None}
+        if len(named) != 1:
+            continue
+        nm = next(iter(named))
+        if any(identities.get(i) and _related_identity(nm, identities[i]) for i in marks):
+            continue
+        holders = [i for i, ident in identities.items() if ident == nm]
+        if len(holders) != 1:
+            continue
+        words = _content_words(MARK_RE.sub(" ", sentence))
+        section = " ".join(by_index[i].text for i, ident in identities.items() if ident and ident[:2] == nm[:2])
+        if not words or len(words & _content_words(by_index[holders[0]].text)) / len(words) < REPOINT_MIN_OWN \
+                or len(words & _content_words(section)) / len(words) < REPOINT_MIN_SUPPORT:
+            continue
+        first = MARK_RE.search(sentence)
+        fixed = sentence[:first.start()] + f"[{holders[0]}]" + MARK_RE.sub("", sentence[first.end():])
+        if fixed != sentence and sentence in out:
+            out, n = out.replace(sentence, fixed, 1), n + 1
+    return (out, n) if n else (text, 0)
 
 
 def _degenerate(text: str) -> tuple[bool, str]:
@@ -457,15 +571,23 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
         supplied = set()
         for src in package.sources:
             supplied |= _supplied_figures(src.text) | _supplied_figures(src.citation)
+            if precision_fix("A1"):
+                supplied |= _supplied_figures(src.heading or "")   # a heading's numbers are supplied text too
         for rid, label in package.requirements:
             supplied |= _supplied_figures(label)
+        figure_text = text
+        if precision_fix("A1"):
+            blob = "\n".join([s.text for s in package.sources] + [s.citation for s in package.sources]
+                             + [s.heading or "" for s in package.sources] + [label for _, label in package.requirements]
+                             + [package.question or ""])
+            figure_text = _strip_supplied_citations(text, blob)
         if package.answer_style == "apply" and package.question:
             # the question's own figures ("section 721", "80 days", "12 fl oz") are facts it states - unless a source
             # states a different number in the same unit: "up to 10 percent" in the question is not supplied when
             # the source says "not more than 0.6 percent" (code review: that false number used to validate)
             supplied |= _question_figures(package.question, [s.text for s in package.sources]) - supplied
-        stray = sorted((_figures(text) | _periods(text)) - supplied
-                       - {f for f in _figures(text) | _periods(text)
+        stray = sorted((_figures(figure_text) | _periods(figure_text)) - supplied
+                       - {f for f in _figures(figure_text) | _periods(figure_text)
                           if any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3)})
         if stray:
             problems.append(ValidationProblem(UNSUPPORTED_FIGURE, "error", f"figure(s) not found in any supplied source: {', '.join(stray[:6])}"))

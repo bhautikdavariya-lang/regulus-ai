@@ -22,12 +22,13 @@ mode "lexical" promotes the lexical top 1 without a model call (for retrieval-on
 """
 from __future__ import annotations
 
+import os
 import re
 import time
 from dataclasses import dataclass, field, replace
 from typing import Any
 
-from regulus.retrieval.section_index import COSMETIC_PARTS, SectionIndex, cosmetic_question, section_index
+from regulus.retrieval.section_index import COSMETIC_PARTS, COSMETIC_TERMS, SectionIndex, cosmetic_question, section_index
 from regulus.retrieval.statute import BLOCK_HEADER_CHARS, StatuteIndex, statute_index
 
 MODES = ("off", "lexical", "picker")
@@ -36,6 +37,24 @@ CFR_CANDIDATES_WITH_STATUTE = 20
 LEXICAL_CANDIDATES = 16   # cosmetics questions: lexical candidates fused with ...
 DENSE_CANDIDATES = 12     # ... the dense top 12 (regulus.retrieval.section_dense)
 RRF_K = 10
+# a part-only question ("Under Part 710, ...") gets the dense candidates of that part as well (23 Oct, off until the
+# section-resolution and answer gates pass: REGULUS_PART_DENSE=1)
+PART_DENSE = os.environ.get("REGULUS_PART_DENSE", "0") == "1"
+# a question naming a color additive: other colors' listings vetoed, the named listing offered and, when it ranks
+# first, promoted without the picker (regulus.retrieval.entities; 23 Oct, off until the gates pass)
+ENTITY_CONSTRAINTS = os.environ.get("REGULUS_ENTITY_CONSTRAINTS", "0") == "1"
+# the offered FD&C Act sections in order of relevance instead of 201, 601 ... 614 (23 Oct, off until the gates pass)
+STATUTE_RANKING = os.environ.get("REGULUS_STATUTE_RANKING", "0") == "1"
+# a picker reply naming two FD&C Act sections promotes both (the Act budget shared); before, a second pick was kept
+# only from the other corpus (23 Oct, off until the gates pass: REGULUS_PICKER_SECOND_ACT=1)
+SECOND_ACT = os.environ.get("REGULUS_PICKER_SECOND_ACT", "0") == "1"
+# a cross-encoder (regulus.retrieval.rerank) reads each candidate's best paragraphs; a pick it scores below
+# RERANK_VETO_BELOW while another candidate scores RERANK_VETO_MARGIN higher is replaced by that one (23 Oct, off until
+# the gates pass: REGULUS_RERANKER=bge-m3)
+RERANKER = os.environ.get("REGULUS_RERANKER", "").strip() or None
+RERANK_PARAGRAPHS = 3
+RERANK_VETO_BELOW = float(os.environ.get("REGULUS_RERANK_VETO_BELOW", "0.2"))
+RERANK_VETO_MARGIN = float(os.environ.get("REGULUS_RERANK_VETO_MARGIN", "0.5"))
 STATUTE_BUDGET = 6000   # rendered characters of statute evidence (source headers included)
 CO_STATUTE_BUDGET = 2500  # the same when the Act text accompanies a promoted regulation   # fewer CFR candidates when the cosmetics chapter of the Act is offered too
 # FD&C Act sections offered to the picker for a cosmetics question: chapter VI (601-614) and the 201 definitions.
@@ -60,7 +79,10 @@ _SUBSECTION_OF = re.compile(r"\bsubsection\s*\(([a-z0-9]{1,4})\)\s*of\s+(?:FD&C\
 _BARE_COSMETIC_SECTION = re.compile(r"(?<![\d.§])\b(60[1-9]|61[0-4])(?!\d|\.\d)" + _PATH)
 SNIPPET_CHARS = 200
 LEADIN_CHARS = 140   # a sub-paragraph's lead-in shown before it
-PICKER_MAX_TOKENS = 16
+# 16 tokens cut 33 of 91 holdout replies mid-citation ("21 CFR 740.18, FD&C Act §"), losing every second pick (23 Oct
+# failure analysis); greedy decoding keeps the first pick byte-identical under a larger cap. REGULUS_PICKER_MAX_TOKENS
+# raises it once the gates pass.
+PICKER_MAX_TOKENS = int(os.environ.get("REGULUS_PICKER_MAX_TOKENS", "16"))
 DEFINITIONS_SECTION = "604"                                    # FD&C Act 604: "In this subchapter:" definitions
 SUBCHAPTER_DEFINED = frozenset(str(n) for n in range(605, 615))  # the sections 604's definitions govern
 GENERIC_DEFINED_TERMS = frozenset({"cosmetic product"})        # used in every section; defines nothing a question turns on
@@ -132,6 +154,17 @@ class Promotion:
                 "candidates": [c["section"] for c in self.candidates], "notes": list(self.notes)}
 
 
+def rerank_label(c: dict) -> str:
+    """A candidate's citation with where it sits, for the cross-encoder: the same color is listed word for word in the
+    Foods, Drugs and Cosmetics subparts, and without the subpart the reranker could not tell 73.85 from 73.2085."""
+    if c.get("statute"):
+        return f"FD&C Act § {c['section']} (Federal Food, Drug, and Cosmetic Act)"
+    where = c.get("part_title") or f"Part {c.get('part', '')}"
+    if c.get("subpart"):
+        where += f"; {c['subpart'].title()}"
+    return f"21 CFR {c['section']} ({where})"
+
+
 def picker_prompt(question: str, candidates: list[dict]) -> str:
     lines = [f"QUESTION: {question}", "", "CANDIDATE SECTIONS:"]
     for i, c in enumerate(candidates, 1):
@@ -184,6 +217,20 @@ _NON_COSMETIC_TERMS = {"drug": frozenset({"drug", "tablet", "capsul", "oral", "i
                        "food": frozenset({"food", "beverag", "candi"}), "device": frozenset({"devic", "sutur", "lens", "implant"})}
 
 
+# product words that say which subpart of a color listing a question is about (stemmed, PostgreSQL 'english'); used only
+# when no reranker reads the listings (SectionPromoter.choose_listing)
+_PRODUCT_KIND_TERMS = {
+    "food": frozenset("""food beverag drink juic punch soda cola sauc snack confect candi dessert ice cereal bake bread cake
+                         gum gelatin feed anim pet fish salmon shrimp trout egg yolk meat sausag poultri chicken dairi chees
+                         milk yogurt season spice popcorn margarin oil-bas jam jelli frost soup gravi beer wine spirit""".split()),
+    "drug": frozenset("drug tablet capsul oral ingest prescript medic pharmaceut ointment otc".split()),
+    "device": frozenset("devic sutur lens implant contact catheter".split()),
+}
+# cosmetic product words (COSMETIC_TERMS without the color words every color question has), with the eye makeup words of
+# 21 CFR 720.4(c)(3) ("eyebrow pencil", "eye shadow") - "green eye pencil" named no product kind (73.2326, 23 Oct)
+_COSMETIC_PRODUCT_TERMS = (COSMETIC_TERMS - {"color", "colorant", "pigment", "lake", "fd", "tint", "glitter", "shimmer"}) | {"eye", "pencil"}
+
+
 def _subpart_kind(subpart: str) -> str | None:
     s = (subpart or "").lower()
     return next((k for key, k in _SUBPART_OF if key in s), None)
@@ -203,13 +250,14 @@ class SectionPromoter:
     def statute(self) -> StatuteIndex | None:
         return statute_index(self.db)
 
-    def statute_candidates(self, lexemes) -> list[dict]:
+    def statute_candidates(self, lexemes, question: str | None = None) -> list[dict]:
         st = self.statute
         if st is None:
             return []
         ranked = {r.fdca: r for r in st.rank(lexemes, limit=len(st.by_sec))}
+        order = self.statute_order(question, ranked) if (STATUTE_RANKING and question) else STATUTE_OFFERED
         out = []
-        for s in STATUTE_OFFERED:
+        for s in order:
             if s not in st.by_sec:
                 continue
             r = ranked.get(s)
@@ -219,6 +267,56 @@ class SectionPromoter:
                         # the section's own subsection captions: what it covers (retrieval diagnosis, 22 Oct)
                         "snippet": st.outline(s) or " ".join(row["body_text"].split())[:SNIPPET_CHARS]})
         return out
+
+    def rerank_scores(self, question: str, cands: list[dict]) -> dict[str, tuple[float, str]]:
+        """Each candidate section's best cross-encoder score over its RERANK_PARAGRAPHS paragraphs most similar to the
+        question by embedding: section -> (score 0..1, that paragraph's path). {} without the models."""
+        from regulus.retrieval.paragraph_dense import paragraph_dense
+        from regulus.retrieval.rerank import reranker
+
+        pd, rr = paragraph_dense(self.db), reranker(RERANKER) if RERANKER else None
+        if pd is None or rr is None:
+            return {}
+        sims = pd.similarities(question)
+        passages, owners = [], []
+        for c in cands:
+            label = rerank_label(c)
+            for para, _ in pd.section_paragraphs(question, c["section"], sims)[:RERANK_PARAGRAPHS]:
+                passages.append(f"{label} {pd.text(para)}")
+                owners.append((c["section"], para.path))
+        best: dict[str, tuple[float, str]] = {}
+        for (sec, path), s in zip(owners, rr.score(question, passages) if passages else ()):
+            if sec not in best or s > best[sec][0]:
+                best[sec] = (float(s), path)
+        self.__dict__["last_rerank"] = best   # diagnostics for the caller (the harness records it)
+        return best
+
+    def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
+        """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
+        and the best-scored candidate at least RERANK_VETO_MARGIN above it."""
+        scores = self.rerank_scores(question, cands)
+        if not scores:
+            return None
+        top = max(cands, key=lambda c: (scores.get(c["section"], (0.0, ""))[0], -cands.index(c)))
+        ps, ts = scores.get(picked["section"], (0.0, ""))[0], scores.get(top["section"], (0.0, ""))[0]
+        if top["section"] != picked["section"] and ps < RERANK_VETO_BELOW and ts - ps >= RERANK_VETO_MARGIN:
+            return top
+        return None
+
+    def statute_order(self, question: str, ranked: dict) -> list[str]:
+        """The offered FD&C Act sections, most relevant first: the lexical ranking (StatuteIndex.rank) fused by
+        reciprocal rank with each section's best paragraph by embedding (regulus.retrieval.paragraph_dense). The fixed
+        order 201, 601 ... 614 put the key section first for 1 of 40 Act-keyed dev questions; this order for 23."""
+        from regulus.retrieval.paragraph_dense import paragraph_dense
+
+        lex_order = sorted(STATUTE_OFFERED, key=lambda s: (-(ranked[s].score if s in ranked else 0.0), STATUTE_OFFERED.index(s)))
+        score = {s: 1.0 / (RRF_K + i + 1) for i, s in enumerate(lex_order)}
+        pd = paragraph_dense(self.db)
+        if pd is not None:
+            dense = [s for s, _, _ in pd.rank_sections(question, corpus="fdca") if s in STATUTE_OFFERED]
+            for i, s in enumerate(dense):
+                score[s] += 1.0 / (RRF_K + i + 1)
+        return sorted(STATUTE_OFFERED, key=lambda s: (-score[s], STATUTE_OFFERED.index(s)))
 
     def named_statute(self, question: str, lexemes) -> list[tuple[str, str]]:
         """FD&C Act sections (with any paragraph path) the question itself cites: (section, path) pairs in order.
@@ -301,10 +399,19 @@ class SectionPromoter:
         if parts:
             ranked = [r for r in self.index.rank(lex, limit=400) if r.part in parts]
             sub = _SUBPART_REF.search(question or "")
+            subpart = None
             if sub:   # "subpart C of Part 82": that subpart's sections only (retrieval diagnosis: parser)
                 in_sub = [r for r in ranked if (r.subpart or "").lower().startswith(f"subpart {sub.group(1).lower()} ")]
+                subpart = f"subpart {sub.group(1).lower()} " if in_sub else None
                 ranked = in_sub or ranked
             ranked = ranked[:self.limit]
+            if PART_DENSE:
+                # the dense ranking inside the named part(s) too: a section sharing no lexeme with the question was never
+                # offered ("FDA Registered Facility, Reg. No." -> 710.8: 'registered' and 'registration' stem apart).
+                # Appended after the lexical order, not fused into it: fusing reordered the top of the list and lost
+                # two rank-1 keys of 17 (23 Oct section-resolution benchmark)
+                extra = self._dense_only(question, ranked, parts, subpart)
+                ranked = ranked[:max(self.limit - len(extra), 0)] + extra
         elif cosmetic_question(lex):
             # a cosmetics question: candidates from the color-additive and cosmetic parts only. Food, feed and device
             # sections were picked for cosmetics questions (117.251, 111.455, 226.30; 22 Oct); on the 277-question bank
@@ -313,6 +420,8 @@ class SectionPromoter:
             ranked = self._fuse_dense(question, ranked)
         else:
             ranked = self.index.rank(lex, limit=self.limit)
+        if ENTITY_CONSTRAINTS:
+            ranked = self._entity_constrained(question, lex, ranked, parts)
         if not ranked:
             return lex, []
         rows = self.db.query(_SNIPPET_SQL, {"s": [r.section for r in ranked], "o": sorted({r.best_ordinal for r in ranked})})
@@ -345,6 +454,22 @@ class SectionPromoter:
                       "part_title": titles.get(r.part, ""), "score": round(r.score, 4), "snippet": snippet(r)}
                      for r in ranked]
 
+    def _dense_only(self, question: str, ranked: list, parts: tuple[str, ...], subpart: str | None, limit: int = 4) -> list:
+        """Up to `limit` sections of the named part(s) (and subpart) that the dense ranking puts in its top
+        DENSE_CANDIDATES there and the lexical list lacks, in dense order."""
+        from regulus.retrieval.section_dense import section_dense
+        from regulus.retrieval.section_index import RankedSection
+
+        dense_ix = section_dense(self.db)
+        if dense_ix is None:
+            return []
+        ix, where, first = self.index, self._where(), self.__dict__["_first_ordinal"]
+        inside = [s for s in dense_ix.rank(question, len(dense_ix.names)) if s in where and ix.parts[where[s]] in parts
+                  and (subpart is None or (ix.subparts[where[s]] or "").lower().startswith(subpart))][:DENSE_CANDIDATES]
+        have = {r.section for r in ranked}
+        return [RankedSection(s, ix.parts[where[s]], ix.headings[where[s]], ix.subparts[where[s]], 0.0, first.get(s, 0))
+                for s in inside if s not in have][:limit]
+
     def _fuse_dense(self, question: str, ranked: list) -> list:
         """Lexical top LEXICAL_CANDIDATES fused with the dense top DENSE_CANDIDATES by reciprocal rank (k = RRF_K); the
         dense ranking finds paraphrased sections the words miss (unseen bank questions: key among the candidates
@@ -371,6 +496,132 @@ class SectionPromoter:
                 i = ix.sections.index(s)
                 out.append(RankedSection(s, ix.parts[i], ix.headings[i], ix.subparts[i], 0.0, 0))
         return out
+
+    # -- named color additives (regulus.retrieval.entities) ---------------------------------------
+    def _where(self) -> dict[str, int]:
+        cached = self.__dict__.get("_where_ix")
+        if cached is None:
+            ix = self.index
+            cached = self.__dict__["_where_ix"] = {s: i for i, s in enumerate(ix.sections)}
+            first: dict[str, int] = {}
+            for si, o in zip(ix.row_section.tolist(), ix.row_ordinal.tolist()):
+                s = ix.sections[si]
+                first[s] = min(first.get(s, o), o)
+            self.__dict__["_first_ordinal"] = first
+        return cached
+
+    def preferred_listing(self, sections, lex, parts: tuple[str, ...] | None = None, exact=(), order=()) -> list[str]:
+        """Of one color's listing sections, the ones a question about it is answered from, best first, when no reranker
+        reads them: the listing for the product kind the question names, then the Part 82 certification listing, then a
+        listing without a product subpart. A question that names a food, drug or device product and no cosmetic one
+        is about that kind ("carmine in our strawberry ice cream": 73.100, not the cosmetics listing 73.2087, 23 Oct
+        synthetic set); otherwise the cosmetics subpart, the deployment's own (the same rule as siblings()). Within one
+        kind: the exactly named color first ("paprika oleoresin" 73.345 before "paprika" 73.340), then the ranking's
+        order (`order`, the candidate list), never the section number."""
+        ix, where = self.index, self._where()
+        lx = set(lex)
+        other = {k for k, terms in _PRODUCT_KIND_TERMS.items() if lx & terms}
+        wanted = set(other) if other and not (lx & _COSMETIC_PRODUCT_TERMS) else other | {"cosmetic"}
+        ranked = []
+        for s in sections:
+            i = where.get(s)
+            if i is None or (parts and ix.parts[i] not in parts):
+                continue
+            kind = _subpart_kind(ix.subparts[i])
+            ranked.append((0 if kind in wanted else 1 if ix.parts[i] == "82" else 2 if kind is None else 3,
+                           0 if (not exact or s in exact) else 1, order.index(s) if s in order else len(order), s))
+        return [r[-1] for r in sorted(ranked)]
+
+    def _listing_cands(self, sections) -> list[dict]:
+        ix, where, titles = self.index, self._where(), self._titles()
+        return [{"section": s, "part": ix.parts[where[s]], "heading": ix.headings[where[s]], "subpart": ix.subparts[where[s]],
+                 "part_title": titles.get(ix.parts[where[s]], "")} for s in sections if s in where]
+
+    def choose_listing(self, question: str, sections, lex, parts: tuple[str, ...] | None, exact=(), order=()) -> str | None:
+        """The one listing of a named color a question is about. With the reranker it reads them - each with its subpart
+        ("Subpart A - Foods", "Subpart C - Cosmetics") and its best paragraphs - and the best-scored one is chosen:
+        whether 'salmon feed', 'fruit punch' or 'lip balm' is a food or a cosmetic is read from the text, not from a
+        word list. Without the reranker, preferred_listing's product-kind rule."""
+        where = self._where()
+        pool = [s for s in sections or () if s in where and (not parts or self.index.parts[where[s]] in parts)]
+        # a Part 82 listing is a one-line pointer ("shall conform to ... § 74.2331"): the companion of the listing that
+        # says where the color may be used, never chosen in its place (5 dev keys lost to it, 23 Oct) - unless the
+        # question asks about Part 82 only
+        substantive = [s for s in pool if self.index.parts[where[s]] != "82"]
+        pool = substantive or pool
+        if not pool:
+            return None
+        lx = set(lex)
+        kinds = {k for k, terms in _PRODUCT_KIND_TERMS.items() if lx & terms} | ({"cosmetic"} if lx & _COSMETIC_PRODUCT_TERMS else set())
+        # a question that names one kind of product ("mascara", "ice cream") is decided by that word: the reranker reads
+        # the Foods and Cosmetics listings of an exempt color as near-identical text and chose the food listing for 5
+        # cosmetics questions (23 Oct). It reads the listings when the question names no kind of product, or several.
+        if RERANKER and len(pool) > 1 and len(kinds) != 1:
+            scores = self.rerank_scores(question, self._listing_cands(pool))
+            if scores:
+                return max(pool, key=lambda s: (scores.get(s, (0.0, ""))[0], -pool.index(s)))
+        return (self.preferred_listing(pool, lex, parts, exact, order) or [None])[0]
+
+    def _entity_constrained(self, question: str, lex, ranked: list, parts: tuple[str, ...] | None) -> list:
+        """A question naming a color additive: a question naming a certified color (FD&C Blue No. 1) cannot mean another
+        certified color's listing, so those are taken out of the candidates (FD&C Red No. 40 was picked for an FD&C Blue
+        No. 1 question); an exempt color's listing is never taken out, because exempt names are loose ("pearlescent mica
+        pigment", "krill meal" - vetoing them lost 12 synthetic keys, 23 Oct). Each named color's listing is offered
+        when the ranking missed it (third place: offered, not forced)."""
+        from regulus.retrieval.entities import entity_index, names_a_color
+        from regulus.retrieval.section_index import RankedSection
+
+        E = entity_index(self.index)
+        named = [m for m in E.match(question) if names_a_color(question, m)]
+        if not named:
+            return ranked
+        allowed = {s for m in named for s in m.sections}
+        certified = any(any(k[0] == "cert" for k in m.keys) for m in named)
+        kept = [r for r in ranked if not (certified and E.is_certified_listing(r.section) and r.section not in allowed)]
+        have = {r.section for r in kept}
+        ix, where, first = self.index, self._where(), self.__dict__["_first_ordinal"]
+        for m in named:
+            if have & set(m.sections):
+                continue
+            best = self.preferred_listing(m.sections, lex, parts, m.exact, [r.section for r in kept])
+            if best:
+                i = where[best[0]]
+                kept.insert(min(2, len(kept)), RankedSection(best[0], ix.parts[i], ix.headings[i], ix.subparts[i], 0.0,
+                                                             first.get(best[0], 0)))
+                have.add(best[0])
+        return kept
+
+    def entity_pick(self, question: str, lex, cands: list[dict], parts: tuple[str, ...] | None) -> list[str] | None:
+        """The sections promoted without the picker, or None: when the best-ranked regulation left after the color
+        constraint is a listing of a color the question names, the listing of that exact name (not a shorter name inside
+        it: "paprika oleoresin" is 73.345, not 73.340) for the question's product (choose_listing) is promoted, with the
+        Part 82 certification listing of a cosmetics listing (as siblings() does); the same for a second named color.
+        The picker still decides every other question."""
+        from regulus.retrieval.entities import entity_index, names_a_color, normalize_heading
+
+        E = entity_index(self.index)
+        named = [m for m in E.match(question) if names_a_color(question, m)]
+        top = next((c for c in cands if not c.get("statute")), None)
+        if not named or top is None or not E.is_color_listing(top["section"]):
+            return None
+        first = next((m for m in named if top["section"] in m.sections), None)
+        if first is None:
+            return None
+        ix, where = self.index, self._where()
+        out: list[str] = []
+        order = [c["section"] for c in cands if not c.get("statute")]
+        for m in [first] + [m for m in named if m is not first][:1]:
+            best = self.choose_listing(question, m.sections, lex, parts, m.exact, order)
+            if best is None:
+                continue
+            chosen = [best]
+            if ix.parts[where[best]] != "82":
+                # the Part 82 certification listing of the same color, when the ranking offered it (as siblings() keeps it)
+                head = normalize_heading(ix.headings[where[best]])
+                chosen += [s for s in order if s in m.sections and ix.parts[where[s]] == "82"
+                           and normalize_heading(ix.headings[where[s]]) == head][:1]
+            out += [s for s in chosen if s not in out]
+        return out or None
 
     def _titles(self) -> dict[str, str]:
         if self._part_titles is None:
@@ -510,11 +761,15 @@ class SectionPromoter:
         """The same color listed elsewhere under the same heading (74.2254 / 82.1254 / 74.1254 "D&C Orange No. 4."): for
         a cosmetics question the Cosmetics-subpart listing and the Part 82 certification listing are both promoted, the
         Foods/Drugs/Devices listings only when the question names that kind of product."""
-        head = (picked["heading"] or "").strip().lower()
+        if ENTITY_CONSTRAINTS:   # 74.1101 'FD&C Blue No. 1' and 74.2101 'FD&C Blue No. 1.' are one color
+            from regulus.retrieval.entities import normalize_heading as norm
+        else:
+            norm = lambda h: (h or "").strip().lower()  # noqa: E731
+        head = norm(picked["heading"])
         if picked["part"] not in COLOR_LISTING_PARTS or re.fullmatch(r"(?:general|definitions?|scope)\.?", head):
             return [picked["section"]]   # "General." in 82.50 / 82.1050 / 82.2050 names no color (code review)
         same = [c for c in cands if not c.get("statute") and c["part"] in COLOR_LISTING_PARTS
-                and (c["heading"] or "").strip().lower() == head
+                and norm(c["heading"]) == head
                 and not (picked["part"] == "82" and c["part"] == "82")]   # one color is listed once in Part 82
         lx = set(lexemes)
         wanted = {k for k, terms in _NON_COSMETIC_TERMS.items() if lx & terms}
@@ -529,19 +784,18 @@ class SectionPromoter:
         chosen = [c["section"] for c in ordered if keep(c)] or [picked["section"]]
         return chosen[:2]
 
-    def resolve(self, question: str, parts: tuple[str, ...] | None = None, named_only: bool = False) -> Promotion | None:
-        """`parts`: the question names only these parts ("Under Part 82, ..."); the answer is looked for inside them."""
-        if self.mode == "off":
-            return None
-        t0 = time.perf_counter()
+    def prepare(self, question: str, parts: tuple[str, ...] | None = None, named_only: bool = False,
+                t0: float | None = None) -> Promotion | tuple[list[str], list[dict]] | None:
+        """Everything resolve() decides before a pick: a Promotion of the FD&C Act section(s) the question names, None
+        when nothing may be promoted, or (lexemes, candidates) to pick from. Deterministic (no model call): the
+        section-resolution harness measures candidate generation through it."""
+        t0 = time.perf_counter() if t0 is None else t0
         lex = SectionIndex.question_lexemes(self.db, question)
         named = self.named_statute(question, lex)
         if named:
             return self._statute_promotion(named[:2], lex, "named_statute", t0)
         if named_only:
             return None   # only a section the question names may be resolved here; nothing is guessed
-        if self.mode == "picker" and (self.generator is None or getattr(self.generator, "retrieval_only", False)):
-            return None   # no model to pick with (retrieval-only harness): nothing is promoted, nothing is ranked
         if parts and not all(p in COSMETIC_PARTS for p in parts):
             return None   # a part outside the cosmetics programme (or a misread statute number): never promoted into
         if parts and len({x for x in lex if not x.isdigit()} - _PART_QUESTION_WORDS - COSMETIC_TERMS_GENERIC) < 2:
@@ -549,10 +803,28 @@ class SectionPromoter:
         lex, cands = self.candidates(question, parts)
         offer_statute = self.statute is not None and cosmetic_question(lex) and not parts
         if offer_statute:
-            cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex)
-        if not cands:
+            cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question)
+        return (lex, cands) if cands else None
+
+    def resolve(self, question: str, parts: tuple[str, ...] | None = None, named_only: bool = False) -> Promotion | None:
+        """`parts`: the question names only these parts ("Under Part 82, ..."); the answer is looked for inside them."""
+        if self.mode == "off":
             return None
-        raw, other = None, None
+        t0 = time.perf_counter()
+        if self.mode == "picker" and not named_only and (self.generator is None or getattr(self.generator, "retrieval_only", False)):
+            # no model to pick with (retrieval-only harness): nothing is promoted, nothing is ranked - except an FD&C
+            # Act section the question names, which needs no pick
+            lex = SectionIndex.question_lexemes(self.db, question)
+            named = self.named_statute(question, lex)
+            return self._statute_promotion(named[:2], lex, "named_statute", t0) if named else None
+        prepared = self.prepare(question, parts, named_only, t0)
+        if not isinstance(prepared, tuple):
+            return prepared
+        lex, cands = prepared
+        raw, other, notes, second_act = None, None, (), None
+        entity = self.entity_pick(question, lex, cands, parts) if ENTITY_CONSTRAINTS else None
+        if entity is not None:
+            return self._cfr_promotion(entity, question, lex, cands, None, None, "entity", t0)
         if self.mode == "lexical":
             first = next((c for c in cands if not c.get("statute")), None)
             if first is None:
@@ -570,14 +842,29 @@ class SectionPromoter:
                 return None
             picked_c = cands[picks[0] - 1]   # first choice; a second choice is used only from the other corpus
             other = next((cands[i - 1] for i in picks[1:] if bool(cands[i - 1].get("statute")) != bool(picked_c.get("statute"))), None)
+            if SECOND_ACT and picked_c.get("statute"):
+                # "FD&C Act § 604, FD&C Act § 605": both Act sections, the Act budget shared (605-Q2 lost 605 to 604)
+                second_act = next((cands[i - 1] for i in picks[1:] if cands[i - 1].get("statute")
+                                   and cands[i - 1]["section"] != picked_c["section"]), None)
+            if RERANKER:
+                vetoed = self.rerank_veto(question, cands, picked_c)
+                if vetoed is not None:
+                    notes = (f"rerank veto: {picked_c['section']} -> {vetoed['section']}",)
+                    picked_c, other = vetoed, (None if other is not None and other["section"] == vetoed["section"] else other)
         if picked_c.get("statute"):
-            pr = self._statute_promotion([(picked_c["section"], "")], lex, self.mode, t0, cands, raw)
+            acts = [(picked_c["section"], "")] + ([(second_act["section"], "")] if second_act is not None
+                                                  and second_act["section"] != picked_c["section"] else [])
+            pr = self._statute_promotion(acts, lex, self.mode, t0, cands, raw)
             if other is not None:   # FD&C Act section first, a regulation second: the regulation is promoted with it
                 sec = self.siblings(other, cands, lex)
                 comps = [c for s in sec for c in self.companions(s, question, lex)]
                 pr = replace(pr, sections=tuple(sec), companions=tuple(dict.fromkeys(c for c in comps if c not in sec)))
-            return pr
-        picked = self.siblings(picked_c, cands, lex)
+            return replace(pr, notes=pr.notes + notes)
+        pr = self._cfr_promotion(self.siblings(picked_c, cands, lex), question, lex, cands, raw, other, self.mode, t0)
+        return replace(pr, notes=pr.notes + notes) if notes else pr
+
+    def _cfr_promotion(self, picked: list[str], question: str, lex, cands, raw, other, method: str, t0: float) -> Promotion:
+        """The Promotion of picked regulation(s): their companions, and a second FD&C Act pick as co-statute."""
         comps: list[str] = []
         for s in picked:
             comps += [c for c in self.companions(s, question, lex) if c not in comps]
@@ -587,10 +874,10 @@ class SectionPromoter:
         if other is not None and other.get("statute"):
             # a regulation first and an FD&C Act section second (registration rule 710 with Act 607): both, the Act text
             # as additional evidence with a smaller budget (retrieval diagnosis: 11 unseen questions need both)
-            st = self._statute_promotion([(other["section"], "")], lex, self.mode, t0, (), None, budget=CO_STATUTE_BUDGET)
-            return Promotion(sections=tuple(picked), companions=tuple(c for c in comps if c not in picked), method=self.mode,
+            st = self._statute_promotion([(other["section"], "")], lex, method, t0, (), None, budget=CO_STATUTE_BUDGET)
+            return Promotion(sections=tuple(picked), companions=tuple(c for c in comps if c not in picked), method=method,
                              statute=st.statute, statute_rows=st.statute_rows, statute_blocks=st.statute_blocks,
                              statute_left_out=st.statute_left_out, candidates=tuple(cands), picker_output=raw,
                              seconds=time.perf_counter() - t0)
-        return Promotion(sections=tuple(picked), companions=tuple(c for c in comps if c not in picked), method=self.mode,
+        return Promotion(sections=tuple(picked), companions=tuple(c for c in comps if c not in picked), method=method,
                          candidates=tuple(cands), picker_output=raw, seconds=time.perf_counter() - t0)

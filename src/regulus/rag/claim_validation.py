@@ -25,6 +25,7 @@ import re
 from dataclasses import dataclass
 
 from regulus.rag.answer_plan import QUALIFIER_EQUIVALENTS
+from regulus.rag.validator_switches import enabled as precision_fix
 
 PARAGRAPH_MISATTRIBUTION = "paragraph_misattribution"
 INVENTED_CONDITION = "invented_condition"
@@ -90,6 +91,65 @@ _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough 
                           r"sources? do(?:es)? not provide", re.I)
 _LEAD = 45  # a provision label within the first characters of a statement names what it presents
 
+# A2 (regulus.rag.validator_switches): "These provisions set no limit on the amount of guanine" is a claim about the
+# cited text, which lexical overlap cannot judge (9% of its content words appear in the source, so it read as
+# unsupported and correct drafts were withheld: 73.2120, 82.1330, 82.1602 on the 22 Oct holdout). It is checked
+# against the text instead: supported when it is scoped to the provisions themselves, names what kind of limit is
+# absent, and the cited sources carry no limiting term of that kind. Unscoped denials ("there is no requirement",
+# "FDA does not regulate") are never accepted here: they caused the false-denial regression (SFT v2).
+_SCOPE_SUBJECT = (r"(?:(?:this|these|the(?:\s+(?:cited|supplied|quoted|listed))?)\s+(?:provisions?|sections?|paragraphs?|"
+                  r"regulations?|listings?|rules?|texts?)|21\s*CFR\s*§?\s*\d{1,4}\.\d+[a-z]?(?:\s*\([a-z0-9]{1,4}\))*|"
+                  r"§+\s*\d{1,4}\.\d+[a-z]?(?:\s*\([a-z0-9]{1,4}\))*)")
+_ABSENCE_VERB = (r"(?:do(?:es)?\s+not\s+(?:specify|set|impose|state|establish|place|provide|prescribe|include|contain|"
+                 r"restrict|limit)|(?:specif(?:y|ies)|sets?|imposes?|states?|establish(?:es)?|places?|provides?|prescribes?|"
+                 r"contains?)\s+no)")
+_SCOPED_ABSENCE = re.compile(rf"{_SCOPE_SUBJECT}[^.;:]{{0,80}}?\b{_ABSENCE_VERB}\b", re.I)
+_NO_X_STATED = re.compile(r"\bno\s+(?:specific\s+|numeric(?:al)?\s+|maximum\s+|minimum\s+)?(?:(?:amount|use|concentration|time)\s+)?(?:limits?|restrictions?|amounts?|"
+                          r"quantit(?:y|ies)|concentrations?|levels?|percentages?|frequenc(?:y|ies)|time\s+limits?|deadlines?)\s+"
+                          r"(?:is|are)\s+(?:specified|stated|set|imposed|given|prescribed|established)\s+(?:in|by)\s+" + _SCOPE_SUBJECT, re.I)
+# what kind of limit the statement says is absent -> the terms that would state one in a source
+_ABSENT_KIND = {
+    "amount": (re.compile(r"\b(?:amounts?|quantit(?:y|ies)|concentrations?|use levels?|levels?|percent(?:ages?)?|maximum|minimum|"
+                          r"how much|numeric(?:al)?\s+limits?|ppm)\b", re.I),
+               re.compile(r"\b(?:not (?:more|less) than|not to exceed|not exceeding|percent|per cent|ppm|parts per million|p/m|"
+                          r"mg/kg|milligrams?|maximum|minimum)\b|%|\d+(?:\.\d+)?\s*(?:percent|ppm|mg)\b", re.I)),
+    "time": (re.compile(r"\b(?:frequenc(?:y|ies)|how often|time\s+limits?|deadlines?|timeframes?|how soon|by when)\b", re.I),
+             re.compile(r"\b\d+\s*(?:calendar\s+|business\s+|working\s+)?(?:days?|weeks?|months?|years?)\b|"
+                        r"\b(?:annual(?:ly)?|biennial(?:ly)?|every|within|no later than|each year)\b", re.I)),
+    "use": (re.compile(r"\b(?:restrict(?:ion|ions|s|ed)?\s+(?:on\s+)?(?:its\s+|their\s+|the\s+)?use|use\s+restrictions?|"
+                       r"limit(?:s|ations?)?\s+on\s+(?:its\s+|their\s+|the\s+)?use|which products|product types?)\b", re.I),
+            re.compile(r"\b(?:only|restricted|restriction|may not|shall not|must not|not be used|prohibited|except|excluding|"
+                       r"limited to|unless)\b", re.I)),
+}
+
+
+def scoped_absence(sentence: str) -> bool:
+    return bool(_SCOPED_ABSENCE.search(sentence) or _NO_X_STATED.search(sentence))
+
+
+# an amount of USE is limited in a provision's uses paragraph; a specifications paragraph's "not more than 100 parts per
+# million" limits an impurity in the additive, not how much may be used (73.2120(b) vs (c))
+_USE_CONTEXT = re.compile(r"\b(?:uses?|used|usage|added|in amounts?)\b", re.I)
+# a uses paragraph that defers to other text cannot show by itself that no limit exists
+_DEFERS = re.compile(r"\b(?:subject to|in accordance with|as provided|specified in|set forth in|paragraph\s+\([a-z0-9]+\)|§)", re.I)
+
+
+def absence_supported(sentence: str, texts: list[str]) -> bool:
+    """A scoped absence statement the texts bear out: it names at least one kind of limit, and no text states a limit
+    of any kind it names (for an amount: no uses text, and none that defers elsewhere)."""
+    kinds = [k for k, (said, _) in _ABSENT_KIND.items() if said.search(sentence)]
+    if not (kinds and texts):
+        return False
+    for k in kinds:
+        pool = texts
+        if k == "amount":
+            pool = [x for x in texts if _USE_CONTEXT.search(x or "")]
+            if not pool or any(_DEFERS.search(x) for x in pool):
+                return False
+        if any(_ABSENT_KIND[k][1].search(x or "") for x in pool):
+            return False
+    return True
+
 
 @dataclass(frozen=True)
 class ClaimFinding:
@@ -128,6 +188,15 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
     # answer_style "apply": the answer applies the provisions to the facts the question states ("a colorant in a lip
     # product caused tumors in rats"), so the question's own words are given, not claims the sources must support
     given = _words(question) if question and getattr(package, "answer_style", "restate") == "apply" else set()
+
+    # A2 applies only when the answer also says something positive: an answer made of nothing but "X does not cover Y"
+    # statements is the signature of a wrong section pick (FDCA601-Q2, UC-002 on the 22 Oct holdout), kept withheld
+    a2 = precision_fix("A2")
+    if a2:
+        substantive = [s for s in sentences if len(_words(_LABEL.sub(" ", _MARK.sub(" ", s)))) >= UNSUPPORTED_MIN_WORDS
+                       and not _NOT_A_CLAIM.search(_MARK.sub(" ", s))]
+        a2 = bool(substantive) and not all(scoped_absence(s) for s in substantive)
+    exact_texts = [s.text for s in package.sources if getattr(s, "tier", None) == "exact"]
 
     for sentence in sentences:
         marks = [int(m) for m in _MARK.findall(sentence) if int(m) in by_index]
@@ -178,6 +247,9 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             own = words   # an obligation stated only in the question's words ("you must recall the batch") is still a claim
         if len(words) >= UNSUPPORTED_MIN_WORDS and all_words and own:
             support = len(own & all_words) / len(own)
+            if support <= UNSUPPORTED_MAX_SUPPORT and a2 and scoped_absence(body) \
+                    and absence_supported(body, [by_index[i].text for i in marks] or exact_texts):
+                support = 1.0   # A2: a scoped absence the cited text bears out
             if support <= UNSUPPORTED_MAX_SUPPORT:
                 findings.append(ClaimFinding(UNSUPPORTED_CLAIM, SEVERITY[UNSUPPORTED_CLAIM],
                                              f"only {support:.0%} of its content words appear in any supplied source",

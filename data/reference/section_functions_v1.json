@@ -1,0 +1,1670 @@
+{
+ "version": 1,
+ "built": "2026-10-23",
+ "labels": {
+  "definition": "what a term means, or how FDA classifies a thing (straight color, lake, mixture, cosmetic, facility)",
+  "scope_applicability": "who or what a rule covers; whether it applies to a product, firm or activity",
+  "permitted_use": "whether and how a substance may be used: uses and restrictions, products it may go in",
+  "specification_limits": "identity, composition, purity specifications, numeric limits and amounts",
+  "labeling_requirement": "what a label must state: ingredient or color declarations, warnings, caution statements, name and place",
+  "claim_misbranding": "whether a statement or representation may be made, is misleading, or misbrands the product",
+  "procedure_submission": "how to file, register, list, petition or request; which form; what a submission must contain",
+  "deadline_timing": "when something must happen; time limits; how soon; how often",
+  "records_access": "records to keep, how long, and FDA access to records",
+  "exemption": "who or what is exempt from a requirement, or excepted",
+  "status_effective": "effective dates, stays, terminations, provisional listings; whether a rule or listing is still in force",
+  "prohibition_adulteration": "prohibited or restricted ingredients, adulteration, prohibited acts",
+  "certification_fees": "batch certification of color additives, certificates, certification fees",
+  "reporting_safety": "adverse-event reports, safety substantiation, recalls, serious adverse events",
+  "agency_authority": "FDA's powers and actions: inspections, orders, suspension, confidentiality of submitted data, rulemaking"
+ },
+ "source": "Written from each section's text by benchmark writer agents (one per batch), checked by a separate reviewer; tags the reviewer found unsupported by the text are removed. Section-resolution benchmark build, 23 Oct 2026.",
+ "functions": {
+  "70.3": [
+   "definition",
+   "exemption",
+   "scope_applicability"
+  ],
+  "70.5": [
+   "permitted_use",
+   "prohibition_adulteration",
+   "scope_applicability"
+  ],
+  "70.10": [
+   "procedure_submission",
+   "scope_applicability",
+   "deadline_timing"
+  ],
+  "70.11": [
+   "reporting_safety",
+   "specification_limits"
+  ],
+  "70.19": [
+   "certification_fees",
+   "procedure_submission",
+   "exemption"
+  ],
+  "70.20": [
+   "specification_limits"
+  ],
+  "70.25": [
+   "labeling_requirement"
+  ],
+  "70.40": [
+   "reporting_safety",
+   "specification_limits"
+  ],
+  "70.42": [
+   "reporting_safety",
+   "permitted_use",
+   "procedure_submission"
+  ],
+  "70.45": [
+   "specification_limits",
+   "agency_authority",
+   "deadline_timing"
+  ],
+  "70.50": [
+   "prohibition_adulteration",
+   "reporting_safety",
+   "agency_authority"
+  ],
+  "70.51": [
+   "procedure_submission",
+   "agency_authority"
+  ],
+  "70.55": [
+   "procedure_submission",
+   "agency_authority"
+  ],
+  "71.1": [
+   "procedure_submission"
+  ],
+  "71.2": [
+   "deadline_timing",
+   "procedure_submission"
+  ],
+  "71.4": [
+   "procedure_submission",
+   "deadline_timing"
+  ],
+  "71.6": [
+   "deadline_timing",
+   "procedure_submission"
+  ],
+  "71.15": [
+   "agency_authority"
+  ],
+  "71.18": [
+   "exemption",
+   "procedure_submission"
+  ],
+  "71.20": [
+   "agency_authority",
+   "deadline_timing",
+   "exemption"
+  ],
+  "71.22": [
+   "prohibition_adulteration",
+   "claim_misbranding",
+   "agency_authority"
+  ],
+  "71.25": [
+   "certification_fees",
+   "specification_limits",
+   "prohibition_adulteration"
+  ],
+  "71.26": [
+   "status_effective",
+   "exemption",
+   "agency_authority"
+  ],
+  "71.27": [
+   "agency_authority",
+   "exemption"
+  ],
+  "71.30": [
+   "procedure_submission",
+   "certification_fees"
+  ],
+  "71.37": [
+   "exemption",
+   "labeling_requirement",
+   "records_access"
+  ],
+  "73.1": [
+   "permitted_use",
+   "specification_limits"
+  ],
+  "73.30": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.32": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.35": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.37": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.40": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.50": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.69": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.70": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.75": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.80": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.85": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.90": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.95": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.100": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.125": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.140": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.160": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.165": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.167": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.168": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.169": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.170": [
+   "permitted_use",
+   "labeling_requirement",
+   "specification_limits"
+  ],
+  "73.185": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.200": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.225": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.250": [
+   "permitted_use",
+   "definition",
+   "exemption"
+  ],
+  "73.260": [
+   "permitted_use",
+   "definition",
+   "exemption"
+  ],
+  "73.275": [
+   "permitted_use",
+   "labeling_requirement",
+   "exemption"
+  ],
+  "73.295": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.297": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.300": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.315": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.340": [
+   "permitted_use",
+   "definition",
+   "exemption"
+  ],
+  "73.345": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.350": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.352": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.355": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "73.450": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.500": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.520": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.530": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.575": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.585": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.600": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.615": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1001": [
+   "permitted_use"
+  ],
+  "73.1010": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1015": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1025": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1030": [
+   "permitted_use",
+   "labeling_requirement",
+   "exemption"
+  ],
+  "73.1070": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1075": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.1085": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.1095": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.1100": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.1125": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1150": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1162": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1200": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1298": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1299": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1326": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1327": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1329": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1350": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1375": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1400": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1410": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1496": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1530": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1550": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1575": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.1645": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1646": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1647": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.1991": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2030": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.2085": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.2087": [
+   "permitted_use",
+   "labeling_requirement",
+   "exemption"
+  ],
+  "73.2095": [
+   "permitted_use",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "73.2110": [
+   "permitted_use",
+   "labeling_requirement",
+   "specification_limits"
+  ],
+  "73.2120": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2125": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2150": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2162": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2180": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2190": [
+   "permitted_use",
+   "labeling_requirement",
+   "specification_limits"
+  ],
+  "73.2250": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2298": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2299": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2326": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2327": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2329": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2400": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2496": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2500": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2550": [
+   "permitted_use",
+   "labeling_requirement",
+   "specification_limits"
+  ],
+  "73.2575": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2645": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2646": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2647": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2725": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2775": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.2991": [
+   "permitted_use",
+   "exemption"
+  ],
+  "73.2995": [
+   "permitted_use",
+   "labeling_requirement",
+   "specification_limits"
+  ],
+  "73.3100": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3105": [
+   "permitted_use",
+   "procedure_submission",
+   "exemption"
+  ],
+  "73.3106": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3107": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3110": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.3110a": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3111": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3112": [
+   "permitted_use",
+   "procedure_submission",
+   "exemption"
+  ],
+  "73.3115": [
+   "permitted_use",
+   "specification_limits",
+   "exemption"
+  ],
+  "73.3117": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3118": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3119": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3120": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3121": [
+   "permitted_use",
+   "procedure_submission",
+   "exemption"
+  ],
+  "73.3122": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3123": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3124": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3125": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3126": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3127": [
+   "permitted_use",
+   "procedure_submission",
+   "exemption"
+  ],
+  "73.3128": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "73.3129": [
+   "permitted_use",
+   "scope_applicability",
+   "exemption"
+  ],
+  "74.101": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.102": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.203": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.250": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.302": [
+   "permitted_use",
+   "labeling_requirement",
+   "certification_fees"
+  ],
+  "74.303": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.340": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.705": [
+   "permitted_use",
+   "labeling_requirement",
+   "specification_limits"
+  ],
+  "74.706": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1101": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1102": [
+   "permitted_use",
+   "certification_fees",
+   "specification_limits"
+  ],
+  "74.1104": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1109": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1203": [
+   "permitted_use",
+   "certification_fees",
+   "specification_limits"
+  ],
+  "74.1205": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1206": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1208": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1254": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1255": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1260": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1261": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1303": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.1304": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1306": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1307": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1317": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1321": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1322": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1327": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1328": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1330": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1331": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1333": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1334": [
+   "permitted_use",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "74.1336": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1339": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1340": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1602": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1705": [
+   "permitted_use",
+   "labeling_requirement",
+   "certification_fees"
+  ],
+  "74.1706": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.1707": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1707a": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1708": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1710": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.1711": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2052": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2053": [
+   "permitted_use",
+   "specification_limits",
+   "prohibition_adulteration"
+  ],
+  "74.2101": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2104": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2151": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2203": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2205": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2206": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2208": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2254": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2255": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2260": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2261": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2304": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2306": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2307": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2317": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2321": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2322": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2327": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2328": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2330": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2331": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2333": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2334": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2336": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2340": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2602": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2602a": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2705": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.2706": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2707": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2707a": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2708": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2710": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.2711": [
+   "permitted_use",
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "74.3045": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3054": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3102": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3106": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3206": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3230": [
+   "permitted_use",
+   "scope_applicability",
+   "certification_fees"
+  ],
+  "74.3602": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3708": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "74.3710": [
+   "permitted_use",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "80.10": [
+   "certification_fees"
+  ],
+  "80.21": [
+   "procedure_submission",
+   "certification_fees"
+  ],
+  "80.22": [
+   "procedure_submission",
+   "labeling_requirement"
+  ],
+  "80.31": [
+   "certification_fees",
+   "agency_authority"
+  ],
+  "80.32": [
+   "status_effective",
+   "certification_fees",
+   "prohibition_adulteration"
+  ],
+  "80.34": [
+   "agency_authority",
+   "records_access",
+   "certification_fees"
+  ],
+  "80.35": [
+   "certification_fees",
+   "exemption",
+   "labeling_requirement"
+  ],
+  "80.37": [
+   "certification_fees",
+   "labeling_requirement"
+  ],
+  "80.38": [
+   "labeling_requirement",
+   "certification_fees"
+  ],
+  "80.39": [
+   "records_access"
+  ],
+  "81.1": [
+   "status_effective",
+   "permitted_use",
+   "deadline_timing"
+  ],
+  "81.10": [
+   "status_effective",
+   "prohibition_adulteration"
+  ],
+  "81.30": [
+   "certification_fees",
+   "status_effective",
+   "prohibition_adulteration"
+  ],
+  "82.3": [
+   "definition"
+  ],
+  "82.5": [
+   "specification_limits",
+   "certification_fees"
+  ],
+  "82.6": [
+   "certification_fees",
+   "scope_applicability",
+   "specification_limits"
+  ],
+  "82.50": [
+   "certification_fees",
+   "scope_applicability"
+  ],
+  "82.51": [
+   "definition",
+   "specification_limits",
+   "certification_fees"
+  ],
+  "82.101": [
+   "specification_limits"
+  ],
+  "82.102": [
+   "specification_limits"
+  ],
+  "82.203": [
+   "specification_limits"
+  ],
+  "82.304": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.705": [
+   "specification_limits"
+  ],
+  "82.706": [
+   "specification_limits",
+   "certification_fees"
+  ],
+  "82.1050": [
+   "certification_fees",
+   "scope_applicability"
+  ],
+  "82.1051": [
+   "definition",
+   "specification_limits"
+  ],
+  "82.1104": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1205": [
+   "specification_limits"
+  ],
+  "82.1206": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1254": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1255": [
+   "permitted_use",
+   "specification_limits"
+  ],
+  "82.1260": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1261": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1306": [
+   "permitted_use",
+   "specification_limits"
+  ],
+  "82.1307": [
+   "permitted_use",
+   "specification_limits"
+  ],
+  "82.1317": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1321": [
+   "specification_limits"
+  ],
+  "82.1322": [
+   "specification_limits"
+  ],
+  "82.1327": [
+   "specification_limits"
+  ],
+  "82.1328": [
+   "specification_limits"
+  ],
+  "82.1330": [
+   "specification_limits"
+  ],
+  "82.1331": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1333": [
+   "specification_limits",
+   "certification_fees"
+  ],
+  "82.1334": [
+   "specification_limits",
+   "definition"
+  ],
+  "82.1336": [
+   "specification_limits",
+   "certification_fees"
+  ],
+  "82.1602": [
+   "specification_limits"
+  ],
+  "82.1707": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1708": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "82.1710": [
+   "specification_limits"
+  ],
+  "82.2050": [
+   "certification_fees",
+   "scope_applicability"
+  ],
+  "82.2051": [
+   "definition",
+   "specification_limits"
+  ],
+  "82.2707a": [
+   "specification_limits",
+   "permitted_use"
+  ],
+  "700.3": [
+   "definition",
+   "scope_applicability"
+  ],
+  "700.11": [
+   "prohibition_adulteration",
+   "status_effective"
+  ],
+  "700.13": [
+   "prohibition_adulteration",
+   "specification_limits",
+   "exemption"
+  ],
+  "700.14": [
+   "prohibition_adulteration"
+  ],
+  "700.15": [
+   "prohibition_adulteration",
+   "status_effective"
+  ],
+  "700.16": [
+   "prohibition_adulteration",
+   "status_effective"
+  ],
+  "700.18": [
+   "prohibition_adulteration",
+   "exemption"
+  ],
+  "700.19": [
+   "prohibition_adulteration"
+  ],
+  "700.23": [
+   "prohibition_adulteration"
+  ],
+  "700.25": [
+   "prohibition_adulteration",
+   "labeling_requirement",
+   "exemption"
+  ],
+  "700.27": [
+   "prohibition_adulteration",
+   "records_access",
+   "definition"
+  ],
+  "700.35": [
+   "claim_misbranding",
+   "labeling_requirement"
+  ],
+  "701.1": [
+   "claim_misbranding"
+  ],
+  "701.2": [
+   "labeling_requirement"
+  ],
+  "701.3": [
+   "labeling_requirement",
+   "exemption"
+  ],
+  "701.9": [
+   "exemption",
+   "records_access"
+  ],
+  "701.10": [
+   "definition",
+   "specification_limits",
+   "labeling_requirement"
+  ],
+  "701.11": [
+   "labeling_requirement"
+  ],
+  "701.12": [
+   "labeling_requirement"
+  ],
+  "701.13": [
+   "labeling_requirement",
+   "specification_limits",
+   "claim_misbranding"
+  ],
+  "701.20": [
+   "definition",
+   "scope_applicability",
+   "labeling_requirement"
+  ],
+  "701.30": [
+   "labeling_requirement",
+   "definition"
+  ],
+  "710.1": [
+   "scope_applicability",
+   "procedure_submission"
+  ],
+  "710.2": [
+   "deadline_timing"
+  ],
+  "710.3": [
+   "procedure_submission"
+  ],
+  "710.4": [
+   "procedure_submission"
+  ],
+  "710.5": [
+   "deadline_timing",
+   "procedure_submission"
+  ],
+  "710.6": [
+   "procedure_submission",
+   "agency_authority"
+  ],
+  "710.7": [
+   "records_access",
+   "agency_authority"
+  ],
+  "710.8": [
+   "claim_misbranding"
+  ],
+  "710.9": [
+   "exemption",
+   "scope_applicability"
+  ],
+  "720.1": [
+   "scope_applicability",
+   "procedure_submission"
+  ],
+  "720.2": [
+   "deadline_timing"
+  ],
+  "720.3": [
+   "procedure_submission"
+  ],
+  "720.4": [
+   "procedure_submission",
+   "reporting_safety",
+   "definition"
+  ],
+  "720.6": [
+   "deadline_timing",
+   "procedure_submission"
+  ],
+  "720.7": [
+   "procedure_submission",
+   "agency_authority"
+  ],
+  "720.8": [
+   "agency_authority",
+   "procedure_submission",
+   "deadline_timing"
+  ],
+  "720.9": [
+   "claim_misbranding"
+  ],
+  "740.1": [
+   "labeling_requirement",
+   "agency_authority",
+   "procedure_submission"
+  ],
+  "740.2": [
+   "labeling_requirement",
+   "specification_limits",
+   "exemption"
+  ],
+  "740.10": [
+   "labeling_requirement",
+   "reporting_safety",
+   "claim_misbranding"
+  ],
+  "740.11": [
+   "labeling_requirement",
+   "exemption"
+  ],
+  "740.12": [
+   "labeling_requirement",
+   "claim_misbranding",
+   "definition"
+  ],
+  "740.17": [
+   "labeling_requirement",
+   "definition",
+   "exemption"
+  ],
+  "740.18": [
+   "labeling_requirement"
+  ],
+  "740.19": [
+   "labeling_requirement",
+   "definition"
+  ],
+  "201": [
+   "definition",
+   "scope_applicability",
+   "claim_misbranding"
+  ],
+  "301": [
+   "prohibition_adulteration",
+   "records_access"
+  ],
+  "601": [
+   "prohibition_adulteration",
+   "exemption"
+  ],
+  "602": [
+   "claim_misbranding",
+   "labeling_requirement"
+  ],
+  "603": [
+   "exemption",
+   "agency_authority"
+  ],
+  "604": [
+   "definition",
+   "scope_applicability",
+   "exemption"
+  ],
+  "605": [
+   "reporting_safety",
+   "deadline_timing",
+   "records_access"
+  ],
+  "606": [
+   "agency_authority",
+   "deadline_timing",
+   "scope_applicability"
+  ],
+  "607": [
+   "procedure_submission",
+   "deadline_timing",
+   "agency_authority"
+  ],
+  "608": [
+   "reporting_safety",
+   "records_access",
+   "definition"
+  ],
+  "609": [
+   "labeling_requirement",
+   "definition"
+  ],
+  "610": [
+   "records_access",
+   "agency_authority"
+  ],
+  "611": [
+   "agency_authority",
+   "reporting_safety",
+   "deadline_timing"
+  ],
+  "612": [
+   "exemption",
+   "definition",
+   "scope_applicability"
+  ],
+  "613": [
+   "exemption",
+   "scope_applicability"
+  ],
+  "614": [
+   "scope_applicability"
+  ],
+  "704": [
+   "agency_authority",
+   "records_access"
+  ]
+ }
+}

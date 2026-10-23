@@ -75,9 +75,12 @@ from regulus.rag.validation import (
     STATUS_UNSUPPORTED,
     ValidationReport,
     attach_trailing_markers,
+    excise_unsupported_sentences,
+    repoint_named_citations,
     strip_invalid_citations,
     validate_answer,
 )
+from regulus.rag.validator_switches import enabled as precision_fix
 if TYPE_CHECKING:  # annotation only; importing it would load torch
     from regulus.rag.generator import Generator
 from regulus.rag.prompt import (NO_CONTEXT_ANSWER, build_messages, coverage_note, incomplete_coverage_answer,
@@ -411,6 +414,22 @@ class RagPipeline:
         self._promoter.generator = self.generator
         return self._promoter
 
+    def promotion_request(self, question: str, plan: QueryPlan, require_model: bool = True):
+        """Whether section promotion runs for this question, decided once for answer() and for the section-resolution
+        harness (regulus.evaluation.section_resolution), so both gate alike: (promoter or None, allowed - see
+        may_promote -, the cosmetics parts a part-only question names or None, error). `require_model=False` (harness
+        only) keeps the promoter when the generator is a retrieval-only stub."""
+        allowed = may_promote(question, plan)
+        promoter = self.section_promoter() if allowed else None
+        error = None
+        if require_model and promoter is not None and promoter.mode == "picker" and getattr(self.generator, "retrieval_only", False):
+            promoter, error = None, "skipped: no model to pick with (retrieval-only harness)"
+        if promoter is not None and allowed == "any" and self.scope_policy is not None \
+                and not self.scope_policy.vocabulary.domain_terms(question):
+            promoter = None   # no word of the regulatory vocabulary ("What is the capital of France?"): never promoted
+        parts = tuple(dict.fromkeys(r.reference.part for r in plan.requirements)) if plan.requirements else None
+        return promoter, allowed, parts, error
+
     # -- steps ---------------------------------------------------------------
 
     def retrieve(self, question: str, plan: QueryPlan | None = None, reference_targets: tuple[str, ...] = ()) -> tuple[SearchResponse, EvidenceRegistry | None]:
@@ -651,6 +670,8 @@ class RagPipeline:
         if analysis is not None:
             text, _ = normalize_answer(text, question)
         text, _ = repoint_citations(text, [(s.index, s.text) for s in package.sources])
+        if precision_fix("A4"):
+            text, _ = repoint_named_citations(text, package)
         report2 = validate_answer(text, package, gen2)
         # problem codes only: the notes quote rejected draft sentences, which must not reach the page or the history
         info = {"attempted": True, "codes_before": list(dict.fromkeys(p.code for p in report.problems if p.severity == "error")),
@@ -827,20 +848,11 @@ class RagPipeline:
         promotion = None
         promotion_error = None
         named_companions_added: list[str] = []
-        allowed = may_promote(question, plan)
-        promoter = self.section_promoter() if allowed else None
-        if not allowed:
-            promoter = None
-        if promoter is not None and promoter.mode == "picker" and getattr(self.generator, "retrieval_only", False):
-            promoter, promotion_error = None, "skipped: no model to pick with (retrieval-only harness)"
-        if promoter is not None and allowed == "any" and self.scope_policy is not None \
-                and not self.scope_policy.vocabulary.domain_terms(question):
-            promoter = None   # no word of the regulatory vocabulary ("What is the capital of France?"): never promoted
+        promoter, allowed, parts, promotion_error = self.promotion_request(question, plan)
         if promoter is not None:
             # the section(s) that answer a question naming none - or naming only a 21 CFR part of the cosmetics
             # programme ("Under Part 82, ...") - are resolved, and the plan is rebuilt as if the question cited them
             part_only = bool(plan.requirements)
-            parts = tuple(dict.fromkeys(r.reference.part for r in plan.requirements)) if part_only else None
             try:
                 promotion = promoter.resolve(question, parts=parts, named_only=allowed == "named_statute")
             except Exception as exc:  # noqa: BLE001 - promotion is an aid: on any failure the question is answered as before
@@ -1062,6 +1074,10 @@ class RagPipeline:
             repointed = []
             if package is not None:
                 answer_text, repointed = repoint_citations(answer_text, [(s.index, s.text) for s in package.sources])
+                if precision_fix("A4"):
+                    answer_text, named_repointed = repoint_named_citations(answer_text, package)
+                    if named_repointed:
+                        generation_info["named_citations_repointed"] = named_repointed
             model_called = True
             input_tokens, output_tokens = gen.prompt_tokens, gen.generated_tokens
             generation_info = {**generation_info, "generated_tokens": gen.generated_tokens, "finished": gen.finished, "prompt_tokens": gen.prompt_tokens,
@@ -1079,6 +1095,14 @@ class RagPipeline:
             if package is not None and self.config.validation_behavior != "off":
                 t3 = time.perf_counter()
                 validation_initial = validate_answer(answer_text, package, gen)
+                if self.config.validation_behavior == "repair" and not validation_initial.ok and precision_fix("A3"):
+                    # unsupported filler sentences dropped whole, the rest validated again before any rewrite (A3)
+                    excised = excise_unsupported_sentences(answer_text, validation_initial, package.question)
+                    if excised is not None:
+                        trimmed_report = validate_answer(excised[0], package, gen)
+                        if trimmed_report.ok:
+                            answer_text, validation_initial = excised[0], trimmed_report
+                            generation_info["validator_precision"] = {"sentences_excised": excised[1]}
                 validation_final = validation_initial
                 if (self.config.validation_behavior == "repair" and not validation_initial.ok
                         and package.answer_style == "apply"):
