@@ -37,8 +37,15 @@ SILENCE_SENTENCE_RE = re.compile(r"[^\n]*? sets? no recordkeeping requirement: n
                                  r"requires a record to be made or kept\.")
 
 
+# "record" as a verb of a submission ("What must our certification request record?" = contain): the answer is the
+# request's required content (80.21(j)), not a record-keeping duty of the section asked about (bank 82.51/82.6 keys)
+_RECORD_VERB = re.compile(r"\b(?:request|application|petition|submission|form|notice|label(?:ing)?|statement)\s+"
+                          r"(?:must\s+|should\s+|shall\s+)?(?:record|show|list|state|include)\b\??", re.I)
+
+
 def asks_records(question: str) -> bool:
-    return bool(_ASKS_RECORDS.search(question or ""))
+    q = question or ""
+    return bool(_ASKS_RECORDS.search(q)) and not (_RECORD_VERB.search(q) and not re.search(r"\brecords\b|record-?keeping", q, re.I))
 
 
 def silent(section_texts: dict[str, str]) -> bool:

@@ -53,7 +53,8 @@ def test_only_a_question_about_records_is_a_records_question():
            "Do we need to keep copies of the certificate?"]
     no = ["Our vaginal product is kept behind the pharmacy counter, not on open shelves. Does (b) apply?",
           "What must the package itself show as evidence of the feature?", "Can we store it in a warehouse?",
-          "Which document must accompany the petition?"]
+          "Which document must accompany the petition?", "What must our certification request record?",
+          "What must our lake certification request record?"]
     assert all(asks_records(q) for q in yes) and not any(asks_records(q) for q in no)
 
 
