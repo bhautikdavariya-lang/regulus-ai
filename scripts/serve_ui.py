@@ -695,8 +695,6 @@ class Handler(BaseHTTPRequestHandler):
                                 "resolved to and the question that opened the topic; earlier answers are never sent to "
                                 "the model or used as evidence"),
                 },
-                # the page's Focus control: the deployment's own scope and the values a request may ask for
-                "focus": focus_config(),
                 "answer_length": {
                     "policy": self.engine.settings.answer_length.policy,
                     "ceiling": self.engine.settings.answer_length.max_new_tokens,
@@ -830,7 +828,7 @@ class Handler(BaseHTTPRequestHandler):
         # the feature existed. The regression harness sends false for Run A.
         if "accuracy" in body:
             out["accuracy"] = bool(body["accuracy"])
-        if body.get("focus") is not None:   # the page's Focus control: an unknown value is refused, never guessed
+        if body.get("focus") is not None:   # an API client may name a focus (the page no longer offers one); never guessed
             from regulus.retrieval.section_index import FOCUSES
 
             if body["focus"] not in FOCUSES:
@@ -1069,12 +1067,6 @@ STREAM_EVENTS = frozenset({"start", "context", "generation_started", "generation
 PROGRESS_INTERVAL_S = 0.5   # at most one progress event per interval: their count does not track the draft's length
 _DRAFT_KEYS = ("raw_model_output", "repair_input", "repair_output")
 _PROBLEM_KEYS = ("code", "severity", "requirement_id", "citation")
-
-
-def focus_config() -> dict:
-    from regulus.retrieval.section_index import FOCUSES, deployment_scope
-
-    return {"default": deployment_scope() or "general", "options": list(FOCUSES)}
 
 
 def presentation_of(result: dict) -> dict | None:

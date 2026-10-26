@@ -143,8 +143,7 @@ def test_the_page_has_no_settings_or_model_controls():
     for gone in ('id="adapter"', 'id="topk"', 'id="tokens"', 'id="grounding"', 'class="settings',
                  'type="number"', '$("adapter")', '$("topk")', '$("tokens")', '$("grounding")', '$("model")'):
         assert gone not in html, gone
-    # the one choice the page offers is the Focus of a question (which regulations it is read against), not a setting
-    assert re.findall(r"<select[^>]*>", html) == ['<select id="focus">']
+    assert "<select" not in html   # no settings and no topic choice: the question itself says what it is about
     assert ">Settings<" not in html and "Settings</summary>" not in html
 
 

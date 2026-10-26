@@ -40,9 +40,7 @@ def ask(ui, **body):
 
 def test_the_page_has_no_model_control_and_the_api_offers_one_model(ui):
     html = (PROJECT_ROOT / "web" / "index.html").read_text(encoding="utf-8")
-    # the only <select> is the Focus control (tests/test_chat_ui.py); no model control
-    assert html.count("<select") == 1 and '<select id="focus">' in html
-    assert '$("model")' not in html and "regulus.model" not in html
+    assert "<select" not in html and '$("model")' not in html and "regulus.model" not in html
     with urllib.request.urlopen(ui.base + "/api/config", timeout=10) as r:
         cfg = json.loads(r.read())
     assert cfg["models"] == [{"id": UI.MODEL_MLX, "label": UI.MLX_LABEL, "available": True}]

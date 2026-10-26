@@ -382,9 +382,6 @@
               max-height: 220px; overflow-y: auto; }
   .composer textarea::placeholder { color: var(--text-muted); }
   .composer-bar { display: flex; align-items: center; gap: var(--sp-2); min-height: 36px; }
-  .focus-sel { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-xs); color: var(--text-muted); }
-  .focus-sel select { height: 28px; padding: 0 6px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--surface);
-                      color: var(--text-2); font: inherit; font-size: var(--fs-xs); }
   .composer-bar .status { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
               font-size: 12.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
   #stop .i, #ask .i { width: 16px; height: 16px; }
@@ -780,8 +777,6 @@
           <textarea id="q" rows="1" placeholder="Ask a regulatory question…"></textarea>
           <div class="composer-bar">
             <span class="status" id="status"></span>
-            <label class="focus-sel" title="Which regulations a question naming no product area is read against"><span>Focus</span>
-              <select id="focus"><option value="">Default</option></select></label>
             <button id="stop" type="button" class="ghost" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stop"/></svg>Stop</button>
             <button id="ask" type="button" class="primary send" aria-label="Send question"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-send"/></svg><span>Send</span></button>
           </div>
@@ -1374,28 +1369,12 @@ async function loadConfig() {
     $("env").textContent = label || ident || (m && m.label) || full;
     attr($("modelbadge"), "title", full);
     $("evalmodel").textContent = full;
-    setupFocus(cfg.focus);
   } catch (e) {
     $("env").textContent = "could not reach the server";
   }
   $("examples").innerHTML = EXAMPLES.map((e, i) => `<button type="button" data-i="${i}"><span class="ex-tag">${esc(e.tag)}</span><span class="ex-q">${esc(e.q)}</span></button>`).join("");
   $("examples").onclick = ev => { const b = ev.target.closest("button"); if (b && EXAMPLES[b.dataset.i]) { $("q").value = EXAMPLES[b.dataset.i].q; grow(); $("q").focus(); } };
 }
-
-// The Focus control: the server's own scope is "Default"; the other value is sent with each question only when chosen
-// (and remembered on this browser). Without a focus from the server the control stays hidden.
-const FOCUS_KEY = "regulus.focus";
-const FOCUS_LABELS = { cosmetics: "Cosmetics", general: "All of 21 CFR" };
-function setupFocus(f) {
-  const sel = $("focus");
-  if (!sel || !f || !Array.isArray(f.options) || !FOCUS_LABELS[f.default]) { if (sel && sel.parentNode) sel.parentNode.hidden = true; return; }
-  sel.innerHTML = `<option value="">${esc(FOCUS_LABELS[f.default])}</option>` + f.options.filter(o => o !== f.default && FOCUS_LABELS[o])
-    .map(o => `<option value="${esc(o)}">${esc(FOCUS_LABELS[o])}</option>`).join("");
-  const keep = stored(FOCUS_KEY);
-  sel.value = keep && f.options.includes(keep) && keep !== f.default ? keep : "";
-  sel.onchange = () => store(FOCUS_KEY, sel.value || null);
-}
-function chosenFocus() { const sel = $("focus"); return sel && sel.value ? sel.value : null; }
 
 function pill(text, cls) { return `<span class="pill ${cls}">${esc(text)}</span>`; }
 
@@ -2028,7 +2007,6 @@ async function ask(retry) {
       body: JSON.stringify({
         question,
         ...(turn ? { conversation_id: chat.id, turn_id: turn.turn_id } : {}),
-        ...(chosenFocus() ? { focus: chosenFocus() } : {}),
       }),
     });
     if (!res.ok || !res.body) {
