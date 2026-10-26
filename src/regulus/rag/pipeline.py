@@ -319,6 +319,10 @@ def may_promote(question: str, plan: QueryPlan) -> str | None:
             return None
         if all(r.reference.part in COSMETIC_PARTS for r in plan.requirements):
             return "any"
+        from regulus.rag.section_promotion import part_only_any
+
+        if part_only_any() and not any((r.raw or "").lstrip().startswith("§") for r in plan.requirements):
+            return "any"   # PO2: a part outside the cosmetics programme, resolved inside that part
         # "FD&C Act § 607" / "21 U.S.C. § 364a" are read as CFR parts: only the statute check may run
         return "named_statute" if statute_named and all((r.raw or "").lstrip().startswith("§") for r in plan.requirements) else None
     if _AMBIGUOUS_RE.search(question):

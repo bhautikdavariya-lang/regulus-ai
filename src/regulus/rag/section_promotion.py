@@ -189,6 +189,33 @@ _ACT_NUM = re.compile(r"(?:§|[Ss]ection|Act)\s*(\d{3})(?!\d|\.\d)")
 _CITATION_LIKE = re.compile(r"\d\.\d|CFR|§|\bAct\b|[Ss]ection|U\.S\.C", re.I)
 
 
+def part_only_any() -> bool:
+    """PO2 (regulus.rag.validator_switches): a question naming only a 21 CFR part outside the cosmetics programme
+    ("What are the reserve sample requirements under Part 211?") is resolved to its section(s) inside that part, as
+    "Under Part 82, ..." is. 26 Oct: 74 of the 225 300-question dev rows; inside the named part the lexical ranking puts
+    a key section first for 57 and in the top two for 61, where until then the question was answered from part-wide
+    retrieval and 1 of 14 scored rows passed."""
+    from regulus.rag.validator_switches import enabled
+
+    return enabled("PO2")
+
+
+def second_in_part(picks: list[int], cands: list[dict], picked: dict) -> str | None:
+    """SP2 (regulus.rag.validator_switches): the picker's second regulation, promoted as a companion of the first when
+    it is in the same part, outside the cosmetics programme (whose companions have their own rules). 26 Oct, 35
+    recorded 300-question picks: the key needs more than one section for 21; a second pick in the first pick's part was a
+    key section 11 times of 14, one in another part 1 of 7; in the cosmetics bank and follow-ups 0 of 4."""
+    from regulus.rag.validator_switches import enabled
+
+    if not enabled("SP2") or picked.get("statute") or picked["part"] in COSMETIC_PARTS:
+        return None
+    for i in picks[1:]:
+        c = cands[i - 1]
+        if not c.get("statute") and c["part"] == picked["part"] and c["section"] != picked["section"]:
+            return c["section"]
+    return None
+
+
 def parse_picks(text: str, n: int, sections: list[str] | None = None) -> list[int]:
     """Candidate positions (1-based) the picker's reply names, best first, at most two.
 
@@ -838,7 +865,7 @@ class SectionPromoter:
             return self._statute_promotion(named[:2], lex, "named_statute", t0)
         if named_only:
             return None   # only a section the question names may be resolved here; nothing is guessed
-        if parts and not all(p in COSMETIC_PARTS for p in parts):
+        if parts and not all(p in COSMETIC_PARTS for p in parts) and not part_only_any():
             return None   # a part outside the cosmetics programme (or a misread statute number): never promoted into
         if parts and len({x for x in lex if not x.isdigit()} - _PART_QUESTION_WORDS - COSMETIC_TERMS_GENERIC) < 2:
             return None   # "What does Part 720 require?" asks about the whole part: not narrowed to one section
@@ -932,7 +959,7 @@ class SectionPromoter:
         if not isinstance(prepared, tuple):
             return prepared
         lex, cands = prepared
-        raw, other, notes, second_act = None, None, (), None
+        raw, other, notes, second_act, second_cfr = None, None, (), None, None
         try:
             entity = self.entity_pick(question, lex, cands, parts) if ENTITY_CONSTRAINTS else None
         except Exception:  # noqa: BLE001 - an aid: without it the picker decides
@@ -968,6 +995,7 @@ class SectionPromoter:
                 if vetoed is not None:
                     notes = (f"rerank veto: {picked_c['section']} -> {vetoed['section']}",)
                     picked_c, other = vetoed, (None if other is not None and other["section"] == vetoed["section"] else other)
+            second_cfr = second_in_part(picks, cands, picked_c)
         if picked_c.get("statute"):
             acts = [(picked_c["section"], "")] + ([(second_act["section"], "")] if second_act is not None
                                                   and second_act["section"] != picked_c["section"] else [])
@@ -978,6 +1006,8 @@ class SectionPromoter:
                 pr = replace(pr, sections=tuple(sec), companions=tuple(dict.fromkeys(c for c in comps if c not in sec)))
             return replace(pr, notes=pr.notes + notes)
         pr = self._cfr_promotion(self.siblings(picked_c, cands, lex), question, lex, cands, raw, other, self.mode, t0)
+        if second_cfr is not None and second_cfr not in pr.citations:
+            pr = replace(pr, companions=pr.companions + (second_cfr,), notes=pr.notes + (f"second pick: {second_cfr}",))
         return replace(pr, notes=pr.notes + notes) if notes else pr
 
     def _cfr_promotion(self, picked: list[str], question: str, lex, cands, raw, other, method: str, t0: float) -> Promotion:

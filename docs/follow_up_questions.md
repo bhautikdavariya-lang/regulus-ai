@@ -84,13 +84,17 @@ A withheld or declined answer reads plainly and lists the provisions consulted. 
 The layout is for display only. The answer that is copied, stored, evaluated and scored is unchanged. Checked on 191
 recorded answers: no sentence lost.
 
-## 3. Focus control (`regulus.retrieval.section_index.focus`)
+## 3. Every question is read against all of Title 21
 
-The page's Focus control is either **Cosmetics** (the deployment default) or **All of 21 CFR**. It sets, per request,
-how a question that names no product domain is read.
+The page has no topic selector (removed 26 Oct afternoon). A user asks anything, and a question that names no
+product domain is read against all of Title 21. A question that names a cosmetic product or programme is still read
+as a cosmetics question.
 
-This matters because 90 of the 300 acceptance questions name no provision and no domain. A cosmetics prior would limit
-them to cosmetics sections, so the acceptance benchmark runs with `REGULUS_DEPLOYMENT_SCOPE` unset.
+- Why: 90 of the 300 acceptance questions name no provision and no domain. A cosmetics prior limited them to
+  cosmetics sections: with it, 63 of the 300-question key sections were candidates; without it, 136. The cosmetics
+  bank lost 1 candidate (179 → 178).
+- `REGULUS_DEPLOYMENT_SCOPE` is unset in `configs/ui.env.example`. An API client may still name a focus
+  (`regulus.retrieval.section_index.focus`); the page never does.
 
 ## 4. Composed fallbacks: answers built from the database text
 
@@ -133,14 +137,38 @@ one point on purpose. The live evaluator shows them NOT FULLY EVALUATED, never P
 These switches are off by default. The overnight run of 26–27 Oct runs with them on. If it confirms the A/B, they are
 turned on in `VALIDATOR_PRECISION`'s default.
 
-## 5. Known data defect
+## 5. Data repairs (26 Oct)
 
-21 CFR 82.3's definitions are stored under a reserved-range row ("(a)-(f) [Reserved]"). As a result:
+**Reserved-range paragraph paths: repaired.** Some sections had their paragraphs stored under a reserved-range row
+("(a)-(f) [Reserved]"), so 82.3(g) was stored as "(a)(g)" and 82.3(n) as "(a)(k)(n)". The paths were rewritten in the
+database:
 
-- (g) is stored as "(a)(g)";
-- (n) is stored as "(a)(k)(n)";
-- and so on for the rest of the section.
+| Section | Rows |
+|---|---|
+| 82.3 | 8 |
+| 105.3, 164.120, 202.1 | 23 |
 
-A repair and its exact rollback, for the user to apply, are in
-`~/regulus_eval_runs/programme_20261026/db_repair/82.3_paths_{fix,rollback}.sql`. Four other sections show the same
-pattern and need review before any repair: 105.3, 164.120, 202.1 and 310.201.
+Each repair has an exact rollback in `~/regulus_eval_runs/programme_20261026/db_repair/`. 310.201 shows a different
+pattern and is left as stored until it is reviewed.
+
+**FD&C Act store: 17 → 44 sections** (3,543 paragraphs), from the official U.S. Code 2024 edition (govinfo). The raw
+files are in `data/raw/statute_fdca`. The parser accepts an en dash in headings ("§360e–3"). Recorded answers replay
+byte-identical with the larger store. Citing an Act section a promoted regulation names (ST1) is behind a switch and off:
+the Act text rarely fits the evidence budget.
+
+## 6. Rejected on 26 Oct
+
+- **Speculative decoding (MLX draft model):** outputs differed from the plain model's and were slower (27 s → 41 s on
+  the same questions). Reverted.
+- **Removing the live evaluator for speed:** it takes 0.15 s per answer (0.74 s at most) after a 20–140 s answer. Kept.
+
+## 7. Under test on 26 Oct afternoon (switches off by default)
+
+| Switch | What it does | Why |
+|---|---|---|
+| SP2 | the picker's second regulation joins the first when it is in the same part (outside the cosmetics parts) | 20 of 21 partly-failed 300-question answers were right but covered one of the key's sections; a same-part second pick was a key section 11 of 14 times |
+| PO2 | a question naming only a part outside the cosmetics programme ("under Part 211") is resolved to its section(s) inside that part | 74 of the 225 dev questions; they were answered from part-wide search and 1 of 14 scored passed; a key section ranks first inside the part for 57 of 74 |
+| `REGULUS_PARAGRAPH_DENSE_SCOPE=title21` | the reranker reads paragraphs of every part, not only cosmetics and the Act | the rerank veto of a wrong pick never acted on drug, device or food questions; prebuild with `python -m regulus.retrieval.paragraph_dense` (69,476 paragraphs, about 20 minutes once) |
+
+With all three off, 315 recorded answers replay byte-identical. Each is switched on only after a live A/B with blind
+scoring shows gains and no lost PASS.

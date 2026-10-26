@@ -51,6 +51,13 @@ Fallback fix (26 Oct 2026; NOT in the default until its blind A/B passes):
   QM1 a section of the former Quality System regulation (820.30, 820.100 ...) is said not to be in the current eCFR, the
       live part 820 text that carries its subject is quoted, and the ISO 13485:2016 clause on that subject is named by
       number and title with its basis; a non-existent ISO 13485 clause is said not to exist (regulus.rag.qmsr)
+Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
+  SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
+      programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
+      of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
+  PO2 a question naming only a 21 CFR part outside the cosmetics programme ("under Part 211") is resolved to its
+      section(s) inside that part, as "Under Part 82, ..." is (regulus.rag.section_promotion.part_only_any): 74 of
+      225 300-question dev rows; a key section ranks first inside the part for 57
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.

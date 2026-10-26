@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
+import os
 import re
 import threading
 from dataclasses import dataclass
@@ -28,11 +30,23 @@ from regulus.retrieval.section_index import COSMETIC_PARTS
 CACHE_DIR = Path(__file__).resolve().parents[3] / "data" / "processed" / "paragraph_dense"
 TEXT_CHARS = 900
 LEADIN_CHARS = 200
+# "title21" adds every other live part of Title 21 (26 Oct 2026): the page reads every question against all of Title 21
+# since the topic selector went, but the reranker could only read cosmetics and FD&C Act paragraphs, so its veto of a
+# wrong pick never acted on a drug, device or food question. The cosmetics/Act index and its cache are unchanged (built
+# first, as before); the other parts are appended after it, cached one part per file so a repaired part re-embeds only
+# itself (about 63,000 paragraphs, about 20 minutes on CPU the first time: prebuild with
+# `python -m regulus.retrieval.paragraph_dense`). Default "cosmetics" until measured.
+SCOPE = os.environ.get("REGULUS_PARAGRAPH_DENSE_SCOPE", "cosmetics").strip().lower() or "cosmetics"
 
 _ROWS_SQL = """
 SELECT section_number, part_number, paragraph_path, ordinal, section_heading, body_text
 FROM cfr_records WHERE removed_on IS NULL AND NOT is_reserved AND part_number = ANY(%(parts)s)
 ORDER BY section_number, ordinal
+"""
+_OTHER_ROWS_SQL = """
+SELECT section_number, part_number, paragraph_path, ordinal, section_heading, body_text
+FROM cfr_records WHERE removed_on IS NULL AND NOT is_reserved AND NOT (part_number = ANY(%(parts)s))
+ORDER BY part_number, section_number, ordinal
 """
 
 
@@ -63,10 +77,10 @@ class ParagraphDense:
         return self.texts[self.position[para]]
 
     @classmethod
-    def build(cls, db, statute=None, embedder=None) -> "ParagraphDense":
+    def build(cls, db, statute=None, embedder=None, scope: str | None = None) -> "ParagraphDense":
         paras, texts = [], []
 
-        def add(corpus, section, heading, rows):   # rows: [(path, ordinal, body)]
+        def add(corpus, section, heading, rows, paras=paras, texts=texts):   # rows: [(path, ordinal, body)]
             body_by_path = {p: b for p, _, b in rows}
             for path, ordinal, body in rows:
                 lead = body_by_path.get(_parent(path) or "", "") if _parent(path) else ""
@@ -94,17 +108,34 @@ class ParagraphDense:
         embedder = embedder or _embedder()
         desc = embedder.describe() or {}
         revision = desc.get("resolved_revision") or desc.get("revision")
-        key = hashlib.sha256(json.dumps([revision, texts]).encode("utf-8")).hexdigest()[:16]
-        path = CACHE_DIR / f"vectors_{key}.npy"
-        if path.exists():
-            vectors = np.load(path)
-        else:
-            vectors = embedder.embed_batch(texts).astype(np.float32)
-            CACHE_DIR.mkdir(parents=True, exist_ok=True)
-            tmp = path.with_suffix(".tmp.npy")
-            np.save(tmp, vectors)
-            tmp.replace(path)
+        vectors = _cached(embedder, revision, texts, CACHE_DIR / "vectors_{key}.npy")
+        if (scope or SCOPE) == "title21":
+            try:
+                vectors = cls._add_other_parts(db, embedder, revision, add, paras, texts, vectors)
+            except Exception:  # noqa: BLE001 - the wider index is an aid: the cosmetics/Act index stands without it
+                logging.getLogger(__name__).exception("paragraph_dense: other parts not added")
+                del paras[len(vectors):], texts[len(vectors):]
         return cls(paras, vectors, embedder, texts)
+
+    @staticmethod
+    def _add_other_parts(db, embedder, revision, add, paras, texts, vectors) -> np.ndarray:
+        """Every live part outside the cosmetics programme, appended in part order; each part's vectors cached on their
+        own (CACHE_DIR/parts/part_<n>_<key>.npy)."""
+        by_part: dict[str, dict[str, list]] = {}
+        heads: dict[str, str] = {}
+        for r in db.query(_OTHER_ROWS_SQL, {"parts": sorted(COSMETIC_PARTS)}):
+            by_part.setdefault(str(r["part_number"]), {}).setdefault(r["section_number"], []).append(
+                (r["paragraph_path"] or "", int(r["ordinal"]), " ".join((r["body_text"] or "").split())))
+            heads[r["section_number"]] = r["section_heading"] or ""
+        blocks = [vectors]
+        for part in sorted(by_part, key=lambda p: (len(p), p)):
+            p_paras, p_texts = [], []
+            for s, rows in by_part[part].items():
+                add("cfr", s, heads[s], rows, p_paras, p_texts)
+            blocks.append(_cached(embedder, revision, p_texts, CACHE_DIR / "parts" / f"part_{part}_{{key}}.npy"))
+            paras += p_paras
+            texts += p_texts
+        return np.concatenate(blocks).astype(np.float32, copy=False)
 
     def similarities(self, question: str) -> np.ndarray:
         return self.vectors @ self.embedder.embed_query(question)
@@ -124,6 +155,21 @@ class ParagraphDense:
         """One section's paragraphs, most similar first."""
         sims = self.similarities(question) if sims is None else sims
         return sorted(((self.paras[i], float(sims[i])) for i in self.by_section.get(section, ())), key=lambda x: -x[1])
+
+
+def _cached(embedder, revision, texts: list[str], pattern: Path) -> np.ndarray:
+    """The texts' vectors, from the cache file named by their hash (`pattern` holds "{key}"), embedded and saved when
+    absent."""
+    key = hashlib.sha256(json.dumps([revision, texts]).encode("utf-8")).hexdigest()[:16]
+    path = pattern.with_name(pattern.name.format(key=key))
+    if path.exists():
+        return np.load(path)
+    vectors = embedder.embed_batch(texts).astype(np.float32)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp.npy")
+    np.save(tmp, vectors)
+    tmp.replace(path)
+    return vectors
 
 
 def _embedder():
@@ -148,3 +194,16 @@ def paragraph_dense(db) -> ParagraphDense | None:
             except Exception:  # noqa: BLE001 - an aid only
                 _CACHE[id(db)] = None
         return _CACHE[id(db)]
+
+
+if __name__ == "__main__":   # prebuild the cache for REGULUS_PARAGRAPH_DENSE_SCOPE=title21 before serving
+    from regulus.retrieval.db import Database
+    from regulus.retrieval.statute import statute_index
+
+    _db = Database.from_env()
+    _db.connect()
+    try:
+        _pd = ParagraphDense.build(_db, statute_index(_db), scope="title21")
+        print(f"{len(_pd.paras)} paragraphs, {len(_pd.by_section)} sections")
+    finally:
+        _db.close()
