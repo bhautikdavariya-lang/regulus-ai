@@ -88,6 +88,16 @@ def test_omitted_provision_is_incomplete():
     assert r.problems[0].requirement_id == "r2"
 
 
+def test_an_optional_provision_left_out_is_a_warning_not_an_error():
+    # SP2: a second pick added as further evidence (GenerationPackage.optional_labels) never withholds the answer
+    from dataclasses import replace
+    pkg = package_for(TWO)
+    label = pkg.requirement_labels["r2"]
+    r = validate_answer("21 CFR 820.10(b)(2): requires traceability procedures [1].", replace(pkg, optional_labels=frozenset({label})), gen("x"))
+    assert r.ok and r.unaddressed == ("r2",)
+    assert [p.severity for p in r.problems if p.code == REQUIREMENT_NOT_ADDRESSED] == ["warning"]
+
+
 def test_arbitrary_textual_order_is_accepted():
     r = validate_answer("Under (b)(4), advisory notices [2]. Under (b)(2), traceability [1].", package_for(TWO), gen("x"))
     assert r.ok and set(r.addressed) == {"r1", "r2"}

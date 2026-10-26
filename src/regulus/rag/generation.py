@@ -318,6 +318,9 @@ class GenerationPackage:
     # a follow-up (regulus.rag.conversation): the question that opened the conversation's topic, shown before the
     # QUESTION as context only; None (every question asked on its own) renders exactly as before
     earlier_question: str | None = None
+    # requested provisions the answer may leave unaddressed ("21 CFR 507.34"): added as further evidence, not asked for
+    # (SP2's second pick); omitting one is a warning, not an error. Empty: every requirement must be addressed, as before
+    optional_labels: frozenset[str] = frozenset()
 
     @property
     def weak_evidence(self) -> bool:

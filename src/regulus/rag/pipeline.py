@@ -1132,6 +1132,11 @@ class RagPipeline:
                                                       for s in promotion.statute))
         if package is not None and followup is not None and followup.earlier_question:
             package = replace(package, earlier_question=followup.earlier_question)
+        if package is not None and promotion is not None:
+            # SP2: the picker's second regulation is further evidence; an answer that leaves it out is not withheld
+            extra = frozenset(f"21 CFR {n.split(': ', 1)[1]}" for n in promotion.notes if n.startswith("second pick: "))
+            if extra:
+                package = replace(package, optional_labels=extra)
         normalization: dict[str, Any] | None = None
         # Failure observatory: the stages of the text, kept separately so that a
         # later step can never hide what an earlier one produced. None when no model call.

@@ -551,7 +551,8 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
                 addressed.append(rid)
             else:
                 unaddressed.append(rid)
-                problems.append(ValidationProblem(REQUIREMENT_NOT_ADDRESSED, "error", f"{package.requirement_labels[rid]} has an EXACT source but the answer does not address it", requirement_id=rid))
+                optional = package.requirement_labels[rid] in package.optional_labels
+                problems.append(ValidationProblem(REQUIREMENT_NOT_ADDRESSED, "warning" if optional else "error", f"{package.requirement_labels[rid]} has an EXACT source but the answer does not address it", requirement_id=rid))
         if package.satisfied_ids and answer_class == REFUSAL and text:
             problems.append(ValidationProblem(REFUSAL_WITH_EVIDENCE, "error", "the answer declines although EXACT sources were supplied for requested provisions"))
         # a provision with no EXACT source may only be mentioned as not found
