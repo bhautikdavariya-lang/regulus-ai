@@ -3,100 +3,156 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Regulus AI</title>
+<script>try{var t=localStorage.getItem("regulus.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <style>
-  /* ---------------------------------------------------------------- design tokens
-     One small system. The names the answer renderers already use (--ink, --muted, --line,
-     --panel, --bg, --accent, --ok, --warn, --stop, --ecfr, --guid) are kept as aliases. */
+  /* ================================================================ design tokens
+     One small system. The names the answer renderers already use (--ink, --muted, --line, --panel, --bg,
+     --accent, --ok, --warn, --stop, --ecfr, --guid) are kept as aliases. Light is the default; dark comes from
+     the system preference unless the theme button chose light, or from the button choosing dark. */
   :root {
-    --bg: #f6f6f4;            /* page */
-    --surface: #ffffff;       /* panels, composer, drawer */
-    --surface-2: #efefec;     /* user messages, hover */
-    --surface-3: #e7e7e3;     /* active row */
-    --border: #e2e2dd;
-    --border-strong: #cfcfc9;
-    --text: #1a1a18;
-    --text-muted: #686862;
-    --accent: #0f6e63;        /* deep regulatory teal: the one accent */
-    --accent-ink: #ffffff;
-    --accent-soft: rgba(15, 110, 99, .10);
-    --ok: #1d7a4c; --warn: #9a5b00; --stop: #b3261e; --ecfr: #1f5fa8; --guid: #8a5a00;
-    --ink: var(--text); --muted: var(--text-muted); --line: var(--border); --panel: var(--surface);
-
-    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+    --bg: #f7f7f5; --surface: #ffffff; --surface-2: #f2f2ef; --surface-3: #e9e9e5; --sunken: #f4f4f1;
+    --border: #e5e5e0; --border-strong: #d2d2cb; --overlay: rgba(12, 12, 11, .40);
+    --text: #18181a; --text-2: #45453f; --text-muted: #67675f;
+    --accent: #0f6e63; --accent-hover: #0b5c53; --accent-ink: #ffffff;
+    --accent-soft: rgba(15, 110, 99, .10); --accent-line: rgba(15, 110, 99, .38);
+    --ok: #1c5cab; --warn: #8f5600; --stop: #b3261e; --ecfr: #1f5fa8; --guid: #8a5a00;
+    --danger: #b3261e; --danger-ink: #ffffff; --danger-soft: rgba(179, 38, 30, .08);
+    --viz-pass: #2a78d6; --viz-pass-weak: #86b6ef; --viz-fail: #d03b3b; --viz-fail-weak: #ec835a; --viz-none: #a8a79f;
+    --viz-grid: #e1e0d9; --viz-axis: #c3c2b7; --viz-track: #cde2fb; --viz-seq: #1c5cab; --viz-seq-ink: #ffffff;
+    --ink: var(--text); --muted: var(--text-muted); --mut: var(--text-muted); --line: var(--border); --panel: var(--surface);
+    --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    --fs-xs: 11.5px; --fs-sm: 13px; --fs-md: 14.5px; --fs-body: 16px; --fs-lg: 17px;
-    --lh-body: 1.7;
-
-    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px;
-    --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-pill: 999px;
+    --font-quote: Georgia, "Times New Roman", serif;
+    --fs-2xs: 11px; --fs-xs: 12px; --fs-sm: 13px; --fs-md: 14px; --fs-base: 15px; --fs-body: 16px;
+    --fs-lg: 18px; --fs-xl: 22px; --fs-2xl: 28px;
+    --lh-tight: 1.25; --lh-ui: 1.5; --lh-body: 1.7;
+    --sp-0: 2px; --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+    --r-xs: 4px; --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 18px; --r-pill: 999px;
     --shadow-1: 0 1px 2px rgba(20, 20, 18, .06);
-    --shadow-2: 0 6px 24px rgba(20, 20, 18, .08), 0 1px 3px rgba(20, 20, 18, .06);
+    --shadow-2: 0 4px 16px rgba(20, 20, 18, .08), 0 1px 3px rgba(20, 20, 18, .06);
     --shadow-3: 0 18px 48px rgba(20, 20, 18, .18);
-
-    --side-w: 272px; --column-w: 768px; --evidence-w: 540px; --topbar-h: 56px;
-    --ease: cubic-bezier(.2, .7, .2, 1); --t-fast: .14s; --t-med: .22s;
+    --focus: var(--accent); --tab-on: var(--surface);
+    --side-w: 280px; --column-w: 780px; --evidence-w: 560px; --topbar-h: 56px; --dash-w: 1180px; --gutter: 24px;
+    --ease: cubic-bezier(.2, .7, .2, 1); --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --t-fast: .12s; --t-med: .2s; --t-slow: .32s;
+    --z-evidence: 20; --z-backdrop: 25; --z-drawer: 30; --z-toast: 40;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121314; --surface: #18191b; --surface-2: #222326; --surface-3: #2a2b2f;
-      --border: #2c2d31; --border-strong: #3a3b40; --text: #ebebe8; --text-muted: #9d9d97;
-      --accent: #3fb6a5; --accent-ink: #06201c; --accent-soft: rgba(63, 182, 165, .14);
-      --ok: #5fcf98; --warn: #e0a33a; --stop: #ff8a80; --ecfr: #7fb0ef; --guid: #e0b25a;
-      --shadow-1: 0 1px 2px rgba(0, 0, 0, .4); --shadow-2: 0 8px 28px rgba(0, 0, 0, .45);
-      --shadow-3: 0 18px 48px rgba(0, 0, 0, .6);
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0e0f10; --surface: #16171a; --surface-2: #1e1f22; --surface-3: #27282c; --sunken: #121315;
+      --border: #2a2b2f; --border-strong: #3b3c41; --overlay: rgba(0, 0, 0, .55);
+      --text: #ececea; --text-2: #c9c9c3; --text-muted: #9d9d97;
+      --accent: #3fb6a5; --accent-hover: #55c5b4; --accent-ink: #06201c;
+      --accent-soft: rgba(63, 182, 165, .14); --accent-line: rgba(63, 182, 165, .40);
+      --ok: #6da7ec; --warn: #e0a33a; --stop: #ff8a80; --ecfr: #7fb0ef; --guid: #e0b25a;
+      --danger: #ff8a80; --danger-ink: #2a0b08; --danger-soft: rgba(255, 138, 128, .10);
+      --viz-pass: #3987e5; --viz-pass-weak: #184f95; --viz-fail: #d03b3b; --viz-fail-weak: #ec835a; --viz-none: #a8a79f;
+      --viz-grid: #2c2c2a; --viz-axis: #383835; --viz-track: #0d366b; --viz-seq: #6da7ec; --viz-seq-ink: #0b0b0b;
+      --shadow-1: 0 1px 2px rgba(0, 0, 0, .4); --shadow-2: 0 8px 28px rgba(0, 0, 0, .45); --shadow-3: 0 18px 48px rgba(0, 0, 0, .6);
+      --tab-on: var(--surface-3);
     }
   }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0e0f10; --surface: #16171a; --surface-2: #1e1f22; --surface-3: #27282c; --sunken: #121315;
+    --border: #2a2b2f; --border-strong: #3b3c41; --overlay: rgba(0, 0, 0, .55);
+    --text: #ececea; --text-2: #c9c9c3; --text-muted: #9d9d97;
+    --accent: #3fb6a5; --accent-hover: #55c5b4; --accent-ink: #06201c;
+    --accent-soft: rgba(63, 182, 165, .14); --accent-line: rgba(63, 182, 165, .40);
+    --ok: #6da7ec; --warn: #e0a33a; --stop: #ff8a80; --ecfr: #7fb0ef; --guid: #e0b25a;
+    --danger: #ff8a80; --danger-ink: #2a0b08; --danger-soft: rgba(255, 138, 128, .10);
+    --viz-pass: #3987e5; --viz-pass-weak: #184f95; --viz-fail: #d03b3b; --viz-fail-weak: #ec835a; --viz-none: #a8a79f;
+    --viz-grid: #2c2c2a; --viz-axis: #383835; --viz-track: #0d366b; --viz-seq: #6da7ec; --viz-seq-ink: #0b0b0b;
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, .4); --shadow-2: 0 8px 28px rgba(0, 0, 0, .45); --shadow-3: 0 18px 48px rgba(0, 0, 0, .6);
+    --tab-on: var(--surface-3);
+  }
 
-  /* ---------------------------------------------------------------- base */
-  * { box-sizing: border-box; }
+  /* ================================================================ base */
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html, body { height: 100%; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: var(--fs-md)/1.55 var(--font-ui);
+  body { margin: 0; background: var(--bg); color: var(--text); font: var(--fs-md)/var(--lh-ui) var(--font-ui);
          -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
   a { color: var(--accent); text-underline-offset: 2px; }
   .sub { color: var(--text-muted); font-size: var(--fs-sm); }
   .err { color: var(--stop); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
              clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-sm); }
-  label { display: block; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
-          color: var(--text-muted); margin-bottom: var(--sp-2); }
+  .skip { position: absolute; left: var(--sp-3); top: -60px; z-index: 50; padding: 8px 12px; border-radius: var(--r-md);
+          background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; }
+  .skip:focus { top: var(--sp-3); }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--r-sm); }
+  label { display: block; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+          color: var(--text-muted); margin-bottom: var(--sp-2); line-height: 1.2; }
   details summary { cursor: pointer; color: var(--text-muted); font-size: var(--fs-sm); }
-  pre { overflow-x: auto; font: 12px/1.5 var(--font-mono); background: var(--bg); padding: var(--sp-3);
+  details summary:hover { color: var(--text); }
+  pre { overflow-x: auto; font: 12px/1.5 var(--font-mono); background: var(--sunken); padding: var(--sp-3);
         border-radius: var(--r-md); border: 1px solid var(--border); }
+  code, kbd { font-family: var(--font-mono); font-size: 12px; }
+  kbd { padding: 1px 5px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: var(--r-xs);
+        background: var(--surface); color: var(--text-2); line-height: 1.3; }
   table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
-  td { padding: 5px 0; vertical-align: top; border-top: 1px solid var(--border); }
+  td { padding: 6px 0; vertical-align: top; border-top: 1px solid var(--border); }
   tr:first-child td { border-top: 0; }
   td:first-child { color: var(--text-muted); width: 42%; padding-right: var(--sp-3); }
+  .i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8;
+       stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+  .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
-  /* ---------------------------------------------------------------- buttons */
-  button { font: inherit; font-weight: 600; border: 0; border-radius: var(--r-md); padding: 9px 16px; min-height: 38px;
-           background: var(--accent); color: var(--accent-ink); cursor: pointer;
+  /* ================================================================ buttons */
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer;
+           border-radius: var(--r-md); line-height: 1.2;
            transition: background-color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
-                       color var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease); }
-  button:hover { filter: brightness(1.06); }
-  button:active { filter: brightness(.96); }
-  button:disabled { opacity: .45; cursor: default; filter: none; }
-  button.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); font-weight: 500; }
-  button.ghost:hover { background: var(--surface-2); border-color: var(--border-strong); filter: none; }
-  button.small { padding: 4px 10px; min-height: 30px; font-size: var(--fs-sm); border-radius: var(--r-sm); }
-  .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; padding: 0;
-              background: transparent; color: var(--text-muted); border: 1px solid transparent; border-radius: var(--r-md); }
-  .icon-btn:hover { background: var(--surface-2); color: var(--text); filter: none; }
-  .icon-btn svg { width: 20px; height: 20px; }
+                       color var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
+  button:disabled, button[aria-disabled="true"] { opacity: .45; cursor: default; }
+  .primary { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); height: 36px; padding: 0 14px;
+             background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: var(--fs-md); }
+  .primary:hover:not(:disabled) { background: var(--accent-hover); }
+  .primary:active:not(:disabled) { filter: brightness(.96); }
+  .ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 12px;
+           background: transparent; color: var(--text); border: 1px solid var(--border); font-weight: 500; font-size: var(--fs-md); }
+  .ghost:hover:not(:disabled) { background: var(--surface-2); border-color: var(--border-strong); }
+  .ghost:active:not(:disabled) { background: var(--surface-3); }
+  .subtle { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; color: var(--text-muted); font-weight: 500; }
+  .subtle:hover:not(:disabled) { background: var(--surface-2); color: var(--text); }
+  .danger { display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 10px;
+            background: var(--danger); color: var(--danger-ink); font-weight: 600; }
+  .danger:hover:not(:disabled) { filter: brightness(1.06); }
+  .small { height: 30px; padding: 0 10px; font-size: 12.5px; border-radius: var(--r-sm); }
+  .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex: none;
+              color: var(--text-muted); border-radius: var(--r-md); }
+  .icon-btn:hover:not(:disabled) { background: var(--surface-2); color: var(--text); }
+  .icon-btn:active:not(:disabled) { background: var(--surface-3); }
+  .hint { margin-left: auto; padding: 1px 5px; border: 0; background: rgba(255, 255, 255, .16); color: inherit;
+          font: 11px/1.3 var(--font-mono); border-radius: var(--r-xs); opacity: .85; }
 
-  /* ---------------------------------------------------------------- pills (answer metadata) */
-  .pill { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); font-weight: 600;
-          letter-spacing: .02em; line-height: 1; padding: 4px 8px; border-radius: var(--r-pill);
+  /* ================================================================ pills (answer metadata) and badges */
+  .pill { display: inline-flex; align-items: center; gap: 4px; height: 22px; font-size: 11.5px; font-weight: 600;
+          letter-spacing: .02em; line-height: 1; padding: 0 8px; border-radius: var(--r-pill);
           border: 1px solid currentColor; white-space: nowrap; }
   .pill.ok { color: var(--ok); } .pill.warn { color: var(--warn); } .pill.stop { color: var(--stop); }
   .pill.mut { color: var(--text-muted); } .pill.ecfr { color: var(--ecfr); } .pill.guid { color: var(--guid); }
+  .badge { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px; border-radius: var(--r-pill);
+           font-size: 11.5px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+           color: var(--text); background: var(--surface-2); --mark: var(--viz-none); }
+  .badge .bi { color: var(--mark); font-size: 12px; font-weight: 700; }
+  .badge.b-pass { --mark: var(--viz-pass); } .badge.b-fail { --mark: var(--viz-fail); }
+  .badge.b-none, .badge.b-nfe { --mark: var(--text-muted); }
+  .badge.b-measured { background: var(--accent); color: var(--accent-ink); }
+  .badge.b-projected { background: transparent; border: 1px dashed var(--text-muted); color: var(--text-2); }
+  .badge.b-recal { --mark: var(--warn); }
+  .badge.b-live { background: var(--accent-soft); color: var(--accent); }
   @supports (background: color-mix(in srgb, red 10%, white)) {
     .pill { background: color-mix(in srgb, currentColor 9%, transparent);
-            border-color: color-mix(in srgb, currentColor 32%, transparent); }
+            border-color: color-mix(in srgb, currentColor 30%, transparent); }
+    .badge.b-pass, .badge.b-fail, .badge.b-none, .badge.b-nfe, .badge.b-recal { background: color-mix(in srgb, var(--mark) 14%, transparent); }
   }
 
-  /* ---------------------------------------------------------------- app shell */
+  /* ================================================================ app shell */
   .app { display: grid; grid-template-columns: minmax(0, 1fr); height: 100vh; height: 100dvh; overflow: hidden; }
   .app.chat { grid-template-columns: var(--side-w) minmax(0, 1fr); }
   .app.ready { transition: grid-template-columns var(--t-med) var(--ease); }
@@ -107,292 +163,708 @@
   /* sidebar */
   #sidebar { display: flex; flex-direction: column; gap: var(--sp-3); min-width: 0; overflow: hidden;
              background: var(--surface); border-right: 1px solid var(--border); padding: var(--sp-3); }
-  #sidebar[hidden] { display: none; }
   .app.sidecollapsed #sidebar { padding: 0; border-right: 0; visibility: hidden; }
   .side-head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2);
                min-height: 38px; padding: 0 var(--sp-1); }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: -.01em;
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: var(--fs-base); letter-spacing: -.01em;
            white-space: nowrap; }
-  .brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px;
-                border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: 700 16px/1 Georgia, serif; }
+  .brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; flex: none;
+                border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: 700 16px/1 var(--font-quote);
+                box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .12); }
   .brand small { font-weight: 500; color: var(--text-muted); font-size: var(--fs-sm); }
+  .brand-inline { display: none; margin-right: var(--sp-2); }
+  .app:not(.chat) .brand-inline { display: flex; }
   #sideclose { display: none; }
-  #newchat { display: flex; align-items: center; justify-content: center; gap: var(--sp-2); width: 100%; }
-  #newchat svg { width: 16px; height: 16px; }
-  .side-label { padding: var(--sp-2) var(--sp-2) 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .06em;
+  #newchat { width: 100%; justify-content: flex-start; }
+  #newchat .i { width: 16px; height: 16px; }
+  .side-search { position: relative; }
+  .side-search .i { position: absolute; left: 10px; top: 9px; width: 16px; height: 16px; color: var(--text-muted); pointer-events: none; }
+  #convsearch { width: 100%; height: 34px; padding: 0 10px 0 32px; border-radius: var(--r-md); border: 1px solid var(--border);
+                background: var(--sunken); color: var(--text); font: inherit; font-size: var(--fs-sm); outline: 0;
+                -webkit-appearance: none; appearance: none;
+                transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
+  #convsearch::placeholder { color: var(--text-muted); }
+  #convsearch:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  #convsearch::-webkit-search-cancel-button { cursor: pointer; }
+  .side-label { padding: var(--sp-1) var(--sp-2) 0; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .06em;
                 text-transform: uppercase; color: var(--text-muted); }
-  #convlist { list-style: none; margin: 0; padding: 0 0 var(--sp-3); display: flex; flex-direction: column; gap: 2px;
-              overflow-y: auto; flex: 1 1 auto; min-height: 0; }
-  #convlist button.conv { position: relative; width: 100%; min-height: 0; text-align: left; background: transparent;
-              color: var(--text); font-weight: 500; padding: 8px 10px 8px 12px; border-radius: var(--r-md);
-              display: flex; flex-direction: column; gap: 2px; filter: none; }
+  #convlist { list-style: none; margin: 0 calc(-1 * var(--sp-1)); padding: 0 var(--sp-1) var(--sp-3); display: flex;
+              flex-direction: column; gap: 1px; overflow-y: auto; flex: 1 1 auto; min-height: 0; }
+  #convlist .grp { padding: var(--sp-3) var(--sp-2) var(--sp-1); font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .05em;
+                   text-transform: uppercase; color: var(--text-muted); }
+  #convlist .grp:first-child { padding-top: 0; }
+  #convlist .empty-row { padding: var(--sp-2) 10px; overflow-wrap: anywhere; }
+  .conv-row { position: relative; display: flex; align-items: center; min-height: 40px; border-radius: var(--r-md); }
+  #convlist button.conv { position: relative; flex: 1 1 auto; min-width: 0; text-align: left; color: var(--text);
+              font-weight: 500; padding: 7px 38px 7px 12px; border-radius: var(--r-md); display: flex; flex-direction: column; gap: 1px; }
   #convlist button.conv:hover { background: var(--surface-2); }
   #convlist button.conv.active { background: var(--accent-soft); }
   #convlist button.conv.active::before { content: ""; position: absolute; left: 3px; top: 10px; bottom: 10px; width: 3px;
               border-radius: 3px; background: var(--accent); }
   #convlist .t { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-md); }
-  #convlist .sub { font-size: 12px; }
+  #convlist .conv .sub { font-size: var(--fs-xs); }
+  .conv-del { position: absolute; right: 4px; top: 6px; width: 28px; height: 28px; opacity: 0; border-radius: var(--r-sm); }
+  .conv-del .i { width: 16px; height: 16px; }
+  .conv-del:hover:not(:disabled) { color: var(--danger); background: var(--danger-soft); }
+  .conv-row:hover .conv-del, .conv-row:focus-within .conv-del, .conv-row.is-active .conv-del { opacity: 1; }
+  .conv-row:hover .conv-del:disabled, .conv-row:focus-within .conv-del:disabled, .conv-row.is-active .conv-del:disabled { opacity: .4; }
+  @media (hover: none) { .conv-del { opacity: 1; } }
+  .conv-row.confirming { padding: 6px 6px 6px 12px; background: var(--danger-soft); }
+  .confirm { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: 100%; min-width: 0; }
+  .confirm-q { flex: 1 1 auto; min-width: 0; font-size: var(--fs-sm); font-weight: 500; color: var(--text); }
+  .confirm-note { flex: 1 1 100%; margin: 0; font-size: 11.5px; line-height: 1.45; color: var(--text-muted); }
+  .side-foot { flex: none; display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-3) var(--sp-1) 0;
+               border-top: 1px solid var(--border); }
+  #chatnote { margin: 0; font-size: 11.5px; line-height: 1.5; color: var(--text-muted); }
+  #keyshelp { align-self: flex-start; font-size: var(--fs-xs); height: 28px; padding: 0 8px; }
 
-  /* topbar */
+  /* top bar */
   .topbar { flex: none; display: flex; align-items: center; gap: var(--sp-2); height: var(--topbar-h);
             padding: 0 var(--sp-3); border-bottom: 1px solid var(--border); background: var(--bg); }
-  #sidetoggle[hidden], #evtoggle[hidden] { display: none; }
-  .titlebox { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 1px; }
-  .titlebox h1 { margin: 0; font-size: 14.5px; font-weight: 600; letter-spacing: -.005em; line-height: 1.3;
+  .titlebox { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--sp-2); }
+  .titlebox h1 { margin: 0; font-size: var(--fs-base); font-weight: 600; letter-spacing: -.005em; line-height: 1.3;
                  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .titlebox #env { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11.5px; line-height: 1.3; }
-  #evtoggle { display: inline-flex; align-items: center; gap: 6px; }
-  #evtoggle svg { width: 16px; height: 16px; }
+  .titlebox .t-dash { display: none; font-size: var(--fs-base); font-weight: 600; }
+  .app.dash .titlebox h1 { display: none; }
+  .app.dash .titlebox .t-dash { display: block; }
+  .viewtabs { flex: none; display: inline-flex; align-items: center; gap: 2px; height: 34px; padding: 3px;
+              border-radius: var(--r-md); background: var(--surface-2); }
+  .viewtabs [role="tab"] { position: relative; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px;
+                           border-radius: 7px; font-size: 13.5px; font-weight: 600; color: var(--text-muted); }
+  .viewtabs [role="tab"] .i { width: 16px; height: 16px; }
+  .viewtabs [role="tab"]:hover { color: var(--text); }
+  .viewtabs [role="tab"][aria-selected="true"] { background: var(--tab-on); color: var(--text);
+                           box-shadow: inset 0 0 0 1px var(--border-strong), var(--shadow-1); }
+  .viewtabs [role="tab"][aria-selected="true"]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 3px;
+                           height: 2px; border-radius: 2px; background: var(--accent); }
+  .model-badge { flex: none; display: inline-flex; align-items: center; gap: 6px; max-width: 240px; height: 26px; padding: 0 10px;
+                 border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--surface); font-size: 12.5px;
+                 font-weight: 500; color: var(--text-2); }
+  .model-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+  #env { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  #evtoggle .i { width: 16px; height: 16px; }
+  .app.dash #evtoggle { display: none; }
+  #themetoggle .i { display: none; }
+  #themetoggle[data-pref="system"] .ic-system, #themetoggle:not([data-pref]) .ic-system,
+  #themetoggle[data-pref="light"] .ic-light, #themetoggle[data-pref="dark"] .ic-dark { display: block; }
+
+  /* views */
+  .view { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; animation: fadein var(--t-med) var(--ease); }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 
   /* scrolling conversation column */
   .scroll { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; }
-  .column { width: 100%; max-width: var(--column-w); margin: 0 auto; padding: 0 var(--sp-5); }
+  .column { width: 100%; max-width: var(--column-w); margin: 0 auto; padding: 0 var(--gutter); }
   .scroll .column { padding-top: var(--sp-6); padding-bottom: var(--sp-6); }
 
   /* empty state */
   .empty { padding: 8vh 0 var(--sp-5); }
-  .empty[hidden] { display: none; }
-  .empty h2 { margin: 0 0 var(--sp-2); font-size: 22px; font-weight: 650; letter-spacing: -.015em; }
-  .empty p { margin: 0 0 var(--sp-5); max-width: 60ch; color: var(--text-muted); font-size: var(--fs-md); line-height: 1.6; }
+  .empty-mark { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: var(--sp-4);
+                border-radius: 12px; background: var(--accent); color: var(--accent-ink); font: 700 22px/1 var(--font-quote);
+                box-shadow: var(--shadow-2); }
+  .empty h2 { margin: 0 0 var(--sp-2); font-size: var(--fs-xl); font-weight: 650; letter-spacing: -.015em; line-height: var(--lh-tight); }
+  .empty p { margin: 0 0 var(--sp-5); max-width: 62ch; color: var(--text-muted); font-size: var(--fs-md); line-height: 1.6; }
   .examples { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--sp-2); }
-  .examples button { text-align: left; min-height: 0; padding: 10px 12px; background: var(--surface); color: var(--text);
-                     border: 1px solid var(--border); border-radius: var(--r-md); font-size: var(--fs-sm); font-weight: 500;
-                     line-height: 1.45; filter: none; }
+  .examples button { display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 12px 14px; background: var(--surface);
+                     color: var(--text); border: 1px solid var(--border); border-radius: var(--r-lg); font-size: var(--fs-sm);
+                     font-weight: 500; line-height: 1.45; box-shadow: var(--shadow-1); }
   .examples button:hover { border-color: var(--border-strong); background: var(--surface-2); }
+  .ex-tag { font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  .ex-q { overflow-wrap: anywhere; }
 
-  /* ---------------------------------------------------------------- conversation thread */
+  /* ================================================================ conversation thread */
   #thread { display: flex; flex-direction: column; gap: var(--sp-6); }
   #thread:empty { display: none; }
-  .turn { display: flex; flex-direction: column; gap: var(--sp-4); }
+  .turn { display: flex; flex-direction: column; gap: var(--sp-4); border-radius: var(--r-lg); scroll-margin: var(--sp-6); }
+  .turn:last-child { animation: rise var(--t-slow) var(--ease-out); }
+  @keyframes rise { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .turn.target { animation: target 1.6s var(--ease) both; }
+  .turn:focus { outline: none; }
+  .turn:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 6px; }
+  @keyframes target { from { background: var(--accent-soft); box-shadow: 0 0 0 8px var(--accent-soft); }
+                      to { background: transparent; box-shadow: 0 0 0 8px transparent; } }
   .msg { display: flex; flex-direction: column; gap: var(--sp-2); min-width: 0; }
   .msg.user { align-items: flex-end; }
-  .msg.assistant { align-items: stretch; }
+  .msg.assistant { align-items: stretch; gap: var(--sp-3); }
   .bubble { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0; }
   .msg.user .bubble { max-width: min(80%, 640px); padding: 10px 14px; border-radius: var(--r-lg) var(--r-lg) var(--r-sm) var(--r-lg);
                       background: var(--surface-2); color: var(--text); font-size: var(--fs-md); line-height: 1.55; }
-  .msg.assistant::before { content: "Regulus"; display: flex; align-items: center; gap: 8px; font-size: var(--fs-xs);
-                      font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  .msg.assistant::before { content: "§  Regulus"; content: "§  Regulus" / "Regulus"; white-space: pre; font-size: var(--fs-2xs); font-weight: 700;
+                      letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
   .msg.assistant .bubble { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--text); max-width: 72ch; }
-  .msg.assistant .bubble.sub { font-size: var(--fs-md); color: var(--text-muted); display: inline-flex; align-items: center; gap: 10px; }
   .msg.assistant .bubble.err { padding: 10px 14px; border-radius: var(--r-md); color: var(--stop); font-size: var(--fs-md);
                       border: 1px solid var(--border); background: var(--surface); }
   @supports (background: color-mix(in srgb, red 10%, white)) {
     .msg.assistant .bubble.err { background: color-mix(in srgb, var(--stop) 7%, var(--surface));
                                  border-color: color-mix(in srgb, var(--stop) 28%, transparent); }
   }
-  .draft-head { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--text-muted); }
-  .msg.assistant .bubble.live-draft { color: var(--text-muted); padding-left: var(--sp-3); border-left: 2px dashed var(--border-strong); }
-  .bubble.live-draft[hidden] { display: none; }
-  .bubble.live-draft::after { content: ""; display: inline-block; width: 7px; height: 1.05em; margin-left: 2px;
-                              vertical-align: text-bottom; background: var(--accent); animation: blink 1s steps(1) infinite; }
   .tools { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: center; }
-  ul.cites { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; padding: 0; list-style: none; font-size: 12.5px; }
-  ul.cites li { padding: 3px 9px; border: 1px solid var(--border); border-radius: var(--r-pill); background: var(--surface);
-                color: var(--text-muted); max-width: 100%; overflow-wrap: anywhere; }
-  ul.cites a { font-weight: 600; }
+  .tools .ghost .i { width: 15px; height: 15px; }
+  ul.cites { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  ul.cites li { max-width: 100%; min-width: 0; }
+  .chip { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 26px; padding: 0 10px;
+          border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+          font-size: 12.5px; font-weight: 500; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+          transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease); }
+  .chip .i { width: 12px; height: 12px; color: var(--text-muted); }
+  a.chip:hover { border-color: var(--border-strong); color: var(--text); }
 
-  /* ---------------------------------------------------------------- composer */
+  /* progress card (pending reply): where the answer is, never its text */
+  .progress { display: flex; flex-direction: column; gap: var(--sp-3); padding: 12px 16px; border-radius: var(--r-lg);
+              background: var(--sunken); border: 1px dashed var(--border-strong); max-width: 520px; }
+  .draft-head { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--text-2); font-weight: 500; }
+  .draft-head .elapsed { margin-left: auto; color: var(--text-muted); font-variant-numeric: tabular-nums; font-weight: 400; font-size: var(--fs-xs); }
+  ol.steps { display: flex; gap: var(--sp-4); margin: 0; padding: 0; list-style: none; font-size: var(--fs-xs); color: var(--text-muted); flex-wrap: wrap; }
+  ol.steps li { display: inline-flex; align-items: center; gap: 6px; }
+  ol.steps .dot { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%;
+                  border: 1.5px solid var(--border-strong); font-size: 9px; font-weight: 700; line-height: 1; }
+  ol.steps .done { color: var(--text-2); }
+  ol.steps .done .dot { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  ol.steps .now { color: var(--text); font-weight: 600; }
+  ol.steps .now .dot { border-color: var(--accent); position: relative; }
+  ol.steps .now .dot::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .25; } }
+  .progress-note { margin: 0; font-size: var(--fs-xs); color: var(--text-muted); }
+
+  /* evaluation card (thread) */
+  .evc { --mark: var(--viz-none); display: flex; flex-direction: column; gap: var(--sp-2); padding: 12px 14px 12px 16px;
+         border: 1px solid var(--border); border-left: 3px solid var(--mark); border-radius: var(--r-lg); background: var(--surface);
+         max-width: 72ch; }
+  .evc.st-pass { --mark: var(--viz-pass); } .evc.st-fail { --mark: var(--viz-fail); }
+  .evc-top { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+  .evc-score { font-size: var(--fs-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .evc-score.unknown { color: var(--text-muted); font-weight: 500; }
+  .evc-kind { margin-left: auto; font-size: var(--fs-xs); color: var(--text-muted); }
+  .evc-text { margin: 0; font-size: var(--fs-sm); line-height: 1.55; color: var(--text-2); overflow-wrap: anywhere; }
+  ul.evc-dims { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 0; padding: 0; list-style: none; font-size: var(--fs-xs); color: var(--text-2); }
+  ul.evc-dims li { display: inline-flex; align-items: center; gap: 4px; }
+  ul.evc-dims .g { font-weight: 700; }
+  .g-pass { color: var(--ok); } .g-fail { color: var(--stop); } .g-partial { color: var(--warn); } .g-muted { color: var(--text-muted); }
+  .evc-foot { display: flex; align-items: baseline; gap: var(--sp-3); flex-wrap: wrap; font-size: var(--fs-xs); color: var(--text-muted); }
+  .evc-why { flex: 1 1 100%; }
+  .evc-why[open] summary { margin-bottom: var(--sp-2); }
+  .evc-why table td { padding: 4px 0; font-size: var(--fs-xs); }
+  .evc-why td:first-child { width: 34%; color: var(--text); }
+  .evc-why td.w { width: 110px; white-space: nowrap; color: var(--text-muted); }
+
+  /* ================================================================ composer */
   .composer-wrap { flex: none; padding: 0 0 var(--sp-3); background: linear-gradient(to bottom, transparent, var(--bg) 22%); }
   .composer-wrap .column { padding-top: var(--sp-2); }
-  .composer { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+  .composer { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
               box-shadow: var(--shadow-2); padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-3);
               transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
-  .composer:focus-within { border-color: var(--border-strong); }
+  .composer:focus-within { border-color: var(--accent); box-shadow: var(--shadow-2), 0 0 0 3px var(--accent-soft); }
   .composer textarea { display: block; width: 100%; resize: none; border: 0; outline: 0; background: transparent;
               color: var(--text); font: var(--fs-body)/1.55 var(--font-ui); padding: 8px 4px 6px; min-height: 44px;
               max-height: 220px; overflow-y: auto; }
   .composer textarea::placeholder { color: var(--text-muted); }
-  .composer-bar { display: flex; align-items: center; gap: var(--sp-2); min-height: 38px; }
+  .composer-bar { display: flex; align-items: center; gap: var(--sp-2); min-height: 36px; }
   .composer-bar .status { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-              font-size: 12.5px; color: var(--text-muted); }
-  #ask, #stop { display: inline-flex; align-items: center; justify-content: center; gap: 6px; flex: none; }
-  #ask svg, #stop svg { width: 16px; height: 16px; }
-  #stop { background: transparent; color: var(--text); border: 1px solid var(--border-strong); }
-  #stop[hidden] { display: none; }
-  .fine { margin: var(--sp-2) 2px 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
-  .side-foot { flex: none; margin: 0; padding: var(--sp-3) var(--sp-2) var(--sp-1); border-top: 1px solid var(--border);
-               font-size: 11.5px; line-height: 1.5; color: var(--text-muted); }
-  .side-foot[hidden] { display: none; }
-  .fine kbd { font: 11px/1 var(--font-mono); padding: 2px 5px; border: 1px solid var(--border); border-bottom-width: 2px;
-              border-radius: 4px; background: var(--surface); }
+              font-size: 12.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  #stop .i, #ask .i { width: 16px; height: 16px; }
+  #stop .i { stroke: none; fill: currentColor; }
+  .send { width: 36px; padding: 0; border-radius: 50%; }
+  .send span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .fine { margin: var(--sp-2) 2px 0; font-size: var(--fs-xs); line-height: 1.5; color: var(--text-muted); }
+  .fine kbd { font-size: 10.5px; }
 
-  /* ---------------------------------------------------------------- evidence panel */
+  /* ================================================================ evidence panel */
   .evidence { min-width: 0; }
   .ev-head { display: none; }
-  .app.chat .evidence { position: fixed; top: 0; right: 0; bottom: 0; z-index: 20; width: min(var(--evidence-w), 100vw);
+  .app.chat .evidence { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-evidence); width: min(var(--evidence-w), 100vw);
                         display: flex; flex-direction: column; background: var(--surface); border-left: 1px solid var(--border);
                         box-shadow: var(--shadow-3); transform: translateX(100%); visibility: hidden; }
   .app.chat.evopen .evidence { transform: none; visibility: visible; }
   .app.ready .evidence { transition: transform var(--t-med) var(--ease), visibility 0s linear var(--t-med); }
   .app.ready.evopen .evidence { transition: transform var(--t-med) var(--ease); }
-  .app.chat .ev-head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); flex: none;
+  .app.chat .ev-head { display: flex; align-items: center; gap: var(--sp-3); flex: none;
                        height: var(--topbar-h); padding: 0 var(--sp-3) 0 var(--sp-5); border-bottom: 1px solid var(--border); }
-  .ev-head h2 { margin: 0; font-size: 15px; font-weight: 600; }
+  .ev-head h2 { margin: 0; font-size: var(--fs-base); font-weight: 600; white-space: nowrap; }
+  .ev-jump { display: flex; gap: 2px; margin-left: auto; overflow-x: auto; }
+  .ev-jump button { height: 28px; padding: 0 8px; border-radius: var(--r-sm); font-size: var(--fs-xs); font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+  .ev-jump button:hover { background: var(--surface-2); color: var(--text); }
+  .ev-jump button:focus-visible { outline-offset: -2px; }
   .app.chat #out { flex: 1 1 auto; overflow-y: auto; padding: var(--sp-2) var(--sp-5) var(--sp-6); }
   .ev-empty { margin: var(--sp-6) 0; color: var(--text-muted); font-size: var(--fs-md); }
 
   /* answer / evidence content written by render(): sections, not heavy cards */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-4) var(--sp-5);
-          margin-top: var(--sp-4); }
+          margin-top: var(--sp-4); scroll-margin-top: var(--sp-3); }
   .app.chat #out .card { background: transparent; border: 0; border-radius: 0; padding: var(--sp-5) 0;
                          border-top: 1px solid var(--border); margin: 0; }
   .app.chat #out .card:first-child { border-top: 0; }
   .card.err { color: var(--stop); }
-  .draft { border-style: dashed; }
+  .card.draft { border-style: dashed; background: var(--sunken); }
   .meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: var(--sp-3); }
-  .answer { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--fs-body); line-height: var(--lh-body); }
+  .answer { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--fs-body); line-height: var(--lh-body); max-width: 72ch; }
   .card > ul { line-height: 1.7; overflow-wrap: anywhere; }
   .src { border-top: 1px solid var(--border); padding: var(--sp-4) 0; }
   .src:first-of-type { border-top: 0; padding-top: var(--sp-2); }
   .src h4 { margin: 0 0 6px; font-size: var(--fs-md); font-weight: 600; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .src p { margin: 8px 0 0; font-size: 13.5px; line-height: 1.65; color: var(--text-muted); overflow-wrap: anywhere; }
-  .src p:first-of-type { padding: var(--sp-3); border-left: 3px solid var(--border-strong); background: var(--bg);
-                         border-radius: 0 var(--r-sm) var(--r-sm) 0; color: var(--text); font-family: Georgia, "Times New Roman", serif;
+  .src p:first-of-type { padding: var(--sp-3) var(--sp-3) var(--sp-3) var(--sp-4); border-left: 3px solid var(--accent-line); background: var(--sunken);
+                         border-radius: 0 var(--r-sm) var(--r-sm) 0; color: var(--text); font-family: var(--font-quote);
                          font-size: 14px; }
   .num { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; flex: none;
          border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 700; }
-  .caret { display: inline-block; width: 7px; height: 1em; margin-left: 2px; vertical-align: text-bottom;
-           background: var(--text-muted); animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
   .spin { display: inline-block; width: 14px; height: 14px; flex: none; border: 2px solid var(--border-strong);
           border-top-color: var(--accent); border-radius: 50%; animation: s .8s linear infinite; vertical-align: -2px; }
   @keyframes s { to { transform: rotate(360deg) } }
 
-  /* answer accuracy block (renderEvaluation): compact, never a dashboard */
+  /* answer evaluation block (renderEvaluation): compact, never a dashboard */
   .acc { margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--border); }
   .acc-top { display: flex; gap: var(--sp-4); align-items: flex-start; flex-wrap: wrap; }
   .acc-score { min-width: 112px; }
-  .acc-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+  .acc-label { font-size: var(--fs-2xs); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
   .acc-value { font-size: 24px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
   .acc-value.unknown { font-size: 15px; font-weight: 600; color: var(--text-muted); letter-spacing: 0; }
   .acc-basis { flex: 1 1 240px; margin: 2px 0 0; font-size: 12.5px; color: var(--text-muted); }
   .acc-points { margin-top: 4px; font-size: 15px; font-weight: 600; }
   .acc-points.unknown { color: var(--text-muted); font-weight: 500; }
-  .acc-note { margin: 2px 0 0; max-width: 260px; font-size: 12px; color: var(--text-muted); }
+  .acc-note { margin: 2px 0 0; max-width: 260px; font-size: var(--fs-xs); color: var(--text-muted); }
   .acc details { margin-top: var(--sp-3); }
   table.acc-table td { padding: 4px 0; }
   table.acc-table td.dim { color: var(--text); width: auto; padding-right: var(--sp-3); }
   table.acc-table td.state { width: 26px; text-align: center; font-weight: 700; }
   table.acc-table td.why { color: var(--text-muted); font-size: 12.5px; width: auto; }
 
-  /* ---------------------------------------------------------------- overlays and responsive */
-  .backdrop { position: fixed; inset: 0; z-index: 15; background: rgba(10, 10, 9, .38); opacity: 0; pointer-events: none;
+  /* ================================================================ evaluation dashboard */
+  .dash-scroll { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; }
+  .dash-column { width: 100%; max-width: var(--dash-w); margin: 0 auto; padding: var(--sp-6) var(--gutter) var(--sp-7); }
+  .dash-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap; margin-bottom: var(--sp-3); }
+  .dash-head h2 { margin: 0; font-size: var(--fs-xl); font-weight: 650; letter-spacing: -.015em; line-height: var(--lh-tight); }
+  .dash-head .sub { margin: 4px 0 0; }
+  .dash-actions { display: flex; align-items: center; gap: var(--sp-3); }
+  .dash-actions .ghost .i { width: 15px; height: 15px; }
+  #evalmodel { display: none; }
+  #evalbody { display: flex; flex-direction: column; gap: var(--sp-5); transition: opacity var(--t-med) var(--ease); }
+  #evalbody.refreshing { opacity: .6; }
+  .dash-basis { margin: 0; max-width: 80ch; color: var(--text-muted); font-size: var(--fs-md); line-height: 1.6; }
+  .banner { display: flex; gap: var(--sp-3); align-items: flex-start; padding: 10px 14px; border-radius: var(--r-md);
+            border-left: 3px solid var(--accent); background: var(--accent-soft); font-size: var(--fs-sm); line-height: 1.55; color: var(--text); }
+  .banner .i { width: 16px; height: 16px; margin-top: 2px; color: var(--accent); }
+  .banner p { margin: 0; flex: 1 1 auto; min-width: 0; }
+  .banner.warn { border-left-color: var(--warn); background: var(--surface-2); }
+  .banner.warn .i { color: var(--warn); }
+  .banner.error { border-left-color: var(--stop); background: var(--danger-soft); }
+  .banner.error .i { color: var(--stop); }
+  @supports (background: color-mix(in srgb, red 10%, white)) {
+    .banner.warn { background: color-mix(in srgb, var(--warn) 10%, var(--surface)); }
+  }
+  .dsec { display: flex; flex-direction: column; gap: var(--sp-4); }
+  .dsec + .dsec { padding-top: var(--sp-5); border-top: 1px solid var(--border); }
+  .dsec-head { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+  .overline { margin: 0; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--sp-3); }
+  .tile { display: flex; flex-direction: column; gap: 6px; min-height: 104px; min-width: 0; padding: 14px 16px; border-radius: var(--r-lg);
+          background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-1); }
+  .tile-label { display: flex; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 500; color: var(--text-muted); }
+  .tile-label .ti { font-weight: 700; }
+  .t-pass .ti { color: var(--viz-pass); } .t-fail .ti { color: var(--viz-fail); } .t-none .ti { color: var(--text-muted); }
+  .tile-value { font-size: var(--fs-2xl); font-weight: 650; line-height: 1.1; letter-spacing: -.02em; }
+  .tile-value .of { font-size: var(--fs-base); font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
+  .tile-sub { font-size: 12.5px; color: var(--text-muted); overflow-wrap: anywhere; }
+  .dnote { margin: 0; font-size: var(--fs-xs); color: var(--text-muted); overflow-wrap: anywhere; }
+  .dcard { min-width: 0; padding: var(--sp-4) var(--sp-5); border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--border);
+           box-shadow: var(--shadow-1); display: flex; flex-direction: column; gap: var(--sp-3); }
+  .dcard h4 { margin: 0; font-size: var(--fs-base); font-weight: 600; line-height: 1.3; }
+  .dcard-head { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+  .dcard-head .sub { margin-left: auto; }
+  .dgrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--sp-5); }
+  .span7 { grid-column: span 7; } .span5 { grid-column: span 5; } .span12 { grid-column: span 12; }
+  .stack { display: flex; flex-direction: column; gap: var(--sp-5); min-width: 0; }
+  .caption { margin: 0; font-size: var(--fs-xs); line-height: 1.5; color: var(--text-muted); }
+  .flexbar { display: flex; gap: 2px; height: 12px; border-radius: var(--r-xs); overflow: hidden; background: var(--surface-2); }
+  .flexbar .seg { flex: 0 0 0; min-width: 4px; }
+  .s-pass { background: var(--viz-pass); } .s-fail { background: var(--viz-fail); } .s-none { background: var(--viz-none); }
+  .q-pass { background: var(--viz-pass); } .q-pp { background: var(--viz-pass-weak); } .q-pf { background: var(--viz-fail-weak); } .q-fail { background: var(--viz-fail); }
+  .seg.p-track { background: var(--viz-track); }
+  .seg.p-proj { background: transparent; border: 1.5px dashed var(--viz-pass); border-radius: 2px; }
+  ul.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0; padding: 0; list-style: none; font-size: var(--fs-sm); color: var(--text-2); }
+  ul.legend li { display: inline-flex; align-items: center; gap: 6px; }
+  ul.legend b { font-weight: 650; color: var(--text); font-variant-numeric: tabular-nums; }
+  .sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .sw.p-proj { border: 1.5px dashed var(--viz-pass); }
+  svg.chart { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart text { fill: var(--text-muted); font-size: 11px; font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+  .chart .tot { fill: var(--text-2); font-weight: 600; }
+  .chart .gl { stroke: var(--viz-grid); stroke-width: 1; }
+  .chart .ax { stroke: var(--viz-axis); stroke-width: 1; }
+  .chart .m-pass { fill: var(--viz-pass); } .chart .m-fail { fill: var(--viz-fail); } .chart .m-none { fill: var(--viz-none); }
+  .chart .hit { fill: transparent; }
+  .chart .col { transition: opacity var(--t-fast) var(--ease); }
+  .chart:hover .col { opacity: .7; }
+  .chart .col:hover { opacity: 1; }
+  .chart .col:hover .hit { fill: var(--surface-2); fill-opacity: .5; }
+  .tableview summary { font-size: var(--fs-xs); }
+  .tableview table { margin-top: var(--sp-2); font-variant-numeric: tabular-nums; }
+  .tableview td, .tableview th { padding: 4px 6px; text-align: right; font-size: var(--fs-xs); border-top: 1px solid var(--border); }
+  .tableview td:first-child, .tableview th:first-child { text-align: left; width: auto; }
+  .tableview th { font-weight: 600; color: var(--text-muted); border-top: 0; }
+  .table-wrap { min-width: 0; overflow-x: auto; }
+  svg.chart { max-width: 720px; }
+  table.heat { font-variant-numeric: tabular-nums; }
+  table.heat th { padding: 0 6px 8px; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+                  color: var(--text-muted); text-align: center; vertical-align: bottom; line-height: 1.25; }
+  table.heat th:first-child { text-align: left; padding-left: 0; }
+  table.heat th .hic { display: block; font-size: 12px; letter-spacing: 0; }
+  table.heat td { padding: 0; height: 34px; border-top: 2px solid var(--surface); text-align: center; vertical-align: middle; }
+  table.heat td:first-child { text-align: left; color: var(--text); padding-right: var(--sp-3); width: auto; font-size: var(--fs-sm); }
+  table.heat td.hc { min-width: 44px; border-left: 2px solid var(--surface); border-radius: 4px; color: var(--text); }
+  table.heat td.tot { color: var(--text-muted); padding-left: var(--sp-2); }
+  /* each column has its own ramp (blue only for Pass, red only for Fail), so a strong cell never reads as a good
+     result; the fill stops at 55 so --text keeps at least 4.5:1 on every cell in both themes */
+  table.heat td.h-pass { --heat: var(--viz-pass); } table.heat td.h-fail { --heat: var(--viz-fail); }
+  table.heat td.h-partial { --heat: var(--warn); }
+  @supports (background: color-mix(in oklab, red 10%, white)) {
+    table.heat td.hc { background: color-mix(in oklab, var(--heat, var(--text-muted)) calc(var(--v) * 55%), var(--surface)); }
+  }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+  .fchip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: var(--r-pill);
+           border: 1px solid var(--border); font-size: var(--fs-xs); font-weight: 600; color: var(--text-2); background: var(--surface); }
+  .fchip:hover { border-color: var(--border-strong); }
+  .fchip[aria-pressed="true"] { background: var(--text); color: var(--surface); border-color: var(--text); }
+  .fchip .fc { font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums; }
+  table.rtable th { padding: 0 var(--sp-3) 8px 0; text-align: left; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .05em;
+                    text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  table.rtable td { padding: 10px var(--sp-3) 10px 0; vertical-align: top; width: auto; color: var(--text); }
+  table.rtable td:first-child { color: var(--text-muted); white-space: nowrap; font-size: var(--fs-xs); width: 1%; }
+  table.rtable tbody tr:hover td { background: var(--surface-2); }
+  table.rtable td.sc { white-space: nowrap; font-variant-numeric: tabular-nums; width: 1%; }
+  table.rtable td.st { width: 1%; white-space: nowrap; }
+  .linkish { text-align: left; color: var(--text); font-weight: 500; border-radius: var(--r-xs); display: -webkit-box;
+             -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+  .linkish:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere;
+           color: var(--text-muted); font-size: var(--fs-xs); line-height: 1.5; }
+  .meter { display: flex; height: 8px; border-radius: var(--r-xs); overflow: hidden; background: var(--viz-track); min-width: 60px; }
+  .meter .m-fill { flex: 0 0 0; background: var(--viz-pass); border-radius: var(--r-xs); }
+  .meter .m-rest { flex: 0 0 0; }
+  table.cats td { padding: 8px var(--sp-3) 8px 0; vertical-align: middle; width: auto; color: var(--text); }
+  table.cats td:first-child { width: 44%; color: var(--text); overflow-wrap: anywhere; }
+  table.cats td.fr { width: 1%; white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; padding-right: 0; }
+  table.cats th { padding: 0 var(--sp-3) 6px 0; text-align: left; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .05em;
+                  text-transform: uppercase; color: var(--text-muted); }
+  table.cats th:last-child { text-align: right; padding-right: 0; }
+  .bline { margin: 0; font-size: var(--fs-sm); color: var(--text-2); overflow-wrap: anywhere; }
+  .bline b { font-weight: 600; color: var(--text-muted); }
+  .big { font-size: 40px; font-weight: 650; line-height: 1; letter-spacing: -.02em; }
+  .big-label { font-size: var(--fs-sm); color: var(--text-2); }
+  .big.proj { font-size: var(--fs-2xl); font-weight: 600; color: var(--text-2); text-decoration: underline dashed 1.5px;
+              text-decoration-color: var(--text-muted); text-underline-offset: 6px; }
+  .bnote { margin: 0; padding: 8px 12px; border-left: 3px solid var(--border-strong); background: var(--sunken); border-radius: 0 var(--r-sm) var(--r-sm) 0;
+           font-size: var(--fs-xs); line-height: 1.55; color: var(--text-muted); overflow-wrap: anywhere; }
+  .dash-foot { margin: 0; font-size: var(--fs-xs); color: var(--text-muted); overflow-wrap: anywhere; }
+  .dempty { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-3); padding: var(--sp-6) var(--sp-5);
+            border: 1px dashed var(--border-strong); border-radius: var(--r-lg); background: var(--surface); }
+  .dempty p { margin: 0; color: var(--text-2); max-width: 60ch; }
+  .sk { border-radius: var(--r-md); background: var(--surface-2); background-image: linear-gradient(90deg, transparent, var(--surface-3), transparent);
+        background-size: 200% 100%; background-repeat: no-repeat; animation: shimmer 1.2s linear infinite; }
+  @keyframes shimmer { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+  .sk-tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--sp-3); }
+  .sk-tile { height: 104px; } .sk-bar { height: 12px; } .sk-chart { height: 240px; }
+
+  /* ================================================================ toast, dialog, overlays */
+  .toast { position: fixed; left: 50%; bottom: 88px; z-index: var(--z-toast); max-width: min(420px, calc(100vw - 32px));
+           margin-left: calc(-1 * min(210px, calc(50vw - 16px))); width: min(420px, calc(100vw - 32px));
+           padding: 10px 14px; border-radius: var(--r-md); background: var(--text); color: var(--surface); box-shadow: var(--shadow-3);
+           font-size: var(--fs-sm); text-align: center; animation: toastin var(--t-fast) var(--ease-out); }
+  @keyframes toastin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  dialog#keys { width: min(480px, calc(100vw - 32px)); padding: var(--sp-5); border: 1px solid var(--border); border-radius: var(--r-xl);
+                background: var(--surface); color: var(--text); box-shadow: var(--shadow-3); }
+  dialog#keys::backdrop { background: var(--overlay); }
+  dialog#keys h2 { margin: 0 0 var(--sp-3); font-size: var(--fs-lg); font-weight: 650; }
+  dialog#keys td { padding: 7px 0; }
+  dialog#keys td:first-child { width: 46%; }
+  dialog#keys form { margin: var(--sp-4) 0 0; display: flex; justify-content: flex-end; }
+  .backdrop { position: fixed; inset: 0; z-index: 15; background: var(--overlay); opacity: 0; pointer-events: none;
               transition: opacity var(--t-med) var(--ease); }
   .app.evopen .backdrop { opacity: 1; pointer-events: auto; }
+
+  /* ================================================================ responsive */
   @media (min-width: 1280px) {   /* wide: the evidence panel docks beside the conversation instead of covering it */
     .app.chat.evopen .main { margin-right: var(--evidence-w); }
+    .app.chat.evopen.dash .main { margin-right: 0; }
     .app.chat .evidence { box-shadow: none; }
     .app.evopen .backdrop { opacity: 0; pointer-events: none; }
   }
+  @media (max-width: 1439px) {
+    .dgrid.live > .span7, .dgrid.live > .span5 { grid-column: span 12; }
+  }
+  @media (max-width: 1099px) {
+    .span7, .span5 { grid-column: span 12; }
+  }
   @media (max-width: 899px) {    /* narrow: the sidebar is a drawer */
     .app.chat, .app.chat.sidecollapsed { grid-template-columns: minmax(0, 1fr); }
-    .app.chat #sidebar { position: fixed; top: 0; bottom: 0; left: 0; z-index: 30; width: min(86vw, 320px);
+    .app.chat #sidebar { position: fixed; top: 0; bottom: 0; left: 0; z-index: var(--z-drawer); width: min(86vw, 320px);
                          padding: var(--sp-3); visibility: hidden; transform: translateX(-100%); box-shadow: var(--shadow-3); }
     .app.chat.sideopen #sidebar { transform: none; visibility: visible; }
     .app.ready #sidebar { transition: transform var(--t-med) var(--ease), visibility 0s linear var(--t-med); }
     .app.ready.sideopen #sidebar { transition: transform var(--t-med) var(--ease); }
-    .app.sideopen .backdrop { opacity: 1; pointer-events: auto; z-index: 25; }
+    .app.sideopen .backdrop { opacity: 1; pointer-events: auto; z-index: var(--z-backdrop); }
     #sideclose { display: inline-flex; }
-    .column { padding: 0 var(--sp-4); }
+    :root { --gutter: 16px; }
     .scroll .column { padding-top: var(--sp-5); }
-    .titlebox #env { display: none; }
+    .tiles, .sk-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .model-badge { max-width: 180px; }
   }
-  @media (max-width: 560px) {
+  @media (max-width: 639px) {
+    .tiles, .sk-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dcard { padding: var(--sp-4); }
+    .chart text { font-size: 16px; }
+    .chart .xl { transform: rotate(-35deg); transform-box: fill-box; transform-origin: 100% 0; text-anchor: end; }
+    table.rtable thead { display: none; }
+    table.rtable, table.rtable tbody { display: block; }
+    table.rtable tr { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; padding: 12px 0; border-top: 1px solid var(--border); }
+    table.rtable tr:first-child { border-top: 0; }
+    table.rtable td { display: block; padding: 0; border: 0; width: auto !important; }
+    table.rtable td.st { grid-row: 1; grid-column: 1; }
+    table.rtable td.sc { grid-row: 1; grid-column: 2; align-self: center; }
+    table.rtable td.q { grid-column: 1 / -1; }
+    table.rtable td.wy { grid-column: 1 / -1; }
+    table.rtable td.wh { grid-column: 1 / -1; grid-row: 4; }
+    table.rtable td.q { padding-left: 4px; }          /* room for the focus ring inside the scroller */
+    table.rtable tbody tr:hover td { background: transparent; }
+    table.heat td:first-child, table.heat th:first-child { position: sticky; left: 0; background: var(--surface); z-index: 1; }
+  }
+  @media (max-width: 559px) {
     :root { --fs-body: 15.5px; }
+    #convsearch, .composer textarea { font-size: 16px; }   /* under 16px, iOS Safari zooms the page on focus */
     .msg.user .bubble { max-width: 92%; }
-    .topbar { padding: 0 var(--sp-2); }
+    .topbar { padding: 0 var(--sp-2); gap: 6px; }
+    .viewtabs [role="tab"] { padding: 0 9px; }
+    .viewtabs .tl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .model-badge { display: none; }
+    #evalmodel { display: block; }
     #evtoggle .label { display: none; }
-    .composer { border-radius: var(--r-md); }
+    #evtoggle { padding: 0 9px; }
+    .composer { border-radius: var(--r-lg); }
     .composer-wrap { padding-bottom: max(var(--sp-2), env(safe-area-inset-bottom)); }
     .app.chat #out { padding: var(--sp-2) var(--sp-4) var(--sp-6); }
     .app.chat .ev-head { padding-left: var(--sp-4); }
+    .ev-head h2 { display: none; }
+    .ev-jump { margin-left: 0; }
     .empty { padding-top: 4vh; }
     .empty h2 { font-size: 20px; }
-    button.small { min-height: 34px; }
+    button.small { height: 34px; }
     #convlist button.conv { padding-top: 10px; padding-bottom: 10px; }
+    .dash-column { padding-top: var(--sp-5); }
+    .big { font-size: 34px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important;
                              animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
     .spin { animation: s 1.6s linear infinite !important; }  /* the one motion that signals work in progress */
+    .sk { animation: none !important; }
+    .turn.target { animation: none !important; box-shadow: 0 0 0 2px var(--accent-line); }
   }
+  @media (forced-colors: active) {
+    .badge, .pill, .chip, .seg, .sw, .fchip, .meter, .tile, .dcard, .evc { border: 1px solid CanvasText; }
+    :focus-visible { outline-color: Highlight; }
+    .flexbar { border: 1px solid CanvasText; }
+    .flexbar, .sw, .meter { forced-color-adjust: none; }   /* the series are told apart by their own colours */
+  }
+  .kv { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .kv li { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--text-2); }
+  .kv strong { color: var(--text); font-weight: 600; text-align: right; }
 </style>
 </head>
 <body>
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.8c0-.4.3-.8.8-.8h3.4c.5 0 .8.4.8.8V7M6.5 7l.8 12.2c0 .5.5.8 1 .8h7.4c.5 0 1-.3 1-.8L17.5 7M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M18 14v4.5c0 .3-.2.5-.5.5h-12a.5.5 0 0 1-.5-.5v-12c0-.3.2-.5.5-.5H10"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5.5h14c.3 0 .5.2.5.5v9.5c0 .3-.2.5-.5.5H10l-4.5 3.5V16H5a.5.5 0 0 1-.5-.5V6c0-.3.2-.5.5-.5z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4.5 19.5h15M7.5 16v-5M12 16V7M16.5 16v-3"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+  <symbol id="i-system" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9 4.5v15"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4M9.5 12.5h5M9.5 16h5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V5.5c0-.6-.4-1-1-1h-9c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1h3"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4.5v4h-4"/></symbol>
+  <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="19" height="11" rx="2"/><path d="M6.5 10h1M10.5 10h1M14.5 10h1M6.5 13.5h11"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8v.2"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4.5l8.5 15h-17z"/><path d="M12 10v4M12 16.8v.2"/></symbol>
+</svg>
+<a class="skip" href="#q">Skip to the question box</a>
 <div class="app" id="app">
 <aside id="sidebar" aria-label="Conversations" hidden>
   <div class="side-head">
     <div class="brand"><span class="brand-mark" aria-hidden="true">§</span><span>Regulus <small>AI</small></span></div>
-    <button id="sideclose" class="icon-btn" type="button" aria-label="Close conversations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button id="sideclose" class="icon-btn" type="button" aria-label="Close conversations"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button>
   </div>
-  <button id="newchat" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New chat</button>
+  <button id="newchat" class="primary" type="button"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>New chat<kbd class="hint" aria-hidden="true">⇧⌘O</kbd></button>
+  <div class="side-search"><label for="convsearch" class="sr-only">Search conversations</label>
+    <svg class="i" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+    <input id="convsearch" type="search" placeholder="Search conversations" autocomplete="off" spellcheck="false"></div>
   <div class="side-label" id="convlabel">History</div>
   <ul id="convlist" aria-labelledby="convlabel"></ul>
-  <p class="side-foot" id="chatnote" hidden>Each question is answered on its own: history is kept here but never sent to
-    the model or used as evidence. It is stored on this server, which has no sign-in, so anyone who can open this page
-    can read it.</p>
+  <div class="side-foot">
+    <p id="chatnote" hidden>Each question is answered on its own: history is kept here but never sent to
+      the model or used as evidence. It is stored on this server, which has no sign-in, so anyone who can open this page
+      can read it.</p>
+    <button id="keyshelp" class="subtle small" type="button"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-keyboard"/></svg>Keyboard shortcuts <kbd>?</kbd></button>
+  </div>
 </aside>
 <div class="backdrop" id="backdrop"></div>
-<div class="main">
-  <header class="topbar">
+<main class="main" id="main">
+  <header class="topbar" id="topbar">
     <button id="sidetoggle" class="icon-btn" type="button" aria-controls="sidebar" aria-expanded="true"
-            aria-label="Toggle conversation list" title="Conversations" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9 4.5v15"/></svg></button>
-    <div class="titlebox"><h1 id="convtitle">Regulus</h1><span class="sub" id="env">loading…</span></div>
-    <button id="evtoggle" class="ghost small" type="button" aria-controls="evidence" aria-expanded="false" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4M9.5 12.5h5M9.5 16h5"/></svg><span class="label">Evidence</span></button>
+            aria-label="Toggle conversation list" title="Conversations (⌘\)" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-panel"/></svg></button>
+    <div class="brand brand-inline" aria-hidden="true"><span class="brand-mark">§</span><span>Regulus <small>AI</small></span></div>
+    <div class="titlebox"><h1 id="convtitle">Regulus</h1><span class="t-dash" aria-hidden="true">Evaluation</span></div>
+    <div class="viewtabs" role="tablist" aria-label="View">
+      <button id="tabchat" role="tab" type="button" aria-selected="true" aria-controls="chatview" tabindex="0"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><span class="tl">Chat</span></button>
+      <button id="tabeval" role="tab" type="button" aria-selected="false" aria-controls="evalview" tabindex="-1"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg><span class="tl">Evaluation</span></button>
+    </div>
+    <span class="model-badge" id="modelbadge" title=""><span class="dot" aria-hidden="true"></span><span id="env">loading…</span></span>
+    <button id="evtoggle" class="ghost small" type="button" aria-controls="evidence" aria-expanded="false" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><span class="label">Evidence</span></button>
+    <button id="themetoggle" class="icon-btn" type="button" data-pref="system" aria-label="Theme: system. Switch to light" title="Theme: system"><svg class="i ic-system" aria-hidden="true" focusable="false"><use href="#i-system"/></svg><svg class="i ic-light" aria-hidden="true" focusable="false"><use href="#i-sun"/></svg><svg class="i ic-dark" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg></button>
   </header>
-  <div class="scroll" id="scroll">
-    <div class="column">
-      <section class="empty" id="empty" aria-labelledby="emptytitle">
-        <h2 id="emptytitle">Ask a regulatory question</h2>
-        <p>Answers come from the controlled eCFR, FD&amp;C Act and FDA guidance corpus, with their citations, the evidence they were
-          drawn from, and an evidence-based evaluation. Generation runs locally on CPU and takes roughly 30 to 90 seconds.</p>
-        <div class="examples" id="examples"></div>
-      </section>
-      <section id="thread" aria-live="polite" aria-label="Conversation"></section>
-      <aside class="evidence" id="evidence" aria-label="Evidence and details">
-        <div class="ev-head"><h2>Evidence &amp; details</h2>
-          <button id="evclose" class="icon-btn" type="button" aria-label="Close evidence panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-        <div id="out"></div>
-      </aside>
+  <div id="chatview" class="view" role="tabpanel" aria-labelledby="tabchat">
+    <div class="scroll" id="scroll">
+      <div class="column">
+        <section class="empty" id="empty" aria-labelledby="emptytitle">
+          <div class="empty-mark" aria-hidden="true">§</div>
+          <h2 id="emptytitle">Ask a regulatory question</h2>
+          <p>Answers come from the controlled eCFR Title 21, FD&amp;C Act and FDA guidance corpus, with their citations, the
+            evidence behind them and a live evaluation of each answer. Generation runs on this machine and can take a minute or more.</p>
+          <div class="examples" id="examples"></div>
+        </section>
+        <section id="thread" aria-label="Conversation"></section>
+        <aside class="evidence" id="evidence" aria-label="Evidence and details">
+          <div class="ev-head"><h2>Evidence &amp; details</h2>
+            <nav class="ev-jump" id="evjump" aria-label="Jump to">
+              <button type="button" data-jump="answer">Answer</button><button type="button" data-jump="citations">Citations</button><button type="button" data-jump="sources">Sources</button><button type="button" data-jump="diagnostics">Diagnostics</button>
+            </nav>
+            <button id="evclose" class="icon-btn" type="button" aria-label="Close evidence panel"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button></div>
+          <div id="out"></div>
+        </aside>
+      </div>
+    </div>
+    <div class="composer-wrap" id="composer">
+      <div class="column">
+        <div class="composer">
+          <label for="q" class="sr-only">Question</label>
+          <textarea id="q" rows="1" placeholder="Ask a regulatory question…"></textarea>
+          <div class="composer-bar">
+            <span class="status" id="status"></span>
+            <button id="stop" type="button" class="ghost" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stop"/></svg>Stop</button>
+            <button id="ask" type="button" class="primary send" aria-label="Send question"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-send"/></svg><span>Send</span></button>
+          </div>
+        </div>
+        <p class="fine"><kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line · Answers can be incomplete or wrong; check the cited text.</p>
+      </div>
     </div>
   </div>
-  <footer class="composer-wrap">
-    <div class="column">
-      <div class="composer">
-        <label for="q" class="sr-only">Question</label>
-        <textarea id="q" rows="1" placeholder="Ask a regulatory question…"></textarea>
-        <div class="composer-bar">
-          <span class="status" id="status" role="status"></span>
-          <button id="stop" type="button" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>Stop</button>
-          <button id="ask" type="button" aria-label="Send question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Send</span></button>
-        </div>
+  <section id="evalview" class="view" role="tabpanel" aria-labelledby="tabeval" hidden>
+    <div class="dash-scroll">
+      <div class="dash-column">
+        <header class="dash-head">
+          <div><h2>Evaluation</h2><p class="sub" id="evalbasis">How the live evaluator judged the answers in this server's history, beside the benchmark reference numbers.</p>
+            <p class="sub" id="evalmodel"></p></div>
+          <div class="dash-actions"><span class="sub" id="evalupdated"></span>
+            <button id="evalrefresh" class="ghost small" type="button"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-refresh"/></svg>Refresh</button></div>
+        </header>
+        <div id="evalbody" aria-busy="false"></div>
       </div>
-      <p class="fine"><kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line</p>
     </div>
-  </footer>
+  </section>
+</main>
 </div>
-</div>
+<div id="announce" class="sr-only" role="status" aria-live="polite"></div>
+<!-- visual only: toast() speaks the same text through #announce, which is always in the accessibility tree -->
+<div id="toast" class="toast" aria-hidden="true" hidden></div>
+<dialog id="keys" aria-labelledby="keystitle">
+  <h2 id="keystitle">Keyboard shortcuts</h2>
+  <table>
+    <tr><td><kbd>Enter</kbd> / <kbd>Shift</kbd>+<kbd>Enter</kbd></td><td>Send the question / new line</td></tr>
+    <tr><td><kbd>/</kbd></td><td>Focus the question box</td></tr>
+    <tr><td><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd></td><td>New chat</td></tr>
+    <tr><td><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>\</kbd></td><td>Show or hide the conversation list</td></tr>
+    <tr><td><kbd>G</kbd> then <kbd>C</kbd> / <kbd>E</kbd></td><td>Go to Chat / Evaluation</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>Close a panel, cancel a delete, clear the search</td></tr>
+    <tr><td><kbd>?</kbd></td><td>This list</td></tr>
+  </table>
+  <form method="dialog"><button class="ghost small" type="submit">Close</button></form>
+</dialog>
 
 <script>
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const EXAMPLES = [
-  "What does 21 CFR Part 11 cover?",
-  "What are the specific requirements of 21 CFR 314.999?",
-  "What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?",
-  "What exact storage temperature range does 21 CFR Part 211 require for all finished tablets?",
-  "What does 21 CFR 820.10 require?",
-  "Summarize FDA guidance FDA-2023-D-99999.",
+  { tag: "Colour additive", q: "We make bath bombs colored with D&C Red No. 28. What does 82.1328 require of the color, and does it restrict use?" },
+  { tag: "Certification", q: "We supply FD&C Yellow No. 5 to cosmetic makers. Under Part 82, what specifications must a batch meet for certification?" },
+  { tag: "Procedure", q: "How does § 710.3 say to register a cosmetic establishment?" },
+  { tag: "Provision lookup", q: "What does 21 CFR 820.10 require?" },
+  { tag: "Guardrail: missing section", q: "What are the specific requirements of 21 CFR 314.999?" },
+  { tag: "Guardrail: out of scope", q: "What does 21 CFR Part 1400 say about artificial intelligence in drug labeling?" },
 ];
 
 let busy = false;
+
+// ---- small DOM helpers: every one is safe where an element lacks the browser API (the Node harnesses)
+function attr(el, k, v) { if (el && typeof el.setAttribute === "function") el.setAttribute(k, v); }
+function icon(name, cls) { return `<svg class="i${cls ? " " + cls : ""}" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`; }
+function int0(v) { return typeof v === "number" && isFinite(v) ? Math.max(0, Math.round(v)) : 0; }
+function announce(msg) {
+  const a = $("announce");
+  if (!a) return;
+  a.textContent = "";
+  a.textContent = msg;
+}
+let toastTimer = null;
+function toast(msg) {
+  announce(msg);                        // spoken by #announce: #toast is shown only once it has text, too late for a live region
+  const t = $("toast");
+  if (!t) return;
+  t.textContent = msg;                  // text only, never markup
+  t.hidden = false;
+  if (typeof setTimeout === "function") {
+    if (toastTimer && typeof clearTimeout === "function") clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.hidden = true; }, 4000);
+  }
+}
+function focusIn(container, selector) {
+  try {
+    const c = $(container);
+    const el = c && typeof c.querySelector === "function" ? c.querySelector(selector) : null;
+    if (el && el.focus) { el.focus(); return true; }
+  } catch (_) {}
+  return false;
+}
+// The selector of the button in `container` that has focus, by the first of `attrs` it carries, or null. A redraw
+// replaces that button; focusIn(container, selector) after it puts focus back on its replacement.
+function focusedIn(container, attrs) {
+  try {
+    const a = typeof document !== "undefined" ? document.activeElement : null;
+    const c = $(container);
+    if (!a || !c || typeof c.contains !== "function" || !c.contains(a) || typeof a.getAttribute !== "function") return null;
+    for (const k of attrs) {
+      const v = a.getAttribute(k);
+      if (v != null) return `button[${k}="${String(v).replace(/[^A-Za-z0-9\/_-]/g, "")}"]`;
+    }
+  } catch (_) {}
+  return null;
+}
+function store(key, value) {
+  try { if (typeof localStorage === "undefined") return; value == null ? localStorage.removeItem(key) : localStorage.setItem(key, value); } catch (_) {}
+}
+function stored(key) {
+  try { return typeof localStorage === "undefined" ? null : localStorage.getItem(key); } catch (_) { return null; }
+}
 
 // ---- conversations (server: regulus.conversations via /api/conversations) ----------------------
 // History is a record of what was asked and answered, never evidence: nothing here is sent to the
 // model. Everything below stays inert unless the server reports history available, so without it
 // the page is exactly the single-question console it was.
-const chat = { enabled: false, id: null, list: [], messages: [] };
+const chat = { enabled: false, id: null, list: [], messages: [], filter: "", confirming: null, target: null, scrollAt: null };
 const ACTIVE_KEY = "regulus.activeConversation";
 function remember(id) {
   try { if (typeof localStorage === "undefined") return; id ? localStorage.setItem(ACTIVE_KEY, id) : localStorage.removeItem(ACTIVE_KEY); } catch (_) {}
@@ -408,12 +880,33 @@ async function api(path, options) {
   const res = await fetch(path, options);
   let body = null;
   try { body = await res.json(); } catch (_) {}
-  if (!res.ok) throw new Error((body && body.error) || `HTTP ${res.status}`);
+  if (!res.ok) {
+    const err = new Error((body && body.error) || `HTTP ${res.status}`);
+    err.status = res.status;
+    throw err;
+  }
   return body;
 }
 function when(iso) {
   const d = new Date(iso);
   return isNaN(d) ? "" : d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+function dayGroup(iso, now) {
+  const d = new Date(iso);
+  if (isNaN(d)) return "Earlier";
+  const day = x => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime();
+  const days = Math.round((day(now) - day(d)) / 86400000);
+  if (days <= 0) return "Today";
+  if (days === 1) return "Yesterday";
+  if (days <= 7) return "Previous 7 days";
+  return "Earlier";
+}
+function shortWhen(iso, group) {
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  return group === "Today" || group === "Yesterday"
+    ? d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })
+    : d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
 async function initChat() {
@@ -443,14 +936,97 @@ async function refreshList() {
   try { chat.list = (await api("/api/conversations")).conversations; renderSidebar(); } catch (_) {}
 }
 
+// A delete removes the chat from this server's history. The measurement records (data/ui_measurements, unless the
+// server runs with --no-measure) keep their own copy of each answered turn, so neither message claims otherwise.
+const DELETE_NOTE = "The server's measurement log keeps its own copy.";
+const DELETED = "Chat deleted from history. " + DELETE_NOTE;
+function convRow(c, group) {
+  const title = c.title || "New conversation";
+  if (chat.confirming === c.id) return `
+    <li class="conv-row confirming">
+      <div class="confirm" role="group" aria-label="Delete “${esc(title)}” from history?">
+        <span class="confirm-q">Delete this chat from history?</span>
+        <button type="button" class="danger small" data-delok="${esc(c.id)}">Delete</button>
+        <button type="button" class="ghost small" data-delno="${esc(c.id)}">Cancel</button>
+        <p class="confirm-note">${esc(DELETE_NOTE)}</p>
+      </div>
+    </li>`;
+  const on = c.id === chat.id;
+  const locked = busy && on;
+  return `
+    <li class="conv-row${on ? " is-active" : ""}">
+      <button type="button" class="conv${on ? " active" : ""}" data-id="${esc(c.id)}"
+          aria-current="${on ? "true" : "false"}" title="${esc(title)} · ${esc(when(c.updated_at))}">
+        <span class="t">${esc(title)}</span><span class="sub">${esc(shortWhen(c.updated_at, group))}</span></button>
+      <button type="button" class="icon-btn conv-del" data-del="${esc(c.id)}" aria-label="Delete conversation: ${esc(title)}"${locked ? ` disabled title="Wait for the answer to finish"` : ""}>${icon("trash")}</button>
+    </li>`;
+}
+
+const CONV_KEYS = ["data-id", "data-del", "data-delok", "data-delno"];
 function renderSidebar() {
+  const keep = focusedIn("convlist", CONV_KEYS);        // the redraw must not throw away a keyboard user's place
   const active = chat.list.find(c => c.id === chat.id);
   $("convtitle").textContent = chat.id ? ((active && active.title) || "New conversation") : "New conversation";
-  $("convlist").innerHTML = chat.list.length ? chat.list.map(c => `
-    <li><button type="button" class="conv${c.id === chat.id ? " active" : ""}" data-id="${esc(c.id)}"
-        aria-current="${c.id === chat.id ? "true" : "false"}">
-      <span class="t">${esc(c.title || "New conversation")}</span><span class="sub">${esc(when(c.updated_at))}</span>
-    </button></li>`).join("") : `<li class="sub" style="padding:8px 10px">No conversations yet</li>`;
+  const f = chat.filter;
+  const shown = f ? chat.list.filter(c => String(c.title || "New conversation").toLowerCase().includes(f)) : chat.list;
+  let html = "";
+  if (!chat.list.length) html = `<li class="sub empty-row">No conversations yet</li>`;
+  else if (!shown.length) html = `<li class="sub empty-row">No conversations match “${esc(f)}”</li>`;
+  else {
+    const now = new Date();
+    let group = null;
+    for (const c of shown) {
+      const g = dayGroup(c.updated_at, now);
+      if (g !== group) { group = g; html += `<li class="grp">${esc(g)}</li>`; }
+      html += convRow(c, g);
+    }
+  }
+  $("convlist").innerHTML = html;
+  if (keep) focusIn("convlist", keep);
+}
+
+function filterList() {
+  chat.filter = String($("convsearch").value || "").trim().toLowerCase();
+  renderSidebar();
+}
+
+function askDelete(id) {
+  if (!chat.enabled || !id) return;
+  if (busy && id === chat.id) { toast("Wait for the answer to finish before deleting this chat."); return; }
+  chat.confirming = id;
+  renderSidebar();
+  focusIn("convlist", "button[data-delno]");
+}
+
+function cancelDelete(id) {
+  chat.confirming = null;
+  renderSidebar();
+  if (id) focusIn("convlist", `button[data-del="${String(id).replace(/[^A-Za-z0-9-]/g, "")}"]`);
+}
+
+async function deleteConversation(id) {
+  if (!chat.enabled || !id) return;
+  if (busy && id === chat.id) { toast("Wait for the answer to finish before deleting this chat."); return; }
+  chat.confirming = null;
+  const before = chat.list.map(c => c.id);
+  try {
+    await api(`/api/conversations/${encodeURIComponent(id)}`, { method: "DELETE" });
+  } catch (e) {
+    if (!/not found/i.test(e.message)) { renderSidebar(); toast("Could not delete the conversation: " + e.message); return; }
+  }                                     // 404: already gone, treat it as deleted
+  chat.list = chat.list.filter(c => c.id !== id);
+  dash.stale = true;
+  dash.gone.add(id);                    // its rows leave the dashboard now, even if a summary computed before arrives
+  if (id === chat.id) newChat();        // clears the thread and the evidence, forgets it, focuses the question box
+  else {
+    renderSidebar();
+    const at = before.indexOf(id), rest = before.filter(x => x !== id);
+    const next = rest[Math.min(Math.max(at, 0), rest.length - 1)];
+    if (!(next && focusIn("convlist", `button[data-id="${String(next).replace(/[^A-Za-z0-9-]/g, "")}"]`))) $("newchat").focus();
+  }
+  toast(DELETED);                       // toast() also announces it
+  // no refreshList(): the list is already filtered, and a redraw would move the focus just placed
+  if (view === "eval") { renderDashboard(); loadDashboard(true, true); }
 }
 
 // Group stored messages into turns: each answer with its own question, in the order asked.
@@ -464,24 +1040,46 @@ function turnsOf(messages) {
   return turns;
 }
 
+// The pending reply's three steps. Labels only: nothing of the answer is known until it is delivered.
+const STEPS = [["retrieving sources", "Retrieve"], ["generating", "Generate"], ["validating the answer against its sources", "Check"]];
+const PHASES = { "retrieving sources": "Retrieving sources…", "generating": "Generating the answer…",
+                 "validating the answer against its sources": "Checking the answer against the sources…" };
+function stepsHtml(phase) {
+  const at = Math.max(0, STEPS.findIndex(s => s[0] === phase));
+  return STEPS.map(([, label], i) => {
+    const cls = i < at ? "done" : i === at ? "now" : "todo";
+    return `<li class="${cls}"><span class="dot" aria-hidden="true">${i < at ? "✓" : ""}</span>${label}</li>`;
+  }).join("");
+}
+
 function replyHtml(t, pending) {
   if (pending && pending.turn_id === t.turn_id) return `
-    <div class="draft-head"><span class="spin"></span><span id="draftphase">Retrieving sources…</span></div>`;
+    <div class="progress">
+      <div class="draft-head"><span class="spin"></span><span id="draftphase">Retrieving sources…</span><span class="elapsed" id="draftelapsed">0 s</span></div>
+      <ol class="steps" id="draftsteps" aria-hidden="true">${stepsHtml("retrieving sources")}</ol>
+      <p class="progress-note">The answer appears once it has been checked against its sources.</p>
+    </div>`;
   const m = t.reply, retry = `<button type="button" class="ghost small" data-retry="${esc(t.turn_id)}">Retry</button>`;
   if (!m) return `<div class="bubble err">No answer was recorded for this question.</div><div class="tools">${retry}</div>`;
   if (m.status !== "ok" || !m.result) return `<div class="bubble err">${esc(m.content || "The answer could not be produced.")}</div><div class="tools">${retry}</div>`;
   const r = m.result;
-  const cites = (r.citations || []).map(c => `<li>${esc(c.label)}${c.url ? ` — <a href="${esc(c.url)}" target="_blank" rel="noopener">source</a>` : ""}</li>`).join("");
+  const cites = (r.citations || []).map(c => c.url
+    ? `<li><a class="chip" href="${esc(c.url)}" target="_blank" rel="noopener" title="${esc(c.label)}">${esc(c.label)}${icon("ext")}</a></li>`
+    : `<li><span class="chip" title="${esc(c.label)}">${esc(c.label)}</span></li>`).join("");
+  const e = evaluationOf(r, t.question);
   return `<div class="bubble">${esc(r.answer)}</div>
-    <div class="tools">${r.model_called === false ? pill("model not called", "warn") : ""} ${evalPill(evaluationOf(r, t.question))}
-      <button type="button" class="ghost small" data-show="${esc(t.turn_id)}">Show evidence</button>
+    ${cites ? `<ul class="cites" aria-label="Citations">${cites}</ul>` : ""}
+    <div class="tools">${r.model_called === false ? pill("model not called", "warn") : ""}
+      <button type="button" class="ghost small" data-show="${esc(t.turn_id)}">${icon("doc")}Show evidence</button>
+      <button type="button" class="ghost small" data-copy="${esc(t.turn_id)}">${icon("copy")}Copy</button>
       ${r.conversation && r.conversation.saved === false ? pill("not saved to history", "warn") : ""}</div>
-    ${cites ? `<ul class="cites" aria-label="Citations">${cites}</ul>` : ""}`;
+    ${e ? renderEvalCard(e, r.accuracy) : ""}`;
 }
 
 function renderThread(pending) {
+  if ($("chatview").hidden) chat.scrollAt = null;    // changed while hidden: show its end when Chat is opened again
   $("thread").innerHTML = turnsOf(chat.messages).map(t => `
-    <div class="turn">
+    <div class="turn${chat.target && t.turn_id === chat.target ? " target" : ""}" id="turn-${esc(t.turn_id)}" tabindex="-1">
       <div class="msg user"><div class="bubble">${esc(t.question)}</div></div>
       <div class="msg assistant">${replyHtml(t, pending)}</div>
     </div>`).join("");
@@ -493,24 +1091,56 @@ function showEvidence(turnId) {
   if (t && t.reply && t.reply.status === "ok" && t.reply.result) { render(t.reply.result, t.question); setEvidence(true); }
 }
 
-async function openConversation(id) {
+function copyAnswer(turnId) {
+  const t = turnsOf(chat.messages).find(x => x.turn_id === turnId);
+  const text = t && t.reply && t.reply.result ? String(t.reply.result.answer || "") : "";
+  if (!text) return;
+  const clip = typeof navigator !== "undefined" && navigator.clipboard;
+  if (!clip || typeof clip.writeText !== "function") { toast("Copying is not available in this browser."); return; }
+  clip.writeText(text).then(() => toast("Answer copied"), () => toast("The answer could not be copied."));
+}
+
+function scrollToTurn(turnId) {
+  const el = $("turn-" + turnId);
+  if (el && typeof el.scrollIntoView === "function") { try { el.scrollIntoView({ block: "center" }); } catch (_) {} }
+}
+
+// The turn opened from the dashboard takes the focus (it has tabindex -1), so a screen reader starts there.
+function focusTurn(turnId) {
+  const el = $("turn-" + turnId);
+  if (el && typeof el.focus === "function") { try { el.focus({ preventScroll: true }); } catch (_) {} }
+  announce("Opened the conversation at the selected answer");
+}
+
+// how: "list" (picked in the sidebar: focus moves to the question box), "dash" (a recent evaluation: focus moves to
+// its turn), or nothing (the restore on page load, which leaves the focus alone)
+async function openConversation(id, turnId, how) {
   if (busy) return;
   try {
     const conv = (await api(`/api/conversations/${encodeURIComponent(id)}`)).conversation;
     chat.id = conv.id;
     chat.messages = conv.messages;
+    chat.confirming = null;
+    chat.target = turnId || null;
     remember(conv.id);
     renderSidebar();
     renderThread();
     $("out").innerHTML = "";
-    const last = turnsOf(chat.messages).filter(t => t.reply && t.reply.status === "ok" && t.reply.result).pop();
-    if (last) render(last.reply.result, last.question);
-    toBottom();
+    const delivered = turnsOf(chat.messages).filter(t => t.reply && t.reply.status === "ok" && t.reply.result);
+    const pick = (turnId && delivered.find(t => t.turn_id === turnId)) || delivered[delivered.length - 1];
+    if (pick) render(pick.reply.result, pick.question);
+    if (turnId) scrollToTurn(turnId); else toBottom();
+    setSide(false);                                   // first: an open drawer leaves the page behind it inert
+    if (how === "dash" && turnId) focusTurn(turnId);
+    else if (how === "list" && view === "chat") $("q").focus();
   } catch (e) {
-    if (chat.id === id) { chat.id = null; chat.messages = []; }
-    remember(null);
+    const wasOpen = chat.id === id;
+    if (wasOpen) { chat.id = null; chat.messages = []; }
+    if (remembered() === id) remember(null);       // forget only the one that failed: the open chat is still restorable
     renderThread();
-    $("out").innerHTML = `<div class="card err">Could not open that conversation: ${esc(e.message)}</div>`;
+    if (wasOpen || !chat.enabled) $("out").innerHTML = `<div class="card err">Could not open that conversation: ${esc(e.message)}</div>`;
+    if (e.status === 404) { dash.gone.add(id); dash.stale = true; }
+    toast("Could not open that conversation: " + e.message);   // #out sits in the closed evidence panel
     refreshList();
   }
   setSide(false);
@@ -520,13 +1150,16 @@ function newChat() {
   if (busy) return;
   chat.id = null;
   chat.messages = [];
+  chat.target = null;
+  chat.confirming = null;
   remember(null);
   renderSidebar();
   renderThread();
   $("out").innerHTML = "";
   setSide(false);
   setEvidence(false);
-  $("q").focus();
+  // never a hidden composer, and never the drawer's own button once the drawer has closed (narrow screens)
+  if (view === "chat") $("q").focus(); else $(isNarrow() ? "sidetoggle" : "newchat").focus();
 }
 
 // ---- layout: sidebar, evidence panel, empty state, composer height (presentation only) -------
@@ -534,10 +1167,32 @@ const COLLAPSED_KEY = "regulus.sidebarCollapsed";
 function isNarrow() {
   try { return typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 899px)").matches; } catch (_) { return false; }
 }
+function reducedMotion() {
+  try { return typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (_) { return false; }
+}
+function overlayEvidence() {             // below 1280px the evidence panel covers the conversation instead of docking
+  try { return typeof window !== "undefined" && !!window.matchMedia && window.matchMedia("(max-width: 1279px)").matches; } catch (_) { return false; }
+}
+function setInert(ids, on) {
+  for (const id of ids) { const e = $(id); if (e && "inert" in e) e.inert = !!on; }
+}
+// While a drawer covers the page (the sidebar below 900px, the evidence panel below 1280px), what is behind the
+// backdrop is inert: Tab stays in the drawer. Re-run when a breakpoint is crossed with a drawer open.
+function syncInert() {
+  const app = $("app");
+  if (!app || !app.classList) return;
+  const side = app.classList.contains("sideopen") && isNarrow();
+  const ev = !side && app.classList.contains("evopen") && !app.classList.contains("dash") && overlayEvidence();
+  setInert(["main"], side);
+  setInert(["sidebar", "topbar", "empty", "thread", "composer"], ev);
+}
 function setSide(open) {                 // narrow screens: the drawer
   if (!chat.enabled || !$("app").classList) return;
   $("app").classList.toggle("sideopen", !!open);
-  if (isNarrow()) $("sidetoggle").setAttribute("aria-expanded", String(!!open));
+  const narrow = isNarrow();
+  if (narrow) $("sidetoggle").setAttribute("aria-expanded", String(!!open));
+  syncInert();
+  if (open && narrow) $("newchat").focus();
 }
 function setCollapsed(collapsed) {       // wide screens: collapse the column
   if (!chat.enabled || !$("app").classList) return;
@@ -545,11 +1200,17 @@ function setCollapsed(collapsed) {       // wide screens: collapse the column
   $("sidetoggle").setAttribute("aria-expanded", String(!collapsed));
   try { if (typeof localStorage !== "undefined") localStorage.setItem(COLLAPSED_KEY, collapsed ? "1" : "0"); } catch (_) {}
 }
+function toggleSidebar() {
+  if (!chat.enabled || !$("app").classList) return;
+  if (isNarrow()) setSide(!$("app").classList.contains("sideopen"));
+  else setCollapsed(!$("app").classList.contains("sidecollapsed"));
+}
 function setEvidence(open) {
   if (!chat.enabled || !$("app").classList) return;
   if (open && !$("out").innerHTML.trim()) $("out").innerHTML = `<p class="ev-empty">Choose “Show evidence” on an answer to see its citations, retrieved sources and evaluation here.</p>`;
   $("app").classList.toggle("evopen", !!open);
   $("evtoggle").setAttribute("aria-expanded", String(!!open));
+  syncInert();
   if (open && $("evclose").focus) $("evclose").focus();
 }
 function syncEmpty() {
@@ -566,15 +1227,92 @@ function toBottom() {
   if (sc && typeof sc.scrollHeight === "number") sc.scrollTop = sc.scrollHeight;   // instant: no animated jump
 }
 
+// ---- views: Chat | Evaluation -------------------------------------------------------------------
+const VIEW_KEY = "regulus.view";
+let view = "chat";
+function setView(v) {
+  const toEval = v === "eval", was = view;
+  // A hidden (display: none) scroller loses its position: keep it, and put it back when Chat is shown again
+  // (or show the end, if the thread changed meanwhile: renderThread clears it).
+  const sc = $("scroll"), measurable = !!sc && typeof sc.scrollHeight === "number";
+  if (toEval && was === "chat" && !$("chatview").hidden && measurable) chat.scrollAt = sc.scrollTop;
+  view = toEval ? "eval" : "chat";
+  $("evalview").hidden = !toEval;
+  $("chatview").hidden = toEval;
+  if (!toEval && was === "eval" && measurable) {
+    if (typeof chat.scrollAt === "number") sc.scrollTop = chat.scrollAt; else toBottom();
+    chat.scrollAt = null;
+  }
+  const app = $("app");
+  if (app.classList) app.classList.toggle("dash", toEval);   // never a class containing "chat"
+  attr($("tabchat"), "aria-selected", String(!toEval));
+  attr($("tabeval"), "aria-selected", String(toEval));
+  attr($("tabchat"), "tabindex", toEval ? "-1" : "0");
+  attr($("tabeval"), "tabindex", toEval ? "0" : "-1");
+  store(VIEW_KEY, view);
+  if (toEval) {
+    setEvidence(false);
+    setSide(false);
+    if (dash.stale || dash.sumState === "error" || dash.sumState === "unavailable" || dash.sumState === "idle") loadDashboard();
+  }
+}
+
+// ---- theme, remembered per browser. Every click changes what is shown: from "system" to the opposite of the
+// system's scheme, and from a fixed theme back to "system" (or, if the fixed one is what the system shows now, to
+// the other one).
+const THEME_KEY = "regulus.theme";
+function systemDark() {
+  try { return typeof window !== "undefined" && !!window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches; } catch (_) { return false; }
+}
+function nextTheme(p) {
+  const shown = systemDark() ? "dark" : "light", other = shown === "dark" ? "light" : "dark";
+  return p === "system" || p === shown ? other : "system";
+}
+function themePref() {
+  const t = stored(THEME_KEY);
+  return t === "light" || t === "dark" ? t : "system";
+}
+function applyTheme(pref) {
+  const p = pref === "light" || pref === "dark" ? pref : "system";
+  const root = typeof document !== "undefined" ? document.documentElement : null;
+  if (root && typeof root.setAttribute === "function") {
+    if (p === "system") { if (typeof root.removeAttribute === "function") root.removeAttribute("data-theme"); }
+    else root.setAttribute("data-theme", p);
+  }
+  store(THEME_KEY, p === "system" ? null : p);
+  const b = $("themetoggle");
+  attr(b, "data-pref", p);
+  attr(b, "aria-label", `Theme: ${p}. Switch to ${nextTheme(p)}`);
+  attr(b, "title", `Theme: ${p}`);
+  return p;
+}
+function cycleTheme() {
+  const p = applyTheme(nextTheme(themePref()));
+  announce(`Theme: ${p}`);
+  return p;
+}
+
 async function loadConfig() {
   try {
     const cfg = await (await fetch("/api/config")).json();
-    $("env").textContent = `${cfg.model_id} · ${cfg.device}${cfg.dtype ? " " + cfg.dtype : ""} · eCFR snapshot ${cfg.snapshot_date}`;
+    const models = Array.isArray(cfg.models) ? cfg.models : [];
+    const m = models.find(x => x && x.id === cfg.active_model) || models[0];
+    const full = `${cfg.model_id} · ${cfg.device}${cfg.dtype ? " " + cfg.dtype : ""} · eCFR snapshot ${cfg.snapshot_date}`;
+    // The badge names the model the worker reports (model_id, from its describe()). The configured label is used only
+    // when it names that same model, so a 1.7B worker is never shown under the 4B label.
+    const base = cfg.model_id ? String(cfg.model_id).replace(/^.*\//, "") : "";
+    const ident = base ? base + (cfg.dtype ? " · " + cfg.dtype : "") : "";
+    // whole name only: "Qwen3-4B" must not match the label "Qwen3-4B-Instruct-2507 (MLX 4-bit)"
+    const named = m && m.label ? String(m.label).trim().split(/[\s(]/)[0].toLowerCase() : "";
+    const label = base && named === base.toLowerCase() ? String(m.label) : "";
+    $("env").textContent = label || ident || (m && m.label) || full;
+    attr($("modelbadge"), "title", full);
+    $("evalmodel").textContent = full;
   } catch (e) {
     $("env").textContent = "could not reach the server";
   }
-  $("examples").innerHTML = EXAMPLES.map((e, i) => `<button data-i="${i}">${esc(e)}</button>`).join("");
-  $("examples").onclick = ev => { const b = ev.target.closest("button"); if (b) { $("q").value = EXAMPLES[b.dataset.i]; grow(); $("q").focus(); } };
+  $("examples").innerHTML = EXAMPLES.map((e, i) => `<button type="button" data-i="${i}"><span class="ex-tag">${esc(e.tag)}</span><span class="ex-q">${esc(e.q)}</span></button>`).join("");
+  $("examples").onclick = ev => { const b = ev.target.closest("button"); if (b && EXAMPLES[b.dataset.i]) { $("q").value = EXAMPLES[b.dataset.i].q; grow(); $("q").focus(); } };
 }
 
 function pill(text, cls) { return `<span class="pill ${cls}">${esc(text)}</span>`; }
@@ -631,6 +1369,8 @@ function timingRows(r) {
 // percentage is shown as "accuracy": the evaluator's 0-100 score appears beside
 // the status as "Evaluation score N/100" (evaluationScore below), labelled as
 // an evaluation score and not a percentage of factual accuracy.
+// The dashboard's counts (regulus.conversations.evaluation_summary) mirror
+// evaluationOf() and evaluationScore(): change them together.
 const ACC_STATE_CLASS = { pass: "ok", fail: "stop", partial: "warn", not_established: "muted", not_applicable: "muted" };
 const EVAL_CLASS = { pass: "ok", fail: "stop", not_evaluated: "mut" };
 const EVAL_LABELS = { pass: ["PASS"], fail: ["FAIL"], not_evaluated: ["NOT EVALUATED", "NOT FULLY EVALUATED"] };
@@ -647,7 +1387,9 @@ function evaluationOf(r, asked) {
     return none("The evaluation result is not for this question, so it is not shown.");
   }
   const sub = v.substantive_correctness, cite = v.citation_correctness;
-  if (v.status === "pass" && !(a.status === "evaluated" && sub && sub.state === "pass"
+  // a PASS reads as consistent when the answer was evaluated, substantive correctness passed or was only partly
+  // verified (the calibrated rule of regulus.accuracy.review, 23 Oct: uncertainty is not a defect) and citations held
+  if (v.status === "pass" && !(a.status === "evaluated" && sub && (sub.state === "pass" || sub.state === "partial")
                                && cite && (cite.state === "pass" || cite.state === "not_applicable"))) {
     return none("The evaluation result is inconsistent, so it is not shown.");
   }
@@ -668,6 +1410,39 @@ function evaluationScore(e) {
 
 function evalPill(e) {
   return e ? pill(`evaluation: ${e.label}`, EVAL_CLASS[e.status]) : "";
+}
+
+// a status badge: icon + word, so the status is never told by colour alone
+function badgeKind(status, label) {
+  return status === "pass" ? "pass" : status === "fail" ? "fail" : label === "NOT FULLY EVALUATED" ? "nfe" : "none";
+}
+const BADGE_ICON = { pass: "✓", fail: "✗", nfe: "◐", none: "?" };
+function badgeHtml(status, label) {
+  const k = badgeKind(status, label);
+  return `<span class="badge b-${k}"><span class="bi" aria-hidden="true">${BADGE_ICON[k]}</span>${esc(label)}</span>`;
+}
+const STATE_WORD = { pass: "Pass", partial: "Partly met", fail: "Fail", not_established: "Not established", not_applicable: "Not applicable" };
+const GLYPH_CLASS = { pass: "g-pass", fail: "g-fail", partial: "g-partial", not_established: "g-muted", not_applicable: "g-muted" };
+
+// The evaluation card under an answer in the thread: the same evaluationOf() / evaluationScore()
+// as the evidence panel, and no judgement of its own. It never repeats the question.
+function renderEvalCard(e, a) {
+  const score = evaluationScore(e);
+  const decided = e.status !== "not_evaluated" || e.label === "NOT FULLY EVALUATED";
+  const dims = decided && a && Array.isArray(a.dimensions) ? a.dimensions.filter(d => d && typeof d === "object") : [];
+  const chips = dims.map(d => `<li title="${esc(d.state)}: ${esc(d.detail)}"><span class="g ${GLYPH_CLASS[d.state] || "g-muted"}" aria-hidden="true">${esc(d.glyph)}</span>${esc(d.label)}<span class="sr-only"> ${esc(STATE_WORD[d.state] || d.state)}</span></li>`).join("");
+  const rows = dims.map(d => `<tr><td>${esc(d.label)}</td><td class="w">${esc(STATE_WORD[d.state] || d.state)}</td><td>${esc(d.detail)}</td></tr>`).join("");
+  const kind = e.status === "pass" ? "pass" : e.status === "fail" ? "fail" : "none";
+  return `
+    <div class="evc st-${kind}" role="group" aria-label="Evaluation of this answer">
+      <div class="evc-top">${badgeHtml(e.status, e.label)}
+        <span class="evc-score${score === null ? " unknown" : ""}">${score === null ? "Score unavailable" : `Evaluation score ${score}/100`}</span>
+        <span class="evc-kind">Live check of this answer</span></div>
+      ${e.explanation ? `<p class="evc-text">${esc(e.explanation)}</p>` : ""}
+      ${chips ? `<ul class="evc-dims" aria-label="Checks">${chips}</ul>` : ""}
+      <div class="evc-foot">${rows ? `<details class="evc-why"><summary>Why</summary><table>${rows}</table></details>` : ""}
+        <span>Not the 300-question acceptance-test score.</span></div>
+    </div>`;
 }
 
 function renderEvaluation(e, a) {
@@ -740,20 +1515,20 @@ function render(r, asked) {
 
   const t = r.timings_ms || {};
   $("out").innerHTML = `
-    <div class="card">
+    <div class="card" data-sec="answer">
       <div class="meta">${head}</div>
       <div class="answer">${esc(r.answer)}</div>
       ${renderEvaluation(evaluation, r.accuracy)}
     </div>
-    <div class="card">
+    <div class="card" data-sec="citations">
       <label>Citations</label>
       <ul style="margin:0;padding-left:18px">${cites}</ul>
     </div>
-    <div class="card">
+    <div class="card" data-sec="sources">
       <label>Retrieved context (${r.sources.length}${r.dropped_sources ? `, ${r.dropped_sources} dropped for budget` : ""})</label>
       ${sources}
     </div>
-    <div class="card">
+    <div class="card" data-sec="diagnostics">
       <label>Diagnostics</label>
       <table>
         <tr><td>Query type</td><td>${esc(r.query_type || "")}</td></tr>
@@ -769,6 +1544,329 @@ function render(r, asked) {
       ${r.notes && r.notes.length ? `<p class="sub">Note: ${esc(r.notes.join(" "))}</p>` : ""}
       <details style="margin-top:10px"><summary>Raw response</summary><pre>${esc(JSON.stringify(r, null, 2))}</pre></details>
     </div>`;
+}
+
+// ---- the Evaluation view (dashboard) -----------------------------------------------------------
+// Live counts come from /api/evaluation/summary (regulus.conversations.evaluation_summary, the server's
+// mirror of evaluationOf above); the benchmark numbers are a static, labelled reference file served by
+// /api/benchmark/summary. Both are fetched only when this view is opened. No percentage appears
+// anywhere here: shares are written "3 of 35", and bars use flex-grow and SVG units.
+const dash = { summary: null, sumState: "idle", sumError: "", bench: null, benchState: "idle", benchError: "",
+               filter: "all", stale: true, loadedAt: null, gone: new Set(),     // gone: conversations deleted or not found
+               again: false };                                                  // a forced reload asked for mid-load
+const RECENT = 25;
+const EVAL_BASIS = "Live evaluations of answers stored in this server's history. Each is an evidence-based assessment of one answer; not the 300-question acceptance-test score.";
+const BENCH_MEASURED = "holdout_100_measured_2026-10-22";
+const BENCH_PROJECTED = "holdout_100_projected";
+const BENCH_AGREE = "evaluator_agreement";
+const LIVE_STATUSES = [["pass", "s-pass", "PASS", "✓"], ["fail", "s-fail", "FAIL", "✗"], ["not_evaluated", "s-none", "NOT EVALUATED", "?"]];
+// [state, icon, word, short header]: the header keeps the icon and a short word, the full word is for screen readers
+const DIM_COLS = [["pass", "✓", "Pass", "Pass"], ["partial", "⚠", "Partial", "Partial"], ["fail", "✗", "Fail", "Fail"],
+                  ["not_established", "?", "Not established", "Not est."], ["not_applicable", "–", "Not applicable", "N/A"]];
+const FILTERS = [["all", "", "All"], ["pass", "✓", "PASS"], ["fail", "✗", "FAIL"], ["not_evaluated", "?", "NOT EVALUATED"]];
+
+// quiet: a refresh the page started by itself (after a delete or an answer), announced by nothing but its content.
+// force: a change happened (a delete, an answer); if a load is already in flight its summary may predate the change,
+// so one more load runs when it ends.
+async function loadDashboard(force, quiet) {
+  if (dash.sumState === "loading") { if (force) dash.again = true; return; }
+  const hadFrame = !!dash.summary && (dash.sumState === "ok" || dash.sumState === "empty");
+  dash.sumState = "loading";
+  const body = $("evalbody");
+  if (hadFrame) { if (body.classList) body.classList.add("refreshing"); }
+  const wantBench = !dash.bench;
+  if (wantBench) dash.benchState = "loading";
+  if (!hadFrame) renderDashboard();
+  attr(body, "aria-busy", "true");
+  attr($("evalrefresh"), "aria-disabled", "true");   // not .disabled: a disabled button would drop the focus
+  const settle = p => p.then(b => ({ body: b }), e => ({ err: e }));
+  const [sum, bench] = await Promise.all([
+    settle(api(`/api/evaluation/summary?recent=${RECENT}`)),
+    wantBench ? settle(api("/api/benchmark/summary")) : Promise.resolve(null),
+  ]);
+  if (sum.body && sum.body.summary && typeof sum.body.summary === "object") {
+    dash.summary = sum.body.summary;
+    dash.sumError = "";
+    const t = dash.summary.turns || {};
+    dash.sumState = int0(t.assessed) > 0 ? "ok" : "empty";
+    dash.stale = false;
+    dash.loadedAt = new Date();
+  } else {
+    const e = sum.err || new Error("the server returned no summary");
+    dash.summary = null;
+    if (e.status === 503 || /unavailable/i.test(e.message || "")) dash.sumState = "unavailable";
+    else { dash.sumState = "error"; dash.sumError = e.message || "unknown error"; }
+  }
+  if (bench) {
+    if (bench.body && bench.body.benchmark && typeof bench.body.benchmark === "object") { dash.bench = bench.body.benchmark; dash.benchState = "ok"; dash.benchError = ""; }
+    else { dash.benchState = "error"; dash.benchError = (bench.err && bench.err.message) || "the server returned no benchmark"; }
+  }
+  if (body.classList) body.classList.remove("refreshing");
+  attr(body, "aria-busy", "false");
+  attr($("evalrefresh"), "aria-disabled", "false");
+  renderDashboard();
+  if (!quiet) announce("Evaluation summary updated");
+  if (dash.again) {
+    dash.again = false;
+    if (view === "eval") loadDashboard(true, true); else dash.stale = true;   // otherwise on the next visit
+  }
+}
+
+function tile(cls, iconText, label, valueHtml, sub) {
+  return `<div class="tile ${cls}"><div class="tile-label">${iconText ? `<span class="ti" aria-hidden="true">${iconText}</span>` : ""}${esc(label)}</div>
+    <div class="tile-value">${valueHtml}</div><div class="tile-sub">${esc(sub)}</div></div>`;
+}
+
+function tilesHtml(s) {
+  const t = s.turns || {}, st = s.status || {}, sc = s.scores || {};
+  const A = int0(t.assessed), wo = int0(t.without_evaluation);
+  const median = typeof sc.median === "number" && isFinite(sc.median) ? sc.median : null;
+  return `<div class="tiles">
+    ${tile("", "", "Answers with a live result", esc(A), `of ${int0(t.answered)} answered` + (wo ? ` · ${wo} without an evaluation` : ""))}
+    ${tile("t-pass", "✓", "PASS", esc(int0(st.pass)), `${int0(st.pass)} of ${A} with a result`)}
+    ${tile("t-fail", "✗", "FAIL", esc(int0(st.fail)), `${int0(st.fail)} of ${A} with a result`)}
+    ${tile("t-none", "?", "NOT EVALUATED", esc(int0(st.not_evaluated)), `${int0(st.not_evaluated)} of ${A} · ${int0(st.not_fully_evaluated)} not fully evaluated`)}
+    ${tile("", "", "Median evaluation score", median === null ? "—" : `${esc(median)}<span class="of">/100</span>`,
+           median === null ? "no scored answers yet" : `over ${int0(sc.scored)} scored answers · range ${int0(sc.min)}–${int0(sc.max)}`)}
+  </div>`;
+}
+
+function statusBarHtml(st, assessed) {
+  const aria = `PASS ${int0(st.pass)}, FAIL ${int0(st.fail)}, NOT EVALUATED ${int0(st.not_evaluated)} of ${assessed} answers with a live result`;
+  const segs = LIVE_STATUSES.filter(([k]) => int0(st[k]) > 0).map(([k, cls, label]) =>
+    `<span class="seg ${cls}" style="flex-grow:${int0(st[k])}" title="${label}: ${int0(st[k])} of ${assessed}"></span>`).join("");
+  const legend = LIVE_STATUSES.map(([k, cls, label, ic]) =>
+    `<li><i class="sw ${cls}" aria-hidden="true"></i><span aria-hidden="true">${ic}</span> ${label} <b>${int0(st[k])}</b></li>`).join("");
+  return `<div class="flexbar" role="img" aria-label="${esc(aria)}">${segs}</div><ul class="legend">${legend}</ul>`;
+}
+
+function niceMax(m) {
+  const v = Math.max(1, isFinite(m) ? m : 1);
+  for (let p = 1; p < 1e9; p *= 10) for (const s of [1, 2, 5]) if (s * p >= v) return s * p;
+  return v;
+}
+
+function histogramSvg(sc) {
+  const b = Array.isArray(sc.buckets) ? sc.buckets : [];
+  if (!int0(sc.scored) || !b.length) return `<p class="caption">No scored answers yet.</p>`;
+  const X0 = 36, X1 = 552, Y0 = 16, Y1 = 184;
+  const band = (X1 - X0) / b.length, bw = Math.min(24, 0.55 * band);
+  const totals = b.map(x => int0(x.pass) + int0(x.fail) + int0(x.not_evaluated));
+  const top = niceMax(Math.max(...totals));
+  const yOf = v => Y1 - (v / top) * (Y1 - Y0);
+  const f = x => (Math.round(x * 10) / 10).toString();
+  const ticks = [0, top / 2, top].filter((v, i) => i !== 1 || Number.isInteger(v));
+  let g = ticks.map(v => `<line class="${v === 0 ? "ax" : "gl"}" x1="${X0}" x2="${X1}" y1="${f(yOf(v))}" y2="${f(yOf(v))}"></line>
+    <text x="${X0 - 8}" y="${f(yOf(v) + 4)}" text-anchor="end">${v}</text>`).join("");
+  const cols = b.map((x, i) => {
+    const cx = X0 + i * band + band / 2, x0 = cx - bw / 2;
+    const parts = [["pass", "m-pass"], ["fail", "m-fail"], ["not_evaluated", "m-none"]].map(([k, cls]) => ({ v: int0(x[k]), cls })).filter(p => p.v > 0);
+    let cur = Y1, marks = "";
+    parts.forEach((p, j) => {
+      const h = (p.v / top) * (Y1 - Y0);
+      const yTop = cur - h, yBot = j === 0 ? cur : cur - Math.min(2, h / 2);
+      const hh = yBot - yTop;
+      if (hh > 0) {
+        if (j === parts.length - 1) {
+          const r = Math.min(4, hh, bw / 2);
+          marks += `<path class="${p.cls}" d="M${f(x0)},${f(yBot)} V${f(yTop + r)} Q${f(x0)},${f(yTop)} ${f(x0 + r)},${f(yTop)} H${f(x0 + bw - r)} Q${f(x0 + bw)},${f(yTop)} ${f(x0 + bw)},${f(yTop + r)} V${f(yBot)} Z"></path>`;
+        } else {
+          marks += `<rect class="${p.cls}" x="${f(x0)}" y="${f(yTop)}" width="${f(bw)}" height="${f(hh)}"></rect>`;
+        }
+      }
+      cur = yTop;
+    });
+    const label = String(x.label || "");
+    const tip = `${label}: ${totals[i]} answer${totals[i] === 1 ? "" : "s"} · ${int0(x.pass)} PASS · ${int0(x.fail)} FAIL · ${int0(x.not_evaluated)} NOT FULLY EVALUATED`;
+    return `<g class="col"><rect class="hit" x="${f(X0 + i * band)}" y="${Y0}" width="${f(band)}" height="${Y1 - Y0}"><title>${esc(tip)}</title></rect>${marks}
+      ${totals[i] ? `<text class="tot" x="${f(cx)}" y="${f(cur - 5)}" text-anchor="middle">${totals[i]}</text>` : ""}
+      <text class="xl" x="${f(cx)}" y="200" text-anchor="middle">${esc(label)}</text></g>`;
+  }).join("");
+  const aria = `Score distribution of ${int0(sc.scored)} scored answers, in 11 bands from 0 to 100`;
+  const rows = b.map((x, i) => `<tr><td>${esc(x.label)}</td><td>${int0(x.pass)}</td><td>${int0(x.fail)}</td><td>${int0(x.not_evaluated)}</td><td>${totals[i]}</td></tr>`).join("");
+  return `<svg class="chart" viewBox="0 0 560 220" role="img" aria-label="${esc(aria)}">${g}${cols}</svg>
+    <ul class="legend"><li><i class="sw s-pass" aria-hidden="true"></i>✓ PASS</li><li><i class="sw s-fail" aria-hidden="true"></i>✗ FAIL</li><li><i class="sw s-none" aria-hidden="true"></i>◐ NOT FULLY EVALUATED</li></ul>
+    <p class="caption">${int0(sc.scored)} scored answers. The evaluation score is 100 minus the deductions for failed or partial checks; it does not decide the status, so a high score can sit under FAIL.</p>
+    <details class="tableview"><summary>Show as table</summary><table><tr><th>Evaluation score</th><th>PASS</th><th>FAIL</th><th>NOT FULLY EVALUATED</th><th>Answers</th></tr>${rows}</table></details>`;
+}
+
+function heatTableHtml(d) {
+  const rows = Array.isArray(d.rows) ? d.rows : [];
+  if (!rows.length) return `<p class="caption">No checks to show.</p>`;
+  const head = DIM_COLS.map(([, ic, word, short]) => `<th scope="col" title="${word}"><span class="hic" aria-hidden="true">${ic}</span>${short === word ? word : `<span aria-hidden="true">${short}</span><span class="sr-only">${word}</span>`}</th>`).join("");
+  const body = rows.map(r => {
+    const total = int0(r.total), label = String(r.label || r.dimension || "");
+    const cells = DIM_COLS.map(([k, , word]) => {
+      const c = int0(r[k]);
+      const v = total ? Math.round((c / total) * 100) / 100 : 0;
+      return `<td class="hc h-${k}" style="--v:${v.toFixed(2)}" title="${esc(label)}: ${word} in ${c} of ${total} answers">${c}</td>`;
+    }).join("");
+    return `<tr><td>${esc(label)}</td>${cells}<td class="tot">${total}</td></tr>`;
+  }).join("");
+  return `<div class="table-wrap" tabindex="0" role="region" aria-label="Checks by dimension"><table class="heat"><thead><tr><th scope="col">Check</th>${head}<th scope="col" title="Answers"><span class="hic" aria-hidden="true">Σ</span><span aria-hidden="true">Total</span><span class="sr-only">Answers</span></th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="caption">Counted over ${int0(d.basis)} answers with decided checks (PASS, FAIL, NOT FULLY EVALUATED). A “?” check was not decidable from the evidence and counts as neither pass nor fail.</p>`;
+}
+
+function recentHtml(s) {
+  const all = (Array.isArray(s.recent) ? s.recent : []).filter(r => r && !dash.gone.has(r.conversation_id));
+  const n = all.length;
+  const count = k => k === "all" ? n : all.filter(r => r && r.status === k).length;
+  const chips = FILTERS.map(([k, ic, label]) => `<button type="button" class="fchip" data-filter="${k}" aria-pressed="${dash.filter === k ? "true" : "false"}">${ic ? `<span aria-hidden="true">${ic}</span>` : ""}${label}<span class="fc">${count(k)}</span></button>`).join("");
+  const rows = all.filter(r => r && (dash.filter === "all" || r.status === dash.filter));
+  const label = (FILTERS.find(x => x[0] === dash.filter) || FILTERS[0])[2];
+  const body = rows.length ? `<div class="table-wrap"><table class="rtable"><thead><tr><th scope="col">When</th><th scope="col">Question (opens the chat)</th><th scope="col">Status</th><th scope="col">Evaluation score</th><th scope="col">Why</th></tr></thead><tbody>${rows.map(r => {
+      const score = typeof r.score === "number" && Number.isInteger(r.score) && r.score >= 0 && r.score <= 100 ? `${r.score}/100` : "—";
+      const target = `${r.conversation_id || ""}/${r.turn_id || ""}`;
+      return `<tr><td class="wh" title="${esc(r.created_at)}">${esc(when(r.created_at))}</td>
+        <td class="q"><button type="button" class="linkish" data-open="${esc(target)}">${esc(r.question || "(no question text)")}</button></td>
+        <td class="st">${badgeHtml(r.status, r.label || "")}</td><td class="sc">${esc(score)}</td>
+        <td class="wy"><span class="clamp" title="${esc(r.explanation)}">${esc(r.explanation)}</span></td></tr>`;
+    }).join("")}</tbody></table></div>`
+    : `<p class="caption">${n ? `No ${esc(label)} answers among the ${n} most recent.` : "No answers with a live result yet."}</p>`;
+  return `<article class="dcard span12"><div class="dcard-head"><h4>Recent evaluations</h4><span class="sub">the ${n} most recent answers with a live result</span></div>
+    <div class="filters" role="group" aria-label="Filter by status">${chips}</div>${body}</article>`;
+}
+
+function liveHtml() {
+  const s = dash.summary;
+  if (dash.sumState === "unavailable") return `<div class="banner">${icon("info")}<p>Live evaluations need this server's conversation history, which is unavailable. The benchmark reference numbers are still shown below.</p></div>`;
+  if (dash.sumState === "error") return `<div class="banner error">${icon("warn")}<p>Could not load the evaluation summary: ${esc(dash.sumError)}</p><button type="button" class="ghost small" data-reload="summary">Try again</button></div>`;
+  if (!s) return `<div class="sk-tiles" aria-hidden="true">${"<div class=\"sk sk-tile\"></div>".repeat(5)}</div><div class="sk sk-bar" aria-hidden="true"></div><div class="sk sk-chart" aria-hidden="true"></div>`;
+  const t = s.turns || {}, st = s.status || {};
+  const A = int0(t.assessed);
+  if (!A) return `<div class="dempty"><p>No evaluated answers yet. Ask a question in Chat; each answer's evaluation is counted here.</p>
+      ${int0(t.answered) ? `<p class="dnote">${int0(t.answered)} answered turns carry no evaluation.</p>` : ""}
+      <button type="button" class="primary" data-goto="chat">Go to Chat</button></div>`;
+  const rub = Object.entries(s.rubrics || {}).map(([k, v]) => `Rubric ${esc(k)} · ${int0(v)} answers`).join(" · ");
+  const notes = [rub,
+    int0(t.failed) ? `${int0(t.failed)} turns ended without an answer (error or stopped) and are not counted` : "",
+    int0(t.unreadable) ? `${int0(t.unreadable)} stored results could not be read` : "",
+    t.truncated ? `counted over the ${int0(t.limit)} most recent answers` : ""].filter(Boolean).join(" · ");
+  return `${tilesHtml(s)}
+    ${notes ? `<p class="dnote">${notes}</p>` : ""}
+    <article class="dcard"><div class="dcard-head"><h4>Status distribution</h4><span class="sub">${A} answers with a live result</span></div>${statusBarHtml(st, A)}</article>
+    <div class="dgrid live">
+      <article class="dcard span7"><div class="dcard-head"><h4>Score distribution</h4></div>${histogramSvg(s.scores || {})}</article>
+      <article class="dcard span5"><div class="dcard-head"><h4>Checks by dimension</h4></div>${heatTableHtml(s.dimensions || {})}</article>
+      ${recentHtml(s)}
+    </div>`;
+}
+
+function isCount(v) { return typeof v === "number" && Number.isInteger(v) && v >= 0; }
+
+function measuredCard(m) {
+  const head = `<div class="dcard-head"><h4>Holdout 100</h4><span class="badge b-measured">MEASURED · 22 Oct 2026</span></div>`;
+  if (!m || typeof m !== "object") return `<article class="dcard span7">${head}<p class="caption">not available</p></article>`;
+  const levels = [["PASS", "q-pass", "✓", "PASS"], ["partly_pass", "q-pp", "◐", "partly pass"], ["partly_fail", "q-pf", "◑", "partly fail"], ["FAIL", "q-fail", "✗", "FAIL"]];
+  const complete = levels.every(([k]) => isCount(m[k]));
+  const aria = levels.map(([k, , , word]) => `${word} ${esc(m[k])}`).join(", ");
+  const bar = complete ? `<div class="flexbar" role="img" aria-label="${aria}">${levels.filter(([k]) => m[k] > 0).map(([k, cls, , word]) => `<span class="seg ${cls}" style="flex-grow:${m[k]}" title="${word}: ${m[k]}"></span>`).join("")}</div>
+      <ul class="legend">${levels.map(([k, cls, ic, word]) => `<li><i class="sw ${cls}" aria-hidden="true"></i><span aria-hidden="true">${ic}</span> <b>${m[k]}</b> ${word}</li>`).join("")}</ul>`
+    : `<p class="caption">not available</p>`;
+  const cats = m.by_category && typeof m.by_category === "object" ? Object.entries(m.by_category) : [];
+  const catRows = cats.map(([name, v]) => {
+    const raw = String(v), mm = /^(\d+)\/(\d+)$/.exec(raw);
+    let meter = "";
+    if (mm && +mm[2] > 0) {
+      const n = Math.min(+mm[1], +mm[2]), rest = +mm[2] - n;
+      meter = `<span class="meter" aria-hidden="true">${n > 0 ? `<span class="m-fill" style="flex-grow:${n}"></span>` : ""}${rest > 0 ? `<span class="m-rest" style="flex-grow:${rest}"></span>` : ""}</span>`;
+    }
+    return `<tr><td>${esc(name)}</td><td>${meter}</td><td class="fr">${esc(raw)}</td></tr>`;
+  }).join("");
+  // the measured result is the panel's headline: the solid, larger number (the projection's is smaller and dashed)
+  const headline = isCount(m.PASS) ? `<div><div class="big">${esc(m.PASS)}</div><div class="big-label">PASS of 100, measured 22 Oct</div></div>` : "";
+  return `<article class="dcard span7">${head}
+    ${headline}
+    ${m.model ? `<p class="bline"><b>Model</b> ${esc(m.model)}</p>` : ""}
+    ${m.scoring ? `<p class="bline"><b>Scoring</b> ${esc(m.scoring)}</p>` : ""}
+    ${bar}
+    ${catRows ? `<div class="table-wrap"><table class="cats"><thead><tr><th scope="col">Category</th><th scope="col"><span class="sr-only">Share</span></th><th scope="col">PASS</th></tr></thead><tbody>${catRows}</tbody></table></div>` : ""}
+  </article>`;
+}
+
+// "2026-10-26" -> "26 Oct 2026"; anything else is shown as it is (escaped)
+function benchDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return m && +m[2] >= 1 && +m[2] <= 12 ? `${+m[3]} ${months[+m[2] - 1]} ${m[1]}` : String(iso || "");
+}
+
+function projectionCard(p, m) {
+  const when = p && typeof p === "object" && p.as_of ? " · " + benchDate(p.as_of) : "";
+  const head = `<div class="dcard-head"><h4>Projection</h4><span class="badge b-projected">PROJECTION${esc(when)}</span></div>`;
+  if (!p || typeof p !== "object" || !isCount(p.PASS)) return `<article class="dcard">${head}<p class="caption">not available</p></article>`;
+  const measured = m && typeof m === "object" && isCount(m.PASS) ? m.PASS : null;
+  const bar = measured !== null && p.PASS <= 100 ? `<div class="flexbar" role="img" aria-label="${measured} measured, ${p.PASS} projected">
+      ${measured > 0 ? `<span class="seg q-pass" style="flex-grow:${measured}"></span>` : ""}${p.PASS > measured ? `<span class="seg p-proj" style="flex-grow:${p.PASS - measured}"></span>` : ""}${p.PASS < 100 ? `<span class="seg p-track" style="flex-grow:${100 - p.PASS}"></span>` : ""}</div>
+      <ul class="legend"><li><i class="sw q-pass" aria-hidden="true"></i>measured</li><li><i class="sw p-proj" aria-hidden="true"></i>projected</li></ul>` : "";
+  return `<article class="dcard">${head}
+    <div><div class="big proj">${esc(p.PASS)}</div><div class="big-label">PASS of 100, projected</div>
+      ${measured !== null ? `<div class="sub">${esc(measured)} measured on 22 Oct</div>` : ""}</div>
+    ${bar}
+    ${typeof p.note === "string" ? `<blockquote class="bnote">${esc(p.note)}</blockquote>` : ""}
+    <p class="caption">A projection is not a measurement: no full re-run has been made.</p>
+  </article>`;
+}
+
+function agreementOf(b) {
+  const a = b && typeof b === "object" ? b[BENCH_AGREE] : null;
+  const v = a && typeof a === "object" && a.before && typeof a.before === "object" ? a.before.blind_pass_called_pass : null;
+  return { a: a && typeof a === "object" ? a : null, value: typeof v === "string" ? v : null };
+}
+
+function agreementCard(b) {
+  const { a, value } = agreementOf(b);
+  const after = a && a.after && typeof a.after === "object" ? a.after : null;
+  const badge = after ? `RECALIBRATED${a.as_of ? " · " + benchDate(a.as_of) : ""}` : "BEING RECALIBRATED";
+  const head = `<div class="dcard-head"><h4>Evaluator agreement</h4><span class="badge b-recal"><span class="bi" aria-hidden="true">⚠</span>${esc(badge)}</span></div>`;
+  if (!a) return `<article class="dcard">${head}<p class="caption">not available</p></article>`;
+  const row = (label, v) => typeof v === "string" ? `<li><span>${esc(label)}</span><strong>${esc(v)}</strong></li>` : "";
+  return `<article class="dcard">${head}
+    ${after ? `<ul class="kv">${row("Good answers shown FAIL", after.blind_pass_shown_fail)}${row("PASS shown", after.pass_shown)}${row("Misleading answers shown PASS", after.misleading_shown_pass)}</ul>` : ""}
+    ${value !== null ? `<div class="sub">Before recalibration: ${esc(value)} blind-PASS answers were also called PASS.</div>` : (after ? "" : `<p class="caption">not available</p>`)}
+    ${typeof a.note === "string" ? `<blockquote class="bnote">${esc(a.note)}</blockquote>` : ""}
+  </article>`;
+}
+
+function benchmarkHtml() {
+  if (dash.benchState === "error") return `<div class="banner error">${icon("warn")}<p>The benchmark reference numbers could not be loaded: ${esc(dash.benchError)}</p></div>`;
+  const b = dash.bench;
+  if (!b) return `<div class="sk sk-chart" aria-hidden="true"></div>`;
+  return `<div class="dgrid">${measuredCard(b[BENCH_MEASURED])}<div class="span5 stack">${projectionCard(b[BENCH_PROJECTED], b[BENCH_MEASURED])}${agreementCard(b)}</div></div>`;
+}
+
+const DASH_KEYS = ["data-filter", "data-open", "data-reload", "data-goto"];
+function renderDashboard() {
+  const keep = focusedIn("evalbody", DASH_KEYS);
+  const s = dash.summary;
+  const { value } = agreementOf(dash.bench);
+  const calibration = value !== null ? `<div class="banner warn">${icon("warn")}<p>The live evaluator is being recalibrated. On the holdout, before recalibration, it called ${esc(value)} of the blind-PASS answers PASS. Read a live FAIL or NOT EVALUATED as “not confirmed from the retrieved evidence”, not as a verdict.</p></div>` : "";
+  $("evalbody").innerHTML = `
+    <p class="dash-basis">${esc((s && s.basis) || EVAL_BASIS)}</p>
+    ${calibration}
+    <section class="dsec" aria-label="Live answers">
+      <div class="dsec-head"><h3 class="overline">Live answers</h3><span class="badge b-live">LIVE · this server's history</span></div>
+      ${liveHtml()}
+    </section>
+    <section class="dsec" aria-label="Benchmark reference">
+      <div class="dsec-head"><h3 class="overline">Benchmark reference</h3></div>
+      ${benchmarkHtml()}
+      <p class="dash-foot">Source: data/reference/benchmark_summary_v1.json: static reference numbers, not computed by this server and not changed by live answers.</p>
+    </section>`;
+  $("evalupdated").textContent = dash.loadedAt
+    ? "Updated " + dash.loadedAt.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" }) : "";
+  // the redraw replaced the focused button: focus its replacement, or Refresh when it is gone (a "Try again" that worked)
+  if (keep && !focusIn("evalbody", keep)) $("evalrefresh").focus();
+}
+
+async function openFromDashboard(target) {
+  const at = String(target || "").indexOf("/");
+  const cid = at > 0 ? target.slice(0, at) : "", tid = at > 0 ? target.slice(at + 1) : "";
+  if (!cid) return;
+  if (busy) { toast("Wait for the current answer to finish."); return; }
+  if (!chat.enabled) { toast("Conversation history is unavailable on this server."); return; }
+  setView("chat");
+  await openConversation(cid, tid || null, "dash");
 }
 
 let controller = null;
@@ -788,23 +1886,31 @@ async function ask(retry) {
   controller = new AbortController();
   $("out").innerHTML = "";
   const started = performance.now();
-  let phase = "retrieving sources";
+  let phase = "retrieving sources", spoken = phase;
+  let firstProgress = null, progress = 0, finished = false, sources = [];
+  let turn = null;                       // this ask's conversation turn (chat mode only)
+  let shownStatus = null;
+  attr($("status"), "title", "");
+  // Chat mode: the progress card in the thread already shows the elapsed time, so the composer line names the
+  // phase only. The console (no history) keeps its one-line timer.
   const status = () => {
-    $("status").innerHTML = `<span class="spin"></span> ${esc(phase)}… ${Math.round((performance.now() - started) / 1000)}s`;
+    const secs = Math.round((performance.now() - started) / 1000);
+    const html = chat.enabled ? `<span class="spin"></span> ${esc(PHASES[phase] || phase)}` : `<span class="spin"></span> ${esc(phase)}… ${secs}s`;
+    if (html !== shownStatus) { $("status").innerHTML = html; shownStatus = html; }   // the spinner keeps turning
+    if (turn && !finished) { const d = $("draftelapsed"); if (d) d.textContent = secs + " s"; }
   };
   status();
   syncEmpty();
   const tick = setInterval(status, 1000);
-  let firstProgress = null, progress = 0, finished = false, sources = [];
-  let turn = null;                       // this ask's conversation turn (chat mode only)
   // Chat: this turn's bubble shows where the answer is (retrieving, generating, checking), never its text.
-  const PHASES = { "retrieving sources": "Retrieving sources…", "generating": "Generating the answer…",
-                   "validating the answer against its sources": "Checking the answer against the sources…" };
   const livePhase = () => {
     if (!turn) return;
     const sc = $("scroll");
     const follow = !sc || typeof sc.scrollHeight !== "number" || sc.scrollHeight - sc.scrollTop - sc.clientHeight < 120;
     $("draftphase").textContent = PHASES[phase] || phase;
+    const steps = $("draftsteps");
+    if (steps) steps.innerHTML = stepsHtml(phase);
+    if (phase !== spoken) { spoken = phase; announce(PHASES[phase] || phase); }
     if (follow) toBottom();               // follow only when the reader is already at the end
   };
   const showProgress = () => {
@@ -821,10 +1927,16 @@ async function ask(retry) {
         chat.id = conv.id; chat.messages = []; remember(conv.id);
       }
       turn = retry || { turn_id: newTurnId(), question };
+      chat.target = null;
       chat.messages = chat.messages.filter(m => !(m.turn_id === turn.turn_id && m.role === "assistant"));
-      if (!retry) { chat.messages.push({ turn_id: turn.turn_id, role: "user", status: "ok", content: question }); $("q").value = ""; grow(); }
+      // a retry normally finds its question here; one retried into a new conversation (the old one was deleted) does not
+      if (!chat.messages.some(m => m.turn_id === turn.turn_id && m.role === "user"))
+        chat.messages.push({ turn_id: turn.turn_id, role: "user", status: "ok", content: question });
+      if (!retry) { $("q").value = ""; grow(); }
       renderThread(turn);
+      renderSidebar();                    // the open conversation's delete button is locked while it answers
       toBottom();
+      announce(PHASES[phase]);
     }
     const tSend = performance.now();
     const res = await fetch("/api/ask/stream", {
@@ -839,7 +1951,9 @@ async function ask(retry) {
     if (!res.ok || !res.body) {
       let msg = `HTTP ${res.status}`;
       try { msg = (await res.json()).error || msg; } catch (_) {}
-      throw new Error(msg);
+      const err = new Error(msg);
+      err.status = res.status;
+      throw err;
     }
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
@@ -856,6 +1970,7 @@ async function ask(retry) {
         finished = true;
         const tParsed = performance.now();
         render(ev.result, question);
+        dash.stale = true;
         if (turn) {
           chat.messages.push({ turn_id: turn.turn_id, role: "assistant", status: "ok", content: ev.result.answer, result: ev.result });
           renderThread();
@@ -864,9 +1979,14 @@ async function ask(retry) {
         }
         const tRendered = performance.now();
         const ms = x => Math.round(x);
-        $("status").textContent = `first progress ${firstProgress === null ? "— (no model text)" : ms(firstProgress) + " ms"} · `
+        const timings = `first progress ${firstProgress === null ? "— (no model text)" : ms(firstProgress) + " ms"} · `
           + `${progress} progress events · final ${ms(tParsed - tSend)} ms · render ${ms(tRendered - tParsed)} ms`;
+        // chat: a plain line, the timings on hover (and in the evidence panel's Diagnostics); the console keeps them
+        if (chat.enabled) { $("status").textContent = `Answered in ${Math.max(1, Math.round((tRendered - started) / 1000))} s`; attr($("status"), "title", timings); }
+        else $("status").textContent = timings;
         window.__lastTimings = {first_progress_ms: firstProgress, progress, final_ms: tParsed - tSend, render_ms: tRendered - tParsed};
+        const e = evaluationOf(ev.result, question), sc = evaluationScore(e);
+        announce(e ? `Answer ready. Evaluation: ${e.label}${sc === null ? "" : `, evaluation score ${sc} out of 100`}.` : "Answer ready.");
       }
       else if (ev.type === "error") { throw new Error(ev.error || "generation failed"); }
     };
@@ -887,20 +2007,77 @@ async function ask(retry) {
     const stopped = e.name === "AbortError";
     $("out").innerHTML = `<div class="card err">${stopped ? "Stopped. Generation was cancelled." : "Request failed: " + esc(e.message)}</div>`;
     $("status").textContent = "";
+    announce(stopped ? "Stopped." : "Request failed.");
     if (turn) {
       chat.messages.push({ turn_id: turn.turn_id, role: "assistant", status: stopped ? "cancelled" : "error",
                            content: stopped ? "Stopped before the answer was complete." : "Request failed: " + e.message });
       renderThread();
+      if (e.status === 404) {             // the open conversation was deleted (another tab): do not keep posting to it
+        chat.id = null;
+        remember(null);
+        toast("This conversation was deleted elsewhere; your next question starts a new chat.");
+      }
       refreshList();
     }
   } finally {
     clearInterval(tick);
     busy = false;
     controller = null;
+    dash.stale = true;
+    if (finished && view === "eval") loadDashboard(true, true);   // an answer delivered while the dashboard is open
     $("ask").disabled = false;
     $("stop").hidden = true;
+    if (turn) renderSidebar();
     syncEmpty();
   }
+}
+
+// ---- keyboard: one listener for the page's shortcuts (the composer keeps its own Enter handling)
+let gAt = 0;
+function openKeys() {
+  const d = $("keys");
+  if (d && typeof d.showModal === "function" && !d.open) d.showModal();
+}
+function handleEscape() {
+  if (chat.confirming) { cancelDelete(chat.confirming); return true; }
+  const k = $("keys");
+  if (k && k.open) return false;                       // the dialog closes itself
+  const app = $("app");
+  if (!app.classList) return false;
+  if (app.classList.contains("evopen")) { setEvidence(false); $("evtoggle").focus(); return true; }
+  if (app.classList.contains("sideopen")) { setSide(false); $("sidetoggle").focus(); return true; }
+  const s = $("convsearch");
+  if (s && s.value) { s.value = ""; filterList(); return true; }
+  return false;
+}
+function onKey(e) {
+  if (!e || e.isComposing) return;
+  const k = e.key, mod = e.metaKey || e.ctrlKey;
+  if (k === "Escape") { if (handleEscape() && e.preventDefault) e.preventDefault(); return; }
+  if (e.repeat) return;
+  if (mod && e.shiftKey && (k === "o" || k === "O")) { e.preventDefault(); setView("chat"); newChat(); return; }
+  if (mod && !e.shiftKey && (k === "\\" || e.code === "Backslash")) { e.preventDefault(); toggleSidebar(); return; }
+  const t = e.target || {};
+  const tag = String(t.tagName || "").toLowerCase();
+  if (mod || e.altKey || tag === "input" || tag === "textarea" || tag === "select" || t.isContentEditable) return;
+  const role = typeof t.getAttribute === "function" ? t.getAttribute("role") : null;
+  if ((k === "ArrowLeft" || k === "ArrowRight") && role === "tab") {
+    e.preventDefault();
+    const next = view === "chat" ? "eval" : "chat";
+    setView(next);
+    $(next === "eval" ? "tabeval" : "tabchat").focus();
+    return;
+  }
+  if (k === "/") { e.preventDefault(); setView("chat"); $("q").focus(); return; }
+  if (k === "?") { e.preventDefault(); openKeys(); return; }
+  if (k === "g" || k === "G") { gAt = Date.now(); return; }
+  if ((k === "c" || k === "C" || k === "e" || k === "E") && gAt && Date.now() - gAt < 1000) {
+    e.preventDefault();
+    gAt = 0;
+    setView(k === "e" || k === "E" ? "eval" : "chat");
+    return;
+  }
+  gAt = 0;
 }
 
 $("stop").onclick = () => { if (controller) controller.abort(); };
@@ -910,32 +2087,78 @@ $("q").addEventListener("keydown", e => {
   if (e.metaKey || e.ctrlKey || !e.shiftKey) { e.preventDefault(); ask(); }
 });
 $("q").addEventListener("input", grow);
-$("newchat").onclick = newChat;
-$("sidetoggle").onclick = () => {
-  if (isNarrow()) setSide(!$("app").classList.contains("sideopen"));
-  else setCollapsed(!$("app").classList.contains("sidecollapsed"));
-};
+$("newchat").onclick = () => { if (view !== "chat") setView("chat"); newChat(); };
+$("sidetoggle").onclick = () => toggleSidebar();
 $("sideclose").onclick = () => setSide(false);
 $("backdrop").onclick = () => { setSide(false); setEvidence(false); };
 $("evtoggle").onclick = () => setEvidence(!$("app").classList.contains("evopen"));
 $("evclose").onclick = () => { setEvidence(false); $("evtoggle").focus(); };
-if (document.addEventListener) document.addEventListener("keydown", e => {
-  if (e.key !== "Escape" || !$("app").classList) return;
-  if ($("app").classList.contains("evopen")) { setEvidence(false); $("evtoggle").focus(); }
-  else if ($("app").classList.contains("sideopen")) { setSide(false); $("sidetoggle").focus(); }
-});
-$("convlist").onclick = ev => { const b = ev.target.closest("button[data-id]"); if (b) openConversation(b.dataset.id); };
+$("convsearch").oninput = filterList;
+$("keyshelp").onclick = openKeys;
+$("tabchat").onclick = () => setView("chat");
+$("tabeval").onclick = () => setView("eval");
+$("themetoggle").onclick = () => cycleTheme();
+$("evalrefresh").onclick = () => { if (dash.sumState !== "loading") loadDashboard(true); };
+$("evjump").onclick = ev => {
+  const b = ev.target.closest("button[data-jump]");
+  if (!b) return;
+  const out = $("out");
+  const sec = out && typeof out.querySelector === "function" ? out.querySelector(`[data-sec="${String(b.dataset.jump).replace(/[^a-z]/g, "")}"]`) : null;
+  if (sec && typeof sec.scrollIntoView === "function") sec.scrollIntoView({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" });
+};
+if (document.addEventListener) document.addEventListener("keydown", onKey);
+$("convlist").onclick = ev => {
+  const t = ev.target;
+  const ok = t.closest("button[data-delok]");
+  if (ok) { deleteConversation(ok.dataset.delok); return; }
+  const no = t.closest("button[data-delno]");
+  if (no) { cancelDelete(no.dataset.delno); return; }
+  const del = t.closest("button[data-del]");
+  if (del) { askDelete(del.dataset.del); return; }
+  const b = t.closest("button[data-id]");
+  if (b) { if (view !== "chat") setView("chat"); openConversation(b.dataset.id, null, "list"); }
+};
 $("thread").onclick = ev => {
   const show = ev.target.closest("button[data-show]");
   if (show) { showEvidence(show.dataset.show); return; }
+  const copy = ev.target.closest("button[data-copy]");
+  if (copy) { copyAnswer(copy.dataset.copy); return; }
   const again = ev.target.closest("button[data-retry]");
   if (again && !busy) {
     const t = turnsOf(chat.messages).find(x => x.turn_id === again.dataset.retry);
     if (t) ask({ turn_id: t.turn_id, question: t.question });
   }
 };
+$("evalbody").onclick = ev => {
+  const t = ev.target;
+  const open = t.closest("button[data-open]");
+  if (open) { openFromDashboard(open.dataset.open); return; }
+  const f = t.closest("button[data-filter]");
+  if (f) {
+    dash.filter = FILTERS.some(x => x[0] === f.dataset.filter) ? f.dataset.filter : "all";
+    renderDashboard();
+    focusIn("evalbody", `button[data-filter="${dash.filter}"]`);
+    return;
+  }
+  const g = t.closest("button[data-goto]");
+  if (g) { setView("chat"); $("q").focus(); return; }
+  const r = t.closest("button[data-reload]");
+  if (r) loadDashboard(true);
+};
+// breakpoints and the system theme can change while the page is open
+function watchMedia(query, fn) {
+  try {
+    const m = typeof window !== "undefined" && window.matchMedia ? window.matchMedia(query) : null;
+    if (m && typeof m.addEventListener === "function") m.addEventListener("change", fn);
+  } catch (_) {}
+}
+watchMedia("(max-width: 899px)", syncInert);
+watchMedia("(max-width: 1279px)", syncInert);
+watchMedia("(prefers-color-scheme: dark)", () => applyTheme(themePref()));
+applyTheme(themePref());
 loadConfig();
 initChat();
+if (stored(VIEW_KEY) === "eval") setView("eval");
 </script>
 </body>
 </html>

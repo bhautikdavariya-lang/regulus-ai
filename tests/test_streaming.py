@@ -290,7 +290,8 @@ def test_http_client_disconnect_stops_generation_and_frees_the_server(server):
     host, port = base.rsplit(":", 1)[0].split("//")[1], int(base.rsplit(":", 1)[1])
     body = json.dumps({"question": QUESTION}).encode()
     s = socket.create_connection((host, port))
-    s.sendall(b"POST /api/ask/stream HTTP/1.1\r\nHost: x\r\nContent-Type: application/json\r\n"
+    # a loopback Host with this server's port: serve_ui refuses any other (DNS rebinding)
+    s.sendall(f"POST /api/ask/stream HTTP/1.1\r\nHost: {host}:{port}\r\nContent-Type: application/json\r\n".encode()
               + f"Content-Length: {len(body)}\r\n\r\n".encode() + body)
     received = b""
     while b'"progress"' not in received:

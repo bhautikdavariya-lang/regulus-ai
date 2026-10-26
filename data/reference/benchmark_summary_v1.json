@@ -1,0 +1,36 @@
+{
+  "version": "benchmark_summary_v1",
+  "about": "Static reference numbers for the Evaluation dashboard, copied from the 22-26 Oct 2026 benchmark records. Not computed by this server and not changed by live answers.",
+  "holdout_100_measured_2026-10-22": {
+    "model": "Qwen3-4B-Instruct-2507 (MLX 4-bit)",
+    "PASS": 37,
+    "partly_pass": 8,
+    "partly_fail": 26,
+    "FAIL": 29,
+    "by_category": {
+      "Colour listings": "23/35",
+      "Procedure": "7/16",
+      "Statute": "4/19",
+      "Labeling 700-740": "3/27",
+      "Specs/definitions (82.3, 82.5, 82.51)": "0/3"
+    },
+    "scoring": "blind two-lens scoring (plain + skeptic) with adjudication"
+  },
+  "holdout_100_projected": {
+    "as_of": "2026-10-26",
+    "PASS": 51,
+    "note": "projection, not a full re-run: 22 Oct verdicts (37) updated with the blind A/B results of the 23 Oct retrieval changes (39), the 23 Oct answer-stage fixes (+7: 740.17, 82.1602, 710.3, 82.1328, 82.1330, 82.705, 82.706) and the 26 Oct practice-silence answers (+5: UC-004, UC-005, UC-008, UC-010, UC-012)"
+  },
+  "evaluator_agreement": {
+    "as_of": "2026-10-23",
+    "note": "live evaluator status vs blind verdicts on 182 blind-scored answers (holdout and dev), after the 23 Oct recalibration; most correct answers are shown NOT FULLY EVALUATED, because without a reference answer the evaluator cannot establish that the retrieved section is the right one",
+    "before": {
+      "blind_pass_called_pass": "0/37"
+    },
+    "after": {
+      "blind_pass_shown_fail": "8 (was 44)",
+      "pass_shown": "13, of which 11 blind PASS",
+      "misleading_shown_pass": "0"
+    }
+  }
+}

@@ -239,3 +239,80 @@ def test_concurrent_writers_lose_nothing(store):
     assert errors == []
     msgs = store.get_conversation(cid)["messages"]
     assert len(msgs) == 24 and [m["role"] for m in msgs] == [USER, ASSISTANT] * 12
+
+
+# ------------------------------------------------------------- deleting a conversation
+
+
+def _raw_count(store, cid):
+    import sqlite3
+
+    db = sqlite3.connect(store.path)
+    try:
+        return db.execute("SELECT COUNT(*) FROM messages WHERE conversation_id = ?", (cid,)).fetchone()[0]
+    finally:
+        db.close()
+
+
+def test_delete_removes_the_conversation_and_all_its_messages(store):
+    cid = store.create_conversation()["id"]
+    ask(store, cid, "first question")
+    ask(store, cid, "second question")
+    assert store.delete_conversation(cid) == {"id": cid, "messages_deleted": 4}
+    with pytest.raises(ConversationNotFound):
+        store.get_conversation(cid)
+    assert cid not in [c["id"] for c in store.list_conversations()]
+    assert _raw_count(store, cid) == 0                     # no orphaned message is left behind
+
+
+def test_delete_leaves_other_conversations_alone(store):
+    c1, c2 = store.create_conversation()["id"], store.create_conversation()["id"]
+    ask(store, c1, "about part 11")
+    ask(store, c2, "about part 820")
+    before = store.get_conversation(c2)
+    store.delete_conversation(c1)
+    assert store.get_conversation(c2) == before
+    assert [c["id"] for c in store.list_conversations()] == [c2]
+
+
+def test_deleting_a_missing_conversation_is_reported(store):
+    with pytest.raises(ConversationNotFound):
+        store.delete_conversation(uuid.uuid4().hex)
+    cid = store.create_conversation()["id"]
+    store.delete_conversation(cid)
+    with pytest.raises(ConversationNotFound):              # a second delete finds nothing
+        store.delete_conversation(cid)
+
+
+@pytest.mark.parametrize("bad", ["", "short", "has space in it", "x" * 65, "../etc/passwd", None])
+def test_delete_refuses_bad_ids(store, bad):
+    with pytest.raises(InvalidInput):
+        store.delete_conversation(bad)
+
+
+def test_an_answer_for_a_deleted_conversation_is_refused_not_resurrected(store):
+    cid, t = store.create_conversation()["id"], turn()
+    store.add_user_message(cid, t, "q")                   # a turn still being answered
+    store.delete_conversation(cid)
+    with pytest.raises(InvalidInput):
+        store.record_answer(cid, t, OK, "late answer", {"answer": "late answer"})
+    assert store.list_conversations() == []
+    assert _raw_count(store, cid) == 0
+
+
+def test_deleted_text_does_not_linger_in_the_database_files(store):
+    """secure_delete zeroes the freed cells and the WAL is truncated, so the question and answer of a deleted
+    conversation cannot be read back from the file (without it, both stay in the free pages)."""
+    keep = store.create_conversation()["id"]
+    t0 = turn()
+    store.add_user_message(keep, t0, "kept question")
+    store.record_answer(keep, t0, OK, "kept answer", {"answer": "kept answer"})
+    cid, t = store.create_conversation()["id"], turn()
+    store.add_user_message(cid, t, "SECRET-QUESTION-zq81 about Part 11")
+    store.record_answer(cid, t, OK, "SECRET-ANSWER-zq81", {"answer": "SECRET-ANSWER-zq81", "accuracy": {"note": "zq81"}})
+    store.delete_conversation(cid)
+    files = [p for p in store.path.parent.iterdir() if p.is_file() and p.name.startswith(store.path.name)]
+    blob = b"".join(p.read_bytes() for p in files)
+    assert b"zq81" not in blob and b"SECRET-QUESTION" not in blob
+    assert b"kept answer" in blob                          # what was kept is still there
+    assert store.get_conversation(keep)["messages"][1]["content"] == "kept answer"

@@ -12,6 +12,11 @@ Design rules, each one a failure it prevents:
 * Messages are ordered by their own turn, not by wall-clock time: an answer always follows its
   own question, even if two questions in one conversation were in flight at once.
 * One short-lived connection per operation, so the threaded HTTP server never shares one.
+* A conversation can be deleted with all its messages in one transaction, with secure_delete on and the
+  WAL truncated afterwards, so the deleted text does not linger in free pages or the WAL of this file.
+  (Measurement records under data/ui_measurements are separate files and keep their own copy.)
+* The evaluation summary reads only evaluation fields of stored answers, never the answer text
+  or any draft field (regulus.conversations.evaluation_summary).
 """
 
 from __future__ import annotations
@@ -160,9 +165,15 @@ class ConversationStore:
             db.close()
 
     @contextmanager
-    def _transaction(self) -> Iterator[sqlite3.Connection]:
-        """One write transaction, taken immediately so concurrent writers queue instead of racing."""
+    def _transaction(self, *, secure_delete: bool = False) -> Iterator[sqlite3.Connection]:
+        """One write transaction, taken immediately so concurrent writers queue instead of racing.
+
+        secure_delete: deleted content is overwritten with zeros (PRAGMA secure_delete, this connection only), and
+        after the commit the WAL is checkpointed into the main file and truncated, so the old page images in it
+        are gone too. A checkpoint that cannot complete (a long reader) is logged; the delete itself stands."""
         with self._connect() as db:
+            if secure_delete:
+                db.execute("PRAGMA secure_delete = ON")
             db.execute("BEGIN IMMEDIATE")
             try:
                 yield db
@@ -170,6 +181,13 @@ class ConversationStore:
                 db.execute("ROLLBACK")
                 raise
             db.execute("COMMIT")
+            if secure_delete:
+                try:
+                    busy = db.execute("PRAGMA wal_checkpoint(TRUNCATE)").fetchone()
+                    if busy and busy[0]:
+                        log.warning("conversation store: WAL checkpoint after a delete did not complete (busy)")
+                except sqlite3.Error as exc:
+                    log.warning("conversation store: WAL checkpoint after a delete failed (%s)", exc)
 
     # ---- conversations
 
@@ -188,6 +206,25 @@ class ConversationStore:
                 "GROUP BY c.id ORDER BY c.updated_at DESC, c.created_at DESC, c.id LIMIT ?",
                 (max(1, min(int(limit), 1000)),)).fetchall()
         return [dict(r) for r in rows]
+
+    def delete_conversation(self, conversation_id: str) -> dict[str, Any]:
+        """Delete a conversation and every message in it, in one transaction.
+
+        Returns {"id": conversation_id, "messages_deleted": n}. Raises InvalidInput for a malformed id and
+        ConversationNotFound when no conversation has it. The deleted rows are zeroed in this file
+        (secure_delete, then a WAL truncate). History only: measurement records (data/ui_measurements) are
+        not touched and keep their own copy of each answered turn. A turn still being answered in this
+        conversation will fail to record its answer (record_answer raises InvalidInput: no question for this
+        turn), which serve_ui._record_turn already reports as saved: false."""
+        _check_id(conversation_id, "conversation id")
+        with self._transaction(secure_delete=True) as db:
+            if db.execute("SELECT 1 FROM conversations WHERE id = ?", (conversation_id,)).fetchone() is None:
+                raise ConversationNotFound(conversation_id)
+            # messages first and explicitly: correctness does not depend on ON DELETE CASCADE or the pragma
+            n = db.execute("DELETE FROM messages WHERE conversation_id = ?", (conversation_id,)).rowcount
+            db.execute("DELETE FROM conversations WHERE id = ?", (conversation_id,))
+        log.info("conversation %s deleted (%d messages)", conversation_id, n)
+        return {"id": conversation_id, "messages_deleted": n}
 
     def get_conversation(self, conversation_id: str) -> dict[str, Any]:
         _check_id(conversation_id, "conversation id")
@@ -271,3 +308,90 @@ class ConversationStore:
             row = db.execute("SELECT * FROM messages WHERE conversation_id = ? AND turn_id = ? AND role = ?",
                              (conversation_id, turn_id, ASSISTANT)).fetchone()
         return _message(row)
+
+    # ---- evaluation summary (read-only)
+
+    def evaluation_rows(self, limit: int = 5000) -> dict[str, Any]:
+        """The evaluation fields of the most recent delivered answers, newest first, for the dashboard.
+
+        Read-only, one connection. Only the scalars the summary reads are extracted, in SQLite (JSON1): the
+        result's question; the assessment's status and rubric id; the question review's status, label,
+        question, explanation, live_check_score and the two sub-states; and each dimension's dimension, state
+        and label. The answer text, the draft fields, the dimensions' details, claims and evidence, and
+        result_json itself never reach Python. json_valid guards every extraction, so one malformed stored
+        result is counted as unreadable instead of failing the query."""
+        limit = max(1, min(int(limit), 100_000))
+        review = "'$.accuracy.question_review"
+        # json_type() tells an object from a scalar (a JSON true would otherwise come back as the integer 1)
+        dims = ("(SELECT json_group_array(json_object("
+                "'dimension', CASE WHEN json_type(d.value, '$.dimension') = 'text' THEN json_extract(d.value, '$.dimension') END, "
+                "'state', CASE WHEN json_type(d.value, '$.state') = 'text' THEN json_extract(d.value, '$.state') END, "
+                "'label', CASE WHEN json_type(d.value, '$.label') = 'text' THEN json_extract(d.value, '$.label') END)) "
+                "FROM json_each(a.j, '$.accuracy.dimensions') AS d WHERE d.type = 'object')")
+        with self._connect() as db:
+            rows = db.execute(
+                "WITH a AS (SELECT m.seq, m.conversation_id, m.turn_id, m.created_at, "
+                "m.result_json IS NOT NULL AS has_result, "
+                "CASE WHEN json_valid(m.result_json) THEN m.result_json END AS j "
+                "FROM messages m WHERE m.role = 'assistant' AND m.status = 'ok' "
+                "ORDER BY m.created_at DESC, m.seq DESC LIMIT ?) "
+                "SELECT a.conversation_id, a.turn_id, a.created_at, a.has_result, u.content AS asked, "
+                "a.j IS NOT NULL AS valid, "
+                "json_type(a.j, '$.accuracy') AS acc_type, "
+                "json_extract(a.j, '$.question') AS result_question, "
+                "json_extract(a.j, '$.accuracy.status') AS acc_status, "
+                "json_extract(a.j, '$.accuracy.rubric_id') AS rubric_id, "
+                f"json_type(a.j, {review}') AS rv_type, "
+                f"json_extract(a.j, {review}.status') AS rv_status, "
+                f"json_extract(a.j, {review}.label') AS rv_label, "
+                f"json_extract(a.j, {review}.question') AS rv_question, "
+                f"CASE WHEN json_type(a.j, {review}.explanation') = 'text' "
+                f"THEN json_extract(a.j, {review}.explanation') END AS rv_explanation, "
+                f"CASE WHEN json_type(a.j, {review}.live_check_score') IN ('integer', 'real') "
+                f"THEN json_extract(a.j, {review}.live_check_score') END AS rv_score, "
+                f"json_type(a.j, {review}.substantive_correctness') AS sub_type, "
+                f"json_extract(a.j, {review}.substantive_correctness.state') AS sub_state, "
+                f"json_type(a.j, {review}.citation_correctness') AS cite_type, "
+                f"json_extract(a.j, {review}.citation_correctness.state') AS cite_state, "
+                f"CASE WHEN json_type(a.j, '$.accuracy.dimensions') = 'array' THEN {dims} END AS dims_json "
+                "FROM a LEFT JOIN messages u ON u.conversation_id = a.conversation_id AND u.turn_id = a.turn_id "
+                "AND u.role = 'user' "
+                "ORDER BY a.created_at DESC, a.seq DESC", (limit,)).fetchall()
+            answered = db.execute("SELECT COUNT(*) FROM messages WHERE role = 'assistant' AND status = 'ok'").fetchone()[0]
+            failed = db.execute("SELECT COUNT(*) FROM messages WHERE role = 'assistant' "
+                                "AND status IN ('error', 'cancelled')").fetchone()[0]
+        out = []
+        for r in rows:
+            acc_type = r["acc_type"]
+            review_fields = None
+            if r["rv_type"] == "object":
+                # the fields evaluation_summary.displayed() reads, in the shape it reads them
+                review_fields = {
+                    "status": r["rv_status"], "label": r["rv_label"], "question": r["rv_question"],
+                    "explanation": r["rv_explanation"], "live_check_score": r["rv_score"],
+                    "substantive_correctness": {"state": r["sub_state"]} if r["sub_type"] == "object" else None,
+                    "citation_correctness": {"state": r["cite_state"]} if r["cite_type"] == "object" else None,
+                }
+            out.append({
+                "conversation_id": r["conversation_id"], "turn_id": r["turn_id"], "created_at": r["created_at"],
+                "asked": r["asked"], "has_result": bool(r["has_result"]), "valid": bool(r["valid"]),
+                "has_accuracy": acc_type is not None, "accuracy_is_object": acc_type == "object",
+                "result_question": r["result_question"], "acc_status": r["acc_status"], "rubric_id": r["rubric_id"],
+                "review": review_fields, "dims": _loads_or_none(r["dims_json"]),
+            })
+        return {"rows": out, "answered": answered, "failed": failed, "limit": limit}
+
+    def evaluation_summary(self, recent: int = 25, limit: int = 5000) -> dict[str, Any]:
+        """What the Evaluation dashboard shows about this store's answered turns (evaluation_summary.summarize)."""
+        from regulus.conversations.evaluation_summary import summarize
+
+        return summarize(self.evaluation_rows(limit=limit), recent=recent)
+
+
+def _loads_or_none(text: str | None) -> Any:
+    if text is None:
+        return None
+    try:
+        return json.loads(text)
+    except (TypeError, ValueError):
+        return None

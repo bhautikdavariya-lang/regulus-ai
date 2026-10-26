@@ -142,7 +142,8 @@ def test_an_abstaining_evaluator_reads_as_not_evaluated_never_as_zero(tmp_path):
 
 
 @pytest.mark.parametrize("damage", ["null", "no_review", "review_not_object", "unknown_status",
-                                    "pass_without_substantive", "pass_but_not_evaluated", "pass_with_failed_citation"])
+                                    "pass_without_substantive", "pass_but_not_evaluated", "pass_with_failed_citation",
+                                    "pass_with_failed_substantive"])
 def test_missing_or_inconsistent_metadata_is_never_shown_as_pass(tmp_path, damage):
     a = copy.deepcopy(correct())
     if damage == "null":
@@ -159,10 +160,21 @@ def test_missing_or_inconsistent_metadata_is_never_shown_as_pass(tmp_path, damag
         a["status"] = "evaluator_error"
     elif damage == "pass_with_failed_citation":
         a["question_review"]["citation_correctness"]["state"] = "fail"
+    elif damage == "pass_with_failed_substantive":
+        a["question_review"]["substantive_correctness"]["state"] = "fail"
     r = shown(tmp_path, a)
     assert r["answer_shown"]
     assert ">NOT EVALUATED<" in r["block"] and "evaluation: NOT EVALUATED" in r["header"]
     assert_never_a_pass(r)
+
+
+def test_a_calibrated_pass_with_a_partly_verified_answer_is_shown(tmp_path):
+    # regulus.accuracy.review's calibrated rule (23 Oct) passes an answer whose substantive correctness is only partly
+    # verified (statements the verifier could not decide), so the page must not hide that PASS as "inconsistent"
+    a = copy.deepcopy(correct())
+    a["question_review"]["substantive_correctness"]["state"] = "partial"
+    r = shown(tmp_path, a)
+    assert ">PASS<" in r["block"] and "inconsistent" not in r["block"]
 
 
 def test_a_label_the_page_does_not_recognise_is_not_displayed(tmp_path):

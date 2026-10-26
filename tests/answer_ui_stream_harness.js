@@ -25,6 +25,12 @@
 // Calls the page's own evaluationScore() and renderEvaluation() on each value,
 // including values JSON cannot carry ("__NaN__", "__Infinity__", "__-Infinity__",
 // "__undefined__"), and prints what each renders.
+//
+//   node tests/answer_ui_stream_harness.js evalof <payloads.json>
+//
+// Calls the page's own evaluationOf(result, asked) and evaluationScore() on each {result, asked} item
+// and prints {status, label, score} (or null when the page shows no evaluation): the reference the
+// dashboard's Python mirror (regulus.conversations.evaluation_summary) is checked against.
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -130,6 +136,14 @@ vm.createContext(ctx);
 vm.runInContext(script, ctx);
 el("q").value = (fromFile && fromFile.page_question) || "What does 21 CFR 820.10(b)(2) require?";
 (async () => {
+  if (scenario === "evalof") {
+    const items = JSON.parse(fs.readFileSync(process.argv[3], "utf8"));
+    console.log(JSON.stringify(items.map(it => {
+      const e = ctx.evaluationOf(it.result, it.asked);
+      return e ? { status: e.status, label: e.label, score: ctx.evaluationScore(e) } : null;
+    })));
+    return;
+  }
   if (scenario === "scores") {
     const values = JSON.parse(fs.readFileSync(process.argv[3], "utf8")).map(v => (v in SPECIAL ? SPECIAL[v] : v));
     console.log(JSON.stringify(values.map(v => {

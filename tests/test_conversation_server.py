@@ -202,3 +202,132 @@ def test_reading_a_missing_or_malformed_conversation(server, path, code):
     base, _, _ = server
     status, text = call(base, path)
     assert status == code and "error" in json.loads(text) and "Traceback" not in text
+
+
+# ------------------------------------------------------------- deleting a conversation
+
+
+def test_delete_removes_a_conversation_over_http(server):
+    base, engine, H = server
+    cid = new_conversation(base)
+    stream(base, {"question": "What does Part 11 cover?", "conversation_id": cid, "turn_id": uuid.uuid4().hex})
+    status, text = call(base, f"/api/conversations/{cid}", method="DELETE")
+    assert status == 200 and json.loads(text) == {"deleted": cid, "messages_deleted": 2}
+    assert call(base, f"/api/conversations/{cid}")[0] == 404
+    listed = json.loads(call(base, "/api/conversations")[1])["conversations"]
+    assert cid not in [c["id"] for c in listed]
+
+
+@pytest.mark.parametrize("path, code", [("/api/conversations/" + uuid.uuid4().hex, 404),
+                                        ("/api/conversations/short", 400),
+                                        ("/api/conversations", 404),
+                                        ("/api/conversations/bad%20id", 404),
+                                        ("/api/evaluation/summary", 404)])
+def test_deleting_a_missing_or_malformed_conversation(server, path, code):
+    base, _, _ = server
+    status, text = call(base, path, method="DELETE")
+    assert status == code and "error" in json.loads(text) and "Traceback" not in text
+
+
+def test_delete_without_a_store_is_unavailable(server):
+    base, _, H = server
+    H.store = None
+    status, text = call(base, f"/api/conversations/{uuid.uuid4().hex}", method="DELETE")
+    assert status == 503 and "unavailable" in json.loads(text)["error"]
+
+
+def _raw(base, path, method="GET", headers=None, body=None):
+    req = urllib.request.Request(base + path, data=body, method=method, headers=headers or {})
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status, r.headers, r.read().decode()
+    except urllib.error.HTTPError as e:
+        return e.code, e.headers, e.read().decode()
+
+
+def test_delete_has_no_cors_preflight_answer(server):
+    base, _, H = server
+    cid = new_conversation(base)
+    # the base handler answers OPTIONS (and PUT) with 501: a response, not a dropped connection (log_message used to
+    # raise a TypeError on send_error's HTTPStatus argument), and never a preflight grant
+    for method in ("OPTIONS", "PUT"):
+        status, headers, _ = _raw(base, f"/api/conversations/{cid}", method,
+                                  {"Origin": "https://elsewhere.example", "Access-Control-Request-Method": "DELETE"})
+        assert status == 501, method
+        assert not [k for k in headers if k.lower().startswith("access-control-")], method
+    # a DELETE from another site's page is refused before anything is deleted, and grants nothing either
+    status, headers, text = _raw(base, f"/api/conversations/{cid}", "DELETE", {"Origin": "https://elsewhere.example"})
+    assert status == 403 and json.loads(text)["error"] == "forbidden origin"
+    assert headers.get("Access-Control-Allow-Origin") is None and headers.get("Access-Control-Allow-Methods") is None
+    assert cid in [c["id"] for c in H.store.list_conversations()]
+
+
+# ------------------------------------------------------------- DNS rebinding, cross-site requests, framing
+
+
+def test_a_foreign_host_is_refused_on_every_route(server):
+    """A page on evil.example whose DNS was re-pointed at 127.0.0.1 is same-origin to the browser, but its
+    requests carry Host: evil.example: none of them reaches history or the model."""
+    base, engine, H = server
+    cid = new_conversation(base)
+    port = base.rsplit(":", 1)[1]
+    evil = {"Host": f"evil.example:{port}", "Origin": f"http://evil.example:{port}"}
+    for method, path, body in (("GET", "/api/conversations", None), ("GET", "/api/evaluation/summary", None),
+                               ("GET", f"/api/conversations/{cid}", None), ("GET", "/", None),
+                               ("DELETE", f"/api/conversations/{cid}", None),
+                               ("POST", "/api/conversations", b"{}"),
+                               ("POST", "/api/ask/stream", json.dumps({"question": "q"}).encode())):
+        status, _, text = _raw(base, path, method, {**evil, "Content-Type": "application/json"}, body)
+        assert status == 403 and json.loads(text)["error"] == "forbidden host", (method, path)
+    assert [c["id"] for c in H.store.list_conversations()] == [cid]      # nothing deleted, nothing created
+    assert engine.calls == 0                                              # no answer was started
+
+
+def test_a_cross_site_simple_post_is_refused(server):
+    """A form or a text/plain fetch from another site needs no preflight; its Origin header gives it away."""
+    base, engine, H = server
+    for path, body in (("/api/conversations", b"{}"), ("/api/ask/stream", b'{"question": "q"}'),
+                       ("/api/ask", b'{"question": "q"}')):
+        status, _, text = _raw(base, path, "POST", {"Content-Type": "text/plain", "Origin": "http://evil.example"}, body)
+        assert status == 403 and json.loads(text)["error"] == "forbidden origin", path
+    status, _, _ = _raw(base, "/api/conversations", "POST", {"Origin": "null"}, b"{}")   # a sandboxed or file:// page
+    assert status == 403
+    assert H.store.list_conversations() == [] and engine.calls == 0
+
+
+def test_the_page_itself_is_still_served_and_answered(server):
+    """The page's own requests: loopback Host, and an Origin equal to it on POST and DELETE."""
+    base, _, H = server
+    port = base.rsplit(":", 1)[1]
+    for host in (f"127.0.0.1:{port}", f"localhost:{port}", f"[::1]:{port}"):
+        origin = f"http://{host}"
+        status, _, text = _raw(base, "/api/conversations", "POST",
+                               {"Host": host, "Origin": origin, "Content-Type": "application/json"}, b"{}")
+        assert status == 201, host
+        cid = json.loads(text)["conversation"]["id"]
+        assert _raw(base, "/api/conversations", "GET", {"Host": host})[0] == 200
+        assert _raw(base, f"/api/conversations/{cid}", "DELETE", {"Host": host, "Origin": origin})[0] == 200
+    assert H.store.list_conversations() == []
+
+
+def test_an_allowed_host_name_is_accepted(server):
+    """--allowed-host: the name a reverse proxy forwards, with or without this server's port."""
+    base, _, H = server
+    port = base.rsplit(":", 1)[1]
+    assert _raw(base, "/api/conversations", "GET", {"Host": "regulus.internal"})[0] == 403
+    H.allowed_hosts = ("regulus.internal",)
+    assert _raw(base, "/api/conversations", "GET", {"Host": "regulus.internal"})[0] == 200
+    assert _raw(base, "/api/conversations", "GET", {"Host": f"regulus.internal:{port}"})[0] == 200
+    status, _, _ = _raw(base, "/api/conversations", "POST",
+                        {"Host": "regulus.internal", "Origin": "https://regulus.internal"}, b"{}")
+    assert status == 201
+    assert _raw(base, "/api/conversations", "GET", {"Host": "other.internal"})[0] == 403
+
+
+def test_responses_forbid_framing(server):
+    base, _, _ = server
+    for path in ("/", "/api/conversations", "/api/nothing-here"):
+        _, headers, _ = _raw(base, path)
+        assert headers.get("X-Frame-Options") == "DENY", path
+        assert headers.get("Content-Security-Policy") == "frame-ancestors 'none'", path
+        assert headers.get("X-Content-Type-Options") == "nosniff", path

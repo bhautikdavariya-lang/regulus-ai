@@ -19,6 +19,20 @@ assessment. Adapter and gate can be switched from the page without restarting,
 so base / Stage 12 / Stage 13 and gate on / off can be compared on the same
 question.
 
+Routes for the page's history and Evaluation view: GET|POST /api/conversations, GET and DELETE
+/api/conversations/<id> (a delete removes the conversation and all its messages from history; measurement
+records keep their own copy), GET /api/evaluation/summary?recent=N (counts of the
+live per-question evaluations stored with answered turns: evaluation fields only, never answer or draft text;
+not the 300-question acceptance-test score) and GET /api/benchmark/summary (the static reference numbers in
+data/reference/benchmark_summary_v1.json, labelled measured or projected; not computed by this server).
+
+Every request must name this server in its Host header (127.0.0.1, localhost or [::1] with the port, or a
+name given with --allowed-host), so a page on another site that re-points its own domain at 127.0.0.1 (DNS
+rebinding) gets 403, not the chat history. A POST or DELETE that carries an Origin must come from one of those
+same hosts, so another site cannot create conversations, start answers or delete history with a form or a
+"simple" request either; no CORS preflight is ever answered. Every response forbids framing (X-Frame-Options,
+CSP frame-ancestors), so the two-click delete cannot be clickjacked.
+
 The accuracy assessment (regulus.accuracy) is an OBSERVER and is deliberately
 wired in here rather than in the pipeline: it runs after `pipeline.answer()`
 has returned, reads only what the RagAnswer already carries, and cannot reach
@@ -48,7 +62,7 @@ import time
 import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 from regulus.accuracy import RUBRIC_ID as ACCURACY_RUBRIC_ID
 from regulus.config import PROJECT_ROOT, load_settings
@@ -57,6 +71,8 @@ from regulus.evaluation.runner import sanitize_error
 from regulus.traceability.ui_session import DELIVERED, NOT_DELIVERED, UISession, code_revision, default_root
 
 WEB_DIR = PROJECT_ROOT / "web"
+# the Evaluation view's benchmark reference: static measured / projected numbers, read on each request
+BENCHMARK_FILE = PROJECT_ROOT / "data" / "reference" / "benchmark_summary_v1.json"
 ADAPTER_ROOT = PROJECT_ROOT / "models" / "qwen3-0.6b-lora"
 
 # The application answers with ONE model, quantized to 4 bits and run by the MLX worker: Qwen3-4B-Instruct-2507 (the
@@ -548,6 +564,46 @@ class Handler(BaseHTTPRequestHandler):
     # Measurement records (regulus.traceability.ui_session): None when --no-measure or when the session could
     # not be opened, in which case answering, streaming and chat history work exactly as before.
     measure: UISession | None = None
+    # Host names (optionally with :port) accepted besides loopback: --allowed-host, and the bound --host when
+    # --allow-remote-clients is given. Loopback with this server's port is always accepted.
+    allowed_hosts: tuple[str, ...] = ()
+
+    def _hosts(self) -> set[str]:
+        port = self.server.server_address[1]
+        out: set[str] = set()
+        loopback = ("127.0.0.1", "localhost", "[::1]")
+        for name in (*loopback, *self.allowed_hosts):
+            given = name
+            name = str(name).strip().lower()
+            if not name:
+                continue
+            if ":" in name and not name.startswith("[") and name.count(":") > 1:
+                name = f"[{name}]"                                # a bare IPv6 literal
+            if re.fullmatch(r"(\[[^\]]+\]|[^:\[\]]+):[0-9]+", name):
+                out.add(name)                                     # given with its port
+                continue
+            out.add(f"{name}:{port}")
+            # browsers omit a default port; a name given with --allowed-host and no port is also accepted bare,
+            # as a reverse proxy's public origin (https://name) carries none
+            if port == 80 or given not in loopback:
+                out.add(name)
+        return out
+
+    def _request_allowed(self, *, check_origin: bool) -> bool:
+        """DNS rebinding and cross-site requests (see the module docstring). Sends 403 and returns False when refused.
+        A request without a Host header (an HTTP/1.0 tool on this machine) is allowed: a browser always sends one."""
+        hosts = self._hosts()
+        host = (self.headers.get("Host") or "").strip().lower()
+        if host and host not in hosts:
+            self._json(403, {"error": "forbidden host"})
+            return False
+        origin = self.headers.get("Origin")
+        if check_origin and origin is not None:
+            parsed = urlparse(origin.strip().lower())
+            if parsed.scheme not in ("http", "https") or parsed.netloc not in hosts or parsed.path not in ("", "/"):
+                self._json(403, {"error": "forbidden origin"})
+                return False
+        return True
 
     def _turn(self, question: str, endpoint: str, kwargs: dict, conversation: tuple[str, str] | None = None):
         """A measurement turn for this request, or None. Never raises."""
@@ -562,7 +618,10 @@ class Handler(BaseHTTPRequestHandler):
             return None
 
     def log_message(self, fmt, *args):  # quieter console
-        if "api/ask" in (args[0] if args else ""):
+        # send_error() logs with an HTTPStatus as args[0], not the request line: never a TypeError here, which
+        # would drop the connection instead of answering (an OPTIONS or PUT gets its 501)
+        first = args[0] if args and isinstance(args[0], str) else ""
+        if "api/ask" in first:
             print(f"  {self.address_string()} {fmt % args}", flush=True)
 
     def _send(self, code: int, body: bytes, content_type: str) -> None:
@@ -570,6 +629,10 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        # no other site may frame the page (the delete is two clicks: trash, then Delete)
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Content-Security-Policy", "frame-ancestors 'none'")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(body)
 
@@ -577,6 +640,8 @@ class Handler(BaseHTTPRequestHandler):
         self._send(code, json.dumps(payload, ensure_ascii=False).encode("utf-8"), "application/json; charset=utf-8")
 
     def do_GET(self) -> None:
+        if not self._request_allowed(check_origin=False):
+            return
         path = urlparse(self.path).path
         if path in ("/", "/index.html"):
             page = WEB_DIR / "index.html"
@@ -621,6 +686,12 @@ class Handler(BaseHTTPRequestHandler):
             if self._history_available():
                 self._json(200, {"conversations": self.store.list_conversations()})
             return
+        if path == "/api/evaluation/summary":
+            self._evaluation_summary()
+            return
+        if path == "/api/benchmark/summary":
+            self._benchmark_summary()
+            return
         match = _CONVERSATION_PATH.fullmatch(path)
         if match:
             if self._history_available():
@@ -635,6 +706,69 @@ class Handler(BaseHTTPRequestHandler):
                     self._json(400, {"error": str(exc)})
             return
         self._json(404, {"error": "not found"})
+
+    def do_DELETE(self) -> None:
+        """DELETE /api/conversations/<id>: the conversation and all its messages. No OPTIONS handler and no
+        Access-Control-* header: a cross-origin DELETE needs a preflight this server never grants, and a foreign
+        Host or Origin is refused first (_request_allowed)."""
+        if not self._request_allowed(check_origin=True):
+            return
+        path = urlparse(self.path).path
+        match = _CONVERSATION_PATH.fullmatch(path)
+        if not match:
+            self._json(404, {"error": "not found"})
+            return
+        if not self._history_available():
+            return
+        try:
+            out = self.store.delete_conversation(match.group(1))
+        except ConversationNotFound:
+            self._json(404, {"error": "conversation not found"})
+        except InvalidInput as exc:
+            self._json(400, {"error": str(exc)})
+        except Exception:  # noqa: BLE001 - never a stack trace to the page
+            traceback.print_exc()
+            self._json(500, {"error": "the conversation could not be deleted"})
+        else:
+            print(f"  chat: conversation {out['id'][:8]} deleted ({out['messages_deleted']} messages)", flush=True)
+            self._json(200, {"deleted": out["id"], "messages_deleted": out["messages_deleted"]})
+
+    # -- evaluation view ----------------------------------------------------
+
+    def _evaluation_summary(self) -> None:
+        """GET /api/evaluation/summary?recent=N (1-100, default 25): read-only counts of the stored evaluations."""
+        values = parse_qs(urlparse(self.path).query, keep_blank_values=True).get("recent")
+        recent = 25
+        if values is not None:
+            raw = values[-1].strip()
+            if not re.fullmatch(r"[0-9]{1,3}", raw) or not 1 <= int(raw) <= 100:
+                self._json(400, {"error": "recent must be a whole number from 1 to 100"})
+                return
+            recent = int(raw)
+        if not self._history_available():
+            return
+        try:
+            summary = self.store.evaluation_summary(recent=recent)
+        except Exception:  # noqa: BLE001 - never a stack trace to the page
+            traceback.print_exc()
+            self._json(500, {"error": "the evaluation summary could not be computed"})
+            return
+        self._json(200, {"summary": summary})
+
+    def _benchmark_summary(self) -> None:
+        """GET /api/benchmark/summary: the static reference file, as it is; independent of chat history."""
+        try:
+            data = json.loads(BENCHMARK_FILE.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            self._json(404, {"error": "the benchmark summary is not available on this server"})
+            return
+        except (OSError, ValueError):
+            self._json(500, {"error": "the benchmark summary file is unreadable"})
+            return
+        if not isinstance(data, dict):
+            self._json(500, {"error": "the benchmark summary file is unreadable"})
+            return
+        self._json(200, {"benchmark": data})
 
     # -- conversations ------------------------------------------------------
 
@@ -679,6 +813,8 @@ class Handler(BaseHTTPRequestHandler):
         return out
 
     def do_POST(self) -> None:
+        if not self._request_allowed(check_origin=True):
+            return
         path = urlparse(self.path).path
         if path == "/api/ask/stream":
             self._ask_stream()
@@ -1030,6 +1166,9 @@ def main() -> int:
     p.add_argument("--allow-remote-clients", action="store_true",
                    help="allow a non-loopback --host. Only behind a private network AND an authenticated HTTPS "
                         "reverse proxy: this server has no authentication and serves chat history")
+    p.add_argument("--allowed-host", action="append", default=[], metavar="NAME[:PORT]",
+                   help="a Host name the page may be reached by besides 127.0.0.1/localhost/[::1] (repeatable), e.g. "
+                        "the name an authenticated reverse proxy forwards; any other Host gets 403")
     p.add_argument("--offline", action="store_true", help="fail instead of downloading the tokenizer")
     p.add_argument("--no-accuracy", action="store_true",
                    help="do not assess answer accuracy; the answer, citations and evidence are unchanged either way")
@@ -1047,6 +1186,8 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 
     check_bind(args.host, args.allow_remote_clients)
+    Handler.allowed_hosts = tuple(args.allowed_host) + (
+        (args.host,) if args.allow_remote_clients and not is_loopback(args.host) else ())
     settings = load_settings()
     Handler.engine = Engine(settings, offline=args.offline)
     try:
