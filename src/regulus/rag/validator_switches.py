@@ -59,6 +59,10 @@ Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
       exemption if:" in 117.251(a) for a claim citing (a)(1)) counts as stated in the cited source; a sibling does not
       (regulus.rag.claim_validation). 26 Oct: 397 recorded answers, 6 changed, blind scored FAIL->PASS 2 (U-003, M-004),
       FAIL->PARTIALLY FAIL 3, unchanged 1, none worse
+  SA1 a question outside the cosmetics programme is offered, after the regulations, the 3 FD&C Act sections it is most
+      about (lexical + paragraph-embedding order; 301 never), as a cosmetics question is offered chapter VI
+      (regulus.rag.section_promotion.general_act_offered): 25 of 225 300-question dev rows are keyed to the Act; the key
+      Act section is offered for 18 of the 19 general ones
   PO2 a question naming only a 21 CFR part outside the cosmetics programme ("under Part 211") is resolved to its
       section(s) inside that part, as "Under Part 82, ..." is (regulus.rag.section_promotion.part_only_any): 74 of
       225 300-question dev rows; a key section ranks first inside the part for 57

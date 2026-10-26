@@ -51,3 +51,39 @@ def test_po2_resolves_a_part_only_question_in_any_part(monkeypatch):
         assert not may_promote(q, plan_query(q)), q
     q = "What does FD&C Act § 607 require of a cosmetics facility?"
     assert may_promote(q, plan_query(q)) == "named_statute"
+
+
+# ------------------------------------------------------------ SA1: the FD&C Act offered to a general question
+
+
+class _Statute:
+    by_sec = {"301": [0], "403": [1], "604": [2], "910": [3]}
+
+
+def test_sa1_offers_a_general_question_the_act_sections_it_is_about(monkeypatch):
+    from regulus.rag import section_promotion as SP
+
+    class _Promoter(SP.SectionPromoter):
+        def __init__(self):
+            self.mode, self._statute_ix, self.db = "picker", _Statute(), None
+
+        @property
+        def statute(self):
+            return self._statute_ix
+
+        def named_statute(self, question, lex):
+            return []
+
+        def candidates(self, question, parts=None):
+            return ["tobacco"], [{"section": "1114.7", "part": "1114", "heading": "", "subpart": ""}]
+
+        def statute_candidates(self, lexemes, question=None, offered=SP.STATUTE_OFFERED):
+            return [{"statute": True, "section": s} for s in offered]
+
+    monkeypatch.setattr(SP.SectionIndex, "question_lexemes", staticmethod(lambda db, q: ["tobacco"]))
+    p = _Promoter()
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", frozenset())
+    assert [c["section"] for c in p.prepare("What must a PMTA contain?")[1]] == ["1114.7"]
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", frozenset({"SA1"}))
+    # chapter VI stays the cosmetics offering, 301 is never offered
+    assert [c["section"] for c in p.prepare("What must a PMTA contain?")[1]] == ["1114.7", "403", "910"]

@@ -189,6 +189,22 @@ _ACT_NUM = re.compile(r"(?:§|[Ss]ection|Act)\s*(\d{3})(?!\d|\.\d)")
 _CITATION_LIKE = re.compile(r"\d\.\d|CFR|§|\bAct\b|[Ss]ection|U\.S\.C", re.I)
 
 
+# SA1: FD&C Act sections offered to a general (not cosmetics) question; 301 (prohibited acts) is long and general and
+# won the lexical ranking for unrelated questions, as it did for cosmetics questions
+GENERAL_ACT_OFFERED = 3
+_ACT_NOT_OFFERED = frozenset({"301"})
+
+
+def general_act_offered() -> bool:
+    """SA1 (regulus.rag.validator_switches): a question outside the cosmetics programme is offered the FD&C Act sections
+    it is most about (tobacco 904-911, devices 510-520, food labeling 403 ...), as a cosmetics question is offered
+    chapter VI. 26 Oct: 25 of the 225 300-question dev rows are keyed to the Act; until then a general question could
+    reach Act text only by naming the section."""
+    from regulus.rag.validator_switches import enabled
+
+    return enabled("SA1")
+
+
 def part_only_any() -> bool:
     """PO2 (regulus.rag.validator_switches): a question naming only a 21 CFR part outside the cosmetics programme
     ("What are the reserve sample requirements under Part 211?") is resolved to its section(s) inside that part, as
@@ -281,12 +297,12 @@ class SectionPromoter:
     def statute(self) -> StatuteIndex | None:
         return statute_index(self.db)
 
-    def statute_candidates(self, lexemes, question: str | None = None) -> list[dict]:
+    def statute_candidates(self, lexemes, question: str | None = None, offered: tuple[str, ...] = STATUTE_OFFERED) -> list[dict]:
         st = self.statute
         if st is None:
             return []
         ranked = {r.fdca: r for r in st.rank(lexemes, limit=len(st.by_sec))}
-        order = self.statute_order(question, ranked) if (STATUTE_RANKING and question) else STATUTE_OFFERED
+        order = self.statute_order(question, ranked, offered) if (STATUTE_RANKING and question) else offered
         out = []
         for s in order:
             if s not in st.by_sec:
@@ -334,20 +350,20 @@ class SectionPromoter:
             return top
         return None
 
-    def statute_order(self, question: str, ranked: dict) -> list[str]:
+    def statute_order(self, question: str, ranked: dict, offered: tuple[str, ...] = STATUTE_OFFERED) -> list[str]:
         """The offered FD&C Act sections, most relevant first: the lexical ranking (StatuteIndex.rank) fused by
         reciprocal rank with each section's best paragraph by embedding (regulus.retrieval.paragraph_dense). The fixed
         order 201, 601 ... 614 put the key section first for 1 of 40 Act-keyed dev questions; this order for 23."""
         from regulus.retrieval.paragraph_dense import paragraph_dense
 
-        lex_order = sorted(STATUTE_OFFERED, key=lambda s: (-(ranked[s].score if s in ranked else 0.0), STATUTE_OFFERED.index(s)))
+        lex_order = sorted(offered, key=lambda s: (-(ranked[s].score if s in ranked else 0.0), offered.index(s)))
         score = {s: 1.0 / (RRF_K + i + 1) for i, s in enumerate(lex_order)}
         pd = paragraph_dense(self.db)
         if pd is not None:
-            dense = [s for s, _, _ in pd.rank_sections(question, corpus="fdca") if s in STATUTE_OFFERED]
+            dense = [s for s, _, _ in pd.rank_sections(question, corpus="fdca") if s in offered]
             for i, s in enumerate(dense):
                 score[s] += 1.0 / (RRF_K + i + 1)
-        return sorted(STATUTE_OFFERED, key=lambda s: (-score[s], STATUTE_OFFERED.index(s)))
+        return sorted(offered, key=lambda s: (-score[s], offered.index(s)))
 
     def named_statute(self, question: str, lexemes) -> list[tuple[str, str]]:
         """FD&C Act sections (with any paragraph path) the question itself cites: (section, path) pairs in order.
@@ -873,6 +889,10 @@ class SectionPromoter:
         offer_statute = self.statute is not None and cosmetic_question(lex) and not parts
         if offer_statute:
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question)
+        elif self.statute is not None and not parts and cands and general_act_offered():
+            # SA1: the FD&C Act sections a general question is most about, after the regulations
+            general = tuple(x for x in sorted(self.statute.by_sec) if x not in STATUTE_OFFERED and x not in _ACT_NOT_OFFERED)
+            cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question, general)[:GENERAL_ACT_OFFERED]
         return (lex, cands) if cands else None
 
     def anchored(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = ()) -> Promotion | None:
