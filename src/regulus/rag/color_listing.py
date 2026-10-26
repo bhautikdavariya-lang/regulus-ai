@@ -153,8 +153,11 @@ def compose(package, question: str) -> str | None:
     if primary is None:
         return None
     # the question must name the color the listing is for ("FD&C Green No. 3", "caramel", "D&C Red No. 6"): a
-    # definitions question with a guessed listing is not a listing question (code review: 70.3-Q3)
-    if not _names_listing(question, package, primary):
+    # definitions question with a guessed listing is not a listing question (code review: 70.3-Q3). In a follow-up
+    # ("Can we use it in an eye shadow?") the conversation named it: the earlier question counts; the products judged
+    # are still the follow-up's own (regulus.rag.conversation)
+    named_in = question + (" " + package.earlier_question if getattr(package, "earlier_question", None) else "")
+    if not _names_listing(named_in, package, primary):
         return None
     uses = uses_of(primary)
     scope = read_scope(uses.text)

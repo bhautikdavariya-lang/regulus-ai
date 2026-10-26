@@ -44,6 +44,14 @@ def test_a_paragraph_pointer_is_written_out_as_the_anchored_section():
     assert write_out_pointers("Does this section cover lip products?", "74.2708") == "Does 21 CFR 74.2708 cover lip products?"
 
 
+def test_a_pointer_names_the_primary_section_or_act_section():
+    two = ConversationContext((PriorTurn(PARENT, Anchor(cfr=("74.2708", "82.1708"))),))
+    assert read("What records does this section require us to keep?", context=two).question == \
+        "What records does 21 CFR 74.2708 require us to keep?"
+    act = ConversationContext((PriorTurn("What does 607 require?", Anchor(statute=("607",))),))
+    assert read("What does subsection (b) of this section add?", context=act).question.startswith("What does FD&C Act § 607(b)")
+
+
 def test_a_tag_question_about_the_conversation_is_anchored():
     fu = read("The limit is 5 percent, right?")
     assert fu.anchored and "tag_question" in fu.cues

@@ -177,11 +177,13 @@ def cues(question: str) -> tuple[str, ...]:
     return tuple(out)
 
 
-def write_out_pointers(question: str, section: str) -> str:
+def write_out_pointers(question: str, section: str, statute: bool = False) -> str:
     """"paragraph (b)" -> "21 CFR 74.2708(b)", "this section" -> "21 CFR 74.2708": the provision the conversation is
-    about, named. Only for a single anchored 21 CFR section."""
-    q = _PARAGRAPH_POINTER.sub(lambda m: f"21 CFR {section}{m.group(1)}", question)
-    return _THIS_PROVISION.sub(f"21 CFR {section}", q)
+    about, named - its primary section (the first anchored: the promoted section, before a sibling listing such as
+    82.1708). `statute`: an FD&C Act section ("FD&C Act § 607(b)")."""
+    name = f"FD&C Act § {section}" if statute else f"21 CFR {section}"
+    q = _PARAGRAPH_POINTER.sub(lambda m: f"{name}{m.group(1)}", question)
+    return _THIS_PROVISION.sub(name, q)
 
 
 # a question with at most this many subject words of its own cannot stand alone: a cue is then enough to anchor it
@@ -235,8 +237,10 @@ def resolve(question: str, context: ConversationContext | None, *, names_provisi
         # nothing ties it to the conversation: a new topic, answered on its own and without the earlier question
         return FollowUp(False, "new_topic", question, Anchor(), None, found)
     text = question
-    if "pointer" in found and len(anchor.cfr) == 1 and not anchor.statute:
+    if "pointer" in found and anchor.cfr:
         text = write_out_pointers(question, anchor.cfr[0])
+    elif "pointer" in found and anchor.statute:
+        text = write_out_pointers(question, anchor.statute[0], statute=True)
     elif anchor.parts and not (anchor.cfr or anchor.statute):
         # a whole part: the question is asked about that part, as if it had named it
         text = question.rstrip() + " (21 CFR " + ", ".join(f"part {p}" for p in anchor.parts) + ")"
