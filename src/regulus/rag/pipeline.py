@@ -46,6 +46,7 @@ from regulus.rag.generation import (
 from regulus.rag.fallback import (
     FB_COMPOSED_LISTING,
     FB_DEFINITIONS_QUOTED,
+    FB_COMPOSED_DEFINITIONS,
     FB_COMPOSED_PREMISE,
     FB_COMPOSED_QMSR,
     FB_COMPOSED_RECORDS,
@@ -1162,6 +1163,11 @@ class RagPipeline:
                 text, composed_type = compose_qmsr(package, question, qmsr_former, qmsr_unknown), FB_COMPOSED_QMSR
             if not text and provision_identified and (precision_fix("FP1") or precision_fix("RS1")):
                 text, composed_type = self.compose_from_identified(package, question, plan, promotion)
+            if not text and precision_fix("D1"):
+                # D1: a question asking what terms mean, answered from the supplied paragraphs that define them
+                from regulus.rag.definitions import compose as compose_definitions
+
+                text, composed_type = compose_definitions(package, question), FB_COMPOSED_DEFINITIONS
             if not text and not block:
                 composed_type = FB_COMPOSED_LISTING
                 text = compose_listing(package, question)
@@ -1173,7 +1179,8 @@ class RagPipeline:
                 report = validate_answer(text, package, None)
                 # FP1 / RS1 answer one point of the provision on purpose: the shape-completeness findings (a requested
                 # provision, a list item or a requirement group not represented) do not apply; every grounding check does
-                valid = report.ok or (composed_type in (FB_COMPOSED_PREMISE, FB_COMPOSED_RECORDS, FB_COMPOSED_QMSR) and not (
+                valid = report.ok or (composed_type in (FB_COMPOSED_PREMISE, FB_COMPOSED_RECORDS, FB_COMPOSED_QMSR,
+                                                        FB_COMPOSED_DEFINITIONS) and not (
                     {p.code for p in report.problems if p.severity == "error"} - _FOCUSED_COMPLETENESS_CODES))
                 generation_info["listing_composer"] = {"composed": True, "valid": valid, "codes": list(report.codes()),
                                                        "kind": composed_type}
@@ -1226,6 +1233,8 @@ class RagPipeline:
                                      "the paragraphs stating figures of that kind are quoted",
                 FB_COMPOSED_RECORDS: "the identified section's full text has no record-keeping language; what it requires "
                                      "is quoted",
+                FB_COMPOSED_DEFINITIONS: "the question asks what terms mean; the supplied paragraphs that define them are "
+                                         "quoted",
                 FB_COMPOSED_QMSR: "a former Quality System regulation section (or a non-existent ISO 13485 clause): the "
                                   "current part 820 text is quoted and the ISO 13485 clause on the subject named",
             }.get(fallback_type, "color additive listing: per-product use decided from the listing's uses paragraph, "

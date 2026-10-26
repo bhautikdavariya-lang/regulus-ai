@@ -105,7 +105,8 @@ _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough 
                           r"^\s*FDA published no section-by-section mapping from the former regulation|"
                           r"^\s*the standard.s text is not reproduced here|"
                           # Q1 (regulus.rag.fallback.focused_quote): what the quotation is and is not
-                          r"^\s*this is the provision.s own text, not an application of it", re.I)
+                          r"^\s*this is the provision.s own text, not an application of it|"
+                          r"^\s*what the regulation defines th(?:is term|ese terms) as, verbatim", re.I)
 _LEAD = 45  # a provision label within the first characters of a statement names what it presents
 
 # A2 (regulus.rag.validator_switches): "These provisions set no limit on the amount of guanine" is a claim about the

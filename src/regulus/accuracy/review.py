@@ -52,7 +52,7 @@ LABEL = {PASS: "PASS", FAIL: "FAIL", NOT_EVALUATED: "NOT EVALUATED"}
 NOT_FULLY_EVALUATED = "NOT FULLY EVALUATED"
 # fallback types whose answer is the provision's own text, quoted and cited (regulus.rag.fallback)
 QUOTED_FALLBACKS = frozenset({"focused_provision_quote", "composed_records_silence", "composed_qmsr",
-                              "composed_premise_figure"})
+                              "composed_premise_figure", "composed_definitions"})
 
 STATE_LABEL = {R.PASS: "Pass", R.FAIL: "Fail", R.PARTIAL: "Partial", R.NOT_ESTABLISHED: "Not established",
                R.NOT_APPLICABLE: "Not applicable"}

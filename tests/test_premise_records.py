@@ -69,3 +69,22 @@ def test_an_amount_is_never_read_as_a_citation_by_the_figure_check():
     supplied = "a special advance deposit of $2,500.00 ... 21 CFR 70.19(m)"
     assert "$2,500.00" in _strip_supplied_citations("A deposit of $2,500.00 is due under 21 CFR 70.19(m).", supplied)
     assert "70.19" not in _strip_supplied_citations("A deposit of $2,500.00 is due under 21 CFR 70.19(m).", supplied)
+
+
+def test_d1_answers_only_an_explicit_meaning_request_from_the_requested_definitions():
+    from types import SimpleNamespace
+    from regulus.rag.definitions import asked_terms, compose
+
+    assert asked_terms("Our supplier says 'gloss white' and 'externally applied.' What do these terms mean?") == [
+        "gloss white", "externally applied"]
+    assert asked_terms("Under the definitions, is our premix an 'ingredient' or a 'cosmetic raw material'?") == []
+    src = lambda i, c, t, tier="exact": SimpleNamespace(index=i, citation=c, text=t, tier=tier, is_docket=False,
+                                                       corpus="ecfr", requirement_ids=("r1",) if tier == "exact" else ())
+    pkg = SimpleNamespace(sources=[src(1, "21 CFR 82.3(i)", "(i) The term gloss white means a suspension in water."),
+                                   src(2, "21 CFR 82.3(n)", "(n) The term externally applied drugs and cosmetics means drugs "
+                                                            "applied only to external parts of the body.")])
+    text = compose(pkg, "What do 'gloss white' and 'externally applied' mean?")
+    assert text.startswith("What the regulation defines these terms as") and "82.3(i)" in text and "82.3(n)" in text
+    assert compose(pkg, "What does 'mixed oxides' mean?") is None                 # not every term is defined
+    background = SimpleNamespace(sources=[src(1, "21 CFR 211.132(b)", "(b) The term tamper-evident means x.", tier="supporting")])
+    assert compose(background, "What does 'tamper-evident' mean?") is None        # only the requested provisions' text
