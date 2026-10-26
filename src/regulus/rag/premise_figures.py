@@ -148,18 +148,20 @@ def compose(package, question: str, provisions: list[str], *, limit: int = 3) ->
     missing = absent_figures(question, [s.text or "" for s in package.sources])
     if not missing:
         return None
+    from regulus.rag.quote_selection import rank
+
     kinds = {f.unit for f in missing}
     asked = subject_words(question)
+    bodies = [(s, whole_sentences(s.text or "")) for s in pool]
+    bodies = [(s, b) for s, b in bodies if b]
+    order = {i: n for n, i in enumerate(rank(question, [(s.citation, b) for s, b in bodies]))}
     scored = []
-    for s in pool:
-        body = whole_sentences(s.text or "")
-        if not body:
-            continue
+    for i, (s, body) in enumerate(bodies):
         same_kind = sum(1 for f in figures(body) if f.unit in kinds)
         overlap = len(asked & subject_words(body))
         if same_kind or overlap:
-            # a paragraph that states figures of the asserted kind first, then one that states a rule, then overlap
-            scored.append((-min(same_kind, 1), -int(bool(_OPERATIVE.search(body))), -overlap, s.index, s, body))
+            # a paragraph that states figures of the asserted kind first, then one that states a rule, then meaning
+            scored.append((-min(same_kind, 1), -int(bool(_OPERATIVE.search(body))), order[i], s.index, s, body))
     if not scored:
         return None
     ranked = sorted(scored, key=lambda x: x[:4])

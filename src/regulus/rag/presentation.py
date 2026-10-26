@@ -33,7 +33,7 @@ _NOTE_LEADS = re.compile(
     r"^(?:Status note\b|Evidence limit:|Not found in the available eCFR data:|Note:|Gap notice:|"
     r"The available regulatory sources do not provide|The available eCFR data does not contain|"
     r"The retrieved evidence does not establish|The answer above covers only|"
-    r"This answer (?:is|does) not|No (?:legal|binding) (?:opinion|advice)\b|(?:\[\d{1,3}\]\s*)?\(Note:)", re.I)
+    r"This answer (?:is|does) not|This is the provision.s own text, not an application|No (?:legal|binding) (?:opinion|advice)\b|(?:\[\d{1,3}\]\s*)?\(Note:)", re.I)
 # the consulted list is one line: "Sources consulted: A, B and 3 more." (regulus.rag.fallback)
 _SOURCES_CONSULTED = re.compile(r"\bSources consulted:\s*([^\n]+?)\.?[ \t]*(?:\n|$)")
 # a restatement of one provision: "21 CFR 70.20 requires", "21 CFR 70.3(j) [2] defines", "(a) If a substance ...",
@@ -138,8 +138,9 @@ def present(answer: str, *, fallback_type: str | None = None, citations: list[di
             p.notes.append(block)
             continue
         label = _point_label(block)
-        if label is not None and (p.lead or p.points or p.notes or kind == "composed"):
-            # a provision restatement after the answer (a first paragraph that opens with a citation is the answer)
+        if label is not None and (p.lead or p.points or p.notes):
+            # a provision restatement after the answer: the first statement is the answer even when it opens with a
+            # citation ("21 CFR 701.11 sets no recordkeeping requirement: ...", "21 CFR 70.20 requires ...")
             p.points.append(Point(label, block, _cites(block)))
             continue
         lead, notes = _split_note_sentences(block)

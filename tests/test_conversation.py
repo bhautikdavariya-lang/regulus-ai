@@ -235,3 +235,33 @@ def test_a_requests_focus_overrides_the_deployment_scope_and_only_inside_its_blo
     with pytest.raises(ValueError):
         with focus("drugs"):
             pass
+
+
+def test_a_read_cancelled_by_the_statement_timeout_is_retried_once(monkeypatch):
+    import psycopg
+    import pytest
+
+    from regulus.retrieval.db import Database
+
+    calls = []
+
+    class Cur:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def execute(self, sql, params):
+            calls.append(sql)
+            if len(calls) == 1 or sql == "always":
+                raise psycopg.errors.QueryCanceled("canceling statement due to statement timeout")
+        def fetchall(self): return [{"ok": 1}]
+
+    class Conn:
+        def transaction(self):
+            import contextlib
+            return contextlib.nullcontext()
+        def cursor(self): return Cur()
+
+    db = object.__new__(Database)
+    monkeypatch.setattr(Database, "connect", lambda self: Conn())
+    assert db.query("SELECT 1") == [{"ok": 1}] and len(calls) == 2
+    with pytest.raises(psycopg.errors.QueryCanceled):
+        db.query("always")

@@ -78,3 +78,12 @@ def test_an_anchored_follow_up_names_its_context():
     p = present("Yes, it may be used [1].", followup=fu)
     assert p.context == {"earlier_question": "Q1?", "provisions": ["21 CFR 74.2708", "FD&C Act § 607"]}
     assert present("Yes [1].", followup={"anchor": {}, "followup": {"anchored": False}}).context is None
+
+
+def test_a_composed_answer_opening_with_a_citation_leads_with_it():
+    text = ("21 CFR 701.11 sets no recordkeeping requirement: no paragraph of its text in this system requires a record "
+            "to be made or kept. What it requires, verbatim:\n"
+            "21 CFR 701.11(a) (eCFR, binding, verbatim): (a) The principal display panel shall bear a statement of identity [1].")
+    p = present(text, fallback_type="composed_records_silence")
+    assert p.kind == "composed" and p.lead[0].startswith("21 CFR 701.11 sets no recordkeeping")
+    assert [x.label for x in p.points] == ["21 CFR 701.11(a)"]

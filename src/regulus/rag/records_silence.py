@@ -70,7 +70,12 @@ def compose(package, question: str, section_texts: dict[str, str], *, limit: int
     if not scored:
         return None
     whole = sum(len(b) for *_, b in scored) <= WHOLE_SECTION_CHARS
-    kept = scored if whole else sorted(scored, key=lambda x: x[:2])[:limit]
+    if whole:
+        kept = scored
+    else:
+        from regulus.rag.quote_selection import rank
+
+        kept = [scored[i] for i in rank(question, [(x[2].citation, x[3]) for x in scored])[:limit]]
     names = list(section_texts)
     subject = " and ".join(names[:2]) + (" and the other provisions" if len(names) > 2 else "")
     verb = "set" if len(names) > 1 else "sets"

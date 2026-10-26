@@ -636,6 +636,8 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
             # states a different number in the same unit: "up to 10 percent" in the question is not supplied when
             # the source says "not more than 0.6 percent" (code review: that false number used to validate)
             supplied |= _question_figures(package.question, [s.text for s in package.sources]) - supplied
+            if getattr(package, "earlier_question", None):   # a follow-up: the conversation's stated facts too
+                supplied |= _question_figures(package.earlier_question, [s.text for s in package.sources]) - supplied
         stray = sorted((_figures(figure_text) | _periods(figure_text)) - supplied
                        - {f for f in _figures(figure_text) | _periods(figure_text)
                           if any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3)})

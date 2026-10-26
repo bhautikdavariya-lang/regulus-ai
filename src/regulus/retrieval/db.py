@@ -117,12 +117,21 @@ class Database:
     # -- reads -------------------------------------------------------------
 
     def query(self, sql: str, params: Mapping[str, Any] | Sequence[Any] | None = None) -> list[dict[str, Any]]:
-        """Run one SELECT with server-side parameters and return dict rows."""
-        conn = self.connect()
-        with conn.transaction():
-            with conn.cursor() as cur:
-                cur.execute(sql, params)
-                return cur.fetchall()
+        """Run one SELECT with server-side parameters and return dict rows. A statement cancelled by the server's
+        statement timeout is retried once: every query here is a read-only SELECT, and the timeouts seen were transient
+        load (a benchmark run beside an offline replay, 26 Oct), not slow queries."""
+        for attempt in (1, 2):
+            conn = self.connect()
+            try:
+                with conn.transaction():
+                    with conn.cursor() as cur:
+                        cur.execute(sql, params)
+                        return cur.fetchall()
+            except psycopg.errors.QueryCanceled:
+                if attempt == 2:
+                    raise
+                log.warning("statement timeout; retrying the read once")
+        raise AssertionError("unreachable")
 
     @contextmanager
     def cursor(self) -> Iterator[psycopg.Cursor]:

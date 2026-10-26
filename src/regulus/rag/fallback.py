@@ -158,8 +158,9 @@ def premise_not_established(package, terms) -> tuple[str, str]:
 # declined although the provision the question is about was supplied - the reader gets that provision's paragraphs that
 # share most subject words with the question, verbatim and cited, instead of a bare "not shown". Only for a provision
 # identified by the question, by name or by section resolution (the caller decides); never an application of it.
-FOCUSED_QUOTE_LEAD = ("A complete answer to this question could not be verified against the regulation text, so none is "
-                      "given. What the provision it concerns says on this point, verbatim:")
+FOCUSED_QUOTE_LEAD = "What the provision this question concerns says on this point, verbatim:"
+FOCUSED_QUOTE_TAIL = ("This is the provision's own text, not an application of it to your facts: a fuller answer could not "
+                      "be verified sentence by sentence against the regulation text.")
 FOCUSED_QUOTE_PARAGRAPHS = 3
 FOCUSED_QUOTE_CHARS = 1600
 
@@ -174,19 +175,18 @@ def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAP
 
     if package is None:
         return None
+    from regulus.rag.quote_selection import rank
+
     asked = subject_words(question)
     pool = [s for s in package.sources if not s.is_docket and (
         (s.tier == TIER_EXACT and s.requirement_ids) or (s.tier == TIER_SUPPORTING and s.corpus == "usc"))]
-    scored = []
-    for s in pool:
-        body = whole_sentences(s.text or "")
-        overlap = len(asked & subject_words(body))
-        if body and overlap:
-            scored.append((-overlap, s.index, s, body))
-    if not scored:
-        return None
+    bodies = [(s, whole_sentences(s.text or "")) for s in pool]
+    bodies = [(s, b) for s, b in bodies if b]
+    if not bodies or not any(asked & subject_words(b) for _, b in bodies):
+        return None   # nothing supplied speaks to the question at all
     kept, used = [], 0
-    for _, _, s, body in sorted(scored, key=lambda x: (x[0], x[1])):
+    for i in rank(question, [(s.citation, b) for s, b in bodies]):
+        s, body = bodies[i]
         if len(kept) >= limit or (kept and used + len(body) > max_chars):
             break
         kept.append((s, body))
@@ -195,4 +195,5 @@ def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAP
     for s, body in sorted(kept, key=lambda x: x[0].index):
         kind = "FD&C Act, verbatim" if s.corpus == "usc" else "eCFR, binding, verbatim"
         lines.append(f"{s.citation} ({kind}): {_verbatim(body, s.index)}")
+    lines.append(FOCUSED_QUOTE_TAIL)
     return "\n".join(lines)

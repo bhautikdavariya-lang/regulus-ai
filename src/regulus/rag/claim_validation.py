@@ -103,7 +103,9 @@ _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough 
                           r"is not in the current eCFR: it belonged to the former Quality System regulation|"
                           r"^\s*in ISO 13485:2016 \(incorporated by reference|^\s*ISO 13485:2016 has no Clause|"
                           r"^\s*FDA published no section-by-section mapping from the former regulation|"
-                          r"^\s*the standard.s text is not reproduced here", re.I)
+                          r"^\s*the standard.s text is not reproduced here|"
+                          # Q1 (regulus.rag.fallback.focused_quote): what the quotation is and is not
+                          r"^\s*this is the provision.s own text, not an application of it", re.I)
 _LEAD = 45  # a provision label within the first characters of a statement names what it presents
 
 # A2 (regulus.rag.validator_switches): "These provisions set no limit on the amount of guanine" is a claim about the
@@ -246,6 +248,11 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
     # answer_style "apply": the answer applies the provisions to the facts the question states ("a colorant in a lip
     # product caused tumors in rats"), so the question's own words are given, not claims the sources must support
     given = _words(question) if question and getattr(package, "answer_style", "restate") == "apply" else set()
+    # a follow-up: the facts the user stated earlier in the conversation are given too ("our tinted body lotion"), not
+    # claims a source must support (regulus.rag.conversation; withheld follow-up drafts, 26 Oct)
+    earlier = getattr(package, "earlier_question", None)
+    if earlier and given:
+        given |= _words(earlier)
 
     # A2 applies only when the answer also says something positive: an answer made of nothing but "X does not cover Y"
     # statements is the signature of a wrong section pick (FDCA601-Q2, UC-002 on the 22 Oct holdout), kept withheld
