@@ -17,6 +17,9 @@ color, which share its heading word for word. A question without such a word is 
 """
 from __future__ import annotations
 
+import contextlib
+import contextvars
+
 import math
 import threading
 from dataclasses import dataclass, field
@@ -205,11 +208,32 @@ OTHER_DOMAIN_TERMS = frozenset("""food beverag infant formula dietari supplement
 sutur tobacco cigarett vape nicotin biolog vaccin blood plasma tissu feed anim pet veterinari pesticid medic""".split())
 
 
+# the focus one request asked for (the page's "Focus" control: "cosmetics" or "general"), over the deployment's own
+FOCUSES = ("cosmetics", "general")
+_FOCUS: contextvars.ContextVar[str | None] = contextvars.ContextVar("regulus_focus", default=None)
+
+
+@contextlib.contextmanager
+def focus(value: str | None):
+    """Answer inside this block with `value` as the deployment scope ("general": no cosmetics prior); None leaves the
+    deployment's own (REGULUS_DEPLOYMENT_SCOPE). Per thread and per context, so concurrent requests never mix."""
+    if value is not None and value not in FOCUSES:
+        raise ValueError(f"focus must be one of {', '.join(FOCUSES)}")
+    token = _FOCUS.set(value)
+    try:
+        yield
+    finally:
+        _FOCUS.reset(token)
+
+
 def deployment_scope() -> str | None:
     """REGULUS_DEPLOYMENT_SCOPE: "cosmetics" for a deployment that answers cosmetics questions (the cosmetics
-    benchmark, a cosmetics-compliance UI); unset for general FDA use."""
+    benchmark, a cosmetics-compliance UI); unset for general FDA use. A request's own focus (see `focus`) wins."""
     import os
 
+    asked = _FOCUS.get()
+    if asked is not None:
+        return None if asked == "general" else asked
     value = (os.environ.get("REGULUS_DEPLOYMENT_SCOPE") or "").strip().lower()
     return value or None
 

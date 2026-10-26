@@ -298,6 +298,25 @@
     .msg.assistant .bubble.err { background: color-mix(in srgb, var(--stop) 7%, var(--surface));
                                  border-color: color-mix(in srgb, var(--stop) 28%, transparent); }
   }
+  /* laid-out answer (regulus.rag.presentation): direct answer, what the regulation says, notes - the delivered text,
+     split, never rewritten */
+  .bubble.rich { white-space: normal; display: flex; flex-direction: column; gap: var(--sp-3); }
+  .bubble.rich p { margin: 0; }
+  .fu-ctx { display: flex; align-items: center; gap: 6px; font-size: var(--fs-xs); color: var(--text-muted); }
+  .fu-ctx .i { width: 13px; height: 13px; }
+  .verdict { display: inline-block; margin-right: 8px; padding: 1px 9px; border-radius: var(--r-pill); font-size: var(--fs-sm);
+             font-weight: 700; vertical-align: 1px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-line); }
+  .verdict.neg { background: var(--danger-soft); color: var(--stop); border-color: color-mix(in srgb, var(--stop) 30%, transparent); }
+  .ans-sec { display: flex; flex-direction: column; gap: var(--sp-2); }
+  .ans-sec h4 { margin: 0; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted); }
+  .ans-sec ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-base); line-height: 1.6; }
+  .ans-sec .plabel { font-weight: 600; color: var(--ecfr); }
+  .ans-sec.notes ul { font-size: var(--fs-sm); color: var(--text-2); }
+  .ans-sec.notes { padding: 10px 12px; border-radius: var(--r-md); background: var(--sunken); border: 1px solid var(--border); }
+  sup.cm { font-size: 10.5px; font-weight: 600; color: var(--accent); padding: 0 1px; cursor: help; }
+  .ans-foot { margin: 0; font-size: var(--fs-2xs); color: var(--text-muted); letter-spacing: .01em; }
+  details.ans-detail summary { cursor: pointer; font-size: var(--fs-xs); color: var(--text-muted); }
+  details.ans-detail p { margin-top: 6px; font-size: var(--fs-sm); color: var(--text-2); }
   .tools { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: center; }
   .tools .ghost .i { width: 15px; height: 15px; }
   ul.cites { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
@@ -359,6 +378,9 @@
               max-height: 220px; overflow-y: auto; }
   .composer textarea::placeholder { color: var(--text-muted); }
   .composer-bar { display: flex; align-items: center; gap: var(--sp-2); min-height: 36px; }
+  .focus-sel { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-xs); color: var(--text-muted); }
+  .focus-sel select { height: 28px; padding: 0 6px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--surface);
+                      color: var(--text-2); font: inherit; font-size: var(--fs-xs); }
   .composer-bar .status { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
               font-size: 12.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
   #stop .i, #ask .i { width: 16px; height: 16px; }
@@ -754,6 +776,8 @@
           <textarea id="q" rows="1" placeholder="Ask a regulatory question…"></textarea>
           <div class="composer-bar">
             <span class="status" id="status"></span>
+            <label class="focus-sel" title="Which regulations a question naming no product area is read against"><span>Focus</span>
+              <select id="focus"><option value="">Default</option></select></label>
             <button id="stop" type="button" class="ghost" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stop"/></svg>Stop</button>
             <button id="ask" type="button" class="primary send" aria-label="Send question"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-send"/></svg><span>Send</span></button>
           </div>
@@ -1052,6 +1076,42 @@ function stepsHtml(phase) {
   }).join("");
 }
 
+// The delivered answer laid out (regulus.rag.presentation, built by the server): the answer's own sentences, split
+// into the direct answer, what the regulation says and notes - never rewritten. A stored answer without a layout, or
+// one whose layout cannot be read, is shown as its plain text.
+function citeMarks(text, r) {
+  const labels = {};
+  (r.citations || []).forEach(c => { if (c && c.index != null) labels[String(c.index)] = c.label; });
+  return esc(text).replace(/\[(\d{1,3})\]/g, (m, n) => labels[n] ? `<sup class="cm" title="${esc(labels[n])}">${n}</sup>` : m);
+}
+function answerHtml(r) {
+  const p = r && r.presentation;
+  if (!p || typeof p !== "object" || !Array.isArray(p.lead)) return `<div class="bubble">${esc(r.answer)}</div>`;
+  const list = (title, items, cls) => items.length
+    ? `<section class="ans-sec${cls ? " " + cls : ""}"><h4>${esc(title)}</h4><ul>${items.join("")}</ul></section>` : "";
+  const provs = p.context && Array.isArray(p.context.provisions) ? p.context.provisions : [];
+  const ctx = provs.length ? `<p class="fu-ctx">${icon("info")}Follow-up: read with ${esc(provs.join(", "))} from earlier in this conversation</p>` : "";
+  const notes = list("Notes and limits", (p.notes || []).map(n => `<li>${citeMarks(n, r)}</li>`), "notes");
+  const asOf = /^\d{4}-\d{2}-\d{2}$/.test(String(r.snapshot_date || "")) ? `eCFR Title 21 as of ${esc(r.snapshot_date)} · ` : "";
+  const foot = `<p class="ans-foot">${asOf}Regulatory information from the cited sources, not legal advice.</p>`;
+  if (p.kind === "withheld" || p.kind === "declined") {
+    const consulted = list("Provisions consulted", (p.consulted || []).map(c => `<li>${esc(c)}</li>`));
+    const detail = (p.detail || []).length
+      ? `<details class="ans-detail"><summary>Details</summary>${p.detail.map(d => `<p>${esc(d)}</p>`).join("")}</details>` : "";
+    return `<div class="bubble rich">${ctx}<p>${esc(p.summary || r.answer)}</p>${(p.lead || []).map(t => `<p>${citeMarks(t, r)}</p>`).join("")}${consulted}${notes}${detail}${foot}</div>`;
+  }
+  const v = p.verdict ? String(p.verdict) : "";
+  const neg = /^(no|not|prohibited)/i.test(v);
+  const badge = v ? `<span class="verdict${neg ? " neg" : ""}">${esc(p.verdict_subject ? p.verdict_subject + ": " + v : v)}</span>` : "";
+  const lead = (p.lead || []).map((t, i) => `<p>${i === 0 ? badge : ""}${citeMarks(t, r)}</p>`).join("") || (badge ? `<p>${badge}</p>` : "");
+  const points = list("What the regulation says", (p.points || []).map(x => {
+    const text = String(x.text || ""), label = String(x.label || "");
+    const body = label && text.startsWith(label) ? `<span class="plabel">${esc(label)}</span>${citeMarks(text.slice(label.length), r)}` : citeMarks(text, r);
+    return `<li>${body}</li>`;
+  }));
+  return `<div class="bubble rich">${ctx}${lead}${points}${notes}${foot}</div>`;
+}
+
 function replyHtml(t, pending) {
   if (pending && pending.turn_id === t.turn_id) return `
     <div class="progress">
@@ -1067,7 +1127,7 @@ function replyHtml(t, pending) {
     ? `<li><a class="chip" href="${esc(c.url)}" target="_blank" rel="noopener" title="${esc(c.label)}">${esc(c.label)}${icon("ext")}</a></li>`
     : `<li><span class="chip" title="${esc(c.label)}">${esc(c.label)}</span></li>`).join("");
   const e = evaluationOf(r, t.question);
-  return `<div class="bubble">${esc(r.answer)}</div>
+  return `${answerHtml(r)}
     ${cites ? `<ul class="cites" aria-label="Citations">${cites}</ul>` : ""}
     <div class="tools">${r.model_called === false ? pill("model not called", "warn") : ""}
       <button type="button" class="ghost small" data-show="${esc(t.turn_id)}">${icon("doc")}Show evidence</button>
@@ -1308,12 +1368,28 @@ async function loadConfig() {
     $("env").textContent = label || ident || (m && m.label) || full;
     attr($("modelbadge"), "title", full);
     $("evalmodel").textContent = full;
+    setupFocus(cfg.focus);
   } catch (e) {
     $("env").textContent = "could not reach the server";
   }
   $("examples").innerHTML = EXAMPLES.map((e, i) => `<button type="button" data-i="${i}"><span class="ex-tag">${esc(e.tag)}</span><span class="ex-q">${esc(e.q)}</span></button>`).join("");
   $("examples").onclick = ev => { const b = ev.target.closest("button"); if (b && EXAMPLES[b.dataset.i]) { $("q").value = EXAMPLES[b.dataset.i].q; grow(); $("q").focus(); } };
 }
+
+// The Focus control: the server's own scope is "Default"; the other value is sent with each question only when chosen
+// (and remembered on this browser). Without a focus from the server the control stays hidden.
+const FOCUS_KEY = "regulus.focus";
+const FOCUS_LABELS = { cosmetics: "Cosmetics", general: "All of 21 CFR" };
+function setupFocus(f) {
+  const sel = $("focus");
+  if (!sel || !f || !Array.isArray(f.options) || !FOCUS_LABELS[f.default]) { if (sel && sel.parentNode) sel.parentNode.hidden = true; return; }
+  sel.innerHTML = `<option value="">${esc(FOCUS_LABELS[f.default])}</option>` + f.options.filter(o => o !== f.default && FOCUS_LABELS[o])
+    .map(o => `<option value="${esc(o)}">${esc(FOCUS_LABELS[o])}</option>`).join("");
+  const keep = stored(FOCUS_KEY);
+  sel.value = keep && f.options.includes(keep) && keep !== f.default ? keep : "";
+  sel.onchange = () => store(FOCUS_KEY, sel.value || null);
+}
+function chosenFocus() { const sel = $("focus"); return sel && sel.value ? sel.value : null; }
 
 function pill(text, cls) { return `<span class="pill ${cls}">${esc(text)}</span>`; }
 
@@ -1946,6 +2022,7 @@ async function ask(retry) {
       body: JSON.stringify({
         question,
         ...(turn ? { conversation_id: chat.id, turn_id: turn.turn_id } : {}),
+        ...(chosenFocus() ? { focus: chosenFocus() } : {}),
       }),
     });
     if (!res.ok || !res.body) {

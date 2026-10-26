@@ -844,6 +844,49 @@ class SectionPromoter:
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question)
         return (lex, cands) if cands else None
 
+    def anchored(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = ()) -> Promotion | None:
+        """A follow-up resolved to the provisions its conversation is about (regulus.rag.conversation): those sections
+        are promoted, method "conversation", with the companions this question's own words call for - no ranking, no
+        picker. None when the question names an FD&C Act section itself or nothing anchored exists (the caller then
+        resolves it as it would on its own); a cosmetic practice the regulations are silent on (P1) is answered as such."""
+        if self.mode == "off":
+            return None
+        t0 = time.perf_counter()
+        lex = SectionIndex.question_lexemes(self.db, question)
+        if self.named_statute(question, lex):
+            return None
+        silence = self.practice_silence(question, lex, t0)
+        if silence is not None:
+            return silence
+        known = [s for s in cfr if s in set(self.index.sections)]
+        acts = [s for s in statute if self.statute is not None and s in self.statute.by_sec]
+        if known:
+            pr = self._cfr_promotion(known, question, lex, (), None, None, "conversation", t0)
+            if acts:
+                st = self._statute_promotion([(s, "") for s in acts[:1]], lex, "conversation", t0, budget=CO_STATUTE_BUDGET)
+                pr = replace(pr, statute=st.statute, statute_rows=st.statute_rows, statute_blocks=st.statute_blocks,
+                             statute_left_out=st.statute_left_out, seconds=time.perf_counter() - t0)
+            return pr
+        if acts:
+            return self._statute_promotion([(s, "") for s in acts[:2]], lex, "conversation", t0)
+        return None
+
+    def ranks_any(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = (), top: int = 8) -> bool:
+        """Whether the question's own words rank one of these sections among their first `top` candidates (no model
+        call)."""
+        # FD&C Act sections are not checked: the Act's general sections (601 adulteration) lead the ranking of most
+        # cosmetics questions, so ranking says nothing about whether a question is about them
+        if not cfr:
+            return False
+        lex, cands = self.candidates(question)
+        return any(c["section"] in cfr for c in cands[:top])
+
+    def heading_words(self, cfr: tuple[str, ...]) -> list[str]:
+        """The headings of these sections (for the follow-up's shared-subject test)."""
+        ix = self.index
+        pos = {s: i for i, s in enumerate(ix.sections)}
+        return [ix.headings[pos[s]] or "" for s in cfr if s in pos]
+
     def resolve(self, question: str, parts: tuple[str, ...] | None = None, named_only: bool = False) -> Promotion | None:
         """`parts`: the question names only these parts ("Under Part 82, ..."); the answer is looked for inside them."""
         if self.mode == "off":

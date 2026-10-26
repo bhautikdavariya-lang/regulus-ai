@@ -315,6 +315,9 @@ class GenerationPackage:
     answer_style: str = "restate"
     # section promotion to FD&C Act section(s): their labels, shown under REQUESTED PROVISIONS (no requirement ids)
     resolved: tuple[str, ...] = ()
+    # a follow-up (regulus.rag.conversation): the question that opened the conversation's topic, shown before the
+    # QUESTION as context only; None (every question asked on its own) renders exactly as before
+    earlier_question: str | None = None
 
     @property
     def weak_evidence(self) -> bool:
@@ -467,11 +470,17 @@ def short_requested_provision(package: GenerationPackage) -> bool:
     return bool(exact) and sum(len(s.text or "") for s in exact) <= SHORT_PROVISION_CHARS
 
 
+EARLIER_QUESTION_LEAD = ("EARLIER QUESTION IN THIS CONVERSATION (context only, for words such as \"it\" or \"this\"; "
+                         "answer the QUESTION below):")
+
+
 def render_package(package: GenerationPackage) -> str:
     """The user turn: question, requested provisions, evidence, notes, format."""
     reqs = package.requirement_labels
     focus = not short_requested_provision(package)
     parts = [f"QUESTION: {package.question}", ""]
+    if package.earlier_question:
+        parts[:0] = [f"{EARLIER_QUESTION_LEAD} {package.earlier_question}", ""]
     parts.append("REQUESTED PROVISIONS:")
     if package.requirements:
         for rid, label in package.requirements:

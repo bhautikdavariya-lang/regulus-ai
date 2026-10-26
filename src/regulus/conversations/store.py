@@ -128,7 +128,7 @@ def _result_json(result: dict[str, Any] | None) -> str | None:
     text = json.dumps(slim, ensure_ascii=False, default=str)
     if len(text.encode("utf-8")) <= MAX_RESULT_BYTES:
         return text
-    keep = ("question", "answer", "citations", "accuracy", "model_called", "no_context", "notes", "grounding")
+    keep = ("question", "answer", "citations", "accuracy", "model_called", "no_context", "notes", "grounding", "followup")
     slim = {k: result.get(k) for k in keep if k in result}
     slim["_stored_without"] = sorted(set(result) - set(keep))
     return json.dumps(slim, ensure_ascii=False, default=str)
@@ -269,6 +269,29 @@ class ConversationStore:
             row = db.execute("SELECT * FROM messages WHERE conversation_id = ? AND turn_id = ? AND role = ?",
                              (conversation_id, turn_id, USER)).fetchone()
         return _message(row), True
+
+    def prior_turns(self, conversation_id: str, turn_id: str, limit: int = 4) -> list[tuple[str, Any]]:
+        """Follow-ups (regulus.rag.conversation): the answered turns asked before `turn_id` in this conversation,
+        oldest first, as (question, stored anchor or None) - at most `limit`. Only delivered ("ok") answers count:
+        an error or a cancelled answer resolved nothing. The anchor is read from the stored result and is sanitized
+        by its reader (Anchor.from_dict); no answer text is returned."""
+        _check_id(conversation_id, "conversation id")
+        _check_id(turn_id, "turn id")
+        with self._connect() as db:
+            here = db.execute("SELECT MIN(seq) AS s FROM messages WHERE conversation_id = ? AND turn_id = ?",
+                              (conversation_id, turn_id)).fetchone()["s"]
+            rows = db.execute(
+                "SELECT q.content AS question, a.result_json AS result_json FROM messages q JOIN messages a "
+                "ON a.conversation_id = q.conversation_id AND a.turn_id = q.turn_id AND a.role = 'assistant' "
+                "AND a.status = 'ok' WHERE q.conversation_id = ? AND q.role = 'user' AND q.turn_id != ? "
+                "AND (? IS NULL OR q.seq < ?) ORDER BY q.seq DESC LIMIT ?",
+                (conversation_id, turn_id, here, here, max(int(limit), 0))).fetchall()
+        out = []
+        for r in reversed(rows):
+            result = _loads_or_none(r["result_json"])
+            followup = result.get("followup") if isinstance(result, dict) else None
+            out.append((r["question"], followup.get("anchor") if isinstance(followup, dict) else None))
+        return out
 
     def answer_for(self, conversation_id: str, turn_id: str) -> dict[str, Any] | None:
         """The answer stored for a turn, whatever its status, or None."""

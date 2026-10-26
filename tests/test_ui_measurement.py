@@ -41,7 +41,9 @@ _spec.loader.exec_module(UI)
 CLEAN_Q, REPAIR_Q, MISSING_Q, OFFSCOPE_Q = CASES[0][0], CASES[2][0], CASES[3][0], CASES[6][0]
 RESPONSES = {CLEAN_Q: CASES[0][1], REPAIR_Q: CASES[2][1], MISSING_Q: CASES[3][1], OFFSCOPE_Q: CASES[6][1]}
 RUN = {"source": "ui", "model": {"model_id": "scripted"}, "code_revision": {"git_commit": None}}
-VOLATILE = ("wall_seconds", "server_timings_ms", "timings_ms", "stream", "conversation", "generation", "accuracy")
+# "followup": a second turn of the same conversation is read against the first (regulus.rag.conversation)
+VOLATILE = ("wall_seconds", "server_timings_ms", "timings_ms", "stream", "conversation", "generation", "accuracy",
+            "followup")
 
 
 class Index:

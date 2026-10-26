@@ -6,6 +6,7 @@ server has no history. Answer rendering itself is covered by test_streaming_ui /
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import subprocess
 
@@ -139,9 +140,11 @@ def test_the_page_sends_no_model_or_tuning_fields(scenario, key):
 def test_the_page_has_no_settings_or_model_controls():
     html = (PROJECT_ROOT / "web" / "index.html").read_text(encoding="utf-8")
     # the application answers with Qwen3-1.7B MLX 4-bit only: there is no model to choose
-    for gone in ('id="adapter"', 'id="topk"', 'id="tokens"', 'id="grounding"', 'class="settings', "<select",
+    for gone in ('id="adapter"', 'id="topk"', 'id="tokens"', 'id="grounding"', 'class="settings',
                  'type="number"', '$("adapter")', '$("topk")', '$("tokens")', '$("grounding")', '$("model")'):
         assert gone not in html, gone
+    # the one choice the page offers is the Focus of a question (which regulations it is read against), not a setting
+    assert re.findall(r"<select[^>]*>", html) == ['<select id="focus">']
     assert ">Settings<" not in html and "Settings</summary>" not in html
 
 

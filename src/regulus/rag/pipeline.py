@@ -9,6 +9,7 @@ chunks of one guidance document) are reported once with all their indices.
 from __future__ import annotations
 
 import inspect
+import os
 import re
 import time
 from collections import Counter
@@ -24,6 +25,7 @@ from regulus.planning.intent import SCOPE_MIXED, SCOPE_OUT, TYPE_CITATION, Quest
 from regulus.planning.shape import MODE_COMPARISON, MODE_ENUMERATION, MODE_FOCUSED, AnswerShape, analyze_shape
 from regulus.rag import answerability as gate
 from regulus.rag.citation_repair import repoint_citations
+from regulus.rag.conversation import turn_anchor
 from regulus.rag.answer_quality import mixed_scope_note, normalize_answer, out_of_scope_answer, quality_flags, strip_plan_labels
 from regulus.rag.context import ContextBundle, ContextPolicy, build_context, render_selection
 from regulus.rag.citations import ROLE_CONTEXT, RagCitation, build_answer_citations, citation_support
@@ -44,10 +46,14 @@ from regulus.rag.generation import (
 from regulus.rag.fallback import (
     FB_COMPOSED_LISTING,
     FB_DEFINITIONS_QUOTED,
+    FB_COMPOSED_PREMISE,
+    FB_COMPOSED_RECORDS,
+    FB_FOCUSED_QUOTE,
     FB_PREMISE_NOT_ESTABLISHED,
     FB_COMPOSED_SILENCE,
     FB_UNVALIDATED,
     blocked_answer,
+    focused_quote,
     premise_not_established,
     provision_is_identified,
     quoting_allowed,
@@ -319,6 +325,8 @@ def may_promote(question: str, plan: QueryPlan) -> str | None:
     return "any"
 
 
+# a follow-up's own words "point to" an anchored section when it is among their first this many candidate sections
+FOLLOWUP_RANK_TOP = int(os.environ.get("REGULUS_FOLLOWUP_RANK_TOP", "3"))
 _OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
 _FDCA_CUE = re.compile(r"\bFD&C\s+Act\b|\bFDCA\b|\bFederal\s+Food,\s+Drug,?\s+and\s+Cosmetic\s+Act\b|\b21\s+U\.?S\.?C\b", re.I)
 
@@ -801,8 +809,38 @@ class RagPipeline:
             repairs.append("truncation_noted")
         return text, "+".join(repairs) if repairs else None
 
+    def compose_from_identified(self, package, question: str, plan: QueryPlan, promotion) -> tuple[str | None, str | None]:
+        """FP1 / RS1 (regulus.rag.validator_switches): a confirmation question asserting a figure the identified provision
+        does not state (regulus.rag.premise_figures), or a records question about a section that requires none
+        (regulus.rag.records_silence) - both decided from the database text, never by the model. (None, None) otherwise."""
+        sections = [r.reference.section for r in plan.requirements if r.reference.title == "21" and r.reference.section]
+        if any(r.reference.section is None for r in plan.requirements):
+            return None, None
+        labels = [f"21 CFR {s}" for s in dict.fromkeys(sections)]
+        labels += [f"FD&C Act § {s}" for s in (promotion.statute if promotion is not None else ())]
+        if precision_fix("FP1"):
+            from regulus.rag.premise_figures import compose as compose_premise
+
+            text = compose_premise(package, question, labels)
+            if text:
+                return text, FB_COMPOSED_PREMISE
+        if precision_fix("RS1") and sections and not (promotion is not None and promotion.statute):
+            from regulus.rag.records_silence import asks_records, compose as compose_records
+
+            promoter = self.section_promoter()
+            if promoter is not None and asks_records(question):
+                try:
+                    texts = {f"21 CFR {s}": promoter._section_text(s) for s in dict.fromkeys(sections)}
+                except Exception:  # noqa: BLE001 - without the full text the silence cannot be established
+                    return None, None
+                text = compose_records(package, question, texts)
+                if text:
+                    return text, FB_COMPOSED_RECORDS
+        return None, None
+
     def repair_with_fallback(self, text: str, package: GenerationPackage, report: ValidationReport, gen, *, question: str,
-                             plan: QueryPlan, shape: AnswerShape | None, analysis: QuestionAnalysis | None, sources) -> dict[str, Any]:
+                             plan: QueryPlan, shape: AnswerShape | None, analysis: QuestionAnalysis | None, sources,
+                             focus_quote: bool = False) -> dict[str, Any]:
         """Repair a generated answer that failed validation, then (Stage 5, answerability="gate") never
         show a result that is still ungrounded: it is replaced by the safe fallback builder. The one
         implementation used by `answer()` and by the evaluation harness.
@@ -832,12 +870,52 @@ class RagPipeline:
             fallback_reason = f"the repaired answer still failed validation: {failed_status}"
             repair = (repair + "+" if repair else "") + "failed_repair_fallback"
             final = validate_answer(text, package, gen)
+        if fallback_type == FB_UNVALIDATED and focus_quote:
+            # Q1: the governing provision's relevant paragraphs, verbatim, instead of "not shown". Grounded by
+            # construction (the EXACT text of the identified provision, each paragraph under its own citation); the
+            # answer validator, which requires every requested provision and list item to be addressed, is recorded
+            # but does not decide - a quote is partial on purpose
+            quoted = focused_quote(package, question)
+            if quoted:
+                text, final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
+                fallback_reason = f"{fallback_reason}; the governing provision is quoted instead"
+                repair = (repair + "+" if repair else "") + FB_FOCUSED_QUOTE
         return {"text": text, "repair": repair, "repair_output": repair_output, "final": final,
                 "fallback_type": fallback_type, "fallback_reason": fallback_reason}
 
     # -- main entry ----------------------------------------------------------
 
-    def answer(self, question: str, on_event=None) -> RagAnswer:
+    def read_followup(self, question: str, plan: QueryPlan, context):
+        """How a question asked later in a conversation is read against it (regulus.rag.conversation.resolve), with
+        the signals that need the database: whether it names an FD&C Act section or a color additive the anchored
+        sections do not list, and whether its own words rank an anchored section. None without a context."""
+        from regulus.rag.conversation import resolve as resolve_followup, subject_words
+
+        if not context:
+            return None
+        anchor = context.anchor
+        promoter = self.section_promoter()
+        names = bool(plan.requirements) or bool(plan.docket)
+        other_entity = ranked = False
+        heading_words: set[str] = set()
+        if promoter is not None and anchor:
+            try:
+                from regulus.retrieval.entities import entity_index
+                from regulus.retrieval.section_index import SectionIndex
+
+                lex = SectionIndex.question_lexemes(promoter.db, question)
+                names = names or bool(promoter.named_statute(question, lex))
+                colors = entity_index(promoter.index).match(question)
+                other_entity = bool(colors) and not any(set(c.sections) & set(anchor.cfr) for c in colors)
+                if not (names or other_entity):
+                    ranked = promoter.ranks_any(question, anchor.cfr, anchor.statute, top=FOLLOWUP_RANK_TOP)
+                    heading_words = set().union(*(subject_words(h) for h in promoter.heading_words(anchor.cfr)))
+            except Exception:  # noqa: BLE001 - an aid: without the signals the text alone decides
+                pass
+        return resolve_followup(question, context, names_provision=names, other_entity=other_entity,
+                                anchor_ranked=ranked, heading_words=heading_words)
+
+    def answer(self, question: str, on_event=None, context=None) -> RagAnswer:
         """Answer a question. `on_event(kind, data)`, when given, is told about
         progress as it happens - "context" (the sources selected), "generation_started",
         "delta" (draft text of the one generation, as produced), "generation_finished" -
@@ -851,17 +929,30 @@ class RagPipeline:
         timings: dict[str, float] = {}
         t0 = time.perf_counter()
         plan = plan_query(question)  # Stage 1: the one and only parse of the question
+        asked = question
+        # a follow-up (`context`: regulus.rag.conversation.ConversationContext) is read against its conversation; without
+        # a context nothing below changes
+        followup = self.read_followup(question, plan, context) if context else None
+        if followup is not None and followup.question != question:
+            question = followup.question   # "paragraph (b)" / "this section" written out as the anchored section
+            plan = plan_query(question)
+        anchored = followup is not None and followup.anchored and not plan.requirements
         own_plan = plan   # the question's own plan: every scope decision is made on it, never on a promoted one
         promotion = None
         promotion_error = None
         named_companions_added: list[str] = []
         promoter, allowed, parts, promotion_error = self.promotion_request(question, plan)
+        if anchored and promoter is None and allowed == "any":
+            promoter = self.section_promoter()   # the conversation names the domain a short follow-up leaves out
         if promoter is not None:
             # the section(s) that answer a question naming none - or naming only a 21 CFR part of the cosmetics
             # programme ("Under Part 82, ...") - are resolved, and the plan is rebuilt as if the question cited them
             part_only = bool(plan.requirements)
             try:
-                promotion = promoter.resolve(question, parts=parts, named_only=allowed == "named_statute")
+                promotion = (promoter.anchored(question, followup.anchor.cfr, followup.anchor.statute)
+                             if anchored and allowed == "any" else None)
+                if promotion is None:
+                    promotion = promoter.resolve(question, parts=parts, named_only=allowed == "named_statute")
             except Exception as exc:  # noqa: BLE001 - promotion is an aid: on any failure the question is answered as before
                 promotion = None
                 promotion_error = f"{type(exc).__name__}: {exc}"[:300]
@@ -952,6 +1043,8 @@ class RagPipeline:
             st = statute_index(self.retriever.db)
             package = replace(package, resolved=tuple(f"FD&C Act § {s} [21 U.S.C. {st.usc(s)}] {st.heading(s)}"
                                                       for s in promotion.statute))
+        if package is not None and followup is not None and followup.earlier_question:
+            package = replace(package, earlier_question=followup.earlier_question)
         normalization: dict[str, Any] | None = None
         # Failure observatory: the stages of the text, kept separately so that a
         # later step can never hide what an earlier one produced. None when no model call.
@@ -972,6 +1065,10 @@ class RagPipeline:
         # what the gate would have decided); acted on only when answerability="gate".
         t_gate = time.perf_counter()
         gate_on = self.config.answerability == "gate"
+        # Q1 (regulus.rag.validator_switches): the provision the question concerns is identified - named by the question
+        # or resolved for it - so its relevant paragraphs may stand in for an answer that cannot be shown
+        focus_quote_allowed = bool(precision_fix("Q1") and gate_on and package is not None and (
+            provision_is_identified(plan, package) or (promotion is not None and bool(promotion.statute) and not plan.requirements)))
         gate_analysis = analysis if analysis is not None else analyze_question(plan)
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
                                resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
@@ -996,6 +1093,8 @@ class RagPipeline:
                 from regulus.rag.practice_silence import compose as compose_silence
 
                 text, composed_type = compose_silence(package, question, promotion.notes), FB_COMPOSED_SILENCE
+            if not text and focus_quote_allowed and (precision_fix("FP1") or precision_fix("RS1")):
+                text, composed_type = self.compose_from_identified(package, question, plan, promotion)
             if not text:
                 composed_type = FB_COMPOSED_LISTING
                 text = compose_listing(package, question)
@@ -1044,8 +1143,13 @@ class RagPipeline:
             # a color-additive listing question: answered from the listing's own paragraphs (rag.color_listing), validated
             answer_text, fallback_type = composed
             validation_initial = validation_final = composed_report
-            fallback_reason = ("color additive listing: per-product use decided from the listing's uses paragraph, "
-                               "21 CFR 70.3(s)/(v) and 70.5(a); every paragraph quoted")
+            fallback_reason = {
+                FB_COMPOSED_PREMISE: "a figure the question attributes to the identified provision is not in its text; "
+                                     "the paragraphs stating figures of that kind are quoted",
+                FB_COMPOSED_RECORDS: "the identified section's full text has no record-keeping language; what it requires "
+                                     "is quoted",
+            }.get(fallback_type, "color additive listing: per-product use decided from the listing's uses paragraph, "
+                                 "21 CFR 70.3(s)/(v) and 70.5(a); every paragraph quoted")
             coverage_action = "answer"
             timings["generation_ms"] = 0.0
         else:
@@ -1145,7 +1249,8 @@ class RagPipeline:
                         and not (generation_info.get("correction_pass") or {}).get("accepted")):
                     repair_input = answer_text
                     r = self.repair_with_fallback(answer_text, package, validation_initial, gen, question=question, plan=plan,
-                                                  shape=shape, analysis=gate_analysis, sources=bundle.sources)
+                                                  shape=shape, analysis=gate_analysis, sources=bundle.sources,
+                                                  focus_quote=focus_quote_allowed)
                     answer_text, repair, repair_output, validation_final = r["text"], r["repair"], r["repair_output"], r["final"]
                     fallback_type, fallback_reason = r["fallback_type"], r["fallback_reason"]
                 timings["validation_ms"] = round((time.perf_counter() - t3) * 1000, 2)
@@ -1163,6 +1268,13 @@ class RagPipeline:
                             fallback_type = FB_DEFINITIONS_QUOTED
                             fallback_reason = ("the model declined; the CFR definitions of the question's terms are "
                                                "quoted verbatim and not applied")
+                    if fallback_type is None and focus_quote_allowed:
+                        # Q1: declined although the provision the question concerns was supplied: its relevant
+                        # paragraphs, verbatim (grounded by construction, as above)
+                        quoted = focused_quote(package, question)
+                        if quoted:
+                            answer_text, validation_final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
+                            fallback_reason = "the model declined; the governing provision is quoted instead"
             if gate_on and decision.limitation and not (analysis is not None and analysis.scope_status == SCOPE_MIXED):
                 # Stage 5 PARTIALLY_ANSWERABLE: say what the evidence does not establish (mixed scope in
                 # "structured" mode already gets its own note below)
@@ -1216,7 +1328,7 @@ class RagPipeline:
         timings["total_ms"] = round((time.perf_counter() - t0) * 1000, 2)
         t_meta = time.perf_counter()
         out = RagAnswer(
-            question=question,
+            question=asked,
             answer=answer_text,
             citations=citations,
             retrieved_results=list(response.results),
@@ -1286,6 +1398,9 @@ class RagPipeline:
                                       else ({"error": promotion_error} if promotion_error else
                                             ({"named_companions": named_companions_added} if named_companions_added else None))),
                 "config": self.config.to_dict(),
+                # follow-ups: what this turn was resolved to (the next question's anchor) and how it was read
+                "conversation": {"anchor": turn_anchor(own_plan, promotion, followup).to_dict(),
+                                 "followup": followup.to_dict() if followup is not None else None},
             },
         )
         # diagnostics payload built after total_ms (it re-renders the prompt and serialises the registry)

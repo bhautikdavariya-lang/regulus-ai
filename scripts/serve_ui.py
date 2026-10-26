@@ -358,9 +358,14 @@ class Engine:
 
     def _ask(self, question: str, *, adapter: str = "", grounding: bool = False,
              top_k: int = 8, max_new_tokens: int | None = None, on_event=None,
-             accuracy: bool | None = None, turn=None, model: str | None = None) -> dict:
+             accuracy: bool | None = None, turn=None, model: str | None = None, context=None,
+             focus: str | None = None) -> dict:
         """Answer one question. `on_event` (streaming) is passed to the pipeline
-        unchanged; the returned dict is the same with or without it."""
+        unchanged; the returned dict is the same with or without it. `context`
+        (regulus.rag.conversation.ConversationContext): the earlier turns of its
+        conversation, for a follow-up; None answers the question on its own. `focus`
+        ("cosmetics" / "general", the page's Focus control) overrides the deployment's
+        REGULUS_DEPLOYMENT_SCOPE for this answer only; None keeps it."""
         from dataclasses import replace
         from regulus.rag import RagPipeline
         from regulus.retrieval import LexicalRetriever
@@ -403,7 +408,10 @@ class Engine:
         )
         setup_ms = round((time.perf_counter() - t_setup) * 1000, 2)
         t_answer = time.perf_counter()
-        out = pipeline.answer(question, on_event=on_event)
+        from regulus.retrieval.section_index import focus as answer_focus
+
+        with answer_focus(focus):
+            out = pipeline.answer(question, on_event=on_event, context=context)
         answer_ms = round((time.perf_counter() - t_answer) * 1000, 2)
         t_build = time.perf_counter()
         g = out.metadata.get("grounding")
@@ -461,6 +469,9 @@ class Engine:
             **{k: out.metadata.get(k) for k in ("answerability", "generation_called", "generation_blocked", "block_reason",
                                                 "fallback_type", "fallback_reason", "scope_policy", "semantic_fallback",
                                                 "reference_lookup")},
+            # follow-ups: what this turn was resolved to (the next turn's anchor, read back from the chat store) and
+            # how it was read against its conversation (None when asked on its own)
+            "followup": out.metadata.get("conversation"),
             "timings_ms": out.timings_ms,
             "input_tokens": out.input_tokens,
             "output_tokens": out.output_tokens,
@@ -468,9 +479,11 @@ class Engine:
             "model": {"id": MODEL_MLX, "label": MLX_LABEL,
                       **{k: v for k, v in self.model_identity().items() if k in ("backend", "model_id", "model_revision", "dtype")}},
             "snapshot_date": self.snapshot,
+            "focus": focus,
             # the exact evidence placed in the prompt, with its fingerprint (regulus.traceability)
             "evidence_snapshot": out.evidence_snapshot.to_dict() if out.evidence_snapshot is not None else None,
         }
+        result["presentation"] = presentation_of(result)
         # latency baseline: server-side stages around the pipeline
         result["server_timings_ms"] = {"engine_setup_ms": setup_ms, "pipeline_answer_ms": answer_ms,
                                        "response_build_ms": round((time.perf_counter() - t_build) * 1000, 2)}
@@ -671,9 +684,12 @@ class Handler(BaseHTTPRequestHandler):
                                       "acceptance-test score")},
                 "conversations": {
                     "enabled": self.store is not None,
-                    "context": ("each question is answered on its own: earlier messages are kept as history "
-                                "but are never sent to the model or used as evidence"),
+                    "context": ("a follow-up is read against its conversation: the provisions the earlier questions were "
+                                "resolved to and the question that opened the topic; earlier answers are never sent to "
+                                "the model or used as evidence"),
                 },
+                # the page's Focus control: the deployment's own scope and the values a request may ask for
+                "focus": focus_config(),
                 "answer_length": {
                     "policy": self.engine.settings.answer_length.policy,
                     "ceiling": self.engine.settings.answer_length.max_new_tokens,
@@ -807,6 +823,12 @@ class Handler(BaseHTTPRequestHandler):
         # the feature existed. The regression harness sends false for Run A.
         if "accuracy" in body:
             out["accuracy"] = bool(body["accuracy"])
+        if body.get("focus") is not None:   # the page's Focus control: an unknown value is refused, never guessed
+            from regulus.retrieval.section_index import FOCUSES
+
+            if body["focus"] not in FOCUSES:
+                raise ValueError(f"focus must be one of {', '.join(FOCUSES)}")
+            out["focus"] = body["focus"]
         if "model" in body:   # a client may name the model it expects; any other than the one served is refused
             out["model"] = str(body.get("model") or "")
             check_model(out["model"])
@@ -895,6 +917,7 @@ class Handler(BaseHTTPRequestHandler):
         # was already answered is replayed rather than generated - and stored - a second time. A
         # request without conversation fields takes exactly the path it always did.
         conversation = None
+        context = None
         if body.get("conversation_id") is not None or body.get("turn_id") is not None:
             if not self._history_available():
                 return
@@ -902,6 +925,7 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 self.store.add_user_message(cid, tid, question)
                 stored = self.store.answer_for(cid, tid)
+                context = conversation_context(self.store, cid, tid)
             except ConversationNotFound:
                 self._json(404, {"error": "conversation not found"})
                 return
@@ -961,7 +985,8 @@ class Handler(BaseHTTPRequestHandler):
             with _LOCK:
                 lock_wait_ms = round((time.perf_counter() - t0) * 1000, 2)
                 result = browser_safe(self.engine.ask(question, on_event=on_event, **kwargs,
-                                                      **({"turn": turn} if turn is not None else {})))
+                                                      **({"turn": turn} if turn is not None else {}),
+                                                      **({"context": context} if context else {})))
             result["wall_seconds"] = round(time.perf_counter() - t0, 1)
             result.setdefault("server_timings_ms", {}).update({"lock_wait_ms": lock_wait_ms})
             result["stream"] = {**stats, "final_ms": round((time.perf_counter() - t_request) * 1000, 2)}
@@ -1037,6 +1062,40 @@ STREAM_EVENTS = frozenset({"start", "context", "generation_started", "generation
 PROGRESS_INTERVAL_S = 0.5   # at most one progress event per interval: their count does not track the draft's length
 _DRAFT_KEYS = ("raw_model_output", "repair_input", "repair_output")
 _PROBLEM_KEYS = ("code", "severity", "requirement_id", "citation")
+
+
+def focus_config() -> dict:
+    from regulus.retrieval.section_index import FOCUSES, deployment_scope
+
+    return {"default": deployment_scope() or "general", "options": list(FOCUSES)}
+
+
+def presentation_of(result: dict) -> dict | None:
+    """The page layout of a delivered answer (regulus.rag.presentation): display only - the answer text is what is
+    copied, stored, evaluated and scored. None if it cannot be built; the page then shows the plain text."""
+    try:
+        from regulus.rag.presentation import present
+
+        return present(result.get("answer") or "", fallback_type=result.get("fallback_type"),
+                       citations=result.get("citations"), followup=result.get("followup")).to_dict()
+    except Exception as exc:  # noqa: BLE001 - the answer is delivered whatever happens here
+        print(f"  presentation: not built ({type(exc).__name__}); plain text shown", flush=True)
+        return None
+
+
+def conversation_context(store, conversation_id: str, turn_id: str):
+    """The earlier answered turns of a conversation as a ConversationContext for a follow-up, or None (a first question,
+    or history that could not be read: the question is then answered on its own, as before follow-ups existed)."""
+    from regulus.rag.conversation import MAX_TURNS, ConversationContext
+
+    try:
+        ctx = ConversationContext.from_records(store.prior_turns(conversation_id, turn_id, limit=MAX_TURNS))
+    except ConversationNotFound:
+        raise
+    except Exception as exc:  # noqa: BLE001 - context is an aid; the answer never depends on reading it
+        print(f"  chat: earlier turns not read ({type(exc).__name__}); answered on its own", flush=True)
+        return None
+    return ctx or None
 
 
 def browser_safe(result):

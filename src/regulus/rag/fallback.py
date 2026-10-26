@@ -39,6 +39,9 @@ FB_COMPOSED_LISTING = "composed_from_listing"   # a color-additive listing quest
 FB_COMPOSED_SILENCE = "composed_practice_silence"   # a practice no cosmetic provision mentions, answered from the Act (rag.practice_silence)
 FB_DEFINITIONS_QUOTED = "definitions_quoted"   # a general question the model declined: its terms' CFR definitions, verbatim
 FB_PREMISE_NOT_ESTABLISHED = "premise_not_established"  # Stage 7: a yes/no premise the identified provision does not state
+FB_COMPOSED_PREMISE = "composed_premise_figure"   # FP1: a confirmation question asserting a figure the provision does not state
+FB_COMPOSED_RECORDS = "composed_records_silence"   # RS1: a records question about a section that requires none
+FB_FOCUSED_QUOTE = "focused_provision_quote"   # Q1: no verified answer; the governing provision's relevant paragraphs, verbatim
 FALLBACK_TYPES = (FB_OUT_OF_SCOPE, FB_UNSUPPORTED_REQUEST, FB_AMBIGUOUS, FB_WRONG_PROVISION, FB_PROVISION_NOT_FOUND,
                   FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED, FB_PREMISE_NOT_ESTABLISHED)
 
@@ -148,3 +151,47 @@ def premise_not_established(package, terms) -> tuple[str, str]:
     listed = ", ".join(f'"{t}"' for t in terms)
     return (f"The retrieved text of the requested provision does not state {listed}. What it says, verbatim:\n"
             f"{extractive_answer(package)}"), FB_PREMISE_NOT_ESTABLISHED
+
+
+# Q1 (26 Oct 2026, regulus.rag.validator_switches): when no generated answer can be shown - withheld, or the model
+# declined although the provision the question is about was supplied - the reader gets that provision's paragraphs that
+# share most subject words with the question, verbatim and cited, instead of a bare "not shown". Only for a provision
+# identified by the question, by name or by section resolution (the caller decides); never an application of it.
+FOCUSED_QUOTE_LEAD = ("A complete answer to this question could not be verified against the regulation text, so none is "
+                      "given. What the provision it concerns says on this point, verbatim:")
+FOCUSED_QUOTE_PARAGRAPHS = 3
+FOCUSED_QUOTE_CHARS = 1600
+
+
+def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAPHS,
+                  max_chars: int = FOCUSED_QUOTE_CHARS) -> str | None:
+    """The requested provisions' EXACT paragraphs (and promoted FD&C Act text) that share most subject words with the
+    question, at most `limit`, in document order, each cited and quoted whole; None when no paragraph shares one."""
+    from regulus.rag.conversation import subject_words
+    from regulus.rag.generation import _verbatim, whole_sentences
+    from regulus.retrieval.evidence import TIER_EXACT, TIER_SUPPORTING
+
+    if package is None:
+        return None
+    asked = subject_words(question)
+    pool = [s for s in package.sources if not s.is_docket and (
+        (s.tier == TIER_EXACT and s.requirement_ids) or (s.tier == TIER_SUPPORTING and s.corpus == "usc"))]
+    scored = []
+    for s in pool:
+        body = whole_sentences(s.text or "")
+        overlap = len(asked & subject_words(body))
+        if body and overlap:
+            scored.append((-overlap, s.index, s, body))
+    if not scored:
+        return None
+    kept, used = [], 0
+    for _, _, s, body in sorted(scored, key=lambda x: (x[0], x[1])):
+        if len(kept) >= limit or (kept and used + len(body) > max_chars):
+            break
+        kept.append((s, body))
+        used += len(body)
+    lines = [FOCUSED_QUOTE_LEAD]
+    for s, body in sorted(kept, key=lambda x: x[0].index):
+        kind = "FD&C Act, verbatim" if s.corpus == "usc" else "eCFR, binding, verbatim"
+        lines.append(f"{s.citation} ({kind}): {_verbatim(body, s.index)}")
+    return "\n".join(lines)

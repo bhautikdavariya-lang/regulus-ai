@@ -80,7 +80,8 @@ REFUSING_FALLBACKS = {**EVIDENCE_BASED_FALLBACKS, **WITHHOLDING_FALLBACKS}
 # color-listing composer (regulus.rag.color_listing) states each product's use and quotes the listing, cited; the
 # blind scorers passed 19 of its 21 holdout answers, and this check called 20 of the composed PASS answers declines
 # (23 Oct 2026, live evaluator vs blind verdicts).
-ANSWERING_FALLBACKS = frozenset({"composed_from_listing", "composed_practice_silence"})
+ANSWERING_FALLBACKS = frozenset({"composed_from_listing", "composed_practice_silence", "composed_premise_figure",
+                                 "composed_records_silence"})
 
 # The answerability states (regulus.rag.answerability) that ASSERT the evidence
 # could not answer. Deliberately a whitelist: UNKNOWN means the gate did not

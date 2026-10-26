@@ -331,3 +331,64 @@ def test_responses_forbid_framing(server):
         assert headers.get("X-Frame-Options") == "DENY", path
         assert headers.get("Content-Security-Policy") == "frame-ancestors 'none'", path
         assert headers.get("X-Content-Type-Options") == "nosniff", path
+
+
+# ------------------------------------------------------------- follow-ups (regulus.rag.conversation)
+
+
+class ContextEngine(ScriptedEngine):
+    """Records the conversation context each question was answered with; its results carry an anchor."""
+
+    def __init__(self):
+        super().__init__()
+        self.contexts = []
+
+    def ask(self, question, *, on_event=None, **kwargs):
+        self.contexts.append(kwargs.get("context"))
+        result = super().ask(question, on_event=on_event, **kwargs)
+        result["followup"] = {"anchor": {"cfr": ["74.2708"], "statute": []}, "followup": None}
+        return result
+
+
+def test_a_second_turn_is_answered_with_the_first_turns_question_and_anchor(server):
+    base, _, H = server
+    H.engine = engine = ContextEngine()
+    cid = new_conversation(base)
+    first = "Can we use D&C Yellow No. 8 in a body lotion?"
+    stream(base, {"question": first, "conversation_id": cid, "turn_id": uuid.uuid4().hex})
+    stream(base, {"question": "Can we use it in an eye shadow?", "conversation_id": cid, "turn_id": uuid.uuid4().hex})
+    assert engine.contexts[0] is None   # a first question is answered on its own: ask() is called as before
+    ctx = engine.contexts[1]
+    assert [t.question for t in ctx.turns] == [first] and ctx.anchor.cfr == ("74.2708",)
+    # another conversation starts fresh, and a request without conversation fields never gets a context
+    stream(base, {"question": "Can we use it in an eye shadow?", "conversation_id": new_conversation(base),
+                  "turn_id": uuid.uuid4().hex})
+    stream(base, {"question": "Can we use it in an eye shadow?"})
+    assert engine.contexts[2] is None and engine.contexts[3] is None
+
+
+def test_a_failed_turn_is_not_context_and_the_anchor_is_stored_with_the_answer(server):
+    base, _, H = server
+    H.engine = engine = ContextEngine()
+    cid = new_conversation(base)
+    engine.fail = RuntimeError("boom")
+    stream(base, {"question": "first, failed", "conversation_id": cid, "turn_id": uuid.uuid4().hex})
+    engine.fail = None
+    stream(base, {"question": "second", "conversation_id": cid, "turn_id": uuid.uuid4().hex})
+    assert engine.contexts[1] is None   # the only earlier turn has no delivered answer
+    stored = [m for m in H.store.get_conversation(cid)["messages"] if m["role"] == "assistant" and m["status"] == "ok"]
+    assert stored[0]["result"]["followup"]["anchor"] == {"cfr": ["74.2708"], "statute": []}
+    assert H.store.prior_turns(cid, uuid.uuid4().hex) == [("second", {"cfr": ["74.2708"], "statute": []})]
+
+
+def test_the_focus_is_passed_on_only_when_asked_and_an_unknown_one_is_refused(server):
+    base, _, H = server
+    H.engine = engine = ContextEngine()
+    seen = []
+    ask = engine.ask
+    engine.ask = lambda q, **kw: (seen.append(kw.get("focus", "-")), ask(q, **kw))[1]
+    stream(base, {"question": "q1"})
+    stream(base, {"question": "q2", "focus": "general"})
+    assert seen == ["-", "general"]
+    status, body = stream(base, {"question": "q3", "focus": "drugs"})
+    assert status == 400 and "focus must be one of" in body["error"] and len(seen) == 2

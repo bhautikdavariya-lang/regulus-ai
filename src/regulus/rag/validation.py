@@ -620,6 +620,12 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
             from regulus.rag.practice_silence import SEARCH_SENTENCE_RE
 
             figure_text = SEARCH_SENTENCE_RE.sub(" ", figure_text)
+        if precision_fix("FP1"):
+            # the premise answer's first sentence quotes the QUESTION's figure to say the provision does not state it
+            # (regulus.rag.premise_figures): not a figure taken from the evidence
+            from regulus.rag.premise_figures import PREMISE_SENTENCE_RE
+
+            figure_text = PREMISE_SENTENCE_RE.sub(" ", figure_text)
         if package.answer_style == "apply" and package.question:
             # the question's own figures ("section 721", "80 days", "12 fl oz") are facts it states - unless a source
             # states a different number in the same unit: "up to 10 percent" in the question is not supplied when

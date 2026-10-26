@@ -5,6 +5,9 @@
         --out artifacts/cosmetics_benchmark/holdout100_20261022/answers.jsonl
 
 --selection: a selection.json (summary.selected_ids) or a .json list of {"id": ...}; --bank: the question bank workbook.
+--chains: the selection lists follow-ups (questions carry "parent"); each parent is asked first and its follow-ups after
+it in order, in one conversation (regulus.rag.conversation), as the bank's instructions say ("ask its five follow-ups
+in order, in that same session"). Parent lines are written with "role": "parent".
 The output file is appended to and questions already in it are skipped, so an interrupted run resumes with the same
 command. Each line: id, question asked, delivered answer, fallback type, promotion, sources, validation, timings.
 The database is opened read-only by the caller's configuration; nothing is written to it.
@@ -86,20 +89,35 @@ def main() -> int:
     ap.add_argument("--bank", default=str(ROOT / "Regulus_QBank_Cosmetics_REV01.xlsx"))
     ap.add_argument("--replay-promotions", help="answers.jsonl of an earlier run: reuse its section promotions, so a "
                                                 "model comparison measures the answers only")
+    ap.add_argument("--chains", action="store_true", help="ask each follow-up after its parent, in one conversation")
     a = ap.parse_args()
     sel = json.loads(Path(a.selection).read_text(encoding="utf-8"))
     ids = sel["summary"]["selected_ids"] if isinstance(sel, dict) else [x["id"] for x in sel]
     bank = read_bank(Path(a.bank))
+    parent_of: dict[str, str] = {}
     # a selection may carry its own question texts (e.g. rows of the 300-question acceptance benchmark)
     if isinstance(sel, dict):
         for q in sel.get("questions") or []:
             qid, text = q.get("ID") or q.get("question_id"), q.get("Question (ask verbatim)") or q.get("question")
             if qid and text:
                 bank.setdefault(qid, {"Question (ask verbatim)": text})
+            if qid and q.get("parent"):
+                parent_of[qid] = q["parent"]
     out = Path(a.out)
     # answered questions are skipped; a question that failed (e.g. a database timeout) is retried by re-running
-    done = ({r["id"] for r in (json.loads(l) for l in out.read_text(encoding="utf-8").splitlines() if l.strip())
-             if not r.get("error")} if out.exists() else set())
+    recorded = ([json.loads(l) for l in out.read_text(encoding="utf-8").splitlines() if l.strip()] if out.exists() else [])
+    done = {r["id"] for r in recorded if not r.get("error")}
+    if a.chains:
+        # each parent goes first, then its follow-ups; a chain already begun resumes with its recorded turns as context
+        missing = [i for i in ids if i not in parent_of]
+        if missing:
+            raise SystemExit(f"--chains: {len(missing)} selected ids have no parent (e.g. {missing[0]})")
+        ordered = []
+        for i in ids:
+            if parent_of[i] not in ordered:
+                ordered.append(parent_of[i])
+            ordered.append(i)
+        ids = ordered
     todo = [i for i in ids if i not in done]
     print(f"{len(ids)} selected, {len(done)} already answered, {len(todo)} to go", flush=True)
     if not todo:
@@ -143,14 +161,25 @@ def main() -> int:
                 rec = json.loads(line) if line.strip() else {}
                 if rec.get("id") and not rec.get("error"):
                     replay[rec["id"]] = rec.get("promotion")
+        from regulus.rag.conversation import ConversationContext
+
+        turns: dict[str, list] = {}   # chain (parent id) -> [(question, anchor dict)] answered so far, in order
+        if a.chains:
+            for rec in recorded:
+                if not rec.get("error"):
+                    chain = rec["id"] if rec.get("role") == "parent" else parent_of.get(rec["id"])
+                    if chain:
+                        turns.setdefault(chain, []).append((rec["asked"], (rec.get("followup") or {}).get("anchor")))
         with out.open("a", encoding="utf-8") as f:
             for n, qid in enumerate(todo, 1):
                 q = bank[qid]["Question (ask verbatim)"]
                 t0 = time.perf_counter()
                 if a.replay_promotions:
                     _replay(pipe, q, replay.get(qid))
+                chain = (qid if qid not in parent_of else parent_of[qid]) if a.chains else None
+                context = ConversationContext.from_records(turns.get(chain, [])) if chain and qid in parent_of else None
                 try:
-                    r = pipe.answer(q)
+                    r = pipe.answer(q, context=context) if context else pipe.answer(q)
                 except Exception as exc:  # noqa: BLE001 - one failed question must not end the run
                     f.write(json.dumps({"id": qid, "asked": q, "error": f"{type(exc).__name__}: {exc}"[:500]}) + "\n")
                     f.flush()
@@ -163,9 +192,12 @@ def main() -> int:
                     "sources": [[x.result.citation.label, x.tier, len(x.text or "")] for x in r.context.sources],
                     "validation": md.get("validation"), "generation": md.get("generation"),
                     "raw": md.get("raw_model_output"), "seconds": round(time.perf_counter() - t0, 1),
-                    "model": gen.describe(),
+                    "model": gen.describe(), "followup": md.get("conversation"),
+                    **({"role": "parent" if qid not in parent_of else "followup", "chain": chain} if a.chains else {}),
                 }, ensure_ascii=False, default=str) + "\n")
                 f.flush()
+                if chain:
+                    turns.setdefault(chain, []).append((q, (md.get("conversation") or {}).get("anchor")))
                 left = (time.perf_counter() - t_all) / n * (len(todo) - n)
                 print(f"[{n}/{len(todo)}] {qid} {md.get('fallback_type') or 'answer'} {time.perf_counter() - t0:.0f}s"
                       f"  ~{left / 60:.0f} min left", flush=True)

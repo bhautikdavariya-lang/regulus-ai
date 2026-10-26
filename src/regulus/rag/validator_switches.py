@@ -34,6 +34,16 @@ Answer post-processing fixes share the switch (failure analysis fix G):
       text decides) is answered from FD&C Act 606 and 601 (and 610 for records) (regulus.rag.practice_silence).
       26 Oct: fires on 5 of the 1,211 section-benchmark questions (UC-004/005/008/010/012); blind two-lens scoring
       PASS 0 -> 5 on both lenses, exact replay of 228 recorded answers byte-identical
+Fallback fix (26 Oct 2026; NOT in the default until its blind A/B passes):
+  Q1  an answer that cannot be shown (withheld after validation, or a model decline although the provision was
+      supplied) on a question whose provision is identified - named by it or resolved for it - gives that provision's
+      paragraphs sharing most subject words with the question, verbatim and cited, instead of "not shown"
+      (regulus.rag.fallback.focused_quote)
+  FP1 a confirmation question ("..., correct?", "Does X require a 24-month ...?") that attributes to the identified
+      provision a figure none of the supplied text states is answered "No", with the provision's paragraphs stating
+      figures of that kind, verbatim (regulus.rag.premise_figures)
+  RS1 a records question about identified 21 CFR sections whose full text has no record-keeping language is answered
+      "sets no recordkeeping requirement", with what the section requires, verbatim (regulus.rag.records_silence)
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.
