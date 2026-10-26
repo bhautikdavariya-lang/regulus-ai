@@ -61,3 +61,11 @@ def test_a_premise_answer_prefers_figures_of_the_asserted_kind_then_a_rule():
     from regulus.rag.premise_figures import _OPERATIVE
     assert _OPERATIVE.search("any cosmetic aerosol product containing vinyl chloride is deemed adulterated")
     assert not _OPERATIVE.search("Vinyl chloride has been used as an ingredient in cosmetic aerosol products.")
+
+
+def test_an_amount_is_never_read_as_a_citation_by_the_figure_check():
+    from regulus.rag.validation import _strip_supplied_citations
+
+    supplied = "a special advance deposit of $2,500.00 ... 21 CFR 70.19(m)"
+    assert "$2,500.00" in _strip_supplied_citations("A deposit of $2,500.00 is due under 21 CFR 70.19(m).", supplied)
+    assert "70.19" not in _strip_supplied_citations("A deposit of $2,500.00 is due under 21 CFR 70.19(m).", supplied)

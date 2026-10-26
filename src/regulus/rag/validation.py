@@ -130,7 +130,8 @@ _STOPWORDS = {
     "ecfr", "binding", "regulation", "guidance", "clause", "clauses", "iso", "subclause",
 }
 LOW_OVERLAP_THRESHOLD = 0.4
-_CFR_CITE_RE = re.compile(r"(?:§§?\s*|\b21\s+CFR\s+(?:§\s*)?)?(?<![\d.])(\d{1,4}\.\d{1,5}[a-z]?)(?:\s*\([A-Za-z0-9]{1,6}\))*", re.I)
+# (?<![\d.,$]): the "500.00" inside "$2,500.00" is an amount, not section 500.00 (withheld 70.19 drafts, 26 Oct)
+_CFR_CITE_RE = re.compile(r"(?:§§?\s*|\b21\s+CFR\s+(?:§\s*)?)?(?<![\d.,$])(\d{1,4}\.\d{1,5}[a-z]?)(?:\s*\([A-Za-z0-9]{1,6}\))*", re.I)
 _ACT_CITE_RE = re.compile(r"(?:§§?\s*|\bsection\s+|\bsec\.\s*|\bU\.?S\.?C\.?\s*§*\s*)(\d{3}[a-z]{0,2})(?:\s*\([A-Za-z0-9]{1,6}\))*", re.I)
 
 
