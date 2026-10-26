@@ -162,13 +162,22 @@ the Act text rarely fits the evidence budget.
   the same questions). Reverted.
 - **Removing the live evaluator for speed:** it takes 0.15 s per answer (0.74 s at most) after a 20–140 s answer. Kept.
 
-## 7. Under test on 26 Oct afternoon (switches off by default)
+## 7. Added on 26 Oct afternoon
 
-| Switch | What it does | Why |
-|---|---|---|
-| SP2 | the picker's second regulation joins the first when it is in the same part (outside the cosmetics parts) | 20 of 21 partly-failed 300-question answers were right but covered one of the key's sections; a same-part second pick was a key section 11 of 14 times |
-| PO2 | a question naming only a part outside the cosmetics programme ("under Part 211") is resolved to its section(s) inside that part | 74 of the 225 dev questions; they were answered from part-wide search and 1 of 14 scored passed; a key section ranks first inside the part for 57 of 74 |
-| `REGULUS_PARAGRAPH_DENSE_SCOPE=title21` | the reranker reads paragraphs of every part, not only cosmetics and the Act | the rerank veto of a wrong pick never acted on drug, device or food questions; prebuild with `python -m regulus.retrieval.paragraph_dense` (69,476 paragraphs, about 20 minutes once) |
+Each is a general rule behind a switch, replayed on every recorded answer and blind-scored live before use.
 
-With all three off, 315 recorded answers replay byte-identical. Each is switched on only after a live A/B with blind
-scoring shows gains and no lost PASS.
+| Switch | What it does | Measured | Tonight |
+|---|---|---|---|
+| PO2 | a question naming only a part outside the cosmetics programme ("under Part 211") is resolved to its section(s) inside that part | 19 dev questions: PASS + PARTIALLY PASS 1 → 3; 3 partly-correct answers became withheld; no PASS lost | on |
+| `REGULUS_PARAGRAPH_DENSE_SCOPE=title21` | the reranker reads every part of Title 21, so its veto of a wrong pick works outside cosmetics | 34 recorded 300-question picks: 1 corrected (S-007), none changed otherwise | on |
+| C2 | a condition stated in a cited paragraph's lead-in (its parent) or its child counts as stated in the cited source; a sibling does not | 397 recorded answers: 6 changed; FAIL → PASS 2, FAIL → PARTIALLY FAIL 3, none worse | on |
+| SA1 | a general question is offered the 3 FD&C Act sections it is most about, as cosmetics questions are offered chapter VI | key Act section offered for 18 of 19 Act-keyed dev questions; live A/B with regulation-keyed controls | if its A/B passes |
+| SP2 | the picker's second same-part regulation joins the first | 14 dev questions: 2 more PASS, but one answer took a wrong section and stated a wrong rule | off |
+
+The paragraph index for all of Title 21 is prebuilt with `python -m regulus.retrieval.paragraph_dense` (69,476
+paragraphs, about 20 minutes once, cached per part). A section added by SP2 is further evidence: an answer that
+leaves it out is not withheld (`GenerationPackage.optional_labels`).
+
+Not changed, on evidence: the claim check still withholds answers whose only problem is a low share of supported
+words. Nearly all such sentences state an absence ("no provision authorizes ..."), the false-denial pattern, and
+several were wrong.
