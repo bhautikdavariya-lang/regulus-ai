@@ -21,7 +21,8 @@ from pathlib import Path
 _DESIG = re.compile(r"^\((?P<d>[A-Za-z]{1,6}|\d{1,3})\)")
 _ROMAN_LOWER = re.compile(r"^(?=[ivxl]+$)m{0}(xl|l?x{0,3})(ix|iv|v?i{0,3})$")
 _ROMAN_UPPER = re.compile(r"^(?=[IVXL]+$)(XL|L?X{0,3})(IX|IV|V?I{0,3})$")
-_HEADING = re.compile(r"^§\s*(?P<usc>\d+[a-z]*(?:-\d+)?)\.\s*(?P<heading>.+)$")
+# govinfo writes "§360e–3" with an en dash (21 U.S.C. 360e-3, 379aa-1): both dashes are read
+_HEADING = re.compile(r"^§\s*(?P<usc>\d+[a-z]*(?:[-\u2013]\d+)?)\.\s*(?P<heading>.+)$")
 _LABEL = re.compile(r"^LABEL:\s*FDCA\s+(?P<fdca>\d+[A-Za-z]*(?:-\d+)?)\s*=\s*21 U\.S\.C\.\s*(?P<usc>\S+)")
 _SOURCE = re.compile(r"^SOURCE:\s*(?P<url>\S+)")
 _CREDIT = re.compile(r"^\((?:June 25, 1938|Pub\. L\.)")

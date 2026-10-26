@@ -46,6 +46,8 @@ Fallback fix (26 Oct 2026; NOT in the default until its blind A/B passes):
       "sets no recordkeeping requirement", with what the section requires, verbatim (regulus.rag.records_silence)
   D1  a question asking what terms mean is answered with the supplied paragraphs that define every one of them,
       verbatim and cited (regulus.rag.definitions)
+  ST1 the FD&C Act text a requested regulation itself cites ("section 403(i) of the act") joins the evidence after the
+      regulation's own, at most two Act sections, within the hard ceiling (regulus.rag.section_promotion.statute_references)
   QM1 a section of the former Quality System regulation (820.30, 820.100 ...) is said not to be in the current eCFR, the
       live part 820 text that carries its subject is quoted, and the ISO 13485:2016 clause on that subject is named by
       number and title with its basis; a non-existent ISO 13485 clause is said not to exist (regulus.rag.qmsr)

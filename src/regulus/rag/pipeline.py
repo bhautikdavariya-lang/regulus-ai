@@ -331,7 +331,7 @@ def may_promote(question: str, plan: QueryPlan) -> str | None:
 FOLLOWUP_RANK_TOP = int(os.environ.get("REGULUS_FOLLOWUP_RANK_TOP", "3"))
 # section resolutions whose result is certain enough for an answer composed from it (Q1, FP1, RS1): the question's
 # conversation, an exact color-additive name, an FD&C Act section the question names
-_CONFIDENT_RESOLUTION = frozenset({"conversation", "entity", "named_statute"})
+_CONFIDENT_RESOLUTION = frozenset({"conversation", "entity", "named_statute", "statute_reference"})
 # completeness findings that do not apply to a composed answer about one point of a provision (FP1, RS1)
 _FOCUSED_COMPLETENESS_CODES = frozenset({"requirement_not_addressed", "material_group_uncovered", "enumeration_incomplete"})
 _OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
@@ -573,7 +573,8 @@ class RagPipeline:
         st = statute_index(self.retriever.db)
         # statute only: its text is the evidence. With a promoted regulation as well: the Act text follows the
         # regulation's evidence (co-promotion), which is kept
-        keep = list(selection.selected) if promotion.citations else []
+        companion = promotion.method == "statute_reference"   # ST1: Act text cited by the requested regulation
+        keep = list(selection.selected) if (promotion.citations or companion) else []
         chosen, dropped, used = list(keep), [], (selection.total_chars if keep else 0)
         for n, rows in enumerate(promotion.statute_blocks, start=1):
             result = st.block_result(list(rows))
@@ -581,11 +582,13 @@ class RagPipeline:
             text, truncated = _truncate(_clean(result.text), self.config.context.required_max_chars_per_result)
             chars = _block_chars(evidence, text, len(chosen) + 1, truncated)
             if used + 2 + chars > self.config.context.hard_max_total_chars:
+                if companion:
+                    continue   # ST1: an optional companion that does not fit is left out, not reported as missing
                 dropped.append(DroppedEvidence(evidence, DROP_HARD_CEILING_CHARS, required=True))
                 continue
             used += 2 + chars
             chosen.append(SelectedEvidence(len(chosen) + 1, evidence, text, truncated, True, "statute_promotion", chars))
-        for k, rows in enumerate(promotion.statute_left_out, start=1):
+        for k, rows in enumerate(() if companion else promotion.statute_left_out, start=1):
             dropped.append(DroppedEvidence(Evidence(f"x{k}", st.block_result(list(rows)), TIER_SUPPORTING),
                                            DROP_HARD_CEILING_CHARS, required=True))
         if len(chosen) == len(keep):
@@ -815,6 +818,25 @@ class RagPipeline:
             )
             repairs.append("truncation_noted")
         return text, "+".join(repairs) if repairs else None
+
+    def with_statute_references(self, question: str, plan: QueryPlan, promotion):
+        """ST1: `promotion` with the cited Act sections added (a new "statute_reference" promotion when the question named
+        its regulation itself), or `promotion` unchanged."""
+        promoter = self.section_promoter()
+        primary = list(promotion.sections) if promotion is not None and promotion.sections else [
+            r.reference.section for r in plan.requirements if r.reference.title == "21" and r.reference.section]
+        if promoter is None or not primary:
+            return promotion
+        try:
+            extra = promoter.statute_companions(question, list(dict.fromkeys(primary))[:3])
+        except Exception:  # noqa: BLE001 - an aid only
+            return promotion
+        if extra is None:
+            return promotion
+        if promotion is None:
+            return extra
+        return replace(promotion, statute=extra.statute, statute_rows=extra.statute_rows, statute_blocks=extra.statute_blocks,
+                       statute_left_out=extra.statute_left_out)
 
     def compose_from_identified(self, package, question: str, plan: QueryPlan, promotion) -> tuple[str | None, str | None]:
         """FP1 / RS1 (regulus.rag.validator_switches): a confirmation question asserting a figure the identified provision
@@ -1047,6 +1069,10 @@ class RagPipeline:
                             named_companions_added = comps
                 except Exception as exc:  # noqa: BLE001 - an aid only
                     promotion_error = f"named companions: {type(exc).__name__}: {exc}"[:300]
+        if precision_fix("ST1") and not (promotion is not None and promotion.statute):
+            # ST1 (regulus.rag.validator_switches): the FD&C Act text the requested regulation itself cites, as companion
+            # evidence after the regulation's own (default off until its live A/B)
+            promotion = self.with_statute_references(question, plan, promotion)
         timings["promotion_ms"] = round((time.perf_counter() - t0) * 1000, 2)
         plan = self.complete_plan(plan)  # ... and the one and only corpus lookup it needs
         original_plan = plan if promotion is None else self.complete_plan(own_plan)
@@ -1088,7 +1114,8 @@ class RagPipeline:
         # answers from those and the unresolved ones are stated afterwards.
         t_pkg = time.perf_counter()
         package = (build_package(plan, coverage, selection,
-                                 notes=(_statute_notes(promotion) if (promotion is not None and promotion.statute) else bundle.notes), budget=self.config.generation_budget, answer_shape=shape,
+                                 notes=(tuple(bundle.notes) + _statute_notes(promotion) if (promotion is not None and promotion.method == "statute_reference")
+                                        else _statute_notes(promotion) if (promotion is not None and promotion.statute) else bundle.notes), budget=self.config.generation_budget, answer_shape=shape,
                                  question_analysis=analysis)
                    if coverage is not None and selection is not None else None)
         if package is not None and self.config.answer_style != "restate":

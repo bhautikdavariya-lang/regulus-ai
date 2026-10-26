@@ -84,6 +84,10 @@ LEADIN_CHARS = 140   # a sub-paragraph's lead-in shown before it
 # (REGULUS_PICKER_MAX_TOKENS overrides).
 PICKER_MAX_TOKENS = int(os.environ.get("REGULUS_PICKER_MAX_TOKENS", "48"))
 DEFINITIONS_SECTION = "604"                                    # FD&C Act 604: "In this subchapter:" definitions
+# ST1: a regulation citing the Act it implements ("section 403(i) of the act", "sections 501 and 502 of the Federal Food,
+# Drug, and Cosmetic Act")
+_ACT_CITED = re.compile(r"\bsections?\s+((?:\d{3}[A-Za-z]?(?:\([a-zA-Z0-9]{1,6}\))*(?:\s*,\s*|\s+(?:and|or)\s+)?)+)\s+of\s+the\s+"
+                        r"(?:Federal\s+Food,\s+Drug,\s+and\s+Cosmetic\s+)?[Aa]ct\b")
 SUBCHAPTER_DEFINED = frozenset(str(n) for n in range(605, 615))  # the sections 604's definitions govern
 GENERIC_DEFINED_TERMS = frozenset({"cosmetic product"})        # used in every section; defines nothing a question turns on
 DEFINITION_BUDGET = 2400                                      # rendered characters for 604 definitions with a promoted section
@@ -870,6 +874,32 @@ class SectionPromoter:
         if acts:
             return self._statute_promotion([(s, "") for s in acts[:2]], lex, "conversation", t0)
         return None
+
+    def statute_references(self, sections: list[str], limit: int = 2) -> list[tuple[str, str]]:
+        """ST1: the FD&C Act sections (with the cited subsection) that these 21 CFR sections' own text cites - "section
+        403(i) of the act", "sections 501 and 502 of the Federal Food, Drug, and Cosmetic Act" - that the Act store
+        holds, in order of first citation, at most `limit`."""
+        st = self.statute
+        if st is None:
+            return []
+        out: list[tuple[str, str]] = []
+        for sec in sections:
+            for m in _ACT_CITED.finditer(self._section_text(sec)):
+                for num, path in re.findall(r"(\d{3}[A-Za-z]?)((?:\([a-zA-Z0-9]{1,6}\))*)", m.group(1)):
+                    if num in st.by_sec and num not in [x for x, _ in out]:
+                        out.append((num, path))
+                    if len(out) >= limit:
+                        return out
+        return out
+
+    def statute_companions(self, question: str, sections: list[str]) -> Promotion | None:
+        """ST1: the cited FD&C Act text as a companion of the regulation (method "statute_reference"), or None."""
+        refs = self.statute_references(sections)
+        if not refs:
+            return None
+        t0 = time.perf_counter()
+        lex = SectionIndex.question_lexemes(self.db, question)
+        return self._statute_promotion(refs, lex, "statute_reference", t0, budget=CO_STATUTE_BUDGET)
 
     def ranks_any(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = (), top: int = 8) -> bool:
         """Whether the question's own words rank one of these sections among their first `top` candidates (no model

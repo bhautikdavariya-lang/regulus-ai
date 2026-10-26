@@ -258,7 +258,12 @@ def turn_anchor(plan, promotion, followup: FollowUp | None) -> Anchor:
     CFR sections the question named (`plan`: the question's own plan, before companions were added), else - for an
     anchored follow-up that resolved to nothing new - the anchor it inherited. A follow-up naming provisions of its own
     keeps the earlier anchor after them ("Does 70.5(a) change that?" stays about the listing too)."""
-    if promotion is not None and (promotion.sections or promotion.statute):
+    if promotion is not None and getattr(promotion, "method", None) == "statute_reference":
+        # ST1: the Act text accompanies a regulation the question named; the regulation is what the turn is about
+        secs = tuple(dict.fromkeys(r.reference.section for r in plan.requirements
+                                   if r.reference.title == "21" and r.reference.section))
+        own = Anchor(cfr=secs[:4], statute=tuple(promotion.statute)[:2])
+    elif promotion is not None and (promotion.sections or promotion.statute):
         own = Anchor(cfr=tuple(promotion.sections)[:4], statute=tuple(promotion.statute)[:2])
     else:
         secs = tuple(dict.fromkeys(r.reference.section for r in plan.requirements
