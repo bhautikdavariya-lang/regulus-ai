@@ -55,6 +55,10 @@ Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
   SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
       programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
       of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
+  C2  a condition stated in the supplied parent or child of a cited paragraph ("FDA may withdraw a qualified facility
+      exemption if:" in 117.251(a) for a claim citing (a)(1)) counts as stated in the cited source; a sibling does not
+      (regulus.rag.claim_validation). 26 Oct: 397 recorded answers, 6 changed, blind scored FAIL->PASS 2 (U-003, M-004),
+      FAIL->PARTIALLY FAIL 3, unchanged 1, none worse
   PO2 a question naming only a 21 CFR part outside the cosmetics programme ("under Part 211") is resolved to its
       section(s) inside that part, as "Under Part 82, ..." is (regulus.rag.section_promotion.part_only_any): 74 of
       225 300-question dev rows; a key section ranks first inside the part for 57

@@ -418,3 +418,12 @@ def test_key_review_reason_categories_are_validated():
         Decision(state="REJECTED", reason_category="guess", **base)
     old = Decision.from_dict({**base, "state": "ACCEPTED"})  # records written before Stage 7 still load
     assert old.reason_category is None
+
+
+def test_c2_lets_a_lead_in_govern_its_subparagraphs_but_never_a_sibling(monkeypatch):
+    # C2 (26 Oct): a cited paragraph's supplied parent/child counts as cited; a sibling ((b)(4) for a (b)(2) claim) does not
+    import regulus.rag.validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"C2"})
+    rep, _ = validate("21 CFR 820.10(b)(2) requires traceability procedures, if applicable [2].",
+                      "What do 21 CFR 820.10(b)(2) and 21 CFR 820.10(b)(4) require?")
+    assert CONDITION_NOT_IN_CITED in codes(rep, "error") and not rep.ok

@@ -291,6 +291,14 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
         # -- conditions the cited sources do not contain
         cited_texts = [by_index[i].text for i in marks]
         all_texts = [s.text for s in package.sources]
+        if precision_fix("C2") and identities and related:
+            # C2 (26 Oct): a lead-in governs its sub-paragraphs - "FDA may withdraw a qualified facility exemption if:" in
+            # 117.251(a) is the condition of 117.251(a)(1), so a sentence citing (a)(1) states it from its own provision.
+            # The supplied parent or child of a cited paragraph counts as cited, the tolerance provision_citation_mismatch
+            # already gives ("it or its parent/child")
+            kin = {j for i in marks if identities.get(i) for j, idj in identities.items()
+                   if j not in marks and idj and related(identities[i], idj)}
+            cited_texts = cited_texts + [by_index[j].text for j in sorted(kin)]
         for group, pattern in _CONDITION_GROUPS.items():
             m = pattern.search(content)
             if not m:
