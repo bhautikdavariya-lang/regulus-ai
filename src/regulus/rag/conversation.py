@@ -275,3 +275,16 @@ def turn_anchor(plan, promotion, followup: FollowUp | None) -> Anchor:
         return Anchor(cfr=cfr, statute=tuple(dict.fromkeys(own.statute + followup.anchor.statute))[:2],
                       parts=() if cfr else tuple(dict.fromkeys(own.parts + followup.anchor.parts))[:2])
     return own
+
+
+def evaluation_question(asked: str, conversation: dict | None) -> str:
+    """The question a follow-up's answer is judged against (the live evaluator, regulus.accuracy): what the pipeline
+    answered - the follow-up with its pointers written out and the provisions the conversation anchored it to - not
+    its bare words. "Can we use it in an eye shadow?" names no subject; judged alone, an answer about D&C Yellow No. 8
+    reads as off-topic. A question asked on its own is judged as asked."""
+    fu = (conversation or {}).get("followup") if isinstance(conversation, dict) else None
+    if not isinstance(fu, dict) or not fu.get("anchored"):
+        return asked
+    labels = Anchor.from_dict(fu.get("anchor")).labels()
+    text = fu.get("question") or asked
+    return f"{text} ({'; '.join(labels)})" if labels else text

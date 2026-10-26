@@ -50,6 +50,9 @@ NOT_EVALUATED = "not_evaluated"
 
 LABEL = {PASS: "PASS", FAIL: "FAIL", NOT_EVALUATED: "NOT EVALUATED"}
 NOT_FULLY_EVALUATED = "NOT FULLY EVALUATED"
+# fallback types whose answer is the provision's own text, quoted and cited (regulus.rag.fallback)
+QUOTED_FALLBACKS = frozenset({"focused_provision_quote", "composed_records_silence", "composed_qmsr",
+                              "composed_premise_figure"})
 
 STATE_LABEL = {R.PASS: "Pass", R.FAIL: "Fail", R.PARTIAL: "Partial", R.NOT_ESTABLISHED: "Not established",
                R.NOT_APPLICABLE: "Not applicable"}
@@ -172,6 +175,15 @@ def _calibrated(assessment: dict, dims: dict[str, dict], verdict: str, score: in
     # evaluator reads it as a decline; blind scorers passed 82.1336's and failed 700.3-Q2's, 22 Oct holdout)
     verbatim = any(str(x.get("origin")) == "pipeline_sentence" and "could not be validated" in str(x.get("text") or "").lower()
                    for x in checked.get("excluded_sentences") or () if isinstance(x, dict))
+    # the answers composed from the provision's own quoted text (Q1, FP1, RS1, QM1; 26 Oct): judged by word relevance
+    # they read as "answers a different question" - 5 of 9 good follow-up answers shown FAIL were these
+    quoted = checked.get("fallback_type") in QUOTED_FALLBACKS
+    if quoted:
+        # the provision's text under its own citation: the citation and relevance checks misread a quotation (710.4's
+        # own words name "§ 700.3(j)"), and correctness is the quoted text's - it is never a pass and never a failure
+        return out(NOT_EVALUATED, "The answer quotes the provision's own text, verbatim and cited; whether it is the "
+                                  "right provision for the question is not something this check can establish.",
+                   label=NOT_FULLY_EVALUATED, dims=dims, score=score)
     defects = []
     if not verbatim and (verdict in ("incorrect", "off_topic", "abstention_incorrect") or state(R.SUBSTANTIVE) == R.FAIL):
         defects.append(R.SUBSTANTIVE)

@@ -538,8 +538,15 @@ class Engine:
         from regulus.accuracy.review import question_review
 
         payload = self.assess(out, lookups=lookups).to_dict()
-        payload["question_review"] = question_review(payload, question=out.question)
+        payload["question_review"] = question_review(payload, question=self.evaluation_question(out))
         return payload
+
+    @staticmethod
+    def evaluation_question(out) -> str:
+        """A follow-up is judged as the pipeline answered it (regulus.rag.conversation.evaluation_question)."""
+        from regulus.rag.conversation import evaluation_question
+
+        return evaluation_question(out.question, out.metadata.get("conversation"))
 
     def assess(self, out, *, lookups: list | None = None):
         """The live accuracy assessment of a finished RagAnswer.
@@ -551,7 +558,7 @@ class Engine:
 
         analysis = out.metadata.get("question_analysis") or {}
         return evaluate_safely(
-            out.question,
+            self.evaluation_question(out),
             out.answer,
             package=out.package,
             evidence=out.evidence_snapshot,   # the exact evidence the prompt carried (None: not captured)

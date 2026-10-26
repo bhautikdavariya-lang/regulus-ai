@@ -281,3 +281,14 @@ def test_an_out_of_scale_score_is_not_passed_on_and_the_status_is_unchanged(bad)
     v = question_review(d, question=ONE)
     assert v["live_check_score"] is None
     assert (v["status"], v["label"]) == (ok["status"], ok["label"])
+
+
+def test_an_answer_quoting_the_provision_is_never_pass_or_fail():
+    from regulus.accuracy import review as RV
+    for fb in RV.QUOTED_FALLBACKS:
+        from regulus.accuracy import rubric as R
+        assessment = {"status": R.EVALUATED, "accuracy": 10, "answer_verdict": {"verdict": "off_topic"},
+                      "checked": {"fallback_type": fb, "claims": []},
+                      "dimensions": [{"dimension": d, "state": R.FAIL, "detail": "x"} for d in R.DIMENSIONS]}
+        got = RV.question_review(assessment, question="q")
+        assert got["status"] == RV.NOT_EVALUATED and got["label"] == RV.NOT_FULLY_EVALUATED
