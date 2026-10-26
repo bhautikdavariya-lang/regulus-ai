@@ -44,3 +44,20 @@ def test_records_silence_needs_a_records_question_and_silent_text():
     s = ("21 CFR 701.11 sets no recordkeeping requirement: no paragraph of its text in this system requires a record to "
          "be made or kept. What it requires, verbatim:")
     assert SILENCE_SENTENCE_RE.search(s)
+
+
+def test_only_a_question_about_records_is_a_records_question():
+    yes = ["What records does § 701.11 require?", "What should we keep as evidence of our official filing date?",
+           "What should our receiving file show?", "What evidence shows compliance with § 700.35?",
+           "What does this section require us to document for a batch of D&C Red No. 22?",
+           "Do we need to keep copies of the certificate?"]
+    no = ["Our vaginal product is kept behind the pharmacy counter, not on open shelves. Does (b) apply?",
+          "What must the package itself show as evidence of the feature?", "Can we store it in a warehouse?",
+          "Which document must accompany the petition?"]
+    assert all(asks_records(q) for q in yes) and not any(asks_records(q) for q in no)
+
+
+def test_a_premise_answer_prefers_figures_of_the_asserted_kind_then_a_rule():
+    from regulus.rag.premise_figures import _OPERATIVE
+    assert _OPERATIVE.search("any cosmetic aerosol product containing vinyl chloride is deemed adulterated")
+    assert not _OPERATIVE.search("Vinyl chloride has been used as an ingredient in cosmetic aerosol products.")

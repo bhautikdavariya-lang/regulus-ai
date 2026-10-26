@@ -40,7 +40,8 @@ FB_COMPOSED_SILENCE = "composed_practice_silence"   # a practice no cosmetic pro
 FB_DEFINITIONS_QUOTED = "definitions_quoted"   # a general question the model declined: its terms' CFR definitions, verbatim
 FB_PREMISE_NOT_ESTABLISHED = "premise_not_established"  # Stage 7: a yes/no premise the identified provision does not state
 FB_COMPOSED_PREMISE = "composed_premise_figure"   # FP1: a confirmation question asserting a figure the provision does not state
-FB_COMPOSED_RECORDS = "composed_records_silence"   # RS1: a records question about a section that requires none
+FB_COMPOSED_RECORDS = "composed_records_silence"
+FB_COMPOSED_QMSR = "composed_qmsr"   # QM1: a former part 820 section or a non-existent ISO 13485 clause (regulus.rag.qmsr)   # RS1: a records question about a section that requires none
 FB_FOCUSED_QUOTE = "focused_provision_quote"   # Q1: no verified answer; the governing provision's relevant paragraphs, verbatim
 FALLBACK_TYPES = (FB_OUT_OF_SCOPE, FB_UNSUPPORTED_REQUEST, FB_AMBIGUOUS, FB_WRONG_PROVISION, FB_PROVISION_NOT_FOUND,
                   FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED, FB_PREMISE_NOT_ESTABLISHED)

@@ -94,7 +94,16 @@ _SUPPORTED_BY = {
 _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough information|do(?:es)? not (?:cover|establish)|"
                           r"not found in the available|were not verified|no answer is given|verbatim\)?:|"
                           r"sources? do(?:es)? not provide|^\s*status note \(|^\s*a search of 21 CFR parts 700-740 and FD&C Act sections|"
-                          r"^\s*state or local licensing requirements are not part of FDA.s regulations", re.I)
+                          r"^\s*state or local licensing requirements are not part of FDA.s regulations|"
+                          # FP1 / RS1 (regulus.rag.premise_figures, regulus.rag.records_silence): the pipeline's own
+                          # statement of what its check of the database text found
+                          r"^\s*no\. the figures? .{1,120} (?:does|do) not appear in the text of .{1,200} supplied for this answer|"
+                          r"sets? no recordkeeping requirement: no paragraph of (?:its|their) text in this system requires|"
+                          # QM1 (regulus.rag.qmsr): a former part 820 section's status and the ISO 13485 clause on its subject
+                          r"is not in the current eCFR: it belonged to the former Quality System regulation|"
+                          r"^\s*in ISO 13485:2016 \(incorporated by reference|^\s*ISO 13485:2016 has no Clause|"
+                          r"^\s*FDA published no section-by-section mapping from the former regulation|"
+                          r"^\s*the standard.s text is not reproduced here", re.I)
 _LEAD = 45  # a provision label within the first characters of a statement names what it presents
 
 # A2 (regulus.rag.validator_switches): "These provisions set no limit on the amount of guanine" is a claim about the

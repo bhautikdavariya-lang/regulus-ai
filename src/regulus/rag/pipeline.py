@@ -47,6 +47,7 @@ from regulus.rag.fallback import (
     FB_COMPOSED_LISTING,
     FB_DEFINITIONS_QUOTED,
     FB_COMPOSED_PREMISE,
+    FB_COMPOSED_QMSR,
     FB_COMPOSED_RECORDS,
     FB_FOCUSED_QUOTE,
     FB_PREMISE_NOT_ESTABLISHED,
@@ -327,6 +328,11 @@ def may_promote(question: str, plan: QueryPlan) -> str | None:
 
 # a follow-up's own words "point to" an anchored section when it is among their first this many candidate sections
 FOLLOWUP_RANK_TOP = int(os.environ.get("REGULUS_FOLLOWUP_RANK_TOP", "3"))
+# section resolutions whose result is certain enough for an answer composed from it (Q1, FP1, RS1): the question's
+# conversation, an exact color-additive name, an FD&C Act section the question names
+_CONFIDENT_RESOLUTION = frozenset({"conversation", "entity", "named_statute"})
+# completeness findings that do not apply to a composed answer about one point of a provision (FP1, RS1)
+_FOCUSED_COMPLETENESS_CODES = frozenset({"requirement_not_addressed", "material_group_uncovered", "enumeration_incomplete"})
 _OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
 _FDCA_CUE = re.compile(r"\bFD&C\s+Act\b|\bFDCA\b|\bFederal\s+Food,\s+Drug,?\s+and\s+Cosmetic\s+Act\b|\b21\s+U\.?S\.?C\b", re.I)
 
@@ -915,6 +921,50 @@ class RagPipeline:
         return resolve_followup(question, context, names_provision=names, other_entity=other_entity,
                                 anchor_ranked=ranked, heading_words=heading_words)
 
+    def live_part_sections(self, part: str) -> set[str] | None:
+        """The sections of a 21 CFR part that have live, unreserved text in the database (cached), or None."""
+        cache = self.__dict__.setdefault("_live_sections", {})
+        if part not in cache:
+            db = getattr(self.retriever, "db", None)
+            try:
+                rows = db.query("SELECT DISTINCT section_number FROM cfr_records WHERE part_number = %(p)s AND "
+                                "removed_on IS NULL AND NOT is_reserved", {"p": part}) if db is not None else None
+                cache[part] = {r["section_number"] for r in rows} if rows else None
+            except Exception:  # noqa: BLE001 - without the database's answer nothing is said about a section's status
+                cache[part] = None
+        return cache[part]
+
+    def qmsr_request(self, question: str, plan: QueryPlan) -> tuple[list, list]:
+        """QM1: (former part 820 sections the question names, ISO 13485 clauses it names that do not exist)."""
+        if not precision_fix("QM1"):
+            return [], []
+        from regulus.rag import qmsr
+
+        live = self.live_part_sections("820")
+        if not live:
+            return [], []
+        former = qmsr.former_refs(plan, live)
+        unknown = qmsr.unknown_clauses(question)
+        about_820 = former or any(r.reference.part == "820" for r in plan.requirements) or re.search(
+            r"\bpart\s+820\b|\bQMSR\b|quality management system regulation", question, re.I)
+        return former, (unknown if about_820 else [])
+
+    @staticmethod
+    def qmsr_plan(question: str, plan: QueryPlan, former: list) -> QueryPlan:
+        """The plan with the former sections replaced by the live sections that carry their subject."""
+        from regulus.planning.plan import Requirement, _plan_kind
+        from regulus.rag import qmsr
+
+        gone = {s for s, _ in former}
+        widened = plan_query(question + " (21 CFR " + ", ".join(qmsr.successors(former)) + ")")
+        # the former sections, and a whole "Part 820" (its first matching passages are not the answer), give way to
+        # the live sections named above
+        kept = [r for r in widened.requirements if r.reference.section not in gone
+                and not (r.reference.part == "820" and r.reference.section is None)]
+        reqs = tuple(Requirement(id=f"r{i}", order=i, reference=r.reference, raw=r.raw, origin=r.origin, mention=r.mention)
+                     for i, r in enumerate(kept, start=1))
+        return replace(widened, requirements=reqs, kind=_plan_kind(widened.query_type, reqs, widened.scan))
+
     def answer(self, question: str, on_event=None, context=None) -> RagAnswer:
         """Answer a question. `on_event(kind, data)`, when given, is told about
         progress as it happens - "context" (the sources selected), "generation_started",
@@ -937,6 +987,11 @@ class RagPipeline:
             question = followup.question   # "paragraph (b)" / "this section" written out as the anchored section
             plan = plan_query(question)
         anchored = followup is not None and followup.anchored and not plan.requirements
+        # QM1: a section of the former Quality System regulation (or an ISO 13485 clause that does not exist) - the
+        # question is re-planned onto the live part 820 section that now carries the subject (regulus.rag.qmsr)
+        qmsr_former, qmsr_unknown = self.qmsr_request(question, plan)
+        if qmsr_former or qmsr_unknown:
+            plan = self.qmsr_plan(question, plan, qmsr_former)
         own_plan = plan   # the question's own plan: every scope decision is made on it, never on a promoted one
         promotion = None
         promotion_error = None
@@ -1067,8 +1122,13 @@ class RagPipeline:
         gate_on = self.config.answerability == "gate"
         # Q1 (regulus.rag.validator_switches): the provision the question concerns is identified - named by the question
         # or resolved for it - so its relevant paragraphs may stand in for an answer that cannot be shown
-        focus_quote_allowed = bool(precision_fix("Q1") and gate_on and package is not None and (
+        # ... and identified with confidence: named by the question itself, or resolved by the conversation, an exact
+        # color-additive name or a named FD&C Act section - not by the picker's choice among candidates, which can be
+        # wrong (a figure was checked against 71.18 for a 71.4 question, recorded follow-ups, 26 Oct)
+        provision_identified = bool(gate_on and package is not None
+                                    and (promotion is None or promotion.method in _CONFIDENT_RESOLUTION) and (
             provision_is_identified(plan, package) or (promotion is not None and bool(promotion.statute) and not plan.requirements)))
+        focus_quote_allowed = provision_identified and precision_fix("Q1")
         gate_analysis = analysis if analysis is not None else analyze_question(plan)
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
                                resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
@@ -1082,31 +1142,42 @@ class RagPipeline:
         prompt_sent: str | None = None  # the user message actually sent to the model, for evidence capture
         timings["answerability_ms"] = round((time.perf_counter() - t_gate) * 1000, 2)
         composed = composed_report = None
-        if (package is not None and package.answer_style == "apply" and not block and package.sources
+        # the composers decided from the database text (QM1, FP1, RS1) also answer a question the gate blocked only for
+        # want of the value it asks for ("How often does 820.20 require management review?"): that is what they say
+        grounded_only = block and set(conditions) <= {"requested_value_absent"}
+        if (package is not None and package.answer_style == "apply" and (not block or grounded_only) and package.sources
                 and not (grounding_decision is not None and grounding_decision.refused)):
             from regulus.rag.color_listing import compose as compose_listing
 
             composed_type = FB_COMPOSED_LISTING
             text = None
-            if promotion is not None and promotion.method == "practice_silence":
+            if promotion is not None and promotion.method == "practice_silence" and not block:
                 # P1: a practice no cosmetic provision mentions, answered from the Act text (regulus.rag.practice_silence)
                 from regulus.rag.practice_silence import compose as compose_silence
 
                 text, composed_type = compose_silence(package, question, promotion.notes), FB_COMPOSED_SILENCE
-            if not text and focus_quote_allowed and (precision_fix("FP1") or precision_fix("RS1")):
+            if not text and (qmsr_former or qmsr_unknown):
+                from regulus.rag.qmsr import compose as compose_qmsr
+
+                text, composed_type = compose_qmsr(package, question, qmsr_former, qmsr_unknown), FB_COMPOSED_QMSR
+            if not text and provision_identified and (precision_fix("FP1") or precision_fix("RS1")):
                 text, composed_type = self.compose_from_identified(package, question, plan, promotion)
-            if not text:
+            if not text and not block:
                 composed_type = FB_COMPOSED_LISTING
                 text = compose_listing(package, question)
-            if not text and precision_fix("C82"):
+            if not text and precision_fix("C82") and not block:
                 from regulus.rag.color_listing import compose_certification
 
                 text = compose_certification(package, question)
             if text:
                 report = validate_answer(text, package, None)
-                generation_info["listing_composer"] = {"composed": True, "valid": report.ok, "codes": list(report.codes()),
+                # FP1 / RS1 answer one point of the provision on purpose: the shape-completeness findings (a requested
+                # provision, a list item or a requirement group not represented) do not apply; every grounding check does
+                valid = report.ok or (composed_type in (FB_COMPOSED_PREMISE, FB_COMPOSED_RECORDS, FB_COMPOSED_QMSR) and not (
+                    {p.code for p in report.problems if p.severity == "error"} - _FOCUSED_COMPLETENESS_CODES))
+                generation_info["listing_composer"] = {"composed": True, "valid": valid, "codes": list(report.codes()),
                                                        "kind": composed_type}
-                if report.ok:
+                if valid:
                     composed, composed_report = (text, composed_type), report
         if grounding_decision is not None and grounding_decision.refused:
             answer_text = grounding_decision.answer
@@ -1116,6 +1187,13 @@ class RagPipeline:
             answer_text, fallback_type = premise.answer, FB_PREMISE_NOT_ESTABLISHED
             fallback_reason = f"{premise.kind}: {', '.join(premise.missing)}"
             coverage_action = "refuse_unsupported_premise"
+            timings["generation_ms"] = 0.0
+        elif block and composed is not None:
+            # a value-absent block answered by a composer decided from the database text (QM1, FP1, RS1)
+            answer_text, fallback_type = composed
+            validation_initial = validation_final = composed_report
+            fallback_reason = f"{decision.reason}; answered from the database text ({fallback_type})"
+            coverage_action = "answer"
             timings["generation_ms"] = 0.0
         elif block:
             # the model is not called: nothing it could say would be supported by this evidence
@@ -1148,6 +1226,8 @@ class RagPipeline:
                                      "the paragraphs stating figures of that kind are quoted",
                 FB_COMPOSED_RECORDS: "the identified section's full text has no record-keeping language; what it requires "
                                      "is quoted",
+                FB_COMPOSED_QMSR: "a former Quality System regulation section (or a non-existent ISO 13485 clause): the "
+                                  "current part 820 text is quoted and the ISO 13485 clause on the subject named",
             }.get(fallback_type, "color additive listing: per-product use decided from the listing's uses paragraph, "
                                  "21 CFR 70.3(s)/(v) and 70.5(a); every paragraph quoted")
             coverage_action = "answer"

@@ -53,6 +53,10 @@ _CLAIM_WORDS = re.compile(r"\b(?:requires?|required|must|has\s+to|have\s+to|need
                           r"costs?|charges?|period|threshold|tall|high|wide|large|retain|retention|kept|keep|expir\w*|"
                           r"wait|valid|lasts?|every|each)\b", re.I)
 _SENTENCE_SPLIT = re.compile(r"(?<=[.?!;])\s+")
+# a paragraph that states a rule (not background): preferred when no paragraph states a figure of the asserted kind
+_OPERATIVE = re.compile(r"\b(?:shall|must|may\s+not|is\s+prohibited|are\s+prohibited|deemed|required|requires|"
+                        r"exempt|is\s+adulterated|is\s+misbranded|not\s+to\s+exceed|no\s+more\s+than|within)\b", re.I)
+QUOTE_CHARS = 1600
 # the answer's first sentence: what the check found (written by the pipeline; its figure is the question's, quoted)
 PREMISE_SENTENCE_RE = re.compile(r"No\. The figure[s]? [^\n]*? (?:does|do) not appear in the text of [^\n]*? supplied for this "
                                  r"answer\.")
@@ -154,16 +158,23 @@ def compose(package, question: str, provisions: list[str], *, limit: int = 3) ->
         same_kind = sum(1 for f in figures(body) if f.unit in kinds)
         overlap = len(asked & subject_words(body))
         if same_kind or overlap:
-            scored.append((-same_kind, -overlap, s.index, s, body))
+            # a paragraph that states figures of the asserted kind first, then one that states a rule, then overlap
+            scored.append((-min(same_kind, 1), -int(bool(_OPERATIVE.search(body))), -overlap, s.index, s, body))
     if not scored:
         return None
-    kept = sorted(scored, key=lambda x: x[:3])[:limit]
+    ranked = sorted(scored, key=lambda x: x[:4])
+    kept, used = [], 0
+    for row in ranked:
+        if len(kept) >= limit or (kept and used + len(row[5]) > QUOTE_CHARS):
+            break
+        kept.append(row)
+        used += len(row[5])
     shown = ", ".join(f'"{f.text.strip()}"' for f in missing)
     plural = len(missing) > 1
     names = " and ".join(provisions[:2]) + (" and the other provisions" if len(provisions) > 2 else "")
     lines = [f"No. The figure{'s' if plural else ''} {shown} {'do' if plural else 'does'} not appear in the text of "
              f"{names} supplied for this answer. What {'they say' if len(provisions) > 1 else 'it says'} on this point, verbatim:"]
-    for _, _, _, s, body in sorted(kept, key=lambda x: x[2]):
+    for *_, s, body in sorted(kept, key=lambda x: x[3]):
         kind = "FD&C Act, verbatim" if s.corpus == "usc" else "eCFR, binding, verbatim"
         lines.append(f"{s.citation} ({kind}): {_verbatim(body, s.index)}")
     return "\n".join(lines)

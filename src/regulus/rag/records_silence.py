@@ -17,9 +17,17 @@ from __future__ import annotations
 
 import re
 
-# the question asks what to record, keep or show
-_ASKS_RECORDS = re.compile(r"\b(?:records?|record-?keeping|documentation|document(?:ed)?|on\s+file|keep|kept|retain\w*|"
-                           r"logs?|evidence|proof|prove|paperwork|receiving\s+file)\b", re.I)
+# the question asks what to record or keep: a records noun, keeping/retaining a document, or evidence of compliance.
+# "kept behind the counter" and "what must the package show as evidence of the feature" are not records questions
+# (both fired a first version on recorded follow-ups, 26 Oct)
+_ASKS_RECORDS = re.compile(
+    r"\b(?:records?|record-?keeping|documentation|paperwork|logs?|on\s+file|receiving\s+file|audit\s+trail)\b"
+    r"|\b(?:keep|kept|retain\w*|maintain\w*|file|store)\s+(?:\w+\s+){0,3}?(?:documents?|copies|copy|evidence|"
+    r"certificates?|proof)\b"
+    r"|\b(?:evidence|proof)\s+(?:of|that\s+(?:we|it|our)\s+\w+|for)\s+(?:\w+\s+){0,2}?compliance\b"
+    r"|\b(?:evidence|proof)\s+(?:shows?|demonstrates?|proves?)\s+compliance\b"
+    r"|\bprove\s+(?:\w+\s+){0,2}?compl(?:y|iance)\b"
+    r"|\b(?:to|must|should|need\s+to|have\s+to|required\s+to)\s+document\b|\bdocument(?:ed|ing)\b", re.I)
 # record-keeping language in a provision: any of these ends the silence
 RECORD_LANGUAGE = re.compile(r"\brecords?\b|\brecord-?keeping\b|\bretain\w*|\bretention\b|\bmaintain\w*\b|\bkeep\b|\bkept\b|"
                              r"\blogs?\b|\bdocumentation\b|\bdocument(?:ed|s)?\b|\bfiles?\b|\bfiled\b|\bwritten\s+procedures?\b|"
@@ -36,6 +44,10 @@ def asks_records(question: str) -> bool:
 def silent(section_texts: dict[str, str]) -> bool:
     """Every identified section's full text is free of record-keeping language (and there is some text)."""
     return bool(section_texts) and all(t and not RECORD_LANGUAGE.search(t) for t in section_texts.values())
+
+
+# a section this short is quoted whole: the answer says what it requires
+WHOLE_SECTION_CHARS = 2500
 
 
 def compose(package, question: str, section_texts: dict[str, str], *, limit: int = 3) -> str | None:
@@ -57,7 +69,8 @@ def compose(package, question: str, section_texts: dict[str, str], *, limit: int
             scored.append((-len(asked & subject_words(body)), s.index, s, body))
     if not scored:
         return None
-    kept = sorted(scored, key=lambda x: x[:2])[:limit]
+    whole = sum(len(b) for *_, b in scored) <= WHOLE_SECTION_CHARS
+    kept = scored if whole else sorted(scored, key=lambda x: x[:2])[:limit]
     names = list(section_texts)
     subject = " and ".join(names[:2]) + (" and the other provisions" if len(names) > 2 else "")
     verb = "set" if len(names) > 1 else "sets"

@@ -44,6 +44,9 @@ Fallback fix (26 Oct 2026; NOT in the default until its blind A/B passes):
       figures of that kind, verbatim (regulus.rag.premise_figures)
   RS1 a records question about identified 21 CFR sections whose full text has no record-keeping language is answered
       "sets no recordkeeping requirement", with what the section requires, verbatim (regulus.rag.records_silence)
+  QM1 a section of the former Quality System regulation (820.30, 820.100 ...) is said not to be in the current eCFR, the
+      live part 820 text that carries its subject is quoted, and the ISO 13485:2016 clause on that subject is named by
+      number and title with its basis; a non-existent ISO 13485 clause is said not to exist (regulus.rag.qmsr)
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.
