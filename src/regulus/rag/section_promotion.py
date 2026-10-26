@@ -141,6 +141,8 @@ class Promotion:
     picker_output: str | None = None
     seconds: float = 0.0
     notes: tuple[str, ...] = field(default_factory=tuple)
+    # the cross-encoder's score (0..1) of the promoted section for the question, when the reranker read it (Q2)
+    rerank: float | None = None
 
     @property
     def citations(self) -> tuple[str, ...]:
@@ -155,7 +157,7 @@ class Promotion:
                 "statute": list(self.statute), "statute_rows": len(self.statute_rows),
                 "statute_blocks_left_out": len(self.statute_left_out),
                 "citations": list(self.citations), "picker_output": self.picker_output, "seconds": round(self.seconds, 2),
-                "candidates": [c["section"] for c in self.candidates], "notes": list(self.notes)}
+                "candidates": [c["section"] for c in self.candidates], "notes": list(self.notes), "rerank": self.rerank}
 
 
 def rerank_label(c: dict) -> str:
@@ -1026,6 +1028,9 @@ class SectionPromoter:
                 pr = replace(pr, sections=tuple(sec), companions=tuple(dict.fromkeys(c for c in comps if c not in sec)))
             return replace(pr, notes=pr.notes + notes)
         pr = self._cfr_promotion(self.siblings(picked_c, cands, lex), question, lex, cands, raw, other, self.mode, t0)
+        scored = self.__dict__.get("last_rerank") if RERANKER and raw is not None else None
+        if scored and picked_c["section"] in scored:
+            pr = replace(pr, rerank=round(scored[picked_c["section"]][0], 4))
         if second_cfr is not None and second_cfr not in pr.citations:
             pr = replace(pr, companions=pr.companions + (second_cfr,), notes=pr.notes + (f"second pick: {second_cfr}",))
         return replace(pr, notes=pr.notes + notes) if notes else pr

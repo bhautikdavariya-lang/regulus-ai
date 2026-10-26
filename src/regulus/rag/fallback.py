@@ -160,6 +160,9 @@ def premise_not_established(package, terms) -> tuple[str, str]:
 # share most subject words with the question, verbatim and cited, instead of a bare "not shown". Only for a provision
 # identified by the question, by name or by section resolution (the caller decides); never an application of it.
 FOCUSED_QUOTE_LEAD = "What the provision this question concerns says on this point, verbatim:"
+# Q2: the provision was chosen by the picker among candidates, which can be wrong: the lead does not claim it is the
+# provision the question concerns
+FOCUSED_QUOTE_LEAD_PICKED = "The provision in this system that most closely matches the question says, verbatim:"
 FOCUSED_QUOTE_TAIL = ("This is the provision's own text, not an application of it to your facts: a fuller answer could not "
                       "be verified sentence by sentence against the regulation text.")
 FOCUSED_QUOTE_PARAGRAPHS = 3
@@ -167,7 +170,7 @@ FOCUSED_QUOTE_CHARS = 1600
 
 
 def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAPHS,
-                  max_chars: int = FOCUSED_QUOTE_CHARS) -> str | None:
+                  max_chars: int = FOCUSED_QUOTE_CHARS, lead: str = FOCUSED_QUOTE_LEAD) -> str | None:
     """The requested provisions' EXACT paragraphs (and promoted FD&C Act text) that share most subject words with the
     question, at most `limit`, in document order, each cited and quoted whole; None when no paragraph shares one."""
     from regulus.rag.conversation import subject_words
@@ -192,7 +195,7 @@ def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAP
             break
         kept.append((s, body))
         used += len(body)
-    lines = [FOCUSED_QUOTE_LEAD]
+    lines = [lead]
     for s, body in sorted(kept, key=lambda x: x[0].index):
         kind = "FD&C Act, verbatim" if s.corpus == "usc" else "eCFR, binding, verbatim"
         lines.append(f"{s.citation} ({kind}): {_verbatim(body, s.index)}")

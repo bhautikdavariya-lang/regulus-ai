@@ -87,3 +87,18 @@ def test_sa1_offers_a_general_question_the_act_sections_it_is_about(monkeypatch)
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", frozenset({"SA1"}))
     # chapter VI stays the cosmetics offering, 301 is never offered
     assert [c["section"] for c in p.prepare("What must a PMTA contain?")[1]] == ["1114.7", "403", "910"]
+
+
+# ------------------------------------------------------------ Q2: a picker-chosen provision quoted under an honest lead
+
+
+def test_q2_quote_lead_does_not_claim_the_provision_is_the_one_asked_about():
+    from regulus.rag.fallback import FOCUSED_QUOTE_LEAD, FOCUSED_QUOTE_LEAD_PICKED
+    from regulus.rag.claim_validation import _NOT_A_CLAIM
+    from regulus.rag.pipeline import Q2_MIN_RERANK
+    from regulus.rag.section_promotion import Promotion
+
+    assert "concerns" in FOCUSED_QUOTE_LEAD and "concerns" not in FOCUSED_QUOTE_LEAD_PICKED
+    assert _NOT_A_CLAIM.search(FOCUSED_QUOTE_LEAD_PICKED)                 # the lead is the pipeline's, not a claim
+    assert 0.5 <= Q2_MIN_RERANK < 1
+    assert Promotion(sections=("720.6",), companions=(), method="picker", rerank=0.94).to_dict()["rerank"] == 0.94

@@ -63,6 +63,9 @@ Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
       about (lexical + paragraph-embedding order; 301 never), as a cosmetics question is offered chapter VI
       (regulus.rag.section_promotion.general_act_offered): 25 of 225 300-question dev rows are keyed to the Act; the key
       Act section is offered for 18 of the 19 general ones
+  Q2  Q1's quotation for a section the picker chose, when the reranker scores it at least 0.6, under a lead that does
+      not claim it is the provision the question concerns (regulus.rag.pipeline.Q2_MIN_RERANK). 26 Oct: 25 recorded
+      withheld answers; without the score floor 3 PASS declines (must-refuse, false premise, out of scope) were lost
   PO2 a question naming only a 21 CFR part outside the cosmetics programme ("under Part 211") is resolved to its
       section(s) inside that part, as "Under Part 82, ..." is (regulus.rag.section_promotion.part_only_any): 74 of
       225 300-question dev rows; a key section ranks first inside the part for 57

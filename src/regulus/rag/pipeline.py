@@ -54,6 +54,8 @@ from regulus.rag.fallback import (
     FB_PREMISE_NOT_ESTABLISHED,
     FB_COMPOSED_SILENCE,
     FB_UNVALIDATED,
+    FOCUSED_QUOTE_LEAD,
+    FOCUSED_QUOTE_LEAD_PICKED,
     blocked_answer,
     focused_quote,
     premise_not_established,
@@ -336,6 +338,9 @@ FOLLOWUP_RANK_TOP = int(os.environ.get("REGULUS_FOLLOWUP_RANK_TOP", "3"))
 # section resolutions whose result is certain enough for an answer composed from it (Q1, FP1, RS1): the question's
 # conversation, an exact color-additive name, an FD&C Act section the question names
 _CONFIDENT_RESOLUTION = frozenset({"conversation", "entity", "named_statute", "statute_reference"})
+# Q2: the reranker score a picker-chosen section needs before its paragraphs may stand in for a withheld answer. 26 Oct, 25
+# recorded withheld answers quoted: every regression and 9 of 11 wrong-section quotes scored below 0.6, 6 of 11 gains above
+Q2_MIN_RERANK = 0.6
 # completeness findings that do not apply to a composed answer about one point of a provision (FP1, RS1)
 _FOCUSED_COMPLETENESS_CODES = frozenset({"requirement_not_addressed", "material_group_uncovered", "enumeration_incomplete"})
 _OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
@@ -873,7 +878,7 @@ class RagPipeline:
 
     def repair_with_fallback(self, text: str, package: GenerationPackage, report: ValidationReport, gen, *, question: str,
                              plan: QueryPlan, shape: AnswerShape | None, analysis: QuestionAnalysis | None, sources,
-                             focus_quote: bool = False) -> dict[str, Any]:
+                             focus_quote: bool = False, focus_lead: str | None = None) -> dict[str, Any]:
         """Repair a generated answer that failed validation, then (Stage 5, answerability="gate") never
         show a result that is still ungrounded: it is replaced by the safe fallback builder. The one
         implementation used by `answer()` and by the evaluation harness.
@@ -908,7 +913,7 @@ class RagPipeline:
             # construction (the EXACT text of the identified provision, each paragraph under its own citation); the
             # answer validator, which requires every requested provision and list item to be addressed, is recorded
             # but does not decide - a quote is partial on purpose
-            quoted = focused_quote(package, question)
+            quoted = focused_quote(package, question, **({"lead": focus_lead} if focus_lead else {}))
             if quoted:
                 text, final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
                 fallback_reason = f"{fallback_reason}; the governing provision is quoted instead"
@@ -1166,6 +1171,17 @@ class RagPipeline:
                                     and (promotion is None or promotion.method in _CONFIDENT_RESOLUTION) and (
             provision_is_identified(plan, package) or (promotion is not None and bool(promotion.statute) and not plan.requirements)))
         focus_quote_allowed = provision_identified and precision_fix("Q1")
+        # Q2: the same quotation for a provision the picker chose (a 21 CFR section, the question naming none or only
+        # its part), under a lead that does not claim it is the provision the question concerns
+        # under a lead that does not claim it is the provision the question concerns - and only when the reranker also
+        # judges it relevant (Q2_MIN_RERANK): the picker's choice alone quoted Red No. 40 for a Blue No. 1 question and an
+        # unrelated provision for must-refuse and false-premise questions (26 Oct, 25 recorded withheld answers)
+        picked_quote = bool(gate_on and not focus_quote_allowed and precision_fix("Q2") and package is not None
+                            and promotion is not None and promotion.method == "picker" and promotion.sections
+                            and promotion.rerank is not None and promotion.rerank >= Q2_MIN_RERANK
+                            and provision_is_identified(plan, package))
+        focus_lead = FOCUSED_QUOTE_LEAD_PICKED if picked_quote else FOCUSED_QUOTE_LEAD
+        focus_quote_allowed = focus_quote_allowed or picked_quote
         gate_analysis = analysis if analysis is not None else analyze_question(plan)
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
                                resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
@@ -1375,7 +1391,7 @@ class RagPipeline:
                     repair_input = answer_text
                     r = self.repair_with_fallback(answer_text, package, validation_initial, gen, question=question, plan=plan,
                                                   shape=shape, analysis=gate_analysis, sources=bundle.sources,
-                                                  focus_quote=focus_quote_allowed)
+                                                  focus_quote=focus_quote_allowed, focus_lead=focus_lead)
                     answer_text, repair, repair_output, validation_final = r["text"], r["repair"], r["repair_output"], r["final"]
                     fallback_type, fallback_reason = r["fallback_type"], r["fallback_reason"]
                 timings["validation_ms"] = round((time.perf_counter() - t3) * 1000, 2)
@@ -1396,7 +1412,7 @@ class RagPipeline:
                     if fallback_type is None and focus_quote_allowed:
                         # Q1: declined although the provision the question concerns was supplied: its relevant
                         # paragraphs, verbatim (grounded by construction, as above)
-                        quoted = focused_quote(package, question)
+                        quoted = focused_quote(package, question, lead=focus_lead)
                         if quoted:
                             answer_text, validation_final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
                             fallback_reason = "the model declined; the governing provision is quoted instead"
