@@ -66,6 +66,9 @@ Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
   Q2  Q1's quotation for a section the picker chose, when the reranker scores it at least 0.6, under a lead that does
       not claim it is the provision the question concerns (regulus.rag.pipeline.Q2_MIN_RERANK). 26 Oct: 25 recorded
       withheld answers; without the score floor 3 PASS declines (must-refuse, false premise, out of scope) were lost
+  PR2 the yes/no premise check ignores words used in 40 or more of Title 21's sections ("instead", "outer", "appear"):
+      ordinary regulatory English is not a premise (regulus.rag.premise_vocabulary). 26 Oct: 397 recorded answers, 9
+      changed; blind scored FAIL->PASS 4, FAIL->PARTIALLY PASS 1, unchanged 4, none worse
   PO2 a question naming only a 21 CFR part outside the cosmetics programme ("under Part 211") is resolved to its
       section(s) inside that part, as "Under Part 82, ..." is (regulus.rag.section_promotion.part_only_any): 74 of
       225 300-question dev rows; a key section ranks first inside the part for 57

@@ -427,3 +427,15 @@ def test_c2_lets_a_lead_in_govern_its_subparagraphs_but_never_a_sibling(monkeypa
     rep, _ = validate("21 CFR 820.10(b)(2) requires traceability procedures, if applicable [2].",
                       "What do 21 CFR 820.10(b)(2) and 21 CFR 820.10(b)(4) require?")
     assert CONDITION_NOT_IN_CITED in codes(rep, "error") and not rep.ok
+
+
+def test_pr2_ordinary_regulatory_english_is_not_a_premise():
+    # PR2 (26 Oct): "instead", "without", "outer" are used across Title 21; "conceal", "biannual" are foreign to it
+    from regulus.rag.premise_vocabulary import COMMON_SECTIONS, _counts, common
+
+    if not _counts():
+        import pytest
+        pytest.skip("data/reference/title21_word_sections.json not built")
+    assert COMMON_SECTIONS == 40
+    assert common("without") and common("instead") and common("outer")
+    assert not common("conceal") and not common("biannual") and not common("overcome")

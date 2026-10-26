@@ -340,6 +340,11 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
     # -- yes/no questions: an affirmed premise that no source contains
     if is_yes_no and question:
         premise = _words(question) - all_words
+        if precision_fix("PR2"):
+            # PR2: ordinary regulatory English ("instead", "outer", "appear") is not a premise by itself
+            from regulus.rag.premise_vocabulary import common
+
+            premise = {w for w in premise if not common(w)}
         for sentence in sentences:
             asserted = premise & _words(sentence)
             if asserted and not _NEGATED.search(sentence) and not _NOT_A_CLAIM.search(sentence):
