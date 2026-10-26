@@ -70,6 +70,7 @@ class Presentation:
     detail: list[str] = field(default_factory=list)   # withheld / declined: the delivered text, kept behind "details"
     sources: list[dict[str, Any]] = field(default_factory=list)   # [{index, label, url}] cited by the answer
     context: dict[str, Any] | None = None  # follow-up: {earlier_question, provisions}
+    suggestions: list[str] = field(default_factory=list)  # follow-up questions offered under the answer
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -114,8 +115,35 @@ def _split_note_sentences(block: str) -> tuple[str, list[str]]:
     return " ".join(keep).strip(), notes
 
 
+# suggested follow-ups (26 Oct 2026): offered under an answer, from the provision it was answered from, in forms the
+# conversation resolves to that provision (regulus.rag.conversation) and that the pipeline answers deterministically
+# where it can (records: RS1; eye-area use of a listed color: the listing composer). Never for a declined answer.
+_LISTING_PART = re.compile(r"^(?:73|74|82)\.")
+MAX_SUGGESTIONS = 3
+
+
+def suggestions_for(anchor: dict | None, asked: str | None = None) -> list[str]:
+    """Up to MAX_SUGGESTIONS follow-up questions about the provision a turn was resolved to."""
+    a = anchor if isinstance(anchor, dict) else {}
+    cfr = [x for x in a.get("cfr") or [] if isinstance(x, str)]
+    act = [x for x in a.get("statute") or [] if isinstance(x, str)]
+    out: list[str] = []
+    if cfr and _LISTING_PART.match(cfr[0]):
+        out = ["Can this color be used in eye-area products such as eye shadow?",
+               "Does each batch of this color need FDA certification?",
+               f"What records does 21 CFR {cfr[0]} require?"]
+    elif cfr:
+        out = [f"What records does 21 CFR {cfr[0]} require?", f"Are there exceptions or exemptions in 21 CFR {cfr[0]}?",
+               f"Who does 21 CFR {cfr[0]} apply to?"]
+    elif act:
+        out = [f"What records does FD&C Act § {act[0]} require?", f"Are there exemptions under FD&C Act § {act[0]}?",
+               f"Who does FD&C Act § {act[0]} apply to?"]
+    seen = re.sub(r"\W+", " ", (asked or "").lower()).strip()
+    return [q for q in out if re.sub(r"\W+", " ", q.lower()).strip() != seen][:MAX_SUGGESTIONS]
+
+
 def present(answer: str, *, fallback_type: str | None = None, citations: list[dict] | None = None,
-            followup: dict | None = None) -> Presentation:
+            followup: dict | None = None, asked: str | None = None) -> Presentation:
     """The page layout of a delivered answer (see the module docstring). `citations`: the result's citations
     ([{index, label, url, cited_in_answer}]); `followup`: the result's "followup" (regulus.rag.conversation)."""
     text = (answer or "").strip()
@@ -131,8 +159,9 @@ def present(answer: str, *, fallback_type: str | None = None, citations: list[di
                                  + [f"FD&C Act § {s}" for s in anchor.get("statute") or []]}
     if fallback_type in _WITHHELD or fallback_type in _DECLINED:
         return _not_answered(text, fallback_type, sources, context)
+    offered = suggestions_for((followup or {}).get("anchor") if isinstance(followup, dict) else None, asked)
     kind = "composed" if (fallback_type or "").startswith("composed") else "answer"
-    p = Presentation(kind=kind, sources=sources, context=context)
+    p = Presentation(kind=kind, sources=sources, context=context, suggestions=offered)
     for block in _blocks(text):
         if _NOTE_LEADS.match(block):
             p.notes.append(block)

@@ -1077,7 +1077,8 @@ def presentation_of(result: dict) -> dict | None:
         from regulus.rag.presentation import present
 
         return present(result.get("answer") or "", fallback_type=result.get("fallback_type"),
-                       citations=result.get("citations"), followup=result.get("followup")).to_dict()
+                       citations=result.get("citations"), followup=result.get("followup"),
+                       asked=result.get("question")).to_dict()
     except Exception as exc:  # noqa: BLE001 - the answer is delivered whatever happens here
         print(f"  presentation: not built ({type(exc).__name__}); plain text shown", flush=True)
         return None

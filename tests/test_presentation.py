@@ -87,3 +87,16 @@ def test_a_composed_answer_opening_with_a_citation_leads_with_it():
     p = present(text, fallback_type="composed_records_silence")
     assert p.kind == "composed" and p.lead[0].startswith("21 CFR 701.11 sets no recordkeeping")
     assert [x.label for x in p.points] == ["21 CFR 701.11(a)"]
+
+
+def test_suggested_follow_ups_come_from_the_answers_provision_and_skip_the_question_asked():
+    from regulus.rag.presentation import suggestions_for
+    listing = suggestions_for({"cfr": ["74.2708", "82.1708"]})
+    assert listing[0].startswith("Can this color be used in eye-area") and len(listing) == 3
+    assert suggestions_for({"cfr": ["211.22"]}, asked="What records does 21 CFR 211.22 require?") == [
+        "Are there exceptions or exemptions in 21 CFR 211.22?", "Who does 21 CFR 211.22 apply to?"]
+    assert suggestions_for({"statute": ["607"]})[0] == "What records does FD&C Act § 607 require?"
+    assert suggestions_for({}) == [] and suggestions_for(None) == []
+    withheld = present("The generated answer could not be validated ... Sources consulted: 21 CFR 1.1.",
+                       fallback_type="unvalidated_answer_withheld", followup={"anchor": {"cfr": ["1.1"]}})
+    assert withheld.suggestions == []

@@ -70,3 +70,10 @@ def test_a_withheld_answer_reads_plainly_and_a_result_without_layout_is_plain_te
     assert "<li>21 CFR 700.25(c)</li>" in out and "<details" in out
     plain = render({"answer": "Plain <b>text</b> [1].", "citations": []})
     assert plain == '<div class="bubble">Plain &lt;b&gt;text&lt;/b&gt; [1].</div>'
+
+
+def test_suggested_follow_ups_are_buttons_with_escaped_text():
+    r = result_for("Yes, it may be used [1].", followup={"anchor": {"cfr": ["211.22"]}})
+    r["presentation"]["suggestions"] = ['Who does <b>this</b> apply to?']
+    out = render(r)
+    assert 'data-suggest="Who does &lt;b&gt;this&lt;/b&gt; apply to?"' in out and "<b>" not in out
