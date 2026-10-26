@@ -2,7 +2,7 @@
 
 Correct drafts were withheld by validator findings that are themselves false (9 of 63 non-PASS holdout answers).
 REGULUS_VALIDATOR_PRECISION lists the fixes switched on, e.g. "A1,A2,A3"; the default is every fix that passed the gates,
-"A1,A2,A3,A4,G1,S1,E1,C82" since the evening of 23 Oct; "off" keeps the validator exactly as it was before them. Each
+"A1,A2,A3,A4,G1,S1,E1,C82,P1" since 26 Oct; "off" keeps the validator exactly as it was before them. Each
 fix ships only after the exact replay of the recorded answers (holdout PASS rows unchanged or re-scored PASS, the named
 misleading drafts still withheld) and a blind answer A/B.
   A1  a CFR citation whose number the evidence carries is not a figure ("§74.705(a)(1)" read as "74"). FD&C Act
@@ -29,6 +29,11 @@ Answer post-processing fixes share the switch (failure analysis fix G):
       general section (regulus.rag.color_listing.compose_certification); for an FD&C (subpart B) certification
       question 82.5 joins as a companion and the answer says its 82.5(b)(1) limits govern; a provision named inside a
       verbatim quotation of the sentence's own cited source is not read as mis-cited (82.50 quoting "§ 82.5")
+  P1  a cosmetics question about a manufacturing practice no general cosmetic provision and no cosmetics section of
+      the Act mentions (calibration, pest control, cleaning SOPs, equipment certification - a search of the database
+      text decides) is answered from FD&C Act 606 and 601 (and 610 for records) (regulus.rag.practice_silence).
+      26 Oct: fires on 5 of the 1,211 section-benchmark questions (UC-004/005/008/010/012); blind two-lens scoring
+      PASS 0 -> 5 on both lenses, exact replay of 228 recorded answers byte-identical
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.
@@ -37,7 +42,7 @@ from __future__ import annotations
 
 import os
 
-VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "A1,A2,A3,A4,G1,S1,E1,C82").split(",")
+VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "A1,A2,A3,A4,G1,S1,E1,C82,P1").split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 
 

@@ -82,6 +82,8 @@ _QUOTATION_RE = re.compile(
 _PIPELINE_RE = re.compile(
     r"the available regulatory sources do not (?:provide enough information|cover)"
     r"|the generated answer could not be validated"
+    r"|a search of 21 CFR parts 700-740 and FD&C Act sections 601-614"
+    r"|state or local licensing requirements are not part of fda.s regulations"
     r"|the available ecfr data does not contain"
     r"|not found in the available ecfr data"
     r"|the answer above covers only the provisions that were retrieved"

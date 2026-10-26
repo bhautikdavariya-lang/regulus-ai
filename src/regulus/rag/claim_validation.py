@@ -93,7 +93,8 @@ _SUPPORTED_BY = {
 # pipeline-authored and refusal sentences are not claims about the evidence
 _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough information|do(?:es)? not (?:cover|establish)|"
                           r"not found in the available|were not verified|no answer is given|verbatim\)?:|"
-                          r"sources? do(?:es)? not provide|^\s*status note \(", re.I)
+                          r"sources? do(?:es)? not provide|^\s*status note \(|^\s*a search of 21 CFR parts 700-740 and FD&C Act sections|"
+                          r"^\s*state or local licensing requirements are not part of FDA.s regulations", re.I)
 _LEAD = 45  # a provision label within the first characters of a statement names what it presents
 
 # A2 (regulus.rag.validator_switches): "These provisions set no limit on the amount of guanine" is a claim about the

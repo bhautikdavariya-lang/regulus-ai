@@ -1,5 +1,6 @@
 """Validator and answer fixes A1-A4, G1, E1, S1, C82 (23 Oct 2026, regulus.rag.validator_switches): each changes only the
 answers it targets. No database, no model."""
+import re
 from types import SimpleNamespace
 
 from regulus.rag import validator_switches
@@ -32,7 +33,7 @@ def _unsupported(sentence):
 
 def test_the_gated_fixes_are_on_by_default():
     # every fix passed the exact replay and a blind A/B (23 Oct); A1 reads only CFR citations as citations
-    assert validator_switches.VALIDATOR_PRECISION == frozenset({"A1", "A2", "A3", "A4", "G1", "S1", "E1", "C82"}) or \
+    assert validator_switches.VALIDATOR_PRECISION == frozenset({"A1", "A2", "A3", "A4", "G1", "S1", "E1", "C82", "P1"}) or \
         "REGULUS_VALIDATOR_PRECISION" in __import__("os").environ
 
 
@@ -317,3 +318,59 @@ def test_c82_an_fdc_listing_says_which_82_5_limits_govern_it():
     out = compose_certification(pkg, "We supply FD&C Yellow No. 5. What specifications must a batch meet for certification?")
     assert "FD&C Yellow No. 5 is a straight color listed in subpart B, so the subpart B limits in 21 CFR 82.5(b)(1) apply to it [3][4]." in out
     assert '21 CFR 82.5(b)(2) states: "In the case of a straight color listed in subpart C or D:" [5].' in out
+
+
+# ------------------------------------------------------------ P1 practices the regulations do not address
+
+
+def test_p1_detects_the_practice_questions_and_stays_out_of_others():
+    from regulus.rag.practice_silence import asked_practices, asks_records
+    keys = lambda q: [p.key for p in asked_practices(q)]
+    assert keys("How often must we calibrate our scales and pH meters for cosmetic batches?") == ["calibration"]
+    assert keys("Do we legally need a licensed pest-control contractor for our small cosmetics plant?") == ["pest_control"]
+    assert keys("Do our mixers and filling machines for lotions need to be FDA 'certified'?") == ["equipment_certification"]
+    assert asks_records("What pest-control records must a cosmetics contract manufacturer keep, and for how long?")
+    assert keys("How do I clean the mixer for our lotion?") == []                         # asks no requirement
+    assert keys("Must our mixers for lotions be cleaned daily?") == []                    # equipment, not certification
+    assert keys("We make a face cream and an SPF 30 moisturizer on one kettle: cleaning and calibration rules?") == []
+    assert keys("How often must we calibrate our scales?") == []                          # not about cosmetics
+
+
+class _FakeDB:
+    def __init__(self, texts):
+        self.texts = texts
+
+    def query(self, sql, params):
+        return [{"section_number": "700.1", "body_text": t} for t in self.texts]
+
+
+def test_p1_silence_is_a_search_of_the_text_not_an_assumption():
+    from types import SimpleNamespace as NS
+    from regulus.rag.practice_silence import PRACTICES, silent
+    cal = next(p for p in PRACTICES if p.key == "calibration")
+    act = NS(rows=[{"body_text": "A cosmetic shall be deemed to be adulterated if ..."}], by_sec={"601": [0]})
+    assert silent(_FakeDB(["The term cosmetic product means a finished cosmetic."]), act, cal)
+    assert not silent(_FakeDB(["Each scale shall be calibrated at least once a year."]), act, cal)   # a provision added later
+
+
+def _act(index, cite, text):
+    return SimpleNamespace(index=index, citation=f"FD&C Act § {cite} [21 U.S.C. x]", text=text, heading=None, corpus="usc")
+
+
+def test_p1_composes_only_from_the_quoted_act_text():
+    from regulus.rag.practice_silence import compose, notes_for, PRACTICES
+    srcs = (_act(1, "606(a)", "The Secretary shall by regulation establish good manufacturing practices for facilities."),
+            _act(2, "606(c)", "The Secretary shall publish a notice of proposed rulemaking not later than 2 years after."),
+            _act(5, "601", "A cosmetic shall be deemed to be adulterated—"),
+            _act(3, "601(c)", "(c) If it has been prepared, packed, or held under insanitary conditions."),
+            _act(4, "601(f)", "(f) If it has been manufactured under conditions that do not meet the good manufacturing practice requirements."))
+    pkg = SimpleNamespace(sources=srcs)
+    cal = [p for p in PRACTICES if p.key == "calibration"]
+    out = compose(pkg, "How often must we calibrate our scales for cosmetic batches?", notes_for(cal))
+    lines = out.splitlines()
+    assert lines[0].startswith("A search of 21 CFR Parts 700-740 and FD&C Act sections 601-614") and "calibration" in lines[0]
+    assert lines[1] == 'FD&C Act § 606(a) states: "The Secretary shall by regulation establish good manufacturing practices for facilities." [1].'
+    assert all(re.search(r"\[\d\]\.$", ln) for ln in lines[1:])
+    # records asked, but 610(a) not supplied: nothing is composed (the model answers as before)
+    assert compose(pkg, "What calibration records must we keep for our cosmetic batches?", notes_for(cal)) is None
+    assert compose(pkg, "How often must we calibrate our scales for cosmetic batches?", ()) is None   # not this promotion

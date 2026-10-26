@@ -45,6 +45,7 @@ from regulus.rag.fallback import (
     FB_COMPOSED_LISTING,
     FB_DEFINITIONS_QUOTED,
     FB_PREMISE_NOT_ESTABLISHED,
+    FB_COMPOSED_SILENCE,
     FB_UNVALIDATED,
     blocked_answer,
     premise_not_established,
@@ -988,16 +989,26 @@ class RagPipeline:
                 and not (grounding_decision is not None and grounding_decision.refused)):
             from regulus.rag.color_listing import compose as compose_listing
 
-            text = compose_listing(package, question)
+            composed_type = FB_COMPOSED_LISTING
+            text = None
+            if promotion is not None and promotion.method == "practice_silence":
+                # P1: a practice no cosmetic provision mentions, answered from the Act text (regulus.rag.practice_silence)
+                from regulus.rag.practice_silence import compose as compose_silence
+
+                text, composed_type = compose_silence(package, question, promotion.notes), FB_COMPOSED_SILENCE
+            if not text:
+                composed_type = FB_COMPOSED_LISTING
+                text = compose_listing(package, question)
             if not text and precision_fix("C82"):
                 from regulus.rag.color_listing import compose_certification
 
                 text = compose_certification(package, question)
             if text:
                 report = validate_answer(text, package, None)
-                generation_info["listing_composer"] = {"composed": True, "valid": report.ok, "codes": list(report.codes())}
+                generation_info["listing_composer"] = {"composed": True, "valid": report.ok, "codes": list(report.codes()),
+                                                       "kind": composed_type}
                 if report.ok:
-                    composed, composed_report = (text, FB_COMPOSED_LISTING), report
+                    composed, composed_report = (text, composed_type), report
         if grounding_decision is not None and grounding_decision.refused:
             answer_text = grounding_decision.answer
             timings["generation_ms"] = 0.0

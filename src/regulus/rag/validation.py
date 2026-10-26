@@ -614,6 +614,12 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
                              + [s.heading or "" for s in package.sources] + [label for _, label in package.requirements]
                              + [package.question or ""])
             figure_text = _strip_supplied_citations(text, blob)
+        if precision_fix("P1"):
+            # the practice-silence answer's search sentence names the scope the pipeline searched ("21 CFR Parts
+            # 700-740 and FD&C Act sections 601-614"), not a figure taken from the evidence (regulus.rag.practice_silence)
+            from regulus.rag.practice_silence import SEARCH_SENTENCE_RE
+
+            figure_text = SEARCH_SENTENCE_RE.sub(" ", figure_text)
         if package.answer_style == "apply" and package.question:
             # the question's own figures ("section 721", "80 days", "12 fl oz") are facts it states - unless a source
             # states a different number in the same unit: "up to 10 percent" in the question is not supplied when

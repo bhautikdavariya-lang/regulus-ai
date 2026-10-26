@@ -359,6 +359,32 @@ class SectionPromoter:
                          statute_left_out=tuple(left), candidates=tuple(cands), picker_output=raw,
                          seconds=time.perf_counter() - t0)
 
+    def practice_silence(self, question: str, lexemes, t0: float) -> Promotion | None:
+        """P1 (regulus.rag.practice_silence): a cosmetics question about a manufacturing practice no general cosmetic
+        provision and no cosmetics section of the Act mentions (calibration, pest control, cleaning SOPs, equipment
+        certification) is answered from FD&C Act 606 and 601 (and 610 for records), pinned paragraph by paragraph;
+        the search that establishes the silence runs on the database text, so a provision added later ends it."""
+        from regulus.rag import practice_silence as PS
+        from regulus.rag.validator_switches import enabled as precision_fix
+
+        if not precision_fix("P1"):
+            return None
+        practices = PS.asked_practices(question)
+        if not practices or self.statute is None or not all(PS.silent(self.db, self.statute, p) for p in practices):
+            return None
+        pinned = PS.statute_paths(practices, PS.asks_records(question))
+        st = self.statute
+        kept: list[tuple[int, ...]] = []
+        for s, path in pinned:
+            rows = tuple(i for i in st.by_sec.get(s, ()) if st.rows[i].get("paragraph_path") == path)
+            if not rows:
+                return None
+            kept.append(rows)
+        return Promotion(sections=(), companions=(), method="practice_silence",
+                         statute=tuple(dict.fromkeys(s for s, _ in pinned)),
+                         statute_rows=tuple(i for g in kept for i in g), statute_blocks=tuple(kept),
+                         seconds=time.perf_counter() - t0, notes=PS.notes_for(practices))
+
     def definition_blocks(self, rows: list[int]) -> list[tuple[int, ...]]:
         """FD&C Act section 604 opens "In this subchapter:" - its definitions govern sections 605-614. The definitions
         of the terms the kept text uses ("serious adverse event", "responsible person", "facility"), most used first,
@@ -840,6 +866,9 @@ class SectionPromoter:
             entity = None
         if entity is not None:
             return self._cfr_promotion(entity, question, lex, cands, None, None, "entity", t0)
+        silence = self.practice_silence(question, lex, t0)
+        if silence is not None:
+            return silence
         if self.mode == "lexical":
             first = next((c for c in cands if not c.get("statute")), None)
             if first is None:
