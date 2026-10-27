@@ -412,3 +412,14 @@ def test_a_whole_dollar_amount_is_the_sources_amount_with_zero_cents(monkeypatch
     assert V._figures("10.0 percent") == {"10"} and V._figures("10.05 percent") == {"10.05"}
     monkeypatch.setattr(V, "precision_fix", lambda fix: False)
     assert V._figures("$75") != V._figures("$75.00")
+
+
+# ------------------------------------------------------------ EX1 "not necessary" is an exemption
+
+
+def test_an_exemption_restated_from_not_necessary_is_not_invented():
+    from regulus.rag import claim_validation as CV
+
+    assert CV._EXEMPT_SUPPORT.search("he may list such color additive and/or that certification procedure is not necessary")
+    assert CV._EXEMPT_SUPPORT.search("batches thereof are exempt from the certification")
+    assert not CV._EXEMPT_SUPPORT.search("The color additive shall conform to the specifications.")

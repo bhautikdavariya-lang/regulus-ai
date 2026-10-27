@@ -90,6 +90,10 @@ _SUPPORTED_BY = {
     "extent": re.compile(r"\bto the extent\b", re.I),
     "exception": re.compile(r"\b(?:unless|except|exempt|other than|exception)", re.I),
 }
+# EX1 (27 Oct): "certification procedure is not necessary" (71.27) is an exemption; the answer's "exempt it from
+# certification" restates it
+_EXEMPT_SUPPORT = re.compile(r"\b(?:unless|except|exempt|other than|exception)|\b(?:is|are|be)\s+not\s+(?:necessary|required)\b|"
+                             r"\bneed\s+not\b", re.I)
 # pipeline-authored and refusal sentences are not claims about the evidence
 _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough information|do(?:es)? not (?:cover|establish)|"
                           r"not found in the available|were not verified|no answer is given|verbatim\)?:|"
@@ -325,11 +329,12 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             m = pattern.search(content)
             if not m:
                 continue
-            if not any(_SUPPORTED_BY[group].search(t or "") for t in all_texts):
+            supported_by = (_EXEMPT_SUPPORT if group == "exception" and precision_fix("EX1") else _SUPPORTED_BY[group])
+            if not any(supported_by.search(t or "") for t in all_texts):
                 findings.append(ClaimFinding(INVENTED_CONDITION, SEVERITY[INVENTED_CONDITION],
                                              f"condition '{m.group(0)}' appears in no supplied source",
                                              citation=marks[0] if marks else None, sentence=sentence))
-            elif cited_texts and not any(_SUPPORTED_BY[group].search(t or "") for t in cited_texts):
+            elif cited_texts and not any(supported_by.search(t or "") for t in cited_texts):
                 findings.append(ClaimFinding(CONDITION_NOT_IN_CITED, SEVERITY[CONDITION_NOT_IN_CITED],
                                              f"condition '{m.group(0)}' is in a supplied source, but not in the one(s) cited",
                                              citation=marks[0], sentence=sentence))
