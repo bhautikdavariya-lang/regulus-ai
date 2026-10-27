@@ -408,6 +408,15 @@ class SectionPromoter:
                   else self.rerank_scores(question, cands))
         if not scores:
             return None
+        if precision_fix("RO1"):
+            # the RO1 guard holds for the veto too: a question naming no color is not handed to a color listing (71.25-Q1:
+            # picker 80.35, vetoed to the device-color listing 73.3128, 27 Oct final run)
+            from regulus.retrieval.entities import entity_index
+
+            ents = entity_index(self.index)
+            if not ents.match(question):
+                cands = [c for c in cands if not (ents.is_color_listing(c["section"]) or _ANY_LISTING.match(c["section"]))
+                         or c is picked] or cands
         top = max(cands, key=lambda c: (scores.get(c["section"], (0.0, ""))[0], -cands.index(c)))
         ps, ts = scores.get(picked["section"], (0.0, ""))[0], scores.get(top["section"], (0.0, ""))[0]
         if top["section"] != picked["section"] and ps < RERANK_VETO_BELOW and ts - ps >= RERANK_VETO_MARGIN:
