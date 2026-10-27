@@ -19,3 +19,8 @@ def test_the_missing_clauses_are_named_with_their_citations():
     assert "Clause 8.2.2 Complaint Handling (21 CFR 820.35(a)) [2]" in line and "Clause 4.2.5 (21 CFR 820.35) [1]" in line
     assert "8.2.2" not in (clause_line("Under Clause 8.2.2 complaint records must name the device [2].", SRC) or "")
     assert clause_line("No Part 820 source is cited here [9].", SRC) is None
+
+
+def test_an_iso_9000_paragraph_names_no_13485_clause():
+    assert clauses_in("(a) ISO 9000:2015(E) (“ISO 9000”), Quality Management systems—Fundamentals and vocabulary, "
+                      "Clause 3—Terms and definitions, IBR approved for § 820.3.") == []

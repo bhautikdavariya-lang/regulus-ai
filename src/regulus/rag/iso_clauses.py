@@ -20,6 +20,8 @@ LEAD = "ISO 13485:2016 clauses these provisions supplement, as the regulation na
 
 def clauses_in(text: str) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
+    if "ISO 9000" in (text or "") and "13485" not in (text or ""):
+        return out   # 820.7(a): ISO 9000's clause 3 (vocabulary), not a clause of ISO 13485
     for m in _CLAUSES.finditer(text or ""):
         if "ISO 9000" in (text or "")[max(0, m.start() - 40):m.end() + 20] and "13485" not in (text or "")[m.start():m.end() + 20]:
             continue   # ISO 9000 clause 3 (vocabulary), not an ISO 13485 clause
