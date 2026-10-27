@@ -321,6 +321,9 @@ class GenerationPackage:
     # requested provisions the answer may leave unaddressed ("21 CFR 507.34"): added as further evidence, not asked for
     # (SP2's second pick); omitting one is a warning, not an error. Empty: every requirement must be addressed, as before
     optional_labels: frozenset[str] = frozenset()
+    # LM1: the source numbers the cross-encoder judges closest to the question, named before the evidence (a model
+    # reading many paragraphs uses the start and end of its prompt best: "lost in the middle"); () renders as before
+    closest: tuple[int, ...] = ()
 
     @property
     def weak_evidence(self) -> bool:
@@ -369,6 +372,8 @@ class GenerationPackage:
             out["question_analysis"] = self.question_analysis.to_dict()
             out["profile"] = self.profile
             out["weak_evidence"] = self.weak_evidence
+        if self.closest:
+            out["closest_sources"] = list(self.closest)   # LM1
         return out
 
 
@@ -477,6 +482,9 @@ EARLIER_QUESTION_LEAD = ("EARLIER QUESTION IN THIS CONVERSATION (context only, f
                          "answer the QUESTION below):")
 
 
+CLOSEST_LEAD = "The sources closest to the facts of the question are"
+
+
 def render_package(package: GenerationPackage) -> str:
     """The user turn: question, requested provisions, evidence, notes, format."""
     reqs = package.requirement_labels
@@ -500,6 +508,11 @@ def render_package(package: GenerationPackage) -> str:
     else:
         parts.append("none (general question)")
     parts.append("")
+    if package.closest:
+        by_index = {s.index: s for s in package.sources}
+        named = [f"SOURCE {i} ({by_index[i].citation})" for i in package.closest if i in by_index]
+        if named:
+            parts.extend([f"{CLOSEST_LEAD} {', '.join(named)}.", ""])
     body = "\n\n".join(render_source(s, reqs) for s in package.sources) or EMPTY_SOURCES
     parts.append(f"{SOURCES_OPEN}{body}{SOURCES_CLOSE}")
     if package.notes:

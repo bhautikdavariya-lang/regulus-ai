@@ -117,6 +117,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       in the top 5 189 -> 200 (202), color matched 78 -> 90 (95); 0 of 1,962 correctly spelled questions changed
   QX1 (off until measured) LLM query expansion: the model restates the question in the regulation's terms and the
       sections that ranks first join the picker's candidates (71.18 "petition for exemption" for "ask FDA to exempt")
+  LM1 (off until measured) "lost in the middle": with 6+ sources the prompt names, before the evidence, the (at most 3)
+      the cross-encoder scores closest to the question (70.19-Q2 read the new-petition fee (c) for an amendment, (i))
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

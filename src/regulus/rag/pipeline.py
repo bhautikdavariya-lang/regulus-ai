@@ -409,6 +409,10 @@ REFUSAL_RETRY_NOTE = ("\n\nNOTE: The EVIDENCE above was retrieved for this quest
                       "that point only.")
 _BARE_REFUSAL_RE = re.compile(r"^(?:\s*The available regulatory sources do not provide enough information to answer "
                               r"this(?: question)?\.\s*)+$")
+# LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
+LM1_MIN_SOURCES = 6
+LM1_TOP = 3
+LM1_MIN_SCORE = 0.3
 # FU2D: a question whether a named color may be used is a question for that color's own listing
 _USE_OF_COLOR = re.compile(r"\b(?:can|may|could)\s+we\s+use\b|\buse\s+[^?]{0,60}?\bas\s+the\s+colou?rant\b|\bto\s+tint\b", re.I)
 _STRAY_DECLINE_RE = re.compile(r"[ \t]*The available regulatory sources do not provide enough information to answer "
@@ -944,6 +948,23 @@ class RagPipeline:
 
     # -- main entry ----------------------------------------------------------
 
+    def closest_sources(self, question: str, package) -> tuple[int, ...]:
+        """LM1: the (at most LM1_TOP) sources the cross-encoder scores highest for the question, at least LM1_MIN_SCORE,
+        in score order; () without the reranker. 70.19-Q2: of 18 fee paragraphs the model read the new-petition deposit
+        (c) for an amendment, which (i) prices, in the middle of the evidence."""
+        from regulus.rag.section_promotion import RERANKER
+        from regulus.retrieval.rerank import reranker
+
+        rr = reranker(RERANKER) if RERANKER else None
+        if rr is None:
+            return ()
+        try:
+            scores = rr.score(question, [s.text or "" for s in package.sources])
+        except Exception:  # noqa: BLE001 - an aid only
+            return ()
+        ranked = sorted(zip(scores, (s.index for s in package.sources)), key=lambda x: -x[0])
+        return tuple(i for sc, i in ranked[:LM1_TOP] if sc >= LM1_MIN_SCORE)
+
     def read_followup(self, question: str, plan: QueryPlan, context):
         """How a question asked later in a conversation is read against it (regulus.rag.conversation.resolve), with
         the signals that need the database: whether it names an FD&C Act section or a color additive the anchored
@@ -1209,6 +1230,10 @@ class RagPipeline:
                                                       for s in promotion.statute))
         if package is not None and followup is not None and followup.earlier_question:
             package = replace(package, earlier_question=followup.earlier_question)
+        if package is not None and precision_fix("LM1") and len(package.sources) >= LM1_MIN_SOURCES:
+            closest = self.closest_sources(question, package)
+            if closest:
+                package = replace(package, closest=closest)   # recorded in the package's to_dict
         if package is not None and promotion is not None:
             # SP2: the picker's second regulation is further evidence; an answer that leaves it out is not withheld
             extra = frozenset(f"21 CFR {n.split(': ', 1)[1]}" for n in promotion.notes if n.startswith("second pick: "))
