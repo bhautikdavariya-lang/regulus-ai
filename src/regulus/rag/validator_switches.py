@@ -205,6 +205,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       both operands are supplied figures and the arithmetic holds (regulus.rag.validation.verified_arithmetic)
   C3 (off until measured) a paragraph of the same section that names the cited paragraph ("unless an exemption pursuant
       to paragraph (b)") counts as cited for the condition checks, as C2 counts a parent or child
+  XR1 (off until measured) a requested section is fetched whole up to 400 rows (was 100), so the selector's relevance
+      order - not the row limit - decides which of a long section's paragraphs fit (720.4(d)/(e); 27 sections exceed 100)
   QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

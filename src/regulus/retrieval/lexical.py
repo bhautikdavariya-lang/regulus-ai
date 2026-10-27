@@ -116,6 +116,11 @@ GUIDANCE_CANDIDATE_MULTIPLIER = 10  # chunks ranked before the per-document cap 
 # returns the paragraph and its descendants; a section lookup returns every
 # row of the section. This is a resource guardrail, not a relevance cut.
 DEFAULT_EXACT_ROW_LIMIT = 100
+# XR1 (27 Oct): 27 live sections have more than 100 rows (101.9 has 278, 720.4 has 112): the limit cut their LAST
+# paragraphs before selection could rank them - 720.4(d) and (e), the ingredient-order and per-shade rules
+# COS-720.4-Q3 asks about, never reached the selector. With XR1 the whole section is fetched and the selector's
+# relevance order (regulus.rag.selection._required_order) decides what fits the evidence ceiling.
+XR1_EXACT_ROW_LIMIT = 400
 # Stage 2, part-level depth. A part-level request retrieves the first row of
 # each section of the part (ECFR_EXACT_PART, `ordinal = 0`), which for many
 # sections is a lead-in - "The definitions and interpretations of terms in
@@ -479,7 +484,10 @@ class LexicalRetriever:
                 if ref.key in exact_cache:
                     rows = exact_cache[ref.key]  # duplicate reference: reuse, no second query
                 else:
-                    rows = timed(f"{METHOD_EXACT_CFR}:{req.id}", self.exact_cfr, ref, filters, self.exact_row_limit, question)
+                    from regulus.rag.validator_switches import enabled as _switch
+
+                    limit = max(self.exact_row_limit, XR1_EXACT_ROW_LIMIT) if _switch("XR1") else self.exact_row_limit
+                    rows = timed(f"{METHOD_EXACT_CFR}:{req.id}", self.exact_cfr, ref, filters, limit, question)
                     exact_cache[ref.key] = rows
                 if not rows:
                     note = (
