@@ -1588,7 +1588,6 @@ class RagPipeline:
                 text, composed_type = compose_mocra(package, question), "composed_mocra_rule"
             if not text and not block and precision_fix("LS1"):
                 # LS1: "what must X contain / include / show" answered with the regulation's whole list
-                from regulus.rag.fallback import FB_COMPOSED_LIST
                 from regulus.rag.list_answers import compose as compose_list
 
                 text, composed_type = compose_list(package, question), FB_COMPOSED_LIST

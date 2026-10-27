@@ -43,3 +43,13 @@ def test_ls2_what_a_list_section_requires_is_its_whole_list(monkeypatch):
     out = compose(pkg, q)
     assert out.startswith("Under 21 CFR 820.10, the regulation's list, verbatim:") and all(f"[{i}]" in out for i in range(1, 5))
     assert compose(pkg, "Is a class I device covered by 21 CFR 820.10?") is None
+
+
+def test_no_module_constant_is_shadowed_by_a_local_import_in_the_pipeline():
+    # 27 Oct: a local re-import of FB_COMPOSED_LIST made it unbound in answer() whenever LS1's branch did not run
+    import types
+    from regulus.rag import pipeline as P
+    for cls in (P.RagPipeline,):
+        for name, f in vars(cls).items():
+            if isinstance(f, types.FunctionType):
+                assert not [n for n in f.__code__.co_varnames if n.isupper() and n in vars(P)], name
