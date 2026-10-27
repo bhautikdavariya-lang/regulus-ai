@@ -1285,6 +1285,10 @@ class SectionPromoter:
                 if vetoed is not None:
                     notes = (f"rerank veto: {picked_c['section']} -> {vetoed['section']}",)
                     picked_c, other = vetoed, (None if other is not None and other["section"] == vetoed["section"] else other)
+                    if precision_fix("VB1") and other is not None and bool(other.get("statute")) == bool(picked_c.get("statute")):
+                        # VB1: the second pick stands only from the other corpus. A veto from 720.1 to FD&C Act 606 kept the
+                        # picker's Act 612 as the "regulation" and promoted "21 CFR 612" (FDCA606-Q2 declined, 27 Oct)
+                        other = None
             second_cfr = second_in_part(picks, cands, picked_c)
         if picked_c.get("statute"):
             acts = [(picked_c["section"], "")] + ([(second_act["section"], "")] if second_act is not None
