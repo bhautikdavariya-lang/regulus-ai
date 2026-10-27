@@ -580,7 +580,8 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
                 named = (ref.title, ref.section, ref.paragraph_path)
                 if not any(ident and _related_identity(named, ident) for ident in identities.values()):
                     continue  # the provision is not among the sources; handled by the missing-provision rule
-                if precision_fix("CM1") and any(re.search(rf"(?<![\d.]){re.escape(ref.section)}(?![\d])", by_index[i].text or "")
+                if precision_fix("CM1") and any(identities.get(i) and identities[i][1] != ref.section
+                                                and re.search(rf"(?<![\d.]){re.escape(ref.section)}(?![\d])", by_index[i].text or "")
                                                 for i in marks):
                     # CM1: the cited source names that provision itself ("The fee for listing a diluent under § 80.35
                     # ... shall be $250.00" in 70.19(j)): the sentence restates it, it does not mis-cite (27 Oct)
