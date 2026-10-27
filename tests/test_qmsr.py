@@ -61,3 +61,14 @@ def test_former_record_types_named_in_words_are_their_former_sections():
     q = "What is the difference between a Device Master Record, a Device History Record, and a Design History File?"
     assert former_by_name(q, live) == [("820.181", ""), ("820.184", ""), ("820.30", "(j)")]
     assert former_by_name("What must complaint records contain under Part 820?", live) == []
+
+
+def test_the_certification_answer_rests_on_820_10_a():
+    pkg = SimpleNamespace(sources=[src(1, "21 CFR 820.10", "A manufacturer subject to this part as described by § 820.1(a) must:"),
+                                   src(2, "21 CFR 820.10(a)", "(a) Document. Document a quality management system that "
+                                       "complies with the applicable requirements of ISO 13485 and other applicable requirements of this part; and")])
+    q = "Does Part 820 require a manufacturer to hold ISO 13485 certification?"
+    text = qmsr.compose_certification(pkg, q)
+    assert text.startswith("Part 820 does not require ISO 13485 certification") and "[2]" in text and "820.10(a) (eCFR" in text
+    assert qmsr.compose_certification(SimpleNamespace(sources=pkg.sources[:1]), q) is None
+    assert not qmsr.asks_certification("What does 21 CFR 820.10 require?")

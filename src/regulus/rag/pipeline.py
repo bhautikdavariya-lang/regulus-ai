@@ -1240,6 +1240,18 @@ class RagPipeline:
                 cache[part] = None
         return cache[part]
 
+    def part_mentions(self, part: str, pattern: str) -> bool | None:
+        """Whether any live text of the 21 CFR part matches the (PostgreSQL, case-insensitive) pattern; None unknown."""
+        db = getattr(self.retriever, "db", None)
+        if db is None:
+            return None
+        try:
+            rows = db.query("SELECT 1 FROM cfr_records WHERE part_number = %(p)s AND removed_on IS NULL AND NOT is_reserved "
+                            "AND body_text ~* %(r)s LIMIT 1", {"p": part, "r": pattern})
+        except Exception:  # noqa: BLE001 - unknown: nothing is said
+            return None
+        return bool(rows)
+
     def qmsr_request(self, question: str, plan: QueryPlan) -> tuple[list, list]:
         """QM1: (former part 820 sections the question names, ISO 13485 clauses it names that do not exist)."""
         if not precision_fix("QM1"):
@@ -1318,7 +1330,14 @@ class RagPipeline:
         # QM1: a section of the former Quality System regulation (or an ISO 13485 clause that does not exist) - the
         # question is re-planned onto the live part 820 section that now carries the subject (regulus.rag.qmsr)
         qmsr_former, qmsr_unknown = self.qmsr_request(question, plan)
-        if qmsr_former or qmsr_unknown:
+        # QC1: a question whether Part 820 requires ISO 13485 certification is answered from 820.10 (regulus.rag.qmsr)
+        qmsr_cert = False
+        if precision_fix("QC1") and not (qmsr_former or qmsr_unknown):
+            from regulus.rag import qmsr as _qmsr
+
+            if _qmsr.asks_certification(question) and self.live_part_sections("820"):
+                qmsr_cert = self.part_mentions("820", r"certif") is False   # confirmed silent, not unknown
+        if qmsr_former or qmsr_unknown or qmsr_cert:
             plan = self.qmsr_plan(question, plan, qmsr_former)
         own_plan = plan   # the question's own plan: every scope decision is made on it, never on a promoted one
         promotion = None
@@ -1544,6 +1563,10 @@ class RagPipeline:
                 from regulus.rag.qmsr import compose as compose_qmsr
 
                 text, composed_type = compose_qmsr(package, question, qmsr_former, qmsr_unknown), FB_COMPOSED_QMSR
+            if not text and qmsr_cert:
+                from regulus.rag.qmsr import compose_certification
+
+                text, composed_type = compose_certification(package, question), FB_COMPOSED_QMSR
             if not text and provision_identified and (precision_fix("FP1") or precision_fix("RS1")):
                 text, composed_type = self.compose_from_identified(package, question, plan, promotion)
             if not text and precision_fix("D1"):

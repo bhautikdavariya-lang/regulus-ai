@@ -171,3 +171,38 @@ def compose(package, question: str, former: list[tuple[str, str]], unknown: list
             line += " FDA published no section-by-section mapping from the former regulation; the clause is named by subject."
         lines.append(line + " The standard's text is not reproduced here.")
     return "\n".join(lines)
+
+
+# QC1 (27 Oct): "Does Part 820 require ISO 13485 certification, and does a certificate exempt us from FDA inspection?"
+# 820.10(a) requires a documented quality management system that complies with ISO 13485; no live part 820 text
+# mentions certification (checked against the database for every answer, not assumed). The model, given 820.10, wrote
+# conditions the text does not state and was withheld (device baseline M-041).
+_CERTIFICATION = re.compile(r"\bcertif(?:y|ied|ication|icate)s?\b", re.I)
+_ISO = re.compile(r"\bISO\s*13485\b", re.I)
+CERTIFICATION_SENTENCE = "No section of the current part 820 mentions certification"
+
+
+def asks_certification(question: str) -> bool:
+    return bool(_CERTIFICATION.search(question or "") and _ISO.search(question or ""))
+
+
+def compose_certification(package, question: str) -> str | None:
+    """The QC1 answer, or None when 820.10(a) is not in the evidence. The caller has confirmed that no live part 820
+    text mentions certification."""
+    from regulus.rag.generation import _verbatim, whole_sentences
+
+    if package is None or not asks_certification(question):
+        return None
+    by_cite = {s.citation: s for s in package.sources if not s.is_docket}
+    lead, a = by_cite.get("21 CFR 820.10"), by_cite.get("21 CFR 820.10(a)")
+    if a is None:
+        return None
+    lines = [f"Part 820 does not require ISO 13485 certification: 21 CFR 820.10(a) requires the manufacturer to document a "
+             f"quality management system that complies with the applicable requirements of ISO 13485 [{a.index}].",
+             f"{CERTIFICATION_SENTENCE}: it neither requires an ISO 13485 certificate nor exempts a certificate holder "
+             f"from FDA inspection.",
+             "21 CFR 820.10, verbatim:"]
+    for s in (lead, a):
+        if s is not None and whole_sentences(s.text or ""):
+            lines.append(f"{s.citation} (eCFR, binding, verbatim): {_verbatim(whole_sentences(s.text or ''), s.index)}")
+    return "\n".join(lines)

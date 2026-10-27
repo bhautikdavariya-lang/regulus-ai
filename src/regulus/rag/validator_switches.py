@@ -197,6 +197,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       handles: key paragraph among its picks 13 of 19 (the baseline read the whole part and missed the paragraph)
   QM2 (off until measured) the former regulation's record types named in words - device master record, device history
       record, design history file, quality system record - are its former sections for QM1 (regulus.rag.qmsr.former_by_name)
+  QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
+      is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
+      (regulus.rag.qmsr.compose_certification)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
