@@ -227,14 +227,23 @@ def requested_duty(sentence: str, texts: list[str]) -> str | None:
     return None
 
 
-def duty_stated(sentence: str, texts: list[str]) -> bool:
+def duty_stated(sentence: str, sources) -> bool:
     """Whether a supplied source sentence states the sentence's duty itself ("must", not "is encouraged") and shares at
-    least 40% of its words - E1's escape, used by E2 under E2B."""
+    least 40% of its words - E1's escape, used by E2 under E2B. A paragraph under a lead-in that states the duty ("A
+    manufacturer subject to this part ... must:" over 820.10(a) "Document a quality management system ...") states it
+    too, as C2 reads a lead-in."""
     words = _words(_LABEL.sub(" ", _MARK.sub(" ", sentence)))
     if len(words) < UNSUPPORTED_MIN_WORDS:
         return False
-    return any(_SOURCE_DUTY.search(piece) and not _WEAK.search(piece) and len(words & _words(piece)) / len(words) >= 0.4
-               for text in texts for piece in _SOURCE_SENTENCE.split(text or ""))
+    leads = [s.citation for s in sources if s.citation and (s.text or "").rstrip().endswith(":")
+             and _SOURCE_DUTY.search(s.text or "") and not _WEAK.search(s.text or "")]
+    for s in sources:
+        governed = any(s.citation and s.citation != c and s.citation.startswith(c) for c in leads)
+        for piece in _SOURCE_SENTENCE.split(s.text or ""):
+            if (governed or _SOURCE_DUTY.search(piece)) and not _WEAK.search(piece) \
+                    and len(words & _words(piece)) / len(words) >= 0.4:
+                return True
+    return False
 
 
 def strengthened_obligation(sentence: str, cited_texts: list[str], supplied_texts: list[str] = ()) -> str | None:
@@ -375,7 +384,7 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             if not texts and sentence is sentences[0]:
                 texts = exact_texts
             weaker = requested_duty(sentence, texts) if texts else None
-            if weaker and precision_fix("E2B") and duty_stated(sentence, [s.text for s in package.sources]):
+            if weaker and precision_fix("E2B") and duty_stated(sentence, package.sources):
                 # E2B (27 Oct): another supplied source states the duty itself - 820.1(a) "must establish and maintain a
                 # quality management system" beside 820.1(a)(2)'s component makers who "are encouraged" (M-012 withheld)
                 weaker = None

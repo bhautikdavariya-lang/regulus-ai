@@ -452,12 +452,26 @@ def test_af1_a_section_named_with_its_paragraph_is_supplied(monkeypatch):
 
 
 def test_e2b_a_duty_another_supplied_source_states_itself():
+    from types import SimpleNamespace as N
     from regulus.rag.claim_validation import duty_stated
     s = ("A manufacturer subject to 21 CFR part 820 must establish and maintain a quality management system that is "
          "appropriate for its specific device.")
-    must = ("Any manufacturers engaged in the design, manufacture, packaging, labeling, storage, installation, or servicing "
-            "of a finished device must establish and maintain a quality management system that is appropriate for its "
-            "specific device(s).")
-    encouraged = "This regulation does not apply to manufacturers of components or parts of finished devices, but such manufacturers are encouraged to consider provisions of this regulation as appropriate."
+    must = N(citation="21 CFR 820.1(a)", text="Any manufacturers engaged in the design, manufacture, packaging, labeling, "
+             "storage, installation, or servicing of a finished device must establish and maintain a quality management "
+             "system that is appropriate for its specific device(s).")
+    encouraged = N(citation="21 CFR 820.1(a)(2)", text="This regulation does not apply to manufacturers of components or "
+                   "parts of finished devices, but such manufacturers are encouraged to consider provisions of this regulation.")
     assert duty_stated(s, [encouraged, must])
     assert not duty_stated(s, [encouraged])
+
+
+def test_e2b_a_paragraph_under_a_duty_lead_in_states_the_duty():
+    from types import SimpleNamespace as N
+    from regulus.rag.claim_validation import duty_stated
+    s = ("A manufacturer subject to 21 CFR part 820 must document a quality management system that complies with the "
+         "applicable requirements of ISO 13485.")
+    lead = N(citation="21 CFR 820.10", text="A manufacturer subject to this part as described by § 820.1(a) must:")
+    a = N(citation="21 CFR 820.10(a)", text="(a) Document. Document a quality management system that complies with the "
+          "applicable requirements of ISO 13485 and other applicable requirements of this part; and")
+    assert duty_stated(s, [lead, a])
+    assert not duty_stated(s, [a])
