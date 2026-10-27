@@ -112,6 +112,11 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   LC1 an opening listing question ("May we use X, and what applies?") the model answered gets the listing's paragraphs
       no citation of the answer points to, verbatim and cited (73.2125: the 0.1 percent limit said, (a), (c), (d) not)
   EX1 a source's "certification ... is not necessary" supports an answer's "exempt from certification"
+  SP1 spelling correction against the regulations' vocabulary, SymSpell-style (regulus.retrieval.spelling): "carmin"
+      -> "carmine", "anatto" -> "annatto". 277 bank questions with seeded typos: key section first 124 -> 131 (clean 134),
+      in the top 5 189 -> 200 (202), color matched 78 -> 90 (95); 0 of 1,962 correctly spelled questions changed
+  QX1 (off until measured) LLM query expansion: the model restates the question in the regulation's terms and the
+      sections that ranks first join the picker's candidates (71.18 "petition for exemption" for "ask FDA to exempt")
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

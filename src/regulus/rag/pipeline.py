@@ -1070,8 +1070,20 @@ class RagPipeline:
         emit = on_event or (lambda kind, data: None)
         timings: dict[str, float] = {}
         t0 = time.perf_counter()
-        plan = plan_query(question)  # Stage 1: the one and only parse of the question
         asked = question
+        spelling = None
+        if precision_fix("SP1") and getattr(self.retriever, "db", None) is not None:
+            # SP1: a misspelled word corrected against the regulations' own vocabulary ("carmin", "anatto"), as a
+            # search engine's "did you mean" does (regulus.retrieval.spelling); the user's words stay the asked question
+            try:
+                from regulus.retrieval.spelling import vocabulary
+
+                corrected, spelling = vocabulary(self.retriever.db).correct(question)
+                if spelling:
+                    question = corrected
+            except Exception:  # noqa: BLE001 - an aid: the question is answered as asked
+                spelling = None
+        plan = plan_query(question)  # Stage 1: the one and only parse of the question
         # a follow-up (`context`: regulus.rag.conversation.ConversationContext) is read against its conversation; without
         # a context nothing below changes
         followup = self.read_followup(question, plan, context) if context else None
@@ -1615,6 +1627,7 @@ class RagPipeline:
                                             ({"named_companions": named_companions_added} if named_companions_added else None))),
                 "config": self.config.to_dict(),
                 # follow-ups: what this turn was resolved to (the next question's anchor) and how it was read
+                "spelling": [list(x) for x in spelling] if spelling else None,
                 "conversation": {"anchor": turn_anchor(own_plan, promotion, followup).to_dict(),
                                  "followup": followup.to_dict() if followup is not None else None},
             },

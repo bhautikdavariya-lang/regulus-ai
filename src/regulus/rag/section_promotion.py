@@ -108,6 +108,13 @@ _DEF_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The terms?\s+)?(.+?)\s+means?\b", re
 # CS1: a color additive regulation (Parts 70-82) and the cosmetics sections of the Act it does not carry out
 _COLOR_ADDITIVE_PART = re.compile(r"^(?:7\d|8[0-2])\.")
 _MOCRA_SECTIONS = frozenset(str(n) for n in range(603, 615))
+# QX1 query expansion: the restatement prompt, its length, and how many sections it may add
+EXPANSION_SYSTEM = ("You restate questions about U.S. FDA regulations in the formal terms the regulations themselves use. "
+                    "You never answer them.")
+EXPANSION_PROMPT = ("Question: {question}\n\nRestate the question in one sentence in the formal terms a U.S. regulation on "
+                    "this subject would use. Do not answer it and do not cite section numbers. Reply with the sentence only.")
+EXPANSION_MAX_TOKENS = 64
+EXPANSION_ADD = 4
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -998,6 +1005,8 @@ class SectionPromoter:
         if parts and len({x for x in lex if not x.isdigit()} - _PART_QUESTION_WORDS - COSMETIC_TERMS_GENERIC) < 2:
             return None   # "What does Part 720 require?" asks about the whole part: not narrowed to one section
         lex, cands = self.candidates(question, parts)
+        if cands and precision_fix("QX1"):
+            cands = self.expanded_candidates(question, parts, cands)
         offer_statute = self.statute is not None and cosmetic_question(lex) and not parts
         if offer_statute:
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question)
@@ -1006,6 +1015,33 @@ class SectionPromoter:
             general = tuple(x for x in sorted(self.statute.by_sec) if x not in STATUTE_OFFERED and x not in _ACT_NOT_OFFERED)
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question, general)[:GENERAL_ACT_OFFERED]
         return (lex, cands) if cands else None
+
+    def expanded_candidates(self, question: str, parts, cands: list[dict]) -> list[dict]:
+        """QX1 (27 Oct): LLM query expansion (HyDE / Query2doc): the model restates the question in the regulation's own
+        terms and the sections that restatement ranks first join the candidates in place of the last-ranked - "Can we ask
+        FDA to exempt it from certification?" never says "petition", and 71.18 ("Petition for exemption from
+        certification") was not among the 22 candidates. The picker still reads the user's question; nothing is added
+        when there is no model or the reply is unusable."""
+        if self.generator is None or getattr(self.generator, "retrieval_only", False):
+            return cands
+        try:
+            kw = {"think_budget": 0} if getattr(self.generator, "thinking", False) is True else {}
+            gen = self.generator.generate([{"role": "system", "content": EXPANSION_SYSTEM},
+                                           {"role": "user", "content": EXPANSION_PROMPT.format(question=question)}],
+                                          max_new_tokens=EXPANSION_MAX_TOKENS, **kw)
+            text = " ".join((getattr(gen, "response", "") or "").split())
+        except Exception:  # noqa: BLE001 - an aid only
+            return cands
+        if not text or len(text) > 400 or re.search(r"\d+\.\d+", text):
+            return cands   # empty, rambling, or citing a section (a guessed citation never steers retrieval)
+        self.__dict__["last_expansion"] = text
+        _, more = self.candidates(text, parts)
+        have = {c["section"] for c in cands}
+        new = [c for c in more if not c.get("statute") and c["section"] not in have][:EXPANSION_ADD]
+        if not new:
+            return cands
+        cfr = [c for c in cands if not c.get("statute")]
+        return cfr[:max(0, len(cfr) - len(new))] + new + [c for c in cands if c.get("statute")]
 
     def anchored(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = ()) -> Promotion | None:
         """A follow-up resolved to the provisions its conversation is about (regulus.rag.conversation): those sections
