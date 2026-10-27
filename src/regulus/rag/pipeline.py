@@ -1359,6 +1359,18 @@ class RagPipeline:
                                                       for s in promotion.statute))
         if package is not None and followup is not None and followup.earlier_question:
             package = replace(package, earlier_question=followup.earlier_question)
+        if package is not None and precision_fix("FX1") and package.answer_style == "apply" and package.sources:
+            # FX1: a verified example of a complete answer to a similar question about another provision (form only)
+            try:
+                from regulus.rag import answer_examples as AX
+                from regulus.retrieval.paragraph_dense import paragraph_dense
+
+                pd = paragraph_dense(self.retriever.db) if getattr(self.retriever, "db", None) is not None else None
+                ex = AX.choose(getattr(pd, "embedder", None), question, AX.covered(package))
+                if ex is not None:
+                    package = replace(package, example={"id": ex["id"], "question": ex["question"], "covers": ex["covers"]})
+            except Exception:  # noqa: BLE001 - an aid only
+                pass
         if package is not None and precision_fix("LM1") and len(package.sources) >= LM1_MIN_SOURCES:
             closest = self.closest_sources(question, package)
             if closest:

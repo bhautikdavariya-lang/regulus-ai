@@ -140,6 +140,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   BN2 (off until measured) best of two with a verifier: a facts-first draft beside the plain one; the validated draft
       citing more of the requested paragraphs with fewer denials is delivered (plain on a tie), and a validated
       facts-first draft replaces a plain one that would be withheld
+  FX1 (off until measured) dynamic answer example: one verified dev-split key of a similar question about another
+      provision, section numbers removed, shown as an example of a complete answer's content (regulus.rag.answer_examples);
+      never from the question's own provisions or the question itself, never a sealed question. The examples file is
+      the client's keys and stays outside the repository (REGULUS_ANSWER_EXAMPLES)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

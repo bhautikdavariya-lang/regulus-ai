@@ -324,6 +324,9 @@ class GenerationPackage:
     # LM1: the source numbers the cross-encoder judges closest to the question, named before the evidence (a model
     # reading many paragraphs uses the start and end of its prompt best: "lost in the middle"); () renders as before
     closest: tuple[int, ...] = ()
+    # FX1: an example of what a complete answer to a similar question covers (regulus.rag.answer_examples), form only;
+    # None renders as before
+    example: dict | None = None
 
     @property
     def weak_evidence(self) -> bool:
@@ -483,6 +486,9 @@ EARLIER_QUESTION_LEAD = ("EARLIER QUESTION IN THIS CONVERSATION (context only, f
 
 
 CLOSEST_LEAD = "The sources closest to the facts of the question are"
+EXAMPLE_LEAD = ("EXAMPLE OF A COMPLETE ANSWER'S CONTENT (a different question about a different provision - for its form "
+                "only: cover each paragraph that bears on the question, with its conditions and exceptions; never use its "
+                "facts):")
 
 
 def render_package(package: GenerationPackage) -> str:
@@ -519,6 +525,9 @@ def render_package(package: GenerationPackage) -> str:
         parts.append("")
         parts.extend(f"NOTE: {n}" for n in package.notes)
     parts.append("")
+    if package.example:
+        parts.extend([EXAMPLE_LEAD, f"Example question: {package.example['question']}",
+                      f"What its complete answer covers: {package.example['covers']}", ""])
     if package.answer_style == "apply" and package.sources:
         parts.append(APPLY_FORMAT)
     elif package.answer_plan is not None:
