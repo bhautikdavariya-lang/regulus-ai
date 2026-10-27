@@ -409,6 +409,8 @@ REFUSAL_RETRY_NOTE = ("\n\nNOTE: The EVIDENCE above was retrieved for this quest
                       "that point only.")
 _BARE_REFUSAL_RE = re.compile(r"^(?:\s*The available regulatory sources do not provide enough information to answer "
                               r"this(?: question)?\.\s*)+$")
+# FU2D: a question whether a named color may be used is a question for that color's own listing
+_USE_OF_COLOR = re.compile(r"\b(?:can|may|could)\s+we\s+use\b|\buse\s+[^?]{0,60}?\bas\s+the\s+colou?rant\b|\bto\s+tint\b", re.I)
 _STRAY_DECLINE_RE = re.compile(r"[ \t]*The available regulatory sources do not provide enough information to answer "
                                r"this(?: question)?\.[ \t]*")
 _CITED_RE = re.compile(r"\[\d{1,3}\]")
@@ -966,8 +968,14 @@ class RagPipeline:
 
                 lex = SectionIndex.question_lexemes(promoter.db, question)
                 names = names or bool(promoter.named_statute(question, lex))
-                colors = entity_index(promoter.index).match(question)
+                ents = entity_index(promoter.index)
+                colors = ents.match(question)
                 other_entity = bool(colors) and not any(set(c.sections) & set(anchor.cfr) for c in colors)
+                if (other_entity and precision_fix("FU2D") and not any(ents.is_color_listing(s) for s in anchor.cfr)
+                        and not _USE_OF_COLOR.search(question)):
+                    # FU2D: a color named in a conversation about a general section (82.51 lakes, 70.25 labeling) is
+                    # asked about under it - "How would we name a calcium lake of FD&C Blue No. 1?" after 82.51
+                    other_entity = False
                 if not (names or other_entity):
                     ranked = promoter.ranks_any(question, anchor.cfr, anchor.statute, top=FOLLOWUP_RANK_TOP)
                     heading_words = set().union(*(subject_words(h, stem) for h in promoter.heading_words(anchor.cfr)))

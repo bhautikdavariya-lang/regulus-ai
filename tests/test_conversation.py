@@ -334,3 +334,11 @@ def test_a_statute_anchor_is_named_by_its_section_sign():
     out = read_rewrite("Can an FDA district director sign a mandatory recall order under FD&C Act § 611?",
                        "Can an FDA district director sign the recall order?", a)
     assert out == ("Can an FDA district director sign a mandatory recall order under FD&C Act § 611?", True)
+
+
+def test_fu2d_a_use_question_about_a_named_color_belongs_to_its_listing():
+    from regulus.rag.pipeline import _USE_OF_COLOR
+
+    assert _USE_OF_COLOR.search("Can we use disodium EDTA-copper to tint a body wash and a shampoo?")
+    assert _USE_OF_COLOR.search("We want to use pyrophyllite as the colorant. May we?")
+    assert not _USE_OF_COLOR.search("How would we name a calcium lake of FD&C Blue No. 1?")

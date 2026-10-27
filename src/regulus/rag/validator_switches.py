@@ -96,6 +96,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       anchoring of a new main question 22 -> 22). FU3 (the follow-up's own top-ranked section as a companion) was
       measured and dropped: 55 added, 5 in the key. FU2C: shared subject words alone do not anchor a question of more
       than 12 subject words with no pointer back (false anchors 22 -> 20, no correct anchor lost)
+  FU2D a color named in a conversation anchored to a general section (82.51 lakes, 81.30, 82.50) does not make the
+      follow-up a new question unless it asks whether that color may be used (harness: +8 correct anchors, 0 false;
+      all FU2 rules together: anchored with the key's section 512 -> 531, false anchors 22 -> 20 of 1,000)
   CS1 a color additive regulation (Parts 70-82, which carry out section 721) is not given MoCRA's 603-614 as a
       co-promoted Act section (5 of 16 Part 70 questions got 607/608/609, filling the budget)
   FS2 (off) follow-up subject words stemmed by PostgreSQL's Snowball English stemmer (the retrieval index's) instead of
