@@ -1601,6 +1601,11 @@ class RagPipeline:
                 from regulus.rag.list_answers import compose as compose_list
 
                 text, composed_type = compose_list(package, question), FB_COMPOSED_LIST
+            if not text and not block and precision_fix("WS1"):
+                # WS1: an overview question about the promoted section's own subject, answered with the whole section
+                from regulus.rag.list_answers import compose_section
+
+                text, composed_type = compose_section(package, question), FB_COMPOSED_LIST
             if not text and not block:
                 composed_type = FB_COMPOSED_LISTING
                 text = compose_listing(package, question)
@@ -1615,7 +1620,7 @@ class RagPipeline:
                 valid = report.ok or (composed_type in (FB_COMPOSED_PREMISE, FB_COMPOSED_RECORDS, FB_COMPOSED_QMSR,
                                                         FB_COMPOSED_DEFINITIONS) and not (
                     {p.code for p in report.problems if p.severity == "error"} - _FOCUSED_COMPLETENESS_CODES))
-                if not valid and composed_type == FB_COMPOSED_LIST and precision_fix("LS2"):
+                if not valid and composed_type == FB_COMPOSED_LIST and (precision_fix("LS2") or precision_fix("WS1")):
                     # LS2: the whole list of one section, verbatim, is complete for that section; a completeness finding
                     # about another provision ("subject to Part 820" planned as a request for 820.1(a)(1)) does not apply
                     listed = re.match(r"Under 21 CFR (\S+?),", text)

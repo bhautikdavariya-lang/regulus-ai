@@ -215,6 +215,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   HM1 (off until measured) a section of the promoted section's part whose heading's lead phrase the question contains
       word for word (two topic words or more) joins it: "use of approved components ... rejected components" -> 211.86,
       211.89 (regulus.rag.section_promotion.heading_matches)
+  WS1 (off until measured) an overview question whose subject is the promoted section's own heading ("What are the
+      reserve sample requirements under Part 211?" -> 211.170) is answered with the whole section verbatim when it is at
+      most 3,600 characters (regulus.rag.list_answers.compose_section)
   QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

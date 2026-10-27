@@ -53,3 +53,16 @@ def test_no_module_constant_is_shadowed_by_a_local_import_in_the_pipeline():
         for name, f in vars(cls).items():
             if isinstance(f, types.FunctionType):
                 assert not [n for n in f.__code__.co_varnames if n.isupper() and n in vars(P)], name
+
+
+def test_ws1_an_overview_of_the_sections_own_subject_is_the_whole_section():
+    from regulus.rag.list_answers import compose_section
+    src = [NS(citation="21 CFR 211.170", index=1, heading="Reserve samples.", text="Reserve samples shall be retained as follows."),
+           NS(citation="21 CFR 211.170(a)", index=2, heading="Reserve samples.", text="(a) A reserve sample shall consist of at least twice the quantity necessary for all tests."),
+           NS(citation="21 CFR 211.170(b)", index=3, heading="Reserve samples.", text="(b) Reserve samples shall be examined visually at least once a year.")]
+    pkg = NS(requirements=(("r1", "21 CFR 211.170"),), sources=src)
+    out = compose_section(pkg, "What are the reserve sample requirements under Part 211?")
+    assert out.startswith("Under 21 CFR 211.170, the regulation's text in full (Reserve samples), verbatim:")
+    assert all(f"[{i}]" in out for i in (1, 2, 3))
+    assert compose_section(pkg, "How long must reserve samples be kept?") is None          # a specific question
+    assert compose_section(pkg, "What are the stability testing requirements?") is None    # another subject

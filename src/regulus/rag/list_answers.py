@@ -84,3 +84,40 @@ def compose(package, question: str) -> str | None:
         seen.add((s.citation, body))
         lines.append(f"{s.citation} (eCFR, binding, verbatim): {_verbatim(body, s.index)}")
     return "\n".join(lines) if len(lines) > 2 else None
+
+
+# WS1 (27 Oct): an overview question whose subject is the promoted section's own heading - "What are the reserve sample
+# requirements under Part 211?" (211.170, Reserve samples), "What is required by the stability testing regulation?"
+# (211.166) - answered with the whole section, verbatim and cited, when it is short enough to give complete. Extractive
+# answering, as legal research tools give a provision's text for "what does X require": the model's paraphrases dropped
+# clauses (211.170's twice-quantity, storage and annual examination) or misread scope (211.166(c), homeopathic only).
+WS1_MAX_CHARS = 3600
+WS1_LEAD = "Under {section}, the regulation's text in full ({heading}), verbatim:"
+_OVERVIEW = re.compile(r"^\s*what\s+(?:are|is)\s+(?:the\s+)?[^?]{0,60}\brequire(?:ments?|d)\b|^\s*what\s+is\s+required\s+by\b|"
+                       r"^\s*what\s+requirements\s+apply\b|^\s*what\s+[^?]{0,40}\brequirements\s+apply\b", re.I)
+_SPECIFIC = re.compile(r"\b(?:whether|do we|must we|can we|may we|how many|how long|how much|which)\b", re.I)
+
+
+def compose_section(package, question: str) -> str | None:
+    from regulus.rag.generation import _verbatim, whole_sentences
+    from regulus.rag.section_promotion import _GENERIC_HEADING, heading_phrase_in
+
+    if not _OVERVIEW.search(question or "") or _SPECIFIC.search(question or ""):
+        return None
+    sections = [m.group(1) for _, label in package.requirements if (m := _SECTION.match(label)) and not m.group(2)]
+    if len(sections) != 1:
+        return None
+    sec = sections[0]
+    own = [s for s in package.sources if re.match(rf"^21 CFR {re.escape(sec)}(?:\(|$)", s.citation or "")]
+    heading = next((getattr(s, "heading", "") for s in own if getattr(s, "heading", "")), "")
+    if not own or not heading or _GENERIC_HEADING.match(heading) or not heading_phrase_in(heading, question):
+        return None
+    if sum(len(s.text or "") for s in own) > WS1_MAX_CHARS or any(getattr(s, "truncated", False) for s in own):
+        return None
+    lines, seen = [WS1_LEAD.format(section=f"21 CFR {sec}", heading=heading.rstrip("."))], set()
+    for s in sorted(own, key=lambda x: x.index):
+        body = whole_sentences(s.text or "")
+        if body and (s.citation, body) not in seen:
+            seen.add((s.citation, body))
+            lines.append(f"{s.citation} (eCFR, binding, verbatim): {_verbatim(body, s.index)}")
+    return "\n".join(lines) if len(lines) > 1 else None
