@@ -198,6 +198,10 @@ _WEAK = re.compile(r"\b(?:should|(?:is|are)\s+requested|voluntar\w*|encourag\w*|
 # E2: the regulation asks the reader to act ("is requested to file", "should", "voluntary"); "if a sample is
 # requested" (71.4) is FDA making a request, not a weaker duty
 _REQUESTED_TO = re.compile(r"\b(?:is|are)\s+requested\s+to\b|\bshould\b|\bvoluntar\w*|\bencourag\w*|\brecommend\w*", re.I)
+# E1S (27 Oct): a prescribed label statement's own words ("Caution—... a physician should be consulted", 740.12(b)) are the
+# statement's wording, not the strength of the duty to bear it - 740.12-Q1's "the label must include the caution" was
+# withheld as "'must' where the source says 'should'"
+_PRESCRIBED_STATEMENT = re.compile(r"^[\(\w\)\s]{0,12}[\"“]?(?:Warning|Caution|WARNING|CAUTION)\s*[—–-]")
 _SECTION_NUMBER = re.compile(r"(?<![\d.])(\d{1,4}\.\d{1,4}[a-z]?)(?![\d])")   # E2: "720.1", "21 CFR 720.1(a)"
 _SOURCE_SENTENCE = re.compile(r"(?<=[.;:])\s+(?=[A-Z(])")
 
@@ -235,12 +239,14 @@ def strengthened_obligation(sentence: str, cited_texts: list[str], supplied_text
     words = _words(body)
     if len(words) < UNSUPPORTED_MIN_WORDS:
         return None
-    best, score = None, 0.0
+    best, score, home = None, 0.0, ""
     for text in cited_texts:
         for piece in _SOURCE_SENTENCE.split(text or ""):
             share = len(words & _words(piece)) / len(words)
             if share > score:
-                best, score = piece, share
+                best, score, home = piece, share, text or ""
+    if best is not None and precision_fix("E1S") and _PRESCRIBED_STATEMENT.match(home.strip()):
+        return None   # E1S: the source is a statement the label must bear ("Caution—... should be consulted")
     if best is None or score < 0.4 or _SOURCE_DUTY.search(best):
         return None
     for text in supplied_texts:

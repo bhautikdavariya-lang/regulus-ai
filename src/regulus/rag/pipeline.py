@@ -430,6 +430,7 @@ def answer_score(text: str, package) -> float:
     return 0.5 * len(cited & requested) - 1.0 * denials
 
 
+TK1_MIN_TOKENS = 640   # TK1: the least room an applied answer gets
 # LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
@@ -1359,6 +1360,11 @@ class RagPipeline:
                                                       for s in promotion.statute))
         if package is not None and followup is not None and followup.earlier_question:
             package = replace(package, earlier_question=followup.earlier_question)
+        if package is not None and precision_fix("TK1") and package.answer_style == "apply":
+            # TK1: an answer applying provisions to the question's facts gets room to finish (27 Oct: 70.55-Q1 cut at 256
+            # and 740.2-Q1 at 416 tokens, both withheld as truncated); a short answer still stops when it is done
+            package = replace(package, max_new_tokens=min(max(package.max_new_tokens, TK1_MIN_TOKENS),
+                                                          package.budget.hard_max_tokens))
         if package is not None and precision_fix("FX1") and package.answer_style == "apply" and package.sources:
             # FX1: a verified example of a complete answer to a similar question about another provision (form only)
             try:
