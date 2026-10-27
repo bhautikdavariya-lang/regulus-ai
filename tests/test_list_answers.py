@@ -28,3 +28,18 @@ def test_a_passive_question_asks_for_contents():
     assert _ASKS_CONTENTS.search("What must be recorded for complaints involving the possible failure of a device?")
     assert _ASKS_CONTENTS.search("What must be included in a servicing record?")
     assert not _ASKS_CONTENTS.search("What must be done before release?")
+
+
+def test_ls2_what_a_list_section_requires_is_its_whole_list(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    src = [NS(citation="21 CFR 820.10", index=1, text="A manufacturer subject to this part as described by § 820.1(a) must:"),
+           NS(citation="21 CFR 820.10(a)", index=2, text="(a) Document. Document a quality management system that complies with ISO 13485; and"),
+           NS(citation="21 CFR 820.10(b)", index=3, text="(b) Comply, as appropriate, with other applicable requirements."),
+           NS(citation="21 CFR 820.10(c)", index=4, text="(c) Design and development. Manufacturers of class II devices must comply with Clause 7.3.")]
+    pkg = NS(requirements=(("r1", "21 CFR 820.10"),), sources=src)
+    q = "What does 21 CFR 820.10 require of a manufacturer subject to Part 820?"
+    assert compose(pkg, q) is None                                   # LS2 off
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"LS2"})
+    out = compose(pkg, q)
+    assert out.startswith("Under 21 CFR 820.10, the regulation's list, verbatim:") and all(f"[{i}]" in out for i in range(1, 5))
+    assert compose(pkg, "Is a class I device covered by 21 CFR 820.10?") is None

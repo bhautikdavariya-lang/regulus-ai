@@ -20,6 +20,10 @@ _ASKS_CONTENTS = re.compile(
 _ASKS_WHETHER = re.compile(r"\b(?:do|does|must)\s+(?:we|it|they|our\s+\w+)\s+(?:need|have\s+to)\b|\bexempt|\bexception|"
                            r"\bwhether\b", re.I)
 _LEAD_IN = re.compile(r":\s*$")
+# LS2 (27 Oct): "What does 21 CFR 820.10 require (of a manufacturer)?" about a section whose own lead-in introduces its
+# list ("A manufacturer subject to this part ... must:" then (a)-(e)) - the key walks the list; the model summarised it
+# into one sentence no single paragraph supports and was withheld (device baseline M-012)
+_ASKS_SECTION_REQUIRES = re.compile(r"\bwhat\s+(?:does|do)\s+(?:21\s+CFR\s+)?(?:§\s*)?\d+\.\d+[a-z]?\s+require\b", re.I)
 _SECTION = re.compile(r"^21 CFR (\d+\.\d+[a-z]?)(\S*)$")
 _STOP = set("""a an the of and or to in on for by with any be is are as such that this shall will may which under its from at
 not other all must should what our we your their each following include includes contain contains state show list
@@ -34,7 +38,10 @@ def _words(text: str) -> set[str]:
 def compose(package, question: str) -> str | None:
     from regulus.rag.generation import _verbatim, whole_sentences
 
-    if not _ASKS_CONTENTS.search(question or "") or _ASKS_WHETHER.search(question or ""):
+    from regulus.rag.validator_switches import enabled
+
+    whole_section = enabled("LS2") and bool(_ASKS_SECTION_REQUIRES.search(question or ""))
+    if not (_ASKS_CONTENTS.search(question or "") or whole_section) or _ASKS_WHETHER.search(question or ""):
         return None
     sections = [m.group(1) for _, label in package.requirements if (m := _SECTION.match(label)) and not m.group(2)]
     if len(sections) != 1:
@@ -42,6 +49,8 @@ def compose(package, question: str) -> str | None:
     sec = sections[0]
     own = [s for s in package.sources if re.match(rf"^21 CFR {re.escape(sec)}(?:\(|$)", s.citation or "")]
     leads = [s for s in own if _LEAD_IN.search((s.text or "").strip())]
+    if whole_section and not _ASKS_CONTENTS.search(question or ""):
+        leads = [s for s in leads if s.citation == f"21 CFR {sec}"]   # LS2: only the section's own lead-in
     if not leads:
         return None
     q = _words(question)

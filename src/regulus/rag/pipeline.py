@@ -44,6 +44,7 @@ from regulus.rag.generation import (
     verbatim_requested,
 )
 from regulus.rag.fallback import (
+    FB_COMPOSED_LIST,
     FB_COMPOSED_LISTING,
     FB_DEFINITIONS_QUOTED,
     FB_COMPOSED_DEFINITIONS,
@@ -1605,6 +1606,14 @@ class RagPipeline:
                 valid = report.ok or (composed_type in (FB_COMPOSED_PREMISE, FB_COMPOSED_RECORDS, FB_COMPOSED_QMSR,
                                                         FB_COMPOSED_DEFINITIONS) and not (
                     {p.code for p in report.problems if p.severity == "error"} - _FOCUSED_COMPLETENESS_CODES))
+                if not valid and composed_type == FB_COMPOSED_LIST and precision_fix("LS2"):
+                    # LS2: the whole list of one section, verbatim, is complete for that section; a completeness finding
+                    # about another provision ("subject to Part 820" planned as a request for 820.1(a)(1)) does not apply
+                    listed = re.match(r"Under 21 CFR (\S+?),", text)
+                    valid = listed is not None and not [
+                        p for p in report.problems if p.severity == "error" and not (
+                            p.code in _FOCUSED_COMPLETENESS_CODES
+                            and not re.match(rf"21 CFR {re.escape(listed.group(1))}(?![\d.])", p.detail or ""))]
                 generation_info["listing_composer"] = {"composed": True, "valid": valid, "codes": list(report.codes()),
                                                        "kind": composed_type}
                 if valid:

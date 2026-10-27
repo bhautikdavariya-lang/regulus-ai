@@ -199,6 +199,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       record, design history file, quality system record - are its former sections for QM1 (regulus.rag.qmsr.former_by_name)
   E2B (off until measured) an uncited duty sentence E2 would call strengthened stands when another supplied source states
       that duty itself with at least 40% of its words - E1's escape (regulus.rag.claim_validation.duty_stated)
+  LS2 (off until measured) "What does 21 CFR X require?" about a section whose own lead-in introduces its list (820.10
+      "... must:" then (a)-(e)) is answered with LS1's whole list, verbatim (regulus.rag.list_answers)
   QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)
