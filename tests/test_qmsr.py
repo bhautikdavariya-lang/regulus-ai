@@ -79,3 +79,12 @@ def test_several_former_sections_close_with_one_not_reproduced_line():
                                    src(2, "21 CFR 820.10(a)", "(a) Document. Document a quality management system that complies with ISO 13485; and")])
     text = qmsr.compose(pkg, "DMR, DHR and DHF?", [("820.181", ""), ("820.184", ""), ("820.30", "(j)")])
     assert text.count("The standard's text is not reproduced here.") == 1
+
+
+def test_record_terms_the_database_confirms_unused_are_said_to_be_unused():
+    assert qmsr.record_terms("What is the difference between a Device Master Record, a DHR, and a Design History File?") == \
+        ["device master record", "device history record", "design history file"]
+    pkg = SimpleNamespace(sources=[src(1, "21 CFR 820.10", "A manufacturer subject to this part as described by § 820.1(a) must:"),
+                                   src(2, "21 CFR 820.10(a)", "(a) Document. Document a quality management system that complies with ISO 13485; and")])
+    text = qmsr.compose(pkg, "DMR?", [("820.181", "")], unused_terms=["device master record"])
+    assert "No section of the current part 820 uses the terms “device master record”" in text

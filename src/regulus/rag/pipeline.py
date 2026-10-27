@@ -1566,7 +1566,14 @@ class RagPipeline:
             if not text and (qmsr_former or qmsr_unknown):
                 from regulus.rag.qmsr import compose as compose_qmsr
 
-                text, composed_type = compose_qmsr(package, question, qmsr_former, qmsr_unknown), FB_COMPOSED_QMSR
+                unused = None
+                if precision_fix("QM2"):
+                    from regulus.rag.qmsr import record_terms
+
+                    # only a term the database confirms no live part 820 text uses is said to be unused
+                    unused = [t for t in record_terms(question) if self.part_mentions("820", re.escape(t)) is False]
+                text, composed_type = (compose_qmsr(package, question, qmsr_former, qmsr_unknown, unused_terms=unused),
+                                       FB_COMPOSED_QMSR)
             if not text and qmsr_cert:
                 from regulus.rag.qmsr import compose_certification
 

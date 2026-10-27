@@ -40,6 +40,7 @@ CLAUSE_SENTENCE = "In ISO 13485:2016 (incorporated by reference, 21 CFR 820.7)"
 NO_CLAUSE_SENTENCE = "ISO 13485:2016 has no Clause"
 # whole lines, matched on wording that survives the validator's removal of supplied citations ("21 CFR 820.7")
 PIPELINE_SENTENCES_RE = re.compile(r"[^\n]*?is not in the current eCFR: it belonged to the former Quality System regulation[^\n]*"
+                                   r"|No section of the current part 820 uses the terms[^\n]*"
                                    r"|In ISO 13485:2016 \(incorporated by reference[^\n]*|ISO 13485:2016 has no Clause[^\n]*")
 
 
@@ -68,6 +69,17 @@ _FORMER_NAMES = (
     (re.compile(r"\bdesign\s+history\s+files?\b|\bDHFs?\b"), ("820.30", "(j)")),
     (re.compile(r"\bquality\s+system\s+records?\b"), ("820.186", "")),
 )
+
+
+TERMS_SENTENCE = "No section of the current part 820 uses the terms"
+
+
+def record_terms(question: str) -> list[str]:
+    """The former record types the question names, in its order, as the regulation wrote them (QM2)."""
+    names = {"820.181": "device master record", "820.184": "device history record", "820.30": "design history file",
+             "820.186": "quality system record"}
+    hits = sorted((m.start(), ref[0]) for pat, ref in _FORMER_NAMES if (m := re.search(pat.pattern, question or "", re.I)))
+    return list(dict.fromkeys(names[sec] for _, sec in hits))
 
 
 def former_by_name(question: str, live_sections: set[str]) -> list[tuple[str, str]]:
@@ -109,7 +121,7 @@ def _join(items: list[str]) -> str:
 
 
 def compose(package, question: str, former: list[tuple[str, str]], unknown: list[str] | None = None,
-            *, limit: int = 4) -> str | None:
+            *, limit: int = 4, unused_terms: list[str] | None = None) -> str | None:
     """The answer (see the module docstring), or None when the current text to quote is not in the evidence."""
     from regulus.rag.conversation import subject_words
     from regulus.rag.generation import _verbatim, whole_sentences
@@ -154,6 +166,10 @@ def compose(package, question: str, former: list[tuple[str, str]], unknown: list
     for section, path in former:
         lines.append(f"21 CFR {section}{path} (\"{ref[section]['heading']}\") {REMOVED_SENTENCE}, which the Quality "
                      f"Management System Regulation replaced on 2 February 2026.")
+    if unused_terms:
+        # QM2: checked against the database by the caller - no live part 820 text uses these terms
+        lines.append(f"{TERMS_SENTENCE} {_join([f'“{t}”' for t in unused_terms])}: the Quality Management System "
+                     f"Regulation does not define or require these records by those names.")
     for c in unknown or ():
         lines.append(f"{NO_CLAUSE_SENTENCE} {c}: its requirements are organized in Clauses 4 through 8.")
     lines.append(f"The current requirement is in {_join([f'21 CFR {x}' for x in succ])}, verbatim:")

@@ -110,6 +110,7 @@ _NOT_A_CLAIM = re.compile(r"could not be validated|do(?:es)? not provide enough 
                           r"^\s*the standard.s text is not reproduced here|"
                           # QC1 (regulus.rag.qmsr.compose_certification): what the database check of part 820 found
                           r"^\s*no section of the current part 820 mentions certification|"
+                          r"^\s*no section of the current part 820 uses the terms|"
                           # Q1 (regulus.rag.fallback.focused_quote): what the quotation is and is not
                           r"^\s*this is the provision.s own text, not an application of it|"
                           r"^\s*what the regulation defines th(?:is term|ese terms) as, verbatim", re.I)
