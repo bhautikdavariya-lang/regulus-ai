@@ -449,6 +449,8 @@ def cosmetics_conversation(context) -> bool:
             and all(s.isdigit() and 601 <= int(s) <= 614 for s in a.statute))
 
 
+# DV1: a question about the QMSR that names no part ("If a requirement of ISO 13485 conflicts with the FD&C Act ...")
+_QMSR_NAMED = re.compile(r"\bISO\s*13485\b|\bQMSR\b|\bquality\s+management\s+system\s+regulation\b", re.I)
 # FU2D: a question whether a named color may be used is a question for that color's own listing
 _USE_OF_COLOR = re.compile(r"\b(?:can|may|could)\s+we\s+use\b|\buse\s+[^?]{0,60}?\bas\s+the\s+colou?rant\b|\bto\s+tint\b", re.I)
 _STRAY_DECLINE_RE = re.compile(r"[ \t]*The available regulatory sources do not provide enough information to answer "
@@ -1106,6 +1108,39 @@ class RagPipeline:
                  for s in keep if whole_sentences(s.text)]
         return "\n".join([PC1_LEAD.format(section=labels[0])] + lines) if lines else None
 
+    def small_part_paragraphs(self, question: str, plan):
+        """DV1 (27 Oct): (plan, promotion) for a question that names only one small 21 CFR part (at most DV1_MAX_SECTIONS
+        live sections - Part 820, the QMSR, has six) or, naming none, ISO 13485 or the QMSR (Part 820); None otherwise.
+        "How must advisory notices be handled under Part 820?" read the whole part, the budget cut it to scattered
+        paragraphs and 820.10(b)(4) was not among them (device baseline: 3 of 12 'not addressed' or withheld)."""
+        from regulus.rag.section_promotion import DV1_MAX_SECTIONS, Promotion
+
+        reqs = plan.requirements
+        part = None
+        if reqs and all(r.reference.section is None and r.reference.title == "21" for r in reqs) \
+                and len({r.reference.part for r in reqs}) == 1:
+            part = reqs[0].reference.part
+        elif not reqs and _QMSR_NAMED.search(question or ""):
+            part = "820"
+        if not part:
+            return None
+        promoter = self.section_promoter()
+        if promoter is None:
+            return None
+        try:
+            live = self.live_part_sections(part) or set()
+            if not live or len(live) > DV1_MAX_SECTIONS:
+                return None
+            paras = promoter.part_paragraphs(question, part)
+        except Exception:  # noqa: BLE001 - an aid only
+            return None
+        if not paras:
+            return None
+        promoted = _without_part_requirements(plan_query(question + " (21 CFR " + ", ".join(paras) + ")"))
+        if not promoted.requirements:
+            return None
+        return promoted, Promotion(sections=tuple(paras), companions=(), method="part_paragraphs")
+
     def closest_sources(self, question: str, package) -> tuple[int, ...]:
         """LM1: the (at most LM1_TOP) sources the cross-encoder scores highest for the question, at least LM1_MIN_SCORE,
         in score order; () without the reranker. 70.19-Q2: of 18 fee paragraphs the model read the new-petition deposit
@@ -1287,7 +1322,14 @@ class RagPipeline:
         promotion = None
         promotion_error = None
         named_companions_added: list[str] = []
-        promoter, allowed, parts, promotion_error = self.promotion_request(question, plan)
+        dv1 = self.small_part_paragraphs(question, plan) if (precision_fix("DV1") and not anchored) else None
+        if dv1 is not None:
+            # DV1: a question naming only a small part (or ISO 13485 / the QMSR) is answered from that part's most
+            # relevant paragraphs, promoted as if it had cited them
+            plan, promotion = dv1
+            promoter, allowed, parts, promotion_error = None, None, None, None
+        else:
+            promoter, allowed, parts, promotion_error = self.promotion_request(question, plan)
         if anchored and promoter is None and allowed == "any":
             promoter = self.section_promoter()   # the conversation names the domain a short follow-up leaves out
         if promoter is not None:

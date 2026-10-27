@@ -191,6 +191,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   RC1 (off until measured) rules as code for the MoCRA small-business exemption: a small-business question with FD&C
       Act 612 supplied gets the verdict from its facts (a product of 612(b) excludes; 612(a) covers only 364b and 364c)
       and 612's text verbatim (regulus.rag.mocra_rules)
+  DV1 (off until measured) a question naming only a small 21 CFR part (<= 12 live sections; Part 820, the QMSR, has 6)
+      or, naming none, ISO 13485 / the QMSR, is answered from that part's most relevant paragraphs: cross-encoder rank
+      fused with shared two-word phrases, top 3 (regulus.rag.section_promotion.part_paragraphs). Dev device questions it
+      handles: key paragraph among its picks 13 of 19 (the baseline read the whole part and missed the paragraph)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

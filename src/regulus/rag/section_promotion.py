@@ -179,6 +179,10 @@ _DEFINES_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The\s+terms?\s+|An?\s+|The\s+)?(
                          r"(?:means?|is\s+(?:any|a|an|the)|refers?\s+to|applies\s+to)\b")
 DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
 DEFINITION_HOP_CHARS = 600
+DV1_TOP = 3           # DV1: paragraphs promoted for a question naming only a small part
+DV1_MIN_SCORE = 0.3
+DV1_MAX_SECTIONS = 12  # a part this small is answered paragraph by paragraph
+_PHRASE_STOP = set("the and for with that this from such any are its which under part section".split())
 FC1_MAX_SECTIONS = 3   # FC1: a heading phrase this rare in Parts 70-71 names the subject a fee paragraph prices
 DEFINITION_GENERIC_USES = 3
 _ACT_DEFINITION_RE = re.compile(r"\b(?:FD&C\s+Act|the\s+Act\b|MoCRA|Modernization|section\s+\d{3}\b|§\s*\d{3}\b|60[1-9]\b|61[0-4]\b|201\b)", re.I)
@@ -1222,6 +1226,43 @@ class SectionPromoter:
             return cands
         cfr = [c for c in cands if not c.get("statute")]
         return cfr[:max(0, len(cfr) - len(new))] + new + [c for c in cands if c.get("statute")]
+
+    def part_paragraphs(self, question: str, part: str, k: int = DV1_TOP) -> list[str]:
+        """DV1 (27 Oct): the paragraphs of a small 21 CFR part most relevant to the question by the cross-encoder
+        ("820.10(b)(4)" for "How must advisory notices be handled under Part 820?"), at most `k`, scored at least
+        DV1_MIN_SCORE, best first - paragraph-level retrieval for a question that names only the part. [] without the
+        reranker."""
+        from regulus.retrieval.rerank import reranker
+
+        rr = reranker(RERANKER) if RERANKER else None
+        if rr is None:
+            return []
+        rows = self.db.query("SELECT section_number s, paragraph_path p, section_heading h, body_text t FROM cfr_records "
+                             "WHERE removed_on IS NULL AND NOT is_reserved AND part_number = %(p)s ORDER BY ordinal", {"p": part})
+        seen, items = set(), []
+        for r in rows:
+            cite = f"{r['s']}{r['p'] or ''}"
+            if cite in seen or not (r["t"] or "").strip() or "[Reserved]" in (r["t"] or ""):
+                continue
+            seen.add(cite)
+            items.append((cite, f"{r['h'] or ''} {r['t']}"))
+        if not items:
+            return []
+        try:
+            scores = rr.score(question, [t for _, t in items])
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        # hybrid: the cross-encoder's rank fused (reciprocal rank) with the rank by two-word phrases the paragraph shares
+        # with the question ("design and development" is 820.10(c)'s own phrase; the cross-encoder preferred 820.7(b))
+        def phrases(t):
+            w = [x for x in re.findall(r"[a-z]{3,}", (t or "").lower()) if x not in _PHRASE_STOP]
+            return set(zip(w, w[1:]))
+        qp = phrases(question)
+        overlap = [len(qp & phrases(t)) for _, t in items]
+        by_ce = {i: r for r, i in enumerate(sorted(range(len(items)), key=lambda i: -scores[i]), 1)}
+        by_ph = {i: r for r, i in enumerate(sorted(range(len(items)), key=lambda i: -overlap[i]), 1)}
+        fused = sorted(range(len(items)), key=lambda i: -(1 / (RRF_K + by_ce[i]) + (1 / (RRF_K + by_ph[i]) if overlap[i] else 0)))
+        return [items[i][0] for i in fused[:k] if scores[i] >= DV1_MIN_SCORE or overlap[i] >= 2]
 
     def anchored(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = ()) -> Promotion | None:
         """A follow-up resolved to the provisions its conversation is about (regulus.rag.conversation): those sections
