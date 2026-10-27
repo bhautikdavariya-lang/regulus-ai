@@ -118,6 +118,9 @@ EXPANSION_ADD = 4
 # SY1: the question asks the agency to act ("ask FDA to", "request that FDA", "apply to FDA for")
 _ASKS_AGENCY = re.compile(r"\b(?:ask|asks|asking|request|requesting|apply\s+to)\s+(?:the\s+)?(?:FDA|agency|Commissioner)\s+(?:to|for)\b"
                           r"|\b(?:ask|request)\s+that\s+(?:the\s+)?(?:FDA|agency|Commissioner)\b", re.I)
+# RO1: a color listing of any product (food 73.1xxx, cosmetics 73.2xxx, devices 73.3xxx, 74.xxxx, 82.xxx) other
+# than Part 82's general sections; 71.25-Q1 went to the device listing 73.3128
+_ANY_LISTING = re.compile(r"^(?:7[34]\.\d{3,4}[a-z]?|82\.(?!(?:3|5|6|50|51|1050|1051|2050|2051)$)\d{3,4}[a-z]?)$")
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -389,7 +392,7 @@ class SectionPromoter:
 
         ents = entity_index(self.index)
         no_color = not ents.match(question)
-        listing = {c["section"] for c in cfr if no_color and ents.is_color_listing(c["section"])}
+        listing = {c["section"] for c in cfr if no_color and (ents.is_color_listing(c["section"]) or _ANY_LISTING.match(c["section"]))}
         scored = [c for c in cfr if c["section"] not in listing]
         by_rr = sorted(scored, key=lambda c: -scores.get(c["section"], (0.0, ""))[0])
         rr_rank = {c["section"]: i for i, c in enumerate(by_rr, 1)}
