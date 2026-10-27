@@ -56,6 +56,7 @@ RERANKER = (os.environ.get("REGULUS_RERANKER", "bge-m3").strip() or None) if os.
 RERANK_PARAGRAPHS = 3
 RERANK_VETO_BELOW = float(os.environ.get("REGULUS_RERANK_VETO_BELOW", "0.3"))
 RERANK_VETO_MARGIN = float(os.environ.get("REGULUS_RERANK_VETO_MARGIN", "0.15"))
+V2_TIE = 0.05   # V2: a near tie between the reranker's top and the picker's other choice
 STATUTE_BUDGET = 6000   # rendered characters of statute evidence (source headers included)
 CO_STATUTE_BUDGET = 2500  # the same when the Act text accompanies a promoted regulation   # fewer CFR candidates when the cosmetics chapter of the Act is offered too
 # FD&C Act sections offered to the picker for a cosmetics question: chapter VI (601-614) and the 201 definitions.
@@ -1131,6 +1132,16 @@ class SectionPromoter:
                                    and cands[i - 1]["section"] != picked_c["section"]), None)
             if RERANKER:
                 vetoed = self.rerank_veto(question, cands, picked_c)
+                if vetoed is not None and precision_fix("V2"):
+                    # V2 (27 Oct): in a near tie the picker's own other choice wins over the reranker's top - 71.6-Q1:
+                    # picker 71.2, then 71.6; reranker 71.20 0.913, 71.6 0.897; the veto chose 71.20
+                    scored = self.__dict__.get("last_rerank") or {}
+                    top = scored.get(vetoed["section"], (0.0, ""))[0]
+                    own = next((cands[i - 1] for i in picks[1:] if not cands[i - 1].get("statute")
+                                and cands[i - 1]["section"] != vetoed["section"]
+                                and scored.get(cands[i - 1]["section"], (0.0, ""))[0] >= top - V2_TIE), None)
+                    if own is not None:
+                        vetoed = own
                 if vetoed is not None:
                     notes = (f"rerank veto: {picked_c['section']} -> {vetoed['section']}",)
                     picked_c, other = vetoed, (None if other is not None and other["section"] == vetoed["section"] else other)

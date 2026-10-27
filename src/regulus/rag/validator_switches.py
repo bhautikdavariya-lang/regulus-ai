@@ -105,6 +105,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       the suffix rule: right in itself, but on the harness +6 correct anchors for +6 false ones at today's thresholds
   RO1 the picker reads the regulation candidates reordered by reciprocal-rank fusion of lexical rank and the
       cross-encoder's score (reorder-then-pick); the veto reuses the same scores
+  V2  a reranker veto in a near tie (within 0.05) takes the picker's own other choice instead of the reranker's top
+  UR1 the listing composer reads the uses paragraph under each heading the listings use ("Uses and restrictions.",
+      "Use and restrictions.", "Use and restriction."): carmine 73.2087 and annatto 73.2030 were answered by the model
+      and annatto's answer denied the eye-area use its listing grants
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

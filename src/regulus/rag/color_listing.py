@@ -21,6 +21,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from regulus.rag.validator_switches import enabled as precision_fix
+
 LISTING_RE = re.compile(r"^21 CFR (7[34]\.2\d{3}a?|82\.\d{3,4}a?)$")
 GENERAL_82 = {"82.3", "82.5", "82.6", "82.50", "82.51", "82.1050", "82.1051", "82.2050", "82.2051"}
 
@@ -36,6 +38,9 @@ EXTERNAL = (r"(?:body |hand |foot |face |facial |night |day |tinted )?(?:lotions
             r"aftershaves?|shaving creams?|body butters?")
 _PRODUCT_RE = re.compile(rf"\b(?P<eye>{EYE})\b|\b(?P<lips>{LIPS})\b|\b(?P<ext>{EXTERNAL})\b", re.I)
 
+# UR1 (27 Oct): the uses paragraph's heading as the listings write it - "Uses and restrictions." (209 paragraphs),
+# "Use and restrictions." (5: carmine 73.2087 ...) and "Use and restriction." (annatto 73.2030); the exact form missed 6
+_USES_HEADING_UR1 = r"^\([a-z]\)\s*Uses?\s+and\s+restrictions?\."
 _GENERALLY = re.compile(r"\bcosmetics generally\b", re.I)
 _EXTERNAL = re.compile(r"\bexternally applied (?:drugs and )?cosmetics\b|\bexternally applied drugs and cosmetics\b", re.I)
 _EYE_IN = re.compile(r"\bincluding\b[^.;]{0,60}?\barea of the eye\b", re.I)
@@ -146,7 +151,8 @@ def compose(package, question: str) -> str | None:
         if label.startswith("21 CFR 82."):
             cand = [s for s in rows if _GENERALLY.search(s.text or "") or _EXTERNAL.search(s.text or "")]
         else:
-            cand = [s for s in rows if re.match(r"^\([a-z]\)\s*Uses and restrictions\.", (s.text or "").strip())]
+            cand = [s for s in rows if re.match(_USES_HEADING_UR1 if precision_fix("UR1") else r"^\([a-z]\)\s*Uses and restrictions\.",
+                                                 (s.text or "").strip())]
         return cand[0] if len(cand) == 1 else None
 
     primary = next((label for label in listings if uses_of(label) is not None), None)
