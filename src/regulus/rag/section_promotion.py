@@ -115,6 +115,9 @@ EXPANSION_PROMPT = ("Question: {question}\n\nRestate the question in one sentenc
                     "this subject would use. Do not answer it and do not cite section numbers. Reply with the sentence only.")
 EXPANSION_MAX_TOKENS = 64
 EXPANSION_ADD = 4
+# SY1: the question asks the agency to act ("ask FDA to", "request that FDA", "apply to FDA for")
+_ASKS_AGENCY = re.compile(r"\b(?:ask|asks|asking|request|requesting|apply\s+to)\s+(?:the\s+)?(?:FDA|agency|Commissioner)\s+(?:to|for)\b"
+                          r"|\b(?:ask|request)\s+that\s+(?:the\s+)?(?:FDA|agency|Commissioner)\b", re.I)
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -516,6 +519,10 @@ class SectionPromoter:
 
     # -- candidates -----------------------------------------------------------
     def candidates(self, question: str, parts: tuple[str, ...] | None = None) -> tuple[list[str], list[dict]]:
+        if precision_fix("SY1") and _ASKS_AGENCY.search(question or "") and not re.search(r"\bpetition", question or "", re.I):
+            # SY1: asking FDA to act is petitioning it - "Can we ask FDA to exempt it from certification?" never says
+            # "petition", and 71.18 ("Petition for exemption from certification") was not among the 22 candidates
+            question = f"{question} petition"
         lex = SectionIndex.question_lexemes(self.db, question)
         if parts:
             ranked = [r for r in self.index.rank(lex, limit=400) if r.part in parts]

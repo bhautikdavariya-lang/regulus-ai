@@ -132,6 +132,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   CT1 (off until measured) conversation topic memory: with no focus chosen and no deployment scope, a follow-up in a
       conversation anchored only to cosmetics provisions (Parts 70-82, 700-799, FD&C Act 601-614) is answered with the
       cosmetics focus
+  SY1 (off until measured) "ask FDA to / for ..." with no "petition" adds "petition" to the search terms (domain
+      synonym expansion): 71.18 was not among the candidates of "Can we ask FDA to exempt it from certification?"
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
