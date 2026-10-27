@@ -409,6 +409,25 @@ REFUSAL_RETRY_NOTE = ("\n\nNOTE: The EVIDENCE above was retrieved for this quest
                       "that point only.")
 _BARE_REFUSAL_RE = re.compile(r"^(?:\s*The available regulatory sources do not provide enough information to answer "
                               r"this(?: question)?\.\s*)+$")
+_STRAY_DECLINE_RE = re.compile(r"[ \t]*The available regulatory sources do not provide enough information to answer "
+                               r"this(?: question)?\.[ \t]*")
+_CITED_RE = re.compile(r"\[\d{1,3}\]")
+
+
+def drop_stray_decline(text: str) -> tuple[str, int]:
+    """The rule-9 decline sentence removed from an answer that, without it, still states something with a citation
+    marker; an answer that is only the decline (or cites nothing) is returned unchanged. -> (text, sentences removed)"""
+    found = _STRAY_DECLINE_RE.findall(text or "")
+    if not found or not _CITED_RE.search(_STRAY_DECLINE_RE.sub(" ", text)):
+        return text, 0
+    lines = []
+    for line in text.split("\n"):
+        if _STRAY_DECLINE_RE.search(line):
+            line = _STRAY_DECLINE_RE.sub(" ", line).strip()
+            if not line:
+                continue
+        lines.append(line)
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(lines)).strip(), len(found)
 
 
 class RagPipeline:
@@ -1416,6 +1435,13 @@ class RagPipeline:
                         if quoted:
                             answer_text, validation_final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
                             fallback_reason = "the model declined; the governing provision is quoted instead"
+                if fallback_type is None and precision_fix("ND1"):
+                    # ND1: the bare decline sentence inside an answer that states what its cited sources say
+                    # contradicts it (9 of 154 answers on 26 Oct, each scored down for "a contradictory 'not enough
+                    # information' line"); a scoped one ("... to answer whether ...") is a limit and stays
+                    answer_text, stray = drop_stray_decline(answer_text)
+                    if stray:
+                        generation_info["stray_decline_removed"] = stray
             if gate_on and decision.limitation and not (analysis is not None and analysis.scope_status == SCOPE_MIXED):
                 # Stage 5 PARTIALLY_ANSWERABLE: say what the evidence does not establish (mixed scope in
                 # "structured" mode already gets its own note below)

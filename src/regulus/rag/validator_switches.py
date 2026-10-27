@@ -34,7 +34,7 @@ Answer post-processing fixes share the switch (failure analysis fix G):
       text decides) is answered from FD&C Act 606 and 601 (and 610 for records) (regulus.rag.practice_silence).
       26 Oct: fires on 5 of the 1,211 section-benchmark questions (UC-004/005/008/010/012); blind two-lens scoring
       PASS 0 -> 5 on both lenses, exact replay of 228 recorded answers byte-identical
-Fallback fix (26 Oct 2026; NOT in the default until its blind A/B passes):
+Fallback fixes (26 Oct 2026; in the default since 27 Oct):
   Q1  an answer that cannot be shown (withheld after validation, or a model decline although the provision was
       supplied) on a question whose provision is identified - named by it or resolved for it - gives that provision's
       paragraphs sharing most subject words with the question, verbatim and cited, instead of "not shown"
@@ -51,7 +51,7 @@ Fallback fix (26 Oct 2026; NOT in the default until its blind A/B passes):
   QM1 a section of the former Quality System regulation (820.30, 820.100 ...) is said not to be in the current eCFR, the
       live part 820 text that carries its subject is quoted, and the ISO 13485:2016 clause on that subject is named by
       number and title with its basis; a non-existent ISO 13485 clause is said not to exist (regulus.rag.qmsr)
-Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
+Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, SP2 and SA1 off):
   SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
       programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
       of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
@@ -72,6 +72,9 @@ Promotion fix (26 Oct 2026; NOT in the default until its live A/B passes):
   PO2 a question naming only a 21 CFR part outside the cosmetics programme ("under Part 211") is resolved to its
       section(s) inside that part, as "Under Part 82, ..." is (regulus.rag.section_promotion.part_only_any): 74 of
       225 300-question dev rows; a key section ranks first inside the part for 57
+  ND1 (27 Oct) the bare decline sentence ("The available regulatory sources do not provide enough information to
+      answer this.") is removed from an answer that states something cited without it (regulus.rag.pipeline.
+      drop_stray_decline): 9 of 154 answers of the 26 Oct full run were scored down for that contradictory line
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.
@@ -80,7 +83,10 @@ from __future__ import annotations
 
 import os
 
-VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", "A1,A2,A3,A4,G1,S1,E1,C82,P1").split(",")
+# every fix measured as a gain is on (27 Oct 2026: the UI ran the 26 Oct default A1..P1 while tests ran all of these);
+# SP2, SA1 and ST1 stay off
+DEFAULT = "A1,A2,A3,A4,G1,S1,E1,C82,P1,Q1,FP1,RS1,QM1,D1,PO2,C2,Q2,PR2,ND1"
+VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", DEFAULT).split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 
 

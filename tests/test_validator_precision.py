@@ -32,9 +32,10 @@ def _unsupported(sentence):
 
 
 def test_the_gated_fixes_are_on_by_default():
-    # every fix passed the exact replay and a blind A/B (23 Oct); A1 reads only CFR citations as citations
-    assert validator_switches.VALIDATOR_PRECISION == frozenset({"A1", "A2", "A3", "A4", "G1", "S1", "E1", "C82", "P1"}) or \
+    # every fix that passed the exact replay and a blind A/B; SP2, SA1 and ST1 stay off (27 Oct)
+    assert validator_switches.VALIDATOR_PRECISION == frozenset(validator_switches.DEFAULT.split(",")) or \
         "REGULUS_VALIDATOR_PRECISION" in __import__("os").environ
+    assert not {"SP2", "SA1", "ST1"} & set(validator_switches.DEFAULT.split(","))
 
 
 # ------------------------------------------------------------ A1 citations are not figures
@@ -374,3 +375,27 @@ def test_p1_composes_only_from_the_quoted_act_text():
     # records asked, but 610(a) not supplied: nothing is composed (the model answers as before)
     assert compose(pkg, "What calibration records must we keep for our cosmetic batches?", notes_for(cal)) is None
     assert compose(pkg, "How often must we calibrate our scales for cosmetic batches?", ()) is None   # not this promotion
+
+
+# ------------------------------------------------------------ ND1 a stray decline sentence
+
+
+def test_stray_decline_removed_from_a_cited_answer():
+    from regulus.rag.pipeline import drop_stray_decline
+
+    text = ("No filing fee is required [1].  \n\nThe available regulatory sources do not provide enough information "
+            "to answer this.\n\nStatus note (FDA): closed.")
+    out, n = drop_stray_decline(text)
+    assert n == 1 and out == "No filing fee is required [1].  \n\nStatus note (FDA): closed."
+
+
+def test_bare_or_scoped_decline_is_kept():
+    from regulus.rag.pipeline import drop_stray_decline
+
+    bare = "The available regulatory sources do not provide enough information to answer this."
+    assert drop_stray_decline(bare) == (bare, 0)
+    uncited = "Filing is voluntary. " + bare
+    assert drop_stray_decline(uncited) == (uncited, 0)
+    scoped = ("Section 610 covers records [1]. The available regulatory sources do not provide enough information to "
+              "answer whether FDA can demand pricing data.")
+    assert drop_stray_decline(scoped) == (scoped, 0)
