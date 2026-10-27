@@ -421,6 +421,17 @@ FR1_ANSWER = "\n\nNow answer the QUESTION from these facts and the SOURCES, foll
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
 LM1_MIN_SCORE = 0.3
+def cosmetics_conversation(context) -> bool:
+    """CT1: every provision the conversation's anchor names is in the color additive and cosmetics programme (21 CFR
+    Parts 70-82 and 700-799, FD&C Act 601-614)."""
+    a = getattr(context, "anchor", None)
+    if not a:
+        return False
+    parts = [int(s.split(".")[0]) for s in a.cfr] + [int(p) for p in a.parts if p.isdigit()]
+    return (all(70 <= p <= 82 or 700 <= p <= 799 for p in parts)
+            and all(s.isdigit() and 601 <= int(s) <= 614 for s in a.statute))
+
+
 # FU2D: a question whether a named color may be used is a question for that color's own listing
 _USE_OF_COLOR = re.compile(r"\b(?:can|may|could)\s+we\s+use\b|\buse\s+[^?]{0,60}?\bas\s+the\s+colou?rant\b|\bto\s+tint\b", re.I)
 _STRAY_DECLINE_RE = re.compile(r"[ \t]*The available regulatory sources do not provide enough information to answer "
@@ -1163,6 +1174,14 @@ class RagPipeline:
         generation when a streaming client disconnects)."""
         if not question or not question.strip():
             raise ValueError("question must not be empty")
+        if context and precision_fix("CT1") and cosmetics_conversation(context):
+            from regulus.retrieval.section_index import _FOCUS, deployment_scope, focus
+
+            if _FOCUS.get() is None and deployment_scope() is None:
+                # CT1: a conversation about cosmetics provisions keeps its product area for its follow-ups ("Who must
+                # permit access?" read across Title 21 went to drug, device or food rules: 15 of 75, 26 Oct)
+                with focus("cosmetics"):
+                    return self.answer(question, on_event=on_event, context=context)
         emit = on_event or (lambda kind, data: None)
         timings: dict[str, float] = {}
         t0 = time.perf_counter()

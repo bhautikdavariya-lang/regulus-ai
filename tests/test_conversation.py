@@ -342,3 +342,15 @@ def test_fu2d_a_use_question_about_a_named_color_belongs_to_its_listing():
     assert _USE_OF_COLOR.search("Can we use disodium EDTA-copper to tint a body wash and a shampoo?")
     assert _USE_OF_COLOR.search("We want to use pyrophyllite as the colorant. May we?")
     assert not _USE_OF_COLOR.search("How would we name a calcium lake of FD&C Blue No. 1?")
+
+
+def test_ct1_a_cosmetics_conversation_is_recognised():
+    from regulus.rag.conversation import Anchor, ConversationContext, PriorTurn
+    from regulus.rag.pipeline import cosmetics_conversation
+
+    ctx = lambda a: ConversationContext((PriorTurn("q", a),))
+    assert cosmetics_conversation(ctx(Anchor(cfr=("73.2125",))))
+    assert cosmetics_conversation(ctx(Anchor(statute=("610",))))
+    assert not cosmetics_conversation(ctx(Anchor(cfr=("211.192",))))
+    assert not cosmetics_conversation(ctx(Anchor(cfr=("701.3", "101.4"))))
+    assert not cosmetics_conversation(ctx(Anchor()))

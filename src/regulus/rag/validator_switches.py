@@ -129,6 +129,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       most 3 sections of the two parts) gets that paragraph as a companion: of all 40 sections, exactly 70.51 -> 70.19(l),
       (m) and 70.55 -> 70.19(n), the fees their keys name. RO1 measured 27 Oct on the 50: +3 picks, -3 (the reranker
       favours color listings for "exempt from certification" questions) - off; QX1 recovered nothing - off
+  CT1 (off until measured) conversation topic memory: with no focus chosen and no deployment scope, a follow-up in a
+      conversation anchored only to cosmetics provisions (Parts 70-82, 700-799, FD&C Act 601-614) is answered with the
+      cosmetics focus
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
