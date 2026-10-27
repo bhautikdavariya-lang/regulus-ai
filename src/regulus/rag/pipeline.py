@@ -1802,6 +1802,14 @@ class RagPipeline:
             if notes:
                 answer_text = answer_text.rstrip() + "\n\n" + "\n".join(n["text"] for n in notes)
                 generation_info["status_notes"] = [n["id"] for n in notes]
+        if package is not None and answer_text and fallback_type != FB_UNVALIDATED and precision_fix("ISO1"):
+            # ISO1: the ISO 13485 clauses the cited Part 820 provisions name, stated with their citations
+            from regulus.rag.iso_clauses import clause_line
+
+            line = clause_line(answer_text, package.sources)
+            if line:
+                answer_text = answer_text.rstrip() + "\n\n" + line
+                generation_info["iso_clauses_named"] = line.count("Clause ")
         t_post = time.perf_counter()
         if package is not None and model_called:
             addressed = validation_final.addressed if validation_final is not None else ()

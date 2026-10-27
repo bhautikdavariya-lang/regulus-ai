@@ -175,6 +175,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   WC1 ON since 27 Oct 14:00: diagnostic 30 (unseen weak-family dev questions), both "what must the warning say"
       questions composed and blind-scored PASS (740.11-Q1, 740.17-Q1); the three withheld drafts there had real errors
       (invented duties, a mis-cited sub-paragraph), so the validator stays as it is
+  ISO1 (off until measured) the ISO 13485 clauses that the cited Part 820 paragraphs (or their section's lead-in) name,
+      and the answer does not, are added on one line with those citations (regulus.rag.iso_clauses); never guessed
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
