@@ -49,3 +49,11 @@ def status_notes(answer: str, sources) -> list[dict]:
     return [n for n in _notes()
             if parts & set(n.get("cfr_parts", ())) or sections & set(n.get("cfr_sections", ()))
             or acts & set(n.get("act_sections", ()))]
+
+
+def supplied_status_notes(sources) -> list[dict]:
+    """ST2 (27 Oct 2026): the notes whose provision is among the supplied sources - shown to the model before it answers,
+    so an answer about the stayed 740.18 warning does not state it as a current duty (stratified 50: the answer said the
+    warning "must appear" above an appended note saying the section is stayed)."""
+    every = " ".join(f"[{s.index}]" for s in sources)
+    return status_notes(every, sources)

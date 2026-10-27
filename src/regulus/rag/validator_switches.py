@@ -161,6 +161,7 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       paragraph (201(i), 604(2), 608(c)(1), 608(c)(2)); 201(i)-Q1 had gone to 604
   NL1 a listing that names the cosmetics it may color (74.2052, 74.2053: "the following cosmetics ...: Eyeliner, ...") is
       composed too: a named product is permitted, any other not (the model permitted D&C Black No. 2 in a hair gel)
+  ST2 (off until measured) the S1 status note of a supplied provision is also shown to the model before it answers
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

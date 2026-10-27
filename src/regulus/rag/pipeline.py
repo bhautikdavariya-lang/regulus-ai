@@ -1360,6 +1360,13 @@ class RagPipeline:
                                                       for s in promotion.statute))
         if package is not None and followup is not None and followup.earlier_question:
             package = replace(package, earlier_question=followup.earlier_question)
+        if package is not None and precision_fix("ST2") and package.sources:
+            # ST2: the dated status of a supplied provision (stayed, program closed, rule never issued) in the prompt
+            from regulus.rag.status_notes import supplied_status_notes
+
+            st_notes = [n["text"] for n in supplied_status_notes(package.sources)]
+            if st_notes:
+                package = replace(package, notes=tuple(package.notes) + tuple(st_notes))
         if package is not None and precision_fix("TK1") and package.answer_style == "apply":
             # TK1: an answer applying provisions to the question's facts gets room to finish (27 Oct: 70.55-Q1 cut at 256
             # and 740.2-Q1 at 416 tokens, both withheld as truncated); a short answer still stops when it is done
