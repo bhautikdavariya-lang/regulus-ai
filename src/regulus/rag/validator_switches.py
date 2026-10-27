@@ -147,6 +147,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   RO1 ON since 27 Oct 12:30: with color listings given no reranker credit when no color is named, 118 dev picker
       questions key first 44 (lexical) -> 59, MRR 0.489 -> 0.588; live 5 of 9 problem picks right (baseline 3).
       BN2 on 22: +1 / -1 by its own choice, answers 75% slower - off; FC1 confirmed live (70.51, 70.55 -> PASS)
+  WC1 (off until measured) a question asking what a Part 740 warning or label must say is answered with the statement's
+      paragraph named and the section's paragraphs verbatim (regulus.rag.warning_statements); "do we need it?" stays
+      with the model
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

@@ -1458,6 +1458,12 @@ class RagPipeline:
                 from regulus.rag.definitions import compose as compose_definitions
 
                 text, composed_type = compose_definitions(package, question), FB_COMPOSED_DEFINITIONS
+            if not text and not block and precision_fix("WC1"):
+                # WC1: what a Part 740 warning or label must say, quoted verbatim (regulus.rag.warning_statements)
+                from regulus.rag.fallback import FB_COMPOSED_WARNING
+                from regulus.rag.warning_statements import compose as compose_warning
+
+                text, composed_type = compose_warning(package, question), FB_COMPOSED_WARNING
             if not text and not block:
                 composed_type = FB_COMPOSED_LISTING
                 text = compose_listing(package, question)
