@@ -137,6 +137,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   27 Oct measurements: SY1 (71.18 not a candidate -> first; 0 other changes) and CT1 (802 bank follow-ups read alone
       in a general deployment: key section in the top 5, 531 -> 643) are on. LM1 + FR1 together on 22 questions:
       +3 / -2 blind, answers 30% slower - off
+  BN2 (off until measured) best of two with a verifier: a facts-first draft beside the plain one; the validated draft
+      citing more of the requested paragraphs with fewer denials is delivered (plain on a tie), and a validated
+      facts-first draft replaces a plain one that would be withheld
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

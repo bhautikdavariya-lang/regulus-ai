@@ -417,6 +417,19 @@ FR1_PROMPT = ("\n\nBEFORE ANSWERING: list the facts the SOURCES state that bear 
               "source's own words and ending with its source number in brackets. Include the conditions each fact depends on. "
               "Do not answer the question yet and do not add anything the SOURCES do not say.")
 FR1_ANSWER = "\n\nNow answer the QUESTION from these facts and the SOURCES, following the ANSWER FORMAT."
+# BN2: the verifier's score of a validated draft - the requested provision's paragraphs it cites (completeness, as the
+# rubric scores it) minus its denials ("the regulation does not address ...", 70.45-Q1 said so of its own subject)
+_DENIAL = re.compile(r"\b(?:does|do)\s+not\s+(?:address|cover|mention|establish|apply\s+to)\b|\bnot\s+addressed\b|"
+                     r"\bno\s+provision\b|\bdoes\s+not\s+(?:specify|state)\b", re.I)
+
+
+def answer_score(text: str, package) -> float:
+    requested = {s.index for s in package.sources if getattr(s, "requirement_ids", None)}
+    cited = {int(m) for m in re.findall(r"\[(\d{1,3})\]", text or "")}
+    denials = sum(1 for sent in re.split(r"(?<=[.!?])\s+", text or "") if _DENIAL.search(sent))
+    return 0.5 * len(cited & requested) - 1.0 * denials
+
+
 # LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
@@ -822,6 +835,28 @@ class RagPipeline:
                 return (kept, report3), info
         info["outcome"] = "kept"
         return None, info
+
+    def facts_first_answer(self, messages, package, question: str, analysis):
+        """BN2: the facts-first draft (FR1's two steps) post-processed and validated like the plain one ->
+        (text, gen, report), or None when the model listed no cited facts."""
+        facts = self._generate([messages[0], {**messages[-1], "content": messages[-1]["content"] + FR1_PROMPT}],
+                               FR1_MAX_TOKENS, None)
+        listed = (facts.response or "").strip()
+        if not listed or not _CITED_RE.search(listed):
+            return None
+        msgs = list(messages[:-1]) + [{**messages[-1], "content": messages[-1]["content"]
+                                       + "\n\nFACTS THE SOURCES STATE ABOUT THE QUESTION (listed first):\n" + listed + FR1_ANSWER}]
+        gen2 = self._generate(msgs, package.max_new_tokens, None)
+        text = (gen2.response or "").strip()
+        if not repeated_sentence(text):
+            text, _ = drop_duplicate_sentences(text, _quote_sources(package))
+        text, _ = strip_plan_labels(text)
+        if analysis is not None:
+            text, _ = normalize_answer(text, question)
+        text, _ = repoint_citations(text, [(s.index, s.text) for s in package.sources])
+        if precision_fix("A4"):
+            text, _ = repoint_named_citations(text, package)
+        return text, gen2, validate_answer(text, package, gen2)
 
     def _generate(self, messages, max_new_tokens: int | None, on_text=None):
         """Call the generator with the per-question budget when it accepts one,
@@ -1589,6 +1624,20 @@ class RagPipeline:
                                                prompt_tokens=gen2.prompt_tokens, stop_reason=getattr(gen2, "stop_reason", None))
                         input_tokens, output_tokens = gen2.prompt_tokens, gen2.generated_tokens
                         gen = gen2
+                if (precision_fix("BN2") and not precision_fix("FR1") and package.answer_style == "apply"
+                        and self.config.validation_behavior == "repair" and package.sources):
+                    # BN2 (best of two with a verifier): a facts-first draft as well; the one that validates and scores
+                    # better on answer_score is delivered, the plain draft on a tie - and a facts-first draft that
+                    # validates replaces a plain one that would be withheld
+                    alt = self.facts_first_answer(messages, package, question, analysis)
+                    choice = "plain"
+                    if alt is not None and alt[2].ok and (
+                            not validation_final.ok or answer_score(alt[0], package) > answer_score(answer_text, package)):
+                        answer_text, gen, validation_initial = alt
+                        validation_final = validation_initial
+                        generation_info.update(generated_tokens=gen.generated_tokens, finished=gen.finished)
+                        choice = "facts_first"
+                    generation_info["best_of_two"] = {"chosen": choice, "alt_ok": bool(alt and alt[2].ok)}
                 if (self.config.validation_behavior == "repair" and not validation_final.ok
                         and not (generation_info.get("correction_pass") or {}).get("accepted")):
                     repair_input = answer_text

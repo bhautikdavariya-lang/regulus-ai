@@ -423,3 +423,19 @@ def test_an_exemption_restated_from_not_necessary_is_not_invented():
     assert CV._EXEMPT_SUPPORT.search("he may list such color additive and/or that certification procedure is not necessary")
     assert CV._EXEMPT_SUPPORT.search("batches thereof are exempt from the certification")
     assert not CV._EXEMPT_SUPPORT.search("The color additive shall conform to the specifications.")
+
+
+# ------------------------------------------------------------ BN2 the verifier's score
+
+
+def test_bn2_prefers_the_complete_draft_and_penalises_denials():
+    from types import SimpleNamespace as NS
+
+    from regulus.rag.pipeline import answer_score
+
+    pkg = NS(sources=[NS(index=i, requirement_ids=("r1",)) for i in (1, 2, 3)] + [NS(index=4, requirement_ids=())])
+    full = "The deposit is $2,600 [1]. Withdrawal before filing refunds less $600 [2]. Within 30 days [3]."
+    part = "The deposit is $2,600 [1]. See the definitions [4]."
+    denial = full + " The regulation does not address cosmetic use."
+    assert answer_score(full, pkg) > answer_score(part, pkg)
+    assert answer_score(denial, pkg) < answer_score(full, pkg)
