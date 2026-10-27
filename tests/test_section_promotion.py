@@ -333,3 +333,48 @@ def test_a_promoted_subchapter_section_brings_the_604_definitions_it_uses(monkey
     # only the sections 604 governs get its definitions (601 adulteration, 201 definitions and 604 itself do not)
     assert SP.SUBCHAPTER_DEFINED == frozenset(str(n) for n in range(605, 615))
 
+
+
+# ------------------------------------------------------------ DV1 paragraph-level retrieval (27 Oct)
+
+
+class _PartRows:
+    def __init__(self, rows):
+        self.rows = rows
+
+    def query(self, sql, params):
+        return [dict(s=s, p=p, h=h, t=t) for s, p, h, t in self.rows]
+
+
+class _FlatReranker:
+    def __init__(self, scores):
+        self.scores = scores
+
+    def score(self, question, texts):
+        return [max([v for k, v in self.scores.items() if k in t] or [0.0]) for t in texts]
+
+
+def _part_promoter(monkeypatch, rows, scores):
+    import regulus.retrieval.rerank as RR
+    monkeypatch.setattr(SP, "RERANKER", "fake")
+    monkeypatch.setattr(RR, "reranker", lambda name: _FlatReranker(scores))
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _PartRows(rows)
+    return pr
+
+
+def test_every_row_of_a_definitions_paragraph_is_scored(monkeypatch):
+    rows = [("820.3", "(b)", "Definitions.", "All definitions in section 201 of the act shall apply."),
+            ("820.3", "(b)", "Definitions.", "Safety and Performance shall have the meaning of safety and effectiveness."),
+            ("820.1", "(a)", "Scope.", "Finished devices will be safe and effective.")]
+    pr = _part_promoter(monkeypatch, rows, {"Safety and P": 0.9, "Finished dev": 0.1})
+    assert pr.part_paragraphs("What meaning does Part 820 give to 'safety and performance'?", "820")[0] == "820.3(b)"
+
+
+def test_the_paragraph_sharing_the_most_phrases_is_kept_under_the_score_floor(monkeypatch):
+    rows = [("820.7", "(b)", "Incorporation by reference.", "ISO 13485 is incorporated by reference."),
+            ("820.10", "(c)", "Requirements.", "Design and development. Manufacturers of class II devices must comply."),
+            ("820.45", "(a)", "Labeling.", "Labeling must be examined.")]
+    pr = _part_promoter(monkeypatch, rows, {"ISO 13485 is": 0.6, "Design and d": 0.05})
+    got = pr.part_paragraphs("Which devices must apply the design and development requirements?", "820")
+    assert got == ["820.10(c)", "820.7(b)"]   # phrase rank 1 and cross-encoder rank 2 fuse ahead

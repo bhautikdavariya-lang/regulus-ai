@@ -1239,13 +1239,10 @@ class SectionPromoter:
             return []
         rows = self.db.query("SELECT section_number s, paragraph_path p, section_heading h, body_text t FROM cfr_records "
                              "WHERE removed_on IS NULL AND NOT is_reserved AND part_number = %(p)s ORDER BY ordinal", {"p": part})
-        seen, items = set(), []
-        for r in rows:
-            cite = f"{r['s']}{r['p'] or ''}"
-            if cite in seen or not (r["t"] or "").strip() or "[Reserved]" in (r["t"] or ""):
-                continue
-            seen.add(cite)
-            items.append((cite, f"{r['h'] or ''} {r['t']}"))
+        # every row is scored: a definitions paragraph is one row per term under one path (820.3(b) has six; the
+        # "Safety and Performance" row was the fourth and was dropped as a duplicate citation)
+        items = [(f"{r['s']}{r['p'] or ''}", f"{r['h'] or ''} {r['t']}") for r in rows
+                 if (r["t"] or "").strip() and "[Reserved]" not in (r["t"] or "")]
         if not items:
             return []
         try:
@@ -1262,7 +1259,17 @@ class SectionPromoter:
         by_ce = {i: r for r, i in enumerate(sorted(range(len(items)), key=lambda i: -scores[i]), 1)}
         by_ph = {i: r for r, i in enumerate(sorted(range(len(items)), key=lambda i: -overlap[i]), 1)}
         fused = sorted(range(len(items)), key=lambda i: -(1 / (RRF_K + by_ce[i]) + (1 / (RRF_K + by_ph[i]) if overlap[i] else 0)))
-        return [items[i][0] for i in fused[:k] if scores[i] >= DV1_MIN_SCORE or overlap[i] >= 2]
+        # kept: a confident cross-encoder score, two shared phrases, or the most phrases any paragraph shares (820.10(c)
+        # shares only "design and development" and scored under DV1_MIN_SCORE)
+        top_overlap = max(overlap)
+        out: list[str] = []
+        for i in fused:
+            if len(out) >= k:
+                break
+            if (scores[i] >= DV1_MIN_SCORE or overlap[i] >= 2 or (overlap[i] and overlap[i] == top_overlap)) \
+                    and items[i][0] not in out:
+                out.append(items[i][0])
+        return out
 
     def anchored(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = ()) -> Promotion | None:
         """A follow-up resolved to the provisions its conversation is about (regulus.rag.conversation): those sections
