@@ -124,6 +124,16 @@ _ANY_LISTING = re.compile(r"^(?:7[34]\.\d{3,4}[a-z]?|82\.(?!(?:3|5|6|50|51|1050|
 # DF2: the FD&C Act's definition sections, and a question invoking a definition, the Act or FDA's classification
 ACT_DEFINITION_SECTIONS = ("201", "604", "608")
 _NAMES_ACT = re.compile(r"\b(?:fd&c act|the act\b|federal food, drug,? and cosmetic act|mocra|modernization of cosmetics)")
+# SY2 (27 Oct): plain words -> the terms the regulations use for them. "Which parts of our submission become public?"
+# is 71.15 (confidentiality, public disclosure), not 71.20 (publication); "used at a higher level to hide discoloration"
+# is 71.22 (deceptive use, conceal damage or inferiority)
+_THESAURUS = (
+    (re.compile(r"\b(?:becomes?|made|make|stays?|remains?|kept|keep)\s+(?:non-?public|public|confidential|secret|private)\b|"
+                r"\bpublicly\s+(?:available|released)\b|\b(?:disclosed|released)\s+to\s+the\s+public\b", re.I),
+     "public disclosure confidentiality"),
+    (re.compile(r"\b(?:hide|hides|hiding|hidden|disguise\w*|cover(?:s|ing)?\s+up)\b|\bto\s+mask\b|\bmasking\b", re.I),
+     "conceal deception deceptive"),
+)
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -548,6 +558,11 @@ class SectionPromoter:
             # SY1: asking FDA to act is petitioning it - "Can we ask FDA to exempt it from certification?" never says
             # "petition", and 71.18 ("Petition for exemption from certification") was not among the 22 candidates
             question = f"{question} petition"
+        if precision_fix("SY2"):
+            # SY2: the regulations' own words for what the question says plainly (domain thesaurus, search terms only)
+            extra = [terms for pattern, terms in _THESAURUS if pattern.search(question or "")]
+            if extra:
+                question = f"{question} {' '.join(extra)}"
         lex = SectionIndex.question_lexemes(self.db, question)
         if parts:
             ranked = [r for r in self.index.rank(lex, limit=400) if r.part in parts]
