@@ -439,3 +439,13 @@ def test_bn2_prefers_the_complete_draft_and_penalises_denials():
     denial = full + " The regulation does not address cosmetic use."
     assert answer_score(full, pkg) > answer_score(part, pkg)
     assert answer_score(denial, pkg) < answer_score(full, pkg)
+
+
+def test_af1_a_section_named_with_its_paragraph_is_supplied(monkeypatch):
+    from regulus.rag import validation as V
+
+    src = "Tallow renders a cosmetic adulterated under section 601(c) of the act."
+    monkeypatch.setattr(V, "precision_fix", lambda fix: fix == "AF1")
+    assert "601" in V._supplied_figures(src)
+    monkeypatch.setattr(V, "precision_fix", lambda fix: False)
+    assert "601" not in V._supplied_figures(src)

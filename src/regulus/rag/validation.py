@@ -371,8 +371,16 @@ def _supplied_figures(text: str) -> set[str]:
     Counting every digit run instead - paragraph numbering included - was measured over the 300
     recorded acceptance answers to suppress seven findings the old rule made, one of them on a row
     the rubric scores N=2; this form keeps all of them and adds two, both on N=0 rows."""
-    return (_figures(text) | _periods(text)
-            | {_NUMBER_WORDS[m.group(1).lower()] for m in _WORD_PERIOD_RE.finditer(text or "")})
+    out = (_figures(text) | _periods(text)
+           | {_NUMBER_WORDS[m.group(1).lower()] for m in _WORD_PERIOD_RE.finditer(text or "")})
+    if precision_fix("AF1"):
+        # AF1 (27 Oct): a section the source names with its paragraph ("section 601(c) of the act") supplies its number;
+        # the figure pattern skips a number followed by "(", so an answer's "§ 601" read as invented (700.27-Q1 withheld)
+        out |= set(_SECTION_WITH_PARAGRAPH.findall(text or ""))
+    return out
+
+
+_SECTION_WITH_PARAGRAPH = re.compile(r"(?<![\w.(\[])(\d{2,})(?=\((?:[a-z]|\d{1,2})\))")
 
 
 _UNIT_AFTER = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*-?\s*(%|percent|ppm|parts per million|mg|g|kg|ml|fl\.? oz|oz|ounces?|"
