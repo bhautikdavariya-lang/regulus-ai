@@ -382,6 +382,41 @@ def _supplied_figures(text: str) -> set[str]:
 
 _SECTION_WITH_PARAGRAPH = re.compile(r"(?<![\w.(\[])(\d{2,})(?=\((?:[a-z]|\d{1,2})\))")
 
+# AR1 (27 Oct): a figure the answer computes in plain sight - "2,000 pounds x $0.45 per pound = $900" (80.10-Q1, a
+# correct fee withheld as an invented figure) - is supported when both operands are supplied and the arithmetic holds
+_NUM = r"\$?\s?(\d[\d,]*(?:\.\d+)?)"
+_UNITS = r"(?:\s+(?:per\s+)?[A-Za-z]+){0,3}"
+_ARITHMETIC = re.compile(_NUM + _UNITS + r"\s*(×|x|\*|times|multiplied\s+by|\+|plus|−|-|minus|/|÷|divided\s+by)\s*" + _NUM
+                         + _UNITS + r"\s*(?:=|equals|comes\s+to|totals?|gives)\s*" + _NUM, re.I)
+
+
+def verified_arithmetic(text: str, supplied: set[str]) -> set[str]:
+    """The results of the answer's explicit calculations whose operands are supplied figures and whose arithmetic is
+    right (to half a percent, as a stated amount is rounded)."""
+    out = set()
+    for a, op, b, c in _ARITHMETIC.findall(text or ""):
+        na, nb, nc = (_normalise_figure(x) for x in (a, b, c))
+        if na not in supplied or nb not in supplied:
+            continue
+        try:
+            x, y, z = float(na), float(nb), float(nc)
+        except ValueError:
+            continue
+        op = op.lower()
+        if op in ("×", "x", "*", "times") or op.startswith("multiplied"):
+            r = x * y
+        elif op in ("+", "plus"):
+            r = x + y
+        elif op in ("−", "-", "minus"):
+            r = x - y
+        elif y:
+            r = x / y
+        else:
+            continue
+        if abs(r - z) <= max(0.005 * abs(z), 0.01):
+            out.add(nc)
+    return out
+
 
 _UNIT_AFTER = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*-?\s*(%|percent|ppm|parts per million|mg|g|kg|ml|fl\.? oz|oz|ounces?|"
                          r"square inches|inches|business days?|calendar days?|working days?|days?|weeks?|months?|years?|"
@@ -658,6 +693,8 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
             supplied |= _question_figures(package.question, [s.text for s in package.sources]) - supplied
             if getattr(package, "earlier_question", None):   # a follow-up: the conversation's stated facts too
                 supplied |= _question_figures(package.earlier_question, [s.text for s in package.sources]) - supplied
+        if precision_fix("AR1"):
+            supplied |= verified_arithmetic(figure_text, supplied)
         stray = sorted((_figures(figure_text) | _periods(figure_text)) - supplied
                        - {f for f in _figures(figure_text) | _periods(figure_text)
                           if any(f in sf or sf in f for sf in supplied if len(f) >= 3 and len(sf) >= 3)})

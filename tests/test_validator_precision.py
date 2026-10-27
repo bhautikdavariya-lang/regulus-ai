@@ -475,3 +475,31 @@ def test_e2b_a_paragraph_under_a_duty_lead_in_states_the_duty():
           "applicable requirements of ISO 13485 and other applicable requirements of this part; and")
     assert duty_stated(s, [lead, a])
     assert not duty_stated(s, [a])
+
+
+def test_ar1_a_computed_figure_is_supported_only_when_its_arithmetic_holds():
+    from regulus.rag.validation import verified_arithmetic
+    supplied = {"2000", "0.45", "288"}
+    assert verified_arithmetic("the fee is 2,000 pounds × $0.45 per pound = $900.", supplied) == {"900"}
+    assert verified_arithmetic("2,000 x $0.45 = $950", supplied) == set()           # wrong arithmetic
+    assert verified_arithmetic("3,000 × $0.45 = $1,350", supplied) == set()         # an operand nobody supplied
+
+
+def test_c3_a_sibling_naming_the_cited_paragraph_states_its_condition(monkeypatch):
+    from types import SimpleNamespace as N
+    from regulus.rag import validator_switches as VS
+    from regulus.rag.claim_validation import check_claims
+    a = N(index=1, citation="21 CFR 740.2(a)", tier="exact", requirement_ids=("r1",), is_docket=False, text=(
+        "(a) A warning statement shall appear on the label in bold type on contrasting background, but in no case may "
+        "the letters be less than 1/16 inch in height, unless an exemption pursuant to paragraph (b) of this section is established."))
+    b = N(index=2, citation="21 CFR 740.2(b)", tier="exact", requirement_ids=("r1",), is_docket=False, text=(
+        "(b) If the label of any cosmetic package is too small to accommodate the information, the Commissioner may "
+        "establish by regulation an acceptable alternative method, e.g., type size smaller than 1/16 inch in height."))
+    pkg = N(sources=[a, b], answer_style="explain", question="How must warnings look?", requirements=())
+    ident = lambda s: ("21", "740.2", s.citation.split("740.2")[1])
+    rel = lambda x, y: x[:2] == y[:2] and (x[2].startswith(y[2]) or y[2].startswith(x[2]))
+    s = "A smaller type size is allowed only if an exemption is established by regulation for a label too small [2]."
+    codes = lambda: {f.code for f in check_claims([s], pkg, identity=ident, related=rel)}
+    assert "condition_not_in_cited_source" in codes()
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"C3"})
+    assert "condition_not_in_cited_source" not in codes()

@@ -352,6 +352,18 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             # already gives ("it or its parent/child")
             kin = {j for i in marks if identities.get(i) for j, idj in identities.items()
                    if j not in marks and idj and related(identities[i], idj)}
+            if precision_fix("C3"):
+                # C3 (27 Oct): a paragraph of the same section that names the cited one states its condition too -
+                # 740.2(a) "unless an exemption pursuant to paragraph (b) ... is established" for a sentence citing (b)
+                for i in marks:
+                    idi = identities.get(i)
+                    top = re.match(r"\([a-z0-9]+\)", (idi[2] or "")) if idi else None
+                    if top is None:
+                        continue
+                    names = re.compile(rf"\bparagraphs?\s+(?:\([a-z0-9]+\)(?:,\s*|\s+(?:and|or|through)\s+))*"
+                                       rf"{re.escape(top.group(0))}")
+                    kin |= {j for j, idj in identities.items() if j not in marks and idj and idj[:2] == idi[:2]
+                            and names.search(by_index[j].text or "")}
             cited_texts = cited_texts + [by_index[j].text for j in sorted(kin)]
         for group, pattern in _CONDITION_GROUPS.items():
             m = pattern.search(content)
