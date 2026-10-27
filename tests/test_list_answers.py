@@ -66,3 +66,11 @@ def test_ws1_an_overview_of_the_sections_own_subject_is_the_whole_section():
     assert all(f"[{i}]" in out for i in (1, 2, 3))
     assert compose_section(pkg, "How long must reserve samples be kept?") is None          # a specific question
     assert compose_section(pkg, "What are the stability testing requirements?") is None    # another subject
+
+
+def test_a_question_of_several_parts_takes_the_list_only_when_the_list_answers_each_part():
+    from regulus.rag.list_answers import _asks_covered
+    items = "(a) examined for accuracy: (1) UDI (2) Expiration date (3) Storage instructions"
+    assert not _asks_covered("What controls prevent mixups, and what must be documented?", items)
+    assert _asks_covered("What must the request include, and how is it submitted?", "shall: (c) Be submitted in duplicate.")
+    assert _asks_covered("What must a servicing record contain?", items)   # one part: unchanged

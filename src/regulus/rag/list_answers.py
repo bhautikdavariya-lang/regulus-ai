@@ -38,6 +38,22 @@ def _words(text: str) -> set[str]:
     return {re.sub(r"(?:es|s)$", "", w) for w in re.findall(r"[a-z]{4,}", (text or "").lower())} - _STOP
 
 
+_ASK_SPLIT = re.compile(r",?\s+and\s+(?=(?:what|how|who|when|where|which|whether|does|do|is|are|must|can|may)\b)", re.I)
+
+
+def _asks_covered(question: str, list_text: str) -> bool:
+    """Every part of a question of several parts names something the list's text names: "What must the request include,
+    and how is it submitted?" is answered by 80.21's list ("Be submitted in duplicate"); "What controls ... prevent
+    mixups, and what must be documented?" is not answered by 820.45(a)'s examination items (M-028, PASS lost)."""
+    from regulus.rag.section_promotion import _topic_stems, multi_part
+
+    if not multi_part(question):
+        return True
+    parts = _ASK_SPLIT.split(re.split(r"(?<=[.!?])\s+", (question or "").strip())[-1])
+    have = _topic_stems(list_text)
+    return all(not _topic_stems(p) or _topic_stems(p) & have for p in parts)
+
+
 def compose(package, question: str) -> str | None:
     from regulus.rag.generation import _verbatim, whole_sentences
 
@@ -76,6 +92,8 @@ def compose(package, question: str) -> str | None:
     kids = children(best)
     if len(kids) < 2 or score(best)[0] < 2:
         return None   # not a list, or not the list the question is about
+    if not _asks_covered(question, " ".join((s.text or "") for s in [best] + kids)):
+        return None   # a question of several parts that the list does not answer whole (M-028: mixups, documentation)
     lines, seen = [LEAD.format(section=f"21 CFR {sec}")], set()
     for s in [best] + kids:
         body = whole_sentences(s.text or "")
