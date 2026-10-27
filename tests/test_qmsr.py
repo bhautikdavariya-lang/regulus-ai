@@ -72,3 +72,10 @@ def test_the_certification_answer_rests_on_820_10_a():
     assert text.startswith("Part 820 does not require ISO 13485 certification") and "[2]" in text and "820.10(a) (eCFR" in text
     assert qmsr.compose_certification(SimpleNamespace(sources=pkg.sources[:1]), q) is None
     assert not qmsr.asks_certification("What does 21 CFR 820.10 require?")
+
+
+def test_several_former_sections_close_with_one_not_reproduced_line():
+    pkg = SimpleNamespace(sources=[src(1, "21 CFR 820.10", "A manufacturer subject to this part as described by § 820.1(a) must:"),
+                                   src(2, "21 CFR 820.10(a)", "(a) Document. Document a quality management system that complies with ISO 13485; and")])
+    text = qmsr.compose(pkg, "DMR, DHR and DHF?", [("820.181", ""), ("820.184", ""), ("820.30", "(j)")])
+    assert text.count("The standard's text is not reproduced here.") == 1

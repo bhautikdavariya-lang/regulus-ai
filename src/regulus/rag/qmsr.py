@@ -169,7 +169,9 @@ def compose(package, question: str, former: list[tuple[str, str]], unknown: list
                 f"{_join([clause_label(c) for c in cl])}.")
         if basis == "title":
             line += " FDA published no section-by-section mapping from the former regulation; the clause is named by subject."
-        lines.append(line + " The standard's text is not reproduced here.")
+        lines.append(line)
+    if any(line.startswith(CLAUSE_SENTENCE) for line in lines):
+        lines.append("The standard's text is not reproduced here.")   # once: repeated per section it read as degenerate
     return "\n".join(lines)
 
 

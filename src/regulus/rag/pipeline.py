@@ -343,6 +343,9 @@ _CONFIDENT_RESOLUTION = frozenset({"conversation", "entity", "named_statute", "s
 # recorded withheld answers quoted: every regression and 9 of 11 wrong-section quotes scored below 0.6, 6 of 11 gains above
 Q2_MIN_RERANK = 0.6
 # completeness findings that do not apply to a composed answer about one point of a provision (FP1, RS1)
+# DV1: a question asking WHICH provisions of a part do something (M-029, "Which provisions of Part 820 are FDA
+# supplements ...") spans the part; narrowed to its three best paragraphs it was declined
+_ASKS_WHICH_PROVISIONS = re.compile(r"\b(?:which|what)\s+(?:provisions|sections|paragraphs|requirements)\s+of\b", re.I)
 _FOCUSED_COMPLETENESS_CODES = frozenset({"requirement_not_addressed", "material_group_uncovered", "enumeration_incomplete"})
 _OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
 _FDCA_CUE = re.compile(r"\bFD&C\s+Act\b|\bFDCA\b|\bFederal\s+Food,\s+Drug,?\s+and\s+Cosmetic\s+Act\b|\b21\s+U\.?S\.?C\b", re.I)
@@ -1123,8 +1126,8 @@ class RagPipeline:
             part = reqs[0].reference.part
         elif not reqs and _QMSR_NAMED.search(question or ""):
             part = "820"
-        if not part:
-            return None
+        if not part or _ASKS_WHICH_PROVISIONS.search(question or ""):
+            return None   # "which provisions of Part 820 are ...": answered across the part, not from three paragraphs
         promoter = self.section_promoter()
         if promoter is None:
             return None
