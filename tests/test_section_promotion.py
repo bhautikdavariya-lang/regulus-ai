@@ -381,7 +381,7 @@ def test_the_paragraph_sharing_the_most_phrases_is_kept_under_the_score_floor(mo
 
 
 def test_a_paragraph_of_a_long_section_brings_its_top_level_family():
-    items = [("820.1(a)", "x" * 900), ("820.1(a)(1)", "x" * 300), ("820.1(a)(4)", "x" * 300), ("820.1(b)", "x" * 400),
+    items = [("820.1(a)", "x" * 1900), ("820.1(a)(1)", "x" * 300), ("820.1(a)(4)", "x" * 300), ("820.1(b)", "x" * 400),
              ("820.7", "y" * 200), ("820.7(a)", "y" * 300), ("820.7(b)", "y" * 300)]
     assert SectionPromoter.paragraph_families(["820.1(a)(4)", "820.7(b)"], items) == \
         ["820.1(a)", "820.1(a)(1)", "820.1(a)(4)", "820.7"]
