@@ -1250,6 +1250,8 @@ class RagPipeline:
         if not live:
             return [], []
         former = qmsr.former_refs(plan, live)
+        if precision_fix("QM2"):
+            former += [f for f in qmsr.former_by_name(question, live) if f not in former]
         unknown = qmsr.unknown_clauses(question)
         about_820 = former or any(r.reference.part == "820" for r in plan.requirements) or re.search(
             r"\bpart\s+820\b|\bQMSR\b|quality management system regulation", question, re.I)

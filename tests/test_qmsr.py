@@ -53,3 +53,11 @@ def test_the_pipeline_sentences_are_recognised_by_the_validator():
                  "In ISO 13485:2016 (incorporated by reference, 21 CFR 820.7) the subject is addressed by Clause 8.2.4.",
                  "ISO 13485:2016 has no Clause 9.2: its requirements are organized in Clauses 4 through 8."]:
         assert _NOT_A_CLAIM.search(line) and qmsr.PIPELINE_SENTENCES_RE.search(line)
+
+
+def test_former_record_types_named_in_words_are_their_former_sections():
+    from regulus.rag.qmsr import former_by_name
+    live = {"820.1", "820.3", "820.7", "820.10", "820.35", "820.45"}
+    q = "What is the difference between a Device Master Record, a Device History Record, and a Design History File?"
+    assert former_by_name(q, live) == [("820.181", ""), ("820.184", ""), ("820.30", "(j)")]
+    assert former_by_name("What must complaint records contain under Part 820?", live) == []

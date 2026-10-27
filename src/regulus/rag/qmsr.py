@@ -60,6 +60,23 @@ def former_refs(plan, live_sections: set[str]) -> list[tuple[str, str]]:
     return out
 
 
+# QM2 (27 Oct): the former regulation's record types, asked by name ("What is the difference between a Device Master
+# Record, a Device History Record and a Design History File under the current Part 820?"), are its former sections
+_FORMER_NAMES = (
+    (re.compile(r"\bdevice\s+master\s+records?\b|\bDMRs?\b"), ("820.181", "")),
+    (re.compile(r"\bdevice\s+history\s+records?\b|\bDHRs?\b"), ("820.184", "")),
+    (re.compile(r"\bdesign\s+history\s+files?\b|\bDHFs?\b"), ("820.30", "(j)")),
+    (re.compile(r"\bquality\s+system\s+records?\b"), ("820.186", "")),
+)
+
+
+def former_by_name(question: str, live_sections: set[str]) -> list[tuple[str, str]]:
+    """(section, paragraph path) of every former part 820 record type the question names (QM2), in question order."""
+    former = reference()["former_sections"]
+    hits = sorted((m.start(), ref) for pat, ref in _FORMER_NAMES if (m := re.search(pat.pattern, question or "", re.I)))
+    return list(dict.fromkeys(ref for _, ref in hits if ref[0] in former and ref[0] not in live_sections))
+
+
 def unknown_clauses(question: str) -> list[str]:
     """ISO 13485 clause numbers the question names that ISO 13485:2016 does not have."""
     known = set(reference()["clauses"]) | set(reference()["parent_titles"])

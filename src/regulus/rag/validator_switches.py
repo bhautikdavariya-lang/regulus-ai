@@ -195,6 +195,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       or, naming none, ISO 13485 / the QMSR, is answered from that part's most relevant paragraphs: cross-encoder rank
       fused with shared two-word phrases, top 3 (regulus.rag.section_promotion.part_paragraphs). Dev device questions it
       handles: key paragraph among its picks 13 of 19 (the baseline read the whole part and missed the paragraph)
+  QM2 (off until measured) the former regulation's record types named in words - device master record, device history
+      record, design history file, quality system record - are its former sections for QM1 (regulus.rag.qmsr.former_by_name)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
