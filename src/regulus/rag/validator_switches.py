@@ -182,6 +182,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   RS2 (off until measured) rescue: when the plain draft and its correction fail validation, a facts-first draft is
       tried once before the answer is quoted or withheld, and delivered only if it validates (a fallback chain; it
       never touches an answer that validated)
+  LS1 (off until measured) "what must X include / contain / show / record" about one requested 21 CFR section is
+      answered with the lead-in paragraph that introduces the matching list and every paragraph under it, verbatim
+      (regulus.rag.list_answers)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

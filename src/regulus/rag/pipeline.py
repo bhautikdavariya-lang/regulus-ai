@@ -1513,6 +1513,12 @@ class RagPipeline:
                 from regulus.rag.warning_statements import compose as compose_warning
 
                 text, composed_type = compose_warning(package, question), FB_COMPOSED_WARNING
+            if not text and not block and precision_fix("LS1"):
+                # LS1: "what must X contain / include / show" answered with the regulation's whole list
+                from regulus.rag.fallback import FB_COMPOSED_LIST
+                from regulus.rag.list_answers import compose as compose_list
+
+                text, composed_type = compose_list(package, question), FB_COMPOSED_LIST
             if not text and not block:
                 composed_type = FB_COMPOSED_LISTING
                 text = compose_listing(package, question)
