@@ -382,9 +382,19 @@ class SectionPromoter:
             return cands
         self.__dict__["_order_scores"] = (question, tuple(c["section"] for c in cands), scores)
         cfr = [c for c in cands if not c.get("statute")]
-        by_rr = sorted(cfr, key=lambda c: -scores.get(c["section"], (0.0, ""))[0])
+        # a question that names no color is not about one color's listing: the cross-encoder favours listings for any
+        # "exempt from certification" question (27 Oct: 71.25-Q1 -> 73.1001, 71.26-Q1 -> 73.3124), so listings keep
+        # their lexical place and take no reranker credit (118 dev picker questions: key first 57 -> 58, top 3 77 -> 81)
+        from regulus.retrieval.entities import entity_index
+
+        ents = entity_index(self.index)
+        no_color = not ents.match(question)
+        listing = {c["section"] for c in cfr if no_color and ents.is_color_listing(c["section"])}
+        scored = [c for c in cfr if c["section"] not in listing]
+        by_rr = sorted(scored, key=lambda c: -scores.get(c["section"], (0.0, ""))[0])
         rr_rank = {c["section"]: i for i, c in enumerate(by_rr, 1)}
-        fused = sorted(cfr, key=lambda c: -(1 / (RRF_K + cfr.index(c) + 1) + 1 / (RRF_K + rr_rank[c["section"]])))
+        fused = sorted(cfr, key=lambda c: -(1 / (RRF_K + cfr.index(c) + 1)
+                                           + (0.0 if c["section"] in listing else 1 / (RRF_K + rr_rank[c["section"]]))))
         return fused + [c for c in cands if c.get("statute")]
 
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
