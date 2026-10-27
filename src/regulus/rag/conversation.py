@@ -42,6 +42,11 @@ _STATUTE = re.compile(r"^\d{3}[a-z]?$")
 _PRONOUN = re.compile(r"\b(?:it|its|itself|this|these|those|such|the\s+same|the\s+former|the\s+latter)\b(?!\s+(?:is|are)\s+not\b)",
                       re.I)
 _ELLIPTICAL = re.compile(r"^\s*(?:and|but|so|also|what\s+about|how\s+about|what\s+if|and\s+if|then|or|plus)\b", re.I)
+# FU2: a demonstrative with a word for what the conversation is about points back however long the question is
+# ("Our formula adds silica abrasive. Does that affect use of this color?" was read as a new topic, 26 Oct)
+_DEMONSTRATIVE = re.compile(r"\b(?:this|that|these|those|the\s+same)\s+(?:colou?r(?:\s+additive)?|colou?rant|pigment|dye|lake|"
+                            r"batch|petition|listing|regulation|product|ingredient|exemption|order|facility|requirement|"
+                            r"filing|form|statement|warning|caution|substance|material|use|limit|tolerance)s?\b", re.I)
 _TAG = re.compile(r"(?:,\s*|\s)(?:right|correct|true|yes|no|isn't\s+it|don't\s+we|doesn't\s+it|is\s+that\s+so)\s*\?\s*$", re.I)
 # a provision pointed at without its section: written out as the anchored section
 _PARAGRAPH_POINTER = re.compile(r"\b(?:paragraph|subsection|clause)\s*((?:\([a-z0-9]{1,4}\))+)", re.I)
@@ -174,7 +179,20 @@ def cues(question: str) -> tuple[str, ...]:
         out.append("tag_question")
     if _PARAGRAPH_POINTER.search(q) or _THIS_PROVISION.search(q):
         out.append("pointer")
+    m = _DEMONSTRATIVE.search(q)
+    if m and _fu2("FU2"):
+        # "... a color additive that is exempt ... Can FDA take that exemption away?" introduced its own referent
+        noun = _stem(m.group(0).split()[-1].lower())
+        before = {_stem(w) for w in _WORD.findall(q[:m.start()].lower())}
+        if not any(noun.startswith(w) or w.startswith(noun) for w in before if len(w) > 3):
+            out.append("demonstrative")
     return tuple(out)
+
+
+def _fu2(fix: str) -> bool:
+    from regulus.rag.validator_switches import enabled
+
+    return enabled(fix)
 
 
 def write_out_pointers(question: str, section: str, statute: bool = False) -> str:
@@ -199,6 +217,7 @@ SELF_CONTAINED_WORDS = 10
 # a fragment ("Is there an exemption?", "Any deadline?", "Who must sign?") names at most this many subject words and no
 # provision: in a conversation it is about what came before. A definition question ("What is a cosmetic?") is not one.
 FRAGMENT_WORDS = 2
+SHORT_OWN_WORDS = 3   # FU2B: at 4, 9 of 1,000 new main questions asked mid-conversation were anchored (harness, 27 Oct)
 _DEFINITION_FORM = re.compile(r"^\s*(?:what\s+is\s+an?\s|what\s+are\s+(?!the\b)\w|what\s+does\s+[^?]{1,60}\s+mean\b|"
                               r"define\b|(?:the\s+)?(?:definition|meaning)\s+of\b)", re.I)
 
@@ -232,6 +251,11 @@ def resolve(question: str, context: ConversationContext | None, *, names_provisi
     shared = len(common) >= SHARED_WORDS or (bool(common) and len(common) >= SHARED_FRACTION * len(own))
     short = bool(found) and len(own) <= SHORT_QUESTION_WORDS
     fragment = len(own) <= FRAGMENT_WORDS and not _DEFINITION_FORM.search(question)
+    if "demonstrative" in found and len(own) <= SELF_CONTAINED_WORDS:
+        short = True   # FU2: "Does that affect use of this color?" names the conversation's subject
+    if _fu2("FU2B"):
+        # FU2B: a question of at most SHORT_OWN_WORDS subject words that names nothing of its own continues it
+        fragment = fragment or (len(own) <= SHORT_OWN_WORDS and not _DEFINITION_FORM.search(question))
     anchor_ranked = anchor_ranked and len(own) <= SELF_CONTAINED_WORDS
     if not (anchor_ranked or shared or short or fragment):
         # nothing ties it to the conversation: a new topic, answered on its own and without the earlier question
@@ -264,7 +288,9 @@ def turn_anchor(plan, promotion, followup: FollowUp | None) -> Anchor:
                                    if r.reference.title == "21" and r.reference.section))
         own = Anchor(cfr=secs[:4], statute=tuple(promotion.statute)[:2])
     elif promotion is not None and (promotion.sections or promotion.statute):
-        own = Anchor(cfr=tuple(promotion.sections)[:4], statute=tuple(promotion.statute)[:2])
+        # a promotion of paragraphs (DF1: "70.3(f)", "70.3(g)") anchors their section
+        secs = tuple(dict.fromkeys(re.sub(r"\(.*$", "", s) for s in promotion.sections))
+        own = Anchor(cfr=secs[:4], statute=tuple(promotion.statute)[:2])
     else:
         secs = tuple(dict.fromkeys(r.reference.section for r in plan.requirements
                                    if r.reference.title == "21" and r.reference.section))

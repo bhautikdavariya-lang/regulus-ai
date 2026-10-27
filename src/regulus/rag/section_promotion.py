@@ -30,6 +30,7 @@ from typing import Any
 
 from regulus.retrieval.section_index import COSMETIC_PARTS, COSMETIC_TERMS, SectionIndex, cosmetic_question, section_index
 from regulus.retrieval.statute import BLOCK_HEADER_CHARS, StatuteIndex, statute_index
+from regulus.rag.validator_switches import enabled as precision_fix
 
 MODES = ("off", "lexical", "picker")
 CANDIDATES = 22
@@ -103,6 +104,22 @@ PICKER_LAST = ("Reply with the citation of the one or two sections whose text mo
                "candidate answers it.")
 
 _DEF_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The terms?\s+)?(.+?)\s+means?\b", re.I)
+# EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
+_LISTING_SILENT_ON_EYE = re.compile(
+    r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
+    r"cover|include|address|list|say|allow|permit|specif)\w*[^.?]{0,30}?\beye|\bnot\s+(?:listed|approved|permitted|provided)\s+"
+    r"for\s+(?:the\s+)?(?:area\s+of\s+the\s+)?eye|\bsilent\s+on\s+eye", re.I)
+# DF1 (definitions_asked): the opening of a definition paragraph, the definitions sections read, and what a question
+# about the Act's own definitions says
+_DEFINES_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The\s+terms?\s+|An?\s+|The\s+)?(?P<t>[^.;:]{2,90}?)\s+"
+                         r"(?:means?|is\s+(?:any|a|an|the)|refers?\s+to|applies\s+to)\b")
+DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
+DEFINITION_HOP_CHARS = 600
+DEFINITION_GENERIC_USES = 3
+_ACT_DEFINITION_RE = re.compile(r"\b(?:FD&C\s+Act|the\s+Act\b|MoCRA|Modernization|section\s+\d{3}\b|§\s*\d{3}\b|60[1-9]\b|61[0-4]\b|201\b)", re.I)
+_CLASSIFY_RE = re.compile(r"\b(?:classify|classifies|treat|treats|count\s+as|counts\s+as|in\s+fda['’]?s?\s+sense)\b")
+# plain words for a defined one-word term, among what a question asks to classify
+_PLAIN_TERMS = {"blend": "mixture", "blends": "mixture", "carrier": "diluent", "oil": "diluent", "solvent": "diluent"}
 _USE_RE = re.compile(r"\b(?:safely used|restricted to|uses and restrictions|for use (?:in|only)|may be used)\b", re.I)
 _SENT_RE = re.compile(r"(?<=[.;])\s+")
 # a listing that speaks to eye-area use: "area of the eye", or names eye products ("eyeliner, brush-on-brow, eye shadow")
@@ -756,6 +773,78 @@ class SectionPromoter:
                         break
         return out[:limit]
 
+    def _defined_terms(self, sec: str) -> list[tuple[str, list[str], str]]:
+        """(paragraph, the term(s) it defines in their usual forms, text) for every paragraph of a definitions section;
+        no forms for one that defines nothing ("For a material otherwise meeting the definition of ..."). Terms: "The
+        term X means", "A color additive is any", "The hair dye exemption in section 601(a) of the act applies to"."""
+        cache = self.__dict__.setdefault("_defined_terms_cache", {})
+        if sec not in cache:
+            out = []
+            for r in self.db.query(_SECTION_SQL, {"s": sec}):
+                body, path = r["body_text"] or "", r["paragraph_path"]
+                if not path:
+                    continue
+                m = _DEFINES_RE.match(body)
+                forms: set[str] = set()
+                if m:
+                    term = re.sub(r"\s+(?:in\s+section\s+\S+|of\s+the\s+act)\b.*$", "", m.group("t").strip(" ,").lower())
+                    forms = {term, re.sub(r"\s+(?:of\s+(?:a\s+)?cosmetic\s+products?|used\s+by\s+the\s+establishment)$", "", term)}
+                    if " and " in term:   # "externally applied drugs and externally applied cosmetics"
+                        halves = [h.strip() for h in term.split(" and ")]
+                        forms |= set(halves) | {os.path.commonprefix(halves).strip()}
+                out.append((path, sorted(f for f in forms if len(f) >= 3), body))
+            cache[sec] = out
+        return cache[sec]
+
+    def definitions_asked(self, question: str, limit: int = 6) -> list[str]:
+        """DF1: the definition paragraphs ("70.3(f)", "70.3(g)") of a question that asks how FDA's definitions
+        classify what it describes - "Are these 'color additives' in FDA's sense?", "How do FDA's definitions classify
+        the lake, the blend and the oil?" - or [] (27 Oct 2026: such questions were resolved to the listings of the
+        colors they named, 73.2496 for mica, or to 82.1051, and none was answered from 70.3). A term of more than one
+        word counts when the question names it; a one-word term ("lake", "package") only when quoted or among what
+        the question asks to classify. With each matched definition come a definition that contains its term ("system
+        of commercial distribution of a cosmetic product"), a paragraph that limits it ("For a material otherwise
+        meeting the definition of color additive to be exempt ..."), and for a one-word term the short definitions of
+        the terms it uses ("straight color" in the definition of lake). A question about the Act's definitions (604
+        "facility", 608 "safe", MoCRA) is left to the Act. Switched by "DF1"."""
+        from regulus.rag.validator_switches import enabled as precision_fix
+        from regulus.retrieval.query import _INVOKES_DEFINITION_RE, _QUOTED_TERM_RE
+
+        q = question or ""
+        if not precision_fix("DF1") or not _INVOKES_DEFINITION_RE.search(q) or _ACT_DEFINITION_RE.search(q):
+            return []
+        low = " ".join(q.lower().split())
+        quoted = [x.strip().lower() for x in _QUOTED_TERM_RE.findall(q)]
+        m = _CLASSIFY_RE.search(low)
+        asked = " ".join(_PLAIN_TERMS.get(w, w) for w in re.findall(r"[a-z&-]+", low[m.end():] if m else ""))
+
+        def named(form: str) -> bool:
+            # "FDA's color additive definitions" names no term: it says which definitions
+            pat = rf"(?<![a-z]){re.escape(form)}s?(?![a-z])(?!\s+definitions?\b)"
+            if len(form.split()) > 1:
+                return bool(re.search(pat, low))
+            return any(re.search(pat, x) for x in quoted) or bool(re.search(pat, asked))
+
+        out: list[str] = []
+        for sec in DEFINITION_SECTIONS:
+            paras = self._defined_terms(sec)
+            for path, forms, body in paras:
+                hit = [f for f in forms if named(f)]
+                if not hit:
+                    continue
+                with_it = [path] + [p2 for p2, f2, b2 in paras if p2 != path and (
+                    any(f in x for f in hit for x in f2 if x != f and len(f.split()) > 1)
+                    or any(re.search(rf"\bdefinition\s+of\s+(?:an?\s+|the\s+)?{re.escape(f)}\b", b2, re.I) for f in hit))]
+                if all(len(f.split()) == 1 for f in hit):
+                    # a term most of the section's definitions use ("cosmetic product" in 700.3) explains none of them
+                    def uses(x, b):
+                        return bool(re.search(rf"\b{re.escape(x)}s?\b", b, re.I))
+                    with_it += [p2 for p2, f2, b2 in paras if p2 != path and len(b2) <= DEFINITION_HOP_CHARS and any(
+                        len(x.split()) > 1 and uses(x, body) and sum(uses(x, b3) for p3, _, b3 in paras if p3 != p2)
+                        < DEFINITION_GENERIC_USES for x in f2)]
+                out += [sec + p for p in with_it if sec + p not in out]
+        return out[:limit]
+
     def _all_definitions(self, sec: str) -> list[tuple[str, list[str]]]:
         cache = self.__dict__.setdefault("_defs_all", {})
         if sec not in cache:
@@ -915,10 +1004,6 @@ class SectionPromoter:
         acts = [s for s in statute if self.statute is not None and s in self.statute.by_sec]
         if known:
             pr = self._cfr_promotion(known, question, lex, (), None, None, "conversation", t0)
-            if acts:
-                st = self._statute_promotion([(s, "") for s in acts[:1]], lex, "conversation", t0, budget=CO_STATUTE_BUDGET)
-                pr = replace(pr, statute=st.statute, statute_rows=st.statute_rows, statute_blocks=st.statute_blocks,
-                             statute_left_out=st.statute_left_out, seconds=time.perf_counter() - t0)
             return pr
         if acts:
             return self._statute_promotion([(s, "") for s in acts[:2]], lex, "conversation", t0)
@@ -982,12 +1067,22 @@ class SectionPromoter:
             return prepared
         lex, cands = prepared
         raw, other, notes, second_act, second_cfr = None, None, (), None, None
+        defined = self.definitions_asked(question) if not parts else None
+        if defined:
+            # DF1: a question asking how the definitions classify what it describes is answered from those definitions
+            return Promotion(sections=tuple(defined), companions=(), method="definitions", candidates=tuple(cands),
+                             seconds=time.perf_counter() - t0)
         try:
             entity = self.entity_pick(question, lex, cands, parts) if ENTITY_CONSTRAINTS else None
         except Exception:  # noqa: BLE001 - an aid: without it the picker decides
             entity = None
         if entity is not None:
             return self._cfr_promotion(entity, question, lex, cands, None, None, "entity", t0)
+        if _LISTING_SILENT_ON_EYE.search(question or "") and precision_fix("EY1"):
+            # EY1: no color named, and the question says its listing does not provide for eye-area use: the rule for
+            # that is 70.5(a), not the listing the picker guesses for "a certified FD&C red" (74.2340, 27 Oct)
+            return Promotion(sections=("70.5(a)",), companions=("70.3(s)",), method="eye_area_rule",
+                             candidates=tuple(cands), seconds=time.perf_counter() - t0)
         silence = self.practice_silence(question, lex, t0)
         if silence is not None:
             return silence

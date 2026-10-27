@@ -77,6 +77,20 @@ _LIST_RE = re.compile(
     r"walk\s+(?:me\s+)?through\s+(?:each|every|all)|go\s+through\s+(?:each|every|all))\b",
     re.IGNORECASE,
 )
+# LV1: "list" that asks for an enumeration - an instruction ("List the ...", "can you list"), or followed by what to
+# enumerate ("list all", "list each requirement", "list the conditions")
+_ENUMERATING_LIST_RE = re.compile(
+    rf"(?:^|[.?!]\s+|\b(?:please|you|can|could|would|just)\s+)list\b|\blist(?:s|ing)?\s+(?:out\s+)?(?:(?:all|each|every|the|"
+    rf"its|their|any|which|what)\s+)+(?:\w+\s+){{0,2}}{_REQUIREMENT_NOUN}\b|\blist(?:s|ing)?\s+(?:out\s+)?(?:all|each|every)\b",
+    re.IGNORECASE)
+
+
+def _lv1() -> bool:
+    from regulus.rag.validator_switches import enabled
+
+    return enabled("LV1")
+
+
 _QUANTIFIER_RE = re.compile(
     rf"\b(all|every|each)\b(?:\s+(?:of\s+)?(?:the|its|their|these|those|this|that|applicable|individual|specific|separate|listed|"
     rf"regulatory|listed)){{0,3}}\s+{_REQUIREMENT_NOUN}\b|\b(?:all|each|every\s+one)\s+of\s+(?:them|these|those|its|the)\b",
@@ -184,6 +198,11 @@ def analyze_shape(plan: QueryPlan) -> AnswerShape:
     signals: list[str] = []
     comparison = bool(_COMPARISON_RE.search(masked))
     list_verb = bool(_LIST_RE.search(masked))
+    if list_verb and _lv1() and not _ENUMERATING_LIST_RE.search(masked) and not any(
+            m.group(1).lower() not in ("list", "lists", "listing") for m in _LIST_RE.finditer(masked)):
+        # LV1: "petitioning to list a new colorant", "amend a listing" - in Parts 70-82 to list is to approve a color
+        # additive; it asks for no enumeration unless it is an instruction or names what to enumerate
+        list_verb = False
     quantifier = bool(_QUANTIFIER_RE.search(masked))
     detail = bool(_DETAIL_RE.search(masked))
     overview = bool(_OVERVIEW_RE.search(masked))

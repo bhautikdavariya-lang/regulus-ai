@@ -273,3 +273,31 @@ def test_a_read_cancelled_by_the_statement_timeout_is_retried_once(monkeypatch):
     assert db.query("SELECT 1") == [{"ok": 1}] and len(calls) == 2
     with pytest.raises(psycopg.errors.QueryCanceled):
         db.query("always")
+
+
+# ------------------------------------------------------------ FU2 / FU2B (27 Oct)
+
+
+def test_a_demonstrative_points_back_unless_the_question_introduced_it(monkeypatch):
+    from regulus.rag import validator_switches
+    from regulus.rag.conversation import cues
+
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset({"FU2"}))
+    assert "demonstrative" in cues("Our formula adds silica abrasive. Does that affect use of this color?")
+    assert "demonstrative" not in cues("Our eyeliner uses a color additive that is exempt from certification. Can FDA "
+                                       "take that exemption away, and how would we find out?")
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset())
+    assert "demonstrative" not in cues("Our formula adds silica abrasive. Does that affect use of this color?")
+
+
+def test_a_three_word_question_continues_the_conversation(monkeypatch):
+    from regulus.rag import validator_switches
+    from regulus.rag.conversation import Anchor, ConversationContext, PriorTurn, resolve
+
+    ctx = ConversationContext((PriorTurn("We want a green toothpaste colored with chlorophyllin. Is that allowed?",
+                                         Anchor(cfr=("73.2125",))),))
+    q = "What date applied at the retail level?"
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset())
+    assert not resolve(q, ctx, names_provision=False, other_entity=False).anchored
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset({"FU2B"}))
+    assert resolve(q, ctx, names_provision=False, other_entity=False).anchored

@@ -347,7 +347,11 @@ def _is_negated(sentence: str) -> bool:
 
 
 def _normalise_figure(token: str) -> str:
-    return token.replace("$", "").replace(",", "").replace(" ", "").strip(".")
+    out = token.replace("$", "").replace(",", "").replace(" ", "").strip(".")
+    if precision_fix("MF1"):
+        # MF1: "$75" is the source's "$75.00" (70.19(l), 27 Oct: a correct deposit answer was withheld over it)
+        out = re.sub(r"(?<=\d)\.0+$", "", out)
+    return out
 
 
 def _figures(text: str) -> set[str]:
@@ -576,6 +580,11 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
                 named = (ref.title, ref.section, ref.paragraph_path)
                 if not any(ident and _related_identity(named, ident) for ident in identities.values()):
                     continue  # the provision is not among the sources; handled by the missing-provision rule
+                if precision_fix("CM1") and any(re.search(rf"(?<![\d.]){re.escape(ref.section)}(?![\d])", by_index[i].text or "")
+                                                for i in marks):
+                    # CM1: the cited source names that provision itself ("The fee for listing a diluent under § 80.35
+                    # ... shall be $250.00" in 70.19(j)): the sentence restates it, it does not mis-cite (27 Oct)
+                    continue
                 if not any(identities.get(i) and _related_identity(named, identities[i]) for i in marks):
                     # attribute the problem to the requested provision the sentence is about, when there is exactly one
                     about = [rid for rid in package.satisfied_ids if _mentions(sentence, patterns.get(rid, []))]

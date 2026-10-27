@@ -75,6 +75,26 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   ND1 (27 Oct) the bare decline sentence ("The available regulatory sources do not provide enough information to
       answer this.") is removed from an answer that states something cited without it (regulus.rag.pipeline.
       drop_stray_decline): 9 of 154 answers of the 26 Oct full run were scored down for that contradictory line
+Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up verdicts):
+  DF1 a question asking how FDA's definitions classify what it describes ("Are these 'color additives' in FDA's
+      sense?") is resolved to the definition paragraphs of 70.3 / 700.3 / 82.3 it names, with the paragraph limiting
+      a definition and the short definitions a matched one-word term uses (SectionPromoter.definitions_asked): the 5
+      bank questions it fires on get exactly their key paragraphs; 0 of 300 acceptance questions
+  EY1 an unnamed color whose listing the question says does not provide for eye-area use: 70.5(a), not a guessed
+      listing
+  MF1 "$75" is the source's "$75.00": a whole amount equals the same amount with zero decimals (figure check)
+  E2  E1 for a sentence with no citation marker that names the section ("720.1 still requires a filing"), or as the
+      answer's opening sentence says it of the supplied provisions
+  CM1 a sentence naming a provision that its cited source itself names ("the fee for listing a diluent under
+      § 80.35" citing 70.19(j)) is not a provision-citation mismatch
+  LV1 "list"/"listing" asks for an enumeration only as an instruction or followed by what to enumerate: in Parts
+      70-82 "petitioning to list a colorant" is approval, and the question was read as "every paragraph of 70.19"
+      (64 of 1,962 bank, follow-up and 300Q questions change, all from enumeration)
+  FU2 a demonstrative with a subject word ("this color", "that exemption") points back to the conversation unless the
+      question introduced it itself; FU2B a follow-up of at most 3 subject words naming nothing continues the
+      conversation (resolution harness, 1,000 dev follow-ups: anchored with the key's section 512 -> 523, false
+      anchoring of a new main question 22 -> 22). FU3 (the follow-up's own top-ranked section as a companion) was
+      measured and dropped: 55 added, 5 in the key
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.

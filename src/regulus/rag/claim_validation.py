@@ -191,6 +191,7 @@ _SOURCE_DUTY = re.compile(r"\b(?:must|shall|required|requires?|requirement|manda
 # so is a bare "request", mostly a noun ("requests for a hearing", "De Novo Request"). Measured 23 Oct on 228 recorded
 # answers: with them, 34 fires and 3 on PASS answers; without, fires only on the voluntary-program sections.
 _WEAK = re.compile(r"\b(?:should|(?:is|are)\s+requested|voluntar\w*|encourag\w*|recommend\w*)\b", re.I)
+_SECTION_NUMBER = re.compile(r"(?<![\d.])(\d{1,4}\.\d{1,4}[a-z]?)(?![\d])")   # E2: "720.1", "21 CFR 720.1(a)"
 _SOURCE_SENTENCE = re.compile(r"(?<=[.;:])\s+(?=[A-Z(])")
 
 
@@ -319,6 +320,19 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             if weaker:
                 findings.append(ClaimFinding(OBLIGATION_STRENGTHENED, SEVERITY[OBLIGATION_STRENGTHENED],
                                              f"states a duty ({weaker})", citation=marks[0], sentence=sentence))
+
+        # -- E2: the same for a sentence with no citation marker that names the section ("Yes, 720.1 still requires a
+        # filing" beside a cited "is requested to file [1]"; 26 Oct full run, 720.1 follow-ups F1/F4) - or, as the
+        # answer's opening sentence, says it of the supplied provisions ("Yes, filing is required.")
+        if precision_fix("E2") and not marks:
+            named = set(_SECTION_NUMBER.findall(content))
+            texts = [s.text for s in package.sources if (_SECTION_NUMBER.findall(s.citation or "")[:1] or [None])[0] in named]
+            if not texts and sentence is sentences[0]:
+                texts = exact_texts
+            weaker = strengthened_obligation(sentence, texts, [s.text for s in package.sources if s.text not in texts]) if texts else None
+            if weaker:
+                findings.append(ClaimFinding(OBLIGATION_STRENGTHENED, SEVERITY[OBLIGATION_STRENGTHENED],
+                                             f"states a duty ({weaker})", sentence=sentence))
 
         # -- statements whose content no supplied source supports
         words = _words(content)

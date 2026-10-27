@@ -199,7 +199,9 @@ def test_known_cost_a_faithful_paraphrase_with_little_source_wording_is_withheld
     draft = f"{paraphrase} {C} [3]"
     out = RagPipeline(LexicalRetriever(TableDatabase(S211)), ScriptedGenerator(draft), configured_rag_config(load_settings())).answer(FOCUSED)
     assert CV.UNSUPPORTED_CLAIM in out.metadata["validation"]["initial"]["codes"]
-    assert out.metadata["fallback_type"] == "unvalidated_answer_withheld" and "schooling" not in out.answer
+    # withheld; with Q1 (on by default since 27 Oct) the provision is quoted instead - the paraphrase is never shown
+    assert out.metadata["fallback_type"] in ("unvalidated_answer_withheld", "focused_provision_quote")
+    assert "schooling" not in out.answer
 
 
 def test_known_interaction_the_truncation_note_is_scored_as_a_claim():

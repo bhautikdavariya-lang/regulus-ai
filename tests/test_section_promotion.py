@@ -185,8 +185,12 @@ def test_question_words_do_not_count_as_support_for_what_a_sentence_adds():
     assert "unsupported_claim" in codes(invents)
 
 
-def test_promotion_never_runs_where_a_refusal_is_decided_from_the_question():
+def test_promotion_never_runs_where_a_refusal_is_decided_from_the_question(monkeypatch):
+    # without PO2: with it, a part outside the cosmetics programme may be promoted into, and "What does 21 CFR Part 11
+    # require?" is refused as a whole-part question by SectionPromoter.prepare instead
+    from regulus.rag import validator_switches
     from regulus.rag.pipeline import may_promote
+    monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", validator_switches.VALIDATOR_PRECISION - {"PO2"})
     for q in ("Under the EU Cosmetics Regulation, what must a lipstick label list?",
               "What does paragraph (b) require for lipstick colors?",
               "Under 16 CFR Part 500, what must a label state?",

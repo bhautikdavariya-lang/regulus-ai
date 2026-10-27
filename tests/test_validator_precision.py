@@ -399,3 +399,16 @@ def test_bare_or_scoped_decline_is_kept():
     scoped = ("Section 610 covers records [1]. The available regulatory sources do not provide enough information to "
               "answer whether FDA can demand pricing data.")
     assert drop_stray_decline(scoped) == (scoped, 0)
+
+
+# ------------------------------------------------------------ MF1 an amount with zero cents
+
+
+def test_a_whole_dollar_amount_is_the_sources_amount_with_zero_cents(monkeypatch):
+    from regulus.rag import validation as V
+
+    monkeypatch.setattr(V, "precision_fix", lambda fix: fix == "MF1")
+    assert V._figures("at most $75 per member per day") == V._figures("not to exceed $75.00 per member per day")
+    assert V._figures("10.0 percent") == {"10"} and V._figures("10.05 percent") == {"10.05"}
+    monkeypatch.setattr(V, "precision_fix", lambda fix: False)
+    assert V._figures("$75") != V._figures("$75.00")
