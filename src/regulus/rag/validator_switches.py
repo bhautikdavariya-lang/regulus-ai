@@ -109,6 +109,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   UR1 the listing composer reads the uses paragraph under each heading the listings use ("Uses and restrictions.",
       "Use and restrictions.", "Use and restriction."): carmine 73.2087 and annatto 73.2030 were answered by the model
       and annatto's answer denied the eye-area use its listing grants
+  LC1 an opening listing question ("May we use X, and what applies?") the model answered gets the listing's paragraphs
+      no citation of the answer points to, verbatim and cited (73.2125: the 0.1 percent limit said, (a), (c), (d) not)
+  EX1 a source's "certification ... is not necessary" supports an answer's "exempt from certification"
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

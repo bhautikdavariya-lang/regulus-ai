@@ -1476,6 +1476,14 @@ class RagPipeline:
                         if quoted:
                             answer_text, validation_final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
                             fallback_reason = "the model declined; the governing provision is quoted instead"
+                if fallback_type is None and precision_fix("LC1") and validation_final is not None and validation_final.ok:
+                    # LC1: a color-listing answer keeps every paragraph of its listing (regulus.rag.color_listing)
+                    from regulus.rag.color_listing import missing_listing_paragraphs
+
+                    rest = missing_listing_paragraphs(package, answer_text)
+                    if rest:
+                        answer_text = answer_text.rstrip() + "\n\n" + rest
+                        generation_info["listing_paragraphs_appended"] = rest.count("\n")
                 if fallback_type is None and precision_fix("ND1"):
                     # ND1: the bare decline sentence inside an answer that states what its cited sources say
                     # contradicts it (9 of 154 answers on 26 Oct, each scored down for "a contradictory 'not enough

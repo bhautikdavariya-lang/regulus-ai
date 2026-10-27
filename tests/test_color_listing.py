@@ -76,3 +76,22 @@ def test_undecidable_listing_or_unknown_product_returns_none():
 def test_a_listing_that_also_allows_lip_use_is_left_to_the_model():
     # 74.2333-style text: external AND lip use with a limit - "externally applied" alone would wrongly deny the lipstick
     assert read_scope("(b) Uses and restrictions. D&C Red No. 33 may be safely used for coloring externally applied cosmetics and lip cosmetics in amounts not to exceed 3 percent by weight.") is None
+
+
+def test_lc1_a_listing_answer_gets_its_uncited_paragraphs(monkeypatch):
+    from types import SimpleNamespace as NS
+
+    from regulus.rag.color_listing import LC1_LEAD, missing_listing_paragraphs
+
+    src = [NS(citation="21 CFR 73.2125(a)", index=1, text="(a) Identity and specifications. The color additive shall conform to § 73.125."),
+           NS(citation="21 CFR 73.2125(b)", index=2, text="(b) Uses and restrictions. It may be used for coloring dentifrices."),
+           NS(citation="21 CFR 73.2125(b)(1)", index=3, text="(1) It shall not be used at a level in excess of 0.1 percent."),
+           NS(citation="21 CFR 73.2125(c)", index=4, text="(c) Labeling. The label shall conform to the requirements of § 70.25.")]
+    pkg = NS(requirements=(("r1", "21 CFR 73.2125"),), sources=src, earlier_question=None,
+             question="We want a green toothpaste colored with chlorophyllin. Is that allowed, and at what level?")
+    out = missing_listing_paragraphs(pkg, "Yes, at most 0.1 percent [3]. It may color dentifrices [2].")
+    assert out.startswith(LC1_LEAD) and "73.2125(a)" in out and "73.2125(c)" in out and "(b)(1)" not in out
+    narrow = NS(**{**pkg.__dict__, "question": "What substances may it be combined with?"})
+    assert missing_listing_paragraphs(narrow, "Water and glycerin [3].") is None
+    followup = NS(**{**pkg.__dict__, "earlier_question": "Is chlorophyllin allowed?"})
+    assert missing_listing_paragraphs(followup, "Yes, at most 0.1 percent [3].") is None

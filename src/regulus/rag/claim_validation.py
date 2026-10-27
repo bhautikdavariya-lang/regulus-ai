@@ -195,6 +195,9 @@ _SOURCE_DUTY = re.compile(r"\b(?:must|shall|required|requires?|requirement|manda
 # so is a bare "request", mostly a noun ("requests for a hearing", "De Novo Request"). Measured 23 Oct on 228 recorded
 # answers: with them, 34 fires and 3 on PASS answers; without, fires only on the voluntary-program sections.
 _WEAK = re.compile(r"\b(?:should|(?:is|are)\s+requested|voluntar\w*|encourag\w*|recommend\w*)\b", re.I)
+# E2: the regulation asks the reader to act ("is requested to file", "should", "voluntary"); "if a sample is
+# requested" (71.4) is FDA making a request, not a weaker duty
+_REQUESTED_TO = re.compile(r"\b(?:is|are)\s+requested\s+to\b|\bshould\b|\bvoluntar\w*|\bencourag\w*|\brecommend\w*", re.I)
 _SECTION_NUMBER = re.compile(r"(?<![\d.])(\d{1,4}\.\d{1,4}[a-z]?)(?![\d])")   # E2: "720.1", "21 CFR 720.1(a)"
 _SOURCE_SENTENCE = re.compile(r"(?<=[.;:])\s+(?=[A-Z(])")
 
@@ -214,7 +217,7 @@ def requested_duty(sentence: str, texts: list[str]) -> str | None:
     near = {stem(t) for t in tokens[max(0, at - 3):at + 4] if len(t) > 3 and not _DUTY.fullmatch(t)}
     for text in texts:
         for piece in _SOURCE_SENTENCE.split(text or ""):
-            weak = _WEAK.search(piece)
+            weak = _REQUESTED_TO.search(piece)
             if weak and not _SOURCE_DUTY.search(piece) and near & {stem(t) for t in re.findall(r"[a-z]+", piece.lower()) if len(t) > 3}:
                 return weak.group(0)
     return None

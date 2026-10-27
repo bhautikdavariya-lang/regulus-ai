@@ -276,3 +276,42 @@ def compose_certification(package, question: str) -> str | None:
                      f"82.5(b)(1) apply to it {''.join(f'[{s.index}]' for s in own_limits)}.")
     lines += [_quote(s) + "." for s in spec]
     return "\n".join(re.sub(r"\.\.$", ".", ln) for ln in lines)
+
+
+# LC1 (27 Oct 2026): a listing question the model answered keeps every paragraph of its listing. The keys of listing
+# questions name each paragraph - identity, uses, labeling, certification - and the model's answers name some: 73.2125
+# (chlorophyllin) said the 0.1 percent limit and its companions and left out (a), (c) and (d). The paragraphs no
+# citation marker of the answer points to are appended verbatim, cited, under a line saying what they are.
+LC1_LEAD = "The listing's other paragraphs, verbatim:"
+# a question about whether, and on what terms, the color may be used: its answer is the whole listing
+_ASKS_WHAT_APPLIES = re.compile(r"\b(?:may|can|could)\s+we\b|\ballowed\b|\bpermitted\b|\bwhat\s+(?:other\s+)?(?:restrictions|"
+                                r"requirements|limits|rules|conditions)\b|\bwhat\s+are\s+the\s+(?:use\s+)?(?:limits|restrictions|requirements)\b|"
+                                r"\bwhat\s+(?:else\s+)?applies\b|\bapply\?", re.I)
+
+
+def missing_listing_paragraphs(package, answer: str) -> str | None:
+    """The uncited paragraphs of the one color-additive listing the package requests, quoted, or None."""
+    from regulus.rag.generation import _verbatim, whole_sentences
+
+    if getattr(package, "earlier_question", None) or not _ASKS_WHAT_APPLIES.search(package.question or ""):
+        return None   # a follow-up, or a narrow question: what it asks is the answer
+    listings = [label for _, label in package.requirements if LISTING_RE.match(label) and label[7:] not in GENERAL_82]
+    if len(listings) != 1:
+        return None
+    label = listings[0]
+    cited = {int(m) for m in re.findall(r"\[(\d{1,3})\]", answer or "")}
+    own = [s for s in package.sources if re.match(rf"^{re.escape(label)}(?:\(|$)", s.citation or "")]
+    # a paragraph counts as cited when it or its parent / child is (the answer citing (c)(1) has said (c))
+    cited_labels = {s.citation for s in own if s.index in cited}
+    def covered(c):
+        return any(c.startswith(x) or x.startswith(c) for x in cited_labels)
+    missing, seen = [], set()
+    for s in own:
+        body = whole_sentences(s.text or "")
+        if s.index in cited or covered(s.citation) or not body or len(body) < 25 or (s.citation, body) in seen:
+            continue
+        seen.add((s.citation, body))
+        missing.append(f"{s.citation} (eCFR, binding, verbatim): {_verbatim(body, s.index)}")
+    if not missing or len(missing) == len(own):
+        return None   # nothing left out, or the answer cited none of the listing: not a listing answer to complete
+    return "\n".join([LC1_LEAD] + missing)
