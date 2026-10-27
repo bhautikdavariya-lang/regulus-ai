@@ -169,6 +169,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       71.15-Q1 / Q2 / Q2-F4 2 -> 1, one anchored follow-up 1 -> 2
   PC1 (off until measured) after a validated answer from one requested 21 CFR section, its uncited paragraphs that the
       cross-encoder scores >= 0.5 for the question (at most 3) are appended verbatim and cited
+  QD1 (off until measured) question decomposition (Question Decomposition for RAG, ACL SRW 2025): a multi-part question
+      is split by the model into at most 3 sub-questions; each one's best regulation section by the cross-encoder
+      (>= 0.5) joins the picked section as a companion, at most 2
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

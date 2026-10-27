@@ -134,6 +134,29 @@ _THESAURUS = (
     (re.compile(r"\b(?:hide|hides|hiding|hidden|disguise\w*|cover(?:s|ing)?\s+up)\b|\bto\s+mask\b|\bmasking\b", re.I),
      "conceal deception deceptive"),
 )
+# QD1: a question with several asks ("What fees apply, how do we pay, and can a small company get relief?")
+_ASK_START = re.compile(r"(?:^|[,;:]\s*(?:and\s+|or\s+)?|\b(?:and|or)\s+)(?:how|what|when|which|who|where|whether|can|could|must|"
+                        r"do|does|is|are|may|should)\b", re.I)
+
+
+def multi_part(question: str) -> bool:
+    """QD1: the question asks two or more things - two question marks, or two asks in its last sentence ("What fees
+    apply, how do we pay, and can a small company get relief?")."""
+    q = (question or "").strip()
+    if q.count("?") >= 2:
+        return True
+    last = re.split(r"(?<=[.!])\s+", q)[-1]
+    return len(_ASK_START.findall(last)) >= 2
+
+
+QD1_SYSTEM = "You split questions about U.S. FDA regulations into the separate questions they contain. You never answer them."
+QD1_PROMPT = ("Question: {question}\n\nWrite each separate question it asks on its own line, as a complete question that "
+              "can be understood alone. Write at most three. Reply with the questions only.")
+QD1_MAX_TOKENS = 120
+QD1_SUBQUESTIONS = 3
+QD1_CANDIDATES = 8
+QD1_MIN_SCORE = 0.5
+QD1_MAX = 2
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -1131,6 +1154,35 @@ class SectionPromoter:
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question, general)[:GENERAL_ACT_OFFERED]
         return (lex, cands) if cands else None
 
+    def decomposed_sections(self, question: str, parts=None) -> list[str]:
+        """QD1 (27 Oct): question decomposition for a multi-part question (Question Decomposition for RAG, ACL SRW 2025):
+        the model writes at most QD1_SUBQUESTIONS sub-questions; each one's lexical candidates are scored by the
+        cross-encoder and its best regulation section, at QD1_MIN_SCORE or more, is returned (in sub-question order) to
+        join the promoted section as a companion - a question needing several sections otherwise got one."""
+        if self.generator is None or getattr(self.generator, "retrieval_only", False) or not RERANKER:
+            return []
+        try:
+            kw = {"think_budget": 0} if getattr(self.generator, "thinking", False) is True else {}
+            gen = self.generator.generate([{"role": "system", "content": QD1_SYSTEM},
+                                           {"role": "user", "content": QD1_PROMPT.format(question=question)}],
+                                          max_new_tokens=QD1_MAX_TOKENS, **kw)
+            subs = [re.sub(r"^\s*(?:\d+[.)]|[-*])\s*", "", x).strip() for x in (getattr(gen, "response", "") or "").splitlines()]
+            subs = [x for x in subs if x.endswith("?") and 3 <= len(x.split()) <= 40][:QD1_SUBQUESTIONS]
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        out: list[str] = []
+        for sub in subs if len(subs) >= 2 else []:
+            try:
+                _, cands = self.candidates(sub, parts)
+                cfr = [c for c in cands if not c.get("statute")][:QD1_CANDIDATES]
+                scores = self.rerank_scores(sub, cfr)
+            except Exception:  # noqa: BLE001
+                continue
+            best = max(cfr, key=lambda c: scores.get(c["section"], (0.0, ""))[0], default=None)
+            if best is not None and scores.get(best["section"], (0.0, ""))[0] >= QD1_MIN_SCORE and best["section"] not in out:
+                out.append(best["section"])
+        return out
+
     def expanded_candidates(self, question: str, parts, cands: list[dict]) -> list[dict]:
         """QX1 (27 Oct): LLM query expansion (HyDE / Query2doc): the model restates the question in the regulation's own
         terms and the sections that restatement ranks first join the candidates in place of the last-ranked - "Can we ask
@@ -1320,6 +1372,10 @@ class SectionPromoter:
             pr = replace(pr, rerank=round(scored[picked_c["section"]][0], 4))
         if second_cfr is not None and second_cfr not in pr.citations:
             pr = replace(pr, companions=pr.companions + (second_cfr,), notes=pr.notes + (f"second pick: {second_cfr}",))
+        if precision_fix("QD1") and multi_part(question):
+            extra = [s2 for s2 in self.decomposed_sections(question, parts) if s2 not in pr.citations][:QD1_MAX]
+            if extra:
+                pr = replace(pr, companions=pr.companions + tuple(extra), notes=pr.notes + (f"sub-questions: {', '.join(extra)}",))
         return replace(pr, notes=pr.notes + notes) if notes else pr
 
     def _cfr_promotion(self, picked: list[str], question: str, lex, cands, raw, other, method: str, t0: float) -> Promotion:
