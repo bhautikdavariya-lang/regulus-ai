@@ -94,7 +94,15 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       question introduced it itself; FU2B a follow-up of at most 3 subject words naming nothing continues the
       conversation (resolution harness, 1,000 dev follow-ups: anchored with the key's section 512 -> 523, false
       anchoring of a new main question 22 -> 22). FU3 (the follow-up's own top-ranked section as a companion) was
-      measured and dropped: 55 added, 5 in the key
+      measured and dropped: 55 added, 5 in the key. FU2C: shared subject words alone do not anchor a question of more
+      than 12 subject words with no pointer back (false anchors 22 -> 20, no correct anchor lost)
+  CS1 a color additive regulation (Parts 70-82, which carry out section 721) is not given MoCRA's 603-614 as a
+      co-promoted Act section (5 of 16 Part 70 questions got 607/608/609, filling the budget)
+  FS2 (off) follow-up subject words stemmed by PostgreSQL's Snowball English stemmer (the retrieval index's) instead of
+      the suffix rule: right in itself, but on the harness +6 correct anchors for +6 false ones at today's thresholds
+  CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
+      a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
+      the rewrite is unusable
 Blind A/B (23 Oct evening; exact replay of 228 recorded answers, the 6 E1 corrections run live on Qwen3-4B; 20 changed
 questions, plain + skeptic scorers, adjudicator on 7 splits): PASS 2 -> 7 (740.17 G1, 82.1602 A1, 710.3 S1, 82.1328 and
 82.1330 C82), none lost, misleading 4 -> 2.

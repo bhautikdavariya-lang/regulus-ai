@@ -301,3 +301,36 @@ def test_a_three_word_question_continues_the_conversation(monkeypatch):
     assert not resolve(q, ctx, names_provision=False, other_entity=False).anchored
     monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", frozenset({"FU2B"}))
     assert resolve(q, ctx, names_provision=False, other_entity=False).anchored
+
+
+# ------------------------------------------------------------ CQ1 conversational query rewriting (27 Oct)
+
+
+def test_a_rewrite_naming_the_anchor_continues_the_conversation():
+    from regulus.rag.conversation import Anchor, read_rewrite
+
+    a = Anchor(cfr=("73.2125",))
+    q = "Can we use the same color in a mouthwash?"
+    text, continues = read_rewrite("Can we use potassium sodium copper chlorophyllin in a mouthwash under 21 CFR 73.2125?", q, a)
+    assert continues and text.endswith("under 21 CFR 73.2125?")
+    assert read_rewrite(q, q, a) == (q, False)   # repeated exactly: a new subject
+
+
+def test_an_unusable_rewrite_is_ignored():
+    from regulus.rag.conversation import Anchor, read_rewrite
+
+    a = Anchor(cfr=("73.2125",))
+    q = "Can we use the same color in a mouthwash?"
+    assert read_rewrite("Can we use it in a mouthwash under 21 CFR 73.1125?", q, a) is None     # invented citation
+    assert read_rewrite("Yes, it may be used.", q, a) is None                                    # an answer
+    assert read_rewrite("Can we?\nUnder 21 CFR 73.2125?", q, a) is None                          # several lines
+    assert read_rewrite("", q, a) is None
+
+
+def test_a_statute_anchor_is_named_by_its_section_sign():
+    from regulus.rag.conversation import Anchor, read_rewrite
+
+    a = Anchor(statute=("611",))
+    out = read_rewrite("Can an FDA district director sign a mandatory recall order under FD&C Act § 611?",
+                       "Can an FDA district director sign the recall order?", a)
+    assert out == ("Can an FDA district director sign a mandatory recall order under FD&C Act § 611?", True)

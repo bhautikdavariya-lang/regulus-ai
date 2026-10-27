@@ -946,7 +946,7 @@ class RagPipeline:
         """How a question asked later in a conversation is read against it (regulus.rag.conversation.resolve), with
         the signals that need the database: whether it names an FD&C Act section or a color additive the anchored
         sections do not list, and whether its own words rank an anchored section. None without a context."""
-        from regulus.rag.conversation import resolve as resolve_followup, subject_words
+        from regulus.rag.conversation import resolve as resolve_followup, snowball_stemmer, subject_words
 
         if not context:
             return None
@@ -955,8 +955,12 @@ class RagPipeline:
         names = bool(plan.requirements) or bool(plan.docket)
         other_entity = ranked = False
         heading_words: set[str] = set()
+        stem = None
         if promoter is not None and anchor:
             try:
+                if precision_fix("FS2"):
+                    stem = snowball_stemmer(promoter.db, [question] + [t.question for t in context.turns]
+                                            + list(promoter.heading_words(anchor.cfr)))
                 from regulus.retrieval.entities import entity_index
                 from regulus.retrieval.section_index import SectionIndex
 
@@ -966,11 +970,40 @@ class RagPipeline:
                 other_entity = bool(colors) and not any(set(c.sections) & set(anchor.cfr) for c in colors)
                 if not (names or other_entity):
                     ranked = promoter.ranks_any(question, anchor.cfr, anchor.statute, top=FOLLOWUP_RANK_TOP)
-                    heading_words = set().union(*(subject_words(h) for h in promoter.heading_words(anchor.cfr)))
+                    heading_words = set().union(*(subject_words(h, stem) for h in promoter.heading_words(anchor.cfr)))
             except Exception:  # noqa: BLE001 - an aid: without the signals the text alone decides
                 pass
-        return resolve_followup(question, context, names_provision=names, other_entity=other_entity,
-                                anchor_ranked=ranked, heading_words=heading_words)
+        fu = resolve_followup(question, context, names_provision=names, other_entity=other_entity,
+                              anchor_ranked=ranked, heading_words=heading_words, stem=stem)
+        if (precision_fix("CQ1") and fu is not None and anchor and not names and not other_entity
+                and context.earlier_question and self.generator is not None
+                and not getattr(self.generator, "retrieval_only", False)):
+            fu = self.rewrite_followup(question, context, fu, promoter)
+        return fu
+
+    def rewrite_followup(self, question: str, context, fu, promoter):
+        """CQ1 (regulus.rag.conversation, conversational query rewriting): the model rewrites the follow-up into a
+        standalone question; one naming the anchored provision is answered as a question about it (the earlier
+        question shown as context), one left unchanged as a new question. On any failure the word rules' reading
+        stands."""
+        from regulus.rag.conversation import (REWRITE_MAX_TOKENS, Anchor, FollowUp, read_rewrite, rewrite_messages)
+
+        anchor = context.anchor
+        label = anchor.labels()[0]
+        try:
+            heading = (promoter.heading_words(anchor.cfr[:1]) or [None])[0] if promoter is not None and anchor.cfr else None
+            kw = {"think_budget": 0} if getattr(self.generator, "thinking", False) is True else {}
+            gen = self.generator.generate(rewrite_messages(question, context.earlier_question[:400], label, heading),
+                                          max_new_tokens=REWRITE_MAX_TOKENS, **kw)
+            read = read_rewrite(getattr(gen, "response", "") or "", question, anchor)
+        except Exception:  # noqa: BLE001 - an aid: the word rules decide
+            return fu
+        if read is None:
+            return replace(fu, reason=fu.reason + "+rewrite_unusable")
+        text, continues = read
+        if continues:
+            return FollowUp(True, "rewrite", text, anchor, context.earlier_question[:400], fu.cues)
+        return FollowUp(False, "rewrite_new_topic", question, Anchor(), None, fu.cues)
 
     def live_part_sections(self, part: str) -> set[str] | None:
         """The sections of a 21 CFR part that have live, unreserved text in the database (cached), or None."""

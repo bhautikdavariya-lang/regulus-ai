@@ -195,6 +195,27 @@ _SECTION_NUMBER = re.compile(r"(?<![\d.])(\d{1,4}\.\d{1,4}[a-z]?)(?![\d])")   # 
 _SOURCE_SENTENCE = re.compile(r"(?<=[.;:])\s+(?=[A-Z(])")
 
 
+def requested_duty(sentence: str, texts: list[str]) -> str | None:
+    """E2: the weak wording ("is requested") of a source sentence that only requests what `sentence` makes a duty of -
+    the duty word's neighbouring words ("requires a filing", "filing is required") share a stem with that source
+    sentence ("is requested to file Form FDA 2512") - or None."""
+    body = _LABEL.sub(" ", _MARK.sub(" ", sentence))
+    duty = _DUTY.search(body)
+    if not duty or _NEGATED.search(body[:duty.start()][-12:]):
+        return None
+    tokens = re.findall(r"[a-z]+", body.lower())
+    at = len(re.findall(r"[a-z]+", body[:duty.start()].lower()))
+    def stem(t):
+        return re.sub(r"(?:ing|ed|es|e|s)$", "", t)
+    near = {stem(t) for t in tokens[max(0, at - 3):at + 4] if len(t) > 3 and not _DUTY.fullmatch(t)}
+    for text in texts:
+        for piece in _SOURCE_SENTENCE.split(text or ""):
+            weak = _WEAK.search(piece)
+            if weak and not _SOURCE_DUTY.search(piece) and near & {stem(t) for t in re.findall(r"[a-z]+", piece.lower()) if len(t) > 3}:
+                return weak.group(0)
+    return None
+
+
 def strengthened_obligation(sentence: str, cited_texts: list[str], supplied_texts: list[str] = ()) -> str | None:
     """The weak source wording a duty statement strengthens, or None (no duty word, nothing cited, the closest cited
     source sentence states a duty itself, or another supplied source states that duty: then the duty may be right and
@@ -329,7 +350,7 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             texts = [s.text for s in package.sources if (_SECTION_NUMBER.findall(s.citation or "")[:1] or [None])[0] in named]
             if not texts and sentence is sentences[0]:
                 texts = exact_texts
-            weaker = strengthened_obligation(sentence, texts, [s.text for s in package.sources if s.text not in texts]) if texts else None
+            weaker = requested_duty(sentence, texts) if texts else None
             if weaker:
                 findings.append(ClaimFinding(OBLIGATION_STRENGTHENED, SEVERITY[OBLIGATION_STRENGTHENED],
                                              f"states a duty ({weaker})", sentence=sentence))

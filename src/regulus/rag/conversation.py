@@ -71,16 +71,37 @@ cosmetic cosmetics product products use used using uses make makes made sell sel
 
 def _stem(w: str) -> str:
     w = w.strip("'-")
+    if _fu2("FS1"):
+        # FS1 (27 Oct): "filing", "file" and "filed" are one word, as are "packaging" / "package" and "supplier's" /
+        # "supplier" - the suffix rule below kept "filing" whole and "file" with its "e"
+        w = re.sub(r"'s$", "", w)
+        for suf in ("ings", "ing", "ies", "ied", "es", "ed", "s"):
+            if len(w) > len(suf) + 2 and w.endswith(suf):
+                w = w[: -len(suf)] + ("y" if suf in ("ies", "ied") else "")
+                break
+        return w[:-1] if len(w) >= 4 and w.endswith("e") else w
     for suf in ("ings", "ing", "ies", "ied", "es", "ed", "s"):
         if len(w) > len(suf) + 3 and w.endswith(suf):
             return w[: -len(suf)] + ("y" if suf in ("ies", "ied") else "")
     return w
 
 
-def subject_words(text: str) -> set[str]:
-    """The question's subject words: lower-cased, crudely stemmed, without function words and the words every
-    regulatory question shares ("cosmetic", "require", "FDA")."""
-    return {_stem(w) for w in _WORD.findall((text or "").lower()) if w not in _STOP and len(w) > 2} - _STOP
+def subject_words(text: str, stem=None) -> set[str]:
+    """The question's subject words: lower-cased, stemmed (`stem`, else a crude suffix rule), without function words
+    and the words every regulatory question shares ("cosmetic", "require", "FDA")."""
+    stem = stem or _stem
+    return {stem(w.strip("'-")) for w in _WORD.findall((text or "").lower()) if w not in _STOP and len(w) > 2} - _STOP
+
+
+def snowball_stemmer(db, texts: Iterable[str]):
+    """FS2 (27 Oct): the Snowball English stemmer of PostgreSQL full-text search ('english_stem', the stemmer the
+    retrieval index uses), for the words of `texts`: "filing", "file" and "filed" are one subject word, as are
+    "packaging" / "package" - the suffix rule kept them apart. A word the database does not stem keeps the suffix
+    rule. -> a function word -> stem."""
+    words = sorted({w.strip("'-") for t in texts for w in _WORD.findall((t or "").lower())} - {""})
+    rows = db.query("SELECT w, (ts_lexize('english_stem', w))[1] AS s FROM unnest(%(ws)s::text[]) w", {"ws": words}) if words else []
+    stems = {r["w"]: r["s"] for r in rows if r.get("s")}
+    return lambda w: stems.get(w) or _stem(w)
 
 
 @dataclass(frozen=True)
@@ -212,6 +233,7 @@ SHORT_QUESTION_WORDS = 5
 # this rule 59% / 3%)
 SHARED_FRACTION = 0.2
 SHARED_WORDS = 3
+SHARED_MAX_OWN_WORDS = 12   # FU2C: 2 of 22 false anchors of a new main question removed, no correct anchor lost (harness, 27 Oct)
 # a question with more subject words than this is self-contained: its own ranking alone does not anchor it
 SELF_CONTAINED_WORDS = 10
 # a fragment ("Is there an exemption?", "Any deadline?", "Who must sign?") names at most this many subject words and no
@@ -223,7 +245,7 @@ _DEFINITION_FORM = re.compile(r"^\s*(?:what\s+is\s+an?\s|what\s+are\s+(?!the\b)\
 
 
 def resolve(question: str, context: ConversationContext | None, *, names_provision: bool, other_entity: bool,
-            anchor_ranked: bool = False, heading_words: set[str] | None = None) -> FollowUp | None:
+            anchor_ranked: bool = False, heading_words: set[str] | None = None, stem=None) -> FollowUp | None:
     """How `question` is read in `context`. None without a context (the question is answered on its own).
 
     `names_provision`: the question names a provision of its own (a 21 CFR section or part, an FD&C Act section).
@@ -246,9 +268,11 @@ def resolve(question: str, context: ConversationContext | None, *, names_provisi
         return FollowUp(False, "names_own_provision", question, anchor, earlier, found)
     if other_entity:
         return FollowUp(False, "names_other_color", question, anchor, earlier, found)
-    own = subject_words(question)
-    common = own & (set().union(*(subject_words(t.question) for t in context.turns)) | (heading_words or set()))
+    own = subject_words(question, stem)
+    common = own & (set().union(*(subject_words(t.question, stem) for t in context.turns)) | (heading_words or set()))
     shared = len(common) >= SHARED_WORDS or (bool(common) and len(common) >= SHARED_FRACTION * len(own))
+    if shared and _fu2("FU2C") and len(own) > SHARED_MAX_OWN_WORDS and not found:
+        shared = False   # FU2C: a long question with no pointer back states its own subject
     short = bool(found) and len(own) <= SHORT_QUESTION_WORDS
     fragment = len(own) <= FRAGMENT_WORDS and not _DEFINITION_FORM.search(question)
     if "demonstrative" in found and len(own) <= SELF_CONTAINED_WORDS:
@@ -319,3 +343,45 @@ def evaluation_question(asked: str, conversation: dict | None) -> str:
     labels = Anchor.from_dict(fu.get("anchor")).labels()
     text = fu.get("question") or asked
     return f"{text} ({'; '.join(labels)})" if labels else text
+
+
+# CQ1 (27 Oct 2026): conversational query rewriting ("condense question"), the way retrieval chat assistants resolve a
+# follow-up: the model rewrites it into one standalone question from the earlier question and the provision that
+# answered it, and the pipeline answers that question. A follow-up about the same subject comes back naming the
+# provision ("... under 21 CFR 73.2125"), so it is resolved there; a new subject comes back unchanged. The word rules
+# above decide whenever the rewrite is missing or unusable.
+REWRITE_SYSTEM = ("You rewrite a follow-up question from a conversation about U.S. FDA regulations so that it can be "
+                  "understood on its own. You never answer it.")
+REWRITE_MAX_TOKENS = 96
+REWRITE_MAX_CHARS = 500
+
+
+def rewrite_messages(question: str, earlier: str, label: str, heading: str | None = None) -> list[dict]:
+    about = f"{label} ({heading.rstrip('.')})" if heading else label
+    user = (f"Earlier question: {earlier}\nIt was answered from {about}.\nFollow-up question: {question}\n\n"
+            f"If the follow-up continues the earlier subject, rewrite it as one standalone question that names what it "
+            f"refers to, and end it with \"under {label}\". If it asks about a different subject, repeat it exactly. "
+            f"Reply with the question only.")
+    return [{"role": "system", "content": REWRITE_SYSTEM}, {"role": "user", "content": user}]
+
+
+_CITED_NUMBER = re.compile(r"(?<![\d.])\d{1,4}\.\d{1,4}[a-z]?(?![\d])|§\s*\d{3}")
+
+
+def read_rewrite(reply: str, question: str, anchor: Anchor) -> tuple[str, bool] | None:
+    """(standalone question, whether it continues the anchored subject) from the model's reply, or None when the
+    reply is unusable: empty, several lines, not a question, too long, or citing a provision that neither the
+    follow-up nor the anchor names (an invented citation never reaches retrieval)."""
+    text = " ".join((reply or "").strip().strip('"').split())
+    text = re.sub(r"^(?:standalone|rewritten)?\s*question\s*:\s*", "", text, flags=re.I)
+    if not text or len(text) > REWRITE_MAX_CHARS or "\n" in (reply or "").strip() or not text.endswith("?"):
+        return None
+    allowed = {m.replace(" ", "") for m in _CITED_NUMBER.findall(question)} | set(anchor.cfr) | {f"§{s}" for s in anchor.statute}
+    cited = {m.replace(" ", "") for m in _CITED_NUMBER.findall(text)}
+    if cited - allowed:
+        return None
+    labels = set(anchor.cfr) | {f"§{s}" for s in anchor.statute}
+    continues = bool(cited & labels) and not (cited & labels <= {m.replace(" ", "") for m in _CITED_NUMBER.findall(question)}
+                                                 and text == " ".join(question.split()))
+    return text, continues
+

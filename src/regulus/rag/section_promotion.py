@@ -104,6 +104,9 @@ PICKER_LAST = ("Reply with the citation of the one or two sections whose text mo
                "candidate answers it.")
 
 _DEF_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The terms?\s+)?(.+?)\s+means?\b", re.I)
+# CS1: a color additive regulation (Parts 70-82) and the cosmetics sections of the Act it does not carry out
+_COLOR_ADDITIVE_PART = re.compile(r"^(?:7\d|8[0-2])\.")
+_MOCRA_SECTIONS = frozenset(str(n) for n in range(603, 615))
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -1138,6 +1141,12 @@ class SectionPromoter:
         comps += [c for c in self.definition_companions(question) if c not in comps and c not in picked]
         if "70.5(a)" in comps and any(_EYE_USE.search(self._section_text(s)) for s in picked):
             comps.remove("70.5(a)")   # one promoted listing provides for eye-area use (code review: Part 82 sibling)
+        if (other is not None and other.get("statute") and precision_fix("CS1") and picked
+                and _COLOR_ADDITIVE_PART.match(picked[0]) and other["section"] in _MOCRA_SECTIONS):
+            # CS1: Parts 70-82 carry out section 721 of the Act; MoCRA's 603-614 (product listing, safety
+            # substantiation, labeling contact) were co-promoted to 5 of 16 Part 70 petition questions (27 Oct), their
+            # text filling the budget and once restated in the answer
+            other = None
         if other is not None and other.get("statute"):
             # a regulation first and an FD&C Act section second (registration rule 710 with Act 607): both, the Act text
             # as additional evidence with a smaller budget (retrieval diagnosis: 11 unseen questions need both)
