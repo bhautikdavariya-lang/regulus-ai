@@ -188,6 +188,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   SY3 MoCRA thesaurus: "small brand / under $1 million / annual sales" -> 612 (small businesses), "also an OTC drug /
       drug and cosmetic" -> 613 (products also subject to chapter V). 23 bank questions keyed to 605-613 that fire:
       Act rank better 14, same 8, worse 1 (2 -> 3); the 10 "small brand" listing questions keep their CFR rank
+  RC1 (off until measured) rules as code for the MoCRA small-business exemption: a small-business question with FD&C
+      Act 612 supplied gets the verdict from its facts (a product of 612(b) excludes; 612(a) covers only 364b and 364c)
+      and 612's text verbatim (regulus.rag.mocra_rules)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
