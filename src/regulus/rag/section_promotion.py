@@ -360,10 +360,27 @@ class SectionPromoter:
         self.__dict__["last_rerank"] = best   # diagnostics for the caller (the harness records it)
         return best
 
+    def rerank_order(self, question: str, cands: list[dict]) -> list[dict]:
+        """RO1 (27 Oct): the regulation candidates reordered by reciprocal-rank fusion of their lexical rank and the
+        cross-encoder's score before the picker reads them - the reorder-then-pick step of retrieval systems, since a
+        language model choosing from a list favours what it reads first; the FD&C Act candidates keep their place
+        after them. The scores are kept for the veto (no second scoring)."""
+        scores = self.rerank_scores(question, cands)
+        if not scores:
+            return cands
+        self.__dict__["_order_scores"] = (question, tuple(c["section"] for c in cands), scores)
+        cfr = [c for c in cands if not c.get("statute")]
+        by_rr = sorted(cfr, key=lambda c: -scores.get(c["section"], (0.0, ""))[0])
+        rr_rank = {c["section"]: i for i, c in enumerate(by_rr, 1)}
+        fused = sorted(cfr, key=lambda c: -(1 / (RRF_K + cfr.index(c) + 1) + 1 / (RRF_K + rr_rank[c["section"]])))
+        return fused + [c for c in cands if c.get("statute")]
+
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
         and the best-scored candidate at least RERANK_VETO_MARGIN above it."""
-        scores = self.rerank_scores(question, cands)
+        kept = self.__dict__.get("_order_scores")
+        scores = (kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands}
+                  else self.rerank_scores(question, cands))
         if not scores:
             return None
         top = max(cands, key=lambda c: (scores.get(c["section"], (0.0, ""))[0], -cands.index(c)))
@@ -1097,6 +1114,8 @@ class SectionPromoter:
         else:
             if self.generator is None or getattr(self.generator, "retrieval_only", False):
                 return None   # no model to pick with (retrieval-only harness): nothing is promoted
+            if RERANKER and precision_fix("RO1"):
+                cands = self.rerank_order(question, cands)
             msgs = [{"role": "system", "content": PICKER_SYSTEM}, {"role": "user", "content": picker_prompt(question, cands)}]
             kw = {"think_budget": PICKER_THINK_BUDGET} if getattr(self.generator, "thinking", False) is True else {}
             result = self.generator.generate(msgs, max_new_tokens=PICKER_MAX_TOKENS, **kw)

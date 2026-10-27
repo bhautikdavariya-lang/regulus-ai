@@ -100,6 +100,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       co-promoted Act section (5 of 16 Part 70 questions got 607/608/609, filling the budget)
   FS2 (off) follow-up subject words stemmed by PostgreSQL's Snowball English stemmer (the retrieval index's) instead of
       the suffix rule: right in itself, but on the harness +6 correct anchors for +6 false ones at today's thresholds
+  RO1 the picker reads the regulation candidates reordered by reciprocal-rank fusion of lexical rank and the
+      cross-encoder's score (reorder-then-pick); the veto reuses the same scores
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
