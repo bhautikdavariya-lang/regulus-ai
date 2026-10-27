@@ -121,6 +121,9 @@ _ASKS_AGENCY = re.compile(r"\b(?:ask|asks|asking|request|requesting|apply\s+to)\
 # RO1: a color listing of any product (food 73.1xxx, cosmetics 73.2xxx, devices 73.3xxx, 74.xxxx, 82.xxx) other
 # than Part 82's general sections; 71.25-Q1 went to the device listing 73.3128
 _ANY_LISTING = re.compile(r"^(?:7[34]\.\d{3,4}[a-z]?|82\.(?!(?:3|5|6|50|51|1050|1051|2050|2051)$)\d{3,4}[a-z]?)$")
+# DF2: the FD&C Act's definition sections, and a question invoking a definition, the Act or FDA's classification
+ACT_DEFINITION_SECTIONS = ("201", "604", "608")
+_NAMES_ACT = re.compile(r"\b(?:fd&c act|the act\b|federal food, drug,? and cosmetic act|mocra|modernization of cosmetics)")
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -903,6 +906,39 @@ class SectionPromoter:
                 out += [sec + p for p in with_it if sec + p not in out]
         return out[:limit]
 
+    def act_definition_asked(self, question: str) -> tuple[str, str] | None:
+        """DF2 (27 Oct): the FD&C Act paragraph defining what a question asks something to be classified as - "Is it a
+        cosmetic under the FD&C Act definition?" -> 201(i); "Is our salon a 'facility'?" -> 604(3). The terms are read
+        from the Act text ('The term "cosmetic" means'), in sections 201 and 604; the longest term the question uses
+        in a classification ("is it a ...", "counts as", "qualify as", "under the ... definition", a quoted term) wins.
+        Switched by "DF2"."""
+        if not precision_fix("DF2") or self.statute is None:
+            return None
+        cache = self.__dict__.setdefault("_act_terms", [])
+        if not cache:
+            st = self.statute
+            for s in ACT_DEFINITION_SECTIONS:
+                for i in st.by_sec.get(s, ()):
+                    row = st.rows[i]
+                    for term in re.findall(r"[Tt]he terms?\s+[\"“]([^\"”]{2,60})[\"”]", row.get("body_text") or "")[:1]:
+                        cache.append((s, row.get("paragraph_path") or "", term.lower()))
+        q = " ".join((question or "").lower().split())
+        if not _NAMES_ACT.search(q) or re.search(r"\bpart\s+\d+|\b\d{2,4}\.\d+|\b(?:60\d|61[0-4]|201)\b", q):
+            return None   # the regulations' definitions (DF1), or a question naming a regulation, are not the Act's
+        mocra = "mocra" in q or "modernization" in q
+        quoted = [x.strip().lower() for x in re.findall(r"[\"'‘“]([^\"'’”]{2,60})[\"'’”]", question or "")]
+        best = None
+        for s, path, term in cache:
+            if mocra and s == "201":
+                continue   # MoCRA's own definitions (604, 608) for a MoCRA question
+            t = re.escape(term)
+            classify = (re.search(rf"\b(?:is|are|it|they|as|an?|qualif\w+\s+as|count\w*\s+as)\s+(?:an?\s+|the\s+)?{t}s?\b[^?]{{0,60}}"
+                                  rf"(?:\?|under|in\s+the|definition|sense)", q)
+                        or any(re.fullmatch(rf"{t}s?", x) for x in quoted))
+            if classify and (best is None or len(term) > len(best[2])):
+                best = (s, path, term)
+        return (best[0], best[1]) if best else None
+
     def _all_definitions(self, sec: str) -> list[tuple[str, list[str]]]:
         cache = self.__dict__.setdefault("_defs_all", {})
         if sec not in cache:
@@ -1188,6 +1224,10 @@ class SectionPromoter:
             return prepared
         lex, cands = prepared
         raw, other, notes, second_act, second_cfr = None, None, (), None, None
+        act_defined = self.act_definition_asked(question) if not parts else None
+        if act_defined:
+            # DF2: the Act paragraph that defines what the question asks something to be classified as
+            return self._statute_promotion([act_defined], lex, "act_definition", t0, cands)
         defined = self.definitions_asked(question) if not parts else None
         if defined:
             # DF1: a question asking how the definitions classify what it describes is answered from those definitions

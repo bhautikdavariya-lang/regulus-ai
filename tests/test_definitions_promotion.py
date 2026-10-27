@@ -70,3 +70,11 @@ def test_a_listing_silent_on_eye_use_is_the_eye_area_rule():
                                          "eyeshadow. The listing doesn't mention eye-area use. Can we use it?")
     assert _LISTING_SILENT_ON_EYE.search("The color is not listed for the area of the eye. May we use it in mascara?")
     assert not _LISTING_SILENT_ON_EYE.search("Is FD&C Green No. 3 permitted in eye shadow?")
+
+
+def test_df2_the_acts_definitions_need_the_act_named(monkeypatch):
+    from regulus.rag.section_promotion import _NAMES_ACT
+
+    assert _NAMES_ACT.search("is it a cosmetic under the fd&c act definition?")
+    assert _NAMES_ACT.search("how does mocra define 'safe'?")
+    assert not _NAMES_ACT.search("how does part 70 define 'safe' for a color additive?")

@@ -155,6 +155,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   E1S a prescribed label statement's own words ("Caution—... a physician should be consulted") are not the strength of
       the duty to bear it (740.12-Q1 withheld as "'must' where the source says 'should'")
   27 Oct stratified 50 (unseen, bank mix): 64% PASS+PP; listings 13/14, Part 82 8/8, labeling 6/15, FD&C Act 2/7
+  DF2 a question classifying something under the FD&C Act's own definitions ("Is it a cosmetic under the FD&C Act
+      definition?") is resolved to the defining paragraph, read from the Act text of 201, 604 and 608 ('The term "X"
+      means'); MoCRA questions use 604 / 608. Fires on 4 of 1,962 bank, follow-up and 300Q questions, each its key
+      paragraph (201(i), 604(2), 608(c)(1), 608(c)(2)); 201(i)-Q1 had gone to 604
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
@@ -169,7 +173,7 @@ import os
 # every fix measured as a gain is on (27 Oct 2026: the UI ran the 26 Oct default A1..P1 while tests ran all of these);
 # SP2, SA1, ST1, FS2 stay off; RO1, V2, QX1, CQ1 join after their measurement
 DEFAULT = ("A1,A2,A3,A4,G1,S1,E1,C82,P1,Q1,FP1,RS1,QM1,D1,PO2,C2,Q2,PR2,ND1,"
-           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1,SY1,CT1,RO1,TK1,E1S")
+           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1,SY1,CT1,RO1,TK1,E1S,DF2")
 VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", DEFAULT).split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 
