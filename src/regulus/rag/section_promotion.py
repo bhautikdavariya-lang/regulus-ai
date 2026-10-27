@@ -198,6 +198,17 @@ _GENERIC_HEADING = re.compile(r"^\s*(?:scope|definitions?|purpose|applicability|
                               r"authority|severability|exemptions?)\.?\s*$", re.I)
 
 
+def heading_phrase_in(heading: str, question: str) -> bool:
+    """HM1 / LS2: the heading's lead phrase (before its first comma), two words or more, occurs in the question word for
+    word - endings aside ("Rejected components" in "for rejected components")."""
+    stem = lambda w: w[:6]
+    lead = [stem(w) for w in re.findall(r"[a-z]+", re.split(r"[,;]", (heading or "").lower())[0])]
+    if len([w for w in lead if len(w) >= 5]) < 2:
+        return False
+    q = [stem(w) for w in re.findall(r"[a-z]+", (question or "").lower())]
+    return any(q[i:i + len(lead)] == lead for i in range(len(q) - len(lead) + 1))
+
+
 def _topic_stems(text: str) -> set[str]:
     """Topic words of a question or heading, as six-letter stems ("salvaged" / "salvaging" -> "salvag")."""
     return {w[:6] for w in re.findall(r"[a-z]{5,}", (text or "").lower()) if w not in _HC1_GENERIC}
@@ -1322,6 +1333,23 @@ class SectionPromoter:
         scored = sorted(((len(wanted & _topic_stems(r["h"])), r["s"]) for r in rows if r["s"] != section), reverse=True)
         return [sec for n, sec in scored if n][:limit]
 
+    def heading_matches(self, section: str, question: str, limit: int = HC1_MAX) -> list[str]:
+        """HM1 (27 Oct): sections of the promoted section's part whose heading's lead phrase the question contains word
+        for word (two topic words or more) - title-field matching. "What are the requirements for use of approved
+        components and for rejected components?" names 211.86 ("Use of approved components, ...") and 211.89 ("Rejected
+        components, ..."); the picker chose 211.84 (testing and approval)."""
+        part = section.split(".")[0]
+        try:
+            rows = self.db.query("SELECT DISTINCT section_number s, section_heading h FROM cfr_records WHERE part_number = "
+                                 "%(p)s AND removed_on IS NULL AND NOT is_reserved", {"p": part})
+        except Exception:  # noqa: BLE001
+            return []
+        out = []
+        for r in sorted(rows, key=lambda r: [int(x) if x.isdigit() else 0 for x in r["s"].split(".")]):
+            if r["s"] != section and not _GENERIC_HEADING.match(r["h"] or "") and heading_phrase_in(r["h"], question):
+                out.append(r["s"])
+        return out[:limit] if len(out) <= limit else []   # a question every heading matches names none of them
+
     def general_twin(self, section: str, question: str) -> str:
         """HT1 (27 Oct): a section whose heading and number another part repeats (213.192 and 211.192, "Production record
         review") is read as the larger, general part's unless the question names the specialised part's subject: 213 is
@@ -1545,6 +1573,8 @@ class SectionPromoter:
         if precision_fix("HC1"):
             for s in picked:
                 comps += [c for c in self.sibling_companions(s, question) if c not in comps and c not in picked]
+        if precision_fix("HM1") and picked:
+            comps += [c for c in self.heading_matches(picked[0], question) if c not in comps and c not in picked]
         comps += [c for c in self.definition_companions(question) if c not in comps and c not in picked]
         if "70.5(a)" in comps and any(_EYE_USE.search(self._section_text(s)) for s in picked):
             comps.remove("70.5(a)")   # one promoted listing provides for eye-area use (code review: Part 82 sibling)

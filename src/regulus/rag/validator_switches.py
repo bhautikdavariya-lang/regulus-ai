@@ -212,6 +212,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       (regulus.rag.section_promotion.sibling_companions)
   HT1 (off until measured) a section repeated by heading and number in another part (213.192 / 211.192) is read as the
       larger, general part's unless the question names the specialised part's subject (213: medical gases)
+  HM1 (off until measured) a section of the promoted section's part whose heading's lead phrase the question contains
+      word for word (two topic words or more) joins it: "use of approved components ... rejected components" -> 211.86,
+      211.89 (regulus.rag.section_promotion.heading_matches)
   QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

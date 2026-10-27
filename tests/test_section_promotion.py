@@ -399,3 +399,12 @@ def test_ht1_generic_headings_are_never_twins():
     from regulus.rag.section_promotion import _GENERIC_HEADING
     assert _GENERIC_HEADING.match("Scope.") and _GENERIC_HEADING.match("Definitions.")
     assert not _GENERIC_HEADING.match("Production record review.")
+
+
+def test_hm1_a_heading_phrase_must_occur_word_for_word():
+    from regulus.rag.section_promotion import heading_phrase_in
+    q = "What are the requirements for use of approved components and for rejected components?"
+    assert heading_phrase_in("Use of approved components, drug product containers, and closures.", q)
+    assert heading_phrase_in("Rejected components, drug product containers, and closures.", q)
+    assert not heading_phrase_in("Testing and approval or rejection of components, drug product containers, and closures.", q)
+    assert not heading_phrase_in("Control of records.", "Which record control section of Part 820 states that the UDI must be recorded?")

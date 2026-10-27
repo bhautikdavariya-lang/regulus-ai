@@ -23,7 +23,10 @@ _LEAD_IN = re.compile(r":\s*$")
 # LS2 (27 Oct): "What does 21 CFR 820.10 require (of a manufacturer)?" about a section whose own lead-in introduces its
 # list ("A manufacturer subject to this part ... must:" then (a)-(e)) - the key walks the list; the model summarised it
 # into one sentence no single paragraph supports and was withheld (device baseline M-012)
-_ASKS_SECTION_REQUIRES = re.compile(r"\bwhat\s+(?:does|do)\s+(?:21\s+CFR\s+)?(?:§\s*)?\d+\.\d+[a-z]?\s+require\b", re.I)
+_ASKS_SECTION_REQUIRES = re.compile(r"\bwhat\s+(?:does|do)\s+(?:21\s+CFR\s+)?(?:§\s*)?\d+\.\d+[a-z]?\s+require\b|"
+                                    # "What charge-in of components controls does Part 211 require?" (D-012): one
+                                    # promoted section whose own lead-in introduces the list
+                                    r"\bwhat\b[^?]{0,80}?\b(?:does|do)\s+(?:21\s+CFR\s+)?part\s+\d+\s+require\b", re.I)
 _SECTION = re.compile(r"^21 CFR (\d+\.\d+[a-z]?)(\S*)$")
 _STOP = set("""a an the of and or to in on for by with any be is are as such that this shall will may which under its from at
 not other all must should what our we your their each following include includes contain contains state show list
@@ -51,6 +54,11 @@ def compose(package, question: str) -> str | None:
     leads = [s for s in own if _LEAD_IN.search((s.text or "").strip())]
     if whole_section and not _ASKS_CONTENTS.search(question or ""):
         leads = [s for s in leads if s.citation == f"21 CFR {sec}"]   # LS2: only the section's own lead-in
+        if not re.search(r"\d+\.\d+", question or ""):
+            # "what ... does Part 211 require": only when the question names this section's heading as its subject
+            from regulus.rag.section_promotion import heading_phrase_in
+
+            leads = [s for s in leads if heading_phrase_in(getattr(s, "heading", "") or "", question)]
     if not leads:
         return None
     q = _words(question)
