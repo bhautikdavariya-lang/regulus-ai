@@ -430,6 +430,9 @@ def answer_score(text: str, package) -> float:
     return 0.5 * len(cited & requested) - 1.0 * denials
 
 
+PC1_MIN_SCORE = 0.5   # PC1: an uncited paragraph this relevant to the question is quoted after the answer
+PC1_MAX = 3
+PC1_LEAD = "Other paragraphs of {section} that bear on the question, verbatim:"
 TK1_MIN_TOKENS = 640   # TK1: the least room an applied answer gets
 # LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
 LM1_MIN_SOURCES = 6
@@ -1069,6 +1072,39 @@ class RagPipeline:
                 "fallback_type": fallback_type, "fallback_reason": fallback_reason}
 
     # -- main entry ----------------------------------------------------------
+
+    def relevant_uncited(self, answer: str, package, question: str) -> str | None:
+        """PC1 (27 Oct): the paragraphs of the answer's single requested 21 CFR section (not a color listing - LC1 does
+        those) that no citation of the answer points to and that the cross-encoder scores at least PC1_MIN_SCORE for
+        the question, at most PC1_MAX, verbatim and cited (70.19-Q1 left out (h), the full deposit on resubmission
+        after withdrawal; 71.1-Q1 left out (e), the signature)."""
+        from regulus.rag.color_listing import LISTING_RE
+        from regulus.rag.generation import _verbatim, whole_sentences
+        from regulus.rag.section_promotion import RERANKER
+        from regulus.retrieval.rerank import reranker
+
+        labels = [label for _, label in package.requirements if re.match(r"^21 CFR \d+\.\d+[a-z]?$", label)]
+        if len(labels) != 1 or LISTING_RE.match(labels[0]):
+            return None
+        own = [s for s in package.sources if re.match(rf"^{re.escape(labels[0])}(?:\(|$)", s.citation or "")]
+        cited = {int(m) for m in re.findall(r"\[(\d{1,3})\]", answer or "")}
+        cited_labels = {s.citation for s in own if s.index in cited}
+        if not cited_labels:
+            return None
+        todo = [s for s in own if s.index not in cited and not any(s.citation.startswith(c) or c.startswith(s.citation)
+                                                                  for c in cited_labels) and len(s.text or "") >= 60]
+        rr = reranker(RERANKER) if RERANKER and todo else None
+        if rr is None:
+            return None
+        try:
+            scores = rr.score(question, [s.text for s in todo])
+        except Exception:  # noqa: BLE001 - an aid only
+            return None
+        keep = [s for sc, s in sorted(zip(scores, todo), key=lambda x: -x[0]) if sc >= PC1_MIN_SCORE][:PC1_MAX]
+        keep = sorted(keep, key=lambda s: s.index)
+        lines = [f"{s.citation} (eCFR, binding, verbatim): {_verbatim(whole_sentences(s.text), s.index)}"
+                 for s in keep if whole_sentences(s.text)]
+        return "\n".join([PC1_LEAD.format(section=labels[0])] + lines) if lines else None
 
     def closest_sources(self, question: str, package) -> tuple[int, ...]:
         """LM1: the (at most LM1_TOP) sources the cross-encoder scores highest for the question, at least LM1_MIN_SCORE,
@@ -1713,6 +1749,13 @@ class RagPipeline:
                     if rest:
                         answer_text = answer_text.rstrip() + "\n\n" + rest
                         generation_info["listing_paragraphs_appended"] = rest.count("\n")
+                if (fallback_type is None and precision_fix("PC1") and validation_final is not None and validation_final.ok
+                        and package.answer_style == "apply" and not getattr(package, "earlier_question", None)):
+                    # PC1: the uncited paragraphs of the answer's one requested section that bear on the question
+                    rest = self.relevant_uncited(answer_text, package, question)
+                    if rest:
+                        answer_text = answer_text.rstrip() + "\n\n" + rest
+                        generation_info["relevant_paragraphs_appended"] = rest.count("\n")
                 if fallback_type is None and precision_fix("ND1"):
                     # ND1: the bare decline sentence inside an answer that states what its cited sources say
                     # contradicts it (9 of 154 answers on 26 Oct, each scored down for "a contradictory 'not enough

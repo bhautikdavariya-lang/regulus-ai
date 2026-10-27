@@ -167,6 +167,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   SY2 domain thesaurus for the search terms: "become public / keep confidential" -> public disclosure, confidentiality;
       "hide / disguise / cover up" -> conceal, deception. Fires on 7 of 1,962 questions; key section rank 71.22-Q1 14 -> 1,
       71.15-Q1 / Q2 / Q2-F4 2 -> 1, one anchored follow-up 1 -> 2
+  PC1 (off until measured) after a validated answer from one requested 21 CFR section, its uncited paragraphs that the
+      cross-encoder scores >= 0.5 for the question (at most 3) are appended verbatim and cited
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
