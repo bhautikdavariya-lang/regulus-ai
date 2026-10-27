@@ -134,6 +134,17 @@ _THESAURUS = (
     (re.compile(r"\b(?:hide|hides|hiding|hidden|disguise\w*|cover(?:s|ing)?\s+up)\b|\bto\s+mask\b|\bmasking\b", re.I),
      "conceal deception deceptive"),
 )
+# SY3 (27 Oct): plain words for the MoCRA exemptions - "a small brand under $1 million" is FD&C Act 612 (Small
+# businesses: average gross annual sales); "our acne cream is also an OTC drug" is 613 (a cosmetic product or facility
+# also subject to the drug requirements of chapter V)
+_THESAURUS_SY3 = (
+    (re.compile(r"\bsmall\s+(?:business|company|companies|brand|firm|maker|manufacturer)s?\b|\$\s?1\s?(?:million|m)\b|"
+                r"\$\s?1,000,000\b|\b(?:annual|yearly)\s+(?:gross\s+)?(?:sales|revenue)\b", re.I),
+     "small businesses average gross annual sales"),
+    (re.compile(r"\b(?:also|is|as)\s+(?:an?\s+)?(?:otc|over-the-counter)?\s*drugs?\b|\bOTC\b|\bover-the-counter\b|"
+                r"\bdrug\s+(?:and|&)\s+(?:a\s+)?cosmetic\b|\bsubject\s+to\s+(?:the\s+)?drug\b", re.I),
+     "also subject to the requirements of subchapter V drugs exemption"),
+)
 # QD1: a question with several asks ("What fees apply, how do we pay, and can a small company get relief?")
 _ASK_START = re.compile(r"(?:^|[,;:]\s*(?:and\s+|or\s+)?|\b(?:and|or)\s+)(?:how|what|when|which|who|where|whether|can|could|must|"
                         r"do|does|is|are|may|should)\b", re.I)
@@ -584,6 +595,8 @@ class SectionPromoter:
         if precision_fix("SY2"):
             # SY2: the regulations' own words for what the question says plainly (domain thesaurus, search terms only)
             extra = [terms for pattern, terms in _THESAURUS if pattern.search(question or "")]
+            if precision_fix("SY3"):
+                extra += [terms for pattern, terms in _THESAURUS_SY3 if pattern.search(question or "")]
             if extra:
                 question = f"{question} {' '.join(extra)}"
         lex = SectionIndex.question_lexemes(self.db, question)
