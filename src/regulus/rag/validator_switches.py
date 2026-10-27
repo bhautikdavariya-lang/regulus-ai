@@ -179,6 +179,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       and the answer does not, are added on one line with those citations (regulus.rag.iso_clauses); never guessed
   AF1 a section number a source states with its paragraph ("section 601(c) of the act") counts as supplied, so an
       answer's "§ 601" is not an invented figure (sealed 700.27-Q1 withheld over it)
+  RS2 (off until measured) rescue: when the plain draft and its correction fail validation, a facts-first draft is
+      tried once before the answer is quoted or withheld, and delivered only if it validates (a fallback chain; it
+      never touches an answer that validated)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

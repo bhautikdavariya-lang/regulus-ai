@@ -1691,6 +1691,17 @@ class RagPipeline:
                                                prompt_tokens=gen2.prompt_tokens, stop_reason=getattr(gen2, "stop_reason", None))
                         input_tokens, output_tokens = gen2.prompt_tokens, gen2.generated_tokens
                         gen = gen2
+                if (precision_fix("RS2") and not precision_fix("BN2") and not validation_final.ok and package.answer_style == "apply"
+                        and self.config.validation_behavior == "repair" and package.sources
+                        and not (generation_info.get("correction_pass") or {}).get("accepted")):
+                    # RS2 (rescue): the plain draft and its correction failed validation - a facts-first draft is tried
+                    # once before the answer is quoted or withheld; it is delivered only if it validates
+                    alt = self.facts_first_answer(messages, package, question, analysis)
+                    generation_info["rescue"] = {"tried": True, "ok": bool(alt and alt[2].ok)}
+                    if alt is not None and alt[2].ok:
+                        answer_text, gen, validation_initial = alt
+                        validation_final = validation_initial
+                        generation_info.update(generated_tokens=gen.generated_tokens, finished=gen.finished)
                 if (precision_fix("BN2") and not precision_fix("FR1") and package.answer_style == "apply"
                         and self.config.validation_behavior == "repair" and package.sources):
                     # BN2 (best of two with a verifier): a facts-first draft as well; the one that validates and scores
