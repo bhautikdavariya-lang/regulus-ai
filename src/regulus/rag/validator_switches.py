@@ -218,6 +218,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   WS1 (off until measured) an overview question whose subject is the promoted section's own heading ("What are the
       reserve sample requirements under Part 211?" -> 211.170) is answered with the whole section verbatim when it is at
       most 3,600 characters (regulus.rag.list_answers.compose_section)
+  SP3 (off until measured) in Part 111 a promoted section brings the rest of its subpart when the subpart is at most 8
+      sections and 4,500 characters (Subpart O complaints: 111.553 + 111.560 + 111.570), except for a list question
+      (regulus.rag.section_promotion.small_subpart)
+  HX1 (off until measured) up to 48 required paragraphs (was 24) under the unchanged character ceiling (111.260's list)
   QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

@@ -181,6 +181,9 @@ DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
 DEFINITION_HOP_CHARS = 600
 DV1_TOP = 3           # DV1: paragraphs promoted for a question naming only a small part
 DV1_MIN_SCORE = 0.3
+SP3_MAX_SECTIONS = 8      # SP3: a subpart this small is promoted whole with its section
+SP3_MAX_CHARS = 4500
+SP3_PARTS = ("111",)      # parts built of small requirement-and-records subparts (dietary supplement CGMP)
 HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading misses
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
 general regulation regulations section sections subpart provision provisions current practice manufacturing what which
@@ -1333,6 +1336,23 @@ class SectionPromoter:
         scored = sorted(((len(wanted & _topic_stems(r["h"])), r["s"]) for r in rows if r["s"] != section), reverse=True)
         return [sec for n, sec in scored if n][:limit]
 
+    def small_subpart(self, section: str) -> list[str]:
+        """SP3 (27 Oct): the other sections of the promoted section's subpart, in order, when the whole subpart is small
+        (at most SP3_MAX_SECTIONS sections and SP3_MAX_CHARS characters) - parent-document retrieval at subpart level.
+        Part 111 is built of small subparts, each a requirement section with its records section: "What must a firm do
+        when it receives a product complaint?" promoted 111.560 and the key is Subpart O, 111.553 + 111.560 + 111.570
+        (13 of 15 supplement answers lacked the rest of their subpart, 27 Oct)."""
+        try:
+            rows = self.db.query(
+                "SELECT section_number s, sum(length(body_text)) c, min(ordinal) o FROM cfr_records WHERE removed_on IS NULL "
+                "AND NOT is_reserved AND subpart_id = (SELECT subpart_id FROM cfr_records WHERE section_number = %(s)s AND "
+                "removed_on IS NULL AND subpart_id IS NOT NULL LIMIT 1) GROUP BY 1 ORDER BY 3", {"s": section})
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        if not rows or len(rows) > SP3_MAX_SECTIONS or sum(r["c"] or 0 for r in rows) > SP3_MAX_CHARS:
+            return []
+        return [r["s"] for r in rows if r["s"] != section]
+
     def heading_matches(self, section: str, question: str, limit: int = HC1_MAX) -> list[str]:
         """HM1 (27 Oct): sections of the promoted section's part whose heading's lead phrase the question contains word
         for word (two topic words or more) - title-field matching. "What are the requirements for use of approved
@@ -1573,6 +1593,11 @@ class SectionPromoter:
         if precision_fix("HC1"):
             for s in picked:
                 comps += [c for c in self.sibling_companions(s, question) if c not in comps and c not in picked]
+        if precision_fix("SP3") and picked and picked[0].split(".")[0] in SP3_PARTS:
+            from regulus.rag.list_answers import _ASKS_CONTENTS
+
+            if not _ASKS_CONTENTS.search(question or ""):   # a list question is answered by its own section's list (LS1)
+                comps += [c for c in self.small_subpart(picked[0]) if c not in comps and c not in picked]
         if precision_fix("HM1") and picked:
             comps += [c for c in self.heading_matches(picked[0], question) if c not in comps and c not in picked]
         comps += [c for c in self.definition_companions(question) if c not in comps and c not in picked]

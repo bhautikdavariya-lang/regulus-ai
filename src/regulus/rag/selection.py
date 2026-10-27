@@ -48,6 +48,7 @@ REASON_SUPPORTING = "supporting"
 REASON_DISCOVERY = "discovery"
 REASON_SUBORDINATE = "subordinate_of_requested"  # Stage 12: a child of a requested provision
 
+HX1_MAX_RESULTS = 48   # HX1: required paragraphs that may be supplied, under the unchanged character ceiling
 DROP_HARD_CEILING_CHARS = "hard_ceiling_chars"    # required evidence exceeded hard_max_total_chars
 DROP_HARD_CEILING_COUNT = "hard_ceiling_count"    # required evidence exceeded hard_max_results
 DROP_SOFT_BUDGET = "soft_budget"                  # optional evidence: max_total_chars exhausted
@@ -365,6 +366,13 @@ def select_evidence(
     # order, or relevance to the question when one is given - and is then presented in document
     # order. A block's length depends on its index only through its "SOURCE n" line, so the kept
     # set occupies the same total either way and the accounting below is order-independent.
+    from regulus.rag.validator_switches import enabled as _switch
+
+    if _switch("HX1") and policy.hard_max_results < HX1_MAX_RESULTS:
+        # HX1 (27 Oct): the character ceiling is the budget; 24 paragraphs cut 111.260's batch-record list in half (S-020)
+        from dataclasses import replace as _replace
+
+        policy = _replace(policy, hard_max_results=HX1_MAX_RESULTS)
     registry_order = [e for e in registry.evidence if is_required(e)]
     position = {e.evidence_id: i for i, e in enumerate(registry_order)}
     competition = _required_order(registry_order, question)
