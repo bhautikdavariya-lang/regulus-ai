@@ -21,3 +21,10 @@ def test_the_whole_list_is_quoted():
 def test_whether_questions_and_other_questions_are_left_alone():
     assert compose(PKG, "Do we need to submit the request in duplicate?") is None
     assert compose(PKG, "Who signs the certification request?") is None
+
+
+def test_a_passive_question_asks_for_contents():
+    from regulus.rag.list_answers import _ASKS_CONTENTS
+    assert _ASKS_CONTENTS.search("What must be recorded for complaints involving the possible failure of a device?")
+    assert _ASKS_CONTENTS.search("What must be included in a servicing record?")
+    assert not _ASKS_CONTENTS.search("What must be done before release?")

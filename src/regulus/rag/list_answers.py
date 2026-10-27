@@ -14,7 +14,8 @@ import re
 
 _ASKS_CONTENTS = re.compile(
     r"\bwhat\s+(?:must|should|does|do|shall|has\s+to|have\s+to)\b[^?]{0,80}?\b(?:include|contain|state|show|list|record|"
-    r"say|cover|bear|carry|consist\s+of)\b|\bwhat\s+(?:information|data|items|details|elements|contents?)\b|"
+    r"say|cover|bear|carry|consist\s+of)\b|\bwhat\s+(?:must|should|shall|has\s+to|have\s+to)\s+be\s+(?:included|contained|"
+    r"stated|shown|listed|recorded|documented)\b|\bwhat\s+(?:information|data|items|details|elements|contents?)\b|"
     r"\bwhat\s+(?:goes|has\s+to\s+go|must\s+go)\s+(?:in|into|on)\b|\bminimum\s+(?:data|information|contents?)\b", re.I)
 _ASKS_WHETHER = re.compile(r"\b(?:do|does|must)\s+(?:we|it|they|our\s+\w+)\s+(?:need|have\s+to)\b|\bexempt|\bexception|"
                            r"\bwhether\b", re.I)
