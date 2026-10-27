@@ -144,6 +144,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       provision, section numbers removed, shown as an example of a complete answer's content (regulus.rag.answer_examples);
       never from the question's own provisions or the question itself, never a sealed question. The examples file is
       the client's keys and stays outside the repository (REGULUS_ANSWER_EXAMPLES)
+  RO1 ON since 27 Oct 12:30: with color listings given no reranker credit when no color is named, 118 dev picker
+      questions key first 44 (lexical) -> 59, MRR 0.489 -> 0.588; live 5 of 9 problem picks right (baseline 3).
+      BN2 on 22: +1 / -1 by its own choice, answers 75% slower - off; FC1 confirmed live (70.51, 70.55 -> PASS)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
@@ -158,7 +161,7 @@ import os
 # every fix measured as a gain is on (27 Oct 2026: the UI ran the 26 Oct default A1..P1 while tests ran all of these);
 # SP2, SA1, ST1, FS2 stay off; RO1, V2, QX1, CQ1 join after their measurement
 DEFAULT = ("A1,A2,A3,A4,G1,S1,E1,C82,P1,Q1,FP1,RS1,QM1,D1,PO2,C2,Q2,PR2,ND1,"
-           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1,SY1,CT1")
+           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1,SY1,CT1,RO1")
 VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", DEFAULT).split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 
