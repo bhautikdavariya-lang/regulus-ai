@@ -181,6 +181,28 @@ DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
 DEFINITION_HOP_CHARS = 600
 DV1_TOP = 3           # DV1: paragraphs promoted for a question naming only a small part
 DV1_MIN_SCORE = 0.3
+HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading misses
+_HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
+general regulation regulations section sections subpart provision provisions current practice manufacturing what which
+under their there these those other""".split())
+
+
+def _coordinated(question: str) -> list[tuple[set[str], set[str]]]:
+    """HC1: the topic stems on each side of every "and" / "or" in the question, four words either way."""
+    words = re.findall(r"[a-z][a-z-]*", (question or "").lower())
+    return [(_topic_stems(" ".join(words[max(0, i - 4):i])), _topic_stems(" ".join(words[i + 1:i + 5])))
+            for i, w in enumerate(words) if w in ("and", "or")]
+
+
+_GENERIC_HEADING = re.compile(r"^\s*(?:scope|definitions?|purpose|applicability|general(?:\s+provisions|\s+requirements)?|"
+                              r"authority|severability|exemptions?)\.?\s*$", re.I)
+
+
+def _topic_stems(text: str) -> set[str]:
+    """Topic words of a question or heading, as six-letter stems ("salvaged" / "salvaging" -> "salvag")."""
+    return {w[:6] for w in re.findall(r"[a-z]{5,}", (text or "").lower()) if w not in _HC1_GENERIC}
+
+
 DV1_WHOLE_SECTION_CHARS = 1500   # DV1: a section this short is supplied whole (820.7, 820.45)
 DV1_MAX_SECTIONS = 12  # a part this small is answered paragraph by paragraph
 _PHRASE_STOP = set("the and for with that this from such any are its which under part section".split())
@@ -1272,6 +1294,57 @@ class SectionPromoter:
                 out.append(items[i][0])
         return self.paragraph_families(out, items)
 
+    def sibling_companions(self, section: str, question: str, limit: int = HC1_MAX) -> list[str]:
+        """HC1 (27 Oct): sections of the same subpart whose heading names a topic of the question that the promoted
+        section's heading does not - "drug product inspection and expiration dating" promoted 211.137 (Expiration
+        dating) and missed its sibling 211.134 (Drug product inspection); "returned and salvaged" missed 211.208. Drug
+        CGMP keys span sibling sections: 9 of 13 imperfect drug answers lacked one (27 Oct). Most-covering first."""
+        try:
+            rows = self.db.query(
+                "SELECT DISTINCT section_number s, section_heading h FROM cfr_records WHERE removed_on IS NULL AND NOT "
+                "is_reserved AND subpart_id = (SELECT subpart_id FROM cfr_records WHERE section_number = %(s)s AND "
+                "removed_on IS NULL AND subpart_id IS NOT NULL LIMIT 1)", {"s": section})
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        own = next((r["h"] for r in rows if r["s"] == section), None)
+        if own is None:
+            return []
+        mine = _topic_stems(own)
+        wanted: set[str] = set()
+        for left, right in _coordinated(question):
+            # "drug product inspection and expiration dating": the promoted heading covers one side, a sibling the other
+            if mine & right and not mine & left:
+                wanted |= left
+            elif mine & left and not mine & right:
+                wanted |= right
+        if not wanted:
+            return []
+        scored = sorted(((len(wanted & _topic_stems(r["h"])), r["s"]) for r in rows if r["s"] != section), reverse=True)
+        return [sec for n, sec in scored if n][:limit]
+
+    def general_twin(self, section: str, question: str) -> str:
+        """HT1 (27 Oct): a section whose heading and number another part repeats (213.192 and 211.192, "Production record
+        review") is read as the larger, general part's unless the question names the specialised part's subject: 213 is
+        CGMP for medical gases, and a question about production record review got its 213.192."""
+        try:
+            rows = self.db.query(
+                "SELECT t.section_number s, t.part_number p, t.parent_headings[2] title, t.section_heading h, (SELECT "
+                "count(DISTINCT x.section_number) FROM cfr_records x WHERE x.part_number = t.part_number AND x.removed_on IS "
+                "NULL) n FROM cfr_records t, cfr_records o WHERE o.section_number = %(s)s AND o.removed_on IS NULL AND "
+                "t.removed_on IS NULL AND NOT t.is_reserved AND t.section_heading = o.section_heading AND t.subchapter_code = "
+                "o.subchapter_code AND split_part(t.section_number, '.', 2) = split_part(%(s)s, '.', 2) GROUP BY 1, 2, 3, 4",
+                {"s": section})
+        except Exception:  # noqa: BLE001
+            return section
+        if len(rows) < 2 or _GENERIC_HEADING.match(rows[0]["h"] or ""):
+            return section   # "Scope." / "Definitions." repeat across unrelated parts: not twins
+        mine = next((r for r in rows if r["s"] == section), None)
+        best = max(rows, key=lambda r: (r["n"] or 0, -float(r["p"] or 0)))
+        if mine is None or best["s"] == section:
+            return section
+        own_words = _topic_stems(mine["title"] or "") - _topic_stems(best["title"] or "")
+        return section if own_words & _topic_stems(question) else best["s"]
+
     @staticmethod
     def paragraph_families(picks: list[str], items: list[tuple[str, str]]) -> list[str]:
         """Small-to-big: each picked paragraph widened to its top-level paragraph with every paragraph under it
@@ -1464,9 +1537,14 @@ class SectionPromoter:
 
     def _cfr_promotion(self, picked: list[str], question: str, lex, cands, raw, other, method: str, t0: float) -> Promotion:
         """The Promotion of picked regulation(s): their companions, and a second FD&C Act pick as co-statute."""
+        if precision_fix("HT1"):
+            picked = list(dict.fromkeys(self.general_twin(s, question) for s in picked))
         comps: list[str] = []
         for s in picked:
             comps += [c for c in self.companions(s, question, lex) if c not in comps]
+        if precision_fix("HC1"):
+            for s in picked:
+                comps += [c for c in self.sibling_companions(s, question) if c not in comps and c not in picked]
         comps += [c for c in self.definition_companions(question) if c not in comps and c not in picked]
         if "70.5(a)" in comps and any(_EYE_USE.search(self._section_text(s)) for s in picked):
             comps.remove("70.5(a)")   # one promoted listing provides for eye-area use (code review: Part 82 sibling)

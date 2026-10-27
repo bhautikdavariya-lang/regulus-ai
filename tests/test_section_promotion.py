@@ -385,3 +385,17 @@ def test_a_paragraph_of_a_long_section_brings_its_top_level_family():
              ("820.7", "y" * 200), ("820.7(a)", "y" * 300), ("820.7(b)", "y" * 300)]
     assert SectionPromoter.paragraph_families(["820.1(a)(4)", "820.7(b)"], items) == \
         ["820.1(a)", "820.1(a)(1)", "820.1(a)(4)", "820.7"]
+
+
+def test_hc1_coordinated_topics_split_across_sibling_headings():
+    from regulus.rag.section_promotion import _coordinated, _topic_stems
+    pairs = _coordinated("What are the drug product inspection and expiration dating requirements?")
+    assert any("inspec" in left and {"expira", "dating"} <= right for left, right in pairs)
+    assert _coordinated("What are the general laboratory control requirements under Part 211?") == []
+    assert _topic_stems("Drug product salvaging.") & _topic_stems("returned and salvaged drug products")
+
+
+def test_ht1_generic_headings_are_never_twins():
+    from regulus.rag.section_promotion import _GENERIC_HEADING
+    assert _GENERIC_HEADING.match("Scope.") and _GENERIC_HEADING.match("Definitions.")
+    assert not _GENERIC_HEADING.match("Production record review.")
