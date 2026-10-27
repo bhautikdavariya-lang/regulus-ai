@@ -197,6 +197,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       handles: key paragraph among its picks 13 of 19 (the baseline read the whole part and missed the paragraph)
   QM2 (off until measured) the former regulation's record types named in words - device master record, device history
       record, design history file, quality system record - are its former sections for QM1 (regulus.rag.qmsr.former_by_name)
+  E2B (off until measured) an uncited duty sentence E2 would call strengthened stands when another supplied source states
+      that duty itself with at least 40% of its words - E1's escape (regulus.rag.claim_validation.duty_stated)
   QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

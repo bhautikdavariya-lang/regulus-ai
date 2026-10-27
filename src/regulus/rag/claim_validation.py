@@ -227,6 +227,16 @@ def requested_duty(sentence: str, texts: list[str]) -> str | None:
     return None
 
 
+def duty_stated(sentence: str, texts: list[str]) -> bool:
+    """Whether a supplied source sentence states the sentence's duty itself ("must", not "is encouraged") and shares at
+    least 40% of its words - E1's escape, used by E2 under E2B."""
+    words = _words(_LABEL.sub(" ", _MARK.sub(" ", sentence)))
+    if len(words) < UNSUPPORTED_MIN_WORDS:
+        return False
+    return any(_SOURCE_DUTY.search(piece) and not _WEAK.search(piece) and len(words & _words(piece)) / len(words) >= 0.4
+               for text in texts for piece in _SOURCE_SENTENCE.split(text or ""))
+
+
 def strengthened_obligation(sentence: str, cited_texts: list[str], supplied_texts: list[str] = ()) -> str | None:
     """The weak source wording a duty statement strengthens, or None (no duty word, nothing cited, the closest cited
     source sentence states a duty itself, or another supplied source states that duty: then the duty may be right and
@@ -365,6 +375,10 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             if not texts and sentence is sentences[0]:
                 texts = exact_texts
             weaker = requested_duty(sentence, texts) if texts else None
+            if weaker and precision_fix("E2B") and duty_stated(sentence, [s.text for s in package.sources]):
+                # E2B (27 Oct): another supplied source states the duty itself - 820.1(a) "must establish and maintain a
+                # quality management system" beside 820.1(a)(2)'s component makers who "are encouraged" (M-012 withheld)
+                weaker = None
             if weaker:
                 findings.append(ClaimFinding(OBLIGATION_STRENGTHENED, SEVERITY[OBLIGATION_STRENGTHENED],
                                              f"states a duty ({weaker})", sentence=sentence))

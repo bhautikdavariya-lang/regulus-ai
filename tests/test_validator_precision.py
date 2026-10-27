@@ -449,3 +449,15 @@ def test_af1_a_section_named_with_its_paragraph_is_supplied(monkeypatch):
     assert "601" in V._supplied_figures(src)
     monkeypatch.setattr(V, "precision_fix", lambda fix: False)
     assert "601" not in V._supplied_figures(src)
+
+
+def test_e2b_a_duty_another_supplied_source_states_itself():
+    from regulus.rag.claim_validation import duty_stated
+    s = ("A manufacturer subject to 21 CFR part 820 must establish and maintain a quality management system that is "
+         "appropriate for its specific device.")
+    must = ("Any manufacturers engaged in the design, manufacture, packaging, labeling, storage, installation, or servicing "
+            "of a finished device must establish and maintain a quality management system that is appropriate for its "
+            "specific device(s).")
+    encouraged = "This regulation does not apply to manufacturers of components or parts of finished devices, but such manufacturers are encouraged to consider provisions of this regulation as appropriate."
+    assert duty_stated(s, [encouraged, must])
+    assert not duty_stated(s, [encouraged])
