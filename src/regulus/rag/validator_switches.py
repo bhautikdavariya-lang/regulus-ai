@@ -119,6 +119,12 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       sections that ranks first join the picker's candidates (71.18 "petition for exemption" for "ask FDA to exempt")
   LM1 (off until measured) "lost in the middle": with 6+ sources the prompt names, before the evidence, the (at most 3)
       the cross-encoder scores closest to the question (70.19-Q2 read the new-petition fee (c) for an amendment, (i))
+  CV1 (off until measured) Chain-of-Verification with an entailment model: each cited sentence of a validated answer is
+      judged against its cited sources by MiniCheck-RoBERTa-Large (regulus.rag.entailment; Tang et al., EMNLP 2024);
+      sentences below REGULUS_CV1_MIN_SUPPORT go back to the model once, the revision kept if it validates and its
+      weakest sentence improves, else the unsupported sentences are removed when cited statements remain
+  FR1 (off until measured) facts first (FaithfulRAG-style): the model lists what the sources state about the question,
+      with source numbers and conditions, then answers from that list (one more generation)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable

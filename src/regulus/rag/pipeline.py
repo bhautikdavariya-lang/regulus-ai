@@ -409,6 +409,14 @@ REFUSAL_RETRY_NOTE = ("\n\nNOTE: The EVIDENCE above was retrieved for this quest
                       "that point only.")
 _BARE_REFUSAL_RE = re.compile(r"^(?:\s*The available regulatory sources do not provide enough information to answer "
                               r"this(?: question)?\.\s*)+$")
+# CV1: a cited sentence its sources support with probability below this is checked again; FR1: facts-first prompts
+CV1_MIN_SUPPORT = float(os.environ.get("REGULUS_CV1_MIN_SUPPORT", "0.2"))
+_CV1_SENTENCE = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9(\"“])|\n+")
+FR1_MAX_TOKENS = 400
+FR1_PROMPT = ("\n\nBEFORE ANSWERING: list the facts the SOURCES state that bear on the QUESTION, one per line, each in the "
+              "source's own words and ending with its source number in brackets. Include the conditions each fact depends on. "
+              "Do not answer the question yet and do not add anything the SOURCES do not say.")
+FR1_ANSWER = "\n\nNow answer the QUESTION from these facts and the SOURCES, following the ANSWER FORMAT."
 # LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
@@ -736,6 +744,73 @@ class RagPipeline:
         info = {"attempted": True, "codes_before": list(dict.fromkeys(p.code for p in report.problems if p.severity == "error")),
                 "accepted": report2.ok, "seconds": round(time.perf_counter() - t0, 2), "codes_after": list(report2.codes())}
         return ((text, gen2, report2) if report2.ok else None), info
+
+    def claim_support(self, text: str, package) -> list[tuple[str, float]]:
+        """CV1: each cited sentence of `text` with the entailment model's probability that the sources it cites support
+        it (regulus.rag.entailment); verbatim quotations, status notes and sentences under 6 words are not checked.
+        [] without the model."""
+        from regulus.rag.entailment import entailment_checker
+
+        checker = entailment_checker()
+        if checker is None:
+            return []
+        by_index = {s.index: s for s in package.sources}
+        pairs, claims = [], []
+        for sentence in _CV1_SENTENCE.split(text or ""):
+            marks = [int(m) for m in re.findall(r"\[(\d{1,3})\]", sentence) if int(m) in by_index]
+            claim = re.sub(r"\s*\[\d{1,3}\]", "", sentence).strip()
+            if (not marks or len(claim.split()) < 6 or "(eCFR, binding, verbatim)" in sentence
+                    or claim.lower().startswith(("status note", "evidence limit"))):
+                continue
+            pairs.append((" ".join(by_index[i].text or "" for i in marks), claim))
+            claims.append(sentence.strip())
+        try:
+            return list(zip(claims, checker.support_many(pairs))) if pairs else []
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+
+    def verify_claims(self, messages, draft: str, package, question: str, analysis):
+        """CV1 (Chain-of-Verification with an entailment model): a validated answer's sentences the cited sources do not
+        support (MiniCheck probability below CV1_MIN_SUPPORT) go back to the model ONCE to be corrected or removed; the
+        revision is kept only if it validates and its weakest sentence is better supported, else the flagged sentences
+        are dropped when cited statements remain. -> ((text, report) | None, info)"""
+        scored = self.claim_support(draft, package)
+        flagged = [c for c, p in scored if p < CV1_MIN_SUPPORT]
+        info = {"checked": len(scored), "flagged": len(flagged),
+                "min_support": round(min((p for _, p in scored), default=1.0), 3)}
+        if not flagged:
+            return None, info
+        user = (messages[-1]["content"] + "\n\nYOUR DRAFT ANSWER:\n" + draft + "\n\nA FACT CHECK OF EACH SENTENCE AGAINST THE "
+                "SOURCE IT CITES FOUND THESE SENTENCES NOT SUPPORTED BY THAT SOURCE:\n" + "\n".join(f"- {c}" for c in flagged)
+                + "\n\nRead each one against the SOURCE it cites. Correct it to what that source says and cite the source that "
+                "states it, or remove it. Keep the rest of the answer. Output only the answer.")
+        msgs = [{"role": "system", "content": messages[0]["content"]}] + list(messages[1:-1]) + [{**messages[-1], "content": user}]
+        gen2 = self._generate(msgs, package.max_new_tokens, None)
+        text = (gen2.response or "").strip()
+        if not repeated_sentence(text):
+            text, _ = drop_duplicate_sentences(text, _quote_sources(package))
+        text, _ = strip_plan_labels(text)
+        if analysis is not None:
+            text, _ = normalize_answer(text, question)
+        text, _ = repoint_citations(text, [(s.index, s.text) for s in package.sources])
+        report2 = validate_answer(text, package, gen2)
+        rescored = self.claim_support(text, package)
+        new_min = min((p for _, p in rescored), default=1.0)
+        info.update(revised_min_support=round(new_min, 3), revised_ok=report2.ok)
+        if report2.ok and new_min > info["min_support"]:
+            info["outcome"] = "revised"
+            return (text, report2), info
+        kept = draft
+        for c in flagged:
+            kept = kept.replace(c, "")
+        kept = re.sub(r"[ \t]+\n", "\n", re.sub(r"\n{3,}", "\n\n", kept)).strip()
+        if _CITED_RE.search(kept):
+            report3 = validate_answer(kept, package, gen2)
+            if report3.ok:
+                info["outcome"] = "unsupported_removed"
+                return (kept, report3), info
+        info["outcome"] = "kept"
+        return None, info
 
     def _generate(self, messages, max_new_tokens: int | None, on_text=None):
         """Call the generator with the per-question budget when it accepts one,
@@ -1398,6 +1473,18 @@ class RagPipeline:
             emit("generation_started", {"max_new_tokens": package.max_new_tokens if package is not None else None})
             on_text = (lambda text: emit("delta", {"text": text})) if on_event is not None else None
             t2 = time.perf_counter()
+            if package is not None and precision_fix("FR1") and package.answer_style == "apply" and package.sources:
+                # FR1 (FaithfulRAG-style, facts first): the model first lists what the sources state about the question,
+                # each with its source number, and then answers from that list and the evidence
+                facts = self._generate([messages[0], {**messages[-1], "content": messages[-1]["content"] + FR1_PROMPT}],
+                                       FR1_MAX_TOKENS, None)
+                listed = (facts.response or "").strip()
+                if listed and _CITED_RE.search(listed):
+                    messages = list(messages[:-1]) + [{**messages[-1], "content": messages[-1]["content"]
+                                                       + "\n\nFACTS THE SOURCES STATE ABOUT THE QUESTION (listed first):\n"
+                                                       + listed + FR1_ANSWER}]
+                    prompt_sent = messages[-1]["content"]
+                    generation_info["facts_first"] = {"facts_tokens": facts.generated_tokens}
             gen = self._generate(messages, package.max_new_tokens if package is not None else None, on_text)
             if (package is not None and package.answer_style == "apply" and (package.satisfied_ids or package.resolved)
                     and package.sources and _BARE_REFUSAL_RE.match(gen.response or "")):
@@ -1513,6 +1600,12 @@ class RagPipeline:
                         if quoted:
                             answer_text, validation_final, fallback_type = quoted, validate_answer(quoted, package, gen), FB_FOCUSED_QUOTE
                             fallback_reason = "the model declined; the governing provision is quoted instead"
+                if (fallback_type is None and precision_fix("CV1") and validation_final is not None and validation_final.ok
+                        and package.answer_style == "apply"):
+                    verified, cv_info = self.verify_claims(messages, answer_text, package, question, analysis)
+                    generation_info["claim_verification"] = cv_info
+                    if verified is not None:
+                        answer_text, validation_final = verified
                 if fallback_type is None and precision_fix("LC1") and validation_final is not None and validation_final.ok:
                     # LC1: a color-listing answer keeps every paragraph of its listing (regulus.rag.color_listing)
                     from regulus.rag.color_listing import missing_listing_paragraphs
