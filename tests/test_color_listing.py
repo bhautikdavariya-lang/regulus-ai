@@ -95,3 +95,12 @@ def test_lc1_a_listing_answer_gets_its_uncited_paragraphs(monkeypatch):
     assert missing_listing_paragraphs(narrow, "Water and glycerin [3].") is None
     followup = NS(**{**pkg.__dict__, "earlier_question": "Is chlorophyllin allowed?"})
     assert missing_listing_paragraphs(followup, "Yes, at most 0.1 percent [3].") is None
+
+
+def test_nl1_a_named_list_permits_only_what_it_names():
+    from regulus.rag.color_listing import _same_product
+
+    items = ["eyeliner", "brush-on-brow", "eye shadow", "mascara", "lipstick", "blushers and rouge", "makeup and foundation",
+             "nail enamel"]
+    assert all(any(_same_product(p, i) for i in items) for p in ("mascara", "eyeshadow", "liquid foundation", "nail polish", "blush"))
+    assert not any(any(_same_product(p, i) for i in items) for p in ("hair gel", "body lotion", "eye cream"))

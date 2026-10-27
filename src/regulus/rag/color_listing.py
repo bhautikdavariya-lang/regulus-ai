@@ -38,6 +38,26 @@ EXTERNAL = (r"(?:body |hand |foot |face |facial |night |day |tinted )?(?:lotions
             r"aftershaves?|shaving creams?|body butters?")
 _PRODUCT_RE = re.compile(rf"\b(?P<eye>{EYE})\b|\b(?P<lips>{LIPS})\b|\b(?P<ext>{EXTERNAL})\b", re.I)
 
+# NL1: a uses paragraph that names the cosmetics a color may be used in
+_NAMED_LIST = re.compile(r"may be safely used (?:for coloring|in) the following cosmetics[^:]{0,90}:\s*(?P<items>[^.]+)\.", re.I)
+
+
+_PRODUCT_SYNONYMS = {"polish": "enamel", "lacquer": "enamel", "rouge": "blush", "blusher": "blush", "blushers": "blush",
+                     "eyeshadow": "shadow", "eyeliners": "eyeliner", "foundations": "foundation"}
+
+
+def _same_product(product: str, item: str) -> bool:
+    """The product a question names is the listed cosmetic: one of its words (singular, spaces ignored) is the listed
+    item's or one of the item's words ("eyeshadow" / "eye shadow", "liquid foundation" / "makeup and foundation")."""
+    def sing(w):
+        w = _PRODUCT_SYNONYMS.get(w, w)
+        return re.sub(r"(?:ers|er|es|s)$", "", w) if len(w) > 5 else w
+    p = [sing(w) for w in re.findall(r"[a-z]+(?:-[a-z]+)*", product.lower())]
+    i = [sing(w) for w in re.findall(r"[a-z]+(?:-[a-z]+)*", item.lower())]
+    joined_p, joined_i = "".join(p), "".join(i)
+    return bool(joined_p and (joined_p == joined_i or (set(p) & set(i) - {"and", "eye", "lip", "hair", "nail", "face"})))
+
+
 # UR1 (27 Oct): the uses paragraph's heading as the listings write it - "Uses and restrictions." (209 paragraphs),
 # "Use and restrictions." (5: carmine 73.2087 ...) and "Use and restriction." (annatto 73.2030); the exact form missed 6
 _USES_HEADING_UR1 = r"^\([a-z]\)\s*Uses?\s+and\s+restrictions?\."
@@ -167,21 +187,38 @@ def compose(package, question: str) -> str | None:
         return None
     uses = uses_of(primary)
     scope = read_scope(uses.text)
-    if scope is None:
+    named_list = _NAMED_LIST.search(_strip(uses.text)) if scope is None and precision_fix("NL1") else None
+    if scope is None and named_list is None:
         return None
-    use_sentence = next((x for x in _sentences(uses.text) if _GENERALLY.search(x) or _EXTERNAL.search(x)), None)
+    if named_list is not None:
+        # NL1: a listing naming the cosmetics it may color (74.2052 D&C Black No. 2: "the following cosmetics ...:
+        # Eyeliner, brush-on-brow, eye shadow, mascara, lipstick, ..."): a product the list names is permitted; any
+        # other is not, a listing authorizing only the uses it states (27 Oct: the model permitted a hair gel)
+        allowed = [x.strip().lower() for x in re.split(r",\s*(?:and\s+)?|\s+and\s+(?=[a-z-]+$)", named_list.group("items")) if x.strip()]
+        use_sentence = next((x for x in _sentences(uses.text) if named_list.group("items")[:30] in x), named_list.group(0)).strip()
+        use_quote = f"{uses.citation} states: \"{use_sentence}\" [{uses.index}]"
+        lines = []
+        for product, _ in named:
+            ok = any(_same_product(product, item) for item in allowed)
+            who = product[0].upper() + product[1:]
+            lines += [f"{who}: permitted." if ok else f"{who}: not permitted.", use_quote + "."]
+        scope = Scope(False, False, False, None)
+    else:
+        lines = None
+    use_sentence = use_sentence if named_list is not None else next(
+        (x for x in _sentences(uses.text) if _GENERALLY.search(x) or _EXTERNAL.search(x)), None)
     if use_sentence is None:
         return None
     eye_rule = [s for s in by_label.get("21 CFR 70.5", []) if (s.citation or "").startswith("21 CFR 70.5(a)")]
     defs = {s.citation: s for s in by_label.get("21 CFR 70.3", [])}
     eye_def, ext_def = defs.get("21 CFR 70.3(s)"), defs.get("21 CFR 70.3(v)")
     use_quote = f"{uses.citation} states: \"{use_sentence}\" [{uses.index}]"
-    lines: list[str] = []
     groups: dict[str, list[str]] = {}
-    for product, kind in named:
+    for product, kind in (named if lines is None else ()):
         verdict = ("eye_no" if kind == "eye" and not scope.eye_included else
                    "lips_no" if kind == "lips" and scope.external else "yes")
         groups.setdefault(verdict, []).append(product)
+    lines = lines if lines is not None else []
     for verdict, names in groups.items():
         who = " and ".join(names)
         who = who[0].upper() + who[1:]
