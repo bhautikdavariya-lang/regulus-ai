@@ -86,7 +86,8 @@ def compose(package, question: str) -> str | None:
 
     def score(lead):
         kids = children(lead)
-        return (len(q & _words(lead.text)) * 2 + len(q & set().union(*(_words(k.text) for k in kids)) if kids else 0), len(kids))
+        shared = len(q & set().union(*(_words(k.text) for k in kids))) if kids else 0   # a lead-in with no paragraphs under it
+        return (len(q & _words(lead.text)) * 2 + shared, len(kids))
 
     best = max(leads, key=score)
     kids = children(best)

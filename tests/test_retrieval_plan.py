@@ -790,7 +790,10 @@ def test_section_level_retrieval_is_unchanged_by_c2():
     db = TableDatabase()
     reg = run("What does 21 CFR 820.10 say?", db).registry
     calls = [p for n, p in db.calls if n == "ECFR_EXACT_SECTION"]
-    assert len(calls) == 1 and calls[0]["paragraph"] == "" and calls[0]["limit"] == 100
+    from regulus.rag.validator_switches import enabled
+    from regulus.retrieval.lexical import XR1_EXACT_ROW_LIMIT
+    # XR1 (27 Oct release): a section is fetched whole up to 400 rows; without it the 100-row limit
+    assert len(calls) == 1 and calls[0]["paragraph"] == "" and calls[0]["limit"] == (XR1_EXACT_ROW_LIMIT if enabled("XR1") else 100)
     assert len(reg.exact_for("r1")) == 8
     assert labels(reg.exact_for("r1"))[:3] == ["21 CFR 820.10", "21 CFR 820.10(a)", "21 CFR 820.10(b)"]
     assert [e.score for e in reg.exact_for("r1")][:3] == [100.0, 100.0 - 0.001, 100.0 - 0.002]

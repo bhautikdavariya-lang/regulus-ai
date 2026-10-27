@@ -175,14 +175,14 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   WC1 ON since 27 Oct 14:00: diagnostic 30 (unseen weak-family dev questions), both "what must the warning say"
       questions composed and blind-scored PASS (740.11-Q1, 740.17-Q1); the three withheld drafts there had real errors
       (invented duties, a mis-cited sub-paragraph), so the validator stays as it is
-  ISO1 (off until measured) the ISO 13485 clauses that the cited Part 820 paragraphs (or their section's lead-in) name,
+  ISO1 (measured gain, held back from the 27 Oct release) the ISO 13485 clauses that the cited Part 820 paragraphs (or their section's lead-in) name,
       and the answer does not, are added on one line with those citations (regulus.rag.iso_clauses); never guessed
   AF1 a section number a source states with its paragraph ("section 601(c) of the act") counts as supplied, so an
       answer's "§ 601" is not an invented figure (sealed 700.27-Q1 withheld over it)
   RS2 (off until measured) rescue: when the plain draft and its correction fail validation, a facts-first draft is
       tried once before the answer is quoted or withheld, and delivered only if it validates (a fallback chain; it
       never touches an answer that validated)
-  LS1 (off until measured) "what must X include / contain / show / record" about one requested 21 CFR section is
+  LS1 (on since 27 Oct release) "what must X include / contain / show / record" about one requested 21 CFR section is
       answered with the lead-in paragraph that introduces the matching list and every paragraph under it, verbatim
       (regulus.rag.list_answers)
   SY3 MoCRA thesaurus: "small brand / under $1 million / annual sales" -> 612 (small businesses), "also an OTC drug /
@@ -195,34 +195,34 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       or, naming none, ISO 13485 / the QMSR, is answered from that part's most relevant paragraphs: cross-encoder rank
       fused with shared two-word phrases, top 3 (regulus.rag.section_promotion.part_paragraphs). Dev device questions it
       handles: key paragraph among its picks 13 of 19 (the baseline read the whole part and missed the paragraph)
-  QM2 (off until measured) the former regulation's record types named in words - device master record, device history
+  QM2 (on since 27 Oct release) the former regulation's record types named in words - device master record, device history
       record, design history file, quality system record - are its former sections for QM1 (regulus.rag.qmsr.former_by_name)
   E2B (off until measured) an uncited duty sentence E2 would call strengthened stands when another supplied source states
       that duty itself with at least 40% of its words - E1's escape (regulus.rag.claim_validation.duty_stated)
-  LS2 (off until measured) "What does 21 CFR X require?" about a section whose own lead-in introduces its list (820.10
+  LS2 (on since 27 Oct release) "What does 21 CFR X require?" about a section whose own lead-in introduces its list (820.10
       "... must:" then (a)-(e)) is answered with LS1's whole list, verbatim (regulus.rag.list_answers)
   AR1 (off until measured) a figure the answer computes in plain sight ("2,000 pounds x $0.45 = $900") is supported when
       both operands are supplied figures and the arithmetic holds (regulus.rag.validation.verified_arithmetic)
   C3 (off until measured) a paragraph of the same section that names the cited paragraph ("unless an exemption pursuant
       to paragraph (b)") counts as cited for the condition checks, as C2 counts a parent or child
-  XR1 (off until measured) a requested section is fetched whole up to 400 rows (was 100), so the selector's relevance
+  XR1 (on since 27 Oct release) a requested section is fetched whole up to 400 rows (was 100), so the selector's relevance
       order - not the row limit - decides which of a long section's paragraphs fit (720.4(d)/(e); 27 sections exceed 100)
-  HC1 (off until measured) a promoted section whose heading names one topic of the question brings the same-subpart
+  HC1 (on since 27 Oct release) a promoted section whose heading names one topic of the question brings the same-subpart
       sibling whose heading names another (211.137 "Expiration dating" + 211.134 "Drug product inspection"), at most two
       (regulus.rag.section_promotion.sibling_companions)
-  HT1 (off until measured) a section repeated by heading and number in another part (213.192 / 211.192) is read as the
+  HT1 (on since 27 Oct release) a section repeated by heading and number in another part (213.192 / 211.192) is read as the
       larger, general part's unless the question names the specialised part's subject (213: medical gases)
-  HM1 (off until measured) a section of the promoted section's part whose heading's lead phrase the question contains
+  HM1 (on since 27 Oct release) a section of the promoted section's part whose heading's lead phrase the question contains
       word for word (two topic words or more) joins it: "use of approved components ... rejected components" -> 211.86,
       211.89 (regulus.rag.section_promotion.heading_matches)
-  WS1 (off until measured) an overview question whose subject is the promoted section's own heading ("What are the
+  WS1 (measured gain, held back from the 27 Oct release) an overview question whose subject is the promoted section's own heading ("What are the
       reserve sample requirements under Part 211?" -> 211.170) is answered with the whole section verbatim when it is at
       most 3,600 characters (regulus.rag.list_answers.compose_section)
-  SP3 (off until measured) in Part 111 a promoted section brings the rest of its subpart when the subpart is at most 8
+  SP3 (on since 27 Oct release) in Part 111 a promoted section brings the rest of its subpart when the subpart is at most 8
       sections and 4,500 characters (Subpart O complaints: 111.553 + 111.560 + 111.570), except for a list question
       (regulus.rag.section_promotion.small_subpart)
   HX1 (off until measured) up to 48 required paragraphs (was 24) under the unchanged character ceiling (111.260's list)
-  QC1 (off until measured) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
+  QC1 (on since 27 Oct release) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
@@ -237,9 +237,16 @@ from __future__ import annotations
 import os
 
 # every fix measured as a gain is on (27 Oct 2026: the UI ran the 26 Oct default A1..P1 while tests ran all of these);
-# SP2, SA1, ST1, FS2 stay off; RO1, V2, QX1, CQ1 join after their measurement
-DEFAULT = ("A1,A2,A3,A4,G1,S1,E1,C82,P1,Q1,FP1,RS1,QM1,D1,PO2,C2,Q2,PR2,ND1,"
-           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1,SY1,CT1,RO1,TK1,E1S,DF2,NL1,VB1,SY2,WC1,AF1,SY3")
+# SP2, SA1, ST1, FS2 stay off; RO1, V2, QX1, CQ1 join after their measurement.
+# Release 27 Oct evening: LS1, LS2, QM2, QC1, XR1, HC1, HT1, HM1, SP3 joined after blind-scored live checks
+# (devices +9, drug CGMP 7->14/15, supplements 2->5/15, cosmetics +4) and a replay gate over every recorded answer
+# (230 cosmetics, 30 devices: 0 PASS lost). Measured and left off: HX1 (S-018 lost), RS2, E2B, C3, AR1; DV1 pending.
+DEFAULT_BEFORE_27OCT_RELEASE = ("A1,A2,A3,A4,G1,S1,E1,C82,P1,Q1,FP1,RS1,QM1,D1,PO2,C2,Q2,PR2,ND1,"
+                                "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1,SY1,CT1,RO1,TK1,E1S,DF2,NL1,"
+                                "VB1,SY2,WC1,AF1,SY3")
+# WS1 and ISO1 measured as gains but held back from this release: they change the delivered-answer path that 25 tests
+# pin (WS1 answers fixture questions before the draft is validated; ISO1 appends after validation) - reconcile first
+DEFAULT = DEFAULT_BEFORE_27OCT_RELEASE + ",LS1,LS2,QM2,QC1,XR1,HC1,HT1,HM1,SP3"
 VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", DEFAULT).split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 

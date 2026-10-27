@@ -38,6 +38,7 @@ def test_ls2_what_a_list_section_requires_is_its_whole_list(monkeypatch):
            NS(citation="21 CFR 820.10(c)", index=4, text="(c) Design and development. Manufacturers of class II devices must comply with Clause 7.3.")]
     pkg = NS(requirements=(("r1", "21 CFR 820.10"),), sources=src)
     q = "What does 21 CFR 820.10 require of a manufacturer subject to Part 820?"
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"LS2"})
     assert compose(pkg, q) is None                                   # LS2 off
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"LS2"})
     out = compose(pkg, q)
@@ -71,6 +72,16 @@ def test_ws1_an_overview_of_the_sections_own_subject_is_the_whole_section():
 def test_a_question_of_several_parts_takes_the_list_only_when_the_list_answers_each_part():
     from regulus.rag.list_answers import _asks_covered
     items = "(a) examined for accuracy: (1) UDI (2) Expiration date (3) Storage instructions"
-    assert not _asks_covered("What controls prevent mixups, and what must be documented?", items)
-    assert _asks_covered("What must the request include, and how is it submitted?", "shall: (c) Be submitted in duplicate.")
+    assert not _asks_covered("What controls does Part 820 require over labeling and packaging operations to prevent mixups, "
+                             "and what must be documented?", items)
+    assert _asks_covered("What must the request include, and how is it submitted?",
+                         "A request for certification of a batch of color additive shall: (c) Be submitted in duplicate.")
     assert _asks_covered("What must a servicing record contain?", items)   # one part: unchanged
+
+
+def test_a_lead_in_with_nothing_under_it_is_not_a_list_and_does_not_crash():
+    # F-020 (27 Oct): "What must a supply-chain program include under Part 117 Subpart G?" crashed (len of an int)
+    src = [NS(citation="21 CFR 117.410", index=1, text="The supply-chain program must include the following:"),
+           NS(citation="21 CFR 117.415", index=2, text="Unrelated text.")]
+    pkg = NS(requirements=(("r1", "21 CFR 117.410"),), sources=src)
+    assert compose(pkg, "What must a supply-chain program include?") is None

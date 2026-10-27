@@ -115,8 +115,11 @@ def test_a_group_addressed_only_by_an_unverifiable_paraphrase_is_not_established
     assert completeness(d)["state"] == "not_established" and "211.25(a)" in completeness(d)["detail"]
 
 
-def test_a_requirement_off_the_questions_topic_is_not_demanded():
-    # complaint records: 820.35(b) servicing records are in the same section but not what was asked
+def test_a_requirement_off_the_questions_topic_is_not_demanded(monkeypatch):
+    # complaint records: 820.35(b) servicing records are in the same section but not what was asked. The model's answer
+    # is what is assessed here: LS1 would answer this list question verbatim (completeness "not_applicable")
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"LS1"})
     items = " ".join(f"{body(c)} [{i}]" for i, c in enumerate(
         ("21 CFR 820.35(a)", "21 CFR 820.35(a)(1)", "21 CFR 820.35(a)(2)", "21 CFR 820.35(a)(3)", "21 CFR 820.35(a)(4)",
          "21 CFR 820.35(a)(5)", "21 CFR 820.35(a)(6)", "21 CFR 820.35(a)(7)"), 1))
