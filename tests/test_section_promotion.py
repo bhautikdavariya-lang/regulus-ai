@@ -368,7 +368,7 @@ def test_every_row_of_a_definitions_paragraph_is_scored(monkeypatch):
             ("820.3", "(b)", "Definitions.", "Safety and Performance shall have the meaning of safety and effectiveness."),
             ("820.1", "(a)", "Scope.", "Finished devices will be safe and effective.")]
     pr = _part_promoter(monkeypatch, rows, {"Safety and P": 0.9, "Finished dev": 0.1})
-    assert pr.part_paragraphs("What meaning does Part 820 give to 'safety and performance'?", "820")[0] == "820.3(b)"
+    assert pr.part_paragraphs("What meaning does Part 820 give to 'safety and performance'?", "820")[0] == "820.3"   # short: whole
 
 
 def test_the_paragraph_sharing_the_most_phrases_is_kept_under_the_score_floor(monkeypatch):
@@ -377,4 +377,11 @@ def test_the_paragraph_sharing_the_most_phrases_is_kept_under_the_score_floor(mo
             ("820.45", "(a)", "Labeling.", "Labeling must be examined.")]
     pr = _part_promoter(monkeypatch, rows, {"ISO 13485 is": 0.6, "Design and d": 0.05})
     got = pr.part_paragraphs("Which devices must apply the design and development requirements?", "820")
-    assert got == ["820.10(c)", "820.7(b)"]   # phrase rank 1 and cross-encoder rank 2 fuse ahead
+    assert got == ["820.10", "820.7"]   # phrase rank 1 and cross-encoder rank 2 fuse ahead; short sections whole
+
+
+def test_a_paragraph_of_a_long_section_brings_its_top_level_family():
+    items = [("820.1(a)", "x" * 900), ("820.1(a)(1)", "x" * 300), ("820.1(a)(4)", "x" * 300), ("820.1(b)", "x" * 400),
+             ("820.7", "y" * 200), ("820.7(a)", "y" * 300), ("820.7(b)", "y" * 300)]
+    assert SectionPromoter.paragraph_families(["820.1(a)(4)", "820.7(b)"], items) == \
+        ["820.1(a)", "820.1(a)(1)", "820.1(a)(4)", "820.7"]

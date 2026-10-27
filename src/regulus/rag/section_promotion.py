@@ -181,6 +181,7 @@ DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
 DEFINITION_HOP_CHARS = 600
 DV1_TOP = 3           # DV1: paragraphs promoted for a question naming only a small part
 DV1_MIN_SCORE = 0.3
+DV1_WHOLE_SECTION_CHARS = 1500   # DV1: a section this short is supplied whole (820.7, 820.45)
 DV1_MAX_SECTIONS = 12  # a part this small is answered paragraph by paragraph
 _PHRASE_STOP = set("the and for with that this from such any are its which under part section".split())
 FC1_MAX_SECTIONS = 3   # FC1: a heading phrase this rare in Parts 70-71 names the subject a fee paragraph prices
@@ -1269,6 +1270,28 @@ class SectionPromoter:
             if (scores[i] >= DV1_MIN_SCORE or overlap[i] >= 2 or (overlap[i] and overlap[i] == top_overlap)) \
                     and items[i][0] not in out:
                 out.append(items[i][0])
+        return self.paragraph_families(out, items)
+
+    @staticmethod
+    def paragraph_families(picks: list[str], items: list[tuple[str, str]]) -> list[str]:
+        """Small-to-big: each picked paragraph widened to its top-level paragraph with every paragraph under it
+        (820.1(a)(4) -> 820.1(a), (a)(1)-(a)(4)), or to its whole section when the section is short (820.7: ISO 9000 in
+        (a) beside ISO 13485 in (b)) - matched on the paragraph, answered from its context. Device fix check: three
+        PASSes lost to a lone paragraph (M-001, M-004, M-010)."""
+        size: dict[str, int] = {}
+        for cite, text in items:
+            sec = re.match(r"\d+\.\d+[a-z]?", cite).group(0)
+            size[sec] = size.get(sec, 0) + len(text)
+        out: list[str] = []
+        for pick in picks:
+            sec = re.match(r"\d+\.\d+[a-z]?", pick).group(0)
+            top = re.match(r"\([a-z0-9]+\)", pick[len(sec):])
+            if size.get(sec, 0) <= DV1_WHOLE_SECTION_CHARS or top is None:
+                family = [sec]
+            else:
+                head = sec + top.group(0)
+                family = [c for c, _ in items if c == head or c.startswith(head + "(")]
+            out += [c for c in dict.fromkeys(family) if c not in out]
         return out
 
     def anchored(self, question: str, cfr: tuple[str, ...] = (), statute: tuple[str, ...] = ()) -> Promotion | None:
