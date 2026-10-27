@@ -125,6 +125,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       weakest sentence improves, else the unsupported sentences are removed when cited statements remain
   FR1 (off until measured) facts first (FaithfulRAG-style): the model lists what the sources state about the question,
       with source numbers and conditions, then answers from that list (one more generation)
+  FC1 a Part 70/71 section whose heading names a subject a 70.19 fee paragraph prices (a two-word phrase used in at
+      most 3 sections of the two parts) gets that paragraph as a companion: of all 40 sections, exactly 70.51 -> 70.19(l),
+      (m) and 70.55 -> 70.19(n), the fees their keys name. RO1 measured 27 Oct on the 50: +3 picks, -3 (the reranker
+      favours color listings for "exempt from certification" questions) - off; QX1 recovered nothing - off
   CQ1 conversational query rewriting (regulus.rag.conversation.rewrite_messages): the model rewrites a follow-up into
       a standalone question naming the anchored provision, or repeats it for a new subject; the word rules decide when
       the rewrite is unusable
@@ -139,7 +143,7 @@ import os
 # every fix measured as a gain is on (27 Oct 2026: the UI ran the 26 Oct default A1..P1 while tests ran all of these);
 # SP2, SA1, ST1, FS2 stay off; RO1, V2, QX1, CQ1 join after their measurement
 DEFAULT = ("A1,A2,A3,A4,G1,S1,E1,C82,P1,Q1,FP1,RS1,QM1,D1,PO2,C2,Q2,PR2,ND1,"
-           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1")
+           "DF1,EY1,MF1,E2,CM1,LV1,CS1,EX1,UR1,LC1,FU2,FU2B,FU2C,FU2D,SP1,FC1")
 VALIDATOR_PRECISION = frozenset(x.strip().upper() for x in os.environ.get("REGULUS_VALIDATOR_PRECISION", DEFAULT).split(",")
                                  if x.strip() and x.strip().lower() not in ("off", "none"))
 

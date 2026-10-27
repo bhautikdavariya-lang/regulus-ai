@@ -126,6 +126,7 @@ _DEFINES_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The\s+terms?\s+|An?\s+|The\s+)?(
                          r"(?:means?|is\s+(?:any|a|an|the)|refers?\s+to|applies\s+to)\b")
 DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
 DEFINITION_HOP_CHARS = 600
+FC1_MAX_SECTIONS = 3   # FC1: a heading phrase this rare in Parts 70-71 names the subject a fee paragraph prices
 DEFINITION_GENERIC_USES = 3
 _ACT_DEFINITION_RE = re.compile(r"\b(?:FD&C\s+Act|the\s+Act\b|MoCRA|Modernization|section\s+\d{3}\b|§\s*\d{3}\b|60[1-9]\b|61[0-4]\b|201\b)", re.I)
 _CLASSIFY_RE = re.compile(r"\b(?:classify|classifies|treat|treats|count\s+as|counts\s+as|in\s+fda['’]?s?\s+sense)\b")
@@ -946,9 +947,43 @@ class SectionPromoter:
                     and re.search(r"shall conform in identity and specifications to the requirements of §\s*74\.",
                                   self._section_text(section))):
                 out.append("82.5")   # only a conformity listing, which the C82 composer answers from these texts
+        out += [c for c in self.fee_companions(section) if c not in out]
         return list(dict.fromkeys(out))
 
     # -- decision ---------------------------------------------------------------
+    def fee_companions(self, section: str) -> list[str]:
+        """FC1 (27 Oct): the paragraphs of 21 CFR 70.19 (fees for color additive services) that price what a Part 70/71
+        section provides - a two-word subject of the section's heading that the fee paragraph names too, rare in Parts
+        70-71 (at most FC1_MAX_SECTIONS sections use it): 70.51 "Advisory committee ..." -> 70.19(l), (m); 70.55
+        "Request for scientific studies" -> 70.19(n). The keys of both name the fee; neither section cites 70.19."""
+        if not precision_fix("FC1") or not re.match(r"^7[01]\.", section) or section == "70.19":
+            return []
+        cache = self.__dict__.setdefault("_fc1", {})
+        if "df" not in cache:
+            stop = set("the of and or a an to in on for by with any be is are as such that this shall will may which "
+                       "under its from at not other all".split())
+
+            def stem(w):
+                return w[:-3] + "y" if w.endswith("ies") else (w[:-1] if w.endswith("s") and not w.endswith("ss") else w)
+
+            def bigrams(t):
+                ws = [stem(x) for x in re.findall(r"[a-z]+", (t or "").lower())]
+                return {(a, b) for a, b in zip(ws, ws[1:]) if a not in stop and b not in stop and len(a) > 3 and len(b) > 3}
+
+            texts: dict[str, str] = {}
+            for r in self.db.query("SELECT section_number s, body_text t FROM cfr_records WHERE removed_on IS NULL "
+                                   "AND part_number IN ('70', '71')"):
+                texts[r["s"]] = texts.get(r["s"], "") + " " + (r["t"] or "")
+            from collections import Counter
+
+            cache["df"] = Counter(b for t in texts.values() for b in bigrams(t))
+            cache["bigrams"] = bigrams
+            cache["fees"] = [(r["paragraph_path"], bigrams(r["body_text"])) for r in self.db.query(_SECTION_SQL, {"s": "70.19"})
+                             if r["paragraph_path"]]
+        heading = next((h for s2, h in zip(self.index.sections, self.index.headings) if s2 == section), "") or ""
+        subject = {b for b in cache["bigrams"](heading) if cache["df"][b] <= FC1_MAX_SECTIONS}
+        return [f"70.19{path}" for path, bg in cache["fees"] if subject & bg]
+
     def named_companions(self, sections: list[str], question: str) -> list[str]:
         """Companions of sections the question names itself ("What does 82.1327 require?" -> 82.1050, the subpart's
         certification rule; "under § 710.4" -> 700.3(j)): the same rules as for a promoted section, no picker."""
