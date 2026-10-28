@@ -619,7 +619,7 @@ def test_nav1_adds_the_subpart_sections_the_model_names_from_the_table_of_conten
                               Promotion(sections=("111.87",), companions=(), method="picker"))
     assert got == ["111.73", "111.90"]   # S-012; 112.3 is not in the table of contents
     toc = pr.generator.seen[-1]["content"]
-    assert "ALREADY CHOSEN: 21 CFR 111.87" in toc and "21 CFR 111.87 Who" not in toc.split("TABLE OF CONTENTS")[1]
+    assert "ALREADY CHOSEN: 21 CFR 111.87" in toc and "21 CFR 111.87 Who" not in toc.split("OTHER SECTIONS:")[1]
 
 
 def test_nav1_none_adds_nothing():
@@ -651,4 +651,25 @@ def test_nav2_lists_closest_sections_of_the_part_outside_the_subpart(monkeypatch
     monkeypatch.setattr(pr, "part_neighbours", lambda q, s, ex: [{"s": "111.610", "h": "What records must be kept?", "c": 800}])
     got = pr.navigate_subpart("What records must be kept under the Part 111 personnel subpart?",
                               Promotion(sections=("111.87",), companions=(), method="picker"))
-    assert got == ["111.610"] and "OTHER SECTIONS OF PART 111" in pr.generator.seen[-1]["content"]   # S-005
+    assert got == ["111.610"] and "21 CFR 111.610 What records must be kept?" in pr.generator.seen[-1]["content"]   # S-005
+
+
+def test_nav1_v2_reads_list_numbers_and_rejects_invented_sections():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db, pr.generator = _SubpartToc(), _Nav("2, 4")   # [1] 111.70 [2] 111.73 [3] 111.90 ... after 111.87 is chosen
+    got = pr.navigate_subpart("q", Promotion(sections=("111.87",), companions=(), method="picker"))
+    assert got == ["111.73"] or got == ["111.73", "111.90"] or got[0] == "111.73"
+    pr.generator = _Nav("211.150, 211.160")   # D-018: numbers outside the subpart are never taken
+    assert pr.navigate_subpart("q", Promotion(sections=("111.87",), companions=(), method="picker")) == []
+
+
+def test_nav1_v2_shows_each_sections_opening_words():
+    pr = SectionPromoter.__new__(SectionPromoter)
+
+    class Rows(_SubpartToc):
+        def query(self, sql, params=None):
+            return [dict(r, t="You must examine labeling materials for identity and conformity.") for r in super().query(sql, params)]
+
+    pr.db, pr.generator = Rows(), _Nav("none")
+    pr.navigate_subpart("q", Promotion(sections=("111.87",), companions=(), method="picker"))
+    assert "[1] 21 CFR 111.70 What specifications must you establish? - You must examine labeling" in pr.generator.seen[-1]["content"]

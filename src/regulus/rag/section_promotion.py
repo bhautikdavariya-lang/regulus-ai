@@ -200,13 +200,16 @@ PC1_MARGIN = float(os.environ.get("REGULUS_PC1_MARGIN", "0.10"))
 NAV1_MAX = int(os.environ.get("REGULUS_NAV1_MAX", "3"))
 NAV1_MAX_CHARS = int(os.environ.get("REGULUS_NAV1_MAX_CHARS", "6000"))
 AU2_MIN_SCORE = float(os.environ.get("REGULUS_AU2_MIN_SCORE", "0.5"))   # AU2: an implementing regulation joins a lone Act section
-NAV1_TOC_LIMIT = 30
+NAV1_TOC_LIMIT = 60     # v2: the whole subpart (H-007's key 1.1455 was line 40 of subpart S and was cut at 30)
+NAV1_SNIPPET = 120      # v2: each entry's opening text - a heading alone ("Materials examination and usage criteria",
+                        # D-016's labeling key 211.122) does not say what a section covers
 NAV2_LIMIT = 15   # NAV2: sections of the part outside the subpart, closest to the question, added to NAV1's contents
-NAV1_MAX_TOKENS = 40
+NAV1_MAX_TOKENS = 80   # v2: 40 cut F-012's reply mid-citation ("..., 21 CFR 117.")
 NAV1_SYSTEM = ("You help find the sections of a U.S. regulation that answer a question. One section has already been "
-               "chosen. From the table of contents of its subpart, name the OTHER sections whose subject the question "
-               "also needs, by number, comma-separated, most needed first, at most three. Name only sections the question "
-               "needs; if it needs none of them, reply none.")
+               "chosen. Below is a numbered list of the other sections of its subpart, each with its heading and opening "
+               "words. Reply with the list numbers of the sections the question ALSO needs - other steps, records, "
+               "definitions, exceptions or conditions it asks about - most needed first, at most three, like: 3, 7. Use "
+               "only numbers from the list. If it needs none of them, reply none.")
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high. Calibrated 28 Oct on
 # the 58 dev second picks of the SP2 live run (0.7: 12 gains kept, 5 -> 2 losses, 0 PASS lost); on the 21 sealed ones it
 # then blocked all 3 losses (2 of them PASS) and kept 3 of 5 gains
@@ -707,10 +710,11 @@ class SectionPromoter:
         sec = pr.sections[0].split("(")[0]
         try:
             rows = self.db.query(
-                "SELECT section_number s, min(section_heading) h, min(ordinal) o, sum(length(body_text)) c FROM cfr_records "
+                "SELECT section_number s, min(section_heading) h, min(ordinal) o, sum(length(body_text)) c, "
+                "left(string_agg(body_text, ' ' ORDER BY ordinal), %(n)s) t FROM cfr_records "
                 "WHERE removed_on IS NULL AND NOT is_reserved AND subpart_id = (SELECT subpart_id FROM cfr_records WHERE "
                 "section_number = %(s)s AND removed_on IS NULL AND subpart_id IS NOT NULL LIMIT 1) GROUP BY 1 ORDER BY 3",
-                {"s": sec})
+                {"s": sec, "n": NAV1_SNIPPET})
         except Exception:  # noqa: BLE001 - an aid only
             return []
         have = {c.split("(")[0] for c in pr.citations}
@@ -719,18 +723,21 @@ class SectionPromoter:
         if not toc and not more:
             return []
         chosen = next((r for r in rows if r["s"] == sec), None)
+        entries = toc + list(more)
+        snippet = lambda r: " ".join((r.get("t") or "").split())[:NAV1_SNIPPET]
         lines = [f"QUESTION: {question}", "", f"ALREADY CHOSEN: 21 CFR {sec} {(chosen or {}).get('h') or ''}".rstrip(), "",
-                 "TABLE OF CONTENTS OF ITS SUBPART:"] + [f"21 CFR {r['s']} {r['h'] or ''}".rstrip() for r in toc]
-        if more:
-            lines += ["", f"OTHER SECTIONS OF PART {sec.split('.')[0]} CLOSEST TO THE QUESTION:"] + \
-                     [f"21 CFR {r['s']} {r['h'] or ''}".rstrip() for r in more]
-            toc = toc + more
+                 "OTHER SECTIONS:"] + [f"[{i}] 21 CFR {r['s']} {r['h'] or ''} - {snippet(r)}".rstrip(" -")
+                                       for i, r in enumerate(entries, 1)]
+        toc = entries
         result = self.generator.generate([{"role": "system", "content": NAV1_SYSTEM}, {"role": "user", "content": "\n".join(lines)}],
                                          max_new_tokens=NAV1_MAX_TOKENS)
         reply = (getattr(result, "response", None) or "")
-        size = {r["s"]: int(r["c"] or 0) for r in toc}
+        # the subpart's sections (shown or not: the model may name one beyond the list) and the listed part sections
+        size = {r["s"]: int(r["c"] or 0) for r in list(rows) + list(toc) if r["s"] not in have}
+        named = [toc[int(n) - 1]["s"] for n in re.findall(r"(?<![\d.])(\d{1,2})(?![\d.])", reply) if 0 < int(n) <= len(toc)]
+        named += re.findall(r"\b(\d{1,4}\.\d{1,4}[a-z]?)\b", reply)
         out, chars = [], 0
-        for s in dict.fromkeys(re.findall(r"\b(\d{1,4}\.\d{1,4}[a-z]?)\b", reply)):
+        for s in dict.fromkeys(named):
             if s in size and len(out) < NAV1_MAX and chars + size[s] <= NAV1_MAX_CHARS:
                 out.append(s)
                 chars += size[s]
