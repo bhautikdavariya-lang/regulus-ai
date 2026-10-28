@@ -473,3 +473,24 @@ def test_ms1_keeps_the_character_cap_and_skips_what_is_already_promoted(monkeypa
 def test_ms1_never_touches_the_cosmetics_programme():
     pr = _ms1_promoter({"70.3": "a", "70.5": "b"}, {"70.5": 0.99})
     assert pr.reranked_companions("q", _cands("70.3", "70.5"), Promotion(sections=("70.3",), companions=(), method="picker")) == []
+
+
+class _SubpartRows:
+    def query(self, sql, params=None):
+        assert params == {"p": "117", "h": "Subpart B %"}
+        return [{"s": "117.10"}, {"s": "117.20"}]
+
+
+def test_sn1_a_named_subpart_keeps_its_own_candidates():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _SubpartRows()
+    cands = _cands("117.4", "117.10", "117.135", "117.20")
+    got = pr.named_subpart("What CGMP requirements apply to personnel under Part 117 Subpart B?", cands)
+    assert [c["section"] for c in got] == ["117.10", "117.20"]   # F-003: 117.4 (Subpart A) was promoted
+
+
+def test_sn1_leaves_questions_without_a_named_subpart_alone():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = None   # never queried
+    cands = _cands("117.4", "117.10")
+    assert pr.named_subpart("What does the subpart of Part 117 on personnel require?", cands) == cands

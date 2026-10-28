@@ -203,6 +203,8 @@ def _coordinated(question: str) -> list[tuple[set[str], set[str]]]:
 
 _GENERIC_HEADING = re.compile(r"^\s*(?:scope|definitions?|purpose|applicability|general(?:\s+provisions|\s+requirements)?|"
                               r"authority|severability|exemptions?)\.?\s*$", re.I)
+# SN1: "under Part 117 Subpart B" - the letter is matched in capitals only, so "subpart of" is never a subpart
+_NAMED_SUBPART = re.compile(r"\b[Pp]art\s+(\d{1,4})\b[^?.]{0,40}?\b[Ss]ubpart\s+([A-Z]{1,2})\b")
 # "What definitions apply to this part?" (111.3, 112.3, 117.3): a heading about its own part is never another part's twin
 _OWN_PART_HEADING = re.compile(r"\bthis (?:part|subpart)\b", re.I)
 
@@ -1226,6 +1228,8 @@ class SectionPromoter:
         if parts and len({x for x in lex if not x.isdigit()} - _PART_QUESTION_WORDS - COSMETIC_TERMS_GENERIC) < 2:
             return None   # "What does Part 720 require?" asks about the whole part: not narrowed to one section
         lex, cands = self.candidates(question, parts)
+        if cands and precision_fix("SN1"):
+            cands = self.named_subpart(question, cands)
         if cands and precision_fix("QX1"):
             cands = self.expanded_candidates(question, parts, cands)
         offer_statute = self.statute is not None and cosmetic_question(lex) and not parts
@@ -1236,6 +1240,22 @@ class SectionPromoter:
             general = tuple(x for x in sorted(self.statute.by_sec) if x not in STATUTE_OFFERED and x not in _ACT_NOT_OFFERED)
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question, general)[:GENERAL_ACT_OFFERED]
         return (lex, cands) if cands else None
+
+    def named_subpart(self, question: str, cands: list[dict]) -> list[dict]:
+        """SN1 (28 Oct): a question naming "Part N Subpart X" is answered from that subpart - its candidates only, in
+        their order, when it has any (a metadata filter). 300Q 27 Oct: "personnel under Part 117 Subpart B" promoted
+        117.4 (Subpart A) for 117.10, "qualified facility under Part 117 Subpart D" 117.5 for 117.201. A subpart with no
+        candidate, or one that does not exist (21 CFR 830 Subpart F, a trap question), leaves the candidates as they are."""
+        m = _NAMED_SUBPART.search(question or "")
+        if not m:
+            return cands
+        try:
+            rows = self.db.query("SELECT DISTINCT section_number s FROM cfr_records WHERE removed_on IS NULL AND part_number = "
+                                 "%(p)s AND parent_headings[3] LIKE %(h)s", {"p": m.group(1), "h": f"Subpart {m.group(2)} %"})
+        except Exception:  # noqa: BLE001 - an aid only
+            return cands
+        inside = {r["s"] for r in rows}
+        return [c for c in cands if c["section"] in inside] or cands
 
     def decomposed_sections(self, question: str, parts=None) -> list[str]:
         """QD1 (27 Oct): question decomposition for a multi-part question (Question Decomposition for RAG, ACL SRW 2025):
