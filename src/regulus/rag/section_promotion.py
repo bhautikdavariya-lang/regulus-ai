@@ -194,6 +194,8 @@ AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs s
 SP2O_MARGIN = float(os.environ.get("REGULUS_SP2O_MARGIN", "0.15"))   # SP2O: score lead that puts the second pick first
 AR2_MIN_SCORE = float(os.environ.get("REGULUS_AR2_MIN_SCORE", "0.7"))   # AR2: a section found for an absence claim
 AR2_LEXICAL = 5                                                            # AR2: lexical hits scored per topic
+PC1_MIN_SCORE = float(os.environ.get("REGULUS_PC1_MIN_SCORE", "0.95"))   # PC1: cross-encoder confidence that skips the picker
+PC1_MARGIN = float(os.environ.get("REGULUS_PC1_MARGIN", "0.10"))
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high. Calibrated 28 Oct on
 # the 58 dev second picks of the SP2 live run (0.7: 12 gains kept, 5 -> 2 losses, 0 PASS lost); on the 21 sealed ones it
 # then blocked all 3 losses (2 of them PASS) and kept 3 of 5 gains
@@ -618,6 +620,24 @@ class SectionPromoter:
             if len(out) >= limit:
                 break
         return out
+
+    def cascade_pick(self, question: str, cands: list[dict]) -> str | None:
+        """PC1 (28 Oct): a model cascade - when the cross-encoder is confident (its best regulation candidate at
+        PC1_MIN_SCORE or more and PC1_MARGIN ahead of the next), its two best regulation candidates are the picks and the
+        language-model picker is not called (14 s a question on the 27 Oct 300Q run); otherwise None and the picker
+        decides as before. The reply has the picker's form ("21 CFR 111.80, 21 CFR 111.83"), so SP2/SP2F/SP2O apply."""
+        kept = self.__dict__.get("_order_scores")
+        scores = kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands} else None
+        if not scores:
+            return None
+        cfr = sorted((c for c in cands if not c.get("statute")), key=lambda c: -scores.get(c["section"], (0.0, ""))[0])
+        if len(cfr) < 2:
+            return None
+        top, nxt = scores.get(cfr[0]["section"], (0.0, ""))[0], scores.get(cfr[1]["section"], (0.0, ""))[0]
+        if top < PC1_MIN_SCORE or top - nxt < PC1_MARGIN:
+            return None
+        self.__dict__["last_cascade"] = (cfr[0]["section"], round(top, 4), round(nxt, 4))
+        return f"21 CFR {cfr[0]['section']}, 21 CFR {cfr[1]['section']}"
 
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
@@ -1721,10 +1741,12 @@ class SectionPromoter:
                 return None   # no model to pick with (retrieval-only harness): nothing is promoted
             if RERANKER and precision_fix("RO1"):
                 cands = self.rerank_order(question, cands)
-            msgs = [{"role": "system", "content": PICKER_SYSTEM}, {"role": "user", "content": picker_prompt(question, cands)}]
-            kw = {"think_budget": PICKER_THINK_BUDGET} if getattr(self.generator, "thinking", False) is True else {}
-            result = self.generator.generate(msgs, max_new_tokens=PICKER_MAX_TOKENS, **kw)
-            raw = (getattr(result, "response", None) or "").strip()
+            raw = self.cascade_pick(question, cands) if precision_fix("PC1") else None
+            if raw is None:
+                msgs = [{"role": "system", "content": PICKER_SYSTEM}, {"role": "user", "content": picker_prompt(question, cands)}]
+                kw = {"think_budget": PICKER_THINK_BUDGET} if getattr(self.generator, "thinking", False) is True else {}
+                result = self.generator.generate(msgs, max_new_tokens=PICKER_MAX_TOKENS, **kw)
+                raw = (getattr(result, "response", None) or "").strip()
             picks = parse_picks(raw, len(cands), [c["section"] for c in cands])
             if not picks:
                 return None

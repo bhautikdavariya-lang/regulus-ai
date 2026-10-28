@@ -561,3 +561,14 @@ def test_ms2_scores_the_structure_with_the_candidates(monkeypatch):
     pr.__dict__["_text_cache"].update({"111.75": "x" * 500, "111.123": "y"})
     got = pr.reranked_companions("q", _cands("111.87", "111.10"), Promotion(sections=("111.87",), companions=(), method="picker"))
     assert got == ["111.75"]   # S-012: the structural neighbour above the floor; 111.123 and the candidate 111.10 below it
+
+
+def test_pc1_the_cascade_picks_only_when_the_reranker_is_confident(monkeypatch):
+    monkeypatch.setattr(SP, "PC1_MIN_SCORE", 0.95)
+    monkeypatch.setattr(SP, "PC1_MARGIN", 0.10)
+    cands = _cands("111.80", "111.83", "111.465")
+    pr = _ms1_promoter({"111.80": "", "111.83": "", "111.465": ""}, {"111.80": 0.98, "111.83": 0.70, "111.465": 0.5})
+    pr.__dict__["_order_scores"] = ("q", ("111.80", "111.83", "111.465"), {"111.80": (0.98, ""), "111.83": (0.70, ""), "111.465": (0.5, "")})
+    assert pr.cascade_pick("q", cands) == "21 CFR 111.80, 21 CFR 111.83"
+    pr.__dict__["_order_scores"] = ("q", ("111.80", "111.83", "111.465"), {"111.80": (0.98, ""), "111.83": (0.93, ""), "111.465": (0.5, "")})
+    assert pr.cascade_pick("q", cands) is None   # too close: the language-model picker decides
