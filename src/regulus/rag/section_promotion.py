@@ -189,6 +189,7 @@ HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading miss
 MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.5"))
 MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
+MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))   # MS2: structural neighbours scored per question
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high
 SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.5"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
@@ -518,6 +519,15 @@ class SectionPromoter:
                   else self.rerank_scores(question, cands))
         part, have = pr.sections[0].split(".")[0], set(pr.citations)
         pool = [c for c in cands if not c.get("statute") and c["part"] == part and c["section"] not in have]
+        if precision_fix("MS2"):
+            # MS2: the promoted section's structure joins the pool - its subpart's sections and the sections of its part
+            # it cites - scored by the same cross-encoder (300Q 27 Oct: of 148 answers lacking a key section, 66 had
+            # every missing section in a supplied section's subpart or cited by it)
+            extra = [{"section": s, "part": part} for s in self.structural_neighbours(pr.sections[0].split("(")[0])
+                     if s not in have and s not in {c["section"] for c in pool}]
+            if extra:
+                scores = {**scores, **self.rerank_scores(question, extra)}
+                pool += extra
         out, chars = [], 0
         for c in sorted(pool, key=lambda c: -scores.get(c["section"], (0.0, ""))[0]):
             if scores.get(c["section"], (0.0, ""))[0] < MS1_MIN_SCORE or len(out) >= MS1_MAX:
@@ -527,6 +537,26 @@ class SectionPromoter:
                 out.append(c["section"])
                 chars += n
         return out
+
+    def structural_neighbours(self, section: str, limit: int = MS2_POOL) -> list[str]:
+        """MS2: the sections of `section`'s subpart nearest to it, then the sections of its part it cites
+        (cfr_cross_references), at most `limit`."""
+        part = section.split(".")[0]
+        try:
+            sib = [r["s"] for r in self.db.query(
+                "SELECT section_number s, min(ordinal) o FROM cfr_records WHERE removed_on IS NULL AND NOT is_reserved AND "
+                "subpart_id = (SELECT subpart_id FROM cfr_records WHERE section_number = %(s)s AND removed_on IS NULL AND "
+                "subpart_id IS NOT NULL LIMIT 1) GROUP BY 1", {"s": section}) if r["s"] != section]
+            cited = []
+            for r in self.db.query(_XREF_SQL, {"s": section}):
+                m = re.match(r"^21 CFR (\d+)\.(\d+[a-z]?)", r["target_citation"] or "")
+                if m and m.group(1) == part and f"{m.group(1)}.{m.group(2)}" != section:
+                    cited.append(f"{m.group(1)}.{m.group(2)}")
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        num = lambda s: float(s.split(".")[1].rstrip("abcdefghijklmnopqrstuvwxyz") or 0)
+        sib.sort(key=lambda s: abs(num(s) - num(section)))
+        return list(dict.fromkeys(cited + sib))[:limit]
 
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW

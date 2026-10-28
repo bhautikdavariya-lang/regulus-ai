@@ -55,6 +55,9 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
       programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
       of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
+  MS2 (28 Oct, off until measured, needs MS1) MS1's pool also takes the promoted section's structure - its subpart's
+      nearest sections and the sections of its part it cites - scored by the same cross-encoder, same floor and cap
+      (regulus.rag.section_promotion.structural_neighbours): 66 of 148 answers lacking a key section had it there
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section

@@ -533,3 +533,31 @@ def test_dq1_ignores_questions_that_ask_no_meaning():
     pr = SectionPromoter.__new__(SectionPromoter)
     pr.db = _DefinitionRows()
     assert pr.asked_definitions("1.502", "What records must an importer keep?") == [] and pr.db.calls == 0
+
+
+class _StructureRows:
+    def query(self, sql, params=None):
+        if "subpart_id" in sql:
+            return [{"s": "111.70", "o": 1}, {"s": "111.73", "o": 2}, {"s": "111.75", "o": 3}, {"s": "111.95", "o": 9}]
+        return [{"target_citation": "21 CFR 111.123(b)"}, {"target_citation": "21 CFR 117.3"}]   # cited sections
+
+
+def test_ms2_structural_neighbours_are_cited_sections_of_the_part_then_nearest_siblings():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _StructureRows()
+    assert pr.structural_neighbours("111.73", limit=3) == ["111.123", "111.75", "111.70"]   # nearest first; 117.3 is another part
+
+
+def test_ms2_scores_the_structure_with_the_candidates(monkeypatch):
+    monkeypatch.setattr(SP, "MS1_MIN_SCORE", 0.5)
+    monkeypatch.setattr(SP, "MS1_MAX", 2)
+    monkeypatch.setattr(SP, "MS1_MAX_CHARS", 6000)
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"MS2"})
+    pr = _ms1_promoter({"111.87": "a", "111.10": "b"}, {"111.10": 0.1})
+    pr.db = _StructureRows()
+    monkeypatch.setattr(pr, "structural_neighbours", lambda s: ["111.75", "111.123"])
+    monkeypatch.setattr(pr, "rerank_scores", lambda q, cands: {"111.75": (0.9, ""), "111.123": (0.3, "")})
+    pr.__dict__["_text_cache"].update({"111.75": "x" * 500, "111.123": "y"})
+    got = pr.reranked_companions("q", _cands("111.87", "111.10"), Promotion(sections=("111.87",), companions=(), method="picker"))
+    assert got == ["111.75"]   # S-012: the structural neighbour above the floor; 111.123 and the candidate 111.10 below it
