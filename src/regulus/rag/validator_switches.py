@@ -66,6 +66,9 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  SP2O (28 Oct, off until measured) of the picker's two same-part picks, the one the cross-encoder rates at least
+      REGULUS_SP2O_MARGIN higher leads the promotion: SP2 live, Z-001 answered from the first pick 900.4 with the key
+      section 900.11 second
   SP2F (28 Oct, off until measured) SP2's second pick stands only when its cross-encoder score reaches
       REGULUS_SP2F_MIN_SCORE: SP2 live 28 Oct, the 3 losses in 29 changed answers were second picks outside the key
   SN1 (28 Oct, off until measured) a question naming "Part N Subpart X" is answered from that subpart's candidates

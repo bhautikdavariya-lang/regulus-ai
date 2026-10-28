@@ -191,6 +191,7 @@ MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
 MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))
 AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs scored by the cross-encoder per section   # MS2: structural neighbours scored per question
+SP2O_MARGIN = float(os.environ.get("REGULUS_SP2O_MARGIN", "0.15"))   # SP2O: score lead that puts the second pick first
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high
 SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.5"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
@@ -1740,6 +1741,18 @@ class SectionPromoter:
                 comps = [c for s in sec for c in self.companions(s, question, lex)]
                 pr = replace(pr, sections=tuple(sec), companions=tuple(dict.fromkeys(c for c in comps if c not in sec)))
             return replace(pr, notes=pr.notes + notes)
+        if second_cfr is not None and precision_fix("SP2O"):
+            # SP2O (28 Oct): the picker's two same-part picks led by the one the cross-encoder rates clearly higher - Z-001
+            # (SP2 live) picked 900.4 (accreditation bodies' duties) before 900.11 (facility certification), and the answer
+            # was written from the first; the reranker veto only acts on a far larger gap
+            kept = self.__dict__.get("_order_scores")
+            scores = (kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands}
+                      else self.rerank_scores(question, cands))
+            first, second = scores.get(picked_c["section"], (0.0, ""))[0], scores.get(second_cfr, (0.0, ""))[0]
+            swap = next((c for c in cands if c["section"] == second_cfr), None)
+            if swap is not None and second >= first + SP2O_MARGIN:
+                notes = notes + (f"second pick leads: {second_cfr} ({second:.2f}) over {picked_c['section']} ({first:.2f})",)
+                picked_c, second_cfr = swap, picked_c["section"]
         pr = self._cfr_promotion(self.siblings(picked_c, cands, lex), question, lex, cands, raw, other, self.mode, t0)
         scored = self.__dict__.get("last_rerank") if RERANKER and raw is not None else None
         if scored and picked_c["section"] in scored:
