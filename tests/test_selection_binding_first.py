@@ -134,3 +134,16 @@ def test_rr2_the_first_section_keeps_its_list_and_the_companions_share(monkeypat
     got = [e.evidence_id for e in S._per_section_order(first + c1 + c2, "q")]
     assert got[:3] == ["111.210(a)", "111.210(b)", "111.210(c)"]   # S-018: the list is never halved
     assert got[3:] == ["111.205(a)", "111.123(a)", "111.205(b)", "111.123(b)"]
+
+
+def test_ba1_a_block_is_charged_for_what_the_prompt_renders_not_the_url(monkeypatch):
+    from types import SimpleNamespace
+    from regulus.rag import selection as S
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(S, "render_source", lambda probe: "SOURCE 1\nCitation: 21 CFR 117.405(a)\nURL: " + "u" * 90 + "\nText:\nabc")
+    ev = SimpleNamespace(result=None)
+    monkeypatch.setattr(S, "ContextSource", lambda **kw: None)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"BA1"})
+    full = S._block_chars(ev, "abc", 1, False)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"BA1"})
+    assert full - S._block_chars(ev, "abc", 1, False) == len("URL: " + "u" * 90) + 1   # the URL line is not charged

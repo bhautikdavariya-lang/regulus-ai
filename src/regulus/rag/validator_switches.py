@@ -66,6 +66,8 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  BA1 (28 Oct, off until measured) the evidence budget is charged for what the prompt renders: no URL line (the grounded
+      prompt has none; every block was charged ~95 characters for it)
   CB1 (28 Oct, off until measured) the required-evidence hard ceiling is 15,000 characters for the GPU model (was 9,000,
       set for the 0.6B model on CPU); chosen companions were dropped as hard_ceiling_chars (F-020 117.405) - use with HX1
   AU2 (28 Oct, off until measured) an FD&C Act section promoted alone brings the best-scored regulation candidate from a

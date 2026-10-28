@@ -172,7 +172,16 @@ def _truncate(text: str, limit: int) -> tuple[str, bool]:
 def _block_chars(evidence: Evidence, text: str, index: int, truncated: bool) -> int:
     """Length of the rendered SOURCE block, what the budget is charged with."""
     probe = ContextSource(index=index, result=evidence.result, text=text, truncated=truncated)
-    return len(render_source(probe))
+    block = render_source(probe)
+    from regulus.rag.validator_switches import enabled as _switch
+
+    if _switch("BA1"):
+        # BA1 (28 Oct): the grounded prompt (generation.render_source) renders no URL line, but every block was charged
+        # for one (~95 characters of "URL: https://www.ecfr.gov/current/title-21/..." a paragraph) - with 24-40
+        # paragraphs, 2,000-4,000 characters of the ceiling spent on text the model never sees; chosen companions were
+        # dropped as hard_ceiling_chars (retrieval check 28 Oct: F-002 117.3, Z-005 1040.11)
+        block = "\n".join(line for line in block.split("\n") if not line.startswith("URL: "))
+    return len(block)
 
 
 def _match_keys(question: str) -> tuple[str, ...]:
