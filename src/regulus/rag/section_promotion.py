@@ -196,6 +196,15 @@ AR2_MIN_SCORE = float(os.environ.get("REGULUS_AR2_MIN_SCORE", "0.7"))   # AR2: a
 AR2_LEXICAL = 5                                                            # AR2: lexical hits scored per topic
 PC1_MIN_SCORE = float(os.environ.get("REGULUS_PC1_MIN_SCORE", "0.95"))   # PC1: cross-encoder confidence that skips the picker
 PC1_MARGIN = float(os.environ.get("REGULUS_PC1_MARGIN", "0.10"))
+# NAV1: table-of-contents navigation - the subpart's headings shown to the model, which names the further sections needed
+NAV1_MAX = int(os.environ.get("REGULUS_NAV1_MAX", "3"))
+NAV1_MAX_CHARS = int(os.environ.get("REGULUS_NAV1_MAX_CHARS", "6000"))
+NAV1_TOC_LIMIT = 30
+NAV1_MAX_TOKENS = 40
+NAV1_SYSTEM = ("You help find the sections of a U.S. regulation that answer a question. One section has already been "
+               "chosen. From the table of contents of its subpart, name the OTHER sections whose subject the question "
+               "also needs, by number, comma-separated, most needed first, at most three. Name only sections the question "
+               "needs; if it needs none of them, reply none.")
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high. Calibrated 28 Oct on
 # the 58 dev second picks of the SP2 live run (0.7: 12 gains kept, 5 -> 2 losses, 0 PASS lost); on the 21 sealed ones it
 # then blocked all 3 losses (2 of them PASS) and kept 3 of 5 gains
@@ -631,6 +640,41 @@ class SectionPromoter:
                 out.append(best.section)
             if len(out) >= limit:
                 break
+        return out
+
+    def navigate_subpart(self, question: str, pr: "Promotion") -> list[str]:
+        """NAV1 (28 Oct): hierarchical navigation - the promoted section's subpart, as a table of contents of its section
+        headings, is shown to the model, which names the other sections the question also needs (at most NAV1_MAX, within
+        NAV1_MAX_CHARS). The client's keys span a subpart where the question's words match one section: retrieval check
+        28 Oct, 15 of the 17 key sections missing in the first 33 dev questions were in the promoted section's subpart,
+        and the cross-encoder scored them low (111.73 at 0.03 for "a finished batch fails an identity specification")."""
+        if self.generator is None or getattr(self.generator, "retrieval_only", False):
+            return []
+        sec = pr.sections[0].split("(")[0]
+        try:
+            rows = self.db.query(
+                "SELECT section_number s, min(section_heading) h, min(ordinal) o, sum(length(body_text)) c FROM cfr_records "
+                "WHERE removed_on IS NULL AND NOT is_reserved AND subpart_id = (SELECT subpart_id FROM cfr_records WHERE "
+                "section_number = %(s)s AND removed_on IS NULL AND subpart_id IS NOT NULL LIMIT 1) GROUP BY 1 ORDER BY 3",
+                {"s": sec})
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        have = {c.split("(")[0] for c in pr.citations}
+        toc = [r for r in rows if r["s"] not in have][:NAV1_TOC_LIMIT]
+        if not toc:
+            return []
+        chosen = next((r for r in rows if r["s"] == sec), None)
+        lines = [f"QUESTION: {question}", "", f"ALREADY CHOSEN: 21 CFR {sec} {(chosen or {}).get('h') or ''}".rstrip(), "",
+                 "TABLE OF CONTENTS OF ITS SUBPART:"] + [f"21 CFR {r['s']} {r['h'] or ''}".rstrip() for r in toc]
+        result = self.generator.generate([{"role": "system", "content": NAV1_SYSTEM}, {"role": "user", "content": "\n".join(lines)}],
+                                         max_new_tokens=NAV1_MAX_TOKENS)
+        reply = (getattr(result, "response", None) or "")
+        size = {r["s"]: int(r["c"] or 0) for r in toc}
+        out, chars = [], 0
+        for s in dict.fromkeys(re.findall(r"\b(\d{1,4}\.\d{1,4}[a-z]?)\b", reply)):
+            if s in size and len(out) < NAV1_MAX and chars + size[s] <= NAV1_MAX_CHARS:
+                out.append(s)
+                chars += size[s]
         return out
 
     def cascade_pick(self, question: str, cands: list[dict]) -> str | None:
@@ -1829,6 +1873,10 @@ class SectionPromoter:
             extra = self.reranked_companions(question, cands, pr)
             if extra:
                 pr = replace(pr, companions=pr.companions + tuple(extra), notes=pr.notes + (f"reranked: {', '.join(extra)}",))
+        if precision_fix("NAV1") and raw is not None and pr.sections:
+            nav = self.navigate_subpart(question, pr)
+            if nav:
+                pr = replace(pr, companions=pr.companions + tuple(nav), notes=pr.notes + (f"navigated: {', '.join(nav)}",))
         if precision_fix("QD1") and multi_part(question):
             extra = [s2 for s2 in self.decomposed_sections(question, parts) if s2 not in pr.citations][:QD1_MAX]
             if extra:

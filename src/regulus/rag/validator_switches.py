@@ -66,6 +66,9 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  NAV1 (28 Oct, off until measured) table-of-contents navigation: the promoted section's subpart headings are shown to
+      the model, which names the other sections the question needs (at most 3, within 6,000 chars); 15 of 17 missing key
+      sections in the first 33 dev questions were in the promoted section's subpart, scored low by the cross-encoder
   LS3 (28 Oct, off until measured) LS2's whole-list answer also for "What X requirements apply ... under Part N?"
       when the promoted section's lead-in introduces its list (S-006 111.15 (a)-(k)); offline: fires on 6 of 300 (4 PF,
       2 PASS at risk: S-023, S-024)

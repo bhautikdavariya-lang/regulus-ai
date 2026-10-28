@@ -49,8 +49,9 @@ def key_sections(citation: str) -> list[str]:
 class ReplayGenerator:
     """The picker's recorded reply when its candidates match the recording; the answer call is captured, not run."""
 
-    def __init__(self, picker_system: str, live=None) -> None:
+    def __init__(self, picker_system: str, live=None, retrieval_systems: tuple[str, ...] = ()) -> None:
         self.picker_system = picker_system
+        self.retrieval_systems = retrieval_systems   # other retrieval-stage model calls (NAV1): always asked live
         self.live = live   # the MLX model (behind a reply cache) for a picker call the recording cannot replay
         self.recorded: dict | None = None
         self.picker = "none"
@@ -69,6 +70,8 @@ class ReplayGenerator:
                 text, self.picker = (self.live.generate(messages, max_new_tokens=max_new_tokens, **kw).response or ""), "live"
             else:
                 self.picker = "miss"
+        elif messages and messages[0].get("content") in self.retrieval_systems:
+            text = (self.live.generate(messages, max_new_tokens=max_new_tokens, **kw).response or "") if self.live else ""
         elif self.prompt_sha is None:
             self.prompt_sha = hashlib.sha256(json.dumps(messages, sort_keys=True).encode()).hexdigest()[:16]
         return GenerationResult(prompt="", response=text, prompt_tokens=0, generated_tokens=0, seconds=0.0, finished=True)
@@ -81,7 +84,7 @@ def cmd_run(a) -> None:
     sys.path.insert(0, str(KEYS))
     from keys import load_keys
     from regulus.evaluation import retrieval_baseline as RB
-    from regulus.rag.section_promotion import PICKER_SYSTEM
+    from regulus.rag.section_promotion import NAV1_SYSTEM, PICKER_SYSTEM
     from regulus.retrieval import Database
 
     keys = load_keys()
@@ -115,7 +118,7 @@ def cmd_run(a) -> None:
         from section_resolution_eval import CachedGenerator, _mlx_generator
 
         live = CachedGenerator(_mlx_generator(), Path(a.cache))
-    gen = ReplayGenerator(PICKER_SYSTEM, live)
+    gen = ReplayGenerator(PICKER_SYSTEM, live, (NAV1_SYSTEM,))
     pipe.generator = gen
     need = sorted({s for i in ids for s in key_sections(keys[i].get("citation") or "")})
     size = {r["section_number"]: int(r["n"]) for r in db.query(

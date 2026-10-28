@@ -593,3 +593,36 @@ def test_ms3_a_section_too_large_to_add_whole_brings_its_best_paragraph_family(m
     pr.db = _BigSectionRows()
     got = pr.reranked_companions("q", _cands("101.9", "101.12"), Promotion(sections=("101.9",), companions=(), method="picker"))
     assert got == ["101.12(b)"]   # L-008: 101.12 is 11,000 characters; its (b) family is 1,000
+
+
+class _SubpartToc:
+    def query(self, sql, params=None):
+        return [{"s": "111.70", "h": "What specifications must you establish?", "o": 1, "c": 3000},
+                {"s": "111.73", "h": "What is your responsibility to determine whether established specifications are met?", "o": 2, "c": 400},
+                {"s": "111.87", "h": "Who conducts a material review and makes a disposition decision?", "o": 5, "c": 300},
+                {"s": "111.90", "h": "What requirements apply to treatments, in-process adjustments, and reprocessing?", "o": 6, "c": 900}]
+
+
+class _Nav:
+    def __init__(self, reply):
+        self.reply, self.seen = reply, None
+
+    def generate(self, messages, max_new_tokens=None, **kw):
+        self.seen = messages
+        return GenerationResult(prompt="", response=self.reply, prompt_tokens=0, generated_tokens=3, seconds=0.1, finished=True)
+
+
+def test_nav1_adds_the_subpart_sections_the_model_names_from_the_table_of_contents():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db, pr.generator = _SubpartToc(), _Nav("21 CFR 111.73, 21 CFR 111.90, 21 CFR 112.3")
+    got = pr.navigate_subpart("A finished batch fails an identity specification. What does Part 111 require?",
+                              Promotion(sections=("111.87",), companions=(), method="picker"))
+    assert got == ["111.73", "111.90"]   # S-012; 112.3 is not in the table of contents
+    toc = pr.generator.seen[-1]["content"]
+    assert "ALREADY CHOSEN: 21 CFR 111.87" in toc and "21 CFR 111.87 Who" not in toc.split("TABLE OF CONTENTS")[1]
+
+
+def test_nav1_none_adds_nothing():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db, pr.generator = _SubpartToc(), _Nav("none")
+    assert pr.navigate_subpart("q", Promotion(sections=("111.87",), companions=(), method="picker")) == []
