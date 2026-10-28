@@ -46,13 +46,14 @@ def greedy(logprobs: mx.array) -> mx.array:
     return mx.argmax(logprobs, axis=-1)
 
 
-def main(model_path: str) -> None:
+def main(model_path: str, adapter_path: str | None = None) -> None:
     import importlib.metadata as md
 
     t0 = time.perf_counter()
-    model, _tokenizer = load(model_path)  # the tokenizer is never used for prompts
+    # a LoRA adapter (REGULUS_MLX_ADAPTER_PATH, evaluation only) is applied on top of the quantized weights
+    model, _tokenizer = (load(model_path, adapter_path=adapter_path) if adapter_path else load(model_path))  # the tokenizer is never used for prompts
     mx.eval(model.parameters())
-    send({"op": "ready", "model_path": model_path, "load_seconds": round(time.perf_counter() - t0, 3),
+    send({"op": "ready", "model_path": model_path, "adapter_path": adapter_path, "load_seconds": round(time.perf_counter() - t0, 3),
           "active_memory_mb": round(mx.get_active_memory() / MB, 1), "peak_memory_mb": round(mx.get_peak_memory() / MB, 1),
           "versions": {p: md.version(p) for p in ("mlx", "mlx-metal", "mlx-lm")}})
     while True:
@@ -115,4 +116,4 @@ def generate(model, req: dict) -> None:
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)

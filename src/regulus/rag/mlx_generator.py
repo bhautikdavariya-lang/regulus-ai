@@ -115,8 +115,16 @@ class MlxGenerator:
         eos_ids = list(eos) if isinstance(eos, list) else [eos]
         self.eos_ids = sorted({int(i) for i in eos_ids + [tokenizer.eos_token_id] if i is not None})
         env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
+        # REGULUS_MLX_ADAPTER_PATH (evaluation only, unset in production): a LoRA adapter directory applied on the weights;
+        # the model id carries the adapter's hash so its answers and cached replies never pass for the base model's
+        adapter = os.environ.get("REGULUS_MLX_ADAPTER_PATH", "").strip() or None
+        self.adapter_path = adapter
+        if adapter:
+            weights = Path(adapter) / "adapters.safetensors"
+            self.adapter_sha256 = hashlib.sha256(weights.read_bytes()).hexdigest()
+            self.model_id = f"{self.model_id}+adapter:{self.adapter_sha256[:12]}"
         try:
-            self.proc = subprocess.Popen([str(python), "-B", "-I", str(worker_script), str(self.model_path)],
+            self.proc = subprocess.Popen([str(python), "-B", "-I", str(worker_script), str(self.model_path)] + ([adapter] if adapter else []),
                                          stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1, env=env)
         except OSError as exc:
             raise MlxWorkerError(f"could not start the MLX worker with {python}: {exc}") from exc
@@ -277,6 +285,7 @@ class MlxGenerator:
         return {"model_id": self.model_id, "model_revision": self.revision, "backend": "mlx", "device": "mlx-gpu",
                 "dtype": f"mlx-{q['bits']}bit-g{q['group_size']}" if q else "mlx-unquantized",
                 "quantization": q, "mlx_model_path": str(self.model_path),
+                **({"adapter": {"path": self.adapter_path, "sha256": self.adapter_sha256}} if self.adapter_path else {}),
                 "runtime_versions": self.ready.get("versions"),
                 "chat_template": {"source": "model directory chat_template.jinja" if self.chat_template else "tokenizer",
                                   "sha256": hashlib.sha256((self.chat_template or getattr(self.tokenizer, "chat_template", "") or "")
