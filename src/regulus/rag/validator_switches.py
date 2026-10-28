@@ -55,6 +55,9 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
       programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
       of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
+  DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
+      section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
+      'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
   SP2F (28 Oct, off until measured) SP2's second pick stands only when its cross-encoder score reaches
       REGULUS_SP2F_MIN_SCORE: SP2 live 28 Oct, the 3 losses in 29 changed answers were second picks outside the key
   SN1 (28 Oct, off until measured) a question naming "Part N Subpart X" is answered from that subpart's candidates

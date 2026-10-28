@@ -508,3 +508,28 @@ def test_sn1_a_subpart_named_by_its_heading():
     cands = _cands("111.605", "111.140", "111.14", "111.12")
     q = "What records must be made and kept under the Part 111 personnel subpart?"   # S-005: SP2 added 111.140
     assert [c["section"] for c in pr.named_subpart(q, cands)] == ["111.14", "111.12", "111.605", "111.140"]   # boost
+
+
+class _DefinitionRows:
+    def __init__(self):
+        self.calls = 0
+
+    def query(self, sql, params=None):
+        self.calls += 1
+        if "subpart_id" in sql:
+            return [{"t": "importer", "s": "1.500", "p": "(2)"}, {"t": "food", "s": "1.500", "p": "(5)"},
+                    {"t": "importer", "s": "1.502", "p": ""}]
+        return []
+
+
+def test_dq1_supplies_the_asked_terms_definition_paragraph_from_the_subpart():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _DefinitionRows()
+    q = "Who must comply with the Foreign Supplier Verification Programs regulation and who is the 'importer'?"
+    assert pr.asked_definitions("1.502", q) == ["1.500(2)"]   # V-001; a pathless (whole-section) row is never added
+
+
+def test_dq1_ignores_questions_that_ask_no_meaning():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _DefinitionRows()
+    assert pr.asked_definitions("1.502", "What records must an importer keep?") == [] and pr.db.calls == 0

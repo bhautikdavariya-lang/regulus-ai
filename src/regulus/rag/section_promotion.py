@@ -205,6 +205,11 @@ def _coordinated(question: str) -> list[tuple[set[str], set[str]]]:
 
 _GENERIC_HEADING = re.compile(r"^\s*(?:scope|definitions?|purpose|applicability|general(?:\s+provisions|\s+requirements)?|"
                               r"authority|severability|exemptions?)\.?\s*$", re.I)
+# DQ1: a term the question asks the meaning of - quoted, or "who is the X", "what is a X", "definition / meaning of X"
+_ASKED_TERM = re.compile(
+    r"\b(?:who|what)\s+(?:is|are)\s+(?:an?|the)\s+['\"‘“]?([a-z][a-z -]{2,40}?)['\"’”]?(?=[?,.]|\s+(?:under|in|for|and)\b)"
+    r"|\b(?:definition|meaning) of (?:an?|the)?\s*['\"‘“]?([a-z][a-z -]{2,40}?)['\"’”]?(?=[?,.]|\s)"
+    r"|['‘\"“]([A-Za-z][A-Za-z -]{2,40})['’\"”]", re.I)
 # SN1: "under Part 117 Subpart B" - the letter is matched in capitals only, so "subpart of" is never a subpart
 _NAMED_SUBPART = re.compile(r"\b[Pp]art\s+(\d{1,4})\b[^?.]{0,40}?\b[Ss]ubpart\s+([A-Z]{1,2})\b")
 # ... or by its heading: "under the Part 111 personnel subpart" (Subpart B - Personnel)
@@ -961,6 +966,27 @@ class SectionPromoter:
                         break
         return out[:limit]
 
+    def asked_definitions(self, section: str, question: str, limit: int = 2) -> list[str]:
+        """DQ1 (28 Oct): the definition paragraph of a term the question asks about ("who is the 'importer'", "what is a
+        qualified facility") from the promoted section's own subpart, else its part (cfr_definitions) - one paragraph,
+        never a whole definitions section. 300Q 27 Oct: V-001 promoted 1.502 and never had 1.500's "Importer means";
+        F-002's "qualified facility" is 117.3. "Importer" is defined in five parts, so the subpart decides."""
+        terms = {t.strip().lower() for m in _ASKED_TERM.finditer(question or "") for t in m.groups() if t}
+        if not terms:
+            return []
+        sec = section.split("(")[0]
+        sql = ("SELECT lower(d.term) t, r.section_number s, r.paragraph_path p FROM cfr_definitions d JOIN cfr_records r ON "
+               "r.id = d.record_id WHERE r.removed_on IS NULL AND ")
+        try:
+            rows = self.db.query(sql + "r.subpart_id = (SELECT subpart_id FROM cfr_records WHERE section_number = %(s)s AND "
+                                 "removed_on IS NULL AND subpart_id IS NOT NULL LIMIT 1)", {"s": sec}) or \
+                   self.db.query(sql + "d.part_number = %(p)s", {"p": sec.split(".")[0]})
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        out = [r["s"] + r["p"] for r in rows if r["p"] and r["s"] != sec
+               and any(r["t"] == q or r["t"] == q.rstrip("s") for q in terms)]
+        return list(dict.fromkeys(out))[:limit]
+
     def _defined_terms(self, sec: str) -> list[tuple[str, list[str], str]]:
         """(paragraph, the term(s) it defines in their usual forms, text) for every paragraph of a definitions section;
         no forms for one that defines nothing ("For a material otherwise meeting the definition of ..."). Terms: "The
@@ -1679,6 +1705,8 @@ class SectionPromoter:
         if precision_fix("HM1") and picked:
             comps += [c for c in self.heading_matches(picked[0], question) if c not in comps and c not in picked]
         comps += [c for c in self.definition_companions(question) if c not in comps and c not in picked]
+        if precision_fix("DQ1") and picked:
+            comps += [c for c in self.asked_definitions(picked[0], question) if c not in comps and c not in picked]
         if "70.5(a)" in comps and any(_EYE_USE.search(self._section_text(s)) for s in picked):
             comps.remove("70.5(a)")   # one promoted listing provides for eye-area use (code review: Part 82 sibling)
         if (other is not None and other.get("statute") and precision_fix("CS1") and picked
