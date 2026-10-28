@@ -44,3 +44,10 @@ def test_ap1_scores_the_sections_most_similar_paragraphs(monkeypatch):
     pr = SectionPromoter.__new__(SectionPromoter)
     pr.db = None
     assert pr.act_paragraph_scores("What must a PMTA contain?", "910") == {"(b)(1)": 0.95, "(a)": 0.2}
+
+
+def test_au2_a_lone_act_section_brings_its_implementing_regulation(monkeypatch):
+    pr = SectionPromoter.__new__(SectionPromoter)
+    cands = [{"section": "101.4", "part": "101"}, {"section": "801.62", "part": "801"}, {"section": "403", "part": "FDCA", "statute": True}]
+    pr.__dict__["_order_scores"] = ("q", ("101.4", "801.62", "403"), {"101.4": (0.8, ""), "801.62": (0.9, "")})
+    assert pr.implementing_regulation("q", "403", cands) == "101.4"   # L-010: Part 101 is issued under 403; 801 is not

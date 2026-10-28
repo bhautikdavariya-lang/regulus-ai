@@ -66,6 +66,8 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  AU2 (28 Oct, off until measured) an FD&C Act section promoted alone brings the best-scored regulation candidate from a
+      part issued under it (its Authority line): L-010 Act 403(w) + 101.4, P-002 Act 513(i) + 807.100
   RR2 (28 Oct, off until measured) RR1 redesigned: the first section keeps all its paragraphs first; only the sections
       after it share the rest round-robin (RR1 halved S-018's 111.210 list)
   XP1 (28 Oct, off until measured) the provision in another part that the promoted provision cites (820.1(d) -> 10.30),

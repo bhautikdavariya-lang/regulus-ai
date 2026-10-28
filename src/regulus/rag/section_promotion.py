@@ -199,6 +199,7 @@ PC1_MARGIN = float(os.environ.get("REGULUS_PC1_MARGIN", "0.10"))
 # NAV1: table-of-contents navigation - the subpart's headings shown to the model, which names the further sections needed
 NAV1_MAX = int(os.environ.get("REGULUS_NAV1_MAX", "3"))
 NAV1_MAX_CHARS = int(os.environ.get("REGULUS_NAV1_MAX_CHARS", "6000"))
+AU2_MIN_SCORE = float(os.environ.get("REGULUS_AU2_MIN_SCORE", "0.5"))   # AU2: an implementing regulation joins a lone Act section
 NAV1_TOC_LIMIT = 30
 NAV2_LIMIT = 15   # NAV2: sections of the part outside the subpart, closest to the question, added to NAV1's contents
 NAV1_MAX_TOKENS = 40
@@ -648,6 +649,23 @@ class SectionPromoter:
             if len(out) >= limit:
                 break
         return out
+
+    def implementing_regulation(self, question: str, fdca: str, cands: list[dict]) -> str | None:
+        """AU2 (28 Oct): the reverse of AU1 - an FD&C Act section promoted alone brings the best regulation candidate from
+        a part issued under it (its Authority line), when the cross-encoder rates it at AU2_MIN_SCORE or more. Retrieval
+        check 28 Oct, client keys: L-010 got Act 403(w) without 101.4 (Part 101 is issued under 403), P-002 Act 513(i)
+        without 807.100 (Part 807 under 513)."""
+        from regulus.retrieval.part_authority import _parts
+
+        parts = {p for p, acts in _parts().items() if fdca in acts}
+        pool = [c for c in cands if not c.get("statute") and c["part"] in parts]
+        if not pool:
+            return None
+        kept = self.__dict__.get("_order_scores")
+        scores = (kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands}
+                  else self.rerank_scores(question, pool))
+        best = max(pool, key=lambda c: scores.get(c["section"], (0.0, ""))[0])
+        return best["section"] if scores.get(best["section"], (0.0, ""))[0] >= AU2_MIN_SCORE else None
 
     def cross_part_citations(self, pr: "Promotion", limit: int = 1) -> list[str]:
         """XP1 (28 Oct): the provisions in OTHER parts that the promoted provision itself cites (cfr_cross_references) -
@@ -1909,6 +1927,10 @@ class SectionPromoter:
                 sec = self.siblings(other, cands, lex)
                 comps = [c for s in sec for c in self.companions(s, question, lex)]
                 pr = replace(pr, sections=tuple(sec), companions=tuple(dict.fromkeys(c for c in comps if c not in sec)))
+            elif precision_fix("AU2") and not pr.sections:
+                implementing = self.implementing_regulation(question, picked_c["section"], cands)
+                if implementing:
+                    pr = replace(pr, sections=(implementing,), notes=pr.notes + (f"implementing regulation: {implementing}",))
             return replace(pr, notes=pr.notes + notes)
         if second_cfr is not None and precision_fix("SP2O"):
             # SP2O (28 Oct): the picker's two same-part picks led by the one the cross-encoder rates clearly higher - Z-001
