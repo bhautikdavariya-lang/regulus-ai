@@ -194,8 +194,10 @@ AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs s
 SP2O_MARGIN = float(os.environ.get("REGULUS_SP2O_MARGIN", "0.15"))   # SP2O: score lead that puts the second pick first
 AR2_MIN_SCORE = float(os.environ.get("REGULUS_AR2_MIN_SCORE", "0.5"))   # AR2: a section found for an absence claim
 AR2_LEXICAL = 5                                                            # AR2: lexical hits scored per topic
-# SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high
-SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.5"))
+# SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high. Calibrated 28 Oct on
+# the 58 dev second picks of the SP2 live run (0.7: 12 gains kept, 5 -> 2 losses, 0 PASS lost); on the 21 sealed ones it
+# then blocked all 3 losses (2 of them PASS) and kept 3 of 5 gains
+SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.7"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
 general regulation regulations section sections subpart provision provisions current practice manufacturing what which
 under their there these those other""".split())
