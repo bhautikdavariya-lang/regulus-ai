@@ -186,13 +186,13 @@ SP3_MAX_CHARS = 4500
 SP3_PARTS = ("111",)      # parts built of small requirement-and-records subparts (dietary supplement CGMP)
 HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading misses
 # MS1: further sections of the promoted section's part, best cross-encoder score first, above a floor, within a cap
-MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.5"))
+MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.7"))
 MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
 MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))
 AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs scored by the cross-encoder per section   # MS2: structural neighbours scored per question
 SP2O_MARGIN = float(os.environ.get("REGULUS_SP2O_MARGIN", "0.15"))   # SP2O: score lead that puts the second pick first
-AR2_MIN_SCORE = float(os.environ.get("REGULUS_AR2_MIN_SCORE", "0.5"))   # AR2: a section found for an absence claim
+AR2_MIN_SCORE = float(os.environ.get("REGULUS_AR2_MIN_SCORE", "0.7"))   # AR2: a section found for an absence claim
 AR2_LEXICAL = 5                                                            # AR2: lexical hits scored per topic
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high. Calibrated 28 Oct on
 # the 58 dev second picks of the SP2 live run (0.7: 12 gains kept, 5 -> 2 losses, 0 PASS lost); on the 21 sealed ones it
