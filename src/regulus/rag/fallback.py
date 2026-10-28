@@ -171,8 +171,8 @@ FOCUSED_QUOTE_PARAGRAPHS = 3
 FOCUSED_QUOTE_CHARS = 1600
 # FQ1 (28 Oct, off until measured): the quote takes more of the requested provision. 300Q 27 Oct: 27 focused quotes,
 # 0 PASS or PARTIALLY PASS - 22 scored "correct verbatim but omits (b)-(g)" (G-001: 201.1(a), (h)(1), (j) of 201.1)
-FQ1_PARAGRAPHS = 8
-FQ1_CHARS = 4000
+FQ1_PARAGRAPHS = 40   # the character budget binds, not the count: 111.15 is 39 short paragraphs (S-006 got 8 = 1,928 chars)
+FQ1_CHARS = 6500
 
 
 def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAPHS,
