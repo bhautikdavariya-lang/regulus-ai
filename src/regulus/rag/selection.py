@@ -49,6 +49,7 @@ REASON_DISCOVERY = "discovery"
 REASON_SUBORDINATE = "subordinate_of_requested"  # Stage 12: a child of a requested provision
 
 HX1_MAX_RESULTS = 48   # HX1: required paragraphs that may be supplied, under the unchanged character ceiling
+CB1_MAX_TOTAL_CHARS = int(__import__("os").environ.get("REGULUS_CB1_MAX_TOTAL_CHARS", "15000"))   # CB1: hard ceiling for the GPU model
 DROP_HARD_CEILING_CHARS = "hard_ceiling_chars"    # required evidence exceeded hard_max_total_chars
 DROP_HARD_CEILING_COUNT = "hard_ceiling_count"    # required evidence exceeded hard_max_results
 DROP_SOFT_BUDGET = "soft_budget"                  # optional evidence: max_total_chars exhausted
@@ -393,6 +394,14 @@ def select_evidence(
         from dataclasses import replace as _replace
 
         policy = _replace(policy, hard_max_results=HX1_MAX_RESULTS)
+    if _switch("CB1") and policy.hard_max_total_chars < CB1_MAX_TOTAL_CHARS:
+        # CB1 (28 Oct): the 9,000-character hard ceiling was set "to keep the prompt bounded on this CPU" (0.6B on CPU);
+        # Qwen3-4B runs on the GPU. Retrieval check 28 Oct: F-020's MS1 companion 117.405 was chosen and dropped as
+        # hard_ceiling_chars behind 117.410's 22 paragraphs, each block carrying ~220 characters of header (SOURCE, Corpus,
+        # Citation, Heading, URL) - half the budget was headers
+        from dataclasses import replace as _replace
+
+        policy = _replace(policy, hard_max_total_chars=CB1_MAX_TOTAL_CHARS)
     registry_order = [e for e in registry.evidence if is_required(e)]
     position = {e.evidence_id: i for i, e in enumerate(registry_order)}
     competition = _required_order(registry_order, question)
