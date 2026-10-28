@@ -205,6 +205,8 @@ _GENERIC_HEADING = re.compile(r"^\s*(?:scope|definitions?|purpose|applicability|
                               r"authority|severability|exemptions?)\.?\s*$", re.I)
 # SN1: "under Part 117 Subpart B" - the letter is matched in capitals only, so "subpart of" is never a subpart
 _NAMED_SUBPART = re.compile(r"\b[Pp]art\s+(\d{1,4})\b[^?.]{0,40}?\b[Ss]ubpart\s+([A-Z]{1,2})\b")
+# ... or by its heading: "under the Part 111 personnel subpart" (Subpart B - Personnel)
+_NAMED_SUBPART_HEADING = re.compile(r"\b[Pp]art\s+(\d{1,4})\s+([a-z][a-z-]+(?: [a-z][a-z-]+)?)\s+subpart\b")
 # "What definitions apply to this part?" (111.3, 112.3, 117.3): a heading about its own part is never another part's twin
 _OWN_PART_HEADING = re.compile(r"\bthis (?:part|subpart)\b", re.I)
 
@@ -1243,19 +1245,28 @@ class SectionPromoter:
 
     def named_subpart(self, question: str, cands: list[dict]) -> list[dict]:
         """SN1 (28 Oct): a question naming "Part N Subpart X" is answered from that subpart - its candidates only, in
-        their order, when it has any (a metadata filter). 300Q 27 Oct: "personnel under Part 117 Subpart B" promoted
+        their order, when it has any (a metadata filter); one named by its heading ("the Part 111 personnel subpart")
+        has its candidates moved first, the rest kept after them (a boost: S-005 also asks for Subpart P's records rules). 300Q 27 Oct: "personnel under Part 117 Subpart B" promoted
         117.4 (Subpart A) for 117.10, "qualified facility under Part 117 Subpart D" 117.5 for 117.201. A subpart with no
         candidate, or one that does not exist (21 CFR 830 Subpart F, a trap question), leaves the candidates as they are."""
         m = _NAMED_SUBPART.search(question or "")
-        if not m:
-            return cands
+        boost = m is None   # a subpart named by its heading goes first; one named by its letter is the only choice
+        if m:
+            where, args = "parent_headings[3] LIKE %(h)s", {"p": m.group(1), "h": f"Subpart {m.group(2)} %"}
+        else:
+            m = _NAMED_SUBPART_HEADING.search(question or "")
+            if not m:
+                return cands
+            where, args = "parent_headings[3] ~* %(h)s", {"p": m.group(1), "h": rf"^Subpart [A-Z]{{1,2}} - {m.group(2)}\M"}
         try:
             rows = self.db.query("SELECT DISTINCT section_number s FROM cfr_records WHERE removed_on IS NULL AND part_number = "
-                                 "%(p)s AND parent_headings[3] LIKE %(h)s", {"p": m.group(1), "h": f"Subpart {m.group(2)} %"})
+                                 f"%(p)s AND {where}", args)
         except Exception:  # noqa: BLE001 - an aid only
             return cands
         inside = {r["s"] for r in rows}
-        return [c for c in cands if c["section"] in inside] or cands
+        kept = [c for c in cands if c["section"] in inside]
+        # S-005 asks for the personnel subpart's records AND where the general recordkeeping rules are (Subpart P)
+        return (kept + [c for c in cands if c["section"] not in inside] if boost else kept) if kept else cands
 
     def decomposed_sections(self, question: str, parts=None) -> list[str]:
         """QD1 (27 Oct): question decomposition for a multi-part question (Question Decomposition for RAG, ACL SRW 2025):

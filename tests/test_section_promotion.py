@@ -494,3 +494,17 @@ def test_sn1_leaves_questions_without_a_named_subpart_alone():
     pr.db = None   # never queried
     cands = _cands("117.4", "117.10")
     assert pr.named_subpart("What does the subpart of Part 117 on personnel require?", cands) == cands
+
+
+class _HeadingSubpartRows:
+    def query(self, sql, params=None):
+        assert "~*" in sql and params["p"] == "111" and params["h"].endswith("- personnel\\M")
+        return [{"s": "111.12"}, {"s": "111.14"}]
+
+
+def test_sn1_a_subpart_named_by_its_heading():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _HeadingSubpartRows()
+    cands = _cands("111.605", "111.140", "111.14", "111.12")
+    q = "What records must be made and kept under the Part 111 personnel subpart?"   # S-005: SP2 added 111.140
+    assert [c["section"] for c in pr.named_subpart(q, cands)] == ["111.14", "111.12", "111.605", "111.140"]   # boost
