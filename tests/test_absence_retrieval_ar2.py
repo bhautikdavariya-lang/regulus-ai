@@ -55,3 +55,9 @@ def test_sections_the_promotion_adds_are_optional_labels():
     block = src[src.index("SP2: the picker's second regulation is further evidence"):][:900]
     for prefix in ("second pick: ", "reranked: ", "absence retrieval: "):
         assert prefix in block   # MS1/MS2 and AR2 additions never make an answer fail on their own (F-020)
+
+
+def test_an_added_section_without_supplied_text_is_not_a_requested_provision():
+    src = open(P.__file__).read()
+    block = src[src.index("an added section none of whose text reached the context"):][:900]
+    assert "rid not in package.satisfied_ids" in block and "missing_labels=tuple(m for m in package.missing_labels if m not in extra)" in block

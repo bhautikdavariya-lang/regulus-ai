@@ -1557,7 +1557,14 @@ class RagPipeline:
                      if n.startswith(("second pick: ", "reranked: ", "absence retrieval: "))]
             extra = frozenset(f"21 CFR {s.strip()}" for group in added for s in group.split(",") if s.strip())
             if extra:
-                package = replace(package, optional_labels=extra)
+                # an added section none of whose text reached the context is not a requested provision at all: listed,
+                # prompt rule 5 has the model announce it "not found in the available eCFR data" (28 Oct, client keys:
+                # L-003 PASS-level answer marked down for an "irrelevant 101.3 remark", S-020 "implies 111.255 and
+                # 111.140 were not found", G-010 "207.49: not found")
+                unsupplied = {rid for rid, canon in package.requirements if canon in extra and rid not in package.satisfied_ids}
+                package = replace(package, optional_labels=extra,
+                                  requirements=tuple(r for r in package.requirements if r[0] not in unsupplied),
+                                  missing_labels=tuple(m for m in package.missing_labels if m not in extra))
         normalization: dict[str, Any] | None = None
         # Failure observatory: the stages of the text, kept separately so that a
         # later step can never hide what an earlier one produced. None when no model call.
