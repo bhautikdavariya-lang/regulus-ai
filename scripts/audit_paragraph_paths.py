@@ -25,6 +25,9 @@ from pathlib import Path
 ID = re.compile(r'id="p-(\d+\.\d+[a-z]?)((?:\([^)"]+\))+)"')
 LEAD = re.compile(r"^\s*((?:\([a-zA-Z0-9]{1,6}\))+)")
 LABEL = re.compile(r"\(([^)]+)\)")
+# a paragraph designator: (a), (12), (iv), (B). Definitions sections are given ids by their terms ("1107.12(Premium
+# cigars)(2)", "1.328(Farm)(1)(iii)"): not paths, and their rows do not align, so such a section is left as it is
+DESIGNATOR = re.compile(r"^(?:\([a-zA-Z0-9]{1,6}\))+$")
 
 
 def ecfr_ids(html_dir: Path) -> dict[str, list[str]]:
@@ -65,11 +68,14 @@ def main(paths_tsv: str, html_dir: str, out_dir: str) -> None:
         rows[sec].append((int(ordn), rid, path, head))
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    fixes, unaligned, no_ids, checked = [], 0, 0, 0
+    fixes, unaligned, no_ids, checked, term_ids = [], 0, 0, 0, 0
     for sec, rs in sorted(rows.items()):
         rs.sort()
         if sec not in ids:
             no_ids += 1
+            continue
+        if not all(DESIGNATOR.match(i) for i in ids[sec]):
+            term_ids += 1
             continue
         for rid, old, new in align(rs, ids[sec]):
             checked += 1
@@ -91,7 +97,8 @@ def main(paths_tsv: str, html_dir: str, out_dir: str) -> None:
                      for _, r, o, n in fixes)
         f.write("COMMIT;\n")
     secs = collections.Counter(s for s, *_ in fixes)
-    print(f"sections with eCFR ids: {len(ids)} | sections without: {no_ids} | labelled rows checked: {checked} | "
+    print(f"sections with eCFR ids: {len(ids)} | sections without: {no_ids} | term-id sections left as they are: {term_ids} | "
+          f"labelled rows checked: {checked} | "
           f"unaligned: {unaligned} | corrections: {len(fixes)} in {len(secs)} sections")
     print("most affected:", secs.most_common(20))
 
