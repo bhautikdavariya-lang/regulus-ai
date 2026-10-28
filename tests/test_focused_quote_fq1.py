@@ -23,3 +23,9 @@ def test_fq1_quotes_more_of_the_requested_provision(monkeypatch):
     monkeypatch.setattr(validator_switches, "VALIDATOR_PRECISION", validator_switches.VALIDATOR_PRECISION | {"FQ1"})
     text = focused_quote(_package(6), "What must the label's name and place of business statement include?")
     assert text.count("verbatim):") == 6   # G-001 (27 Oct): 201.1(a), (h)(1), (j) quoted, (b)-(g) scored as omitted
+
+
+def test_ls3_reads_requirements_apply_questions_about_a_part():
+    from regulus.rag.list_answers import _ASKS_REQUIREMENTS_APPLY
+    assert _ASKS_REQUIREMENTS_APPLY.search("What sanitation requirements apply to the physical plant and grounds under Part 111?")
+    assert not _ASKS_REQUIREMENTS_APPLY.search("Do the sanitation requirements of Part 111 apply to a retailer?")

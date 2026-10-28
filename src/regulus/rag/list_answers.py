@@ -27,6 +27,10 @@ _ASKS_SECTION_REQUIRES = re.compile(r"\bwhat\s+(?:does|do)\s+(?:21\s+CFR\s+)?(?:
                                     # "What charge-in of components controls does Part 211 require?" (D-012): one
                                     # promoted section whose own lead-in introduces the list
                                     r"\bwhat\b[^?]{0,80}?\b(?:does|do)\s+(?:21\s+CFR\s+)?part\s+\d+\s+require\b", re.I)
+# LS3 (28 Oct): the other way the 300Q asks for a list section's requirements - "What sanitation requirements apply to
+# the physical plant and grounds under Part 111?" (S-006: 111.15's (a)-(k), the model's summary dropped toilet facilities
+# and plumbing). Offline on the 300: matches 14, fires on 6 (a promoted section whose lead-in introduces its list)
+_ASKS_REQUIREMENTS_APPLY = re.compile(r"\bwhat\b[^?]{0,80}?\brequirements?\s+(?:apply|applies)\b[^?]{0,80}?\b(?:21\s+CFR\s+)?part\s+\d+", re.I)
 _SECTION = re.compile(r"^21 CFR (\d+\.\d+[a-z]?)(\S*)$")
 _STOP = set("""a an the of and or to in on for by with any be is are as such that this shall will may which under its from at
 not other all must should what our we your their each following include includes contain contains state show list
@@ -59,7 +63,8 @@ def compose(package, question: str) -> str | None:
 
     from regulus.rag.validator_switches import enabled
 
-    whole_section = enabled("LS2") and bool(_ASKS_SECTION_REQUIRES.search(question or ""))
+    whole_section = (enabled("LS2") and bool(_ASKS_SECTION_REQUIRES.search(question or ""))) or \
+                    (enabled("LS3") and bool(_ASKS_REQUIREMENTS_APPLY.search(question or "")))
     if not (_ASKS_CONTENTS.search(question or "") or whole_section) or _ASKS_WHETHER.search(question or ""):
         return None
     sections = [m.group(1) for _, label in package.requirements if (m := _SECTION.match(label)) and not m.group(2)]
