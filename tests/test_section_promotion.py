@@ -574,3 +574,22 @@ def test_pc1_the_cascade_picks_only_when_the_reranker_is_confident(monkeypatch):
     assert parse_picks(raw, 3, ["111.80", "111.83", "111.465"]) == [1, 2]   # the marker never becomes a pick
     pr.__dict__["_order_scores"] = ("q", ("111.80", "111.83", "111.465"), {"111.80": (0.98, ""), "111.83": (0.93, ""), "111.465": (0.5, "")})
     assert pr.cascade_pick("q", cands) is None   # too close: the language-model picker decides
+
+
+class _BigSectionRows:
+    def query(self, sql, params=None):
+        return [{"paragraph_path": "(a)", "body_text": "a" * 5000}, {"paragraph_path": "(b)", "body_text": "b" * 700},
+                {"paragraph_path": "(b)(1)", "body_text": "c" * 300}, {"paragraph_path": "(c)", "body_text": "d" * 5000}]
+
+
+def test_ms3_a_section_too_large_to_add_whole_brings_its_best_paragraph_family(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"MS3"})
+    monkeypatch.setattr(SP, "MS1_MIN_SCORE", 0.7)
+    monkeypatch.setattr(SP, "MS1_MAX", 2)
+    monkeypatch.setattr(SP, "MS1_MAX_CHARS", 6000)
+    pr = _ms1_promoter({"101.9": "x", "101.12": "y" * 11000}, {})
+    pr.__dict__["_order_scores"] = ("q", ("101.9", "101.12"), {"101.12": (0.9, "(b)(1)")})
+    pr.db = _BigSectionRows()
+    got = pr.reranked_companions("q", _cands("101.9", "101.12"), Promotion(sections=("101.9",), companions=(), method="picker"))
+    assert got == ["101.12(b)"]   # L-008: 101.12 is 11,000 characters; its (b) family is 1,000

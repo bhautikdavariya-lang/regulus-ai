@@ -549,12 +549,24 @@ class SectionPromoter:
                 pool += extra
         out, chars = [], 0
         for c in sorted(pool, key=lambda c: -scores.get(c["section"], (0.0, ""))[0]):
-            if scores.get(c["section"], (0.0, ""))[0] < MS1_MIN_SCORE or len(out) >= MS1_MAX:
+            score, path = scores.get(c["section"], (0.0, ""))
+            if score < MS1_MIN_SCORE or len(out) >= MS1_MAX:
                 break
             n = len(self._section_text(c["section"]))
             if chars + n <= MS1_MAX_CHARS:
                 out.append(c["section"])
                 chars += n
+            elif precision_fix("MS3") and path:
+                # MS3 (28 Oct): small-to-big at paragraph level - a section too large to add whole brings the top-level
+                # paragraph its best-scored paragraph sits in, with everything under it (pf49b, client keys: L-008's
+                # key is 101.9(b) and 101.12, and 101.12 - the reference-amounts tables - never fit whole)
+                top = re.match(r"\([^)]+\)", path).group(0)
+                para = c["section"] + top
+                n = sum(len(r["body_text"] or "") for r in self.db.query(_SECTION_SQL, {"s": c["section"]})
+                        if (r["paragraph_path"] or "").startswith(top))
+                if 0 < n and chars + n <= MS1_MAX_CHARS:
+                    out.append(para)
+                    chars += n
         return out
 
     def structural_neighbours(self, section: str, limit: int = MS2_POOL) -> list[str]:
