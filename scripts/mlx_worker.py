@@ -27,6 +27,11 @@ import mlx.core as mx
 from mlx_lm import load
 from mlx_lm.generate import generate_step
 
+# PX1 prefix cache (28 Oct, evaluation switch REGULUS_MLX_PREFIX_CACHE=1, request field "prefix_cache"): the KV state of
+# the previous request is kept, trimmed to the prefix the next prompt shares with it (system prompt, rules, format), and
+# only the rest is processed - prefix reuse as llama.cpp and vLLM do it. Adopted only if answers are byte-identical.
+_PREFIX = {"cache": None, "ids": []}
+
 MB = 2**20
 
 
@@ -93,8 +98,29 @@ def generate(model, req: dict) -> None:
 
         processors = make_logits_processors(repetition_penalty=float(req["repetition_penalty"]),
                                             repetition_context_size=int(req.get("repetition_context_size", 64)))
-    for token, _ in generate_step(mx.array(ids), model, max_tokens=max_new, sampler=greedy, logits_processors=processors):
+    feed, kw = ids, {}
+    reused = 0
+    if req.get("prefix_cache"):
+        from mlx_lm.models import cache as C
+
+        if _PREFIX["cache"] is None:
+            _PREFIX["cache"], _PREFIX["ids"] = C.make_prompt_cache(model), []
+        prev = _PREFIX["ids"]
+        common = 0
+        for a, b in zip(prev, ids):
+            if a != b:
+                break
+            common += 1
+        common = min(common, len(ids) - 1)   # at least one prompt token is processed
+        if C.can_trim_prompt_cache(_PREFIX["cache"]) and common > 0:
+            C.trim_prompt_cache(_PREFIX["cache"], len(prev) - common)
+        else:
+            _PREFIX["cache"], common = C.make_prompt_cache(model), 0
+        feed, kw, reused = ids[common:], {"prompt_cache": _PREFIX["cache"]}, common
+    generated: list[int] = []
+    for token, _ in generate_step(mx.array(feed), model, max_tokens=max_new, sampler=greedy, logits_processors=processors, **kw):
         tok = int(token)
+        generated.append(tok)
         if first is None:
             first = time.perf_counter() - start
         pending.append(tok)
@@ -109,7 +135,11 @@ def generate(model, req: dict) -> None:
             if reply.get("op") == "stop":
                 stopped = reply.get("reason", "caller")
                 break
-    send({"op": "done", "token_ids": pending, "finished": finished, "stopped_by_caller": stopped,
+    if req.get("prefix_cache"):
+        # the cache now holds the prompt and every generated token but the last (never fed back)
+        held = (ids + generated)[:_PREFIX["cache"][0].offset] if _PREFIX["cache"] else []
+        _PREFIX["ids"] = held
+    send({"op": "done", "token_ids": pending, "finished": finished, "stopped_by_caller": stopped, "prefix_reused": reused,
           "prompt_tokens": len(ids), "generated_tokens": n, "seconds": round(time.perf_counter() - start, 3),
           "first_token_seconds": None if first is None else round(first, 3),
           "peak_memory_mb": round(mx.get_peak_memory() / MB, 1), "active_memory_mb": round(mx.get_active_memory() / MB, 1)})

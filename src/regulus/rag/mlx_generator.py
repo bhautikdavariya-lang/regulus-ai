@@ -268,6 +268,8 @@ class MlxGenerator:
         penalty = getattr(self.gen, "repetition_penalty", 1.0)
         if penalty not in (None, 1.0):
             request["repetition_penalty"] = float(penalty)
+        if os.environ.get("REGULUS_MLX_PREFIX_CACHE") == "1":
+            request["prefix_cache"] = True   # PX1 (evaluation): reuse the shared prompt prefix's KV state in the worker
         return request
 
     def render_prompt(self, messages: list[Message]) -> str:
