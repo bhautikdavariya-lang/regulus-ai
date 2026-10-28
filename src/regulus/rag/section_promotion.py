@@ -189,6 +189,8 @@ HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading miss
 MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.5"))
 MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
+# SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high
+SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.5"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
 general regulation regulations section sections subpart provision provisions current practice manufacturing what which
 under their there these those other""".split())
@@ -1626,6 +1628,14 @@ class SectionPromoter:
                         # picker's Act 612 as the "regulation" and promoted "21 CFR 612" (FDCA606-Q2 declined, 27 Oct)
                         other = None
             second_cfr = second_in_part(picks, cands, picked_c)
+            if second_cfr is not None and precision_fix("SP2F"):
+                # SP2F (28 Oct): SP2 live, 3 of 3 losses were second picks outside the key (F-004 117.135, S-005 111.140,
+                # V-001 1.505); a second pick the cross-encoder does not also rate is not added
+                kept = self.__dict__.get("_order_scores")
+                scores = (kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands}
+                          else self.rerank_scores(question, cands))
+                if scores and scores.get(second_cfr, (0.0, ""))[0] < SP2F_MIN_SCORE:
+                    notes, second_cfr = notes + (f"second pick {second_cfr} below the reranker floor",), None
         if picked_c.get("statute"):
             acts = [(picked_c["section"], "")] + ([(second_act["section"], "")] if second_act is not None
                                                   and second_act["section"] != picked_c["section"] else [])
