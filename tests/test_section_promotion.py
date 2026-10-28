@@ -401,6 +401,35 @@ def test_ht1_generic_headings_are_never_twins():
     assert not _GENERIC_HEADING.match("Production record review.")
 
 
+class _NoDB:
+    def query(self, *a, **k):
+        raise AssertionError("a question naming the section's own part needs no twin lookup")
+
+
+def test_ht1_keeps_a_section_of_the_part_the_question_names():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _NoDB()
+    q = "Where are the definitions that apply to 21 CFR Part 111 located?"   # S-002: was moved to 112.3
+    assert pr.general_twin("111.3", q) == "111.3"
+
+
+class _TwinRows:
+    def __init__(self, heading):
+        self.heading = heading
+
+    def query(self, *a, **k):
+        return [{"s": "111.3", "p": "111", "title": "Part 111 - Dietary Supplements", "h": self.heading, "n": 60},
+                {"s": "112.3", "p": "112", "title": "Part 112 - Produce", "h": self.heading, "n": 100}]
+
+
+def test_ht1_a_heading_about_its_own_part_is_never_a_twin():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _TwinRows("What definitions apply to this part?")
+    assert pr.general_twin("111.3", "Where are the dietary supplement definitions?") == "111.3"
+    pr.db = _TwinRows("Production record review.")
+    assert pr.general_twin("111.3", "What must production record review include?") == "112.3"   # a real twin still moves
+
+
 def test_hm1_a_heading_phrase_must_occur_word_for_word():
     from regulus.rag.section_promotion import heading_phrase_in
     q = "What are the requirements for use of approved components and for rejected components?"

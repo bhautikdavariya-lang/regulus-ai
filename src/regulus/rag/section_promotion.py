@@ -199,6 +199,8 @@ def _coordinated(question: str) -> list[tuple[set[str], set[str]]]:
 
 _GENERIC_HEADING = re.compile(r"^\s*(?:scope|definitions?|purpose|applicability|general(?:\s+provisions|\s+requirements)?|"
                               r"authority|severability|exemptions?)\.?\s*$", re.I)
+# "What definitions apply to this part?" (111.3, 112.3, 117.3): a heading about its own part is never another part's twin
+_OWN_PART_HEADING = re.compile(r"\bthis (?:part|subpart)\b", re.I)
 
 
 def heading_phrase_in(heading: str, question: str) -> bool:
@@ -1373,7 +1375,11 @@ class SectionPromoter:
     def general_twin(self, section: str, question: str) -> str:
         """HT1 (27 Oct): a section whose heading and number another part repeats (213.192 and 211.192, "Production record
         review") is read as the larger, general part's unless the question names the specialised part's subject: 213 is
-        CGMP for medical gases, and a question about production record review got its 213.192."""
+        CGMP for medical gases, and a question about production record review got its 213.192. A question naming the
+        section's own part keeps it (S-002, 28 Oct: "definitions that apply to 21 CFR Part 111" moved 111.3 to 112.3)."""
+        part = section.split(".")[0]
+        if re.search(rf"\b(?:part|21\s*C\.?F\.?R\.?)\s*{part}\b", question or "", re.I):
+            return section
         try:
             rows = self.db.query(
                 "SELECT t.section_number s, t.part_number p, t.parent_headings[2] title, t.section_heading h, (SELECT "
@@ -1384,7 +1390,7 @@ class SectionPromoter:
                 {"s": section})
         except Exception:  # noqa: BLE001
             return section
-        if len(rows) < 2 or _GENERIC_HEADING.match(rows[0]["h"] or ""):
+        if len(rows) < 2 or _GENERIC_HEADING.match(rows[0]["h"] or "") or _OWN_PART_HEADING.search(rows[0]["h"] or ""):
             return section   # "Scope." / "Definitions." repeat across unrelated parts: not twins
         mine = next((r for r in rows if r["s"] == section), None)
         best = max(rows, key=lambda r: (r["n"] or 0, -float(r["p"] or 0)))
