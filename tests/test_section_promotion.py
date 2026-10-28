@@ -569,6 +569,8 @@ def test_pc1_the_cascade_picks_only_when_the_reranker_is_confident(monkeypatch):
     cands = _cands("111.80", "111.83", "111.465")
     pr = _ms1_promoter({"111.80": "", "111.83": "", "111.465": ""}, {"111.80": 0.98, "111.83": 0.70, "111.465": 0.5})
     pr.__dict__["_order_scores"] = ("q", ("111.80", "111.83", "111.465"), {"111.80": (0.98, ""), "111.83": (0.70, ""), "111.465": (0.5, "")})
-    assert pr.cascade_pick("q", cands) == "21 CFR 111.80, 21 CFR 111.83"
+    raw = pr.cascade_pick("q", cands)
+    assert raw == "cascade 98-70: 21 CFR 111.80, 21 CFR 111.83"
+    assert parse_picks(raw, 3, ["111.80", "111.83", "111.465"]) == [1, 2]   # the marker never becomes a pick
     pr.__dict__["_order_scores"] = ("q", ("111.80", "111.83", "111.465"), {"111.80": (0.98, ""), "111.83": (0.93, ""), "111.465": (0.5, "")})
     assert pr.cascade_pick("q", cands) is None   # too close: the language-model picker decides

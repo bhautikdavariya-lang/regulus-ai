@@ -637,7 +637,9 @@ class SectionPromoter:
         if top < PC1_MIN_SCORE or top - nxt < PC1_MARGIN:
             return None
         self.__dict__["last_cascade"] = (cfr[0]["section"], round(top, 4), round(nxt, 4))
-        return f"21 CFR {cfr[0]['section']}, 21 CFR {cfr[1]['section']}"
+        # marked, so the recorded picker_output shows which questions the cascade decided ("cascade 98-70: ..."); the scores
+        # carry no decimal point, so the reply's parser can never read them as a CFR section
+        return f"cascade {round(top * 100)}-{round(nxt * 100)}: 21 CFR {cfr[0]['section']}, 21 CFR {cfr[1]['section']}"
 
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
