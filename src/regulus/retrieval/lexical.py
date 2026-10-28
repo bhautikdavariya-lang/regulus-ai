@@ -112,6 +112,21 @@ DEFAULT_FALLBACK_MAX_TERMS = 8
 GUIDANCE_CHUNKS_PER_DOCUMENT = 3
 CANDIDATE_MULTIPLIER = 2  # fetch a little more than top_k per method before merging
 GUIDANCE_CANDIDATE_MULTIPLIER = 10  # chunks ranked before the per-document cap is applied
+# AG1: a question that asks beyond the regulation's text - FDA's framework, guidance, expectations, recommendations
+_GUIDANCE_ASKED = re.compile(r"\b(?:guidance|framework|recommend\w*|expect\w*|best practice|FDA'?s? (?:view|position|thinking)"
+                             r"|interpret\w*|Barr\b|warning letters?|current thinking)", re.I)
+AG1_PER_DOCUMENT = 2   # AG1: anchored guidance passages per document
+_AG1_STOP = frozenset("""what which when where does must under part section subpart require requires required apply
+applies add adds about with from that this there their these those into have been will would should could cfr regulation
+regulations""".split())
+
+
+def ag1_or_query(question: str) -> str:
+    """AG1: the question's content words joined by "or" (websearch_to_tsquery reads it as an OR query): "hplc or assay or
+    result or specification or barr or decision or framework"."""
+    words = [w for w in re.findall(r"[A-Za-z][A-Za-z-]{2,}", question or "") if w.lower() not in _AG1_STOP]
+    return " or ".join(dict.fromkeys(w.lower() for w in words))
+AG1_LIMIT = 3
 # Stage 2: rows fetched per requirement by the exact leg. A paragraph lookup
 # returns the paragraph and its descendants; a section lookup returns every
 # row of the section. This is a resource guardrail, not a relevance cut.
@@ -534,6 +549,13 @@ class LexicalRetriever:
                 timed(f"{METHOD_FULL_TEXT}:ecfr", self.full_text_ecfr, ecfr_query, filters, text_limit)
             if guidance_on:
                 timed(f"{METHOD_FULL_TEXT}:fda_guidance", self.full_text_guidance, question, filters, text_limit)
+            if guidance_on and plan.requirements and _GUIDANCE_ASKED.search(question or ""):
+                from regulus.rag.validator_switches import enabled as _switch
+
+                anchored = sorted({r.reference.section for r in plan.requirements if r.reference.section})
+                if anchored and _switch("AG1"):
+                    timed(f"{METHOD_FULL_TEXT_OR}:anchored_guidance", self.anchored_guidance, anchored, ag1_or_query(question),
+                          filters, AG1_LIMIT)
 
         # 4. broad methods: per unresolved requirement only, on that identifier.
         # Skipped when the requirement's parent paragraph was found: the section
@@ -987,6 +1009,17 @@ class LexicalRetriever:
             },
         )
         return [self._guidance_result(row, METHOD_FULL_TEXT, full_text_score(row["rank"]), {"ts_rank_cd": float(row["rank"])}) for row in rows]
+
+    def anchored_guidance(self, sections: list[str], or_query: str, filters: Filters, limit: int) -> list[RetrievalResult]:
+        """AG1 (28 Oct): passages of the guidance anchored to the requested sections (211.192 -> "Investigating OOS Test
+        Results"), ranked by any of the question's words - the full-text leg needs all of them in one chunk, and a long
+        question ("An HPLC assay result is out of specification ... what does the Barr decision framework add?") matched
+        none (300Q D-023, client key: the OOS guidance's Phase I/II framework)."""
+        rows = self.db.query(sql.GUIDANCE_ANCHORED, {**self._guidance_filter_params(filters), "sections": sections,
+                                                      "query": or_query, "per_document": AG1_PER_DOCUMENT, "limit": limit})
+        return [self._guidance_result(row, METHOD_FULL_TEXT_OR, full_text_score(row["rank"]), {"ts_rank_cd": float(row["rank"]),
+                                                                                               "anchored_guidance": True})
+                for row in rows]
 
     def full_text_or_ecfr(self, or_query: str, filters: Filters, limit: int) -> list[RetrievalResult]:
         """Same parameterised statement and index as full_text_ecfr; the query

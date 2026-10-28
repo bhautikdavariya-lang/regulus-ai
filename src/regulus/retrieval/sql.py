@@ -238,6 +238,29 @@ ORDER BY rank DESC, source_url, ordinal
 LIMIT %(limit)s
 """
 
+# AG1 anchored guidance: the chunks of the guidance documents anchored to the requested sections
+# (fda_guidance_anchors), ranked by an OR query of the question's words, at most per_document per document.
+GUIDANCE_ANCHORED = f"""
+SELECT * FROM (
+    SELECT candidates.*,
+           ROW_NUMBER() OVER (PARTITION BY guidance_id ORDER BY rank DESC, ordinal) AS rn
+    FROM (
+        SELECT DISTINCT ON (c.id) {_GUIDANCE_COLUMNS}, c.guidance_id,
+               ts_rank_cd(c.search_vector, websearch_to_tsquery('english', %(query)s), 1) AS rank
+        FROM fda_guidance_chunks c
+        JOIN fda_guidance g ON g.id = c.guidance_id
+        JOIN fda_guidance_anchors a ON a.guidance_id = g.id
+        WHERE a.section = ANY(%(sections)s)
+          AND c.search_vector @@ websearch_to_tsquery('english', %(query)s)
+          {_GUIDANCE_FILTERS}
+        ORDER BY c.id
+    ) candidates
+) ranked
+WHERE rn <= %(per_document)s
+ORDER BY rank DESC, source_url, ordinal
+LIMIT %(limit)s
+"""
+
 # Exact docket lookup: the opening chunks of the document(s) with that docket.
 GUIDANCE_EXACT_DOCKET = f"""
 SELECT {_GUIDANCE_COLUMNS}

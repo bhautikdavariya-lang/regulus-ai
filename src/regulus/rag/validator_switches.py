@@ -66,6 +66,9 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  AG1 (28 Oct, off until measured) anchored guidance: a question asking beyond the regulation (framework, guidance,
+      recommend, expect, Barr ...) also gets the passages of the guidance anchored to its requested sections, ranked by an
+      OR query of its words (D-023: the OOS guidance is anchored to 211.192; the all-words guidance search found nothing)
   MS3 (28 Oct, off until measured, with MS1) small-to-big at paragraph level: a section MS1 would add but cannot fit
       whole brings the top-level paragraph family of its best-scored paragraph (L-008: 101.12's tables never fit whole)
   PC1 (28 Oct, off until measured) model cascade: when the cross-encoder's best regulation candidate scores at least
