@@ -222,6 +222,25 @@ class RagConfig:
         }
 
 
+# AR2: what a draft says the provisions do not specify ("The retention period ... is not specified in the available
+# sources", "The provisions do not specify renewal requirements")
+_ABSENCE = [re.compile(r"\b(?:provisions?|sources?|regulations?|text|section|part)\s+(?:do|does)\s+not\s+(?:specify|state|provide|"
+                       r"address|establish|include)\s+(?P<t>[^.;:\n]{3,90})", re.I),
+            re.compile(r"(?P<t>[A-Za-z][^.;:\n]{3,90}?)\s+(?:is|are)\s+not\s+(?:specified|stated|addressed|provided|established)\b", re.I)]
+
+
+def absence_topics(text: str, limit: int = 2) -> list[str]:
+    """AR2: the topics a draft says the supplied provisions do not specify, at most `limit`."""
+    out: list[str] = []
+    for rx in _ABSENCE:
+        for m in rx.finditer(text or ""):
+            topic = re.sub(r"^(?:the|any|a|an)\s+|\s+(?:in|within|by) the (?:available|supplied|provided|retrieved)\b.*$", "",
+                           m.group("t").strip(), flags=re.I)
+            if len(topic.split()) >= 2 and topic.lower() not in (x.lower() for x in out):
+                out.append(topic)
+    return out[:limit]
+
+
 @dataclass
 class RagAnswer:
     question: str
@@ -1290,6 +1309,40 @@ class RagPipeline:
         return replace(widened, requirements=reqs, kind=_plan_kind(widened.query_type, reqs, widened.scan))
 
     def answer(self, question: str, on_event=None, context=None) -> RagAnswer:
+        """Answer a question (see _answer_once). AR2: a validated draft that says the provisions do not specify
+        something the question asks gets one more pass with the section of the promoted part that holds it."""
+        first = self._answer_once(question, on_event=on_event, context=context)
+        if not precision_fix("AR2") or context is not None:
+            return first
+        try:
+            topics = absence_topics(first.answer)
+            promo = (first.metadata or {}).get("section_promotion") or {}
+            promoter = self.__dict__.get("_promoter")
+            if not topics or not promo.get("sections") or promoter is None:
+                return first
+            from regulus.rag.section_promotion import Promotion
+
+            prev = Promotion(sections=tuple(promo["sections"]), companions=tuple(promo.get("companions") or ()), method="")
+            extra = promoter.absence_sections(question, topics, prev)
+            if not extra:
+                return first
+            self.__dict__["_ar2_extra"] = tuple(extra)
+            try:
+                second = self._answer_once(question, on_event=None, context=None)
+            finally:
+                self.__dict__.pop("_ar2_extra", None)
+            ok = ((second.metadata or {}).get("validation") or {}).get("final", {}).get("ok")
+            if ok and len(absence_topics(second.answer)) < len(topics) and \
+                    (second.metadata or {}).get("fallback_type") == (first.metadata or {}).get("fallback_type"):
+                second.metadata["absence_retrieval"] = {"topics": topics, "added": list(extra), "kept": True}
+                return second
+            first.metadata["absence_retrieval"] = {"topics": topics, "added": list(extra), "kept": False}
+            return first
+        except Exception as exc:  # noqa: BLE001 - an aid: the first answer stands
+            (first.metadata or {})["absence_retrieval"] = {"error": f"{type(exc).__name__}: {exc}"[:200]}
+            return first
+
+    def _answer_once(self, question: str, on_event=None, context=None) -> RagAnswer:
         """Answer a question. `on_event(kind, data)`, when given, is told about
         progress as it happens - "context" (the sources selected), "generation_started",
         "delta" (draft text of the one generation, as produced), "generation_finished" -
@@ -1366,6 +1419,11 @@ class RagPipeline:
                              if anchored and allowed == "any" else None)
                 if promotion is None:
                     promotion = promoter.resolve(question, parts=parts, named_only=allowed == "named_statute")
+                extra = self.__dict__.get("_ar2_extra")
+                if promotion is not None and extra:
+                    add = tuple(s for s in extra if s not in promotion.citations)
+                    promotion = replace(promotion, companions=promotion.companions + add,
+                                        notes=promotion.notes + (f"absence retrieval: {', '.join(add)}",))
             except Exception as exc:  # noqa: BLE001 - promotion is an aid: on any failure the question is answered as before
                 promotion = None
                 promotion_error = f"{type(exc).__name__}: {exc}"[:300]

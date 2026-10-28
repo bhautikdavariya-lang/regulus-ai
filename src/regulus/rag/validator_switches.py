@@ -66,6 +66,10 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  AR2 (28 Oct, off until measured) active retrieval: a draft that says the provisions do not specify something gets one
+      more pass with the section of the promoted part that holds it (lexical rank in the part, cross-encoder at
+      REGULUS_AR2_MIN_SCORE); the second answer is kept only if it validates, on the same answer path, with fewer such
+      claims. 300Q: 47 model answers made one, 23% PASS+PP vs 43%; in 29 of the 37 that failed a key section was absent
   SP2O (28 Oct, off until measured) of the picker's two same-part picks, the one the cross-encoder rates at least
       REGULUS_SP2O_MARGIN higher leads the promotion: SP2 live, Z-001 answered from the first pick 900.4 with the key
       section 900.11 second

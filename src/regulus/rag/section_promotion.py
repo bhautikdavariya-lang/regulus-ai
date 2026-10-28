@@ -192,6 +192,8 @@ MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
 MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))
 AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs scored by the cross-encoder per section   # MS2: structural neighbours scored per question
 SP2O_MARGIN = float(os.environ.get("REGULUS_SP2O_MARGIN", "0.15"))   # SP2O: score lead that puts the second pick first
+AR2_MIN_SCORE = float(os.environ.get("REGULUS_AR2_MIN_SCORE", "0.5"))   # AR2: a section found for an absence claim
+AR2_LEXICAL = 5                                                            # AR2: lexical hits scored per topic
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high
 SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.5"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
@@ -588,6 +590,32 @@ class SectionPromoter:
         label = f"FD&C Act § {fdca}"
         scores = rr.score(question, [f"{label} {pd.text(para)}" for para, _ in top])
         return {para.path: float(s) for (para, _), s in zip(top, scores)}
+
+    def absence_sections(self, question: str, topics: list[str], promotion: "Promotion", limit: int = 2) -> list[str]:
+        """AR2 (28 Oct): sections of the promoted section's part that hold what a draft said the provisions do not
+        specify - each topic ranked lexically inside the part, the best AR2_LEXICAL scored by the cross-encoder against
+        the question and the topic, kept at AR2_MIN_SCORE or more. Active retrieval: the draft's "is not specified" is
+        read as a missing passage (300Q 27 Oct: 47 model answers said so, 23% PASS+PP vs 43%; in 29 of the 37 that
+        failed, a key section was not in the prompt - H-007 'retention ... is not specified', 1.1455 holds it)."""
+        if not promotion.sections:
+            return []
+        part = promotion.sections[0].split(".")[0]
+        have = {c.split("(")[0] for c in promotion.citations}
+        out: list[str] = []
+        for topic in topics:
+            lex = SectionIndex.question_lexemes(self.db, topic)
+            ranked = [r for r in self.index.rank(lex, limit=200) if r.part == part and r.section not in have
+                      and r.section not in out][:AR2_LEXICAL]
+            if not ranked:
+                continue
+            scores = self.rerank_scores(f"{question} {topic}", [{"section": r.section, "part": r.part, "subpart": r.subpart}
+                                                                for r in ranked])
+            best = max(ranked, key=lambda r: scores.get(r.section, (0.0, ""))[0])
+            if scores.get(best.section, (0.0, ""))[0] >= AR2_MIN_SCORE:
+                out.append(best.section)
+            if len(out) >= limit:
+                break
+        return out
 
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
