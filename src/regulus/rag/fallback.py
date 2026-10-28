@@ -169,6 +169,10 @@ FOCUSED_QUOTE_TAIL = ("This is the provision's own text, not an application of i
                       "be verified sentence by sentence against the regulation text.")
 FOCUSED_QUOTE_PARAGRAPHS = 3
 FOCUSED_QUOTE_CHARS = 1600
+# FQ1 (28 Oct, off until measured): the quote takes more of the requested provision. 300Q 27 Oct: 27 focused quotes,
+# 0 PASS or PARTIALLY PASS - 22 scored "correct verbatim but omits (b)-(g)" (G-001: 201.1(a), (h)(1), (j) of 201.1)
+FQ1_PARAGRAPHS = 8
+FQ1_CHARS = 4000
 
 
 def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAPHS,
@@ -182,6 +186,10 @@ def focused_quote(package, question: str, *, limit: int = FOCUSED_QUOTE_PARAGRAP
     if package is None:
         return None
     from regulus.rag.quote_selection import rank
+    from regulus.rag.validator_switches import enabled
+
+    if enabled("FQ1"):
+        limit, max_chars = max(limit, FQ1_PARAGRAPHS), max(max_chars, FQ1_CHARS)
 
     asked = subject_words(question)
     pool = [s for s in package.sources if not s.is_docket and (

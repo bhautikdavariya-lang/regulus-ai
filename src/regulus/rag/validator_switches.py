@@ -55,6 +55,8 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
       programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
       of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
+  FQ1 (28 Oct, off until measured) the focused verbatim quote takes up to 8 paragraphs / 4,000 characters of the
+      requested provision (was 3 / 1,600): 300Q 27 Oct, 27 focused quotes scored 0 PASS+PP, 22 as "omits (b)-(g)"
   MS1 (28 Oct, off until measured) rerank-threshold-budget selection: the other candidates of the promoted section's
       part whose cross-encoder score reaches REGULUS_MS1_MIN_SCORE join it as companions, best first, at most
       REGULUS_MS1_MAX and REGULUS_MS1_MAX_CHARS (regulus.rag.section_promotion.reranked_companions); 300Q 27 Oct: 68
