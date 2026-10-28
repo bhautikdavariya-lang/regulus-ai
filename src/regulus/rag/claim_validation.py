@@ -293,6 +293,31 @@ def _words(text: str) -> set[str]:
     return set(_WORD.findall((text or "").lower())) - _STOP
 
 
+# PT1: where a product is used -> how a source states that use. Eye and lip use must be stated expressly (21 CFR
+# 70.5(a): a color additive is used in the area of the eye only when its listing says so); "cosmetics generally" covers
+# products applied to the external body
+_CATEGORY_STATED = {"eye": re.compile(r"area of the eye|eye area|eye makeup", re.I),
+                    "lips": re.compile(r"\blips?\b|lipsticks?|mucous membrane", re.I),
+                    "ext": re.compile(r"cosmetics generally|externally applied cosmetics", re.I)}
+_NOT_PERMITTED = re.compile(r"\bnot\b|\bexcept\b|\bexclud|\bprohibit|\bshall not\b|\bmay not\b", re.I)
+
+
+def covered_product_words(question: str, texts: list[str]) -> set[str]:
+    """PT1 (28 Oct): the words of a product the question names ("eye shadow") whose category a supplied source permits
+    in a sentence that is not an exception - a member of a stated category is not a premise the source fails to state.
+    "Is mica permitted as a color additive in eye shadow?" was declined: 73.2496(b) says "cosmetics generally,
+    including cosmetics applied to the area of the eye" and no source contains "shadow" (API smoke test, 27 Oct)."""
+    from regulus.rag.color_listing import _PRODUCT_RE
+
+    sentences = [s for t in texts for s in re.split(r"(?<=[.;])\s+", t or "")]
+    out: set[str] = set()
+    for m in _PRODUCT_RE.finditer(question or ""):
+        stated = _CATEGORY_STATED[m.lastgroup]
+        if any(stated.search(s) and not _NOT_PERMITTED.search(s) for s in sentences):
+            out |= _words(m.group(0))
+    return out
+
+
 def check_claims(sentences: list[str], package, *, question: str | None = None, is_yes_no: bool = False,
                  identity=None, related=None) -> list[ClaimFinding]:
     """`identity(source)` and `related(a, b)` come from regulus.rag.validation (provision identity and
@@ -432,6 +457,8 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
             from regulus.rag.premise_vocabulary import common
 
             premise = {w for w in premise if not common(w)}
+        if precision_fix("PT1") and premise:
+            premise -= covered_product_words(question, [s.text or "" for s in package.sources])
         for sentence in sentences:
             asserted = premise & _words(sentence)
             if asserted and not _NEGATED.search(sentence) and not _NOT_A_CLAIM.search(sentence):
