@@ -189,7 +189,8 @@ HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading miss
 MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.5"))
 MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
-MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))   # MS2: structural neighbours scored per question
+MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))
+AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs scored by the cross-encoder per section   # MS2: structural neighbours scored per question
 # SP2F: the picker's second pick (SP2) stands only when the cross-encoder scores it at least this high
 SP2F_MIN_SCORE = float(os.environ.get("REGULUS_SP2F_MIN_SCORE", "0.5"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
@@ -336,6 +337,17 @@ _CITATION_LIKE = re.compile(r"\d\.\d|CFR|§|\bAct\b|[Ss]ection|U\.S\.C", re.I)
 # won the lexical ranking for unrelated questions, as it did for cosmetics questions
 GENERAL_ACT_OFFERED = 3
 _ACT_NOT_OFFERED = frozenset({"301"})
+
+
+_AU1_GENERIC = frozenset({"201", "301", "704", "801"})   # definitions, prohibited acts, inspection, imports: in most lists
+
+
+def authority_sections(parts: list[str]) -> list[str]:
+    """AU1: the FD&C Act sections these parts are issued under, in their first part's order then the next part's, from
+    data/reference/part_fdca_authority.json (eCFR <AUTH> lines mapped to the Act sections held)."""
+    from regulus.retrieval.part_authority import authority
+
+    return list(dict.fromkeys(s for p in dict.fromkeys(parts) for s in authority(p)))
 
 
 def general_act_offered() -> bool:
@@ -558,6 +570,24 @@ class SectionPromoter:
         sib.sort(key=lambda s: abs(num(s) - num(section)))
         return list(dict.fromkeys(cited + sib))[:limit]
 
+    def act_paragraph_scores(self, question: str, fdca: str) -> dict[str, float]:
+        """AP1 (28 Oct): the FD&C Act section's paragraphs most similar to the question by embedding (AP1_TOP), scored by
+        the cross-encoder: paragraph path -> score. 910 is 13,500 characters and 2,500 of it fit beside a regulation;
+        word overlap chose blocks without 910(b)(1)'s application contents (300Q T-001, SA1 A/B 26 Oct). {} without
+        the models."""
+        from regulus.retrieval.paragraph_dense import paragraph_dense
+        from regulus.retrieval.rerank import reranker
+
+        pd, rr = paragraph_dense(self.db), reranker(RERANKER) if RERANKER else None
+        if pd is None or rr is None:
+            return {}
+        top = pd.section_paragraphs(question, fdca)[:AP1_TOP]
+        if not top:
+            return {}
+        label = f"FD&C Act § {fdca}"
+        scores = rr.score(question, [f"{label} {pd.text(para)}" for para, _ in top])
+        return {para.path: float(s) for (para, _), s in zip(top, scores)}
+
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
         and the best-scored candidate at least RERANK_VETO_MARGIN above it."""
@@ -626,8 +656,10 @@ class SectionPromoter:
         st = self.statute
         kept, left = [], []
         budget = (budget or STATUTE_BUDGET) // max(len(sections), 1)
+        asked = self.__dict__.get("_asked")
         for s, path in sections:
-            k, lo = st.blocks(s, lexemes, budget=budget, named_path=path or None)
+            prefer = self.act_paragraph_scores(asked, s) if asked and precision_fix("AP1") else None
+            k, lo = st.blocks(s, lexemes, budget=budget, named_path=path or None, prefer=prefer)
             kept += [tuple(g) for g in k]
             left += [tuple(g) for g in lo]
         if any(s in SUBCHAPTER_DEFINED for s, _ in sections):
@@ -1295,9 +1327,15 @@ class SectionPromoter:
         offer_statute = self.statute is not None and cosmetic_question(lex) and not parts
         if offer_statute:
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question)
-        elif self.statute is not None and not parts and cands and general_act_offered():
+        elif self.statute is not None and not parts and cands and (general_act_offered() or precision_fix("AU1")):
             # SA1: the FD&C Act sections a general question is most about, after the regulations
             general = tuple(x for x in sorted(self.statute.by_sec) if x not in STATUTE_OFFERED and x not in _ACT_NOT_OFFERED)
+            if precision_fix("AU1"):
+                # AU1 (28 Oct): only the Act sections the top regulations' parts are issued under (their Authority line):
+                # SA1 offered 502 for a PMTA question (T-002; Part 1114 is issued under 910) and 761 for a
+                # structure/function claim (L-014)
+                general = tuple(x for x in authority_sections([c["part"] for c in cands[:3] if not c.get("statute")])
+                                if x in general and x not in _AU1_GENERIC)
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question, general)[:GENERAL_ACT_OFFERED]
         return (lex, cands) if cands else None
 
@@ -1604,6 +1642,7 @@ class SectionPromoter:
 
     def resolve(self, question: str, parts: tuple[str, ...] | None = None, named_only: bool = False) -> Promotion | None:
         """`parts`: the question names only these parts ("Under Part 82, ..."); the answer is looked for inside them."""
+        self.__dict__["_asked"] = question   # AP1 ranks the FD&C Act paragraphs supplied against it
         if self.mode == "off":
             return None
         t0 = time.perf_counter()

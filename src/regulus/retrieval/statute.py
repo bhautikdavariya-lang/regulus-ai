@@ -119,7 +119,7 @@ class StatuteIndex:
         return m.group(0) if m else ""
 
     def blocks(self, fdca: str, lexemes, budget: int = SECTION_CHAR_BUDGET, named_path: str | None = None,
-               header: int = BLOCK_HEADER_CHARS) -> tuple[list[list[int]], list[list[int]]]:
+               header: int = BLOCK_HEADER_CHARS, prefer: dict[str, float] | None = None) -> tuple[list[list[int]], list[list[int]]]:
         """(kept, left out): the section's rows grouped by top-level subsection ("(5)" with its (A)(i)-(vii) items is
         one block, so a definition is never split), in document order. A block the question names ("605(e)") is
         kept first; the rest are kept by how much of the question they cover while the rendered size (text plus
@@ -151,7 +151,12 @@ class StatuteIndex:
                  if named_path and any((self.rows[i]["paragraph_path"] or "").startswith(named_path) for i in g)]
         score = {k: sum(self.idf.get(x, 0.0) for x in q & set().union(*(self.row_lex[i] for i in g))) for k, g in enumerate(split)}
         specific = q - _GENERIC_QUESTION_WORDS - {fdca, self.usc(fdca)}
-        if len(specific) < 2:
+        if prefer:
+            # AP1: blocks by their best paragraph's cross-encoder score against the question (what 910(b)(1) lists is
+            # not found by word overlap), the word-overlap score breaking ties
+            best = {k: max((prefer.get(self.rows[i]["paragraph_path"] or "", 0.0) for i in g), default=0.0) for k, g in enumerate(split)}
+            order = named + sorted((k for k in range(len(split)) if k not in named), key=lambda k: (-best[k], -score[k], k))
+        elif len(specific) < 2:
             # "What does FD&C Act section 605 require?": nothing to rank by, so the section is read from its start
             order = named + [k for k in range(len(split)) if k not in named]
         else:
