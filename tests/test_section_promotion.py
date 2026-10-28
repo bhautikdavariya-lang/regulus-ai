@@ -437,3 +437,39 @@ def test_hm1_a_heading_phrase_must_occur_word_for_word():
     assert heading_phrase_in("Rejected components, drug product containers, and closures.", q)
     assert not heading_phrase_in("Testing and approval or rejection of components, drug product containers, and closures.", q)
     assert not heading_phrase_in("Control of records.", "Which record control section of Part 820 states that the UDI must be recorded?")
+
+
+def _ms1_promoter(texts, scores):
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.__dict__["_text_cache"] = dict(texts)
+    pr.__dict__["_order_scores"] = ("q", tuple(texts), {s: (v, "") for s, v in scores.items()})
+    return pr
+
+
+def _cands(*secs):
+    return [{"section": s, "part": s.split(".")[0]} for s in secs]
+
+
+def test_ms1_adds_the_best_scored_sections_of_the_part_above_the_floor(monkeypatch):
+    monkeypatch.setattr(SP, "MS1_MIN_SCORE", 0.5)
+    monkeypatch.setattr(SP, "MS1_MAX", 2)
+    monkeypatch.setattr(SP, "MS1_MAX_CHARS", 6000)
+    texts = {"111.80": "a", "111.83": "b" * 900, "111.465": "c" * 900, "111.10": "d", "211.84": "e"}
+    pr = _ms1_promoter(texts, {"111.80": 0.9, "111.83": 0.8, "111.465": 0.6, "111.10": 0.2, "211.84": 0.95})
+    got = pr.reranked_companions("q", _cands(*texts), Promotion(sections=("111.80",), companions=(), method="picker"))
+    assert got == ["111.83", "111.465"]   # 211.84 is another part, 111.10 under the floor
+
+
+def test_ms1_keeps_the_character_cap_and_skips_what_is_already_promoted(monkeypatch):
+    monkeypatch.setattr(SP, "MS1_MIN_SCORE", 0.5)
+    monkeypatch.setattr(SP, "MS1_MAX", 2)
+    monkeypatch.setattr(SP, "MS1_MAX_CHARS", 1000)
+    texts = {"117.3": "a", "117.5": "b" * 2000, "117.201": "c" * 500, "117.10": "d" * 400}
+    pr = _ms1_promoter(texts, {"117.5": 0.9, "117.201": 0.8, "117.10": 0.7})
+    got = pr.reranked_companions("q", _cands(*texts), Promotion(sections=("117.3",), companions=("117.10",), method="picker"))
+    assert got == ["117.201"]   # 117.5 is over the cap, 117.10 already a companion
+
+
+def test_ms1_never_touches_the_cosmetics_programme():
+    pr = _ms1_promoter({"70.3": "a", "70.5": "b"}, {"70.5": 0.99})
+    assert pr.reranked_companions("q", _cands("70.3", "70.5"), Promotion(sections=("70.3",), companions=(), method="picker")) == []

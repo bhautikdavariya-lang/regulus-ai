@@ -55,6 +55,10 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   SP2 the picker's second regulation joins the first as a companion when it is in the same part, outside the cosmetics
       programme (regulus.rag.section_promotion.second_in_part): 300-question keys need more than one section for 21
       of 35 recorded picks; a same-part second pick was a key section 11 of 14 times
+  MS1 (28 Oct, off until measured) rerank-threshold-budget selection: the other candidates of the promoted section's
+      part whose cross-encoder score reaches REGULUS_MS1_MIN_SCORE join it as companions, best first, at most
+      REGULUS_MS1_MAX and REGULUS_MS1_MAX_CHARS (regulus.rag.section_promotion.reranked_companions); 300Q 27 Oct: 68
+      wrong answers had a key section among the candidates and not in the prompt
   C2  a condition stated in the supplied parent or child of a cited paragraph ("FDA may withdraw a qualified facility
       exemption if:" in 117.251(a) for a claim citing (a)(1)) counts as stated in the cited source; a sibling does not
       (regulus.rag.claim_validation). 26 Oct: 397 recorded answers, 6 changed, blind scored FAIL->PASS 2 (U-003, M-004),

@@ -185,6 +185,10 @@ SP3_MAX_SECTIONS = 8      # SP3: a subpart this small is promoted whole with its
 SP3_MAX_CHARS = 4500
 SP3_PARTS = ("111",)      # parts built of small requirement-and-records subparts (dietary supplement CGMP)
 HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading misses
+# MS1: further sections of the promoted section's part, best cross-encoder score first, above a floor, within a cap
+MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.5"))
+MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
+MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
 _HC1_GENERIC = set("""requirement requirements required requires apply applies applicable drugs product products
 general regulation regulations section sections subpart provision provisions current practice manufacturing what which
 under their there these those other""".split())
@@ -489,6 +493,29 @@ class SectionPromoter:
         fused = sorted(cfr, key=lambda c: -(1 / (RRF_K + cfr.index(c) + 1)
                                            + (0.0 if c["section"] in listing else 1 / (RRF_K + rr_rank[c["section"]]))))
         return fused + [c for c in cands if c.get("statute")]
+
+    def reranked_companions(self, question: str, cands: list[dict], pr: "Promotion") -> list[str]:
+        """MS1 (28 Oct): rerank, threshold, budget - the other regulation candidates of the promoted section's part whose
+        cross-encoder score reaches MS1_MIN_SCORE, best first, at most MS1_MAX and MS1_MAX_CHARS characters. The picker
+        names at most two sections and only its first was kept: 300Q, 27 Oct, 68 wrong answers had a key section among
+        the candidates and not in the prompt, 44 of them ranked 1-3. Outside the cosmetics programme, whose companions
+        have their own rules. The scores are RO1's (no second scoring when RO1 ordered the same candidates)."""
+        if not pr.sections or pr.sections[0].split(".")[0] in COSMETIC_PARTS:
+            return []
+        kept = self.__dict__.get("_order_scores")
+        scores = (kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands}
+                  else self.rerank_scores(question, cands))
+        part, have = pr.sections[0].split(".")[0], set(pr.citations)
+        pool = [c for c in cands if not c.get("statute") and c["part"] == part and c["section"] not in have]
+        out, chars = [], 0
+        for c in sorted(pool, key=lambda c: -scores.get(c["section"], (0.0, ""))[0]):
+            if scores.get(c["section"], (0.0, ""))[0] < MS1_MIN_SCORE or len(out) >= MS1_MAX:
+                break
+            n = len(self._section_text(c["section"]))
+            if chars + n <= MS1_MAX_CHARS:
+                out.append(c["section"])
+                chars += n
+        return out
 
     def rerank_veto(self, question: str, cands: list[dict], picked: dict) -> dict | None:
         """The candidate that replaces the picker's choice, or None to keep it: the pick scores below RERANK_VETO_BELOW
@@ -1583,6 +1610,10 @@ class SectionPromoter:
             pr = replace(pr, rerank=round(scored[picked_c["section"]][0], 4))
         if second_cfr is not None and second_cfr not in pr.citations:
             pr = replace(pr, companions=pr.companions + (second_cfr,), notes=pr.notes + (f"second pick: {second_cfr}",))
+        if precision_fix("MS1") and raw is not None:
+            extra = self.reranked_companions(question, cands, pr)
+            if extra:
+                pr = replace(pr, companions=pr.companions + tuple(extra), notes=pr.notes + (f"reranked: {', '.join(extra)}",))
         if precision_fix("QD1") and multi_part(question):
             extra = [s2 for s2 in self.decomposed_sections(question, parts) if s2 not in pr.citations][:QD1_MAX]
             if extra:
