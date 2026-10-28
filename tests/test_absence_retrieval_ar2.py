@@ -47,3 +47,11 @@ def test_ar2_off_answers_once(monkeypatch):
     first = _answer("The retention period for traceability records is not specified in the available sources.")
     pipe, calls = _pipe(monkeypatch, [first], ["1.1455"])
     assert pipe.answer("q") is first and calls == [None]
+
+
+def test_sections_the_promotion_adds_are_optional_labels():
+    import re
+    src = open(P.__file__).read()
+    block = src[src.index("SP2: the picker's second regulation is further evidence"):][:900]
+    for prefix in ("second pick: ", "reranked: ", "absence retrieval: "):
+        assert prefix in block   # MS1/MS2 and AR2 additions never make an answer fail on their own (F-020)

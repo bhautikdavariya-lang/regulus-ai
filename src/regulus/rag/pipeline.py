@@ -1550,8 +1550,12 @@ class RagPipeline:
             if closest:
                 package = replace(package, closest=closest)   # recorded in the package's to_dict
         if package is not None and promotion is not None:
-            # SP2: the picker's second regulation is further evidence; an answer that leaves it out is not withheld
-            extra = frozenset(f"21 CFR {n.split(': ', 1)[1]}" for n in promotion.notes if n.startswith("second pick: "))
+            # SP2: the picker's second regulation is further evidence; an answer that leaves it out is not withheld. The
+            # same for the sections MS1/MS2 ("reranked: a, b") and AR2 ("absence retrieval: a") add (28 Oct: F-020's
+            # MS1 companion 117.405 was made a requirement, the draft failed on it and only 117.410 was quoted)
+            added = [n.split(": ", 1)[1] for n in promotion.notes
+                     if n.startswith(("second pick: ", "reranked: ", "absence retrieval: "))]
+            extra = frozenset(f"21 CFR {s.strip()}" for group in added for s in group.split(",") if s.strip())
             if extra:
                 package = replace(package, optional_labels=extra)
         normalization: dict[str, Any] | None = None
