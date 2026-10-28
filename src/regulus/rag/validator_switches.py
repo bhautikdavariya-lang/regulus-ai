@@ -66,6 +66,8 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  RR1 (28 Oct, off until measured) round-robin budget across the requested sections: each one's best paragraph first,
+      then each one's second (diversity-aware allocation, as MMR); M-029's 820.10 got only its lead-in behind 5 sections
   AG1 (28 Oct, off until measured) anchored guidance: a question asking beyond the regulation (framework, guidance,
       recommend, expect, Barr ...) also gets the passages of the guidance anchored to its requested sections, ranked by an
       OR query of its words (D-023: the OOS guidance is anchored to 211.192; the all-words guidance search found nothing)

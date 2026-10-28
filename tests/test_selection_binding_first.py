@@ -96,3 +96,22 @@ def test_a_guidance_question_is_not_affected():
     db = TableDatabase(coverage=COVERAGE, guidance=[guidance(i) for i in range(3)], trigram=[_trigram(i) for i in range(4)])
     reg = run(q, db).registry
     assert _same_selection(select_evidence(reg, ON), select_evidence(reg, ContextPolicy()))
+
+
+def test_rr1_requested_sections_share_the_budget_round_robin(monkeypatch):
+    from types import SimpleNamespace
+    from regulus.rag import selection as S
+    from regulus.rag import validator_switches as VS
+
+    def ev(sec, path):
+        return SimpleNamespace(evidence_id=f"{sec}{path}", sec=sec, path=path)
+
+    a = [ev("820.3", "(a)"), ev("820.3", "(b)")]
+    b = [ev("820.10", ""), ev("820.10", "(b)"), ev("820.10", "(c)")]
+    monkeypatch.setattr(S, "_paragraph_of", lambda e: (e.sec, e.path))
+    monkeypatch.setattr(S, "_required_order", lambda g, q: g)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"RR1"})
+    got = [e.evidence_id for e in S._per_section_order(a + b, "q")]
+    assert got == ["820.3(a)", "820.10", "820.3(b)", "820.10(b)", "820.10(c)"]   # M-029: 820.10 is not starved
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"RR1"})
+    assert [e.evidence_id for e in S._per_section_order(a + b, "q")] == ["820.3(a)", "820.3(b)", "820.10", "820.10(b)", "820.10(c)"]

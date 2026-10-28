@@ -337,7 +337,19 @@ def _per_section_order(required: list[Evidence], question: str | None) -> list[E
             groups.append((i[0], [e]))
     if len({g[0] for g in groups}) != len(groups):
         return required
-    return [e for _, g in groups for e in (_required_order(g, question) if len(g) > 1 else g)]
+    ordered = [(_required_order(g, question) if len(g) > 1 else g) for _, g in groups]
+    from regulus.rag.validator_switches import enabled as _switch
+
+    if _switch("RR1") and len(ordered) > 1:
+        # RR1 (28 Oct): round-robin across the requested sections - each section's best paragraph, then each one's
+        # second, and so on - so no section is left with its lead-in only when the ceilings bind (diversity-aware
+        # allocation, as MMR). 300Q M-029: 820.3, 820.35, 820.45, 820.1 and 820.7 took the budget in arrival order and
+        # 820.10, whose (b)-(e) are the key, got its one-line lead-in. A section's own paragraphs keep their order.
+        out: list[Evidence] = []
+        for rank in range(max(len(o) for o in ordered)):
+            out += [o[rank] for o in ordered if rank < len(o)]
+        return out
+    return [e for o in ordered for e in o]
 
 
 def select_evidence(
