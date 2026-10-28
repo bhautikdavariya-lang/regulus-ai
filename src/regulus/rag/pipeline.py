@@ -222,6 +222,8 @@ class RagConfig:
         }
 
 
+# DV1: the small parts its paragraph promotion is measured on (REGULUS_DV1_PARTS, comma-separated)
+DV1_PARTS = frozenset(p.strip() for p in os.environ.get("REGULUS_DV1_PARTS", "820,11").split(",") if p.strip())
 # AR2: what a draft says the provisions do not specify ("The retention period ... is not specified in the available
 # sources", "The provisions do not specify renewal requirements")
 _ABSENCE = [re.compile(r"\b(?:provisions?|sources?|regulations?|text|section|part)\s+(?:do|does)\s+not\s+(?:specify|state|provide|"
@@ -1147,6 +1149,11 @@ class RagPipeline:
             part = "820"
         if not part or _ASKS_WHICH_PROVISIONS.search(question or ""):
             return None   # "which provisions of Part 820 are ...": answered across the part, not from three paragraphs
+        if part not in DV1_PARTS:
+            # the parts DV1 was measured on (28 Oct retrieval check, 225 dev, client keys: +7 complete in Part 820 - M-005,
+            # M-009, M-015..M-018, M-042 - Part 11 unchanged); in Part 806 its three paragraphs dropped R-005's 806.10(b)
+            # ("10 working days"), which the whole section had supplied
+            return None
         promoter = self.section_promoter()
         if promoter is None:
             return None

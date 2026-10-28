@@ -257,7 +257,7 @@ def _topic_stems(text: str) -> set[str]:
     return {w[:6] for w in re.findall(r"[a-z]{5,}", (text or "").lower()) if w not in _HC1_GENERIC}
 
 
-DV1_WHOLE_SECTION_CHARS = 2500   # DV1: a section this short is supplied whole (820.7, 820.45, 820.35: M-023 mis-cited (a)(3) from its families)
+DV1_WHOLE_SECTION_CHARS = int(os.environ.get("REGULUS_DV1_WHOLE_SECTION_CHARS", "2500"))   # DV1: a section this short is supplied whole (820.7, 820.45, 820.35: M-023 mis-cited (a)(3) from its families)
 DV1_MAX_SECTIONS = 12  # a part this small is answered paragraph by paragraph
 _PHRASE_STOP = set("the and for with that this from such any are its which under part section".split())
 FC1_MAX_SECTIONS = 3   # FC1: a heading phrase this rare in Parts 70-71 names the subject a fee paragraph prices
