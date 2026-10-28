@@ -626,3 +626,29 @@ def test_nav1_none_adds_nothing():
     pr = SectionPromoter.__new__(SectionPromoter)
     pr.db, pr.generator = _SubpartToc(), _Nav("none")
     assert pr.navigate_subpart("q", Promotion(sections=("111.87",), companions=(), method="picker")) == []
+
+
+class _XrefRows:
+    def query(self, sql, params=None):
+        if "cfr_cross_references" in sql:
+            assert params == {"s": "820.1", "p": "(d)", "pp": "(d)%"}
+            return [{"target_citation": "21 CFR 820.3"}, {"target_citation": "21 CFR 10.30"}]
+        return [{"paragraph_path": "", "body_text": "x" * 3000}]
+
+
+def test_xp1_adds_the_other_part_provision_the_promoted_paragraph_cites():
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _XrefRows()
+    got = pr.cross_part_citations(Promotion(sections=("820.1(d)",), companions=(), method="picker"))
+    assert got == ["10.30"]   # M-007: 820.3 is the same part; 10.30 (citizen petitions) is cited by 820.1(d)(1)
+
+
+def test_nav2_lists_closest_sections_of_the_part_outside_the_subpart(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"NAV2"})
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db, pr.generator = _SubpartToc(), _Nav("21 CFR 111.610")
+    monkeypatch.setattr(pr, "part_neighbours", lambda q, s, ex: [{"s": "111.610", "h": "What records must be kept?", "c": 800}])
+    got = pr.navigate_subpart("What records must be kept under the Part 111 personnel subpart?",
+                              Promotion(sections=("111.87",), companions=(), method="picker"))
+    assert got == ["111.610"] and "OTHER SECTIONS OF PART 111" in pr.generator.seen[-1]["content"]   # S-005

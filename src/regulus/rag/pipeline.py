@@ -1554,7 +1554,7 @@ class RagPipeline:
             # same for the sections MS1/MS2 ("reranked: a, b") and AR2 ("absence retrieval: a") add (28 Oct: F-020's
             # MS1 companion 117.405 was made a requirement, the draft failed on it and only 117.410 was quoted)
             added = [n.split(": ", 1)[1] for n in promotion.notes
-                     if n.startswith(("second pick: ", "reranked: ", "absence retrieval: ", "navigated: "))]
+                     if n.startswith(("second pick: ", "reranked: ", "absence retrieval: ", "navigated: ", "cross-part: "))]
             extra = frozenset(f"21 CFR {s.strip()}" for group in added for s in group.split(",") if s.strip())
             if extra:
                 # an added section none of whose text reached the context is not a requested provision at all: listed,

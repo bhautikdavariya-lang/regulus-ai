@@ -66,6 +66,12 @@ Promotion fixes (26 Oct 2026; C2, Q2, PR2 and PO2 in the default since 27 Oct, S
   DQ1 (28 Oct, off until measured) the definition paragraph of a term the question asks about, from the promoted
       section's subpart (else its part), via cfr_definitions (regulus.rag.section_promotion.asked_definitions): V-001
       'importer' 1.500, F-002 'qualified facility' 117.3; one paragraph, never a whole definitions section
+  RR2 (28 Oct, off until measured) RR1 redesigned: the first section keeps all its paragraphs first; only the sections
+      after it share the rest round-robin (RR1 halved S-018's 111.210 list)
+  XP1 (28 Oct, off until measured) the provision in another part that the promoted provision cites (820.1(d) -> 10.30),
+      at most 1, whole within MS1_MAX_CHARS else the cited paragraph (M-007)
+  NAV2 (28 Oct, off until measured, with NAV1) NAV1's table of contents also lists the 15 sections of the part outside
+      the subpart closest to the question by paragraph embedding (S-005's key 111.610 is in the records subpart)
   NAV1 (28 Oct, off until measured) table-of-contents navigation: the promoted section's subpart headings are shown to
       the model, which names the other sections the question needs (at most 3, within 6,000 chars); 15 of 17 missing key
       sections in the first 33 dev questions were in the promoted section's subpart, scored low by the cross-encoder

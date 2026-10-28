@@ -340,6 +340,14 @@ def _per_section_order(required: list[Evidence], question: str | None) -> list[E
     ordered = [(_required_order(g, question) if len(g) > 1 else g) for _, g in groups]
     from regulus.rag.validator_switches import enabled as _switch
 
+    if _switch("RR2") and len(ordered) > 2:
+        # RR2 (28 Oct): RR1 halved S-018's 111.210 list by sharing the budget with its companions (full 300, 15:50) -
+        # the first (requested or promoted) section keeps all its paragraphs first; only the sections after it share
+        # what is left round-robin (M-029: 820.10 behind 820.3, 820.35, 820.45, 820.1, 820.7 got its lead-in only)
+        rest: list[Evidence] = []
+        for rank in range(max(len(o) for o in ordered[1:])):
+            rest += [o[rank] for o in ordered[1:] if rank < len(o)]
+        return ordered[0] + rest
     if _switch("RR1") and len(ordered) > 1:
         # RR1 (28 Oct): round-robin across the requested sections - each section's best paragraph, then each one's
         # second, and so on - so no section is left with its lead-in only when the ceilings bind (diversity-aware

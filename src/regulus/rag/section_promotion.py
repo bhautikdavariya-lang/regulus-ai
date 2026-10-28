@@ -200,6 +200,7 @@ PC1_MARGIN = float(os.environ.get("REGULUS_PC1_MARGIN", "0.10"))
 NAV1_MAX = int(os.environ.get("REGULUS_NAV1_MAX", "3"))
 NAV1_MAX_CHARS = int(os.environ.get("REGULUS_NAV1_MAX_CHARS", "6000"))
 NAV1_TOC_LIMIT = 30
+NAV2_LIMIT = 15   # NAV2: sections of the part outside the subpart, closest to the question, added to NAV1's contents
 NAV1_MAX_TOKENS = 40
 NAV1_SYSTEM = ("You help find the sections of a U.S. regulation that answer a question. One section has already been "
                "chosen. From the table of contents of its subpart, name the OTHER sections whose subject the question "
@@ -279,6 +280,12 @@ WHERE removed_on IS NULL AND section_number = ANY(%(s)s) AND ordinal = ANY(%(o)s
 _LEADIN_SQL = """
 SELECT section_number, paragraph_path, body_text FROM cfr_records
 WHERE removed_on IS NULL AND section_number = ANY(%(s)s) AND paragraph_path = ANY(%(p)s)
+"""
+# XP1: the cross-references of a section's rows, or of one paragraph's rows (and its sub-paragraphs)
+_XREF_SQL_PATH = """
+SELECT DISTINCT x.target_citation FROM cfr_cross_references x JOIN cfr_records r ON r.id = x.from_record_id
+WHERE r.section_number = %(s)s AND r.removed_on IS NULL AND x.resolvable
+  AND (%(p)s = '' OR r.paragraph_path = %(p)s OR r.paragraph_path LIKE %(pp)s)
 """
 _SECTION_SQL = """
 SELECT paragraph_path, body_text FROM cfr_records
@@ -642,6 +649,35 @@ class SectionPromoter:
                 break
         return out
 
+    def cross_part_citations(self, pr: "Promotion", limit: int = 1) -> list[str]:
+        """XP1 (28 Oct): the provisions in OTHER parts that the promoted provision itself cites (cfr_cross_references) -
+        a promoted paragraph ("820.1(d)") by its own rows only - at most `limit`, whole when the cited section fits
+        MS1_MAX_CHARS, else the cited paragraph. Retrieval check 28 Oct: M-007's key 10.30 (citizen petitions) is cited by
+        820.1(d) ("... under 10.30"), which was promoted, and was never supplied."""
+        first = pr.sections[0]
+        m = re.match(r"^(\d+\.\d+[a-z]?)((?:\([^)]+\))*)$", first)
+        if not m:
+            return []
+        sec, path = m.group(1), m.group(2)
+        part, have = sec.split(".")[0], {c.split("(")[0] for c in pr.citations}
+        try:
+            rows = self.db.query(_XREF_SQL_PATH, {"s": sec, "p": path or "", "pp": (path or "") + "%"})
+        except Exception:  # noqa: BLE001 - an aid only
+            return []
+        out = []
+        for r in rows:
+            c = re.match(r"^21 CFR (\d+)\.(\d+[a-z]?)((?:\([a-z0-9]+\))*)$", r["target_citation"] or "")
+            if not c or c.group(1) == part or f"{c.group(1)}.{c.group(2)}" in have:
+                continue
+            target = f"{c.group(1)}.{c.group(2)}"
+            whole = len(self._section_text(target))
+            label = target if 0 < whole <= MS1_MAX_CHARS else (target + c.group(3) if c.group(3) else None)
+            if label and label not in out:
+                out.append(label)
+            if len(out) >= limit:
+                break
+        return out
+
     def navigate_subpart(self, question: str, pr: "Promotion") -> list[str]:
         """NAV1 (28 Oct): hierarchical navigation - the promoted section's subpart, as a table of contents of its section
         headings, is shown to the model, which names the other sections the question also needs (at most NAV1_MAX, within
@@ -661,11 +697,16 @@ class SectionPromoter:
             return []
         have = {c.split("(")[0] for c in pr.citations}
         toc = [r for r in rows if r["s"] not in have][:NAV1_TOC_LIMIT]
-        if not toc:
+        more = self.part_neighbours(question, sec, have | {r["s"] for r in rows}) if precision_fix("NAV2") else []
+        if not toc and not more:
             return []
         chosen = next((r for r in rows if r["s"] == sec), None)
         lines = [f"QUESTION: {question}", "", f"ALREADY CHOSEN: 21 CFR {sec} {(chosen or {}).get('h') or ''}".rstrip(), "",
                  "TABLE OF CONTENTS OF ITS SUBPART:"] + [f"21 CFR {r['s']} {r['h'] or ''}".rstrip() for r in toc]
+        if more:
+            lines += ["", f"OTHER SECTIONS OF PART {sec.split('.')[0]} CLOSEST TO THE QUESTION:"] + \
+                     [f"21 CFR {r['s']} {r['h'] or ''}".rstrip() for r in more]
+            toc = toc + more
         result = self.generator.generate([{"role": "system", "content": NAV1_SYSTEM}, {"role": "user", "content": "\n".join(lines)}],
                                          max_new_tokens=NAV1_MAX_TOKENS)
         reply = (getattr(result, "response", None) or "")
@@ -676,6 +717,24 @@ class SectionPromoter:
                 out.append(s)
                 chars += size[s]
         return out
+
+    def part_neighbours(self, question: str, section: str, exclude: set[str], limit: int = NAV2_LIMIT) -> list[dict]:
+        """NAV2 (28 Oct): the sections of the promoted section's part outside its subpart that are closest to the question
+        by paragraph embedding - added to NAV1's table of contents, so a key in another subpart can be named (S-005:
+        111.610, the records subpart, for a personnel-records question). [{s, h, c}]; [] without the index."""
+        from regulus.retrieval.paragraph_dense import paragraph_dense
+
+        pd = paragraph_dense(self.db)
+        if pd is None:
+            return []
+        part = section.split(".")[0]
+        near = [s for s, _, _ in pd.rank_sections(question, corpus="cfr") if s.split(".")[0] == part and s not in exclude][:limit]
+        if not near:
+            return []
+        rows = self.db.query("SELECT section_number s, min(section_heading) h, sum(length(body_text)) c FROM cfr_records "
+                             "WHERE removed_on IS NULL AND NOT is_reserved AND section_number = ANY(%(s)s) GROUP BY 1", {"s": near})
+        by = {r["s"]: r for r in rows}
+        return [by[s] for s in near if s in by]
 
     def cascade_pick(self, question: str, cands: list[dict]) -> str | None:
         """PC1 (28 Oct): a model cascade - when the cross-encoder is confident (its best regulation candidate at
@@ -1873,6 +1932,10 @@ class SectionPromoter:
             extra = self.reranked_companions(question, cands, pr)
             if extra:
                 pr = replace(pr, companions=pr.companions + tuple(extra), notes=pr.notes + (f"reranked: {', '.join(extra)}",))
+        if precision_fix("XP1") and pr.sections:
+            cited = self.cross_part_citations(pr)
+            if cited:
+                pr = replace(pr, companions=pr.companions + tuple(cited), notes=pr.notes + (f"cross-part: {', '.join(cited)}",))
         if precision_fix("NAV1") and raw is not None and pr.sections:
             nav = self.navigate_subpart(question, pr)
             if nav:
