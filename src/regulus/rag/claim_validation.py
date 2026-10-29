@@ -399,21 +399,27 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
         # restating 117.201(c)(2) the model slid each deadline one label up past a lead-in-only paragraph (F-016 "by July
         # 31" cited to (c)(2)(i)(B), whose text has no 31; PASS lost) and put (a)(6)'s "7 working days" under 117.180(a)(5)
         # (F-015) - wording-overlap checks pass both, since the words are the sources'
-        if precision_fix("FC2") and marks and identities and related and all(identities.get(i) for i in marks):
-            figures = _fc2_figures(content) - _fc2_figures(question or "")
-            if figures:
-                family = set(marks) | {j for i in marks for j, idj in identities.items() if idj and related(identities[i], idj)}
-                family_text = " ".join(by_index[j].text or "" for j in family)
-                elsewhere = {f: [j for j in by_index if j not in family and _fc2_in(by_index[j].text, f)]
-                             for f in figures if not _fc2_in(family_text, f)}
-                stray = {f: js for f, js in elsewhere.items() if js}
-                if stray:
-                    f0, js = sorted(stray.items())[0]
-                    findings.append(ClaimFinding(
-                        FIGURE_MISATTRIBUTED, SEVERITY[FIGURE_MISATTRIBUTED],
-                        f"{', '.join(sorted(stray))} is stated under {by_index[marks[0]].citation}, whose text does not contain "
-                        f"it; {by_index[js[0]].citation} does", citation=marks[0], sentence=sentence,
-                        requirement_id=next(iter(by_index[marks[0]].requirement_ids), None)))
+        # each line on its own: list lines ending in ":" or "; or" are one "sentence" to the splitter, and four cited lines
+        # together cite the parent whose children hold every figure (F-016 replay)
+        for line in (re.split(r"\n+", sentence) if precision_fix("FC2") and identities and related else ()):
+            lmarks = [int(m) for m in _MARK.findall(line) if int(m) in by_index]
+            if not lmarks or not all(identities.get(i) for i in lmarks):
+                continue
+            figures = _fc2_figures(_LABEL.sub(" ", _MARK.sub(" ", line))) - _fc2_figures(question or "")
+            if not figures:
+                continue
+            family = set(lmarks) | {j for i in lmarks for j, idj in identities.items() if idj and related(identities[i], idj)}
+            family_text = " ".join(by_index[j].text or "" for j in family)
+            elsewhere = {f: [j for j in by_index if j not in family and _fc2_in(by_index[j].text, f)]
+                         for f in figures if not _fc2_in(family_text, f)}
+            stray = {f: js for f, js in elsewhere.items() if js}
+            if stray:
+                js = sorted(stray.items())[0][1]
+                findings.append(ClaimFinding(
+                    FIGURE_MISATTRIBUTED, SEVERITY[FIGURE_MISATTRIBUTED],
+                    f"{', '.join(sorted(stray))} is stated under {by_index[lmarks[0]].citation}, whose text does not contain "
+                    f"it; {by_index[js[0]].citation} does", citation=lmarks[0], sentence=line,
+                    requirement_id=next(iter(by_index[lmarks[0]].requirement_ids), None)))
 
         # -- conditions the cited sources do not contain
         cited_texts = [by_index[i].text for i in marks]

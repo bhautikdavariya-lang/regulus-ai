@@ -46,3 +46,11 @@ def test_paragraph_designators_and_section_numbers_are_not_figures():
 def test_off_without_the_switch(monkeypatch):
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"FC2"})
     assert FIGURE_MISATTRIBUTED not in codes("21 CFR 117.201(c)(2)(i)(B) [18]: Submitted by July 31 of the applicable year.")
+
+
+def test_each_cited_line_is_checked_on_its_own():
+    """List lines ending in ':' or '; or' reach the check as one sentence; the parent cited on the first line must not
+    cover a figure the last line misplaces (F-016 replay)."""
+    merged = ("21 CFR 117.201(c)(2)(i) [16]: Initially, by December 17, 2018; or\n\n"
+              "21 CFR 117.201(c)(2)(i)(B) [18]: Submitted by July 31 of the applicable year.")
+    assert FIGURE_MISATTRIBUTED in codes(merged)
