@@ -725,3 +725,32 @@ def test_nav1_v2_shows_each_sections_opening_words():
     pr.db, pr.generator = Rows(), _Nav("none")
     pr.navigate_subpart("q", Promotion(sections=("111.87",), companions=(), method="picker"))
     assert "[1] 21 CFR 111.70 What specifications must you establish? - You must examine labeling" in pr.generator.seen[-1]["content"]
+
+
+# ------------------------------------------------------------ OC1 added sections as context (29 Oct)
+
+
+def test_oc1_an_added_section_is_context_not_a_requested_provision():
+    from regulus.rag.pipeline import companions_as_context
+    from regulus.retrieval.evidence import TIER_SUPPORTING
+    pkg = package_for(TWO)
+    plan = plan_query(TWO)
+    companion = "21 CFR 820.10(b)(4)"
+    rid = next(r for r, label in pkg.requirements if label == companion)
+    out = companions_as_context(pkg, plan, frozenset({companion}))
+    assert [label for _, label in out.requirements] == ["21 CFR 820.10(b)(2)"] and rid not in out.satisfied_ids
+    moved = [s for s in out.sources if s.citation == companion]
+    assert moved and all(s.tier == TIER_SUPPORTING and not s.requirement_ids for s in moved)   # still in the evidence
+    prompt = render_package(out)
+    assert "REQUESTED PROVISIONS:" in prompt and f"{rid}: {companion}" not in prompt and companion in prompt
+    text = "21 CFR 820.10(b)(2) requires traceability procedures [1]."
+    report = validate_answer(text, out, gen(text))
+    assert "requirement_not_addressed" not in report.codes()   # the context section is not demanded
+
+
+def test_oc1_changes_nothing_when_every_requested_provision_is_added():
+    from regulus.rag.pipeline import companions_as_context
+    pkg = package_for(TWO)
+    labels = frozenset(label for _, label in pkg.requirements)
+    assert companions_as_context(pkg, plan_query(TWO), labels) is pkg
+    assert companions_as_context(pkg, plan_query(TWO), frozenset()) is pkg

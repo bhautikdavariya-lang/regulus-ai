@@ -475,6 +475,37 @@ CX1_MAX_CODES = int(os.environ.get("REGULUS_CX1_MAX_CODES", "3"))
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
 LM1_MIN_SCORE = 0.3
+# OC1: the added sections that are context, not provisions the answer must restate - the reranker's (MS1/MS2), absence
+# retrieval's (AR2), navigation's and cross-part citations. The picker's own second pick (SP2) stays a requested provision.
+OC1_NOTES = ("reranked: ", "absence retrieval: ", "navigated: ", "cross-part: ")
+
+
+def companions_as_context(package: GenerationPackage, plan: QueryPlan, labels: frozenset[str]) -> GenerationPackage:
+    """OC1 (29 Oct): sections added as context stay in the evidence, as SUPPORTING sources, and leave the requested
+    provisions and the answer plan. 300Q full300c: in all 122 answers with added sections they were requested units the
+    model restated paragraph by paragraph - S-024's 8 sections in 40 paragraphs were cut at the token limit (PASS lost),
+    S-006 restated 111.20 beside the 111.15 it was asked about. The token allowance is left as it is (a ceiling, never a
+    target). Nothing changes when every requested provision is such a section."""
+    from regulus.rag.answer_plan import build_answer_plan
+    from regulus.retrieval.evidence import TIER_SUPPORTING
+
+    drop = {rid for rid, canon in package.requirements if canon in labels}
+    if not drop or len(drop) == len(package.requirements):
+        return package
+    kept_reqs = tuple(r for r in plan.requirements if r.id not in drop)
+    sources = tuple(replace(s, tier=TIER_SUPPORTING, requirement_ids=(), protected=False)
+                    if s.requirement_ids and set(s.requirement_ids) <= drop else
+                    replace(s, requirement_ids=tuple(r for r in s.requirement_ids if r not in drop))
+                    for s in package.sources)
+    answer_plan = package.answer_plan
+    if answer_plan is not None:
+        rebuilt = build_answer_plan(answer_plan.shape, sources, kept_reqs)
+        answer_plan = replace(rebuilt, values=answer_plan.values) if answer_plan.values else rebuilt
+    return replace(package, sources=sources, answer_plan=answer_plan,
+                   requirements=tuple(r for r in package.requirements if r[0] not in drop),
+                   satisfied_ids=tuple(i for i in package.satisfied_ids if i not in drop))
+
+
 def answer_budget(budget: GenerationBudget) -> GenerationBudget:
     """AL1 (29 Oct): the answer allowance keeps pace with the evidence. 300Q full300c: 29 answers stopped at the 1,696-token
     allowance (10 units x 160 + 96), none in the run before CB1/HX1; S-024 (8 sections, 40 paragraphs) lost its PASS cut
@@ -1612,6 +1643,10 @@ class RagPipeline:
                 package = replace(package, optional_labels=extra,
                                   requirements=tuple(r for r in package.requirements if r[0] not in unsupplied),
                                   missing_labels=tuple(m for m in package.missing_labels if m not in extra))
+                if precision_fix("OC1"):
+                    context_only = frozenset(f"21 CFR {s.strip()}" for n in promotion.notes if n.startswith(OC1_NOTES)
+                                             for s in n.split(": ", 1)[1].split(",") if s.strip())
+                    package = companions_as_context(package, plan, context_only)
         normalization: dict[str, Any] | None = None
         # Failure observatory: the stages of the text, kept separately so that a
         # later step can never hide what an earlier one produced. None when no model call.
