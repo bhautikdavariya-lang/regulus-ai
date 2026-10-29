@@ -76,8 +76,12 @@ def _replay(pipe, question: str, recorded) -> None:
             if recorded.get("sections"):   # a co-promotion: the regulation(s) as well
                 pr = _replace(pr, sections=tuple(recorded["sections"]), companions=tuple(recorded.get("companions") or ()))
             return pr
+        # the recorded method and reranker score as well: Q2's quotation and the confident-resolution rules read both, so a
+        # promotion labelled "replay" without a score answered differently from the run it replays (29 Oct)
         return Promotion(sections=tuple(recorded.get("sections") or ()), companions=tuple(recorded.get("companions") or ()),
-                         method="replay") if recorded.get("sections") else None
+                         method=recorded.get("method") or "replay", rerank=recorded.get("rerank"),
+                         picker_output=recorded.get("picker_output"), notes=tuple(recorded.get("notes") or ())) \
+            if recorded.get("sections") else None
 
     promoter.resolve = resolve
 
