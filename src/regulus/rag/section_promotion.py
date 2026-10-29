@@ -150,11 +150,20 @@ _ASK_START = re.compile(r"(?:^|[,;:]\s*(?:and\s+|or\s+)?|\b(?:and|or)\s+)(?:how|
                         r"do|does|is|are|may|should)\b", re.I)
 
 
+# QD2 (29 Oct, step E2): a comparison or interaction asks about two things as surely as two question marks do - "How does
+# the Part 117 supply-chain program differ from the FSVP requirements for importers?" (F-022: 117 Subpart G and 1 Subpart
+# L), "... and how do they interact with Part 820?" (M-042)
+_COMPARES = re.compile(r"\b(?:differ(?:s|ence|ent)?\s+(?:from|between)|compare[sd]?\s+(?:to|with)|comparison\s+(?:of|between)|"
+                       r"versus|vs\.?|interact\w*\s+with|relat(?:e|es|ionship)\s+(?:to|between|with))\b", re.I)
+
+
 def multi_part(question: str) -> bool:
     """QD1: the question asks two or more things - two question marks, or two asks in its last sentence ("What fees
-    apply, how do we pay, and can a small company get relief?")."""
+    apply, how do we pay, and can a small company get relief?"); with QD2 also a comparison or an interaction."""
     q = (question or "").strip()
     if q.count("?") >= 2:
+        return True
+    if precision_fix("QD2") and _COMPARES.search(q):
         return True
     last = re.split(r"(?<=[.!])\s+", q)[-1]
     return len(_ASK_START.findall(last)) >= 2
@@ -191,6 +200,8 @@ HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading miss
 MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.7"))
 MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
+PL1_MAX = int(os.environ.get("REGULUS_PL1_MAX", "3"))                    # PL1: added sections allowed, paragraph-level
+PL1_WHOLE_CHARS = int(os.environ.get("REGULUS_PL1_WHOLE_CHARS", "2500"))  # PL1: a section this short is added whole
 MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))
 AP1_TOP = int(os.environ.get("REGULUS_AP1_TOP", "12"))   # AP1: Act paragraphs scored by the cross-encoder per section   # MS2: structural neighbours scored per question
 SP2O_MARGIN = float(os.environ.get("REGULUS_SP2O_MARGIN", "0.15"))   # SP2O: score lead that puts the second pick first
@@ -577,11 +588,25 @@ class SectionPromoter:
                 scores = {**scores, **self.rerank_scores(question, extra)}
                 pool += extra
         out, chars = [], 0
+        cap = max(MS1_MAX, PL1_MAX) if precision_fix("PL1") else MS1_MAX
         for c in sorted(pool, key=lambda c: -scores.get(c["section"], (0.0, ""))[0]):
             score, path = scores.get(c["section"], (0.0, ""))
-            if score < MS1_MIN_SCORE or len(out) >= MS1_MAX:
+            if score < MS1_MIN_SCORE or len(out) >= cap:
                 break
             n = len(self._section_text(c["section"]))
+            if precision_fix("PL1") and path and n > PL1_WHOLE_CHARS:
+                # PL1 (29 Oct, step E3): a long section added as context brings the top-level paragraph its best-scored
+                # paragraph sits in, with everything under it (small-to-big passage retrieval), never the whole section:
+                # E1/E1b, 117.475 added whole filled the paragraph limit and pushed F-020's key 117.405 out of the prompt
+                top = re.match(r"\([^)]+\)", path)
+                if top is not None:
+                    para = c["section"] + top.group(0)
+                    n = sum(len(r["body_text"] or "") for r in self.db.query(_SECTION_SQL, {"s": c["section"]})
+                            if (r["paragraph_path"] or "").startswith(top.group(0)))
+                    if 0 < n and chars + n <= MS1_MAX_CHARS:
+                        out.append(para)
+                        chars += n
+                    continue
             if chars + n <= MS1_MAX_CHARS:
                 out.append(c["section"])
                 chars += n

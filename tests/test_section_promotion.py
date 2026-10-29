@@ -762,3 +762,49 @@ def test_dv2_a_question_about_other_parts_is_not_confined_to_the_named_part():
                                     "device identification, and how do they interact with Part 820?")
     assert not _ASKS_OTHER_PARTS.search("Which parts of our submission become public, and when?")
     assert not _ASKS_OTHER_PARTS.search("How must advisory notices be handled under Part 820?")
+
+
+# ------------------------------------------------------------ step E: QD2 trigger, PL1 paragraph-level additions (29 Oct)
+
+
+def test_qd2_comparisons_and_interactions_are_multi_part(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    q = "How does the Part 117 supply-chain program differ from the FSVP requirements for importers?"
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"QD2"})
+    assert not SP.multi_part(q)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"QD2"})
+    assert SP.multi_part(q)
+    assert SP.multi_part("Which parts govern device listing, and how do they interact with Part 820?")
+    assert not SP.multi_part("What records must a qualified facility keep?")
+
+
+class _Sections:
+    """_SECTION_SQL rows: section -> [(paragraph_path, text)]."""
+
+    def __init__(self, sections):
+        self.sections = sections
+
+    def query(self, sql, params):
+        return [dict(paragraph_path=p, body_text=t) for p, t in self.sections.get(params["s"], [])]
+
+
+def _companion_promoter(monkeypatch, sections, scores):
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.db = _Sections(sections)
+    monkeypatch.setattr(pr, "rerank_scores", lambda q, cands: scores, raising=False)
+    monkeypatch.setattr(pr, "_section_text", lambda s: " ".join(t for _, t in sections.get(s, [])), raising=False)
+    return pr
+
+
+def test_pl1_a_long_added_section_comes_as_its_best_paragraph_family(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    sections = {"117.475": [("(a)", "x" * 2000), ("(a)(1)", "x" * 500), ("(b)", "y" * 3000)],
+                "117.405": [("(a)", "z" * 1500)]}
+    scores = {"117.475": (0.95, "(a)(1)"), "117.405": (0.90, "(a)")}
+    cands = [{"section": s, "part": "117"} for s in sections]
+    promotion = Promotion(sections=("117.410",), companions=(), method="picker")
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", (VS.VALIDATOR_PRECISION | {"PL1"}) - {"MS2"})
+    pr = _companion_promoter(monkeypatch, sections, scores)
+    assert pr.reranked_companions("q", cands, promotion) == ["117.475(a)", "117.405"]   # 2,500 + 1,500 chars: both fit
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"PL1"})
+    assert pr.reranked_companions("q", cands, promotion) == ["117.475"]   # before: whole 117.475 crowded out 117.405 (F-020)

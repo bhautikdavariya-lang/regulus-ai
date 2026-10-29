@@ -482,7 +482,7 @@ LM1_TOP = 3
 LM1_MIN_SCORE = 0.3
 # OC1: the added sections that are context, not provisions the answer must restate - the reranker's (MS1/MS2), absence
 # retrieval's (AR2), navigation's and cross-part citations. The picker's own second pick (SP2) stays a requested provision.
-OC1_NOTES = ("reranked: ", "absence retrieval: ", "navigated: ", "cross-part: ")
+OC1_NOTES = ("reranked: ", "absence retrieval: ", "navigated: ", "cross-part: ", "paragraph companions: ")
 
 
 def companions_as_context(package: GenerationPackage, plan: QueryPlan, labels: frozenset[str]) -> GenerationPackage:
@@ -1637,7 +1637,8 @@ class RagPipeline:
             # same for the sections MS1/MS2 ("reranked: a, b") and AR2 ("absence retrieval: a") add (28 Oct: F-020's
             # MS1 companion 117.405 was made a requirement, the draft failed on it and only 117.410 was quoted)
             added = [n.split(": ", 1)[1] for n in promotion.notes
-                     if n.startswith(("second pick: ", "reranked: ", "absence retrieval: ", "navigated: ", "cross-part: "))]
+                     if n.startswith(("second pick: ", "reranked: ", "absence retrieval: ", "navigated: ", "cross-part: ",
+                                      "sub-questions: ", "paragraph companions: "))]
             extra = frozenset(f"21 CFR {s.strip()}" for group in added for s in group.split(",") if s.strip())
             if extra:
                 # an added section none of whose text reached the context is not a requested provision at all: listed,

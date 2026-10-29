@@ -329,6 +329,14 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       (cfr_subparts), is said to be absent or reserved, with the part's current subparts - and, for Part 820, where the
       QMSR put the requirements; a question about a document built on them is told compliance cannot be confirmed
       (PB-008 "Subparts C through O still apply", NC-013 "Part 1250 Subpart Q"; also NC-003, NC-018 sealed)
+  QD2 (29 Oct, off until measured; step E2) a comparison or interaction ("differ from", "versus", "interact with",
+      "relate to") is a multi-part question, so QD1's decomposition runs for it (F-022: 117 Subpart G vs 1 Subpart L;
+      M-042: Parts 807/830 with 820). Sections QD1 adds are optional, like SP2's and MS1's (an unsupplied one is never
+      announced as "not found")
+  PL1 (29 Oct, off until measured; step E3) a section longer than 2,500 characters added by the reranker (MS1/MS2) comes
+      as the top-level paragraph its best-scored paragraph sits in, with everything under it - small-to-big passage
+      retrieval - and up to 3 may be added: E1/E1b, a whole 117.475 filled the paragraph limit and pushed F-020's key
+      117.405 out (REGULUS_PL1_MAX, REGULUS_PL1_WHOLE_CHARS)
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,
