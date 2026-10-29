@@ -810,28 +810,65 @@ def test_pl1_a_long_added_section_comes_as_its_best_paragraph_family(monkeypatch
     assert pr.reranked_companions("q", cands, promotion) == ["117.475"]   # before: whole 117.475 crowded out 117.405 (F-020)
 
 
-def test_qd2_cross_part_sub_questions_search_every_part_at_the_stricter_floor(monkeypatch):
-    from regulus.rag import validator_switches as VS
+def _qd2_promoter(monkeypatch, subs, found):
+    """`found(sub, scope) -> (section, score)`; records the scopes searched."""
     seen = []
 
     class Gen:
         def generate(self, messages, max_new_tokens=None):
-            return GenerationResult(prompt="", response="What is the Part 117 supply-chain program?\nWhat must an importer "
-                                    "do under FSVP?", prompt_tokens=0, generated_tokens=0, seconds=0.0)
+            return GenerationResult(prompt="", response="\n".join(subs), prompt_tokens=0, generated_tokens=0, seconds=0.0)
 
     pr = SectionPromoter.__new__(SectionPromoter)
     pr.generator = Gen()
     monkeypatch.setattr(SP, "RERANKER", "fake")
-    monkeypatch.setattr(pr, "candidates", lambda q, parts=None: (seen.append(parts), (None, [
-        {"section": "117.405" if "117" in q else "1.506", "part": "117" if "117" in q else "1"}]))[1], raising=False)
-    monkeypatch.setattr(pr, "rerank_scores", lambda q, c: {c[0]["section"]: (0.6 if c[0]["section"] == "1.506" else 0.9, "")},
-                        raising=False)
+
+    def candidates(q, parts=None):
+        seen.append(parts)
+        sec, _ = found(q, parts)
+        return None, [{"section": sec, "part": sec.split(".")[0]}]
+
+    monkeypatch.setattr(pr, "candidates", candidates, raising=False)
+    monkeypatch.setattr(pr, "rerank_scores", lambda q, c: {c[0]["section"]: (found(q, seen[-1])[1], "")}, raising=False)
+    return pr, seen
+
+
+def test_qd2_a_sub_question_the_named_part_cannot_answer_searches_every_part(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    subs = ["What is the Part 117 supply-chain program?", "What must an importer do under FSVP?"]
+    found = lambda q, scope: (("117.405", 0.9) if "117" in q else ("117.410", 0.3) if scope == ("117",) else ("1.506", 0.8))
     q = "How does the Part 117 supply-chain program differ from the FSVP requirements for importers?"
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"QD2"})
-    assert pr.decomposed_sections(q, ("117",)) == ["117.405"] and seen == [None, None]   # 1.506 at 0.6 < 0.7: not added
-    seen.clear()
+    pr, seen = _qd2_promoter(monkeypatch, subs, found)
+    assert pr.decomposed_sections(q, ("117",)) == ["117.405", "1.506"] and seen == [("117",), ("117",), None]
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"QD2"})
-    assert pr.decomposed_sections(q, ("117",)) == ["117.405", "1.506"] and seen == [("117",), ("117",)]  # 0.5 floor
+    pr, seen = _qd2_promoter(monkeypatch, subs, found)
+    assert pr.decomposed_sections(q, ("117",)) == ["117.405"] and None not in seen
+
+
+def test_qd2_a_comparison_inside_one_part_stays_in_it(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    subs = ["What are the responsibilities of quality control personnel?", "What are production personnel responsible for?"]
+    found = lambda q, scope: (("111.105", 0.8) if "quality" in q else ("111.110", 0.7)) if scope == ("111",) else ("211.22", 0.95)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"QD2"})
+    pr, seen = _qd2_promoter(monkeypatch, subs, found)
+    q = "Under Part 111, what is the difference between the responsibilities of quality control personnel and production?"
+    assert pr.decomposed_sections(q, ("111",)) == ["111.105", "111.110"] and None not in seen   # never 211.22
+
+
+def test_qd2_trigger_wording():
+    from regulus.rag import validator_switches as VS
+    on = VS.VALIDATOR_PRECISION | {"QD2"}
+    import regulus.rag.validator_switches as V
+    old, V.VALIDATOR_PRECISION = V.VALIDATOR_PRECISION, on
+    try:
+        for q in ["What are the differences between Part 117 and Part 507?", "How do a 510(k) and a De Novo request differ?",
+                  "How is a recall different than a market withdrawal?", "How does Part 211 relate to Part 210?"]:
+            assert SP.multi_part(q), q
+        for q in ["What must be done when the distributor is different from the manufacturer?",
+                  "What requirements relate to supplier verification under Part 117?"]:
+            assert not SP.multi_part(q), q
+    finally:
+        V.VALIDATOR_PRECISION = old
 
 
 def test_the_key_recall_harness_asks_decomposition_instead_of_taking_it_for_the_answer():
@@ -848,3 +885,21 @@ def test_the_key_recall_harness_asks_decomposition_instead_of_taking_it_for_the_
     gen = KR.ReplayGenerator(PICKER_SYSTEM, Live(), (NAV1_SYSTEM, QD1_SYSTEM))
     out = gen.generate([{"role": "system", "content": QD1_SYSTEM}, {"role": "user", "content": "q"}])
     assert out.response == "Sub one?\nSub two?" and gen.prompt_sha is None   # the answer fingerprint is untouched
+
+
+def test_hq1_additions_keep_places_inside_the_statute_cut():
+    ranked = list(range(22))
+    out = SP.with_reserved(ranked, ["hq1", "hq2"], SP.CFR_CANDIDATES_WITH_STATUTE)
+    assert out[:SP.CFR_CANDIDATES_WITH_STATUTE][-2:] == ["hq1", "hq2"] and len(out) == SP.CFR_CANDIDATES_WITH_STATUTE
+    assert SP.with_reserved([1, 2], ["hq"], 20) == [1, 2, "hq"] and SP.with_reserved([1, 2], [], 20) == [1, 2]
+
+
+def test_a_section_added_as_a_paragraph_is_not_added_again_whole(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    sections = {"117.475": [("(a)", "x" * 1000)], "117.405": [("(a)", "z" * 1000)]}
+    scores = {"117.475": (0.95, "(a)"), "117.405": (0.90, "(a)")}
+    cands = [{"section": s, "part": "117"} for s in sections]
+    promotion = Promotion(sections=("117.410",), companions=("117.475(a)",), method="picker")
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"MS2", "PL1"})
+    pr = _companion_promoter(monkeypatch, sections, scores)
+    assert pr.reranked_companions("q", cands, promotion) == ["117.405"]   # 117.475 is cited already, as its (a)

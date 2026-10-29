@@ -58,7 +58,9 @@ class SectionQuestions:
         """(section, best question similarity), best first, at least `min_score`, inside `parts` when given."""
         if not (question or "").strip():
             return []
-        sims = self.vectors @ np.asarray(self.embedder.embed_query(question), dtype=np.float32)
+        # question to question: both sides embedded the same way - embed_query adds BGE's query-to-passage instruction,
+        # which the stored questions do not have (code review)
+        sims = self.vectors @ np.asarray(self.embedder.embed_batch([question])[0], dtype=np.float32)
         best: dict[str, float] = {}
         for i in np.argsort(-sims):
             s, score = self.owners[i], float(sims[i])

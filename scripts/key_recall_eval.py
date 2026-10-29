@@ -56,6 +56,7 @@ class ReplayGenerator:
         self.recorded: dict | None = None
         self.picker = "none"
         self.prompt_sha: str | None = None
+        self.unanswered = 0
 
     def generate(self, messages, max_new_tokens=None, on_text=None, **kw):
         from regulus.inference.types import GenerationResult
@@ -71,6 +72,8 @@ class ReplayGenerator:
             else:
                 self.picker = "miss"
         elif messages and messages[0].get("content") in self.retrieval_systems:
+            if self.live is None:
+                self.unanswered += 1   # no model: QD1/QX1/NAV1 did nothing for this question - marked, never silent
             text = (self.live.generate(messages, max_new_tokens=max_new_tokens, **kw).response or "") if self.live else ""
         elif self.prompt_sha is None:
             self.prompt_sha = hashlib.sha256(json.dumps(messages, sort_keys=True).encode()).hexdigest()[:16]
@@ -130,7 +133,7 @@ def cmd_run(a) -> None:
     with Path(a.out).open("w", encoding="utf-8") as f:
         for n, qid in enumerate(ids, 1):
             gen.recorded = (recorded.get(qid) or {}).get("promotion")
-            gen.picker, gen.prompt_sha = "none", None
+            gen.picker, gen.prompt_sha, gen.unanswered = "none", None, 0
             fallback = None
             try:
                 r = pipe.answer(text_of[qid])
@@ -156,7 +159,8 @@ def cmd_run(a) -> None:
                 "recall": round(sum(v == "whole" for v in status.values()) / len(req), 3) if req else None,
                 "picker": gen.picker, "prompt_sha": fingerprint, "fallback": fallback, "prompt_chars": sum(c for _, _, c in sources),
                 "promoted": promo.get("sections"), "companions": promo.get("companions"), "notes": promo.get("notes"),
-                "candidates": promo.get("candidates"), "rerank": scores, "sources": sources, "error": err}) + "\n")
+                "candidates": promo.get("candidates"), "rerank": scores, "sources": sources, "error": err,
+                "unanswered_retrieval_calls": gen.unanswered}) + "\n")
             if n % 25 == 0:
                 print(f"{n}/{len(ids)} {time.perf_counter() - t0:.0f} s", flush=True)
     db.close()

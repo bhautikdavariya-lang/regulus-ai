@@ -74,3 +74,14 @@ def test_vectors_are_cached_by_content(tmp_path, monkeypatch):
 
 def test_without_the_questions_file_the_index_is_off(tmp_path):
     assert SQ.section_questions(tmp_path / "absent.jsonl") is None
+
+
+def test_the_user_question_is_embedded_like_the_stored_ones(tmp_path, monkeypatch):
+    """Question to question: no BGE query instruction on one side only (code review)."""
+    class NoQueryPrefix(_Embedder):
+        def embed_query(self, text):
+            raise AssertionError("embed_query adds the query-to-passage instruction")
+    monkeypatch.setattr(SQ, "CACHE_DIR", tmp_path)
+    path = tmp_path / "q.jsonl"
+    path.write_text(json.dumps({"section": "117.315", "part": "117", "questions": ["How long do we keep records?"]}) + "\n")
+    assert SQ.SectionQuestions.load(path, NoQueryPrefix()).rank("keep records how long")[0][0] == "117.315"

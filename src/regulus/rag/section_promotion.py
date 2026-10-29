@@ -153,8 +153,19 @@ _ASK_START = re.compile(r"(?:^|[,;:]\s*(?:and\s+|or\s+)?|\b(?:and|or)\s+)(?:how|
 # QD2 (29 Oct, step E2): a comparison or interaction asks about two things as surely as two question marks do - "How does
 # the Part 117 supply-chain program differ from the FSVP requirements for importers?" (F-022: 117 Subpart G and 1 Subpart
 # L), "... and how do they interact with Part 820?" (M-042)
-_COMPARES = re.compile(r"\b(?:differ(?:s|ence|ent)?\s+(?:from|between)|compare[sd]?\s+(?:to|with)|comparison\s+(?:of|between)|"
-                       r"versus|vs\.?|interact\w*\s+with|relat(?:e|es|ionship)\s+(?:to|between|with))\b", re.I)
+_COMPARES = re.compile(
+    r"\bdifferences?\s+between\b|\bdiffers?\s+from\b|\bhow\s+(?:does|do|is|are)\b[^?]{0,140}?\b(?:differ\w*|different)\b"
+    r"|\bcompare[sd]?\s+(?:to|with)\b|\bcomparison\s+(?:of|between)\b|\bversus\b|\bvs\.?\s"
+    r"|\binteract\w*\s+with\b|\bhow\s+(?:does|do|is|are)\b[^?]{0,140}?\brelat(?:e|es|ed)\s+(?:to|with)\b", re.I)
+
+
+def with_reserved(ranked: list, extra: list, cap: int) -> list:
+    """`ranked` cut so that `extra` follows it within the first `cap` places (HQ1: appended after 22 candidates, its
+    sections were dropped when the FD&C Act step keeps the first 20 - code review)."""
+    if not extra:
+        return ranked
+    room = max(cap - len(extra), 0)   # cut only when ranked would push the additions past the cap
+    return list(ranked[:room]) + list(extra)
 
 
 def multi_part(question: str) -> bool:
@@ -577,7 +588,7 @@ class SectionPromoter:
         kept = self.__dict__.get("_order_scores")
         scores = (kept[2] if kept and kept[0] == question and set(kept[1]) == {c["section"] for c in cands}
                   else self.rerank_scores(question, cands))
-        part, have = pr.sections[0].split(".")[0], set(pr.citations)
+        part, have = pr.sections[0].split(".")[0], {c.split("(")[0] for c in pr.citations}
         pool = [c for c in cands if not c.get("statute") and c["part"] == part and c["section"] not in have]
         if precision_fix("MS2"):
             # MS2: the promoted section's structure joins the pool - its subpart's sections and the sections of its part
@@ -615,7 +626,10 @@ class SectionPromoter:
                 # MS3 (28 Oct): small-to-big at paragraph level - a section too large to add whole brings the top-level
                 # paragraph its best-scored paragraph sits in, with everything under it (pf49b, client keys: L-008's
                 # key is 101.9(b) and 101.12, and 101.12 - the reference-amounts tables - never fit whole)
-                top = re.match(r"\([^)]+\)", path).group(0)
+                m3 = re.match(r"\([^)]+\)", path)
+                if m3 is None:   # an unusual path: no paragraph family to take (code review: AttributeError lost the promotion)
+                    continue
+                top = m3.group(0)
                 para = c["section"] + top
                 n = sum(len(r["body_text"] or "") for r in self.db.query(_SECTION_SQL, {"s": c["section"]})
                         if (r["paragraph_path"] or "").startswith(top))
@@ -959,6 +973,7 @@ class SectionPromoter:
 
     # -- candidates -----------------------------------------------------------
     def candidates(self, question: str, parts: tuple[str, ...] | None = None) -> tuple[list[str], list[dict]]:
+        asked = question   # HQ1 matches the user's words, before SY1-SY3 add search terms (code review)
         if precision_fix("SY1") and _ASKS_AGENCY.search(question or "") and not re.search(r"\bpetition", question or "", re.I):
             # SY1: asking FDA to act is petitioning it - "Can we ask FDA to exempt it from certification?" never says
             # "petition", and 71.18 ("Petition for exemption from certification") was not among the 22 candidates
@@ -999,7 +1014,8 @@ class SectionPromoter:
             # HQ1 (step D): sections whose index-time questions match the question, appended after the list like the dense
             # leg (never fused into its order), inside the named part(s) or the cosmetics parts when the question is one
             scope = tuple(parts) if parts else (tuple(COSMETIC_PARTS) if cosmetic_question(lex) else None)
-            ranked = ranked + self._question_matches(question, ranked, scope)
+            hq = self._question_matches(asked, ranked, scope)
+            ranked = with_reserved(ranked, hq, CFR_CANDIDATES_WITH_STATUTE)
         if ENTITY_CONSTRAINTS:
             try:
                 ranked = self._entity_constrained(question, lex, ranked, parts)
@@ -1635,19 +1651,30 @@ class SectionPromoter:
         # QD2: a comparison or interaction reaches beyond the part the question names - F-022 names Part 117 and needs
         # FSVP's Part 1, M-042 names Part 820 and needs Parts 807 and 830 - so its sub-questions search every part, at
         # the stricter floor MS1 and SP2F use (a section of another part must be clearly relevant)
+        # (a comparison inside one part - "Under Part 111, the difference between QC and production personnel" - stays
+        # in it: the other parts are searched only for a sub-question nothing in the named part answers; code review)
         across = precision_fix("QD2") and bool(_COMPARES.search(question or ""))
-        sub_parts, floor = (None, QD2_MIN_SCORE) if across else (parts, QD1_MIN_SCORE)
-        out: list[str] = []
-        for sub in subs if len(subs) >= 2 else []:
+        kept_rerank = self.__dict__.get("last_rerank")   # the question's own scores, not the last sub-question's
+
+        def best_for(sub, scope, floor):
             try:
-                _, cands = self.candidates(sub, sub_parts)
+                _, cands = self.candidates(sub, scope)
                 cfr = [c for c in cands if not c.get("statute")][:QD1_CANDIDATES]
                 scores = self.rerank_scores(sub, cfr)
             except Exception:  # noqa: BLE001
-                continue
+                return None
             best = max(cfr, key=lambda c: scores.get(c["section"], (0.0, ""))[0], default=None)
-            if best is not None and scores.get(best["section"], (0.0, ""))[0] >= floor and best["section"] not in out:
-                out.append(best["section"])
+            return best["section"] if best is not None and scores.get(best["section"], (0.0, ""))[0] >= floor else None
+
+        out: list[str] = []
+        for sub in subs if len(subs) >= 2 else []:
+            found = best_for(sub, parts, QD1_MIN_SCORE)
+            if found is None and across and parts:
+                found = best_for(sub, None, QD2_MIN_SCORE)
+            if found is not None and found not in out:
+                out.append(found)
+        if kept_rerank is not None:
+            self.__dict__["last_rerank"] = kept_rerank
         return out
 
     def expanded_candidates(self, question: str, parts, cands: list[dict]) -> list[dict]:
@@ -2045,7 +2072,8 @@ class SectionPromoter:
             if nav:
                 pr = replace(pr, companions=pr.companions + tuple(nav), notes=pr.notes + (f"navigated: {', '.join(nav)}",))
         if precision_fix("QD1") and multi_part(question):
-            extra = [s2 for s2 in self.decomposed_sections(question, parts) if s2 not in pr.citations][:QD1_MAX]
+            cited = {c.split("(")[0] for c in pr.citations}   # a paragraph PL1 added is its section (code review)
+            extra = [s2 for s2 in self.decomposed_sections(question, parts) if s2.split("(")[0] not in cited][:QD1_MAX]
             if extra:
                 pr = replace(pr, companions=pr.companions + tuple(extra), notes=pr.notes + (f"sub-questions: {', '.join(extra)}",))
         return replace(pr, notes=pr.notes + notes) if notes else pr
