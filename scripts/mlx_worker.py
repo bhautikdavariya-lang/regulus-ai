@@ -20,6 +20,7 @@ Errors are reported as {"op": "error", "message": "..."} and the worker keeps se
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 
@@ -33,6 +34,11 @@ from mlx_lm.generate import generate_step
 _PREFIX = {"cache": None, "ids": []}
 
 MB = 2**20
+# MC1 (29 Oct): MLX keeps the buffers a request freed in its own cache for reuse and does not return them to the system.
+# On the 8 GB Mac that cache pushed the harness's reranker and embedders into swap (stepA: 7.7 of 8 GB swap in use, section
+# choice 34 s -> 75-95 s). The cache is capped and emptied after every request - allocation only: the computation, and so
+# every token, is unchanged. REGULUS_MLX_CACHE_LIMIT_MB=-1 restores the unlimited cache.
+CACHE_LIMIT_MB = int(os.environ.get("REGULUS_MLX_CACHE_LIMIT_MB", "256"))
 
 
 def send(obj) -> None:
@@ -58,6 +64,8 @@ def main(model_path: str, adapter_path: str | None = None) -> None:
     # a LoRA adapter (REGULUS_MLX_ADAPTER_PATH, evaluation only) is applied on top of the quantized weights
     model, _tokenizer = (load(model_path, adapter_path=adapter_path) if adapter_path else load(model_path))  # the tokenizer is never used for prompts
     mx.eval(model.parameters())
+    if CACHE_LIMIT_MB >= 0:
+        mx.set_cache_limit(CACHE_LIMIT_MB * MB)
     send({"op": "ready", "model_path": model_path, "adapter_path": adapter_path, "load_seconds": round(time.perf_counter() - t0, 3),
           "active_memory_mb": round(mx.get_active_memory() / MB, 1), "peak_memory_mb": round(mx.get_peak_memory() / MB, 1),
           "versions": {p: md.version(p) for p in ("mlx", "mlx-metal", "mlx-lm")}})
@@ -142,7 +150,10 @@ def generate(model, req: dict) -> None:
     send({"op": "done", "token_ids": pending, "finished": finished, "stopped_by_caller": stopped, "prefix_reused": reused,
           "prompt_tokens": len(ids), "generated_tokens": n, "seconds": round(time.perf_counter() - start, 3),
           "first_token_seconds": None if first is None else round(first, 3),
-          "peak_memory_mb": round(mx.get_peak_memory() / MB, 1), "active_memory_mb": round(mx.get_active_memory() / MB, 1)})
+          "peak_memory_mb": round(mx.get_peak_memory() / MB, 1), "active_memory_mb": round(mx.get_active_memory() / MB, 1),
+          "cache_memory_mb": round(mx.get_cache_memory() / MB, 1)})
+    if CACHE_LIMIT_MB >= 0:
+        mx.clear_cache()   # after the reply is sent: the caller never waits for it
 
 
 if __name__ == "__main__":
