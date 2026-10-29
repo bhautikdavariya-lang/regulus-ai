@@ -165,6 +165,22 @@ def test_a_correction_that_still_fails_leaves_the_normal_repair_path():
     assert out.metadata["generation"]["correction_pass"]["accepted"] is False and "[9]" not in out.answer
 
 
+def test_cx1_a_draft_with_many_different_errors_is_not_handed_back(monkeypatch):
+    import regulus.rag.pipeline as PL
+    from regulus.rag import validator_switches as VS
+    bad = "21 CFR 820.10(b)(2) requires traceability procedures [9]."
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"CX1"})
+    monkeypatch.setattr(PL, "CX1_MAX_CODES", 1)   # this fixture's draft has one error code
+    g = TwoAnswers(bad, "unused")
+    out = RagPipeline(LexicalRetriever(TableDatabase()), g, RagConfig(answer_style="apply")).answer(TWO)
+    info = out.metadata["generation"]["correction_pass"]
+    assert len(g.calls) == 1 and info["skipped"] == "CX1" and info["attempted"] is False and "[9]" not in out.answer
+    monkeypatch.setattr(PL, "CX1_MAX_CODES", 9)   # fewer codes than the floor: handed back as before
+    g = TwoAnswers(bad, bad)
+    RagPipeline(LexicalRetriever(TableDatabase()), g, RagConfig(answer_style="apply")).answer(TWO)
+    assert len(g.calls) == 2
+
+
 # ------------------------------------------------------------ code review 22 Oct: apply-style validation stays strict
 
 

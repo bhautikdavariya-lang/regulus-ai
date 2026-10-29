@@ -290,6 +290,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       part's paragraphs (NC-022); "the scope of" / "which definitions apply" gets the whole Scope / Definitions section
       (M-001, M-008); DV1's promotion carries its cross-encoder score so Q2 may quote it for an answer that cannot be shown
       (M-026, M-042 withheld) - 300Q full300c, 4 DV1 PASS lost
+  CX1 (29 Oct, off until measured) a draft with 3 or more different error codes skips the correction pass (speed): 300Q
+      full300c, 31 of 32 such passes were rejected and the one accepted (F-001) stayed FAIL - 0.8 h of 11.8 h. A truncated
+      draft keeps its pass (K-005's PASS came from one) (REGULUS_CX1_MAX_CODES)
   QC1 (on since 27 Oct release) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

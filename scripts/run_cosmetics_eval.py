@@ -90,6 +90,8 @@ def main() -> int:
     ap.add_argument("--replay-promotions", help="answers.jsonl of an earlier run: reuse its section promotions, so a "
                                                 "model comparison measures the answers only")
     ap.add_argument("--chains", action="store_true", help="ask each follow-up after its parent, in one conversation")
+    ap.add_argument("--cache", help="greedy reply cache (JSONL): a model call whose messages, token limit and model revision "
+                                    "were seen before gets its recorded reply; new replies are added")
     a = ap.parse_args()
     sel = json.loads(Path(a.selection).read_text(encoding="utf-8"))
     ids = sel["summary"]["selected_ids"] if isinstance(sel, dict) else [x["id"] for x in sel]
@@ -149,6 +151,12 @@ def main() -> int:
             gen.close()
             raise SystemExit(f"{path}: the chat template opens a reasoning block - a thinking model needs REGULUS_ALLOW_THINKING=1")
         gen.model_id = THINKING_MLX_MODELS[key]["model_id"]
+    if a.cache:
+        from regulus.evaluation.reply_cache import CachedGenerator   # decoding is greedy: the same call gives the same reply
+
+        gen = CachedGenerator(gen, Path(a.cache))
+        print(f"reply cache {a.cache}: {len(gen.cache)} replies" + ("" if gen.enabled else " (OFF: the generator samples)"),
+              flush=True)
     db = Database.from_env()
     db.connect()
     t_all = time.perf_counter()
@@ -174,6 +182,7 @@ def main() -> int:
             for n, qid in enumerate(todo, 1):
                 q = bank[qid]["Question (ask verbatim)"]
                 t0 = time.perf_counter()
+                hits0 = gen.counts() if a.cache else None
                 if a.replay_promotions:
                     _replay(pipe, q, replay.get(qid))
                 chain = (qid if qid not in parent_of else parent_of[qid]) if a.chains else None
@@ -194,6 +203,7 @@ def main() -> int:
                     "raw": md.get("raw_model_output"), "seconds": round(time.perf_counter() - t0, 1),
                     "model": gen.describe(), "followup": md.get("conversation"),
                     **({"role": "parent" if qid not in parent_of else "followup", "chain": chain} if a.chains else {}),
+                    **({"reply_cache": {k: v - hits0[k] for k, v in gen.counts().items()}} if a.cache else {}),
                 }, ensure_ascii=False, default=str) + "\n")
                 f.flush()
                 if chain:
@@ -204,6 +214,8 @@ def main() -> int:
     finally:
         db.close()
         gen.close()
+        if a.cache:
+            print(f"reply cache: {gen.cached} replayed, {gen.fresh} generated", flush=True)
     return 0
 
 

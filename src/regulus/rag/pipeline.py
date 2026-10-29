@@ -467,6 +467,9 @@ TK1_MIN_TOKENS = 640   # TK1: the least room an applied answer gets
 # set when the prompt was capped near 2,600 tokens; CB1/HX1 now supply up to 48 paragraphs and 15,000 characters)
 AL1_MAX_UNITS = int(os.environ.get("REGULUS_AL1_MAX_UNITS", "18"))
 AL1_MAX_TOKENS = int(os.environ.get("REGULUS_AL1_MAX_TOKENS", "3072"))
+# CX1: a draft with at least this many different error codes skips the correction pass (300Q full300c: 31 of 32 such
+# passes were rejected - a rejected pass leaves the answer exactly as a skipped one - and the one accepted stayed FAIL)
+CX1_MAX_CODES = int(os.environ.get("REGULUS_CX1_MAX_CODES", "3"))
 # LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
@@ -1877,7 +1880,12 @@ class RagPipeline:
                             answer_text, validation_initial = excised[0], trimmed_report
                             generation_info["validator_precision"] = {"sentences_excised": excised[1]}
                 validation_final = validation_initial
+                error_codes = list(dict.fromkeys(p.code for p in validation_initial.problems if p.severity == "error"))
                 if (self.config.validation_behavior == "repair" and not validation_initial.ok
+                        and package.answer_style == "apply" and precision_fix("CX1") and len(error_codes) >= CX1_MAX_CODES):
+                    # CX1: a draft with this many different errors is not handed back - the second generation is skipped
+                    generation_info["correction_pass"] = {"attempted": False, "skipped": "CX1", "codes_before": error_codes}
+                elif (self.config.validation_behavior == "repair" and not validation_initial.ok
                         and package.answer_style == "apply"):
                     corrected, info = self.correction_pass(messages, answer_text, package, validation_initial, question, analysis)
                     generation_info["correction_pass"] = info

@@ -93,47 +93,8 @@ def _mlx_generator():
                         revision=os.environ.get("REGULUS_MLX_REVISION"))
 
 
-class CachedGenerator:
-    """The MLX generator with a reply cache: decoding is greedy (do_sample=False), so the same messages, token limit
-    and model revision give the same reply. A run re-generates only the prompts that changed; `fresh`/`cached` count
-    both. The cache is a JSONL file of {key, response, generated_tokens, seconds}."""
-
-    def __init__(self, real, path: Path) -> None:
-        self.real, self.path = real, Path(path)
-        self.cache: dict[str, dict] = {}
-        if self.path.exists():
-            for line in self.path.read_text(encoding="utf-8").splitlines():
-                if line.strip():
-                    rec = json.loads(line)
-                    self.cache[rec["key"]] = rec
-        self.fresh = self.cached = 0
-
-    def _key(self, messages, max_new_tokens, kw) -> str:
-        ident = (self.real.describe() or {}) if hasattr(self.real, "describe") else {}
-        blob = json.dumps([messages, max_new_tokens, sorted(kw.items()), ident.get("revision"), ident.get("model_id")],
-                          sort_keys=True, default=str)
-        return hashlib.sha256(blob.encode("utf-8")).hexdigest()
-
-    def generate(self, messages, max_new_tokens=None, on_text=None, **kw):
-        from regulus.inference.types import GenerationResult
-
-        key = self._key(messages, max_new_tokens, kw)
-        rec = self.cache.get(key)
-        if rec is None:
-            res = self.real.generate(messages, max_new_tokens=max_new_tokens, **kw)
-            rec = {"key": key, "response": res.response, "generated_tokens": res.generated_tokens, "seconds": res.seconds,
-                   "finished": res.finished}
-            with self.path.open("a", encoding="utf-8") as f:
-                f.write(json.dumps(rec) + "\n")
-            self.cache[key] = rec
-            self.fresh += 1
-        else:
-            self.cached += 1
-        return GenerationResult(prompt="", response=rec["response"], prompt_tokens=0, generated_tokens=rec["generated_tokens"],
-                                seconds=rec["seconds"], finished=rec.get("finished", True))
-
-    def __getattr__(self, name):
-        return getattr(self.real, name)
+# the reply cache lives in the package (regulus.evaluation.reply_cache); imported here for the harnesses that use it
+from regulus.evaluation.reply_cache import CachedGenerator  # noqa: E402,F401
 
 
 PICKER_CACHE = Path.home() / "regulus_eval_runs" / "section_resolution_20261023" / "picker_cache.jsonl"

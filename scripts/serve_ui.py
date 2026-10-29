@@ -217,6 +217,13 @@ class Engine:
             self._mlx.close()
             refuse(f"the model's chat template starts a reasoning block ({prefix.strip()[:20]!r}) after the assistant header: "
                    f"this is a thinking model, not {MLX_LABEL}")
+        # REGULUS_REPLY_CACHE (off unless set): a model call identical to an earlier one - same prompt, evidence, token
+        # limit, model and settings - is answered from the cache file (regulus.evaluation.reply_cache)
+        from regulus.evaluation.reply_cache import wrap_from_env
+
+        self._answering = wrap_from_env(self._mlx)
+        if self._answering is not self._mlx:
+            print(f"Reply cache: {self._answering.path} ({len(self._answering.cache)} replies)", flush=True)
         d = self._mlx.describe()
         print(f"Answering model: {d['model_id']} {d['dtype']} revision {d['model_revision'] or 'not recorded'}, "
               f"MLX worker {d.get('runtime_versions')}, tokenizer.json sha256 {self._tokenizer_sha256[:12]}, "
@@ -401,7 +408,7 @@ class Engine:
         self._mlx.gen = gen   # the configured decoding settings; the worker decodes greedily, thinking off
         pipeline = RagPipeline(
             retriever,
-            self._mlx,
+            getattr(self, "_answering", None) or self._mlx,
             replace(config, top_k=top_k, generation_budget=budget),
             grounding=gate,
             scope_policy=scope,
