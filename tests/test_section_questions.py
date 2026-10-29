@@ -17,11 +17,16 @@ def test_a_good_reply_gives_its_questions():
                                        "What must a record show?"], None)
 
 
-def test_a_reply_that_names_a_provision_or_is_not_questions_is_rejected():
-    assert parse_questions("What does 21 CFR 117.315 require?\nWho signs?\nWhen?")[0] == []
-    assert parse_questions("What does this section require?\nWho signs?\nWhen is it due?")[0] == []
-    assert parse_questions("Records must be kept.\nWho signs?\nWhen?")[0] == []
-    assert parse_questions("Who signs?\nWhen?")[1] == "2 questions"
+def test_a_line_citing_a_section_or_not_a_question_is_dropped_on_its_own():
+    reply = "Here are the questions:\n1. What does 21 CFR 117.315 require?\n2. Who signs?\n3. When is it due?\n4. Does it apply under part 11?"
+    assert parse_questions(reply) == (["Who signs?", "When is it due?", "Does it apply under part 11?"], None)
+    assert parse_questions("Who must comply with this regulation?\nWho signs?\nWhen?")[0] == \
+        ["Who must comply with this regulation?", "Who signs?", "When?"]   # how users ask: kept
+
+
+def test_too_few_usable_questions_rejects_the_reply():
+    questions, why = parse_questions("What does § 1.1113(d) say?\nWho signs?\nWhen?")
+    assert questions == [] and why.startswith("2 usable questions")
 
 
 class _Embedder:

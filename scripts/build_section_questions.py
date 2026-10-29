@@ -33,7 +33,9 @@ INSTRUCTION = ("Write four different questions that the section above answers, o
                "answerable from this section alone. Do not mention section, part or paragraph numbers, and do not say "
                "'this section'. Output only the questions.")
 _NUMBERED = re.compile(r"^\s*(?:[-*•]|\(?\d{1,2}[.)])\s*")
-_NAMES_PROVISION = re.compile(r"\b\d+\.\d+\b|§|\b(?:this|the)\s+(?:section|regulation|paragraph|part)\b|\bpart\s+\d+", re.I)
+# a question that cites the section by number teaches the index nothing a user would type; "under this regulation" or
+# "comply with part 11" is how users ask, and is kept (first 182 sections: 19 whole replies lost to the broader rule)
+_NAMES_PROVISION = re.compile(r"\b\d+\.\d+[a-z]?\b|§", re.I)
 
 _SECTIONS_SQL = """
 SELECT section_number, min(part_number) AS part, min(section_heading) AS heading,
@@ -44,20 +46,20 @@ GROUP BY section_number ORDER BY min(part_number), section_number
 
 
 def parse_questions(reply: str) -> tuple[list[str], str | None]:
-    """(questions, None) when the reply holds 3-5 usable questions, else ([], reason)."""
-    out = []
+    """(questions, None) when the reply holds 3-6 usable questions, else ([], reason). A line that is not a question
+    (a preface) or cites a section number is dropped on its own; the reply stands when enough questions remain."""
+    out, dropped = [], []
     for line in (reply or "").splitlines():
         q = _NUMBERED.sub("", line).strip().strip('"')
         if not q:
             continue
-        if not q.endswith("?"):
-            return [], f"not a question: {q[:60]!r}"
-        if _NAMES_PROVISION.search(q):
-            return [], f"names a provision: {q[:60]!r}"
+        if not q.endswith("?") or _NAMES_PROVISION.search(q):
+            dropped.append(q)
+            continue
         if q not in out:
             out.append(q)
-    if not 3 <= len(out) <= 5:
-        return [], f"{len(out)} questions"
+    if not 3 <= len(out) <= 6:
+        return [], f"{len(out)} usable questions" + (f" (dropped: {dropped[0][:50]!r})" if dropped else "")
     return out, None
 
 
@@ -81,6 +83,34 @@ def key_parts() -> list[str]:
     return sorted((p for p in parts if int(p) > 0), key=int)
 
 
+def reparse(out: Path, cache: Path) -> int:
+    """Every section in OUT re-checked from its cached reply (the replies are deterministic and cached; no model)."""
+    from regulus.evaluation.reply_cache import CacheMiss, CachedGenerator, ReplayOnlyGenerator
+    from regulus.retrieval import Database
+
+    rows = [json.loads(l) for l in out.read_text(encoding="utf-8").splitlines() if l.strip()]
+    gen = CachedGenerator(ReplayOnlyGenerator(cache), cache)
+    db = Database.from_env()
+    db.connect()
+    text = {r["section_number"]: (r["heading"], r["text"]) for r in db.query(_SECTIONS_SQL, {"p": sorted({r["part"] for r in rows})})}
+    db.close()
+    fixed = []
+    for r in rows:
+        heading, body = text.get(r["section"], (r.get("heading") or "", ""))
+        try:
+            reply = gen.generate(messages(heading or "", body or ""), max_new_tokens=MAX_TOKENS).response
+        except CacheMiss:
+            fixed.append(r)   # not cached (written by another run): kept as it is
+            continue
+        questions, why = parse_questions(reply)
+        fixed.append(dict(r, questions=questions, rejected=why))
+    tmp = out.with_suffix(".tmp")
+    tmp.write_text("".join(json.dumps(r) + "\n" for r in fixed), encoding="utf-8")
+    tmp.replace(out)
+    print(f"{len(fixed)} sections re-checked; {sum(1 for r in fixed if r['rejected'])} without usable questions")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--parts", help="comma-separated part numbers")
@@ -88,7 +118,10 @@ def main() -> int:
     ap.add_argument("--limit", type=int, help="at most this many new sections (a sample)")
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--cache", default=str(CACHE))
+    ap.add_argument("--reparse", action="store_true", help="rebuild OUT from the reply cache with the current checks (no model)")
     a = ap.parse_args()
+    if a.reparse:
+        return reparse(Path(a.out), Path(a.cache))
     parts = key_parts() if a.key_parts else [p.strip() for p in (a.parts or "").split(",") if p.strip()]
     if not parts:
         raise SystemExit("name --parts or --key-parts")
