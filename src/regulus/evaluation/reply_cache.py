@@ -12,6 +12,11 @@ run killed mid-write) is skipped, never fatal. Thread-safe.
 
 The app uses it when REGULUS_REPLY_CACHE names a file (`wrap_from_env`): the prompt holds the evidence text, so a
 database, prompt or model change is a new key; retrieval, validation and the evaluator still run for every question.
+
+Replay-only (`ReplayOnlyGenerator`, change-impact testing): no model is loaded. Every call the cache holds is replayed
+and everything after it - validation, fallbacks, composers - runs on the code under test; a call it does not hold raises
+CacheMiss, so the question is known to need the model (its prompt or token limit changed). The generator's describe()
+is kept beside the cache (<cache>.ident.json) so replay-only keys equal the live ones.
 """
 from __future__ import annotations
 
@@ -32,6 +37,20 @@ KEY_VERSION = 2   # 1: section_resolution_eval.CachedGenerator (keyed a "revisio
 _STORED = tuple(f.name for f in dataclasses.fields(GenerationResult))
 
 
+class CacheMiss(BaseException):
+    """A replay-only run met a model call the cache does not hold: this question needs the model. A BaseException, like
+    KeyboardInterrupt, on purpose: the pipeline wraps its aids (the picker among them) in `except Exception`, which would
+    swallow a miss and answer the question down another path instead of reporting it."""
+
+    def __init__(self, system: str) -> None:
+        super().__init__(f"not in the reply cache: {system[:60]!r}")
+        self.system = system
+
+
+def ident_path(path: Path | str) -> Path:
+    return Path(f"{path}.ident.json")
+
+
 def sampling(ident: dict[str, Any]) -> bool:
     """True when the generator samples: its replies are not reproducible and must not be cached."""
     gen = ident.get("generation") or {}
@@ -45,6 +64,7 @@ class CachedGenerator:
     def __init__(self, real, path: Path | str) -> None:
         self.real, self.path = real, Path(path)
         self._lock = threading.Lock()
+        self._ident_saved: dict | None = None
         if not self.enabled:
             log.warning("reply cache off: the generator samples (%s)", self.ident().get("generation"))
         self.cache: dict[str, dict] = {}
@@ -91,6 +111,9 @@ class CachedGenerator:
                     f.write(json.dumps(rec, default=str) + "\n")
                 self.cache[key] = rec
                 self.fresh += 1
+                if self._ident_saved != ident:   # replay-only runs key their calls with this same describe()
+                    ident_path(self.path).write_text(json.dumps(ident, sort_keys=True, default=str), encoding="utf-8")
+                    self._ident_saved = ident
             return res
         with self._lock:
             self.cached += 1
@@ -103,6 +126,28 @@ class CachedGenerator:
 
     def __getattr__(self, name):
         return getattr(self.real, name)
+
+
+class ReplayOnlyGenerator:
+    """Stands in for the model in a replay-only run: describe() is the recorded model's, generate() raises CacheMiss
+    (the CachedGenerator around it answers every call it holds before this is reached)."""
+
+    retrieval_only = False
+
+    def __init__(self, cache_path: Path | str) -> None:
+        p = ident_path(cache_path)
+        if not p.is_file():
+            raise FileNotFoundError(f"{p}: no model identity recorded beside the cache - run live with this cache first")
+        self.ident = json.loads(p.read_text(encoding="utf-8"))
+
+    def describe(self) -> dict[str, Any]:
+        return dict(self.ident)
+
+    def generate(self, messages, max_new_tokens=None, on_text=None, **kw) -> GenerationResult:
+        raise CacheMiss((messages[0].get("content") if messages else "") or "")
+
+    def close(self) -> None:
+        pass
 
 
 def wrap_from_env(real, env: str = "REGULUS_REPLY_CACHE"):

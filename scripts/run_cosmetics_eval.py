@@ -94,6 +94,9 @@ def main() -> int:
     ap.add_argument("--replay-promotions", help="answers.jsonl of an earlier run: reuse its section promotions, so a "
                                                 "model comparison measures the answers only")
     ap.add_argument("--chains", action="store_true", help="ask each follow-up after its parent, in one conversation")
+    ap.add_argument("--replay-only", action="store_true",
+                    help="no model: replay every call --cache holds; a question needing any other call is recorded as "
+                         "needs_live (change-impact testing)")
     ap.add_argument("--cache", help="greedy reply cache (JSONL): a model call whose messages, token limit and model revision "
                                     "were seen before gets its recorded reply; new replies are added")
     a = ap.parse_args()
@@ -112,7 +115,7 @@ def main() -> int:
     out = Path(a.out)
     # answered questions are skipped; a question that failed (e.g. a database timeout) is retried by re-running
     recorded = ([json.loads(l) for l in out.read_text(encoding="utf-8").splitlines() if l.strip()] if out.exists() else [])
-    done = {r["id"] for r in recorded if not r.get("error")}
+    done = {r["id"] for r in recorded if not r.get("error") and not r.get("needs_live")}
     if a.chains:
         # each parent goes first, then its follow-ups; a chain already begun resumes with its recorded turns as context
         missing = [i for i in ids if i not in parent_of]
@@ -136,31 +139,41 @@ def main() -> int:
     from regulus.retrieval import Database
     from regulus.system_identity import configured_generation_config
 
-    s = load_settings()
-    print("memory", memory_preflight(s.model.mlx_min_available_mb), flush=True)
-    tok = load_tokenizer(s.model, local_files_only=True)
-    from regulus.rag.mlx_models import EXPECTED_BITS, SUPPORTED_MLX_MODELS, identify_mlx_model, opens_reasoning
+    if a.replay_only:
+        # change-impact testing: no model is loaded; every call the cache holds is replayed, the rest raise CacheMiss
+        from regulus.evaluation.reply_cache import ReplayOnlyGenerator
 
-    path = Path(os.environ["REGULUS_MLX_MODEL_PATH"])
-    cfg = json.loads((path / "config.json").read_text())
-    key = identify_mlx_model(cfg)
-    if key is None or (cfg.get("quantization") or {}).get("bits") != EXPECTED_BITS:
-        raise SystemExit(f"{path} is not a supported model ({', '.join(SUPPORTED_MLX_MODELS)}) quantized to {EXPECTED_BITS} bits")
-    gen = MlxGenerator(tok, configured_generation_config(s), model_id=SUPPORTED_MLX_MODELS[key]["model_id"], model_path=path,
-                       python=os.environ["REGULUS_MLX_PYTHON"], revision=os.environ.get("REGULUS_MLX_REVISION"))
-    if opens_reasoning(gen.generation_prefix()):
-        from regulus.rag.mlx_models import THINKING_MLX_MODELS, thinking_allowed
+        if not a.cache:
+            raise SystemExit("--replay-only needs --cache")
+        gen = ReplayOnlyGenerator(a.cache)
+    else:
+        s = load_settings()
+        print("memory", memory_preflight(s.model.mlx_min_available_mb), flush=True)
+        tok = load_tokenizer(s.model, local_files_only=True)
+        from regulus.rag.mlx_models import EXPECTED_BITS, SUPPORTED_MLX_MODELS, identify_mlx_model, opens_reasoning
 
-        if not (thinking_allowed() and key in THINKING_MLX_MODELS):
-            gen.close()
-            raise SystemExit(f"{path}: the chat template opens a reasoning block - a thinking model needs REGULUS_ALLOW_THINKING=1")
-        gen.model_id = THINKING_MLX_MODELS[key]["model_id"]
+        path = Path(os.environ["REGULUS_MLX_MODEL_PATH"])
+        cfg = json.loads((path / "config.json").read_text())
+        key = identify_mlx_model(cfg)
+        if key is None or (cfg.get("quantization") or {}).get("bits") != EXPECTED_BITS:
+            raise SystemExit(f"{path} is not a supported model ({', '.join(SUPPORTED_MLX_MODELS)}) quantized to {EXPECTED_BITS} bits")
+        gen = MlxGenerator(tok, configured_generation_config(s), model_id=SUPPORTED_MLX_MODELS[key]["model_id"], model_path=path,
+                           python=os.environ["REGULUS_MLX_PYTHON"], revision=os.environ.get("REGULUS_MLX_REVISION"))
+        if opens_reasoning(gen.generation_prefix()):
+            from regulus.rag.mlx_models import THINKING_MLX_MODELS, thinking_allowed
+
+            if not (thinking_allowed() and key in THINKING_MLX_MODELS):
+                gen.close()
+                raise SystemExit(f"{path}: the chat template opens a reasoning block - a thinking model needs REGULUS_ALLOW_THINKING=1")
+            gen.model_id = THINKING_MLX_MODELS[key]["model_id"]
     if a.cache:
         from regulus.evaluation.reply_cache import CachedGenerator   # decoding is greedy: the same call gives the same reply
 
         gen = CachedGenerator(gen, Path(a.cache))
         print(f"reply cache {a.cache}: {len(gen.cache)} replies" + ("" if gen.enabled else " (OFF: the generator samples)"),
               flush=True)
+    from regulus.evaluation.reply_cache import CacheMiss
+
     db = Database.from_env()
     db.connect()
     t_all = time.perf_counter()
@@ -193,6 +206,12 @@ def main() -> int:
                 context = ConversationContext.from_records(turns.get(chain, [])) if chain and qid in parent_of else None
                 try:
                     r = pipe.answer(q, context=context) if context else pipe.answer(q)
+                except CacheMiss as miss:
+                    # replay-only: this question makes a model call the cache does not hold - it needs the model
+                    f.write(json.dumps({"id": qid, "asked": q, "needs_live": True, "miss": miss.system[:80]}) + "\n")
+                    f.flush()
+                    print(f"[{n}/{len(todo)}] {qid} needs the model ({miss.system[:40]!r})", flush=True)
+                    continue
                 except Exception as exc:  # noqa: BLE001 - one failed question must not end the run
                     f.write(json.dumps({"id": qid, "asked": q, "error": f"{type(exc).__name__}: {exc}"[:500]}) + "\n")
                     f.flush()

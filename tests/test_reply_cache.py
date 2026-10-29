@@ -101,3 +101,63 @@ def test_concurrent_callers_write_whole_lines(tmp_path):
         t.join()
     lines = (tmp_path / "c.jsonl").read_text().splitlines()
     assert len(lines) == 20 and all(json.loads(x)["key"] for x in lines)
+
+
+# ------------------------------------------------------------ replay-only change-impact runs (29 Oct)
+
+
+def test_replay_only_gives_the_live_answer_without_the_model_and_flags_a_changed_prompt(tmp_path):
+    import pytest
+    from regulus.evaluation.reply_cache import CacheMiss, ReplayOnlyGenerator
+    from regulus.rag import RagConfig, RagPipeline
+    from regulus.retrieval import LexicalRetriever
+    from tests.test_answer_validation import TWO, ScriptedGenerator
+    from tests.test_retrieval_plan import TableDatabase
+
+    path = tmp_path / "c.jsonl"
+    good = "21 CFR 820.10(b)(2) requires traceability procedures [1]. 21 CFR 820.10(b)(4) requires advisory notices [2]."
+    live = RagPipeline(LexicalRetriever(TableDatabase()), CachedGenerator(ScriptedGenerator(good), path), RagConfig())
+    first = live.answer(TWO)
+    replay = RagPipeline(LexicalRetriever(TableDatabase()), CachedGenerator(ReplayOnlyGenerator(path), path), RagConfig())
+    assert replay.answer(TWO).answer == first.answer
+    with pytest.raises(CacheMiss):   # a question never answered live: its prompt is not in the cache
+        replay.answer("What does 21 CFR 820.10(b)(2) require?")
+
+
+def test_cache_miss_is_not_swallowed_by_except_exception():
+    from regulus.evaluation.reply_cache import CacheMiss
+    assert not issubclass(CacheMiss, Exception)
+
+
+def test_replay_only_needs_the_recorded_model_identity(tmp_path):
+    import pytest
+    from regulus.evaluation.reply_cache import ReplayOnlyGenerator
+    with pytest.raises(FileNotFoundError):
+        ReplayOnlyGenerator(tmp_path / "never_written.jsonl")
+
+
+def test_impact_select_merge_diff(tmp_path, capsys):
+    import json
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    def w(name, rows):
+        (tmp_path / name).write_text("".join(json.dumps(r) + "\n" for r in rows))
+        return tmp_path / name
+
+    base = w("base.jsonl", [{"id": "A", "answer": "a"}, {"id": "B", "answer": "b"}, {"id": "C", "answer": "c"}])
+    replay = w("replay.jsonl", [{"id": "A", "answer": "a"}, {"id": "B", "needs_live": True}, {"id": "C", "answer": "c2"}])
+    live = w("live.jsonl", [{"id": "B", "answer": "b2"}])
+    sel = tmp_path / "sel.json"
+    sel.write_text(json.dumps({"summary": {"selected_ids": ["A", "B", "C"]},
+                               "questions": [{"ID": i, "question": i} for i in "ABC"]}))
+    script = str(Path(__file__).resolve().parents[1] / "scripts" / "impact_run.py")
+    run = lambda *a: subprocess.run([sys.executable, script, *map(str, a)], capture_output=True, text=True, check=True).stdout
+    run("select", replay, sel, tmp_path / "need.json")
+    assert json.loads((tmp_path / "need.json").read_text())["summary"]["selected_ids"] == ["B"]
+    run("merge", replay, live, tmp_path / "merged.jsonl")
+    merged = {json.loads(l)["id"]: json.loads(l) for l in (tmp_path / "merged.jsonl").read_text().splitlines()}
+    assert merged["B"]["answer"] == "b2" and merged["B"]["impact"] == "live" and merged["A"]["impact"] == "replayed"
+    run("diff", base, tmp_path / "merged.jsonl", "--out", tmp_path / "changed.txt")
+    assert (tmp_path / "changed.txt").read_text() == "B,C"
