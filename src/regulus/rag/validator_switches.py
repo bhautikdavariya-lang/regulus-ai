@@ -289,7 +289,8 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   DV2 (29 Oct, off until measured) DV1 narrowed: a question about a guidance document itself is not answered from the
       part's paragraphs (NC-022); "the scope of" / "which definitions apply" gets the whole Scope / Definitions section
       (M-001, M-008); DV1's promotion carries its cross-encoder score so Q2 may quote it for an answer that cannot be shown
-      (M-026, M-042 withheld) - 300Q full300c, 4 DV1 PASS lost
+      (M-026, M-042 withheld) - 300Q full300c, 4 DV1 PASS lost; a question about which other parts govern a subject and how
+      they interact with the named part (M-042: Parts 807 and 830 beside Part 820) is not confined to its paragraphs
   CX1 (29 Oct, off until measured) a draft with 3 or more different error codes skips the correction pass (speed): 300Q
       full300c, 31 of 32 such passes were rejected and the one accepted (F-001) stayed FAIL - 0.8 h of 11.8 h. A truncated
       draft keeps its pass (K-005's PASS came from one) (REGULUS_CX1_MAX_CODES)
@@ -309,6 +310,17 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       nearly all of X's key words; a denial about a named provision is checked against it only; relative clauses,
       anaphora ("such manufacturers"), "no provision requires" and paragraphs that themselves exclude are left alone.
       Offline on 318 recorded answers it fires on M-001 only (820.1(a)(4) applies the part to HCT/Ps)
+  CL1 (29 Oct, off until measured) an answer of two or more lines none of which says anything once its citation labels
+      and source markers are removed is degenerate (M-042: a correction pass returned fifteen bare citation lines and was
+      accepted, since nothing was asserted). Over 618 recorded answers it fires on M-042 only
+  FJ1 (29 Oct, off until measured) a question naming a non-U.S. jurisdiction or regulator beside FDA (Health Canada, EU,
+      MHRA ...; not a notified body or a mark) is answered for FDA only, with a note that the other jurisdiction's
+      requirement is neither confirmed nor described (SD-013). Fires on SD-013 only of the benchmark questions
+  GT1 (29 Oct, off until measured) a guidance document asked about by a title quoted right after "guidance", with at
+      least 3 distinctive words, that no title in fda_guidance contains (one word may differ in a 6+ word title), is
+      said not to be in FDA's guidance listing as held - never summarised (NC-022, NC-015). A looser match called NC-022's
+      invented "QMSR Certification Body Accreditation Program" found (3 of 4 words in a real food-safety title)
+      (regulus.rag.nonexistence.guidance_title_missing)
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,

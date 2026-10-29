@@ -449,6 +449,17 @@ def _unit_key(unit: str) -> str:
             "calendar day": "day", "working day": "day", "square inche": "square inch", "inche": "inch"}.get(u, u)
 
 
+_CL1_LABEL = re.compile(r"(?:21\s*CFR\s*)?(?:Part\s+\d+|§?\s*\d+\.\d+[a-z]?(?:\s*\([A-Za-z0-9]+\))*)|\[\d+\]", re.I)
+
+
+def citations_only(text: str) -> bool:
+    """CL1: two or more lines, none of which says anything once its citation labels and source markers are removed."""
+    lines = [l for l in (text or "").splitlines() if l.strip()]
+    if len(lines) < 2:
+        return False
+    return not any(len(re.findall(r"[A-Za-z]{3,}", _CL1_LABEL.sub(" ", l))) >= 4 for l in lines)
+
+
 def _content_words(text: str) -> set[str]:
     return {w.lower() for w in _WORD_RE.findall(text)} - _STOPWORDS
 
@@ -568,6 +579,10 @@ def validate_answer(answer: str, package: GenerationPackage, generation: Generat
         degenerate, why = _degenerate(text)
         if degenerate:
             problems.append(ValidationProblem(DEGENERATE_OUTPUT, "error", why))
+        elif precision_fix("CL1") and citations_only(text):
+            # CL1 (29 Oct): M-042 delivered fifteen lines of "21 CFR 820.45(a)(1) [8]" and nothing else - every check
+            # passed, since nothing was asserted
+            problems.append(ValidationProblem(DEGENERATE_OUTPUT, "error", "the answer lists citations but states nothing"))
     if truncated:
         # Naming *which* limit was hit is the difference between an actionable
         # report and a shrug: an allowance below the ceiling can be raised for

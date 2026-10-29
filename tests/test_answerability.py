@@ -396,3 +396,73 @@ def test_nx1_makes_no_claim_where_a_data_gap_could_be_the_cause():
 def test_nx1_a_section_its_part_does_not_have():
     from regulus.rag.nonexistence import statement
     assert statement(_Rows([], parts={"111"}), "q", ["21 CFR 111.900"]).startswith("21 CFR Part 111 has no section 111.900")
+
+
+# ------------------------------------------------------------ FJ1 foreign framework beside FDA (29 Oct)
+
+
+def test_fj1_a_foreign_requirement_beside_fda_is_answered_for_fda_only(monkeypatch):
+    from types import SimpleNamespace
+    from regulus.planning import plan_query
+    from regulus.planning.intent import analyze_question
+    from regulus.rag import validator_switches as VS
+
+    def decide(q):
+        plan = plan_query(q)
+        return A.decide(q, plan, analyze_question(plan), coverage=None, no_context=False,
+                        sources=[SimpleNamespace(text="Manufacturers must establish a quality management system.", tier="exact")])
+
+    q = "Health Canada's Medical Devices Regulations require an MDSAP certificate. Does FDA require the same thing?"
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"FJ1"})
+    d = decide(q)
+    assert not d.blocked and d.limitation.startswith("The Health Canada requirement is outside Regulus AI's sources")
+    assert decide("We hold an ISO 13485 certificate issued by a notified body. Does FDA's QMSR accept it?").limitation is None
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"FJ1"})
+    assert decide(q).limitation is None
+
+
+# ------------------------------------------------------------ GT1 guidance titles absent from the listing (29 Oct)
+
+
+class _Guidance:
+    """fda_guidance titles for guidance_title_missing."""
+
+    def __init__(self, titles):
+        self.titles = titles
+
+    def query(self, sql, params):
+        if "count(*)" in sql:
+            return [{"n": len(self.titles), "d": "2026-09-09"}]
+        words = [v.strip("%").lower() for v in params.values()]
+        return [{"title": t} for t in self.titles if any(w in t.lower() for w in words)]
+
+
+LISTED = ["Guidance for Industry and FDA Staff: Model Accreditation Standards for Third-Party Certification Body "
+          "Accreditation for Food Safety Audits", "Part 11, Electronic Records; Electronic Signatures - Scope and Application"]
+
+
+@pytest.mark.parametrize("question,missing", [
+    ("Summarize FDA's final guidance 'QMSR Certification Body Accreditation Program,' issued March 2026.", True),
+    ("Summarize FDA's 2023 guidance document 'Artificial Intelligence in Dietary Supplement Manufacturing.", True),
+    ("What does FDA's guidance 'Part 11, Electronic Records; Electronic Signatures - Scope and Application' say?", False),
+    ("What does the FDA's guidance say about 'legacy systems' under Part 11?", False),      # a quoted term, not a title
+    ("What does 21 CFR 820.10 require?", False),
+])
+def test_gt1_a_quoted_guidance_title_the_listing_lacks(question, missing):
+    from regulus.rag.nonexistence import guidance_title_missing
+    assert bool(guidance_title_missing(_Guidance(LISTED), question)) is missing
+
+
+def test_gt1_the_gate_answers_without_the_model():
+    from types import SimpleNamespace
+    from regulus.planning import plan_query
+    from regulus.planning.intent import analyze_question
+    from regulus.rag.fallback import FB_NO_EVIDENCE, blocked_answer
+    q = "Summarize FDA's final guidance 'QMSR Certification Body Accreditation Program,' issued March 2026."
+    plan = plan_query(q)
+    d = A.decide(q, plan, analyze_question(plan), coverage=None, no_context=False, sources=[SimpleNamespace(text="x")],
+                 unknown_guidance={"title": "QMSR Certification Body Accreditation Program", "documents": 1836,
+                                   "retrieved": "2026-09-09"})
+    text, kind = blocked_answer(d, [])
+    assert d.blocked and kind == FB_NO_EVIDENCE
+    assert text.startswith("No FDA guidance document titled “QMSR Certification Body Accreditation Program”")

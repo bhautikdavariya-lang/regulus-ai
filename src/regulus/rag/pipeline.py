@@ -370,6 +370,11 @@ Q2_MIN_RERANK = 0.6
 _ASKS_WHICH_PROVISIONS = re.compile(r"\b(?:which|what)\s+(?:provisions|sections|paragraphs|requirements)\s+of\b", re.I)
 # DV2: a question about an FDA guidance document itself (NC-022: "Summarize FDA's final guidance 'QMSR Certification Body
 # Accreditation Program'" - a document that does not exist) is not answered from the regulation's paragraphs
+# DV2: a question about other parts and how they relate to the named one (M-042: "Which parts of Title 21 govern device
+# establishment registration, listing, and unique device identification, and how do they interact with Part 820?" - the
+# answer is Parts 807 and 830, never in Part 820's paragraphs)
+_ASKS_OTHER_PARTS = re.compile(r"\b(?:which|what)\s+(?:other\s+)?parts\s+(?:of\s+(?:title\s+21|21\s+CFR|the\s+(?:CFR|regulations?))|"
+                               r"(?:govern|apply|cover|regulate)\b)|\binteract\w*\s+with\s+(?:21\s+CFR\s+)?part\s+\d", re.I)
 _GUIDANCE_DOCUMENT = re.compile(r"\b(?:final|draft)\s+guidance\b|\bguidance\s+(?:document\s+)?['\"‘“]"
                                 r"|\bsummari[sz]e\b[^?.]{0,40}\bguidance\b", re.I)
 _FOCUSED_COMPLETENESS_CODES = frozenset({"requirement_not_addressed", "material_group_uncovered", "enumeration_incomplete"})
@@ -1202,7 +1207,7 @@ class RagPipeline:
             part = "820"
         if not part or _ASKS_WHICH_PROVISIONS.search(question or ""):
             return None   # "which provisions of Part 820 are ...": answered across the part, not from three paragraphs
-        if precision_fix("DV2") and _GUIDANCE_DOCUMENT.search(question or ""):
+        if precision_fix("DV2") and (_GUIDANCE_DOCUMENT.search(question or "") or _ASKS_OTHER_PARTS.search(question or "")):
             return None
         if part not in DV1_PARTS:
             # the parts DV1 was measured on (28 Oct retrieval check, 225 dev, client keys: +7 complete in Part 820 - M-005,
@@ -1690,7 +1695,16 @@ class RagPipeline:
         focus_lead = FOCUSED_QUOTE_LEAD_PICKED if picked_quote else FOCUSED_QUOTE_LEAD
         focus_quote_allowed = focus_quote_allowed or picked_quote
         gate_analysis = analysis if analysis is not None else analyze_question(plan)
+        unknown_guidance = None
+        if precision_fix("GT1") and getattr(self.retriever, "db", None) is not None:
+            from regulus.rag.nonexistence import guidance_title_missing
+
+            try:
+                unknown_guidance = guidance_title_missing(self.retriever.db, question)
+            except Exception:  # noqa: BLE001 - an aid: the question is answered as before
+                unknown_guidance = None
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
+                               unknown_guidance=unknown_guidance,
                                resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
                                general_knowledge=(scope_decision.reason if scope_decision is not None and scope_decision.status == GENERAL_KNOWLEDGE else None))
         conditions = decision.blocking_conditions

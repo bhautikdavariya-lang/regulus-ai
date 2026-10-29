@@ -420,3 +420,23 @@ def test_generator_without_budget_parameter_still_works():
 def test_config_description_includes_stage4_settings():
     d = RagConfig(generation_budget=GenerationBudget(hard_max_tokens=300)).to_dict()
     assert d["generation_budget"]["hard_max_tokens"] == 300 and d["validation_behavior"] == "repair"
+
+
+# ------------------------------------------------------------ CL1 citations without content (29 Oct)
+
+
+def test_cl1_a_list_of_citations_that_states_nothing():
+    from regulus.rag.validation import citations_only
+    assert citations_only("21 CFR 820.10(b) [1]\n21 CFR 820.10(b)(1) [2]\n21 CFR 820.45(a) [7]")
+    assert not citations_only("21 CFR 820.10(b)(1) [2]: requires a documented system to assign unique device identifiers.\n"
+                              "21 CFR 820.45 [6]")
+    assert not citations_only("21 CFR 820.10(b) [1]")   # one line: a short answer, not a list
+
+
+def test_cl1_rejects_a_contentless_answer_only_when_on(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    bare = "21 CFR 820.10(b)(2) [1]\n21 CFR 820.10(b)(4) [2]"
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"CL1"})
+    assert "degenerate_output" in validate_answer(bare, package_for(TWO), gen(bare)).codes()
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"CL1"})
+    assert "degenerate_output" not in validate_answer(bare, package_for(TWO), gen(bare)).codes()

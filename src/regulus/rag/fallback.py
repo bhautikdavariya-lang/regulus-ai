@@ -107,7 +107,8 @@ def blocked_answer(decision: A.AnswerabilityDecision, sources, notes=(), missing
         from regulus.rag.boundary import answer as boundary_answer
 
         return (boundary_answer(boundary["kind"], boundary.get("detail", ""), boundary.get("question", "")),
-                FB_OUT_OF_SCOPE if state == A.OUT_OF_SCOPE else FB_UNSUPPORTED_REQUEST)
+                FB_OUT_OF_SCOPE if state == A.OUT_OF_SCOPE else FB_NO_EVIDENCE if state == A.INSUFFICIENT_EVIDENCE
+                else FB_UNSUPPORTED_REQUEST)
     if state == A.OUT_OF_SCOPE and "general_knowledge" in conditions:
         return ("This does not appear to be a regulatory question. Regulus AI answers questions about U.S. FDA regulations "
                 "(21 CFR) and FDA guidance from verified sources, and none of them addresses this question, so no answer is "

@@ -754,3 +754,11 @@ def test_oc1_changes_nothing_when_every_requested_provision_is_added():
     labels = frozenset(label for _, label in pkg.requirements)
     assert companions_as_context(pkg, plan_query(TWO), labels) is pkg
     assert companions_as_context(pkg, plan_query(TWO), frozenset()) is pkg
+
+
+def test_dv2_a_question_about_other_parts_is_not_confined_to_the_named_part():
+    from regulus.rag.pipeline import _ASKS_OTHER_PARTS
+    assert _ASKS_OTHER_PARTS.search("Which parts of Title 21 govern device establishment registration, listing, and unique "
+                                    "device identification, and how do they interact with Part 820?")
+    assert not _ASKS_OTHER_PARTS.search("Which parts of our submission become public, and when?")
+    assert not _ASKS_OTHER_PARTS.search("How must advisory notices be handled under Part 820?")

@@ -109,3 +109,47 @@ def statement(db, question: str, labels) -> str | None:
         where = " or ".join(f"21 CFR {s}" for s in sections)
         text += " " + " ".join(f"{where} does not mention “{t}”." for t in absent)
     return text
+
+
+# GT1 (29 Oct): a guidance document the question names by its quoted title, absent from FDA's guidance listing as held
+_GUIDANCE_ASKED = re.compile(r"\bguidance\b", re.I)
+# a quoted title: the opening quote follows no letter (the apostrophe of "FDA's" is not one), and an unclosed quote runs
+# to the end of the question (NC-015: "... document 'Artificial Intelligence in Dietary Supplement Manufacturing.")
+# A title follows the word itself ("guidance 'X'", "guidance document titled 'X'"); a quoted term later in the question
+# ("what does the guidance say about 'legacy systems'") is not one
+_TITLE = re.compile(r"\bguidance(?:\s+(?:document|titled|entitled|called|named))*\s*,?\s*(?<![A-Za-z])['\"‘“]"
+                    r"([^'\"‘’“”]{8,160}?)(?:['\"’”](?![A-Za-z])|\s*$)", re.I)
+GT1_MIN_WORDS = 3   # distinctive words a title must have
+_TITLE_STOP = set("the a an of for and in on to with fda guidance industry staff final draft document".split())
+GT1_ONE_MISS_FROM = 6   # a title of this many distinctive words may differ from the listed one by one word
+
+
+def _title_words(title: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z0-9]+", (title or "").lower()) if w not in _TITLE_STOP and len(w) > 2}
+
+
+def guidance_title_missing(db, question: str) -> dict | None:
+    """{"title", "documents", "retrieved"} when the question asks about a guidance document by a quoted title that no
+    title in fda_guidance contains (every distinctive word of the asked title; one may differ in a long title). None when
+    the question quotes no title, or a listed title matches. 300Q NC-022 "QMSR Certification Body Accreditation Program"
+    shares three of its four words with a real food-safety guidance, so a looser match would call it found."""
+    if not _GUIDANCE_ASKED.search(question or ""):
+        return None
+    m = _TITLE.search(question or "")
+    if not m:
+        return None
+    title = m.group(1).strip().rstrip(",.")
+    want = _title_words(title)
+    if len(want) < GT1_MIN_WORDS:
+        return None
+    rare = sorted(want, key=len, reverse=True)[:3]
+    rows = db.query("SELECT title FROM fda_guidance WHERE " + " OR ".join(f"title ILIKE %(w{i})s" for i in range(len(rare))),
+                    {f"w{i}": f"%{w}%" for i, w in enumerate(rare)})
+    allowed = 1 if len(want) >= GT1_ONE_MISS_FROM else 0
+    if any(len(want - _title_words(r["title"])) <= allowed for r in rows):
+        return None
+    info = db.query("SELECT count(*) AS n, max(retrieved_at)::date AS d FROM fda_guidance", {})
+    if not info or not info[0]["n"]:
+        return None   # no listing to check against: nothing can be said
+    d = info[0]["d"]
+    return {"title": title, "documents": int(info[0]["n"]), "retrieved": d.isoformat() if hasattr(d, "isoformat") else str(d)}

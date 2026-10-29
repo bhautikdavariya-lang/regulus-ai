@@ -137,6 +137,12 @@ def answer(kind: str, detail: str = "", question: str = "") -> str:
         agency = _AGENCIES.get(detail) or _AGENCIES["USDA"]
         return (f"This question is about the rules of {agency[0]}, not FDA, and is outside what Regulus AI covers: it answers "
                 f"from U.S. FDA regulations (21 CFR) and FDA guidance only. {agency[1]}.")
+    if kind == "unknown_guidance":
+        title, documents, retrieved = (detail.split("|") + ["", ""])[:3]
+        return (f"No FDA guidance document titled “{title}” is in FDA's guidance listing as Regulus AI holds it "
+                f"({documents} documents, retrieved {retrieved}), so Regulus AI does not summarise or describe it: any "
+                "summary would be invented. If the document has a different title or was issued after that date, FDA's "
+                "guidance search on fda.gov is the place to confirm it; the regulation on the subject can be asked about here.")
     if kind == "unscoped":
         return ("Record retention periods differ by the kind of product and by the part of 21 CFR that governs it, so the "
                 "answer depends on which applies - for example drug manufacturing (21 CFR Part 211), medical devices (Part "

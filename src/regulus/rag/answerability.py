@@ -97,8 +97,15 @@ def reference_targets(plan) -> list[str]:
     return out
 
 
+# FJ1: how a named framework is referred to in the note
+_FOREIGN_LABEL = {"health canada": "Health Canada", "canadian": "Canadian", "eu": "EU", "e.u.": "EU", "european union": "EU",
+                  "european": "European", "mhra": "UK MHRA", "uk mdr": "UK MDR", "pmda": "Japanese PMDA", "japanese": "Japanese",
+                  "tga": "Australian TGA", "australian": "Australian", "nmpa": "Chinese NMPA", "chinese": "Chinese",
+                  "cdsco": "Indian CDSCO", "anvisa": "Brazilian ANVISA", "swissmedic": "Swissmedic", "ivdr": "EU IVDR"}
+
+
 def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool, general_knowledge: str | None = None,
-           resolved_statute: tuple[str, ...] = ()) -> AnswerabilityDecision:
+           resolved_statute: tuple[str, ...] = (), unknown_guidance: dict | None = None) -> AnswerabilityDecision:
     """The answerability of one question. `sources` are the context sources that would be placed
     in the prompt (anything with .text, and .result.key or .evidence_id to identify it)."""
     texts = [s.text for s in sources]
@@ -124,6 +131,12 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
         from regulus.rag.boundary import classify
 
         boundary = classify(question)
+    if unknown_guidance:
+        # GT1: a guidance document asked about by title that FDA's listing, as held, does not contain
+        detail = f"{unknown_guidance['title']}|{unknown_guidance['documents']}|{unknown_guidance['retrieved']}"
+        return d(INSUFFICIENT_EVIDENCE, f"no FDA guidance titled \"{unknown_guidance['title']}\" is in the guidance listing",
+                 PROVEN, ("boundary_unknown_guidance",), boundary={"kind": "unknown_guidance", "detail": detail,
+                                                                   "question": question})
     if boundary is not None:
         # BR1: a request a research tool must not carry out as asked (regulus.rag.boundary), answered by its kind
         kind, detail = boundary
@@ -171,10 +184,24 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
     if analysis.scope_status == SCOPE_MIXED and analysis.out_of_scope_part:
         return d(PARTIALLY_ANSWERABLE, f"part of the question is not covered by the sources: \"{analysis.out_of_scope_part}\"",
                  PROBABLE, limitation=f'The available regulatory sources do not cover "{analysis.out_of_scope_part}".')
-    # 7. what remains
+    # 7. what remains - FJ1 (29 Oct): a question that names a non-U.S. framework beside FDA ("Health Canada's Medical Devices
+    # Regulations require an MDSAP certificate. Does FDA require the same thing?", SD-013) is answered for FDA only, and
+    # says so: the other jurisdiction's requirement is neither confirmed nor denied
+    foreign = None
+    if precision_fix("FJ1") and analysis.scope_status != SCOPE_OUT:
+        from regulus.planning.intent import _FOREIGN_RE
+
+        # a jurisdiction or regulator, not an actor or mark (SD-011, PASS: "a certificate issued by a notified body" asks
+        # about FDA's QMSR only)
+        foreign = next((m.group(0) for m in _FOREIGN_RE.finditer(question or "") if m.group(0).lower() in _FOREIGN_LABEL), None)
+    note = (f"The {_FOREIGN_LABEL.get(foreign.lower(), foreign)} requirement is outside Regulus AI's sources (U.S. FDA "
+            "regulations and FDA guidance only), so it is neither confirmed nor described here; only the U.S. FDA side is "
+            "answered." if foreign else None)
     if not explicit:
         weak = all(getattr(s, "tier", None) == "discovery" for s in sources)
         return d(UNKNOWN, "a general question: whether the retrieved sources answer it cannot be decided by rule"
-                 + ("; every source came from a broad search" if weak else ""), UNDETERMINED, weak_evidence=weak)
+                 + ("; every source came from a broad search" if weak else ""), UNDETERMINED, limitation=note,
+                 weak_evidence=weak, **({"foreign_framework": foreign} if foreign else {}))
     return d(ANSWERABLE, "every requested provision has exact evidence and nothing checkable is missing "
-             "(claim-level support is checked after generation by validation)", PROVEN)
+             "(claim-level support is checked after generation by validation)", PROVEN, limitation=note,
+             **({"foreign_framework": foreign} if foreign else {}))
