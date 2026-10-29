@@ -33,8 +33,9 @@ CONDITION_NOT_IN_CITED = "condition_not_in_cited_source"
 UNSUPPORTED_PREMISE = "unsupported_premise"
 UNSUPPORTED_CLAIM = "unsupported_claim"
 OBLIGATION_STRENGTHENED = "obligation_strengthened"
+FIGURE_MISATTRIBUTED = "figure_misattributed"
 CLAIM_CODES = (PARAGRAPH_MISATTRIBUTION, INVENTED_CONDITION, CONDITION_NOT_IN_CITED, UNSUPPORTED_PREMISE, UNSUPPORTED_CLAIM,
-               OBLIGATION_STRENGTHENED)
+               OBLIGATION_STRENGTHENED, FIGURE_MISATTRIBUTED)
 
 # measured before being enforced (see module docstring); "warning" findings are reported, never repaired
 # Stage 7 measurement on the 63 recorded Stage 6 answers (artifacts/validation_eval/):
@@ -56,7 +57,31 @@ SEVERITY = {
     # E1 (23 Oct): on 228 recorded answers it fired on 6, none of them a PASS answer (G2); an error, so the draft goes
     # back to the model with the source's own word before any repair
     OBLIGATION_STRENGTHENED: "error",
+    # FC2 (29 Oct): a figure stated under one paragraph's citation that only another supplied paragraph contains
+    FIGURE_MISATTRIBUTED: "error",
 }
+
+# FC2: the figures a sentence states - amounts, multi-digit numbers and dates, and periods ("7 working days") - after its
+# CFR citations and paragraph designators are removed; the same, written out, for the numbers a source may spell
+_FC2_REFS = re.compile(r"§+\s*|\b\d+\.\d+[a-z]?(?:\([A-Za-z0-9]+\))*|\([A-Za-z0-9]{1,4}\)|\b(?:part|subpart|section|title)\s+\d+",
+                       re.I)
+_FC2_FIGURE = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?|(?<![\w.])\d{2,}(?:,\d{3})*(?:\.\d+)?(?![\w.])"
+                         r"|(?<![\w.])\d+(?=\s+(?:calendar\s+|working\s+|business\s+)?(?:days?|weeks?|months?|years?|hours?|feet|"
+                         r"inches|percent)\b)", re.I)
+_FC2_WORDS = {str(n): w for n, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve "
+                                              "thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty".split())}
+
+
+def _fc2_figures(text: str) -> set[str]:
+    return {f.replace(",", "").replace("$", "").strip() for f in _FC2_FIGURE.findall(_FC2_REFS.sub(" ", text or ""))} - {""}
+
+
+def _fc2_in(text: str, figure: str) -> bool:
+    flat = (text or "").replace(",", "")
+    if re.search(rf"(?<![\d.]){re.escape(figure)}(?![\d])", flat):
+        return True
+    word = _FC2_WORDS.get(figure)
+    return bool(word and re.search(rf"\b{word}\b", flat, re.I))
 
 MISATTRIBUTION_OWN_MAX = 0.25     # at most this share of the statement's word 3-grams in the named provision
 MISATTRIBUTION_OTHER_MIN = 0.60   # and at least this share in one other, unrelated supplied provision
@@ -369,6 +394,26 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
                                                  f"{by_index[best[0]].citation} and {own_cov:.0%} from {refs[0].canonical}",
                                                  citation=own[0].index, sentence=sentence,  # the named provision's own source
                                                  requirement_id=next(iter(own[0].requirement_ids), None)))
+
+        # -- FC2 (29 Oct): a figure stated under a cited paragraph must be in it, its parent or its child. 300Q stepA:
+        # restating 117.201(c)(2) the model slid each deadline one label up past a lead-in-only paragraph (F-016 "by July
+        # 31" cited to (c)(2)(i)(B), whose text has no 31; PASS lost) and put (a)(6)'s "7 working days" under 117.180(a)(5)
+        # (F-015) - wording-overlap checks pass both, since the words are the sources'
+        if precision_fix("FC2") and marks and identities and related and all(identities.get(i) for i in marks):
+            figures = _fc2_figures(content) - _fc2_figures(question or "")
+            if figures:
+                family = set(marks) | {j for i in marks for j, idj in identities.items() if idj and related(identities[i], idj)}
+                family_text = " ".join(by_index[j].text or "" for j in family)
+                elsewhere = {f: [j for j in by_index if j not in family and _fc2_in(by_index[j].text, f)]
+                             for f in figures if not _fc2_in(family_text, f)}
+                stray = {f: js for f, js in elsewhere.items() if js}
+                if stray:
+                    f0, js = sorted(stray.items())[0]
+                    findings.append(ClaimFinding(
+                        FIGURE_MISATTRIBUTED, SEVERITY[FIGURE_MISATTRIBUTED],
+                        f"{', '.join(sorted(stray))} is stated under {by_index[marks[0]].citation}, whose text does not contain "
+                        f"it; {by_index[js[0]].citation} does", citation=marks[0], sentence=sentence,
+                        requirement_id=next(iter(by_index[marks[0]].requirement_ids), None)))
 
         # -- conditions the cited sources do not contain
         cited_texts = [by_index[i].text for i in marks]

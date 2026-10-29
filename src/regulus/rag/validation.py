@@ -64,6 +64,7 @@ LOW_OVERLAP = "low_overlap_with_cited_source"             # warning only: few co
 from regulus.inference.repetition_text import normalise_sentence  # noqa: E402
 from regulus.rag.claim_validation import (  # noqa: E402
     CONDITION_NOT_IN_CITED,
+    FIGURE_MISATTRIBUTED,
     INVENTED_CONDITION,
     OBLIGATION_STRENGTHENED,
     PARAGRAPH_MISATTRIBUTION,
@@ -89,6 +90,7 @@ _CODE_STATUS = {
     PROMPT_ECHO: STATUS_DEGENERATE,             # Stage 12: the answer copies the prompt's instructions
     # Stage 7 claim-level checks (regulus.rag.claim_validation); a status only when enforced as errors
     PARAGRAPH_MISATTRIBUTION: STATUS_EVIDENCE_MISMATCHED,
+    FIGURE_MISATTRIBUTED: STATUS_EVIDENCE_MISMATCHED,   # FC2: the right figure under the wrong paragraph
     INVENTED_CONDITION: STATUS_EVIDENCE_MISMATCHED,   # a removable statement, repaired like a mis-cited one
     UNSUPPORTED_PREMISE: STATUS_UNSUPPORTED,
     UNSUPPORTED_CLAIM: STATUS_UNSUPPORTED,

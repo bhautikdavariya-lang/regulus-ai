@@ -299,6 +299,11 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       requested units in all 122 answers with added sections; S-024's 40 paragraphs were cut at the token limit). The
       picker's second pick (SP2) stays requested. Fires on 111 of the 300Q (52 PASS; 22 of the 29 truncated answers)
       (regulus.rag.pipeline.companions_as_context)
+  FC2 (29 Oct, off until measured) a figure (amount, multi-digit number, date, period) stated under a cited paragraph
+      must be in that paragraph, its parent or its child; found only in another supplied paragraph it is an error
+      (figure_misattributed), so the draft is corrected or quoted (stepA: F-016's deadlines slid one label past a
+      lead-in, F-015's "7 working days" moved from 117.180(a)(6) to (a)(5) - wording-overlap checks passed both)
+      (regulus.rag.claim_validation)
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,
