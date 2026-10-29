@@ -117,6 +117,19 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
         # Stage 7 scope policy (regulus.retrieval.domain): three independent signals agree
         return d(OUT_OF_SCOPE, f"the question {general_knowledge}", PROBABLE, ("general_knowledge",))
     # 2. requests the sources cannot answer by their nature
+    from regulus.rag.validator_switches import enabled as precision_fix
+
+    boundary = None
+    if precision_fix("BR1"):
+        from regulus.rag.boundary import classify
+
+        boundary = classify(question)
+    if boundary is not None:
+        # BR1: a request a research tool must not carry out as asked (regulus.rag.boundary), answered by its kind
+        kind, detail = boundary
+        state = OUT_OF_SCOPE if kind == "other_agency" else UNSUPPORTED_REQUEST
+        return d(state, f"the question asks for something outside what the sources can do ({kind})", PROBABLE,
+                 (f"boundary_{kind}",), boundary={"kind": kind, "detail": detail, "question": question})
     if _DETERMINATION_RE.search(question):
         return d(UNSUPPORTED_REQUEST, "the question asks for a determination about a particular case or a prediction, "
                  "which regulatory text cannot establish", PROBABLE, ("determination_request",))

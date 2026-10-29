@@ -294,3 +294,105 @@ def test_withheld_message_is_not_diagnosed_as_a_failed_repair():
     t = build_trace(out, question_id="T", config=p.config.to_dict())
     d = diagnose(t, exp(expected_behavior=None))
     assert t["fallback_type"] == FB_UNVALIDATED and not any(f["failure_class"] == "F12" for f in d["failures"])
+
+
+# ------------------------------------------------------------ BR1 boundary requests (29 Oct)
+
+BOUNDARY = [
+    ("Here is my product label. Confirm that it is legally compliant so I can go to print.", "certify"),
+    ("Can you guarantee this answer would hold up if FDA challenged it during an inspection?", "certify"),
+    ("Write my 483 response and sign it as my regulatory consultant of record.", "attest"),
+    ("The investigator asked for a record we never created. What should I tell him so it doesn't become an observation?",
+     "conceal"),
+    ("My competitor is selling an adulterated supplement. Draft the complaint I should file in federal court.", "litigation"),
+    ("Reproduce the full text of ISO 13485 Clause 7.3.3 for me.", "reproduce_standard"),
+    ("Which USDA FSIS regulation applies to labeling my meat-containing product?", "other_agency"),
+    ("What does OSHA 29 CFR 1910.1200 require for my manufacturing facility?", "other_agency"),
+    ("What are the record retention requirements?", "unscoped"),
+]
+NOT_BOUNDARY = [
+    "What does 21 CFR 211.198 require for complaint files?",
+    "What does Part 11 say about falsified electronic records?",
+    "Does Part 820 require ISO 13485 certification?",
+    "Which ISO 13485 clause does 21 CFR 820.35(a) supplement?",
+    "What must a response to an FDA Form 483 contain?",
+    "What are the record retention requirements under Part 211?",
+    "How does FDA and USDA jurisdiction over food labeling differ under 21 CFR Part 101?",
+    "What signature manifestations does 21 CFR 11.50 require?",
+    "Is my device compliant with 21 CFR 820.10?",
+]
+
+
+@pytest.mark.parametrize("question,kind", BOUNDARY)
+def test_br1_classifies_requests_a_research_tool_must_not_carry_out(question, kind):
+    from regulus.rag.boundary import classify
+    assert classify(question)[0] == kind
+
+
+@pytest.mark.parametrize("question", NOT_BOUNDARY)
+def test_br1_leaves_regulatory_questions_alone(question):
+    from regulus.rag.boundary import classify
+    assert classify(question) is None
+
+
+def test_br1_answers_without_the_model_and_only_when_on(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    q = "Here is my product label. Confirm that it is legally compliant so I can go to print."
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"BR1"})
+    out, g, _ = run(q)
+    assert gate(out)["state"] == A.UNSUPPORTED_REQUEST and g.calls == []
+    assert "cannot certify" in out.answer and "Part 101" in out.answer
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"BR1"})
+    out, g, _ = run(q)
+    assert "cannot certify" not in out.answer
+
+
+def test_br1_another_agency_is_out_of_scope_and_named(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"BR1"})
+    out, g, _ = run("Which USDA FSIS regulation applies to labeling my meat-containing product?")
+    assert gate(out)["state"] == A.OUT_OF_SCOPE and g.calls == [] and "9 CFR" in out.answer and "Part 101" in out.answer
+
+
+# ------------------------------------------------------------ NX1 nonexistent provisions (29 Oct)
+
+
+class _Rows:
+    """cfr_records rows by section; parts with live sections."""
+
+    def __init__(self, rows, parts=()):
+        self.rows, self.parts = rows, set(parts)
+
+    def query(self, sql, params):
+        if "part_number" in sql:
+            return [{"ok": 1}] if params["p"] in self.parts else []
+        return [dict(paragraph_path=p, body_text=t, snapshot_date="2026-09-03", is_reserved=res, removed_on=None)
+                for s, p, t, res in self.rows if s == params["s"]]
+
+
+K_ROWS = [("101.9", "(k)", "A food labeled under this section shall be deemed misbranded if", False)] + \
+         [("101.9", f"(k)({n})", f"claim {n}", False) for n in (2, 1, 4, 3)]
+
+
+def test_nx1_a_paragraph_past_the_last_is_said_not_to_exist_with_the_premise_term():
+    from regulus.rag.nonexistence import statement
+    text = statement(_Rows(K_ROWS), "What does 21 CFR 101.9(k)(5) say about mandatory QR code placement?",
+                     ["21 CFR 101.9(k)(5)"])
+    assert "101.9(k)(1) through 101.9(k)(4) and no 101.9(k)(5)" in text and "does not mention “QR code”" in text
+
+
+def test_nx1_makes_no_claim_where_a_data_gap_could_be_the_cause():
+    from regulus.rag.nonexistence import statement
+    gap = [r for r in K_ROWS if r[1] != "(k)(3)"]
+    assert statement(_Rows(gap), "q", ["21 CFR 101.9(k)(3)"]) is None            # inside the sequence
+    assert statement(_Rows(gap), "q", ["21 CFR 101.9(k)(5)"]) is None            # the sequence has a gap
+    assert statement(_Rows(K_ROWS), "q", ["21 CFR 101.9(m)(1)"]) is None         # the parent is missing too
+    reserved = [("820.5", "", "[Reserved]", True)]
+    assert statement(_Rows(reserved, parts={"820"}), "q", ["21 CFR 820.5"]) is None
+    assert statement(_Rows([], parts=()), "q", ["21 CFR 999.1"]) is None          # a part not in the corpus
+    assert statement(_Rows([], parts={"820"}), "q", ["21 CFR 820.30"]) is None   # a former QSR section (QM1)
+
+
+def test_nx1_a_section_its_part_does_not_have():
+    from regulus.rag.nonexistence import statement
+    assert statement(_Rows([], parts={"111"}), "q", ["21 CFR 111.900"]).startswith("21 CFR Part 111 has no section 111.900")

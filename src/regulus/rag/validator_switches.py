@@ -293,6 +293,15 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
   CX1 (29 Oct, off until measured) a draft with 3 or more different error codes skips the correction pass (speed): 300Q
       full300c, 31 of 32 such passes were rejected and the one accepted (F-001) stayed FAIL - 0.8 h of 11.8 h. A truncated
       draft keeps its pass (K-005's PASS came from one) (REGULUS_CX1_MAX_CODES)
+  BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
+      compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
+      standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,
+      and what it can do instead; the model is not called (regulus.rag.boundary). Fires on 9 of the 300Q (SD-002/003/004/
+      006/007/008/009/012, PB-007) and on none of 2,574 other benchmark questions
+  NX1 (29 Oct, off until measured) a requested provision the database shows does not exist is said not to exist, with any
+      premise term its section never uses ("101.9(k) ... has no (k)(5) ... does not mention 'QR code'"), instead of "the
+      available eCFR data does not contain"; no claim where a data gap, a reserved section or a former QSR section could be
+      the cause (regulus.rag.nonexistence)
   QC1 (on since 27 Oct release) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

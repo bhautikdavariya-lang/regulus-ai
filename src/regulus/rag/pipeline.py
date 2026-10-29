@@ -53,6 +53,7 @@ from regulus.rag.fallback import (
     FB_COMPOSED_RECORDS,
     FB_FOCUSED_QUOTE,
     FB_PREMISE_NOT_ESTABLISHED,
+    FB_PROVISION_NOT_FOUND,
     FB_COMPOSED_SILENCE,
     FB_UNVALIDATED,
     FOCUSED_QUOTE_LEAD,
@@ -1197,6 +1198,19 @@ class RagPipeline:
         score = promoter.__dict__.get("last_part_score") if precision_fix("DV2") else None
         return promoted, Promotion(sections=tuple(paras), companions=(), method="part_paragraphs", rerank=score)
 
+    def nonexistent_provision_answer(self, question: str, coverage) -> str | None:
+        """NX1 (29 Oct): a requested provision the database shows does not exist is said not to exist, with any premise
+        term its section never uses (regulus.rag.nonexistence); None otherwise, and the caller keeps its wording."""
+        db = getattr(self.retriever, "db", None)
+        if not precision_fix("NX1") or db is None or coverage is None or not coverage.missing_labels:
+            return None
+        from regulus.rag.nonexistence import statement
+
+        try:
+            return statement(db, question, coverage.missing_labels)
+        except Exception:  # noqa: BLE001 - an aid: the existing wording stands
+            return None
+
     def closest_sources(self, question: str, package) -> tuple[int, ...]:
         """LM1: the (at most LM1_TOP) sources the cross-encoder scores highest for the question, at least LM1_MIN_SCORE,
         in score order; () without the reranker. 70.19-Q2: of 18 fee paragraphs the model read the new-petition deposit
@@ -1757,6 +1771,8 @@ class RagPipeline:
             answer_text, fallback_type = blocked_answer(decision, bundle.sources, bundle.notes,
                                                         coverage.missing_labels if coverage is not None else (),
                                                         plan=plan, package=package)
+            if fallback_type == FB_PROVISION_NOT_FOUND:
+                answer_text = self.nonexistent_provision_answer(question, coverage) or answer_text
             fallback_reason = decision.reason
             coverage_action = _BLOCK_ACTIONS[fallback_type] if fallback_type in _BLOCK_ACTIONS else f"blocked_{decision.state.lower()}"
             timings["generation_ms"] = 0.0
@@ -1766,7 +1782,8 @@ class RagPipeline:
             coverage_action = "refuse_out_of_scope"
             timings["generation_ms"] = 0.0
         elif unsupported:
-            answer_text = incomplete_coverage_answer(coverage.missing_labels)
+            answer_text = (self.nonexistent_provision_answer(question, coverage)
+                           or incomplete_coverage_answer(coverage.missing_labels))
             coverage_action = "refuse_unsupported"
             timings["generation_ms"] = 0.0
         elif no_context and self.config.no_context_behavior == "refuse":
