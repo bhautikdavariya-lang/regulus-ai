@@ -338,6 +338,11 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       as the top-level paragraph its best-scored paragraph sits in, with everything under it - small-to-big passage
       retrieval - and up to 3 may be added: E1/E1b, a whole 117.475 filled the paragraph limit and pushed F-020's key
       117.405 out (REGULUS_PL1_MAX, REGULUS_PL1_WHOLE_CHARS)
+  XC1 (29 Oct, off until measured; step E4) the best regulation candidate from a part other than the promoted section's
+      joins as a companion when the cross-encoder scores it >= 0.85 - at most one, within MS1's character allowance, a long
+      section as its best paragraph family. MS1 pools the promoted part only, so these were never scored for addition
+      (dev 225: 8 key sections, e.g. U-001 801.1, G-006 211.137, X-003 4.4). Only the question's own candidates are
+      considered, unlike XP1's citations (REGULUS_XC1_MIN_SCORE)
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,

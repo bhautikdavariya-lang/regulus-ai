@@ -903,3 +903,21 @@ def test_a_section_added_as_a_paragraph_is_not_added_again_whole(monkeypatch):
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"MS2", "PL1"})
     pr = _companion_promoter(monkeypatch, sections, scores)
     assert pr.reranked_companions("q", cands, promotion) == ["117.405"]   # 117.475 is cited already, as its (a)
+
+
+def test_xc1_one_clearly_relevant_candidate_of_another_part_joins(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    # V-004's shape: a Part 117 promotion, the FSVP section (Part 1) among the candidates
+    sections = {"117.430": [("(a)", "x" * 500)], "1.506": [("(a)", "y" * 800)], "1.505": [("(a)", "z" * 800)],
+                "507.175": [("(a)", "w" * 800)]}
+    scores = {"117.430": (0.2, "(a)"), "1.506": (0.99, "(a)"), "1.505": (0.90, "(a)"), "507.175": (0.6, "(a)")}
+    cands = [{"section": s, "part": s.split(".")[0]} for s in sections]
+    promotion = Promotion(sections=("117.425",), companions=(), method="picker")
+    pr = _companion_promoter(monkeypatch, sections, scores)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", (VS.VALIDATOR_PRECISION | {"XC1"}) - {"MS2", "PL1"})
+    assert pr.reranked_companions("q", cands, promotion) == ["1.506"]       # the best other-part one, at most one
+    monkeypatch.setattr(SP, "XC1_MIN_SCORE", 0.995)
+    assert pr.reranked_companions("q", cands, promotion) == []              # none clearly relevant enough
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"XC1"})
+    monkeypatch.setattr(SP, "XC1_MIN_SCORE", 0.85)
+    assert pr.reranked_companions("q", cands, promotion) == []              # off: other parts are never pooled

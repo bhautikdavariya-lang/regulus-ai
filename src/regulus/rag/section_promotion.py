@@ -212,6 +212,8 @@ HC1_MAX = 2   # HC1: sibling sections added for topics the promoted heading miss
 MS1_MIN_SCORE = float(os.environ.get("REGULUS_MS1_MIN_SCORE", "0.7"))
 MS1_MAX = int(os.environ.get("REGULUS_MS1_MAX", "2"))
 MS1_MAX_CHARS = int(os.environ.get("REGULUS_MS1_MAX_CHARS", "6000"))
+XC1_MIN_SCORE = float(os.environ.get("REGULUS_XC1_MIN_SCORE", "0.85"))  # XC1: a candidate of another part, this sure
+XC1_MAX = 1
 PL1_MAX = int(os.environ.get("REGULUS_PL1_MAX", "3"))                    # PL1: added sections allowed, paragraph-level
 PL1_WHOLE_CHARS = int(os.environ.get("REGULUS_PL1_WHOLE_CHARS", "2500"))  # PL1: a section this short is added whole
 MS2_POOL = int(os.environ.get("REGULUS_MS2_POOL", "12"))
@@ -636,6 +638,32 @@ class SectionPromoter:
                 if 0 < n and chars + n <= MS1_MAX_CHARS:
                     out.append(para)
                     chars += n
+        if precision_fix("XC1"):
+            out += self._cross_part_companion(cands, scores, part, have | {x.split("(")[0] for x in out}, chars)
+        return out
+
+    def _cross_part_companion(self, cands: list[dict], scores: dict, part: str, have: set, chars: int) -> list[str]:
+        """XC1 (29 Oct, step E4): the best regulation candidate from a part other than the promoted section's, when the
+        cross-encoder scores it at least XC1_MIN_SCORE - at most XC1_MAX, within MS1_MAX_CHARS, a long section as its best
+        paragraph family. MS1 pools the promoted section's part only, so a candidate from another part was never scored
+        for addition (dev 225: 8 key sections, e.g. U-001 801.1 at rank 2 / 0.99, G-006 211.137 at rank 1). Unlike XP1
+        (cross-part citations, which brought 112.4 into F-020) only the question's own candidates are considered."""
+        out: list[str] = []
+        others = [c for c in cands if not c.get("statute") and c.get("part") != part and c["section"] not in have]
+        for c in sorted(others, key=lambda c: -scores.get(c["section"], (0.0, ""))[0]):
+            score, path = scores.get(c["section"], (0.0, ""))
+            if score < XC1_MIN_SCORE or len(out) >= XC1_MAX:
+                break
+            n = len(self._section_text(c["section"]))
+            label = c["section"]
+            top = re.match(r"\([^)]+\)", path or "")
+            if n > PL1_WHOLE_CHARS and top is not None:
+                label = c["section"] + top.group(0)
+                n = sum(len(r["body_text"] or "") for r in self.db.query(_SECTION_SQL, {"s": c["section"]})
+                        if (r["paragraph_path"] or "").startswith(top.group(0)))
+            if 0 < n and chars + n <= MS1_MAX_CHARS:
+                out.append(label)
+                chars += n
         return out
 
     def structural_neighbours(self, section: str, limit: int = MS2_POOL) -> list[str]:
