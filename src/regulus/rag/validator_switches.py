@@ -304,6 +304,11 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       (figure_misattributed), so the draft is corrected or quoted (stepA: F-016's deadlines slid one label past a
       lead-in, F-015's "7 working days" moved from 117.180(a)(6) to (a)(5) - wording-overlap checks passed both)
       (regulus.rag.claim_validation)
+  FD1 (29 Oct, off until measured) a denial a supplied EXACT paragraph contradicts is an error (false_denial): "does not
+      apply to X" beside a clause applying the part to X, or "does not provide/address/... X" beside a paragraph holding
+      nearly all of X's key words; a denial about a named provision is checked against it only; relative clauses,
+      anaphora ("such manufacturers"), "no provision requires" and paragraphs that themselves exclude are left alone.
+      Offline on 318 recorded answers it fires on M-001 only (820.1(a)(4) applies the part to HCT/Ps)
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,

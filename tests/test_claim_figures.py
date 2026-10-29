@@ -54,3 +54,41 @@ def test_each_cited_line_is_checked_on_its_own():
     merged = ("21 CFR 117.201(c)(2)(i) [16]: Initially, by December 17, 2018; or\n\n"
               "21 CFR 117.201(c)(2)(i)(B) [18]: Submitted by July 31 of the applicable year.")
     assert FIGURE_MISATTRIBUTED in codes(merged)
+
+
+# ------------------------------------------------------------ FD1 false denials (29 Oct)
+
+from regulus.rag.claim_validation import false_denial  # noqa: E402
+
+HCTP = SimpleNamespace(index=3, citation="21 CFR 820.1(a)(4)", text=(
+    "(4) HCT/Ps. The provisions of this part apply to manufacturers of human cells, tissues, and cellular and tissue-based "
+    "products (HCT/Ps), as defined in § 1271.3(d) of this chapter, that are devices (subject to premarket review or "
+    "notification, or exempt from notification)."))
+BLOOD = SimpleNamespace(index=2, citation="21 CFR 820.1(a)(3)", text=(
+    "(3) Blood and blood components. Manufacturers of blood and blood components used for transfusion or for further "
+    "manufacturing are not subject to this part."))
+REPORTING = SimpleNamespace(index=4, citation="21 CFR 820.10(b)(3)", text="(3) For Clause 8.2.3 in ISO 13485, Reporting "
+                            "to regulatory authorities, the manufacturer must comply with part 803 complaint reporting.")
+TRACE = SimpleNamespace(index=5, citation="21 CFR 820.10(b)(2)", text="(2) Traceability procedures under part 821.")
+
+
+def test_fd1_flags_a_denial_the_supplied_text_contradicts():
+    hit = false_denial("Additionally, the regulations do not apply to human cells, tissues, and cellular and tissue-based "
+                       "products (HCT/Ps) that are regulated as devices", [HCTP, BLOOD])
+    assert hit and hit[0] == 3
+
+
+@pytest.mark.parametrize("sentence", [
+    "Manufacturers of blood and blood components used for transfusion are not subject to Part 820",   # the text says so
+    "The provisions explicitly state that the requirements of this part do not apply to such manufacturers",  # anaphor
+    "No provision requires a Chief Quality Officer to personally sign every batch record",              # NC phrasing
+    "FDA may refuse to file any application that does not contain human cells data",                    # relative clause
+])
+def test_fd1_leaves_supported_or_unscoped_denials_alone(sentence):
+    assert false_denial(sentence, [HCTP, BLOOD]) is None
+
+
+def test_fd1_a_denial_about_a_named_provision_is_checked_against_it_only():
+    s = "21 CFR 820.10(b)(2) [5]: Requires traceability procedures; this does not address complaint reporting to regulatory authorities"
+    assert false_denial(s, [REPORTING, TRACE], cited=[TRACE]) is None
+    assert false_denial("Part 820 does not address complaint reporting to regulatory authorities", [REPORTING, TRACE]) is not None

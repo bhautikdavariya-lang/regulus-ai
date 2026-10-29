@@ -34,8 +34,9 @@ UNSUPPORTED_PREMISE = "unsupported_premise"
 UNSUPPORTED_CLAIM = "unsupported_claim"
 OBLIGATION_STRENGTHENED = "obligation_strengthened"
 FIGURE_MISATTRIBUTED = "figure_misattributed"
+FALSE_DENIAL = "false_denial"
 CLAIM_CODES = (PARAGRAPH_MISATTRIBUTION, INVENTED_CONDITION, CONDITION_NOT_IN_CITED, UNSUPPORTED_PREMISE, UNSUPPORTED_CLAIM,
-               OBLIGATION_STRENGTHENED, FIGURE_MISATTRIBUTED)
+               OBLIGATION_STRENGTHENED, FIGURE_MISATTRIBUTED, FALSE_DENIAL)
 
 # measured before being enforced (see module docstring); "warning" findings are reported, never repaired
 # Stage 7 measurement on the 63 recorded Stage 6 answers (artifacts/validation_eval/):
@@ -59,12 +60,93 @@ SEVERITY = {
     OBLIGATION_STRENGTHENED: "error",
     # FC2 (29 Oct): a figure stated under one paragraph's citation that only another supplied paragraph contains
     FIGURE_MISATTRIBUTED: "error",
+    # FD1 (29 Oct): a denial a supplied paragraph contradicts in so many words
+    FALSE_DENIAL: "error",
 }
+
+# FD1: denials of applicability or of a topic's presence. "No provision REQUIRES X" is left alone: it is how a correct
+# false-premise answer reads (NC-004), and a source that merely mentions X does not contradict it.
+_FD1_NOT_APPLY = re.compile(r"\b(?:do(?:es)?\s+not|doesn't|don't)\s+apply\s+to\s+(?P<x>[^.;:\n]{4,120})"
+                            r"|(?P<y>[A-Za-z][^.;:\n]{3,100}?)\s+(?:is|are)\s+not\s+(?:subject\s+to|covered\s+by)\b", re.I)
+_FD1_NO_TOPIC = re.compile(r"\b(?:do(?:es)?\s+not|doesn't|don't)\s+(?:provide|address|contain|include|cover|discuss|mention|extend)"
+                           r"\b(?:\s+(?:any|specific|explicit))*(?:\s+(?:requirements?|provisions?|rules?)(?:\s+or\s+provisions?)?)?"
+                           r"(?:\s+(?:regarding|about|on|for|concerning|that\s+address|addressing))?\s+(?P<x>[^.;:\n]{4,120})"
+                           r"|\bno\s+provisions?\s+(?:regarding|about|on|for|concerning|address(?:es|ing)?|cover(?:s|ing)?)\s+(?P<y>[^.;:\n]{4,120})",
+                           re.I)
+# a negation that governs the applying verb ("does not apply", "are not subject", "nor ... apply"), not one elsewhere in the
+# clause (820.1(a)(4) applies the part to HCT/Ps "subject to premarket review or notification, or exempt from notification")
+_FD1_APPLY_NEGATED = re.compile(r"\b(?:not|no|nor|neither|never)\s+(?:\w+\s+){0,2}(?:appl|subject)|\bexcept\b", re.I)
+_FD1_NEGATED = re.compile(r"\b(?:not|no|nor|neither|never)\b", re.I)
+_FD1_CUT = re.compile(r",|\b(?:which|that\s+(?:is|are)|because|since|so|but|though|instead)\b", re.I)
+# "an application that does not contain ..." is a relative clause, not a denial (K-004 offline)
+_FD1_RELATIVE = re.compile(r"\b(?:that|which|who|whose|if|unless|whether|when)\s+(?:\w+\s+){0,1}$", re.I)
+# a denial about one named provision is checked against that provision only (M-015: "21 CFR 820.10(b)(2) ... this does
+# not address complaint reporting" is true of (b)(2), whatever (b)(3) says)
+_FD1_SCOPED = re.compile(r"\b(?:this|that|the\s+(?:cited|quoted))\s+(?:provision|paragraph|section|subpart|definition|text)\b"
+                         r"|^\s*(?:21\s*CFR\s*)?§?\s*\d+\.\d+[a-z]?(?:\([A-Za-z0-9]+\))*|\bthis\s+(?:does|do)\s+not\b", re.I)
+_FD1_ANAPHOR = re.compile(r"^\s*(?:such|these|those|them|it|this|that)\b", re.I)
+# a paragraph that itself excludes or denies cannot contradict a denial (M-003, R-007 offline)
+_FD1_PARAGRAPH_DENIES = re.compile(r"\b(?:not|nor|neither)\s+(?:\w+\s+){0,2}(?:appl|subject|include|cover)|\bdoes\s+not\s+include\b"
+                                   r"|\bexclud", re.I)
+_FD1_STOP = set("""the this that these those part parts section sections provision provisions regulation regulations
+requirement requirements specific any such with from into under their them they which what when where while about other
+also only must shall should apply applies device devices""".split())
+FD1_TOPIC_SHARE = 0.75   # share of the denied topic's key words one supplied paragraph must contain
+
+
+def _fd1_keys(phrase: str) -> list[str]:
+    phrase = _FD1_CUT.split(phrase or "", maxsplit=1)[0]
+    words = re.findall(r"[a-z][a-z/-]{2,}", phrase.lower())
+    return list(dict.fromkeys(w[:6] for w in words if w not in _FD1_STOP))
+
+
+def _fd1_clauses(text: str) -> list[str]:
+    return [c for c in re.split(r"(?<=[.;:])\s+|\n+", text or "") if c.strip()]
+
+
+def false_denial(sentence: str, sources, cited=None) -> tuple[int, str] | None:
+    """FD1: (source index, its affirming clause) when `sentence` denies what a supplied paragraph affirms: "does not
+    apply to X" against a clause that applies the part to X, or "does not provide/address/... X" against a paragraph
+    holding nearly all of X's key words with no negation in that clause. None otherwise."""
+    for m in (_FD1_NOT_APPLY.search(sentence or ""), _FD1_NO_TOPIC.search(sentence or "")):
+        if m and _FD1_RELATIVE.search((sentence or "")[:m.start()]):
+            return None
+    head = (sentence or "")[:max([m.start() for m in (_FD1_NOT_APPLY.search(sentence or ""),
+                                                        _FD1_NO_TOPIC.search(sentence or "")) if m] or [0])]
+    if _FD1_SCOPED.search(head):
+        sources = list(cited or [])   # about a named provision: its own text decides
+    sources = [s for s in sources if not _FD1_PARAGRAPH_DENIES.search(s.text or "")]
+    m = _FD1_NOT_APPLY.search(sentence or "")
+    if m:
+        phrase = m.group("x") or m.group("y")
+        keys = [] if _FD1_ANAPHOR.match(phrase or "") else _fd1_keys(phrase)
+        if len(keys) >= 2:
+            for s in sources:
+                for clause in _fd1_clauses(s.text):
+                    low = clause.lower()
+                    if re.search(r"\b(?:appl(?:y|ies)\s+to|subject\s+to)\b", low) and not _FD1_APPLY_NEGATED.search(low) \
+                            and all(k in low for k in keys):
+                        return s.index, clause.strip()
+        return None
+    m = _FD1_NO_TOPIC.search(sentence or "")
+    if m:
+        phrase = m.group("x") or m.group("y")
+        keys = [] if _FD1_ANAPHOR.match(phrase or "") else _fd1_keys(phrase)
+        if len(keys) >= 2:
+            for s in sources:
+                low = (s.text or "").lower()
+                if sum(k in low for k in keys) / len(keys) >= FD1_TOPIC_SHARE:
+                    clause = next((c for c in _fd1_clauses(s.text) if sum(k in c.lower() for k in keys) >= 2), "")
+                    if clause and not _FD1_NEGATED.search(clause.lower()):
+                        return s.index, clause.strip()
+    return None
 
 # FC2: the figures a sentence states - amounts, multi-digit numbers and dates, and periods ("7 working days") - after its
 # CFR citations and paragraph designators are removed; the same, written out, for the numbers a source may spell
-_FC2_REFS = re.compile(r"§+\s*|\b\d+\.\d+[a-z]?(?:\([A-Za-z0-9]+\))*|\([A-Za-z0-9]{1,4}\)|\b(?:part|subpart|section|title)\s+\d+",
-                       re.I)
+_FC2_REFS = re.compile(r"§+\s*|\b\d+\.\d+[a-z]?(?:\([A-Za-z0-9]+\))*|\([A-Za-z0-9]{1,4}\)"
+                       r"|\b(?:parts?|subparts?|sections?|titles?|chapters?)\s+\d+(?:\s*(?:,|and|or|through|to|-)\s*\d+)*"
+                       # a standard's identifier and its clauses are names (M-010, M-017: "ISO 13485:2016", "Clause 7.3")
+                       r"|\b(?:ISO|IEC|ASTM|AAMI|ANSI|CLSI|ICH)\s*[\d.:/-]+(?:\(E\))?|\bclauses?\s+\d+(?:\.\d+)*", re.I)
 _FC2_FIGURE = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?|(?<![\w.])\d{2,}(?:,\d{3})*(?:\.\d+)?(?![\w.])"
                          r"|(?<![\w.])\d+(?=\s+(?:calendar\s+|working\s+|business\s+)?(?:days?|weeks?|months?|years?|hours?|feet|"
                          r"inches|percent)\b)", re.I)
@@ -420,6 +502,18 @@ def check_claims(sentences: list[str], package, *, question: str | None = None, 
                     f"{', '.join(sorted(stray))} is stated under {by_index[lmarks[0]].citation}, whose text does not contain "
                     f"it; {by_index[js[0]].citation} does", citation=lmarks[0], sentence=line,
                     requirement_id=next(iter(by_index[lmarks[0]].requirement_ids), None)))
+
+        # -- FD1 (29 Oct): a denial a supplied EXACT paragraph contradicts - "the regulations do not apply to HCT/Ps that are
+        # regulated as devices" beside 820.1(a)(4) "The provisions of this part apply to manufacturers of ... HCT/Ps" (M-001),
+        # "Part 820 does not provide ... regarding foreign manufacturers that refuse to permit an FDA inspection" beside
+        # 820.1(c) "Foreign manufacturers" (M-006)
+        if precision_fix("FD1"):
+            hit = false_denial(body, [s for s in package.sources if getattr(s, "tier", None) == "exact"],
+                               cited=[by_index[i] for i in marks])
+            if hit is not None:
+                findings.append(ClaimFinding(FALSE_DENIAL, SEVERITY[FALSE_DENIAL],
+                                             f"{by_index[hit[0]].citation} states: \"{hit[1][:220]}\"", citation=hit[0],
+                                             sentence=sentence, requirement_id=next(iter(by_index[hit[0]].requirement_ids), None)))
 
         # -- conditions the cited sources do not contain
         cited_texts = [by_index[i].text for i in marks]
