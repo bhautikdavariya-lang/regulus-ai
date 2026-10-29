@@ -68,14 +68,17 @@ def messages(heading: str, text: str) -> list[dict]:
 
 
 def key_parts() -> list[str]:
-    import openpyxl
+    try:
+        import openpyxl
+    except ImportError:
+        raise SystemExit("--key-parts reads the benchmark workbook and needs openpyxl; or name the parts with --parts")
 
     wb = next(ROOT.glob("Regulus_AI_Acceptance_Benchmark_REV02_300Q.xlsx"))
     parts: set[str] = set()
     for row in openpyxl.load_workbook(wb, read_only=True, data_only=True)["Question Bank"].iter_rows(values_only=True):
         text = " ".join(str(c) for c in row if c)
         parts |= set(re.findall(r"(?<![\d.])(\d{1,4})\.\d", text)) | set(re.findall(r"\bPart\s+(\d{1,4})\b", text, re.I))
-    return sorted(parts, key=int)
+    return sorted((p for p in parts if int(p) > 0), key=int)
 
 
 def main() -> int:
