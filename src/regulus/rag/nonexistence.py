@@ -153,3 +153,67 @@ def guidance_title_missing(db, question: str) -> dict | None:
         return None   # no listing to check against: nothing can be said
     d = info[0]["d"]
     return {"title": title, "documents": int(info[0]["n"]), "retrieved": d.isoformat() if hasattr(d, "isoformat") else str(d)}
+
+
+# NX2 (29 Oct): a subpart the question names that its part does not have, or has only as reserved
+_SUBPART_ASKED = re.compile(r"\bsubparts?\s+([A-Z]{1,2})(?:\s*(?:through|to|-|–)\s*([A-Z]{1,2}))?(?![A-Za-z])", re.I)
+_PART_ASKED = re.compile(r"\bpart\s+(\d{1,4})\b", re.I)
+# the device quality regulation named instead of its part (PB-008: "the Subpart structure of the Quality System Regulation")
+_QUALITY_REGULATION = re.compile(r"\bquality\s+(?:management\s+)?system\s+regulation\b|\bQ(?:M)?SR\b", re.I)
+# a document built on the subparts: say what that means for it, never that it complies
+_DOCUMENT_ASKED = re.compile(r"\b(?:manual|procedures?|SOPs?|documents?|documentation|quality system|still apply|leave it)\b", re.I)
+
+
+def _letters(lo: str, hi: str | None) -> list[str]:
+    lo, hi = lo.upper(), (hi or lo).upper()
+    if len(lo) != 1 or len(hi) != 1 or hi < lo:
+        return [lo] if not hi or hi == lo else []
+    return [chr(c) for c in range(ord(lo), ord(hi) + 1)]
+
+
+def subpart_statement(db, question: str) -> str | None:
+    """NX2: what the database's subpart list says about the subpart(s) the question names - none of them, or only
+    reserved ones (300Q PB-008: "Confirm that Subparts C through O still apply"; Part 820 Subparts C-O are reserved).
+    None when every named subpart is live, the question names no part, or the part's subparts are not recorded."""
+    sub, part = _SUBPART_ASKED.search(question or ""), _PART_ASKED.search(question or "")
+    p = part.group(1) if part else ("820" if _QUALITY_REGULATION.search(question or "") else None)
+    if not sub or not p:
+        return None
+    asked = _letters(sub.group(1), sub.group(2))
+    rows = db.query("SELECT designation, title FROM cfr_subparts WHERE part_number = %(p)s ORDER BY sort_order", {"p": p})
+    if not asked or not rows:
+        return None
+    live, reserved = {}, set()
+    for r in rows:
+        d = (r["designation"] or "").upper()
+        span = _letters(*d.split("-", 1)) if "-" in d else [d]
+        if "[reserved]" in (r["title"] or "").lower():
+            reserved |= set(span)
+        else:
+            live.update({x: r["title"] for x in span})
+    if all(x in live for x in asked):
+        return None
+    named = (f"Subparts {asked[0]} through {asked[-1]}" if len(asked) > 2 else
+             " and ".join(f"Subpart {x}" for x in asked) if len(asked) == 2 else f"Subpart {asked[0]}")
+    have = "; ".join(f"Subpart {x} ({t})" for x, t in live.items())
+    absent = [x for x in asked if x not in live and x not in reserved]
+    parts = []
+    if absent and not [x for x in asked if x in reserved]:
+        parts.append(f"21 CFR Part {p} has no {named}.")
+    elif absent:
+        parts.append(f"21 CFR Part {p} has no Subpart {', '.join(absent)}, and its other subparts named are reserved.")
+    else:
+        parts.append(f"{named} of 21 CFR Part {p} {'are' if len(asked) > 1 else 'is'} reserved: "
+                     f"{'they contain' if len(asked) > 1 else 'it contains'} no requirements in the current eCFR.")
+    parts.append(f"Its current subparts are {have}.")
+    if p == "820":
+        from regulus.rag.qmsr import reference
+
+        parts.append(f"The Quality Management System Regulation, effective {reference()['effective']}, replaced the former "
+                     "Quality System regulation and its subparts; its requirements are now in 820.10, which incorporates ISO "
+                     "13485:2016 by reference, with FDA's supplements in 820.10(b)-(e), 820.35 and 820.45.")
+    if _DOCUMENT_ASKED.search(question or ""):
+        parts.append("A document organised around subparts that are reserved or absent no longer follows the regulation's "
+                     "structure; whether its content still meets the current requirements needs review against them - "
+                     "Regulus AI cannot confirm compliance either way.")
+    return " ".join(parts)

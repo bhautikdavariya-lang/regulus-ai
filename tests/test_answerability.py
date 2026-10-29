@@ -466,3 +466,39 @@ def test_gt1_the_gate_answers_without_the_model():
     text, kind = blocked_answer(d, [])
     assert d.blocked and kind == FB_NO_EVIDENCE
     assert text.startswith("No FDA guidance document titled “QMSR Certification Body Accreditation Program”")
+
+
+# ------------------------------------------------------------ NX2 absent or reserved subparts (29 Oct)
+
+
+class _Subparts:
+    def __init__(self, rows):
+        self.rows = rows
+
+    def query(self, sql, params):
+        return [dict(designation=d, title=t) for p, d, t in self.rows if p == params["p"]]
+
+
+SUBPARTS = _Subparts([("820", "A", "General Provisions"), ("820", "B", "Supplemental Provisions"),
+                      ("820", "C-O", "Subparts C-O [Reserved]"), ("117", "G", "Supply-Chain Program")])
+
+
+def test_nx2_reserved_subparts_of_the_named_regulation():
+    from regulus.rag.nonexistence import subpart_statement
+    text = subpart_statement(SUBPARTS, "Our quality manual is built around the Subpart structure of the Quality System "
+                                       "Regulation. Confirm that Subparts C through O still apply so I can leave it as it is.")
+    assert text.startswith("Subparts C through O of 21 CFR Part 820 are reserved")
+    assert "cannot confirm compliance either way" in text and "820.10" in text
+
+
+def test_nx2_a_subpart_the_part_does_not_have():
+    from regulus.rag.nonexistence import subpart_statement
+    text = subpart_statement(SUBPARTS, "Walk me through 21 CFR Part 820 Subpart Z.")
+    assert text.startswith("21 CFR Part 820 has no Subpart Z.") and "cannot confirm" not in text
+
+
+def test_nx2_a_live_subpart_is_left_alone():
+    from regulus.rag.nonexistence import subpart_statement
+    assert subpart_statement(SUBPARTS, "What does Part 117 Subpart G require for supply-chain programs?") is None
+    assert subpart_statement(SUBPARTS, "What does Subpart B of Part 820 add?") is None
+    assert subpart_statement(SUBPARTS, "What are the subparts of the regulation?") is None

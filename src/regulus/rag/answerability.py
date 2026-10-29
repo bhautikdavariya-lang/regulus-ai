@@ -105,7 +105,8 @@ _FOREIGN_LABEL = {"health canada": "Health Canada", "canadian": "Canadian", "eu"
 
 
 def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool, general_knowledge: str | None = None,
-           resolved_statute: tuple[str, ...] = (), unknown_guidance: dict | None = None) -> AnswerabilityDecision:
+           resolved_statute: tuple[str, ...] = (), unknown_guidance: dict | None = None,
+           premise_fact: str | None = None) -> AnswerabilityDecision:
     """The answerability of one question. `sources` are the context sources that would be placed
     in the prompt (anything with .text, and .result.key or .evidence_id to identify it)."""
     texts = [s.text for s in sources]
@@ -137,6 +138,10 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
         return d(INSUFFICIENT_EVIDENCE, f"no FDA guidance titled \"{unknown_guidance['title']}\" is in the guidance listing",
                  PROVEN, ("boundary_unknown_guidance",), boundary={"kind": "unknown_guidance", "detail": detail,
                                                                    "question": question})
+    if premise_fact:
+        # NX2: what the database says about a subpart the question names - absent or reserved - stated as the answer
+        return d(INSUFFICIENT_EVIDENCE, "a subpart the question names is absent or reserved in its part", PROVEN,
+                 ("boundary_premise_fact",), boundary={"kind": "premise_fact", "detail": premise_fact, "question": question})
     if boundary is not None:
         # BR1: a request a research tool must not carry out as asked (regulus.rag.boundary), answered by its kind
         kind, detail = boundary

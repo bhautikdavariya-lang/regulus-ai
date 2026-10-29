@@ -325,6 +325,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       model wrote for each section, scripts/build_section_questions.py) match the user's question at cosine >= 0.75 are
       appended to the candidate list, at most 3, inside the named part(s) (regulus.retrieval.section_questions); off
       without data/processed/section_questions/questions.jsonl
+  NX2 (29 Oct, off until measured) a subpart the question names that its part does not have, or has only as reserved
+      (cfr_subparts), is said to be absent or reserved, with the part's current subparts - and, for Part 820, where the
+      QMSR put the requirements; a question about a document built on them is told compliance cannot be confirmed
+      (PB-008 "Subparts C through O still apply", NC-013 "Part 1250 Subpart Q"; also NC-003, NC-018 sealed)
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,

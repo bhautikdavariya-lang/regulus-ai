@@ -137,6 +137,8 @@ def answer(kind: str, detail: str = "", question: str = "") -> str:
         agency = _AGENCIES.get(detail) or _AGENCIES["USDA"]
         return (f"This question is about the rules of {agency[0]}, not FDA, and is outside what Regulus AI covers: it answers "
                 f"from U.S. FDA regulations (21 CFR) and FDA guidance only. {agency[1]}.")
+    if kind == "premise_fact":
+        return detail   # composed from the database by its caller (regulus.rag.nonexistence.subpart_statement)
     if kind == "unknown_guidance":
         title, documents, retrieved = (detail.split("|") + ["", ""])[:3]
         return (f"No FDA guidance document titled “{title}” is in FDA's guidance listing as Regulus AI holds it "

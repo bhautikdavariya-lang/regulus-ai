@@ -1703,8 +1703,16 @@ class RagPipeline:
                 unknown_guidance = guidance_title_missing(self.retriever.db, question)
             except Exception:  # noqa: BLE001 - an aid: the question is answered as before
                 unknown_guidance = None
+        premise_fact = None
+        if precision_fix("NX2") and getattr(self.retriever, "db", None) is not None:
+            from regulus.rag.nonexistence import subpart_statement
+
+            try:
+                premise_fact = subpart_statement(self.retriever.db, question)
+            except Exception:  # noqa: BLE001 - an aid: the question is answered as before
+                premise_fact = None
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
-                               unknown_guidance=unknown_guidance,
+                               unknown_guidance=unknown_guidance, premise_fact=premise_fact,
                                resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
                                general_knowledge=(scope_decision.reason if scope_decision is not None and scope_decision.status == GENERAL_KNOWLEDGE else None))
         conditions = decision.blocking_conditions
