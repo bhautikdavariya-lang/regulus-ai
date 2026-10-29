@@ -331,8 +331,9 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       (PB-008 "Subparts C through O still apply", NC-013 "Part 1250 Subpart Q"; also NC-003, NC-018 sealed)
   QD2 (29 Oct, off until measured; step E2) a comparison or interaction ("differ from", "versus", "interact with",
       "relate to") is a multi-part question, so QD1's decomposition runs for it (F-022: 117 Subpart G vs 1 Subpart L;
-      M-042: Parts 807/830 with 820). Sections QD1 adds are optional, like SP2's and MS1's (an unsupplied one is never
-      announced as "not found")
+      M-042: Parts 807/830 with 820), and its sub-questions search every part - not only the part the question names -
+      at the stricter 0.7 floor (REGULUS_QD2_MIN_SCORE). Fires on 14 of the 300Q. Sections QD1 adds are optional, like
+      SP2's and MS1's (an unsupplied one is never announced as "not found")
   PL1 (29 Oct, off until measured; step E3) a section longer than 2,500 characters added by the reranker (MS1/MS2) comes
       as the top-level paragraph its best-scored paragraph sits in, with everything under it - small-to-big passage
       retrieval - and up to 3 may be added: E1/E1b, a whole 117.475 filled the paragraph limit and pushed F-020's key

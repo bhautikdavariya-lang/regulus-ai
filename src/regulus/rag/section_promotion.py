@@ -177,6 +177,7 @@ QD1_SUBQUESTIONS = 3
 QD1_CANDIDATES = 8
 QD1_MIN_SCORE = 0.5
 QD1_MAX = 2
+QD2_MIN_SCORE = float(os.environ.get("REGULUS_QD2_MIN_SCORE", "0.7"))   # QD2: a cross-part sub-question's section
 # EY1: a question saying the listing of its (unnamed) color does not provide for use in the area of the eye
 _LISTING_SILENT_ON_EYE = re.compile(
     r"\b(?:listing|listed|regulation|it|its)\b[^.?]{0,40}?\b(?:doesn't|does\s+not|isn't|is\s+not|not)\s+(?:mention|provide|"
@@ -1631,16 +1632,21 @@ class SectionPromoter:
             subs = [x for x in subs if x.endswith("?") and 3 <= len(x.split()) <= 40][:QD1_SUBQUESTIONS]
         except Exception:  # noqa: BLE001 - an aid only
             return []
+        # QD2: a comparison or interaction reaches beyond the part the question names - F-022 names Part 117 and needs
+        # FSVP's Part 1, M-042 names Part 820 and needs Parts 807 and 830 - so its sub-questions search every part, at
+        # the stricter floor MS1 and SP2F use (a section of another part must be clearly relevant)
+        across = precision_fix("QD2") and bool(_COMPARES.search(question or ""))
+        sub_parts, floor = (None, QD2_MIN_SCORE) if across else (parts, QD1_MIN_SCORE)
         out: list[str] = []
         for sub in subs if len(subs) >= 2 else []:
             try:
-                _, cands = self.candidates(sub, parts)
+                _, cands = self.candidates(sub, sub_parts)
                 cfr = [c for c in cands if not c.get("statute")][:QD1_CANDIDATES]
                 scores = self.rerank_scores(sub, cfr)
             except Exception:  # noqa: BLE001
                 continue
             best = max(cfr, key=lambda c: scores.get(c["section"], (0.0, ""))[0], default=None)
-            if best is not None and scores.get(best["section"], (0.0, ""))[0] >= QD1_MIN_SCORE and best["section"] not in out:
+            if best is not None and scores.get(best["section"], (0.0, ""))[0] >= floor and best["section"] not in out:
                 out.append(best["section"])
         return out
 

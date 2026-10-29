@@ -51,7 +51,7 @@ class ReplayGenerator:
 
     def __init__(self, picker_system: str, live=None, retrieval_systems: tuple[str, ...] = ()) -> None:
         self.picker_system = picker_system
-        self.retrieval_systems = retrieval_systems   # other retrieval-stage model calls (NAV1): always asked live
+        self.retrieval_systems = retrieval_systems   # other retrieval-stage model calls (NAV1, QD1, QX1): asked live
         self.live = live   # the MLX model (behind a reply cache) for a picker call the recording cannot replay
         self.recorded: dict | None = None
         self.picker = "none"
@@ -84,7 +84,7 @@ def cmd_run(a) -> None:
     sys.path.insert(0, str(KEYS))
     from keys import load_keys
     from regulus.evaluation import retrieval_baseline as RB
-    from regulus.rag.section_promotion import NAV1_SYSTEM, PICKER_SYSTEM
+    from regulus.rag.section_promotion import EXPANSION_SYSTEM, NAV1_SYSTEM, PICKER_SYSTEM, QD1_SYSTEM
     from regulus.retrieval import Database
 
     keys = load_keys()
@@ -118,7 +118,9 @@ def cmd_run(a) -> None:
         from section_resolution_eval import CachedGenerator, _mlx_generator
 
         live = CachedGenerator(_mlx_generator(), Path(a.cache))
-    gen = ReplayGenerator(PICKER_SYSTEM, live, (NAV1_SYSTEM,))
+    # every retrieval-stage model call is asked (behind the reply cache), never taken for the answer call: QD1's
+    # sub-question call read as the answer used to get "" - decomposition did nothing and set the prompt fingerprint
+    gen = ReplayGenerator(PICKER_SYSTEM, live, (NAV1_SYSTEM, QD1_SYSTEM, EXPANSION_SYSTEM))
     pipe.generator = gen
     need = sorted({s for i in ids for s in key_sections(keys[i].get("citation") or "")})
     size = {r["section_number"]: int(r["n"]) for r in db.query(

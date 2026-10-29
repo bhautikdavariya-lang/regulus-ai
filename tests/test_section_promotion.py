@@ -808,3 +808,43 @@ def test_pl1_a_long_added_section_comes_as_its_best_paragraph_family(monkeypatch
     assert pr.reranked_companions("q", cands, promotion) == ["117.475(a)", "117.405"]   # 2,500 + 1,500 chars: both fit
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"PL1"})
     assert pr.reranked_companions("q", cands, promotion) == ["117.475"]   # before: whole 117.475 crowded out 117.405 (F-020)
+
+
+def test_qd2_cross_part_sub_questions_search_every_part_at_the_stricter_floor(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    seen = []
+
+    class Gen:
+        def generate(self, messages, max_new_tokens=None):
+            return GenerationResult(prompt="", response="What is the Part 117 supply-chain program?\nWhat must an importer "
+                                    "do under FSVP?", prompt_tokens=0, generated_tokens=0, seconds=0.0)
+
+    pr = SectionPromoter.__new__(SectionPromoter)
+    pr.generator = Gen()
+    monkeypatch.setattr(SP, "RERANKER", "fake")
+    monkeypatch.setattr(pr, "candidates", lambda q, parts=None: (seen.append(parts), (None, [
+        {"section": "117.405" if "117" in q else "1.506", "part": "117" if "117" in q else "1"}]))[1], raising=False)
+    monkeypatch.setattr(pr, "rerank_scores", lambda q, c: {c[0]["section"]: (0.6 if c[0]["section"] == "1.506" else 0.9, "")},
+                        raising=False)
+    q = "How does the Part 117 supply-chain program differ from the FSVP requirements for importers?"
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"QD2"})
+    assert pr.decomposed_sections(q, ("117",)) == ["117.405"] and seen == [None, None]   # 1.506 at 0.6 < 0.7: not added
+    seen.clear()
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"QD2"})
+    assert pr.decomposed_sections(q, ("117",)) == ["117.405", "1.506"] and seen == [("117",), ("117",)]  # 0.5 floor
+
+
+def test_the_key_recall_harness_asks_decomposition_instead_of_taking_it_for_the_answer():
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    import key_recall_eval as KR
+    from regulus.rag.section_promotion import NAV1_SYSTEM, PICKER_SYSTEM, QD1_SYSTEM
+
+    class Live:
+        def generate(self, messages, max_new_tokens=None, **kw):
+            return GenerationResult(prompt="", response="Sub one?\nSub two?", prompt_tokens=0, generated_tokens=0, seconds=0.0)
+
+    gen = KR.ReplayGenerator(PICKER_SYSTEM, Live(), (NAV1_SYSTEM, QD1_SYSTEM))
+    out = gen.generate([{"role": "system", "content": QD1_SYSTEM}, {"role": "user", "content": "q"}])
+    assert out.response == "Sub one?\nSub two?" and gen.prompt_sha is None   # the answer fingerprint is untouched
