@@ -321,6 +321,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       said not to be in FDA's guidance listing as held - never summarised (NC-022, NC-015). A looser match called NC-022's
       invented "QMSR Certification Body Accreditation Program" found (3 of 4 words in a real food-safety title)
       (regulus.rag.nonexistence.guidance_title_missing)
+  HQ1 (29 Oct, off until measured; step D) sections whose index-time questions (doc2query: plain-language questions the
+      model wrote for each section, scripts/build_section_questions.py) match the user's question at cosine >= 0.75 are
+      appended to the candidate list, at most 3, inside the named part(s) (regulus.retrieval.section_questions); off
+      without data/processed/section_questions/questions.jsonl
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,

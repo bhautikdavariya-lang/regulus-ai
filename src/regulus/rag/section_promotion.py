@@ -179,6 +179,8 @@ _DEFINES_RE = re.compile(r"^\([a-z]{1,2}\)\s+(?:The\s+terms?\s+|An?\s+|The\s+)?(
                          r"(?:means?|is\s+(?:any|a|an|the)|refers?\s+to|applies\s+to)\b")
 DEFINITION_SECTIONS = ("70.3", "700.3", "82.3")
 DEFINITION_HOP_CHARS = 600
+HQ1_LIMIT = int(os.environ.get("REGULUS_HQ1_LIMIT", "3"))            # HQ1: sections the question index may add
+HQ1_MIN_SCORE = float(os.environ.get("REGULUS_HQ1_MIN_SCORE", "0.75"))  # ... at this cosine similarity or more
 DV1_TOP = 3           # DV1: paragraphs promoted for a question naming only a small part
 DV1_MIN_SCORE = 0.3
 SP3_MAX_SECTIONS = 8      # SP3: a subpart this small is promoted whole with its section
@@ -967,6 +969,11 @@ class SectionPromoter:
             ranked = self._fuse_dense(question, ranked)
         else:
             ranked = self.index.rank(lex, limit=self.limit)
+        if precision_fix("HQ1"):
+            # HQ1 (step D): sections whose index-time questions match the question, appended after the list like the dense
+            # leg (never fused into its order), inside the named part(s) or the cosmetics parts when the question is one
+            scope = tuple(parts) if parts else (tuple(COSMETIC_PARTS) if cosmetic_question(lex) else None)
+            ranked = ranked + self._question_matches(question, ranked, scope)
         if ENTITY_CONSTRAINTS:
             try:
                 ranked = self._entity_constrained(question, lex, ranked, parts)
@@ -1019,6 +1026,25 @@ class SectionPromoter:
         have = {r.section for r in ranked}
         return [RankedSection(s, ix.parts[where[s]], ix.headings[where[s]], ix.subparts[where[s]], 0.0, first.get(s, 0))
                 for s in inside if s not in have][:limit]
+
+    def _question_matches(self, question: str, ranked: list, parts) -> list:
+        """HQ1: up to HQ1_LIMIT sections the hypothetical-question index ranks at least HQ1_MIN_SCORE that `ranked` lacks."""
+        from regulus.retrieval.section_index import RankedSection
+        from regulus.retrieval.section_questions import section_questions
+
+        hq = section_questions()
+        if hq is None:
+            return []
+        ix, where, first = self.index, self._where(), self.__dict__.get("_first_ordinal") or {}
+        have = {r.section for r in ranked}
+        out = []
+        for s, _ in hq.rank(question, HQ1_LIMIT + len(have), parts=parts, min_score=HQ1_MIN_SCORE):
+            if s in have or s not in where:
+                continue
+            out.append(RankedSection(s, ix.parts[where[s]], ix.headings[where[s]], ix.subparts[where[s]], 0.0, first.get(s, 0)))
+            if len(out) >= HQ1_LIMIT:
+                break
+        return out
 
     def _fuse_dense(self, question: str, ranked: list) -> list:
         """Lexical top LEXICAL_CANDIDATES fused with the dense top DENSE_CANDIDATES by reciprocal rank (k = RRF_K); the
