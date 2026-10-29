@@ -282,6 +282,14 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       sections and 4,500 characters (Subpart O complaints: 111.553 + 111.560 + 111.570), except for a list question
       (regulus.rag.section_promotion.small_subpart)
   HX1 (off until measured) up to 48 required paragraphs (was 24) under the unchanged character ceiling (111.260's list)
+  AL1 (29 Oct, off until measured) the answer allowance counts up to 18 required units and may reach 3,072 tokens (was 10
+      / 2,048): 300Q full300c, 29 answers were cut at 1,696 tokens after CB1/HX1 widened the evidence (none before), S-024
+      lost its PASS mid-sentence; greedy decoding leaves every answer that finished unchanged (REGULUS_AL1_MAX_UNITS,
+      REGULUS_AL1_MAX_TOKENS; regulus.rag.pipeline.answer_budget)
+  DV2 (29 Oct, off until measured) DV1 narrowed: a question about a guidance document itself is not answered from the
+      part's paragraphs (NC-022); "the scope of" / "which definitions apply" gets the whole Scope / Definitions section
+      (M-001, M-008); DV1's promotion carries its cross-encoder score so Q2 may quote it for an answer that cannot be shown
+      (M-026, M-042 withheld) - 300Q full300c, 4 DV1 PASS lost
   QC1 (on since 27 Oct release) "does Part 820 require ISO 13485 certification / does a certificate exempt us from inspection"
       is answered from 820.10(a) once the database confirms no live part 820 text mentions certification
       (regulus.rag.qmsr.compose_certification)

@@ -367,6 +367,10 @@ Q2_MIN_RERANK = 0.6
 # DV1: a question asking WHICH provisions of a part do something (M-029, "Which provisions of Part 820 are FDA
 # supplements ...") spans the part; narrowed to its three best paragraphs it was declined
 _ASKS_WHICH_PROVISIONS = re.compile(r"\b(?:which|what)\s+(?:provisions|sections|paragraphs|requirements)\s+of\b", re.I)
+# DV2: a question about an FDA guidance document itself (NC-022: "Summarize FDA's final guidance 'QMSR Certification Body
+# Accreditation Program'" - a document that does not exist) is not answered from the regulation's paragraphs
+_GUIDANCE_DOCUMENT = re.compile(r"\b(?:final|draft)\s+guidance\b|\bguidance\s+(?:document\s+)?['\"‘“]"
+                                r"|\bsummari[sz]e\b[^?.]{0,40}\bguidance\b", re.I)
 _FOCUSED_COMPLETENESS_CODES = frozenset({"requirement_not_addressed", "material_group_uncovered", "enumeration_incomplete"})
 _OTHER_CFR_TITLE = re.compile(r"\b(?!21\b)\d{1,2}\s+C\.?F\.?R\b", re.I)
 _FDCA_CUE = re.compile(r"\bFD&C\s+Act\b|\bFDCA\b|\bFederal\s+Food,\s+Drug,?\s+and\s+Cosmetic\s+Act\b|\b21\s+U\.?S\.?C\b", re.I)
@@ -459,10 +463,24 @@ PC1_MIN_SCORE = 0.5   # PC1: an uncited paragraph this relevant to the question 
 PC1_MAX = 3
 PC1_LEAD = "Other paragraphs of {section} that bear on the question, verbatim:"
 TK1_MIN_TOKENS = 640   # TK1: the least room an applied answer gets
+# AL1: the answer allowance counts up to this many required units and may reach this many tokens (was 10 units / 2,048:
+# set when the prompt was capped near 2,600 tokens; CB1/HX1 now supply up to 48 paragraphs and 15,000 characters)
+AL1_MAX_UNITS = int(os.environ.get("REGULUS_AL1_MAX_UNITS", "18"))
+AL1_MAX_TOKENS = int(os.environ.get("REGULUS_AL1_MAX_TOKENS", "3072"))
 # LM1: name the closest sources before the evidence when there are at least this many; at most LM1_TOP of them
 LM1_MIN_SOURCES = 6
 LM1_TOP = 3
 LM1_MIN_SCORE = 0.3
+def answer_budget(budget: GenerationBudget) -> GenerationBudget:
+    """AL1 (29 Oct): the answer allowance keeps pace with the evidence. 300Q full300c: 29 answers stopped at the 1,696-token
+    allowance (10 units x 160 + 96), none in the run before CB1/HX1; S-024 (8 sections, 40 paragraphs) lost its PASS cut
+    mid-sentence. Decoding is greedy, so an answer that finished within the old allowance is unchanged."""
+    if not precision_fix("AL1"):
+        return budget
+    return replace(budget, max_units=max(budget.max_units, AL1_MAX_UNITS),
+                   hard_max_tokens=max(budget.hard_max_tokens, AL1_MAX_TOKENS))
+
+
 def cosmetics_conversation(context) -> bool:
     """CT1: every provision the conversation's anchor names is in the color additive and cosmetics programme (21 CFR
     Parts 70-82 and 700-799, FD&C Act 601-614)."""
@@ -1149,6 +1167,8 @@ class RagPipeline:
             part = "820"
         if not part or _ASKS_WHICH_PROVISIONS.search(question or ""):
             return None   # "which provisions of Part 820 are ...": answered across the part, not from three paragraphs
+        if precision_fix("DV2") and _GUIDANCE_DOCUMENT.search(question or ""):
+            return None
         if part not in DV1_PARTS:
             # the parts DV1 was measured on (28 Oct retrieval check, 225 dev, client keys: +7 complete in Part 820 - M-005,
             # M-009, M-015..M-018, M-042 - Part 11 unchanged); in Part 806 its three paragraphs dropped R-005's 806.10(b)
@@ -1169,7 +1189,10 @@ class RagPipeline:
         promoted = _without_part_requirements(plan_query(question + " (21 CFR " + ", ".join(paras) + ")"))
         if not promoted.requirements:
             return None
-        return promoted, Promotion(sections=tuple(paras), companions=(), method="part_paragraphs")
+        # DV2: the paragraphs' best cross-encoder score, so Q2 may quote them for an answer that cannot be shown (M-026: the
+        # draft failing validation was withheld, where the picker's promotion of the same 820.45 had been quoted - PASS)
+        score = promoter.__dict__.get("last_part_score") if precision_fix("DV2") else None
+        return promoted, Promotion(sections=tuple(paras), companions=(), method="part_paragraphs", rerank=score)
 
     def closest_sources(self, question: str, package) -> tuple[int, ...]:
         """LM1: the (at most LM1_TOP) sources the cross-encoder scores highest for the question, at least LM1_MIN_SCORE,
@@ -1515,7 +1538,7 @@ class RagPipeline:
         t_pkg = time.perf_counter()
         package = (build_package(plan, coverage, selection,
                                  notes=(tuple(bundle.notes) + _statute_notes(promotion) if (promotion is not None and promotion.method == "statute_reference")
-                                        else _statute_notes(promotion) if (promotion is not None and promotion.statute) else bundle.notes), budget=self.config.generation_budget, answer_shape=shape,
+                                        else _statute_notes(promotion) if (promotion is not None and promotion.statute) else bundle.notes), budget=answer_budget(self.config.generation_budget), answer_shape=shape,
                                  question_analysis=analysis)
                    if coverage is not None and selection is not None else None)
         if package is not None and self.config.answer_style != "restate":
@@ -1607,7 +1630,9 @@ class RagPipeline:
         # judges it relevant (Q2_MIN_RERANK): the picker's choice alone quoted Red No. 40 for a Blue No. 1 question and an
         # unrelated provision for must-refuse and false-premise questions (26 Oct, 25 recorded withheld answers)
         picked_quote = bool(gate_on and not focus_quote_allowed and precision_fix("Q2") and package is not None
-                            and promotion is not None and promotion.method == "picker" and promotion.sections
+                            and promotion is not None and promotion.sections
+                            and (promotion.method == "picker"
+                                 or (promotion.method == "part_paragraphs" and precision_fix("DV2")))
                             and promotion.rerank is not None and promotion.rerank >= Q2_MIN_RERANK
                             and provision_is_identified(plan, package))
         focus_lead = FOCUSED_QUOTE_LEAD_PICKED if picked_quote else FOCUSED_QUOTE_LEAD

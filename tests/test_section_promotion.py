@@ -387,6 +387,42 @@ def test_a_paragraph_of_a_long_section_brings_its_top_level_family():
         ["820.1(a)", "820.1(a)(1)", "820.1(a)(4)", "820.7"]
 
 
+# ------------------------------------------------------------ DV2: DV1 narrowed (29 Oct)
+
+_SCOPE_ROWS = [("820.1", "(a)", "Scope.", "Applicability. The requirements in this part govern finished devices. " + "x" * 2000),
+               ("820.1", "(b)", "Scope.", "The quality management system regulation in this part supplements regulations."),
+               ("820.1", "(c)", "Scope.", "Foreign manufacturers that refuse to permit inspection. " + "y" * 600),
+               ("820.1", "(d)", "Scope.", "Exemptions or variances may be requested by petition."),
+               ("820.45", "(a)", "Labeling.", "Labeling must be examined.")]
+
+
+def test_dv2_a_scope_question_gets_the_whole_scope_section(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    pr = _part_promoter(monkeypatch, _SCOPE_ROWS, {"Applicability": 0.9, "Foreign": 0.5})
+    q = "What is the scope of 21 CFR Part 820 and which manufacturers are subject to it?"
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"DV2"})
+    assert "820.1" not in pr.part_paragraphs(q, "820")          # DV1: paragraph families of the long section
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"DV2"})
+    assert pr.part_paragraphs(q, "820")[0] == "820.1"
+    assert pr.__dict__["last_part_score"] == pytest.approx(0.9)
+
+
+def test_dv2_a_point_question_keeps_its_paragraph_family(monkeypatch):
+    from regulus.rag import validator_switches as VS
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"DV2"})
+    pr = _part_promoter(monkeypatch, _SCOPE_ROWS, {"Foreign": 0.9})
+    got = pr.part_paragraphs("What does Part 820 provide for foreign manufacturers that refuse to permit inspection?", "820")
+    assert got[0] == "820.1(c)" and "820.1" not in got
+
+
+def test_dv2_a_guidance_document_question_is_not_answered_from_part_paragraphs():
+    from regulus.rag.pipeline import _GUIDANCE_DOCUMENT
+    assert _GUIDANCE_DOCUMENT.search("Summarize FDA's final guidance 'QMSR Certification Body Accreditation Program,' issued March 2026.")
+    assert not _GUIDANCE_DOCUMENT.search("A firm uses a cloud-hosted LIMS. Which Part 11 provisions apply to the vendor's "
+                                         "controls, and how does the FDA guidance on scope and application affect them?")
+    assert not _GUIDANCE_DOCUMENT.search("What is the scope of 21 CFR Part 820?")
+
+
 def test_hc1_coordinated_topics_split_across_sibling_headings():
     from regulus.rag.section_promotion import _coordinated, _topic_stems
     pairs = _coordinated("What are the drug product inspection and expiration dating requirements?")

@@ -315,3 +315,25 @@ def test_the_budget_is_reported_so_a_short_answer_can_be_explained():
     assert d["budget"]["policy"] == POLICY_ADAPTIVE
     assert d["budget"]["hard_max_tokens"] == pkg.budget.hard_max_tokens
     assert "min_tokens" in d["budget"] and "evidence_multiple" in d["budget"]
+
+
+# ------------------------------------------------ AL1: the allowance keeps pace with the evidence (29 Oct)
+
+
+def test_al1_a_forty_paragraph_answer_is_no_longer_capped_at_ten_units(monkeypatch):
+    """300Q S-024: 8 sections in 40 paragraph blocks were allowed 1,696 tokens (10 units) and cut mid-sentence."""
+    from types import SimpleNamespace
+
+    from regulus.rag import validator_switches as VS
+    from regulus.rag.pipeline import answer_budget
+
+    plan, cov = SimpleNamespace(kind="sections"), SimpleNamespace(explicit=True, satisfied_ids=tuple(f"r{i}" for i in range(8)))
+    base = GenerationBudget()
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"AL1"})
+    assert answer_budget(base) is base
+    assert base.tokens_for(plan, cov, 40) == 1696
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"AL1"})
+    wide = answer_budget(base)
+    assert wide.tokens_for(plan, cov, 40) == 96 + 160 * 18
+    assert wide.tokens_for(plan, cov, 3) == base.tokens_for(plan, cov, 3)   # a short answer's allowance is unchanged
+    assert wide.hard_max_tokens == 3072

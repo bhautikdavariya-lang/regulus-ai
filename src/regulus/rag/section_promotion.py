@@ -259,6 +259,13 @@ def _topic_stems(text: str) -> set[str]:
 
 DV1_WHOLE_SECTION_CHARS = int(os.environ.get("REGULUS_DV1_WHOLE_SECTION_CHARS", "2500"))   # DV1: a section this short is supplied whole (820.7, 820.45, 820.35: M-023 mis-cited (a)(3) from its families)
 DV1_MAX_SECTIONS = 12  # a part this small is answered paragraph by paragraph
+# DV2: a question asking for the part's scope or its definitions as a whole, and the headings of the section that holds them
+_FRAME_ASKED = {
+    "scope": re.compile(r"\bscope\s+of\b", re.I),
+    "definitions": re.compile(r"\b(?:which|what)\s+definitions\b|\bdefinitions\s+(?:that\s+)?apply\b", re.I),
+}
+_FRAME_HEADINGS = {"scope": re.compile(r"^\s*(?:scope|purpose|applicability)\b", re.I),
+                   "definitions": re.compile(r"^\s*definitions?\b", re.I)}
 _PHRASE_STOP = set("the and for with that this from such any are its which under part section".split())
 FC1_MAX_SECTIONS = 3   # FC1: a heading phrase this rare in Parts 70-71 names the subject a fee paragraph prices
 DEFINITION_GENERIC_USES = 3
@@ -1649,13 +1656,24 @@ class SectionPromoter:
         # shares only "design and development" and scored under DV1_MIN_SCORE)
         top_overlap = max(overlap)
         out: list[str] = []
+        best = None
         for i in fused:
             if len(out) >= k:
                 break
             if (scores[i] >= DV1_MIN_SCORE or overlap[i] >= 2 or (overlap[i] and overlap[i] == top_overlap)) \
                     and items[i][0] not in out:
                 out.append(items[i][0])
-        return self.paragraph_families(out, items)
+                best = max(best or 0.0, float(scores[i]))
+        self.__dict__["last_part_score"] = best   # DV2: the caller's Q2 quote decision
+        whole = frozenset()
+        if precision_fix("DV2"):
+            # DV2 (29 Oct): "What is the scope of Part 820 ..." / "Which definitions apply to Part 820 ..." asks for the
+            # part's frame as a whole - its Scope or Definitions section is supplied whole, not one paragraph family (300Q
+            # full300c: M-001 got 820.1(a) and (c) without (b) and (d), M-008 820.3(b) without (a) - both PASS lost)
+            frame = _FRAME_HEADINGS.get(next((kind for kind, rx in _FRAME_ASKED.items() if rx.search(question or "")), ""))
+            if frame is not None:
+                whole = frozenset(r["s"] for r in rows if frame.match(r["h"] or ""))
+        return self.paragraph_families(out, items, whole)
 
     def sibling_companions(self, section: str, question: str, limit: int = HC1_MAX) -> list[str]:
         """HC1 (27 Oct): sections of the same subpart whose heading names a topic of the question that the promoted
@@ -1747,7 +1765,7 @@ class SectionPromoter:
         return section if own_words & _topic_stems(question) else best["s"]
 
     @staticmethod
-    def paragraph_families(picks: list[str], items: list[tuple[str, str]]) -> list[str]:
+    def paragraph_families(picks: list[str], items: list[tuple[str, str]], whole: frozenset = frozenset()) -> list[str]:
         """Small-to-big: each picked paragraph widened to its top-level paragraph with every paragraph under it
         (820.1(a)(4) -> 820.1(a), (a)(1)-(a)(4)), or to its whole section when the section is short (820.7: ISO 9000 in
         (a) beside ISO 13485 in (b)) - matched on the paragraph, answered from its context. Device fix check: three
@@ -1760,7 +1778,7 @@ class SectionPromoter:
         for pick in picks:
             sec = re.match(r"\d+\.\d+[a-z]?", pick).group(0)
             top = re.match(r"\([a-z0-9]+\)", pick[len(sec):])
-            if size.get(sec, 0) <= DV1_WHOLE_SECTION_CHARS or top is None:
+            if size.get(sec, 0) <= DV1_WHOLE_SECTION_CHARS or top is None or sec in whole:
                 family = [sec]
             else:
                 head = sec + top.group(0)
