@@ -64,8 +64,10 @@ def test_the_three_findings_are_errors_mapped_to_unsupported():
 
 def test_the_fix_changes_no_other_severity_or_status():
     # OBLIGATION_STRENGTHENED is raised only with fix E1 switched on (regulus.rag.validator_switches, 23 Oct)
+    # FIGURE_MISATTRIBUTED (FC2) and FALSE_DENIAL (FD1), 29 Oct: raised only with their switches on
     assert CV.SEVERITY == {CV.PARAGRAPH_MISATTRIBUTION: "error", CV.INVENTED_CONDITION: "error", CV.CONDITION_NOT_IN_CITED: "error",
-                           CV.UNSUPPORTED_PREMISE: "error", CV.UNSUPPORTED_CLAIM: "error", CV.OBLIGATION_STRENGTHENED: "error"}
+                           CV.UNSUPPORTED_PREMISE: "error", CV.UNSUPPORTED_CLAIM: "error", CV.OBLIGATION_STRENGTHENED: "error",
+                           CV.FIGURE_MISATTRIBUTED: "error", CV.FALSE_DENIAL: "error"}
     assert V._CODE_STATUS[CV.INVENTED_CONDITION] == V.STATUS_EVIDENCE_MISMATCHED   # still repaired in place
     assert V.LOW_OVERLAP not in V._CODE_STATUS and QUALIFIER_DROPPED not in V._CODE_STATUS
 
