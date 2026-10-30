@@ -15,7 +15,7 @@
 # Report: python scripts/switch_report.py   (--status X, --stage X, --run full300d, --check)
 
 meta:
-  as_of: "2026-10-29"
+  as_of: "2026-10-30"
   code_ref: rc-2026-10-29 (bb7543b)
   runs:
     # every DEFAULT switch was on in both runs; `extra` is what each run added on top of DEFAULT
@@ -29,7 +29,9 @@ meta:
       date: "2026-10-29 overnight (results 30 Oct)"
       extra_over: full300c
       extra: [DV2, CX1, OC1, AL1, FC2, FD1, CL1, FJ1, GT1, BR1, NX1, NX2]
-      result: pending; XP1 only if run with E1=1 (E1 failed its no-loss gate 29 Oct 13:15, so expected off)
+      result: >-
+        client keys, 300Q: 161 PASS / 22 PP = 61.0%; paired vs full300c 29 up / 23 down, PASS +22 / -8 (OC1: 7 of the 8,
+        and 10 withheld answers from its provision_is_identified bug); E1/XP1 not in the run
 
 switches:
 
@@ -838,10 +840,14 @@ switches:
   OC1:
     purpose: sections added as context stay as SUPPORTING sources and leave the requested provisions and answer plan
     stage: selection
-    status: experimental
+    status: rejected
     in_default: false
     introduced: {date: "2026-10-29", commit: f9de232}
-    evidence: fires on 111 of the 300Q (52 PASS, 22 of the 29 truncated); measured only by full300d
+    evidence: >-
+      LEDGER 30 Oct - full300d vs full300c on the 111 rows it fired on: 10 up / 23 down; all 7 lost PASS (R-004 U-003
+      F-020 U-010 D-010 K-008 U-009) had identical evidence - the demoted companions were left out of shorter answers
+      (R-004 1,399 -> 366 tokens); its truncation motive (S-024) is covered by AL1. 10 downs were the
+      provision_is_identified bug, fixed in adfad96. Left off from 30 Oct
   FC2:
     purpose: a figure stated under a cited paragraph must be in that paragraph, its parent or child
     stage: answer_checks
@@ -930,6 +936,36 @@ switches:
     introduced: {date: "2026-10-29", commit: bb7543b}
     evidence: not measured; dev 225 - 8 key sections in reach (U-001 801.1, G-006 211.137, X-003 4.4)
     interactions: [MS1]
+
+  # ------------------------------------------------------------------ 30 Oct: five weak domains, product clarification
+  DR1:
+    purpose: a question naming one regulatory programme (tobacco, food labeling, device submissions, radiological health, combination products) is searched in that programme's parts and offered its FD&C Act sections
+    stage: retrieval
+    status: experimental
+    in_default: false
+    introduced: {date: "2026-10-30", commit: 9b80f66}
+    evidence: >-
+      LEDGER 30 Oct - routing precision 97.6% on 7,811 gold-labelled questions (492 routed); 300Q 45 routed; candidate
+      lists without a model: 12 key sections newly offered, 21 ranked higher, 0 lost; five-domain live run pending.
+      869bf26: QD1 sub-questions keep the routed programme (L-015 promoted 502.19)
+    interactions: [QD1, AU1]
+  SY4:
+    purpose: acronyms the regulations define in their own text are spelled out in the section search's words
+    stage: retrieval
+    status: experimental
+    in_default: false
+    introduced: {date: "2026-10-30", commit: ce03079}
+    evidence: not measured; L-008 - 'RACC' never brought 101.12 into the candidates (data/reference/acronyms_v1.json, 287 acronyms)
+  AMB1:
+    purpose: a question naming no product type, whose first-ranked candidates are one provision written for several types, gets a clarifying question listing them; the reply naming a type is answered from its section
+    stage: router
+    status: experimental
+    in_default: false
+    introduced: {date: "2026-10-30", commit: da605cc}
+    evidence: >-
+      fires on L-004 and L-005 only (300Q) and 18 of 8,088 gold-labelled bank questions (15 truly unspecified);
+      score effect expected ~0 (client key = the food rule); asking was the user's choice (30 Oct)
+    interactions: [CQ1]
 
 # Switches that are not part of REGULUS_VALIDATOR_PRECISION (their own environment variables)
 other_switches:
