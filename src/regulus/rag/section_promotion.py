@@ -403,6 +403,15 @@ _ACT_NOT_OFFERED = frozenset({"301"})
 _AU1_GENERIC = frozenset({"201", "301", "704", "801"})   # definitions, prohibited acts, inspection, imports: in most lists
 
 
+def routed_programme(question: str):
+    """DR1 (regulus.rag.validator_switches): the one programme the question names (regulus.retrieval.programmes), or None."""
+    if not precision_fix("DR1"):
+        return None
+    from regulus.retrieval.programmes import programme_for
+
+    return programme_for(question)
+
+
 def authority_sections(parts: list[str]) -> list[str]:
     """AU1: the FD&C Act sections these parts are issued under, in their first part's order then the next part's, from
     data/reference/part_fdca_authority.json (eCFR <AUTH> lines mapped to the Act sections held)."""
@@ -1036,6 +1045,10 @@ class SectionPromoter:
             # the restriction loses no key section and adds 3 to the candidate lists
             ranked = [r for r in self.index.rank(lex, limit=400) if r.part in COSMETIC_PARTS][:LEXICAL_CANDIDATES]
             ranked = self._fuse_dense(question, ranked)
+        elif (programme := routed_programme(asked)) is not None:
+            # DR1: the same for the one programme the question names (regulus.retrieval.programmes), as deep as a general
+            # question's list - the section dense index holds the cosmetics parts only, so there is no dense leg to fuse
+            ranked = [r for r in self.index.rank(lex, limit=400) if r.part in programme.parts][:self.limit]
         else:
             ranked = self.index.rank(lex, limit=self.limit)
         if precision_fix("HQ1"):
@@ -1623,6 +1636,12 @@ class SectionPromoter:
         offer_statute = self.statute is not None and cosmetic_question(lex) and not parts
         if offer_statute:
             cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question)
+        elif (self.statute is not None and not parts and cands and (programme := routed_programme(question)) is not None
+              and programme.act):
+            # DR1: the Act sections the programme is issued under (the tobacco keys cite 904-911, which AU1 reached only
+            # through a top candidate's part - T-001's were 25.35, 1.79, 1105.10)
+            act = tuple(x for x in programme.act if x in self.statute.by_sec)
+            cands = cands[:CFR_CANDIDATES_WITH_STATUTE] + self.statute_candidates(lex, question, act)[:GENERAL_ACT_OFFERED]
         elif self.statute is not None and not parts and cands and (general_act_offered() or precision_fix("AU1")):
             # SA1: the FD&C Act sections a general question is most about, after the regulations
             general = tuple(x for x in sorted(self.statute.by_sec) if x not in STATUTE_OFFERED and x not in _ACT_NOT_OFFERED)
