@@ -52,6 +52,7 @@ from regulus.rag.fallback import (
     FB_COMPOSED_QMSR,
     FB_COMPOSED_RECORDS,
     FB_FOCUSED_QUOTE,
+    FB_PRODUCT_CLARIFICATION,
     FB_PREMISE_NOT_ESTABLISHED,
     FB_PROVISION_NOT_FOUND,
     FB_COMPOSED_SILENCE,
@@ -2085,6 +2086,8 @@ class RagPipeline:
                if (package is not None and selection is not None) else [])
         if premise is not None and premise.unsupported:
             cut = []   # that answer comes from the whole part in the database, not from the evidence the ceiling cut
+        if fallback_type == FB_PRODUCT_CLARIFICATION:
+            cut = []   # AMB1: a clarifying question answers nothing from the evidence, so nothing of it was left out
         if cut:
             requested = dict(package.requirements)
             left_out = Counter(next((requested[r] for r in d.evidence.satisfies if r in requested),

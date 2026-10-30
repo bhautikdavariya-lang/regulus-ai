@@ -1717,9 +1717,13 @@ class SectionPromoter:
             best = max(cfr, key=lambda c: scores.get(c["section"], (0.0, ""))[0], default=None)
             return best["section"] if best is not None and scores.get(best["section"], (0.0, ""))[0] >= floor else None
 
+        # DR1: a question routed to its programme keeps it for its sub-questions - L-015's "where are those names
+        # codified?" searched every part and promoted 502.19 (animal food) for a food labeling question (30 Oct, FAIL)
+        programme = routed_programme(question) if parts is None else None
+        scope = tuple(sorted(programme.parts)) if programme is not None else parts
         out: list[str] = []
         for sub in subs if len(subs) >= 2 else []:
-            found = best_for(sub, parts, QD1_MIN_SCORE)
+            found = best_for(sub, scope, QD1_MIN_SCORE)
             if found is None and across and parts:
                 found = best_for(sub, None, QD2_MIN_SCORE)
             if found is not None and found not in out:

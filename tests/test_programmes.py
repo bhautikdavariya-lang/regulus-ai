@@ -48,3 +48,28 @@ def test_routed_programme_is_off_unless_dr1(monkeypatch):
     assert SP.routed_programme(q) is None
     monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"DR1"})
     assert SP.routed_programme(q).name == "tobacco"
+
+
+def test_sub_questions_of_a_routed_question_stay_in_its_programme(monkeypatch):
+    # L-015 (30 Oct): "where are those names codified?" searched every part and promoted 502.19 (animal food)
+    from regulus.rag import section_promotion as SP
+    from regulus.rag import validator_switches as VS
+
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION | {"DR1", "QD1"})
+    monkeypatch.setattr(SP, "RERANKER", "stub")
+
+    class Gen:
+        def generate(self, messages, max_new_tokens=0, **kw):
+            return type("G", (), {"response": "When must a food bear a common or usual name?\nWhere are those names codified?"})()
+
+    pr = SP.SectionPromoter.__new__(SP.SectionPromoter)
+    pr.generator, seen = Gen(), []
+    monkeypatch.setattr(pr, "candidates", lambda sub, scope: (seen.append(scope), ([], [{"section": "102.5"}]))[1], raising=False)
+    monkeypatch.setattr(pr, "rerank_scores", lambda sub, cfr: {"102.5": (0.9, "")}, raising=False)
+    q = "When must a food bear a common or usual name established by regulation, and where are those names codified?"
+    assert pr.decomposed_sections(q) == ["102.5"]
+    assert seen and all(scope == ("101", "102", "104", "105") for scope in seen)
+    monkeypatch.setattr(VS, "VALIDATOR_PRECISION", VS.VALIDATOR_PRECISION - {"DR1"})
+    seen.clear()
+    pr.decomposed_sections(q)
+    assert seen and all(scope is None for scope in seen)   # without DR1: every part, as before
