@@ -748,6 +748,18 @@ def test_oc1_an_added_section_is_context_not_a_requested_provision():
     assert "requirement_not_addressed" not in report.codes()   # the context section is not demanded
 
 
+def test_oc1_the_remaining_provision_is_still_identified():
+    # 30 Oct full300d: F-002, P-009, K-003 ... lost the focused quote - the moved companion's id stayed in the plan
+    from regulus.rag.fallback import provision_is_identified
+    from regulus.rag.pipeline import companions_as_context
+    pkg, plan = package_for(TWO), plan_query(TWO)
+    assert provision_is_identified(plan, pkg)
+    out = companions_as_context(pkg, plan, frozenset({"21 CFR 820.10(b)(4)"}))
+    assert out.context_ids and provision_is_identified(plan, out)
+    unsatisfied = replace(out, satisfied_ids=())
+    assert not provision_is_identified(plan, unsatisfied)   # the requested provision itself must still have its evidence
+
+
 def test_oc1_changes_nothing_when_every_requested_provision_is_added():
     from regulus.rag.pipeline import companions_as_context
     pkg = package_for(TWO)

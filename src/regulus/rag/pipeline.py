@@ -508,7 +508,8 @@ def companions_as_context(package: GenerationPackage, plan: QueryPlan, labels: f
         answer_plan = replace(rebuilt, values=answer_plan.values) if answer_plan.values else rebuilt
     return replace(package, sources=sources, answer_plan=answer_plan,
                    requirements=tuple(r for r in package.requirements if r[0] not in drop),
-                   satisfied_ids=tuple(i for i in package.satisfied_ids if i not in drop))
+                   satisfied_ids=tuple(i for i in package.satisfied_ids if i not in drop),
+                   context_ids=tuple(sorted(drop)))
 
 
 def answer_budget(budget: GenerationBudget) -> GenerationBudget:

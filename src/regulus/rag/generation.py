@@ -321,6 +321,9 @@ class GenerationPackage:
     # requested provisions the answer may leave unaddressed ("21 CFR 507.34"): added as further evidence, not asked for
     # (SP2's second pick); omitting one is a warning, not an error. Empty: every requirement must be addressed, as before
     optional_labels: frozenset[str] = frozenset()
+    # OC1: the plan's requirement ids whose sections were moved to context (companions_as_context); they are no longer
+    # requested, so `provision_is_identified` does not wait for them. Never rendered; () = as before
+    context_ids: tuple[str, ...] = ()
     # LM1: the source numbers the cross-encoder judges closest to the question, named before the evidence (a model
     # reading many paragraphs uses the start and end of its prompt best: "lost in the middle"); () renders as before
     closest: tuple[int, ...] = ()

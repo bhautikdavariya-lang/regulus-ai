@@ -91,9 +91,15 @@ def quoting_allowed(question: str, plan, shape, analysis, package) -> bool:
 
 def provision_is_identified(plan, package) -> bool:
     """Every requested provision is a section or paragraph and has exact evidence: its text is
-    relevant by identity (it is the provision asked about), unlike a part's first matching passage."""
-    return (package is not None and bool(plan.requirements) and all(r.reference.section is not None for r in plan.requirements)
-            and set(package.satisfied_ids) == {r.id for r in plan.requirements})
+    relevant by identity (it is the provision asked about), unlike a part's first matching passage.
+    Sections OC1 moved to context are no longer requested (30 Oct: full300d, 10 answers that had quoted the provision
+    were withheld because satisfied_ids lacked the moved companions' ids)."""
+    if package is None:
+        return False
+    context = set(getattr(package, "context_ids", ()))
+    requested = [r for r in plan.requirements if r.id not in context]
+    return (bool(requested) and all(r.reference.section is not None for r in requested)
+            and set(package.satisfied_ids) == {r.id for r in requested})
 
 
 def blocked_answer(decision: A.AnswerabilityDecision, sources, notes=(), missing_labels=(), *, plan=None,
