@@ -1026,6 +1026,14 @@ class SectionPromoter:
                 extra += [terms for pattern, terms in _THESAURUS_SY3 if pattern.search(question or "")]
             if extra:
                 question = f"{question} {' '.join(extra)}"
+        if precision_fix("SY4"):
+            # SY4: the acronyms the regulations define, spelled out for the search ("RACC" -> "reference amount commonly
+            # consumed": L-008 never had 101.12 as a candidate) - regulus.retrieval.acronyms
+            from regulus.retrieval.acronyms import expansions
+
+            spelled = expansions(question)
+            if spelled:
+                question = f"{question} {' '.join(spelled)}"
         lex = SectionIndex.question_lexemes(self.db, question)
         if parts:
             ranked = [r for r in self.index.rank(lex, limit=400) if r.part in parts]

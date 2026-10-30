@@ -348,6 +348,10 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       programme's parts only - as a cosmetics question has since 22 Oct - and is offered the FD&C Act sections the programme
       is issued under (regulus.retrieval.programmes). full300d: those five domains were 40 of 56 below PASS/PP; tobacco
       candidates were mostly other programmes' sections and Act 904-911 was never offered
+  SY4 (30 Oct, off until measured) an acronym the regulations define in their own text ("reference amount commonly consumed
+      (RACC)") is spelled out in the section search's words - the picker and the model still read the question as asked
+      (regulus.retrieval.acronyms, data/reference/acronyms_v1.json from scripts/build_acronyms.py; senses questions do not
+      use, such as PDP = product development protocol, are excluded). L-008: 101.12 was never a candidate for "RACC"
   AMB1 (30 Oct, off until measured) a question naming no product type whose first-ranked candidates are the same provision
       written for several types (101.7 / 201.62 / 701.13 / 801.62 "Declaration of net quantity of contents") is answered
       with a clarifying question listing them, cited, without calling the model; a short reply naming one type ("food",
