@@ -108,7 +108,8 @@ _CITE_RE = re.compile(r"\[(\d{1,2})\]")
 # Stage 5: final validation states that mean the shown text is not grounded (a repair that failed)
 _UNGROUNDED = (STATUS_EMPTY, STATUS_DEGENERATE, STATUS_UNSUPPORTED, STATUS_EVIDENCE_MISMATCHED)
 # Stage 5: blocked answers keep the coverage_action earlier stages recorded for the same situation
-_BLOCK_ACTIONS = {"out_of_scope": "refuse_out_of_scope", "provision_not_found": "refuse_unsupported", "no_evidence": None}
+_BLOCK_ACTIONS = {"out_of_scope": "refuse_out_of_scope", "provision_not_found": "refuse_unsupported", "no_evidence": None,
+                  "product_clarification": "ask_product_type"}
 
 
 @dataclass(frozen=True)
@@ -1305,6 +1306,7 @@ class RagPipeline:
         fu = resolve_followup(question, context, names_provision=names, other_entity=other_entity,
                               anchor_ranked=ranked, heading_words=heading_words, stem=stem)
         if (precision_fix("CQ1") and fu is not None and anchor and not names and not other_entity
+                and fu.reason != "product_type_chosen"   # AMB1: the reader's choice is applied as given, never rewritten
                 and context.earlier_question and self.generator is not None
                 and not getattr(self.generator, "retrieval_only", False)):
             fu = self.rewrite_followup(question, context, fu, promoter)
@@ -1716,7 +1718,9 @@ class RagPipeline:
         decision = gate.decide(question, plan, gate_analysis, coverage=coverage, sources=bundle.sources, no_context=no_context,
                                unknown_guidance=unknown_guidance, premise_fact=premise_fact,
                                resolved_statute=(promotion.statute if promotion is not None and promotion.method == "named_statute" else ()),
-                               general_knowledge=(scope_decision.reason if scope_decision is not None and scope_decision.status == GENERAL_KNOWLEDGE else None))
+                               general_knowledge=(scope_decision.reason if scope_decision is not None and scope_decision.status == GENERAL_KNOWLEDGE else None),
+                               product_choices=({k: [list(c) for c in v] for k, v in promotion.choices}
+                                                if promotion is not None and promotion.method == "product_clarification" else None))
         conditions = decision.blocking_conditions
         block = gate_on and decision.blocked and not (
             ("no_evidence" in conditions and self.config.no_context_behavior != "refuse")

@@ -46,8 +46,10 @@ FB_COMPOSED_LIST = "composed_list"   # LS1: a "what must it contain" question an
 FB_COMPOSED_WARNING = "composed_warning_statement"   # WC1: a Part 740 label statement quoted verbatim (rag.warning_statements)
 FB_COMPOSED_DEFINITIONS = "composed_definitions"   # D1: the supplied paragraphs defining the terms asked about
 FB_FOCUSED_QUOTE = "focused_provision_quote"   # Q1: no verified answer; the governing provision's relevant paragraphs, verbatim
+FB_PRODUCT_CLARIFICATION = "product_clarification"   # AMB1: which product type? the parallel provisions, cited (rag.product_clarification)
 FALLBACK_TYPES = (FB_OUT_OF_SCOPE, FB_UNSUPPORTED_REQUEST, FB_AMBIGUOUS, FB_WRONG_PROVISION, FB_PROVISION_NOT_FOUND,
-                  FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED, FB_PREMISE_NOT_ESTABLISHED)
+                  FB_NO_EVIDENCE, FB_VALUE_NOT_ESTABLISHED, FB_VERBATIM_PROVISION, FB_UNVALIDATED, FB_PREMISE_NOT_ESTABLISHED,
+                  FB_PRODUCT_CLARIFICATION)
 
 QUOTABLE_QUESTION_TYPES = (TYPE_REQUIREMENT, TYPE_EXPLANATION, TYPE_DEFINITION)
 
@@ -115,6 +117,12 @@ def blocked_answer(decision: A.AnswerabilityDecision, sources, notes=(), missing
         return (boundary_answer(boundary["kind"], boundary.get("detail", ""), boundary.get("question", "")),
                 FB_OUT_OF_SCOPE if state == A.OUT_OF_SCOPE else FB_NO_EVIDENCE if state == A.INSUFFICIENT_EVIDENCE
                 else FB_UNSUPPORTED_REQUEST)
+    if "product_unspecified" in conditions:
+        # AMB1: which product type the question is about (regulus.rag.product_clarification)
+        from regulus.rag.product_clarification import Choice, answer as clarification
+
+        found = {k: tuple(Choice(*c) for c in v) for k, v in (decision.signals.get("product_choices") or {}).items()}
+        return clarification(found), FB_PRODUCT_CLARIFICATION
     if state == A.OUT_OF_SCOPE and "general_knowledge" in conditions:
         return ("This does not appear to be a regulatory question. Regulus AI answers questions about U.S. FDA regulations "
                 "(21 CFR) and FDA guidance from verified sources, and none of them addresses this question, so no answer is "

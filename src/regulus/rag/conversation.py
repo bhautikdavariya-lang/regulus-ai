@@ -268,6 +268,16 @@ def resolve(question: str, context: ConversationContext | None, *, names_provisi
         return FollowUp(False, "names_own_provision", question, anchor, earlier, found)
     if other_entity:
         return FollowUp(False, "names_other_color", question, anchor, earlier, found)
+    if _fu2("AMB1") and anchor.cfr and earlier:
+        # AMB1: the reply to "which type of product is it?" (regulus.rag.product_clarification) - the earlier question is
+        # answered from the chosen type's section(s), named, so it is resolved there and not ranked again
+        from regulus.rag.product_clarification import LABELS, narrowed
+
+        chosen = narrowed(question, anchor.cfr)
+        if chosen is not None:
+            family, secs = chosen
+            text = f"{earlier.rstrip()} ({LABELS[family].lower()}: " + ", ".join(f"21 CFR {x}" for x in secs) + ")"
+            return FollowUp(True, "product_type_chosen", text, Anchor(cfr=secs), earlier, found)
     own = subject_words(question, stem)
     common = own & (set().union(*(subject_words(t.question, stem) for t in context.turns)) | (heading_words or set()))
     shared = len(common) >= SHARED_WORDS or (bool(common) and len(common) >= SHARED_FRACTION * len(own))
@@ -312,9 +322,11 @@ def turn_anchor(plan, promotion, followup: FollowUp | None) -> Anchor:
                                    if r.reference.title == "21" and r.reference.section))
         own = Anchor(cfr=secs[:4], statute=tuple(promotion.statute)[:2])
     elif promotion is not None and (promotion.sections or promotion.statute):
-        # a promotion of paragraphs (DF1: "70.3(f)", "70.3(g)") anchors their section
+        # a promotion of paragraphs (DF1: "70.3(f)", "70.3(g)") anchors their section; a product clarification (AMB1)
+        # anchors every section it offered, so the reply can choose any of them
         secs = tuple(dict.fromkeys(re.sub(r"\(.*$", "", s) for s in promotion.sections))
-        own = Anchor(cfr=secs[:4], statute=tuple(promotion.statute)[:2])
+        keep = 6 if getattr(promotion, "method", None) == "product_clarification" else 4
+        own = Anchor(cfr=secs[:keep], statute=tuple(promotion.statute)[:2])
     else:
         secs = tuple(dict.fromkeys(r.reference.section for r in plan.requirements
                                    if r.reference.title == "21" and r.reference.section))

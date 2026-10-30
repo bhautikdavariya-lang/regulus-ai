@@ -106,7 +106,7 @@ _FOREIGN_LABEL = {"health canada": "Health Canada", "canadian": "Canadian", "eu"
 
 def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool, general_knowledge: str | None = None,
            resolved_statute: tuple[str, ...] = (), unknown_guidance: dict | None = None,
-           premise_fact: str | None = None) -> AnswerabilityDecision:
+           premise_fact: str | None = None, product_choices: dict | None = None) -> AnswerabilityDecision:
     """The answerability of one question. `sources` are the context sources that would be placed
     in the prompt (anything with .text, and .result.key or .evidence_id to identify it)."""
     texts = [s.text for s in sources]
@@ -151,6 +151,11 @@ def decide(question: str, plan, analysis, *, coverage, sources, no_context: bool
     if _DETERMINATION_RE.search(question):
         return d(UNSUPPORTED_REQUEST, "the question asks for a determination about a particular case or a prediction, "
                  "which regulatory text cannot establish", PROBABLE, ("determination_request",))
+    if product_choices:
+        # AMB1: the same provision written for several product types, and the question names none (product_choices:
+        # {family: [[section, heading, subpart], ...]}, regulus.rag.product_clarification)
+        return d(AMBIGUOUS, "the requirement is set separately for each product type and the question does not say which",
+                 PROBABLE, ("product_unspecified",), product_choices=product_choices)
     # `resolved_statute`: FD&C Act section(s) the question itself names ("subsection (e) of section 605"): identified
     if not plan.requirements and not plan.docket and not resolved_statute and _AMBIGUOUS_RE.search(question):
         return d(AMBIGUOUS, "the question points at a provision without identifying it (no CFR part or section)",

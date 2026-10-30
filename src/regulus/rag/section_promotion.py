@@ -28,7 +28,8 @@ import time
 from dataclasses import dataclass, field, replace
 from typing import Any
 
-from regulus.retrieval.section_index import COSMETIC_PARTS, COSMETIC_TERMS, SectionIndex, cosmetic_question, section_index
+from regulus.retrieval.section_index import (COSMETIC_PARTS, COSMETIC_TERMS, SectionIndex, cosmetic_question, deployment_scope,
+                                             section_index)
 from regulus.retrieval.statute import BLOCK_HEADER_CHARS, StatuteIndex, statute_index
 from regulus.rag.validator_switches import enabled as precision_fix
 
@@ -346,6 +347,8 @@ class Promotion:
     notes: tuple[str, ...] = field(default_factory=tuple)
     # the cross-encoder's score (0..1) of the promoted section for the question, when the reranker read it (Q2)
     rerank: float | None = None
+    # AMB1 (method "product_clarification"): {product family: ((section, heading, subpart), ...)} offered to the reader
+    choices: tuple[tuple[str, tuple[tuple[str, str, str], ...]], ...] = ()
 
     @property
     def citations(self) -> tuple[str, ...]:
@@ -360,7 +363,8 @@ class Promotion:
                 "statute": list(self.statute), "statute_rows": len(self.statute_rows),
                 "statute_blocks_left_out": len(self.statute_left_out),
                 "citations": list(self.citations), "picker_output": self.picker_output, "seconds": round(self.seconds, 2),
-                "candidates": [c["section"] for c in self.candidates], "notes": list(self.notes), "rerank": self.rerank}
+                "candidates": [c["section"] for c in self.candidates], "notes": list(self.notes), "rerank": self.rerank,
+                **({"choices": {k: [list(c) for c in v] for k, v in self.choices}} if self.choices else {})}
 
 
 def rerank_label(c: dict) -> str:
@@ -1998,6 +2002,17 @@ class SectionPromoter:
         if not isinstance(prepared, tuple):
             return prepared
         lex, cands = prepared
+        if not parts and precision_fix("AMB1") and deployment_scope() != "cosmetics":
+            # AMB1: the same provision written for several product types, and the question names none of them - the
+            # reader is asked which (regulus.rag.product_clarification), not given one type's rule chosen for them
+            from regulus.rag.product_clarification import choices as product_choices, sections as choice_sections
+
+            found = product_choices(question, cands, self.index)
+            if found:
+                return Promotion(sections=choice_sections(found), companions=(), method="product_clarification",
+                                 candidates=tuple(cands), seconds=time.perf_counter() - t0,
+                                 notes=(f"product types: {', '.join(found)}",),
+                                 choices=tuple((k, tuple((c.section, c.heading, c.subpart) for c in v)) for k, v in found.items()))
         raw, other, notes, second_act, second_cfr = None, None, (), None, None
         act_defined = self.act_definition_asked(question) if not parts else None
         if act_defined:

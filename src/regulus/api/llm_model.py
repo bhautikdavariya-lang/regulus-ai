@@ -51,6 +51,7 @@ _STATE_BY_FALLBACK = {
     "no_evidence": NO_SOURCE,
     "unvalidated_answer_withheld": GATE_FAILURE,
     "value_not_established": NOT_COVERED, "premise_not_established": NOT_COVERED, "ambiguous": NOT_COVERED,
+    "product_clarification": NOT_COVERED,   # asks which product type, as "ambiguous" asks which provision
     "unsupported_request": NOT_COVERED,
     "focused_provision_quote": PARTIAL, "definitions_quoted": PARTIAL,
 }

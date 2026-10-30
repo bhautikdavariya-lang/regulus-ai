@@ -59,6 +59,7 @@ EVIDENCE_BASED_FALLBACKS = {
     "out_of_scope": "the question falls outside Title 21 and FDA guidance",
     "unsupported_request": "the question asks for a determination the sources cannot make",
     "ambiguous": "the question does not identify the provision it asks about",
+    "product_clarification": "the requirement is set separately for each product type and the question does not say which",
     "wrong_provision": "the question names a provision it refers to, not the one it asks for",
     "value_not_established": "the retrieved evidence establishes no value of the kind asked for",
     "premise_not_established": "the identified provision does not state the premise the question assumes",

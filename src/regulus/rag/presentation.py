@@ -159,7 +159,14 @@ def present(answer: str, *, fallback_type: str | None = None, citations: list[di
                                  + [f"FD&C Act § {s}" for s in anchor.get("statute") or []]}
     if fallback_type in _WITHHELD or fallback_type in _DECLINED:
         return _not_answered(text, fallback_type, sources, context)
-    offered = suggestions_for((followup or {}).get("anchor") if isinstance(followup, dict) else None, asked)
+    turn_anchor = (followup or {}).get("anchor") if isinstance(followup, dict) else None
+    if fallback_type == "product_clarification":
+        # AMB1: the product types offered, as the replies the reader can click (regulus.rag.product_clarification)
+        from regulus.rag.product_clarification import suggestions as product_replies
+
+        offered = product_replies([x for x in (turn_anchor or {}).get("cfr") or [] if isinstance(x, str)])
+    else:
+        offered = suggestions_for(turn_anchor, asked)
     kind = "composed" if (fallback_type or "").startswith("composed") else "answer"
     p = Presentation(kind=kind, sources=sources, context=context, suggestions=offered)
     for block in _blocks(text):

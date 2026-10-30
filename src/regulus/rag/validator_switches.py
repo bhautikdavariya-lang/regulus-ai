@@ -348,6 +348,11 @@ Fixes of 27 Oct 2026 (first 50 cosmetics main questions, the 26 Oct follow-up ve
       programme's parts only - as a cosmetics question has since 22 Oct - and is offered the FD&C Act sections the programme
       is issued under (regulus.retrieval.programmes). full300d: those five domains were 40 of 56 below PASS/PP; tobacco
       candidates were mostly other programmes' sections and Act 904-911 was never offered
+  AMB1 (30 Oct, off until measured) a question naming no product type whose first-ranked candidates are the same provision
+      written for several types (101.7 / 201.62 / 701.13 / 801.62 "Declaration of net quantity of contents") is answered
+      with a clarifying question listing them, cited, without calling the model; a short reply naming one type ("food",
+      "It is for a medical device.") is answered from that type's section(s) (regulus.rag.product_clarification,
+      regulus.rag.conversation). full300d: L-004 and L-005 were answered from the device rules for food keys
   BR1 (29 Oct, off until measured) requests a research tool must not carry out as asked - certify or guarantee
       compliance, sign or attest, keep a missing record from an investigator, draft a court filing, reproduce a copyrighted
       standard, another agency's rules, an unscoped retention question - get a fixed answer saying what it cannot do, why,
